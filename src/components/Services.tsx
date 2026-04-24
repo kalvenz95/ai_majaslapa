@@ -1,0 +1,299 @@
+"use client";
+import Link from "next/link";
+import E from "@/components/E";
+
+const SocialMediaIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <rect x="2" y="2" width="9" height="9" rx="2" fill="url(#g1)" opacity="0.9"/>
+    <rect x="13" y="2" width="9" height="9" rx="2" fill="url(#g1)" opacity="0.6"/>
+    <rect x="2" y="13" width="9" height="9" rx="2" fill="url(#g1)" opacity="0.6"/>
+    <rect x="13" y="13" width="9" height="9" rx="2" fill="url(#g1)" opacity="0.3"/>
+    <circle cx="17.5" cy="17.5" r="2" fill="url(#g1)"/>
+    <defs>
+      <linearGradient id="g1" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#a855f7"/>
+        <stop offset="1" stopColor="#ec4899"/>
+      </linearGradient>
+    </defs>
+  </svg>
+);
+
+const ChatbotIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <path d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H8l-4 4V6a2 2 0 0 1 2-2z" fill="url(#g2)" opacity="0.15" stroke="url(#g2)" strokeWidth="1.5"/>
+    <circle cx="8.5" cy="11" r="1.5" fill="url(#g2)"/>
+    <circle cx="12" cy="11" r="1.5" fill="url(#g2)"/>
+    <circle cx="15.5" cy="11" r="1.5" fill="url(#g2)"/>
+    <defs>
+      <linearGradient id="g2" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#00ff88"/>
+        <stop offset="1" stopColor="#00d4ff"/>
+      </linearGradient>
+    </defs>
+  </svg>
+);
+
+const WhatsAppIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.37 5.07L2 22l5.12-1.34A9.96 9.96 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z" fill="url(#g3)" opacity="0.15" stroke="url(#g3)" strokeWidth="1.5"/>
+    <path d="M16.5 14.5c-.3.8-1.5 1.5-2.1 1.6-.6.1-1.3.1-2-.2-.7-.3-1.8-.7-3.1-2-1.3-1.3-1.7-2.4-2-3.1-.3-.7-.3-1.4-.2-2 .1-.6.8-1.8 1.6-2.1.3-.1.6-.1.8 0l.9 2c.1.2.1.4 0 .6l-.6.7c-.1.1-.1.3 0 .4.3.6.9 1.4 1.6 2 .7.7 1.5 1.2 2 1.5.1.1.3.1.4 0l.7-.5c.2-.1.4-.1.6 0l2 .9c.1.1.2.4.1.7z" fill="url(#g3)"/>
+    <defs>
+      <linearGradient id="g3" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#22c55e"/>
+        <stop offset="1" stopColor="#00d4ff"/>
+      </linearGradient>
+    </defs>
+  </svg>
+);
+
+const VoiceIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <rect x="9" y="2" width="6" height="12" rx="3" fill="url(#g4)" opacity="0.8"/>
+    <path d="M5 10a7 7 0 0 0 14 0" stroke="url(#g4)" strokeWidth="1.8" strokeLinecap="round"/>
+    <line x1="12" y1="17" x2="12" y2="21" stroke="url(#g4)" strokeWidth="1.8" strokeLinecap="round"/>
+    <line x1="8" y1="21" x2="16" y2="21" stroke="url(#g4)" strokeWidth="1.8" strokeLinecap="round"/>
+    <path d="M2 10c0 0 1-1 2 0M20 10c0 0 1-1 2 0" stroke="url(#g4)" strokeWidth="1.5" strokeLinecap="round" opacity="0.5"/>
+    <defs>
+      <linearGradient id="g4" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#f97316"/>
+        <stop offset="1" stopColor="#ef4444"/>
+      </linearGradient>
+    </defs>
+  </svg>
+);
+
+const WorkflowIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <circle cx="5" cy="12" r="3" fill="url(#g5)" opacity="0.9"/>
+    <circle cx="19" cy="6" r="3" fill="url(#g5)" opacity="0.7"/>
+    <circle cx="19" cy="18" r="3" fill="url(#g5)" opacity="0.7"/>
+    <line x1="8" y1="11" x2="16" y2="7" stroke="url(#g5)" strokeWidth="1.5" strokeLinecap="round"/>
+    <line x1="8" y1="13" x2="16" y2="17" stroke="url(#g5)" strokeWidth="1.5" strokeLinecap="round"/>
+    <defs>
+      <linearGradient id="g5" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#f59e0b"/>
+        <stop offset="1" stopColor="#f97316"/>
+      </linearGradient>
+    </defs>
+  </svg>
+);
+
+const services = [
+  {
+    Icon: SocialMediaIcon,
+    title: "Sociālo Tīklu Pārvaldība",
+    desc: "AI video, attēli un reklāmas saturs. Veido pilnu sociālo mediju klātbūtni uzņēmumiem ar mākslīgo intelektu.",
+    earn: "€300–€800/mēn",
+    difficulty: "Iesācējs",
+    gradient: "from-[#a855f7]/20 to-[#ec4899]/20",
+    border: "rgba(168,85,247,0.2)",
+    glow: "rgba(168,85,247,0.12)",
+    glowHover: "rgba(168,85,247,0.2)",
+    tag: "Populārs",
+    tagColor: "text-[#a855f7] bg-[#a855f7]/10 border-[#a855f7]/25",
+    includes: ["AI faceless video", "Reklāmas banneri", "Post vizuāļi"],
+    link: "/kursi/socialo-tiklu-parvaldiba",
+  },
+  {
+    Icon: ChatbotIcon,
+    title: "Website Chatbot",
+    desc: "Inteliģents AI chatbot uzņēmumu mājaslapās — automātiski atbild uz jautājumiem 24/7.",
+    earn: "€300–€800/mēn",
+    difficulty: "Vidējs",
+    gradient: "from-[#00ff88]/20 to-[#00d4ff]/20",
+    border: "rgba(0,255,136,0.2)",
+    glow: "rgba(0,255,136,0.08)",
+    glowHover: "rgba(0,255,136,0.15)",
+    tag: "Augsts pieprasījums",
+    tagColor: "text-[#00ff88] bg-[#00ff88]/10 border-[#00ff88]/25",
+    includes: ["Claude API integrācija", "Pielāgota balstiena", "Analytics"],
+    link: null,
+  },
+  {
+    Icon: WhatsAppIcon,
+    title: "WhatsApp Automatizācija",
+    desc: "Automatizē klientu komunikāciju WhatsApp ar Make.com vai n8n. Latvijas uzņēmumiem.",
+    earn: "€400–€900/mēn",
+    difficulty: "Vidējs",
+    gradient: "from-[#22c55e]/20 to-[#00d4ff]/20",
+    border: "rgba(34,197,94,0.2)",
+    glow: "rgba(34,197,94,0.08)",
+    glowHover: "rgba(34,197,94,0.15)",
+    tag: "Populārs LV",
+    tagColor: "text-[#22c55e] bg-[#22c55e]/10 border-[#22c55e]/25",
+    includes: ["Automātiski atbilde", "Lead notifikācijas", "Vonage integrācija"],
+    link: null,
+  },
+  {
+    Icon: VoiceIcon,
+    title: "Voice Agents ar Vapi",
+    desc: "AI balss aģents, kas pieņem zvanus, rezervē tikšanās un atbild klientiem automātiski.",
+    earn: "€500–€1500/mēn",
+    difficulty: "Progresīvs",
+    gradient: "from-[#f97316]/20 to-[#ef4444]/20",
+    border: "rgba(249,115,22,0.2)",
+    glow: "rgba(249,115,22,0.08)",
+    glowHover: "rgba(249,115,22,0.18)",
+    tag: "Premium",
+    tagColor: "text-[#f97316] bg-[#f97316]/10 border-[#f97316]/25",
+    includes: ["Vapi platforma", "LV numurs Vonage", "Zvanu analytics"],
+    link: null,
+  },
+  {
+    Icon: WorkflowIcon,
+    title: "Make.com / n8n Workflow",
+    desc: "Pilna biznesa automatizācija — e-pasts, CRM, rēķini, rezervācijas. Viss bez cilvēka.",
+    earn: "€300–€700/mēn",
+    difficulty: "Vidējs",
+    gradient: "from-[#f59e0b]/20 to-[#f97316]/20",
+    border: "rgba(245,158,11,0.2)",
+    glow: "rgba(245,158,11,0.08)",
+    glowHover: "rgba(245,158,11,0.15)",
+    tag: "Atkārtoti ienākumi",
+    tagColor: "text-[#f59e0b] bg-[#f59e0b]/10 border-[#f59e0b]/25",
+    includes: ["Make.com vai n8n", "CRM savienojums", "E-pasta automācija"],
+    link: null,
+  },
+];
+
+const difficultyColor: Record<string, string> = {
+  "Iesācējs":   "text-[#00ff88] bg-[#00ff88]/8 border-[#00ff88]/20",
+  "Vidējs":     "text-[#00d4ff] bg-[#00d4ff]/8 border-[#00d4ff]/20",
+  "Progresīvs": "text-[#a855f7] bg-[#a855f7]/8 border-[#a855f7]/20",
+};
+
+export default function Services() {
+  return (
+    <section id="courses" className="py-24 px-6 relative">
+      <div className="absolute inset-0 dot-grid opacity-20 pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <div className="badge-neon mb-4 inline-block"><E id="services-badge">5 AI Pakalpojumi</E></div>
+          <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+            <E id="services-h2-1">Ko tu iemācīsies</E>{" "}
+            <span className="gradient-text-green"><E id="services-h2-accent">pārdot</E></span>
+          </h2>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            <E id="services-subtitle">Katrs kurss beidzas ar gatavu pakalpojumu, cenu sarakstu un klientu piesaistes skriptiem.</E>
+          </p>
+        </div>
+
+        {/* Grid — 3 top, 2 bottom centred */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {services.map((s, idx) => (
+            <div
+              key={s.title}
+              className={`relative rounded-2xl p-6 cursor-pointer group overflow-hidden transition-all duration-300
+                ${idx === 3 ? "lg:col-start-1" : ""}
+                ${idx === 4 ? "lg:col-start-2" : ""}
+              `}
+              style={{
+                background: `linear-gradient(135deg, #0d0d1a, #0f0f20)`,
+                border: `1px solid ${s.border}`,
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLDivElement).style.boxShadow = `0 20px 40px rgba(0,0,0,0.3), 0 0 40px ${s.glowHover}`;
+                (e.currentTarget as HTMLDivElement).style.transform = "translateY(-4px)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLDivElement).style.boxShadow = "";
+                (e.currentTarget as HTMLDivElement).style.transform = "";
+              }}
+            >
+              {/* Gradient blob on hover */}
+              <div
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl"
+                style={{ background: `radial-gradient(ellipse at 30% 0%, ${s.glowHover}, transparent 65%)` }}
+              />
+
+              {/* Top row: icon + tag */}
+              <div className="flex items-start justify-between mb-5">
+                {/* Icon container */}
+                <div
+                  className={`w-11 h-11 rounded-xl flex items-center justify-center bg-gradient-to-br ${s.gradient}`}
+                  style={{ border: `1px solid ${s.border}` }}
+                >
+                  <s.Icon />
+                </div>
+                <span className={`text-xs px-2.5 py-1 rounded-lg border font-semibold ${s.tagColor}`}>
+                  {s.tag}
+                </span>
+              </div>
+
+              {/* Title + desc */}
+              <h3 className="text-[1.05rem] font-bold text-white mb-2 leading-snug"><E id={`srv-${idx}-title`}>{s.title}</E></h3>
+              <p className="text-gray-400 text-sm leading-relaxed mb-4"><E id={`srv-${idx}-desc`}>{s.desc}</E></p>
+
+              {/* Includes pills */}
+              <div className="flex flex-wrap gap-1.5 mb-5">
+                {s.includes.map((item) => (
+                  <span
+                    key={item}
+                    className="text-[11px] px-2 py-0.5 rounded-md text-gray-500 font-medium"
+                    style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+
+              {/* Bottom: earn + difficulty */}
+              <div
+                className="flex items-center justify-between pt-4"
+                style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
+              >
+                <span className="text-[#00ff88] font-bold text-sm"><E id={`srv-${idx}-earn`}>{s.earn}</E></span>
+                <span className={`text-xs px-2.5 py-1 rounded-lg border font-semibold ${difficultyColor[s.difficulty]}`}>
+                  {s.difficulty}
+                </span>
+              </div>
+
+              {/* Arrow */}
+              {s.link ? (
+                <Link
+                  href={s.link}
+                  className="mt-3 flex items-center gap-1 text-gray-600 group-hover:text-[#00ff88] transition-colors text-xs font-semibold tracking-wide uppercase"
+                >
+                  Skatīt kursu
+                  <span className="group-hover:translate-x-1 transition-transform inline-block">→</span>
+                </Link>
+              ) : (
+                <div className="mt-3 flex items-center gap-1 text-gray-600 group-hover:text-[#00ff88] transition-colors text-xs font-semibold tracking-wide uppercase">
+                  Skatīt kursu
+                  <span className="group-hover:translate-x-1 transition-transform inline-block">→</span>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        {/* Coming soon */}
+        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+          {[
+            { icon: "📱", title: "AI App Building", desc: "Izveido pilnvērtīgas mobilās un web lietotnes ar AI" },
+            { icon: "🤝", title: "WhatsApp Agents (Vonage)", desc: "Progresīvi WhatsApp AI aģenti Latvijas numuriem" },
+          ].map((item) => (
+            <div
+              key={item.title}
+              className="flex items-center gap-4 rounded-2xl p-4 opacity-50 border border-dashed border-white/10"
+              style={{ background: "rgba(255,255,255,0.015)" }}
+            >
+              <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-xl flex-shrink-0">
+                {item.icon}
+              </div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="font-semibold text-white text-sm">{item.title}</span>
+                  <span className="text-xs px-2 py-0.5 rounded-md font-semibold" style={{ background: "rgba(168,85,247,0.1)", border: "1px solid rgba(168,85,247,0.25)", color: "#a855f7" }}>Drīzumā</span>
+                </div>
+                <p className="text-xs text-gray-500 mt-0.5">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
