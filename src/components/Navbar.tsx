@@ -50,7 +50,7 @@ export default function Navbar() {
 
         {/* CTA */}
         <div className="hidden md:flex items-center gap-3">
-          <a href="#pricing" className="text-sm text-gray-400 hover:text-white transition-colors">
+          <a href="/login" className="text-sm text-gray-400 hover:text-white transition-colors">
             Pieslēgties
           </a>
           <a
