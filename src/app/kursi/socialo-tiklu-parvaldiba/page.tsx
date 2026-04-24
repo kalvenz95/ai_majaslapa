@@ -1067,8 +1067,8 @@ function LessonView({ lesson, onBack }: { lesson: Lesson; onBack: () => void }) 
           </div>
           <button
             style={{
-              marginTop: 16, padding: "10px 24px", borderRadius: 8, border: "none", cursor: "pointer",
-              background: "rgba(0,255,136,0.15)", border: "1px solid rgba(0,255,136,0.3)" as never,
+              marginTop: 16, padding: "10px 24px", borderRadius: 8, cursor: "pointer",
+              background: "rgba(0,255,136,0.15)", border: "1px solid rgba(0,255,136,0.3)",
               color: "#00ff88", fontWeight: 700, fontSize: 13,
               transition: "background 0.2s",
             }}
@@ -1096,8 +1096,8 @@ function LessonView({ lesson, onBack }: { lesson: Lesson; onBack: () => void }) 
           </div>
           <button
             style={{
-              padding: "10px 24px", borderRadius: 8, border: "none", cursor: "pointer",
-              background: "rgba(0,212,255,0.12)", border: "1px solid rgba(0,212,255,0.25)" as never,
+              padding: "10px 24px", borderRadius: 8, cursor: "pointer",
+              background: "rgba(0,212,255,0.12)", border: "1px solid rgba(0,212,255,0.25)",
               color: "#00d4ff", fontWeight: 700, fontSize: 13,
               transition: "background 0.2s",
             }}
