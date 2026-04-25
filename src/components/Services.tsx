@@ -107,7 +107,7 @@ const services = [
     tag: "Augsts pieprasījums",
     tagColor: "text-[#00ff88] bg-[#00ff88]/10 border-[#00ff88]/25",
     includes: ["Claude API integrācija", "Pielāgota balstiena", "Analytics"],
-    link: null,
+    link: "/kursi/website-chatbot",
   },
   {
     Icon: WhatsAppIcon,

@@ -563,6 +563,207 @@ export default function CourseDetailPage() {
 function OverviewTab() {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 48 }}>
+
+      {/* ── HERO SALES SECTION ── */}
+      <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
+
+        {/* Virsraksts + apakšvirsraksts */}
+        <div
+          style={{
+            position: "relative", padding: "40px", borderRadius: 20,
+            background: "linear-gradient(135deg, rgba(168,85,247,0.1) 0%, rgba(236,72,153,0.06) 60%, rgba(5,5,8,0) 100%)",
+            border: "1px solid rgba(168,85,247,0.18)", overflow: "hidden",
+          }}
+        >
+          {/* bg grid */}
+          <div style={{ position: "absolute", inset: 0, pointerEvents: "none", backgroundImage: "linear-gradient(rgba(168,85,247,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(168,85,247,0.04) 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
+          {/* glow */}
+          <div style={{ position: "absolute", top: -60, right: -60, width: 260, height: 260, borderRadius: "50%", background: "radial-gradient(circle, rgba(236,72,153,0.12), transparent 70%)", pointerEvents: "none" }} />
+
+          <div style={{ position: "relative" }}>
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "4px 12px", borderRadius: 20, background: "rgba(168,85,247,0.12)", border: "1px solid rgba(168,85,247,0.3)", marginBottom: 20 }}>
+              <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#a855f7", boxShadow: "0 0 8px #a855f7" }} />
+              <span style={{ fontSize: 11, color: "#a855f7", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase" }}>Digitālā sistēma</span>
+            </div>
+
+            <h2 style={{ fontSize: 32, fontWeight: 900, letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: 14, color: "#fff" }}>
+              Izveido digitālas sistēmas,<br />
+              <span style={{ background: "linear-gradient(135deg, #a855f7, #ec4899)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>kas strādā tavā vietā</span>
+            </h2>
+
+            <p style={{ fontSize: 15, color: "#888", lineHeight: 1.75, maxWidth: 620 }}>
+              Nevis vienkārši mājaslapas — bet modernus, vizuāli spēcīgus un klientus piesaistošus risinājumus
+            </p>
+          </div>
+        </div>
+
+        {/* Solījums */}
+        <div
+          style={{
+            padding: "28px 32px", borderRadius: 16,
+            background: "#0d0d1a", border: "1px solid rgba(255,255,255,0.06)",
+            display: "flex", alignItems: "flex-start", gap: 20,
+          }}
+        >
+          <div style={{ width: 48, height: 48, borderRadius: 14, flexShrink: 0, background: "linear-gradient(135deg, rgba(168,85,247,0.25), rgba(236,72,153,0.25))", border: "1px solid rgba(168,85,247,0.3)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22 }}>
+            🎯
+          </div>
+          <div>
+            <div style={{ fontSize: 11, fontWeight: 700, color: "#a855f7", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 8 }}>Solījums</div>
+            <p style={{ fontSize: 15, color: "#ccc", lineHeight: 1.75 }}>
+              Tu iemācīsies izveidot mūsdienīgas, dinamiskas un vizuāli pievilcīgas mājaslapas kopā ar automatizācijām, kas pārvērš apmeklētājus klientos
+            </p>
+          </div>
+        </div>
+
+        {/* Kas padara atšķirīgu */}
+        <div>
+          <SectionLabel>Kas padara šo atšķirīgu</SectionLabel>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 14 }}>
+            {[
+              { icon: "✦", color: "#a855f7", title: "Premium dizains", desc: "Dizains, kas izskatās kā premium startupiem" },
+              { icon: "💰", color: "#ec4899", title: "Pārdod, ne tikai izskatās", desc: "Lapas, kas ne tikai izskatās labi, bet pārdod" },
+              { icon: "⚡", color: "#f59e0b", title: "24/7 automatizācija", desc: "Automatizācijas, kas strādā fonā visu diennakti" },
+            ].map((item) => (
+              <div
+                key={item.title}
+                style={{
+                  padding: "22px 20px", borderRadius: 14,
+                  background: "#0d0d1a",
+                  border: `1px solid ${item.color}22`,
+                  transition: "border-color 0.2s, transform 0.2s",
+                }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.borderColor = `${item.color}55`; (e.currentTarget as HTMLDivElement).style.transform = "translateY(-2px)"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.borderColor = `${item.color}22`; (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)"; }}
+              >
+                <div style={{ fontSize: 24, marginBottom: 12 }}>{item.icon}</div>
+                <div style={{ fontSize: 13, fontWeight: 700, color: "#fff", marginBottom: 6 }}>{item.title}</div>
+                <div style={{ fontSize: 12, color: "#666", lineHeight: 1.6 }}>{item.desc}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Ko tu iegūsi + Automatizācijas */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+          {/* Ko tu iegūsi */}
+          <div style={{ padding: "24px", borderRadius: 16, background: "#0d0d1a", border: "1px solid rgba(168,85,247,0.12)" }}>
+            <div style={{ fontSize: 11, fontWeight: 700, color: "#a855f7", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 16 }}>Ko tu iegūsi</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              {[
+                'Spēju veidot modernu, "wow" līmeņa mājaslapu',
+                "Sapratni, kā pārvērst apmeklētājus klientos",
+                "Automatizētu klientu komunikāciju",
+                "Sistēmu, kas savāc un apstrādā pieteikumus",
+                "Iespēju piedāvāt biznesiem pilnu digitālo risinājumu",
+              ].map((item, i) => (
+                <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
+                  <div style={{ width: 18, height: 18, borderRadius: 5, background: "rgba(168,85,247,0.2)", border: "1px solid rgba(168,85,247,0.35)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 1 }}>
+                    <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#a855f7" strokeWidth="3.5"><polyline points="20,6 9,17 4,12" /></svg>
+                  </div>
+                  <span style={{ fontSize: 12.5, color: "#bbb", lineHeight: 1.5 }}>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Automatizācijas */}
+          <div style={{ padding: "24px", borderRadius: 16, background: "#0d0d1a", border: "1px solid rgba(236,72,153,0.12)" }}>
+            <div style={{ fontSize: 11, fontWeight: 700, color: "#ec4899", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 16 }}>Automatizācijas, ko apgūsi</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              {[
+                "WhatsApp atbildes klientiem",
+                "Pieteikumu apstrāde automātiski",
+                "Follow-up ziņas",
+                "Klientu filtrēšana",
+                "Dažādi automatizēti scenāriji biznesiem",
+              ].map((item, i) => (
+                <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
+                  <div style={{ width: 18, height: 18, borderRadius: 5, background: "rgba(236,72,153,0.15)", border: "1px solid rgba(236,72,153,0.3)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 1 }}>
+                    <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#ec4899" strokeWidth="3.5"><polyline points="20,6 9,17 4,12" /></svg>
+                  </div>
+                  <span style={{ fontSize: 12.5, color: "#bbb", lineHeight: 1.5 }}>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Rezultāts */}
+        <div
+          style={{
+            padding: "28px 32px", borderRadius: 16,
+            background: "rgba(0,255,136,0.04)", border: "1px solid rgba(0,255,136,0.14)",
+          }}
+        >
+          <div style={{ fontSize: 11, fontWeight: 700, color: "#00ff88", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 16 }}>Rezultāts — tu pārdosi sistēmu, ne mājaslapu</div>
+          <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+            {[
+              { icon: "📈", text: "Atved klientus" },
+              { icon: "💬", text: "Atbild klientiem" },
+              { icon: "⏱️", text: "Ietaupa laiku" },
+            ].map((r) => (
+              <div key={r.text} style={{ display: "flex", alignItems: "center", gap: 10, padding: "10px 18px", borderRadius: 10, background: "rgba(0,255,136,0.07)", border: "1px solid rgba(0,255,136,0.15)", flex: 1, minWidth: 140 }}>
+                <span style={{ fontSize: 18 }}>{r.icon}</span>
+                <span style={{ fontSize: 13, fontWeight: 600, color: "#00ff88" }}>{r.text}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Kam tas paredzēts */}
+        <div>
+          <SectionLabel>Kam tas paredzēts</SectionLabel>
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            {[
+              "Ja gribi pāriet uz augstāku līmeni",
+              "Ja gribi pelnīt vairāk no viena klienta",
+              "Ja gribi piedāvāt kaut ko, ko citi nepiedāvā",
+            ].map((item, i) => (
+              <div key={i} style={{ display: "flex", alignItems: "center", gap: 12, padding: "14px 18px", borderRadius: 10, background: "#0d0d1a", border: "1px solid rgba(255,255,255,0.05)" }}>
+                <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#a855f7", flexShrink: 0 }} />
+                <span style={{ fontSize: 13, color: "#ccc" }}>{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Tagline + CTA */}
+        <div
+          style={{
+            padding: "40px", borderRadius: 20, textAlign: "center",
+            background: "linear-gradient(135deg, rgba(168,85,247,0.1), rgba(236,72,153,0.08))",
+            border: "1px solid rgba(168,85,247,0.2)",
+            position: "relative", overflow: "hidden",
+          }}
+        >
+          <div style={{ position: "absolute", inset: 0, pointerEvents: "none", backgroundImage: "linear-gradient(rgba(168,85,247,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(168,85,247,0.03) 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
+          <div style={{ position: "relative" }}>
+            <p style={{ fontSize: 14, color: "#666", marginBottom: 6 }}>Lielākā daļa taisa mājaslapas.</p>
+            <p style={{ fontSize: 22, fontWeight: 900, letterSpacing: "-0.02em", marginBottom: 28, color: "#fff" }}>
+              Tu taisīsi sistēmas,{" "}
+              <span style={{ background: "linear-gradient(135deg, #a855f7, #ec4899)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+                kas pelna naudu.
+              </span>
+            </p>
+            <button
+              style={{
+                padding: "15px 44px", borderRadius: 12, border: "none", cursor: "pointer",
+                background: "linear-gradient(135deg, #a855f7, #ec4899)",
+                color: "#fff", fontWeight: 700, fontSize: 15, letterSpacing: "0.01em",
+                boxShadow: "0 8px 32px rgba(168,85,247,0.4)",
+                transition: "transform 0.2s, box-shadow 0.2s",
+              }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 14px 40px rgba(168,85,247,0.5)"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 8px 32px rgba(168,85,247,0.4)"; }}
+            >
+              Izveidot savu pirmo digitālo sistēmu
+            </button>
+          </div>
+        </div>
+
+      </div>
+
       {/* Ko tu iemācīsies */}
       <div>
         <SectionLabel>Ko tu iemācīsies</SectionLabel>
