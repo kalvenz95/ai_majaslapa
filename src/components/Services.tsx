@@ -78,7 +78,40 @@ const WorkflowIcon = () => (
   </svg>
 );
 
-const services = [
+const AppIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <rect x="5" y="2" width="14" height="20" rx="3" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5"/>
+    <rect x="8" y="6" width="8" height="5" rx="1.5" fill="rgba(255,255,255,0.15)"/>
+    <line x1="8" y1="14" x2="16" y2="14" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" strokeLinecap="round"/>
+    <line x1="8" y1="17" x2="13" y2="17" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" strokeLinecap="round"/>
+  </svg>
+);
+
+const LockIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+    <rect x="3" y="11" width="18" height="11" rx="2"/>
+    <path d="M7 11V7a5 5 0 0110 0v4"/>
+  </svg>
+);
+
+type Service = {
+  Icon: () => JSX.Element;
+  title: string;
+  desc: string;
+  earn: string;
+  difficulty: string;
+  gradient: string;
+  border: string;
+  glow: string;
+  glowHover: string;
+  tag: string;
+  tagColor: string;
+  includes: string[];
+  link: string | null;
+  comingSoon?: boolean;
+};
+
+const services: Service[] = [
   {
     Icon: SocialMediaIcon,
     title: "Sociālo Tīklu Pārvaldība",
@@ -154,6 +187,22 @@ const services = [
     includes: ["Make.com vai n8n", "CRM savienojums", "E-pasta automācija"],
     link: null,
   },
+  {
+    Icon: AppIcon,
+    title: "Izveido savu Aplikāciju ar A.I.",
+    desc: "Veido mobilās un web aplikācijas ar AI — no idejas līdz darbojošam produktam bez tradicionālās programmēšanas.",
+    earn: "€800–€3000/projekts",
+    difficulty: "Vidējs",
+    gradient: "from-white/5 to-white/3",
+    border: "rgba(255,255,255,0.08)",
+    glow: "rgba(255,255,255,0.02)",
+    glowHover: "rgba(255,255,255,0.04)",
+    tag: "Drīzumā",
+    tagColor: "text-gray-500 bg-white/4 border-white/10",
+    includes: ["No-code AI rīki", "Prototype izveide", "Monetizācija"],
+    link: null,
+    comingSoon: true,
+  },
 ];
 
 const difficultyColor: Record<string, string> = {
@@ -185,32 +234,45 @@ export default function Services() {
           {services.map((s, idx) => (
             <div
               key={s.title}
-              className={`relative rounded-2xl p-6 cursor-pointer group overflow-hidden transition-all duration-300
+              className={`relative rounded-2xl p-6 group overflow-hidden transition-all duration-300
                 ${idx === 3 ? "lg:col-start-1" : ""}
                 ${idx === 4 ? "lg:col-start-2" : ""}
+                ${s.comingSoon ? "cursor-default opacity-60" : "cursor-pointer"}
               `}
               style={{
-                background: `linear-gradient(135deg, #0d0d1a, #0f0f20)`,
+                background: s.comingSoon
+                  ? "linear-gradient(135deg, #0d0d12, #0f0f14)"
+                  : `linear-gradient(135deg, #0d0d1a, #0f0f20)`,
                 border: `1px solid ${s.border}`,
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLDivElement).style.boxShadow = `0 20px 40px rgba(0,0,0,0.3), 0 0 40px ${s.glowHover}`;
-                (e.currentTarget as HTMLDivElement).style.transform = "translateY(-4px)";
+                if (!s.comingSoon) {
+                  (e.currentTarget as HTMLDivElement).style.boxShadow = `0 20px 40px rgba(0,0,0,0.3), 0 0 40px ${s.glowHover}`;
+                  (e.currentTarget as HTMLDivElement).style.transform = "translateY(-4px)";
+                }
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLDivElement).style.boxShadow = "";
                 (e.currentTarget as HTMLDivElement).style.transform = "";
               }}
             >
-              {/* Gradient blob on hover */}
-              <div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl"
-                style={{ background: `radial-gradient(ellipse at 30% 0%, ${s.glowHover}, transparent 65%)` }}
-              />
+              {/* Gradient blob on hover (not for coming soon) */}
+              {!s.comingSoon && (
+                <div
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl"
+                  style={{ background: `radial-gradient(ellipse at 30% 0%, ${s.glowHover}, transparent 65%)` }}
+                />
+              )}
+
+              {/* Coming soon lock overlay */}
+              {s.comingSoon && (
+                <div className="absolute top-4 right-4 flex items-center gap-1.5 text-gray-500">
+                  <LockIcon />
+                </div>
+              )}
 
               {/* Top row: icon + tag */}
               <div className="flex items-start justify-between mb-5">
-                {/* Icon container */}
                 <div
                   className={`w-11 h-11 rounded-xl flex items-center justify-center bg-gradient-to-br ${s.gradient}`}
                   style={{ border: `1px solid ${s.border}` }}
@@ -222,9 +284,22 @@ export default function Services() {
                 </span>
               </div>
 
-              {/* Title + desc */}
-              <h3 className="text-[1.05rem] font-bold text-white mb-2 leading-snug"><E id={`srv-${idx}-title`}>{s.title}</E></h3>
-              <p className="text-gray-400 text-sm leading-relaxed mb-4"><E id={`srv-${idx}-desc`}>{s.desc}</E></p>
+              {/* Title + no-coding badge + desc */}
+              <h3 className="text-[1.05rem] font-bold text-white mb-2 leading-snug">
+                <E id={`srv-${idx}-title`}>{s.title}</E>
+              </h3>
+              {/* Nav programmēšanas teksts */}
+              <div className="flex items-center gap-1.5 mb-3">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#00ff88" strokeWidth="3">
+                  <polyline points="20,6 9,17 4,12"/>
+                </svg>
+                <span className="text-[11px] text-gray-500 font-medium">
+                  Nav nepieciešamas programmēšanas vai citas sarežģītas datorprasmes
+                </span>
+              </div>
+              <p className="text-gray-400 text-sm leading-relaxed mb-4">
+                <E id={`srv-${idx}-desc`}>{s.desc}</E>
+              </p>
 
               {/* Includes pills */}
               <div className="flex flex-wrap gap-1.5 mb-5">
@@ -244,14 +319,21 @@ export default function Services() {
                 className="flex items-center justify-between pt-4"
                 style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
               >
-                <span className="text-[#00ff88] font-bold text-sm"><E id={`srv-${idx}-earn`}>{s.earn}</E></span>
-                <span className={`text-xs px-2.5 py-1 rounded-lg border font-semibold ${difficultyColor[s.difficulty]}`}>
+                <span className={`font-bold text-sm ${s.comingSoon ? "text-gray-600" : "text-[#00ff88]"}`}>
+                  <E id={`srv-${idx}-earn`}>{s.earn}</E>
+                </span>
+                <span className={`text-xs px-2.5 py-1 rounded-lg border font-semibold ${s.comingSoon ? "text-gray-600 bg-white/4 border-white/8" : difficultyColor[s.difficulty]}`}>
                   {s.difficulty}
                 </span>
               </div>
 
-              {/* Arrow */}
-              {s.link ? (
+              {/* CTA row */}
+              {s.comingSoon ? (
+                <div className="mt-3 flex items-center gap-1.5 text-gray-600 text-xs font-semibold tracking-wide uppercase">
+                  <LockIcon />
+                  Drīzumā pieejams
+                </div>
+              ) : s.link ? (
                 <Link
                   href={s.link}
                   className="mt-3 flex items-center gap-1 text-gray-600 group-hover:text-[#00ff88] transition-colors text-xs font-semibold tracking-wide uppercase"
