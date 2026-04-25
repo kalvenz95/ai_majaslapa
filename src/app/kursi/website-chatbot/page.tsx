@@ -189,6 +189,7 @@ export default function CourseDetailPage() {
   const [openModules, setOpenModules] = useState<number[]>([1, 2]);
   const [activeLesson, setActiveLesson] = useState<Lesson | null>(null);
   const [activeTab, setActiveTab] = useState<"overview" | "curriculum" | "tools">("overview");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const toggleModule = (id: number) =>
     setOpenModules((prev) => (prev.includes(id) ? prev.filter((m) => m !== id) : [...prev, id]));
@@ -197,6 +198,32 @@ export default function CourseDetailPage() {
 
   return (
     <div style={{ background: "#050508", minHeight: "100vh", color: "#fff", fontFamily: "'Inter', sans-serif" }}>
+      <style>{`
+        @media (max-width: 768px) {
+          .course-sidebar { display: none !important; }
+          .course-sidebar.open { display: flex !important; position: fixed; inset: 0; z-index: 200; width: 100% !important; height: 100vh; }
+          .course-layout { height: auto !important; min-height: calc(100vh - 56px); }
+          .course-main { overflow-y: visible !important; }
+          .course-hero { padding: 24px 16px 20px !important; }
+          .course-tabs { padding: 0 12px !important; }
+          .course-content { padding: 24px 16px !important; }
+          .grid-3 { grid-template-columns: 1fr !important; }
+          .grid-2 { grid-template-columns: 1fr !important; }
+          .grid-2-fixed { grid-template-columns: 1fr !important; }
+          .hero-h1 { font-size: 26px !important; }
+          .hero-desc { font-size: 14px !important; }
+          .stat-row { gap: 12px !important; }
+          .earn-display { margin-left: 0 !important; }
+          .sidebar-overlay-bg { display: block; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 199; }
+          .mobile-sidebar-btn { display: flex !important; }
+          .lesson-pad { padding: 24px 16px !important; }
+        }
+        @media (min-width: 769px) {
+          .sidebar-overlay-bg { display: none; }
+          .mobile-sidebar-btn { display: none !important; }
+        }
+      `}</style>
+
       {/* ── Top Navbar ── */}
       <nav style={{ position: "sticky", top: 0, zIndex: 50, height: 56, background: "rgba(5,5,8,0.92)", backdropFilter: "blur(20px)", borderBottom: "1px solid rgba(255,255,255,0.06)", display: "flex", alignItems: "center", padding: "0 20px", gap: 12 }}>
         <Link
@@ -223,10 +250,13 @@ export default function CourseDetailPage() {
       </nav>
 
       {/* ── Layout ── */}
-      <div style={{ display: "flex", height: "calc(100vh - 56px)" }}>
+      <div className="course-layout" style={{ display: "flex", height: "calc(100vh - 56px)" }}>
+
+        {/* mobile overlay backdrop */}
+        {sidebarOpen && <div className="sidebar-overlay-bg" onClick={() => setSidebarOpen(false)} />}
 
         {/* ── LEFT SIDEBAR ── */}
-        <aside style={{ width: 300, flexShrink: 0, background: "#07070f", borderRight: "1px solid rgba(255,255,255,0.05)", overflowY: "auto", display: "flex", flexDirection: "column" }}>
+        <aside className={`course-sidebar${sidebarOpen ? " open" : ""}`} style={{ width: 300, flexShrink: 0, background: "#07070f", borderRight: "1px solid rgba(255,255,255,0.05)", overflowY: "auto", display: "flex", flexDirection: "column" }}>
           {/* Header */}
           <div style={{ padding: "20px 16px 16px", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
@@ -323,13 +353,23 @@ export default function CourseDetailPage() {
         </aside>
 
         {/* ── MAIN CONTENT ── */}
-        <main style={{ flex: 1, overflowY: "auto" }}>
+        <main className="course-main" style={{ flex: 1, overflowY: "auto" }}>
+          {/* mobile: floating programma button */}
+          <button
+            className="mobile-sidebar-btn"
+            onClick={() => setSidebarOpen(true)}
+            style={{ position: "fixed", bottom: 20, right: 20, zIndex: 150, alignItems: "center", gap: 8, padding: "12px 20px", borderRadius: 50, border: "none", cursor: "pointer", background: AG, color: "#000", fontWeight: 700, fontSize: 13, boxShadow: "0 4px 20px rgba(0,255,136,0.4)" }}
+          >
+            📋 Programma
+          </button>
+
           {activeLesson ? (
             <LessonView lesson={activeLesson} onBack={() => setActiveLesson(null)} />
           ) : (
             <div>
               {/* Hero banner */}
               <div
+                className="course-hero"
                 style={{
                   position: "relative", padding: "48px 48px 40px",
                   background: `linear-gradient(135deg, ${ABg} 0%, ${ABg2} 50%, rgba(5,5,8,0) 100%)`,
@@ -349,14 +389,14 @@ export default function CourseDetailPage() {
                     </span>
                   </div>
 
-                  <h1 style={{ fontSize: 36, fontWeight: 900, letterSpacing: "-0.03em", marginBottom: 10, lineHeight: 1.1 }}>
+                  <h1 className="hero-h1" style={{ fontSize: 36, fontWeight: 900, letterSpacing: "-0.03em", marginBottom: 10, lineHeight: 1.1 }}>
                     {course.title}
                   </h1>
-                  <p style={{ fontSize: 16, color: "#888", maxWidth: 640, lineHeight: 1.7, marginBottom: 28 }}>
+                  <p className="hero-desc" style={{ fontSize: 16, color: "#888", maxWidth: 640, lineHeight: 1.7, marginBottom: 28 }}>
                     {course.description}
                   </p>
 
-                  <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
+                  <div className="stat-row" style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
                     {[
                       { label: "Moduļi", value: course.totalModules },
                       { label: "Nodarbības", value: totalLessons },
@@ -373,7 +413,7 @@ export default function CourseDetailPage() {
                       <span style={{ fontSize: 14, fontWeight: 700, color: "#f59e0b" }}>{course.rating}</span>
                       <span style={{ fontSize: 12, color: "#555" }}>vērtējums</span>
                     </div>
-                    <div style={{ marginLeft: "auto", display: "flex", alignItems: "baseline", gap: 4 }}>
+                    <div className="earn-display" style={{ marginLeft: "auto", display: "flex", alignItems: "baseline", gap: 4 }}>
                       <span style={{ fontSize: 28, fontWeight: 900, background: AG, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
                         {course.earn}
                       </span>
@@ -384,7 +424,7 @@ export default function CourseDetailPage() {
               </div>
 
               {/* Tabs */}
-              <div style={{ padding: "0 48px", borderBottom: "1px solid rgba(255,255,255,0.05)", display: "flex", gap: 0 }}>
+              <div className="course-tabs" style={{ padding: "0 48px", borderBottom: "1px solid rgba(255,255,255,0.05)", display: "flex", gap: 0 }}>
                 {(["overview", "curriculum", "tools"] as const).map((tab) => {
                   const labels = { overview: "Pārskats", curriculum: "Programma", tools: "Rīki" };
                   const isActive = activeTab === tab;
@@ -400,7 +440,7 @@ export default function CourseDetailPage() {
                 })}
               </div>
 
-              <div style={{ padding: "40px 48px", maxWidth: 900 }}>
+              <div className="course-content" style={{ padding: "40px 48px", maxWidth: 900 }}>
                 {activeTab === "overview" && <OverviewTab />}
                 {activeTab === "curriculum" && <CurriculumTab onSelectLesson={setActiveLesson} />}
                 {activeTab === "tools" && <ToolsTab />}
@@ -459,7 +499,7 @@ function OverviewTab() {
         {/* Kas padara atšķirīgu */}
         <div>
           <SectionLabel>Kas padara šo atšķirīgu</SectionLabel>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 14 }}>
+          <div className="grid-3" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 14 }}>
             {[
               { icon: "🤖", color: A, title: "Īsts AI, ne skripti", desc: "Claude API nodrošina saprātīgas, kontekstuālas atbildes — ne tikai ja/tad loģiku" },
               { icon: "⚡", color: A2, title: "n8n automatizācija", desc: "Pilna backend kontrole — webhook, atmiņa, Google Sheets integrācija" },
@@ -480,7 +520,7 @@ function OverviewTab() {
         </div>
 
         {/* Ko tu iegūsi + Automatizācijas */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+        <div className="grid-2-fixed" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
           {/* Ko tu iegūsi */}
           <div style={{ padding: "24px", borderRadius: 16, background: "#0d0d1a", border: `1px solid rgba(0,255,136,0.12)` }}>
             <div style={{ fontSize: 11, fontWeight: 700, color: A, textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 16 }}>Ko tu iegūsi</div>
@@ -584,7 +624,7 @@ function OverviewTab() {
       <div>
         <SectionLabel>Ko tu iemācīsies</SectionLabel>
         <h2 style={{ fontSize: 24, fontWeight: 800, marginBottom: 20, letterSpacing: "-0.02em" }}>No nulles līdz pirmajam klientam</h2>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+        <div className="grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
           {course.learn.map((item, i) => (
             <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 10, padding: "14px 16px", borderRadius: 10, background: ABg, border: `1px solid rgba(0,255,136,0.1)` }}>
               <div style={{ width: 18, height: 18, borderRadius: 5, background: "rgba(0,255,136,0.2)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 1 }}>
@@ -599,7 +639,7 @@ function OverviewTab() {
       <div>
         <SectionLabel>Kursa saturs</SectionLabel>
         <h2 style={{ fontSize: 24, fontWeight: 800, marginBottom: 20, letterSpacing: "-0.02em" }}>{course.totalModules} moduļi · {course.totalLessons} nodarbības</h2>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 12 }}>
+        <div className="grid-3" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 12 }}>
           {course.modules.map((mod) => (
             <div key={mod.id} style={{ padding: "16px", borderRadius: 12, background: "#0d0d1a", border: "1px solid rgba(255,255,255,0.06)" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
@@ -625,7 +665,7 @@ function OverviewTab() {
       <div>
         <SectionLabel>Kāpēc šis kurss</SectionLabel>
         <h2 style={{ fontSize: 24, fontWeight: 800, marginBottom: 20, letterSpacing: "-0.02em" }}>Reāli rezultāti, ne tikai teorija</h2>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16 }}>
+        <div className="grid-3" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16 }}>
           {[
             { icon: "🎯", title: "Projektu bāzēta", desc: "Katra moduļa beigās ir praktisks uzdevums — portfolio, ko rādīt potenciālajiem klientiem." },
             { icon: "📦", title: "Gatavi templates", desc: "Sistēmas promti, piedāvājuma PDF, apkopes līgums — viss latviski un gatavs lietošanai." },
@@ -756,7 +796,7 @@ function ToolsTab() {
       <SectionLabel>Izmantotie rīki</SectionLabel>
       <h2 style={{ fontSize: 24, fontWeight: 800, marginBottom: 8, letterSpacing: "-0.02em" }}>7 rīki ko apgūsi kursā</h2>
       <p style={{ fontSize: 14, color: "#666", lineHeight: 1.7, marginBottom: 32 }}>Visi nepieciešamie rīki ar bezmaksas plāniem vai izmēģinājuma periodiem. Setup instrukcijas iekļautas kursā.</p>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 40 }}>
+      <div className="grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 40 }}>
         {course.tools.map((tool) => (
           <div
             key={tool.name}
@@ -780,7 +820,7 @@ function ToolsTab() {
 
       <div style={{ padding: "24px", borderRadius: 14, background: ABg, border: `1px solid rgba(0,255,136,0.12)` }}>
         <div style={{ fontSize: 13, fontWeight: 700, color: A, marginBottom: 12 }}>✓ Kas nepieciešams lai sāktu</div>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
+        <div className="grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
           {[
             "Dators vai klēpjdators (Windows/Mac)",
             "Stabils interneta savienojums",
@@ -803,7 +843,7 @@ function ToolsTab() {
 // ─── Lesson View ──────────────────────────────────────────────────────────────
 function LessonView({ lesson, onBack }: { lesson: Lesson; onBack: () => void }) {
   return (
-    <div style={{ maxWidth: 860, margin: "0 auto", padding: "40px 48px" }}>
+    <div className="lesson-pad" style={{ maxWidth: 860, margin: "0 auto", padding: "40px 48px" }}>
       <button
         onClick={onBack}
         style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 28, background: "transparent", border: "none", cursor: "pointer", color: "#666", fontSize: 13, fontWeight: 500, padding: "6px 0", transition: "color 0.2s" }}
