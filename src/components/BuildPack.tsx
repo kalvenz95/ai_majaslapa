@@ -4,7 +4,6 @@ const buildModules = [
   {
     num: "01",
     title: "Website Chatbot",
-    tools: "Claude API + Voiceflow",
     price: "€250–€900",
     retainer: "€150/mēn",
     icon: "🤖",
@@ -12,26 +11,15 @@ const buildModules = [
   },
   {
     num: "02",
-    title: "WhatsApp Automācija",
-    tools: "Make.com + Vonage/Twilio",
-    price: "€300–€1200",
-    retainer: "€200/mēn",
-    icon: "💬",
-    steps: ["Savienojuma uzstādīšana", "Ziņu plūsmu veidošana", "Testēšana ar reālu numuru", "Piegāde klientam"],
+    title: "WhatsApp + Voice Agents",
+    price: "€400–€1800",
+    retainer: "€250/mēn",
+    icon: "💬🎙️",
+    steps: ["Uzstāda WhatsApp automatizāciju", "Izveido AI balss aģentu", "Integrē ar klienta numuru", "Testē un piegādā klientam"],
   },
   {
     num: "03",
-    title: "Voice Agent",
-    tools: "Vapi + Vonage LV numurs",
-    price: "€500–€1800",
-    retainer: "€300/mēn",
-    icon: "🎙️",
-    steps: ["Izveido Vapi aģentu", "Pievieno Latvijas numuru", "Programmē skriptu", "Ieslēdz rezervācijām"],
-  },
-  {
-    num: "04",
     title: "CRM Automatizācija",
-    tools: "n8n + HubSpot/Pipedrive",
     price: "€400–€1000",
     retainer: "€250/mēn",
     icon: "⚡",
@@ -77,11 +65,10 @@ export default function BuildPack() {
                   {mod.icon}
                 </div>
                 <div>
-                  <div className="flex items-center gap-2 mb-1">
+                  <div className="flex items-center gap-2">
                     <span className="text-xs font-mono text-[#a855f7]">{mod.num}</span>
                     <h3 className="font-bold text-white text-lg">{mod.title}</h3>
                   </div>
-                  <p className="text-xs text-gray-500">{mod.tools}</p>
                 </div>
               </div>
 
@@ -141,7 +128,7 @@ export default function BuildPack() {
             <h4 className="font-bold text-white text-lg mb-2">Aģentūras ceļš</h4>
             <p className="text-sm text-gray-400 mb-4">Progresīviem. Lielāki projekti, ikmēneša reteners, skalēšana.</p>
             <div className="flex flex-col gap-2">
-              {["Voice Agents ar Vapi", "WhatsApp Automācija", "CRM + n8n workflow", "Ikmēneša support reteners"].map((item) => (
+              {["WhatsApp + Voice Agents", "Website Chatbot", "CRM automatizācija", "Ikmēneša support reteners"].map((item) => (
                 <div key={item} className="flex items-center gap-2 text-sm text-gray-300">
                   <span className="text-[#a855f7]">→</span> {item}
                 </div>
