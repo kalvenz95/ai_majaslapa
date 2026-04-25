@@ -1,8 +1,8 @@
-﻿"use client";
+"use client";
 import { useState } from "react";
 import Link from "next/link";
 
-// ā”€ā”€ā”€ Types ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€
+// ─── Types ────────────────────────────────────────────────────────────────────
 type LessonType = "video" | "text" | "task" | "quiz";
 interface Lesson {
   id: string;
@@ -19,46 +19,46 @@ interface Module {
   lessons: Lesson[];
 }
 
-// ā”€ā”€ā”€ Course Data ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€
+// ─── Course Data ──────────────────────────────────────────────────────────────
 const course = {
-  title: "SociÄlo TÄ«klu PÄrvaldÄ«ba",
-  subtitle: "AI video, attÄ“li un reklÄmas saturs uzÅ†Ä“mumiem",
+  title: "Sociālo Tīklu Pārvaldība",
+  subtitle: "AI video, attēli un reklāmas saturs uzņēmumiem",
   description:
-    "IemÄcies veidot pilnu sociÄlo mediju klÄtbÅ«tni uzÅ†Ä“mumiem ar mÄkslÄ«go intelektu. No AI faceless video lÄ«dz reklÄmas banneriem ā€” viss, kas nepiecieÅams, lai iegÅ«tu pirmos klientus un nopelnÄ«tu ā‚¬300ā€“ā‚¬800 mÄ“nesÄ«.",
-  earn: "ā‚¬300ā€“ā‚¬800/mÄ“n",
-  difficulty: "IesÄcÄ“js",
-  tag: "PopulÄrs",
+    "Iemācies veidot pilnu sociālo mediju klātbūtni uzņēmumiem ar mākslīgo intelektu. No AI faceless video līdz reklāmas banneriem — viss, kas nepieciešams, lai iegūtu pirmos klientus un nopelnītu €300–€800 mēnesī.",
+  earn: "€300–€800/mēn",
+  difficulty: "Iesācējs",
+  tag: "Populārs",
   totalDuration: "8h 5 min",
   totalLessons: 24,
   totalModules: 6,
   students: 127,
   rating: 4.9,
   instructor: {
-    name: "KÄrlis BÄ“rziÅ†Å",
-    role: "AI AutomatizÄcijas Eksperts",
+    name: "Kārlis Bērziņš",
+    role: "AI Automatizācijas Eksperts",
     avatar: "KB",
-    bio: "5+ gadi digitÄlÄ mÄrketingÄ, pÄ“dÄ“jos 2 gadus specializÄ“joties AI risinÄjumos Latvijas uzÅ†Ä“mumiem. PersonÄ«gi pÄrvalda 12 klientu sociÄlo mediju kontus ar AI.",
+    bio: "5+ gadi digitālā mārketingā, pēdējos 2 gadus specializējoties AI risinājumos Latvijas uzņēmumiem. Personīgi pārvalda 12 klientu sociālo mediju kontus ar AI.",
     students: 420,
     courses: 3,
   },
   tools: [
-    { name: "Runway ML", desc: "AI video Ä£enerÄ“Åana", color: "#a855f7" },
+    { name: "Runway ML", desc: "AI video ģenerēšana", color: "#a855f7" },
     { name: "HeyGen", desc: "AI avatar video", color: "#ec4899" },
-    { name: "CapCut", desc: "AutomÄtiskÄ rediÄ£Ä“Åana", color: "#00d4ff" },
-    { name: "Midjourney", desc: "AttÄ“lu Ä£enerÄ“Åana", color: "#00ff88" },
-    { name: "Canva AI", desc: "ReklÄmu dizains", color: "#f59e0b" },
-    { name: "Adobe Firefly", desc: "Produktu attÄ“li", color: "#ef4444" },
-    { name: "Buffer", desc: "PublicÄ“Åanas grafiks", color: "#8b5cf6" },
+    { name: "CapCut", desc: "Automātiskā rediģēšana", color: "#00d4ff" },
+    { name: "Midjourney", desc: "Attēlu ģenerēšana", color: "#00ff88" },
+    { name: "Canva AI", desc: "Reklāmu dizains", color: "#f59e0b" },
+    { name: "Adobe Firefly", desc: "Produktu attēli", color: "#ef4444" },
+    { name: "Buffer", desc: "Publicēšanas grafiks", color: "#8b5cf6" },
   ],
   learn: [
-    "Izveidot AI faceless video bez parÄdÄ«ÅanÄs kamerÄ",
-    "Ä¢enerÄ“t profesionÄlus reklÄmas bannerus sekundÄ“s",
+    "Izveidot AI faceless video bez parādīšanās kamerā",
+    "Ģenerēt profesionālus reklāmas bannerus sekundēs",
     "Veidot konsekventu brand identity ar Midjourney",
-    "AutomatizÄ“t publicÄ“Åanu ar Buffer/Later",
+    "Automatizēt publicēšanu ar Buffer/Later",
     "Atrast pirmos klientus un noteikt cenas",
-    "PÄrvaldÄ«t 5+ klientus vienlaicÄ«gi",
-    "RakstÄ«t cold outreach skriptus kas strÄdÄ",
-    "Veidot klientu atskaites un noturÄ“t attiecÄ«bas",
+    "Pārvaldīt 5+ klientus vienlaicīgi",
+    "Rakstīt cold outreach skriptus kas strādā",
+    "Veidot klientu atskaites un noturēt attiecības",
   ],
   modules: [
     {
@@ -66,10 +66,10 @@ const course = {
       title: "Ievads & Setup",
       duration: "45 min",
       lessons: [
-        { id: "1-1", title: "Kas ir AI sociÄlo mediju menedÅ¾ments?", type: "video" as LessonType, duration: "12 min", free: true, description: "PÄrskats par pakalpojumu, tirgus iespÄ“ju un ko mÄ“s veidosim ÅajÄ kursÄ." },
-        { id: "1-2", title: "RÄ«ku saraksts & konta setup", type: "video" as LessonType, duration: "10 min", free: true, description: "UzstÄdÄm visus nepiecieÅamos rÄ«kus ā€” Runway, HeyGen, Canva Pro, Buffer." },
-        { id: "1-3", title: "Klienta onboarding process", type: "text" as LessonType, duration: "8 min", description: "LejupielÄdÄ“jams onboarding template ar jautÄjumiem, ko uzdot katram jaunam klientam." },
-        { id: "1-4", title: "KÄ noteikt pakalpojumu cenas", type: "video" as LessonType, duration: "15 min", description: "Cenu stratÄ“Ä£ija iesÄcÄ“jiem ā€” kÄpÄ“c ā‚¬300/mÄ“n ir saprÄtÄ«gi sÄkuma un kÄ augt uz ā‚¬800+." },
+        { id: "1-1", title: "Kas ir AI sociālo mediju menedžments?", type: "video" as LessonType, duration: "12 min", free: true, description: "Pārskats par pakalpojumu, tirgus iespēju un ko mēs veidosim šajā kursā." },
+        { id: "1-2", title: "Rīku saraksts & konta setup", type: "video" as LessonType, duration: "10 min", free: true, description: "Uzstādām visus nepieciešamos rīkus — Runway, HeyGen, Canva Pro, Buffer." },
+        { id: "1-3", title: "Klienta onboarding process", type: "text" as LessonType, duration: "8 min", description: "Lejupielādējams onboarding template ar jautājumiem, ko uzdot katram jaunam klientam." },
+        { id: "1-4", title: "Kā noteikt pakalpojumu cenas", type: "video" as LessonType, duration: "15 min", description: "Cenu stratēģija iesācējiem — kāpēc €300/mēn ir saprātīgi sākuma un kā augt uz €800+." },
       ],
     },
     {
@@ -77,60 +77,60 @@ const course = {
       title: "AI Faceless Video",
       duration: "1h 40 min",
       lessons: [
-        { id: "2-1", title: "Kas ir faceless video un kÄpÄ“c tas strÄdÄ?", type: "video" as LessonType, duration: "15 min", description: "PsiholoÄ£ija aiz faceless satura ā€” kÄpÄ“c uzÅ†Ä“mumi to mÄ«l un kÄ tas pÄrdod." },
-        { id: "2-2", title: "Runway ML ā€” video Ä£enerÄ“Åana no teksta", type: "video" as LessonType, duration: "25 min", description: "Pilna Runway ML apmÄcÄ«ba: prompting, stila izvÄ“le, video ilgums, eksportÄ“Åana." },
-        { id: "2-3", title: "HeyGen ā€” AI avatar prezentÄcijas", type: "video" as LessonType, duration: "22 min", description: "Izveido talking head video ar AI avatÄru ā€” produktu apskati, uzÅ†Ä“muma stÄsti." },
-        { id: "2-4", title: "CapCut AI automÄtiskÄ rediÄ£Ä“Åana", type: "video" as LessonType, duration: "18 min", description: "Auto subtitles, auto cut, B-roll pievienoÅana ā€” video gatavs 10 minÅ«tÄ“s." },
-        { id: "2-5", title: "Uzdevums: izveido savu pirmo video", type: "task" as LessonType, duration: "20 min", description: "Izveido 30 sek. faceless video kÄdam vietÄ“jam uzÅ†Ä“mumam (restorÄns, veikals, u.c.)." },
+        { id: "2-1", title: "Kas ir faceless video un kāpēc tas strādā?", type: "video" as LessonType, duration: "15 min", description: "Psiholoģija aiz faceless satura — kāpēc uzņēmumi to mīl un kā tas pārdod." },
+        { id: "2-2", title: "Runway ML — video ģenerēšana no teksta", type: "video" as LessonType, duration: "25 min", description: "Pilna Runway ML apmācība: prompting, stila izvēle, video ilgums, eksportēšana." },
+        { id: "2-3", title: "HeyGen — AI avatar prezentācijas", type: "video" as LessonType, duration: "22 min", description: "Izveido talking head video ar AI avatāru — produktu apskati, uzņēmuma stāsti." },
+        { id: "2-4", title: "CapCut AI automātiskā rediģēšana", type: "video" as LessonType, duration: "18 min", description: "Auto subtitles, auto cut, B-roll pievienošana — video gatavs 10 minūtēs." },
+        { id: "2-5", title: "Uzdevums: izveido savu pirmo video", type: "task" as LessonType, duration: "20 min", description: "Izveido 30 sek. faceless video kādam vietējam uzņēmumam (restorāns, veikals, u.c.)." },
       ],
     },
     {
       id: 3,
-      title: "ReklÄmas Banneri",
+      title: "Reklāmas Banneri",
       duration: "1h 15 min",
       lessons: [
-        { id: "3-1", title: "Canva AI ā€” reklÄmu dizains sekundÄ“s", type: "video" as LessonType, duration: "20 min", description: "Magic Design, AI background removal, brand kit setup klienta biznesam." },
-        { id: "3-2", title: "Midjourney prompts biznesam", type: "video" as LessonType, duration: "22 min", description: "Specifiskas prompt formulas kas dod kommercÄli izmantojamus attÄ“lus pirmajÄ reizÄ“." },
-        { id: "3-3", title: "Adobe Firefly ā€” produktu attÄ“li", type: "video" as LessonType, duration: "18 min", description: "Generative fill produktu fotografijÄs ā€” maini fonu, pievieni props, koriÄ£Ä“ apgaismojumu." },
-        { id: "3-4", title: "Uzdevums: 5 banneru komplekts klientam", type: "task" as LessonType, duration: "15 min", description: "Izveido pilnu banneru setu: Facebook, Instagram, Stories un LinkedIn formÄtos." },
+        { id: "3-1", title: "Canva AI — reklāmu dizains sekundēs", type: "video" as LessonType, duration: "20 min", description: "Magic Design, AI background removal, brand kit setup klienta biznesam." },
+        { id: "3-2", title: "Midjourney prompts biznesam", type: "video" as LessonType, duration: "22 min", description: "Specifiskas prompt formulas kas dod kommercāli izmantojamus attēlus pirmajā reizē." },
+        { id: "3-3", title: "Adobe Firefly — produktu attēli", type: "video" as LessonType, duration: "18 min", description: "Generative fill produktu fotografijās — maini fonu, pievieni props, koriģē apgaismojumu." },
+        { id: "3-4", title: "Uzdevums: 5 banneru komplekts klientam", type: "task" as LessonType, duration: "15 min", description: "Izveido pilnu banneru setu: Facebook, Instagram, Stories un LinkedIn formātos." },
       ],
     },
     {
       id: 4,
-      title: "Post VizuÄÄ¼i & Feed",
+      title: "Post Vizuāļi & Feed",
       duration: "1h 10 min",
       lessons: [
-        { id: "4-1", title: "Instagram & Facebook feed dizains", type: "video" as LessonType, duration: "20 min", description: "KÄ plÄnot feed tÄ, lai 9 posti izskatÄ«tos kÄ viens, saskaÅ†ots dizains." },
-        { id: "4-2", title: "Konsistenta brand identity ar AI", type: "video" as LessonType, duration: "18 min", description: "KrÄsu palete, fonti, logo usage ā€” izveido mini brand guide katram klientam." },
-        { id: "4-3", title: "Carousels & Stories templates", type: "video" as LessonType, duration: "16 min", description: "Ä€tri carousel un stories templates ko var pielÄgot jebkuram klientam 5 minÅ«tÄ“s." },
-        { id: "4-4", title: "AI caption Ä£enerÄ“Åana & publicÄ“Åanas grafiks", type: "video" as LessonType, duration: "16 min", description: "ChatGPT/Claude prompt sistÄ“ma mÄ“neÅa captions Ä£enerÄ“Åanai ā€” iknedÄ“Ä¼as rutÄ«na." },
+        { id: "4-1", title: "Instagram & Facebook feed dizains", type: "video" as LessonType, duration: "20 min", description: "Kā plānot feed tā, lai 9 posti izskatītos kā viens, saskaņots dizains." },
+        { id: "4-2", title: "Konsistenta brand identity ar AI", type: "video" as LessonType, duration: "18 min", description: "Krāsu palete, fonti, logo usage — izveido mini brand guide katram klientam." },
+        { id: "4-3", title: "Carousels & Stories templates", type: "video" as LessonType, duration: "16 min", description: "Ātri carousel un stories templates ko var pielāgot jebkuram klientam 5 minūtēs." },
+        { id: "4-4", title: "AI caption ģenerēšana & publicēšanas grafiks", type: "video" as LessonType, duration: "16 min", description: "ChatGPT/Claude prompt sistēma mēneša captions ģenerēšanai — iknedēļas rutīna." },
       ],
     },
     {
       id: 5,
-      title: "Klientu AtraÅana & PÄrdoÅana",
+      title: "Klientu Atrašana & Pārdošana",
       duration: "1h 20 min",
       lessons: [
-        { id: "5-1", title: "Kur atrast pirmos klientus LatvijÄ", type: "video" as LessonType, duration: "20 min", description: "KonkrÄ“tas vietas: ss.lv, LinkedIn, Facebook grupas, vietÄ“jie pasÄkumi, cold walk-in." },
-        { id: "5-2", title: "Cold outreach skripti (e-pasts & DM)", type: "text" as LessonType, duration: "15 min", description: "5 darbojoÅies skripti ar reÄliem rezultÄtiem ā€” copy-paste gatavi tavam biznesam." },
-        { id: "5-3", title: "Proposal & lÄ«guma templates", type: "text" as LessonType, duration: "15 min", description: "LejupielÄdÄ“jams PDF proposal un vienkÄrÅs pakalpojumu lÄ«gums latvieÅu valodÄ." },
-        { id: "5-4", title: "Klienta onboarding & pirmÄ tikÅanÄs", type: "video" as LessonType, duration: "30 min", description: "Ko teikt pirmajÄ zvanÄ ā€” klausies reÄlu demo zvanu ar potenciÄlo klientu." },
+        { id: "5-1", title: "Kur atrast pirmos klientus Latvijā", type: "video" as LessonType, duration: "20 min", description: "Konkrētas vietas: ss.lv, LinkedIn, Facebook grupas, vietējie pasākumi, cold walk-in." },
+        { id: "5-2", title: "Cold outreach skripti (e-pasts & DM)", type: "text" as LessonType, duration: "15 min", description: "5 darbojošies skripti ar reāliem rezultātiem — copy-paste gatavi tavam biznesam." },
+        { id: "5-3", title: "Proposal & līguma templates", type: "text" as LessonType, duration: "15 min", description: "Lejupielādējams PDF proposal un vienkāršs pakalpojumu līgums latviešu valodā." },
+        { id: "5-4", title: "Klienta onboarding & pirmā tikšanās", type: "video" as LessonType, duration: "30 min", description: "Ko teikt pirmajā zvanā — klausies reālu demo zvanu ar potenciālo klientu." },
       ],
     },
     {
       id: 6,
-      title: "AutomatizÄcija & SkalÄ“Åana",
+      title: "Automatizācija & Skalēšana",
       duration: "55 min",
       lessons: [
-        { id: "6-1", title: "Buffer/Later ā€” publicÄ“Åanas automatizÄcija", type: "video" as LessonType, duration: "20 min", description: "IeplÄno mÄ“neÅa saturu 2 stundÄs ā€” Buffer setup, apstiprinÄjumu workflow, analytics." },
-        { id: "6-2", title: "KÄ veidot ikmÄ“neÅa atskaites klientiem", type: "text" as LessonType, duration: "15 min", description: "LejupielÄdÄ“jams atskaites template ar KPI's ko klienti saprot un novÄ“rtÄ“." },
-        { id: "6-3", title: "PÄrvaldÄ«t 5+ klientus vienlaicÄ«gi", type: "video" as LessonType, duration: "20 min", description: "Laika pÄrvaldÄ«ba, Notion client dashboard, automatizÄcijas kas ietaupa 10+ stundas nedÄ“Ä¼Ä." },
+        { id: "6-1", title: "Buffer/Later — publicēšanas automatizācija", type: "video" as LessonType, duration: "20 min", description: "Ieplāno mēneša saturu 2 stundās — Buffer setup, apstiprinājumu workflow, analytics." },
+        { id: "6-2", title: "Kā veidot ikmēneša atskaites klientiem", type: "text" as LessonType, duration: "15 min", description: "Lejupielādējams atskaites template ar KPI's ko klienti saprot un novērtē." },
+        { id: "6-3", title: "Pārvaldīt 5+ klientus vienlaicīgi", type: "video" as LessonType, duration: "20 min", description: "Laika pārvaldība, Notion client dashboard, automatizācijas kas ietaupa 10+ stundas nedēļā." },
       ],
     },
   ] as Module[],
 };
 
-// ā”€ā”€ā”€ Icon Components ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€
+// ─── Icon Components ──────────────────────────────────────────────────────────
 function VideoIcon({ size = 14 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
@@ -198,7 +198,7 @@ const lessonTypeColor: Record<LessonType, string> = {
   quiz: "#f59e0b",
 };
 
-// ā”€ā”€ā”€ Main Page ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€
+// ─── Main Page ────────────────────────────────────────────────────────────────
 export default function CourseDetailPage() {
   const [openModules, setOpenModules] = useState<number[]>([1, 2]);
   const [activeLesson, setActiveLesson] = useState<Lesson | null>(null);
@@ -238,7 +238,7 @@ export default function CourseDetailPage() {
         }
       `}</style>
 
-      {/* ā”€ā”€ Top Navbar ā”€ā”€ */}
+      {/* ── Top Navbar ── */}
       <nav
         style={{
           position: "sticky", top: 0, zIndex: 50, height: 56,
@@ -261,7 +261,7 @@ export default function CourseDetailPage() {
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <polyline points="15,18 9,12 15,6" />
           </svg>
-          AtpakaÄ¼
+          Atpakaļ
         </Link>
         <span style={{ color: "rgba(255,255,255,0.15)", fontSize: 13 }}>/</span>
         <span style={{ color: "rgba(255,255,255,0.4)", fontSize: 13 }}>Kursi</span>
@@ -289,12 +289,12 @@ export default function CourseDetailPage() {
         </div>
       </nav>
 
-      {/* ā”€ā”€ Layout: Sidebar + Main ā”€ā”€ */}
+      {/* ── Layout: Sidebar + Main ── */}
       <div className="course-layout" style={{ display: "flex", height: "calc(100vh - 56px)" }}>
 
         {sidebarOpen && <div className="sidebar-overlay-bg" onClick={() => setSidebarOpen(false)} />}
 
-        {/* ā”€ā”€ LEFT SIDEBAR ā”€ā”€ */}
+        {/* ── LEFT SIDEBAR ── */}
         <aside
           className={`course-sidebar${sidebarOpen ? " open" : ""}`}
           style={{
@@ -330,7 +330,7 @@ export default function CourseDetailPage() {
               </div>
               <div>
                 <div style={{ fontSize: 13, fontWeight: 700, color: "#fff", lineHeight: 1.2 }}>{course.title}</div>
-                <div style={{ fontSize: 11, color: "#555", marginTop: 2 }}>{totalLessons} nodarbÄ«bas Ā· {course.totalDuration}</div>
+                <div style={{ fontSize: 11, color: "#555", marginTop: 2 }}>{totalLessons} nodarbības · {course.totalDuration}</div>
               </div>
             </div>
             {/* Progress bar */}
@@ -378,7 +378,7 @@ export default function CourseDetailPage() {
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{ fontSize: 12, fontWeight: 600, color: isOpen ? "#fff" : "#aaa" }}>{mod.title}</div>
                       <div style={{ fontSize: 10, color: "#444", marginTop: 1 }}>
-                        {mod.lessons.length} nodarbÄ«bas Ā· {mod.duration}
+                        {mod.lessons.length} nodarbības · {mod.duration}
                       </div>
                     </div>
                     <div style={{ color: "#444", flexShrink: 0 }}>
@@ -431,7 +431,7 @@ export default function CourseDetailPage() {
                                 {lesson.title}
                               </div>
                               <div style={{ fontSize: 10, color: "#444", marginTop: 1 }}>
-                                {lessonTypeLabel[lesson.type]} Ā· {lesson.duration}
+                                {lessonTypeLabel[lesson.type]} · {lesson.duration}
                               </div>
                             </div>
                             {lesson.free ? (
@@ -464,29 +464,29 @@ export default function CourseDetailPage() {
               onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-1px)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 8px 30px rgba(168,85,247,0.4)"; }}
               onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 4px 20px rgba(168,85,247,0.3)"; }}
             >
-              SÄkt kursu ā€” {course.earn}
+              Sākt kursu — {course.earn}
             </button>
             <div style={{ textAlign: "center", marginTop: 8, fontSize: 10, color: "#444" }}>
-              ā“ Bezmaksas pirmÄs 2 nodarbÄ«bas Ā· ā“ Pilna piekÄ¼uve ar Pro
+              ✓ Bezmaksas pirmās 2 nodarbības · ✓ Pilna piekļuve ar Pro
             </div>
           </div>
         </aside>
 
-        {/* ā”€ā”€ MAIN CONTENT ā”€ā”€ */}
+        {/* ── MAIN CONTENT ── */}
         <main className="course-main" style={{ flex: 1, overflowY: "auto" }}>
           <button
             className="mobile-sidebar-btn"
             onClick={() => setSidebarOpen(true)}
             style={{ position: "fixed", bottom: 20, right: 20, zIndex: 150, alignItems: "center", gap: 8, padding: "12px 20px", borderRadius: 50, border: "none", cursor: "pointer", background: "linear-gradient(135deg, #a855f7, #ec4899)", color: "#fff", fontWeight: 700, fontSize: 13, boxShadow: "0 4px 20px rgba(168,85,247,0.4)" }}
           >
-            š“‹ Programma
+            📋 Programma
           </button>
 
           {activeLesson ? (
-            /* ā”€ā”€ LESSON VIEW ā”€ā”€ */
+            /* ── LESSON VIEW ── */
             <LessonView lesson={activeLesson} onBack={() => setActiveLesson(null)} />
           ) : (
-            /* ā”€ā”€ COURSE OVERVIEW ā”€ā”€ */
+            /* ── COURSE OVERVIEW ── */
             <div>
               {/* Hero banner */}
               <div
@@ -536,8 +536,8 @@ export default function CourseDetailPage() {
                   {/* Stats row */}
                   <div className="stat-row" style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
                     {[
-                      { label: "ModuÄ¼i", value: course.totalModules },
-                      { label: "NodarbÄ«bas", value: totalLessons },
+                      { label: "Moduļi", value: course.totalModules },
+                      { label: "Nodarbības", value: totalLessons },
                       { label: "Ilgums", value: course.totalDuration },
                       { label: "Studenti", value: course.students },
                     ].map((stat) => (
@@ -549,13 +549,13 @@ export default function CourseDetailPage() {
                     <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
                       <StarIcon />
                       <span style={{ fontSize: 14, fontWeight: 700, color: "#f59e0b" }}>{course.rating}</span>
-                      <span style={{ fontSize: 12, color: "#555" }}>vÄ“rtÄ“jums</span>
+                      <span style={{ fontSize: 12, color: "#555" }}>vērtējums</span>
                     </div>
                     <div className="earn-display" style={{ marginLeft: "auto", display: "flex", alignItems: "baseline", gap: 4 }}>
                       <span style={{ fontSize: 28, fontWeight: 900, background: "linear-gradient(135deg, #a855f7, #ec4899)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
                         {course.earn}
                       </span>
-                      <span style={{ fontSize: 12, color: "#555" }}>potenciÄls</span>
+                      <span style={{ fontSize: 12, color: "#555" }}>potenciāls</span>
                     </div>
                   </div>
                 </div>
@@ -564,7 +564,7 @@ export default function CourseDetailPage() {
               {/* Tabs */}
               <div className="course-tabs" style={{ padding: "0 48px", borderBottom: "1px solid rgba(255,255,255,0.05)", display: "flex", gap: 0 }}>
                 {(["overview", "curriculum", "tools"] as const).map((tab) => {
-                  const labels = { overview: "PÄrskats", curriculum: "Programma", tools: "RÄ«ki" };
+                  const labels = { overview: "Pārskats", curriculum: "Programma", tools: "Rīki" };
                   const isActive = activeTab === tab;
                   return (
                     <button
@@ -598,15 +598,15 @@ export default function CourseDetailPage() {
   );
 }
 
-// ā”€ā”€ā”€ Overview Tab ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€
+// ─── Overview Tab ─────────────────────────────────────────────────────────────
 function OverviewTab() {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 48 }}>
 
-      {/* ā”€ā”€ HERO SALES SECTION ā”€ā”€ */}
+      {/* ── HERO SALES SECTION ── */}
       <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
 
-        {/* Virsraksts + apakÅvirsraksts */}
+        {/* Virsraksts + apakšvirsraksts */}
         <div
           style={{
             position: "relative", padding: "40px", borderRadius: 20,
@@ -622,21 +622,21 @@ function OverviewTab() {
           <div style={{ position: "relative" }}>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "4px 12px", borderRadius: 20, background: "rgba(168,85,247,0.12)", border: "1px solid rgba(168,85,247,0.3)", marginBottom: 20 }}>
               <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#a855f7", boxShadow: "0 0 8px #a855f7" }} />
-              <span style={{ fontSize: 11, color: "#a855f7", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase" }}>DigitÄlÄ sistÄ“ma</span>
+              <span style={{ fontSize: 11, color: "#a855f7", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase" }}>Digitālā sistēma</span>
             </div>
 
             <h2 style={{ fontSize: 32, fontWeight: 900, letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: 14, color: "#fff" }}>
-              Izveido digitÄlas sistÄ“mas,<br />
-              <span style={{ background: "linear-gradient(135deg, #a855f7, #ec4899)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>kas strÄdÄ tavÄ vietÄ</span>
+              Izveido digitālas sistēmas,<br />
+              <span style={{ background: "linear-gradient(135deg, #a855f7, #ec4899)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>kas strādā tavā vietā</span>
             </h2>
 
             <p style={{ fontSize: 15, color: "#888", lineHeight: 1.75, maxWidth: 620 }}>
-              Nevis vienkÄrÅi mÄjaslapas ā€” bet modernus, vizuÄli spÄ“cÄ«gus un klientus piesaistoÅus risinÄjumus
+              Nevis vienkārši mājaslapas — bet modernus, vizuāli spēcīgus un klientus piesaistošus risinājumus
             </p>
           </div>
         </div>
 
-        {/* SolÄ«jums */}
+        {/* Solījums */}
         <div
           style={{
             padding: "28px 32px", borderRadius: 16,
@@ -645,24 +645,24 @@ function OverviewTab() {
           }}
         >
           <div style={{ width: 48, height: 48, borderRadius: 14, flexShrink: 0, background: "linear-gradient(135deg, rgba(168,85,247,0.25), rgba(236,72,153,0.25))", border: "1px solid rgba(168,85,247,0.3)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22 }}>
-            šˇÆ
+            🎯
           </div>
           <div>
-            <div style={{ fontSize: 11, fontWeight: 700, color: "#a855f7", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 8 }}>SolÄ«jums</div>
+            <div style={{ fontSize: 11, fontWeight: 700, color: "#a855f7", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 8 }}>Solījums</div>
             <p style={{ fontSize: 15, color: "#ccc", lineHeight: 1.75 }}>
-              Tu iemÄcÄ«sies izveidot mÅ«sdienÄ«gas, dinamiskas un vizuÄli pievilcÄ«gas mÄjaslapas kopÄ ar automatizÄcijÄm, kas pÄrvÄ“rÅ apmeklÄ“tÄjus klientos
+              Tu iemācīsies izveidot mūsdienīgas, dinamiskas un vizuāli pievilcīgas mājaslapas kopā ar automatizācijām, kas pārvērš apmeklētājus klientos
             </p>
           </div>
         </div>
 
-        {/* Kas padara atÅÄ·irÄ«gu */}
+        {/* Kas padara atšķirīgu */}
         <div>
-          <SectionLabel>Kas padara Åo atÅÄ·irÄ«gu</SectionLabel>
+          <SectionLabel>Kas padara šo atšķirīgu</SectionLabel>
           <div className="grid-3" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 14 }}>
             {[
-              { icon: "ā¦", color: "#a855f7", title: "Premium dizains", desc: "Dizains, kas izskatÄs kÄ premium startupiem" },
-              { icon: "š’°", color: "#ec4899", title: "PÄrdod, ne tikai izskatÄs", desc: "Lapas, kas ne tikai izskatÄs labi, bet pÄrdod" },
-              { icon: "ā", color: "#f59e0b", title: "24/7 automatizÄcija", desc: "AutomatizÄcijas, kas strÄdÄ fonÄ visu diennakti" },
+              { icon: "✦", color: "#a855f7", title: "Premium dizains", desc: "Dizains, kas izskatās kā premium startupiem" },
+              { icon: "💰", color: "#ec4899", title: "Pārdod, ne tikai izskatās", desc: "Lapas, kas ne tikai izskatās labi, bet pārdod" },
+              { icon: "⚡", color: "#f59e0b", title: "24/7 automatizācija", desc: "Automatizācijas, kas strādā fonā visu diennakti" },
             ].map((item) => (
               <div
                 key={item.title}
@@ -683,18 +683,18 @@ function OverviewTab() {
           </div>
         </div>
 
-        {/* Ko tu iegÅ«si + AutomatizÄcijas */}
+        {/* Ko tu iegūsi + Automatizācijas */}
         <div className="grid-2-fixed" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
-          {/* Ko tu iegÅ«si */}
+          {/* Ko tu iegūsi */}
           <div style={{ padding: "24px", borderRadius: 16, background: "#0d0d1a", border: "1px solid rgba(168,85,247,0.12)" }}>
-            <div style={{ fontSize: 11, fontWeight: 700, color: "#a855f7", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 16 }}>Ko tu iegÅ«si</div>
+            <div style={{ fontSize: 11, fontWeight: 700, color: "#a855f7", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 16 }}>Ko tu iegūsi</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               {[
-                'SpÄ“ju veidot modernu, "wow" lÄ«meÅ†a mÄjaslapu',
-                "Sapratni, kÄ pÄrvÄ“rst apmeklÄ“tÄjus klientos",
-                "AutomatizÄ“tu klientu komunikÄciju",
-                "SistÄ“mu, kas savÄc un apstrÄdÄ pieteikumus",
-                "IespÄ“ju piedÄvÄt biznesiem pilnu digitÄlo risinÄjumu",
+                'Spēju veidot modernu, "wow" līmeņa mājaslapu',
+                "Sapratni, kā pārvērst apmeklētājus klientos",
+                "Automatizētu klientu komunikāciju",
+                "Sistēmu, kas savāc un apstrādā pieteikumus",
+                "Iespēju piedāvāt biznesiem pilnu digitālo risinājumu",
               ].map((item, i) => (
                 <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
                   <div style={{ width: 18, height: 18, borderRadius: 5, background: "rgba(168,85,247,0.2)", border: "1px solid rgba(168,85,247,0.35)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 1 }}>
@@ -706,16 +706,16 @@ function OverviewTab() {
             </div>
           </div>
 
-          {/* AutomatizÄcijas */}
+          {/* Automatizācijas */}
           <div style={{ padding: "24px", borderRadius: 16, background: "#0d0d1a", border: "1px solid rgba(236,72,153,0.12)" }}>
-            <div style={{ fontSize: 11, fontWeight: 700, color: "#ec4899", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 16 }}>AutomatizÄcijas, ko apgÅ«si</div>
+            <div style={{ fontSize: 11, fontWeight: 700, color: "#ec4899", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 16 }}>Automatizācijas, ko apgūsi</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               {[
                 "WhatsApp atbildes klientiem",
-                "Pieteikumu apstrÄde automÄtiski",
-                "Follow-up ziÅ†as",
-                "Klientu filtrÄ“Åana",
-                "DaÅ¾Ädi automatizÄ“ti scenÄriji biznesiem",
+                "Pieteikumu apstrāde automātiski",
+                "Follow-up ziņas",
+                "Klientu filtrēšana",
+                "Dažādi automatizēti scenāriji biznesiem",
               ].map((item, i) => (
                 <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
                   <div style={{ width: 18, height: 18, borderRadius: 5, background: "rgba(236,72,153,0.15)", border: "1px solid rgba(236,72,153,0.3)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 1 }}>
@@ -728,19 +728,19 @@ function OverviewTab() {
           </div>
         </div>
 
-        {/* RezultÄts */}
+        {/* Rezultāts */}
         <div
           style={{
             padding: "28px 32px", borderRadius: 16,
             background: "rgba(0,255,136,0.04)", border: "1px solid rgba(0,255,136,0.14)",
           }}
         >
-          <div style={{ fontSize: 11, fontWeight: 700, color: "#00ff88", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 16 }}>RezultÄts ā€” tu pÄrdosi sistÄ“mu, ne mÄjaslapu</div>
+          <div style={{ fontSize: 11, fontWeight: 700, color: "#00ff88", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 16 }}>Rezultāts — tu pārdosi sistēmu, ne mājaslapu</div>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
             {[
-              { icon: "š“", text: "Atved klientus" },
-              { icon: "š’¬", text: "Atbild klientiem" },
-              { icon: "ā¸±ļø¸", text: "Ietaupa laiku" },
+              { icon: "📈", text: "Atved klientus" },
+              { icon: "💬", text: "Atbild klientiem" },
+              { icon: "⏱️", text: "Ietaupa laiku" },
             ].map((r) => (
               <div key={r.text} style={{ display: "flex", alignItems: "center", gap: 10, padding: "10px 18px", borderRadius: 10, background: "rgba(0,255,136,0.07)", border: "1px solid rgba(0,255,136,0.15)", flex: 1, minWidth: 140 }}>
                 <span style={{ fontSize: 18 }}>{r.icon}</span>
@@ -750,14 +750,14 @@ function OverviewTab() {
           </div>
         </div>
 
-        {/* Kam tas paredzÄ“ts */}
+        {/* Kam tas paredzēts */}
         <div>
-          <SectionLabel>Kam tas paredzÄ“ts</SectionLabel>
+          <SectionLabel>Kam tas paredzēts</SectionLabel>
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
             {[
-              "Ja gribi pÄriet uz augstÄku lÄ«meni",
-              "Ja gribi pelnÄ«t vairÄk no viena klienta",
-              "Ja gribi piedÄvÄt kaut ko, ko citi nepiedÄvÄ",
+              "Ja gribi pāriet uz augstāku līmeni",
+              "Ja gribi pelnīt vairāk no viena klienta",
+              "Ja gribi piedāvāt kaut ko, ko citi nepiedāvā",
             ].map((item, i) => (
               <div key={i} style={{ display: "flex", alignItems: "center", gap: 12, padding: "14px 18px", borderRadius: 10, background: "#0d0d1a", border: "1px solid rgba(255,255,255,0.05)" }}>
                 <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#a855f7", flexShrink: 0 }} />
@@ -778,9 +778,9 @@ function OverviewTab() {
         >
           <div style={{ position: "absolute", inset: 0, pointerEvents: "none", backgroundImage: "linear-gradient(rgba(168,85,247,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(168,85,247,0.03) 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
           <div style={{ position: "relative" }}>
-            <p style={{ fontSize: 14, color: "#666", marginBottom: 6 }}>LielÄkÄ daÄ¼a taisa mÄjaslapas.</p>
+            <p style={{ fontSize: 14, color: "#666", marginBottom: 6 }}>Lielākā daļa taisa mājaslapas.</p>
             <p style={{ fontSize: 22, fontWeight: 900, letterSpacing: "-0.02em", marginBottom: 28, color: "#fff" }}>
-              Tu taisÄ«si sistÄ“mas,{" "}
+              Tu taisīsi sistēmas,{" "}
               <span style={{ background: "linear-gradient(135deg, #a855f7, #ec4899)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
                 kas pelna naudu.
               </span>
@@ -796,18 +796,18 @@ function OverviewTab() {
               onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 14px 40px rgba(168,85,247,0.5)"; }}
               onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 8px 32px rgba(168,85,247,0.4)"; }}
             >
-              Izveidot savu pirmo digitÄlo sistÄ“mu
+              Izveidot savu pirmo digitālo sistēmu
             </button>
           </div>
         </div>
 
       </div>
 
-      {/* Ko tu iemÄcÄ«sies */}
+      {/* Ko tu iemācīsies */}
       <div>
-        <SectionLabel>Ko tu iemÄcÄ«sies</SectionLabel>
+        <SectionLabel>Ko tu iemācīsies</SectionLabel>
         <h2 style={{ fontSize: 24, fontWeight: 800, marginBottom: 20, letterSpacing: "-0.02em" }}>
-          No nulles lÄ«dz pirmajam klientam
+          No nulles līdz pirmajam klientam
         </h2>
         <div className="grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
           {course.learn.map((item, i) => (
@@ -834,7 +834,7 @@ function OverviewTab() {
       <div>
         <SectionLabel>Kursa saturs</SectionLabel>
         <h2 style={{ fontSize: 24, fontWeight: 800, marginBottom: 20, letterSpacing: "-0.02em" }}>
-          {course.totalModules} moduÄ¼i Ā· {course.totalLessons} nodarbÄ«bas
+          {course.totalModules} moduļi · {course.totalLessons} nodarbības
         </h2>
         <div className="grid-3" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 12 }}>
           {course.modules.map((mod) => (
@@ -852,7 +852,7 @@ function OverviewTab() {
                 <span style={{ fontSize: 13, fontWeight: 700, color: "#fff" }}>{mod.title}</span>
               </div>
               <div style={{ fontSize: 11, color: "#555", marginBottom: 8 }}>
-                {mod.lessons.length} nodarbÄ«bas Ā· {mod.duration}
+                {mod.lessons.length} nodarbības · {mod.duration}
               </div>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
                 {mod.lessons.slice(0, 3).map((l) => (
@@ -864,7 +864,7 @@ function OverviewTab() {
                       color: "#666",
                     }}
                   >
-                    {l.type === "task" ? "šˇÆ" : l.type === "text" ? "š“„" : "ā–¶"} {l.duration}
+                    {l.type === "task" ? "🎯" : l.type === "text" ? "📄" : "▶"} {l.duration}
                   </span>
                 ))}
                 {mod.lessons.length > 3 && (
@@ -876,17 +876,17 @@ function OverviewTab() {
         </div>
       </div>
 
-      {/* PriekÅrocÄ«bas */}
+      {/* Priekšrocības */}
       <div>
-        <SectionLabel>KÄpÄ“c Åis kurss</SectionLabel>
+        <SectionLabel>Kāpēc šis kurss</SectionLabel>
         <h2 style={{ fontSize: 24, fontWeight: 800, marginBottom: 20, letterSpacing: "-0.02em" }}>
-          ReÄli rezultÄti, ne tikai teorija
+          Reāli rezultāti, ne tikai teorija
         </h2>
         <div className="grid-3" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16 }}>
           {[
-            { icon: "šˇÆ", title: "Projektu bÄzÄ“ta", desc: "Katra moduÄ¼a beigÄs ir praktisks uzdevums, ko vari iekÄ¼aut portfolio." },
-            { icon: "š“¦", title: "Gatavi templates", desc: "Proposal, lÄ«gums, onboarding, atskaite ā€” viss lejupielÄdÄjams." },
-            { icon: "š‡±š‡»", title: "Latvijas tirgum", desc: "Cold outreach skripti, cenas un stratÄ“Ä£ijas Latvijas realitÄtei." },
+            { icon: "🎯", title: "Projektu bāzēta", desc: "Katra moduļa beigās ir praktisks uzdevums, ko vari iekļaut portfolio." },
+            { icon: "📦", title: "Gatavi templates", desc: "Proposal, līgums, onboarding, atskaite — viss lejupielādājams." },
+            { icon: "🇱🇻", title: "Latvijas tirgum", desc: "Cold outreach skripti, cenas un stratēģijas Latvijas realitātei." },
           ].map((item) => (
             <div
               key={item.title}
@@ -905,7 +905,7 @@ function OverviewTab() {
 
       {/* Instructor */}
       <div>
-        <SectionLabel>PasniedzÄ“js</SectionLabel>
+        <SectionLabel>Pasniedzējs</SectionLabel>
         <div
           style={{
             display: "flex", alignItems: "flex-start", gap: 20, padding: "24px",
@@ -948,8 +948,8 @@ function OverviewTab() {
                 <div style={{ fontSize: 11, color: "#555" }}>kursi</div>
               </div>
               <div>
-                <div style={{ fontSize: 18, fontWeight: 800, color: "#f59e0b" }}>4.9 ā…</div>
-                <div style={{ fontSize: 11, color: "#555" }}>vidÄ“jais vÄ“rtÄ“jums</div>
+                <div style={{ fontSize: 18, fontWeight: 800, color: "#f59e0b" }}>4.9 ★</div>
+                <div style={{ fontSize: 11, color: "#555" }}>vidējais vērtējums</div>
               </div>
             </div>
           </div>
@@ -966,10 +966,10 @@ function OverviewTab() {
         }}
       >
         <h3 style={{ fontSize: 22, fontWeight: 900, marginBottom: 8, letterSpacing: "-0.02em" }}>
-          Gatavs sÄkt nopelnÄ«t {course.earn}?
+          Gatavs sākt nopelnīt {course.earn}?
         </h3>
         <p style={{ fontSize: 14, color: "#777", marginBottom: 24 }}>
-          Pievienojies {course.students} studentiem kas jau apgÅ«st Åo kursu.
+          Pievienojies {course.students} studentiem kas jau apgūst šo kursu.
         </p>
         <button
           style={{
@@ -982,14 +982,14 @@ function OverviewTab() {
           onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 12px 40px rgba(168,85,247,0.45)"; }}
           onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 8px 30px rgba(168,85,247,0.35)"; }}
         >
-          SÄkt kursu ā€” pirmÄs 2 nodarbÄ«bas bezmaksas
+          Sākt kursu — pirmās 2 nodarbības bezmaksas
         </button>
       </div>
     </div>
   );
 }
 
-// ā”€ā”€ā”€ Curriculum Tab ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€
+// ─── Curriculum Tab ───────────────────────────────────────────────────────────
 function CurriculumTab({ onSelectLesson }: { onSelectLesson: (l: Lesson) => void }) {
   const [open, setOpen] = useState<number[]>(course.modules.map((m) => m.id));
   const toggle = (id: number) => setOpen((p) => (p.includes(id) ? p.filter((x) => x !== id) : [...p, id]));
@@ -998,16 +998,16 @@ function CurriculumTab({ onSelectLesson }: { onSelectLesson: (l: Lesson) => void
     <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
         <div>
-          <SectionLabel>MÄcÄ«bu programma</SectionLabel>
+          <SectionLabel>Mācību programma</SectionLabel>
           <h2 style={{ fontSize: 24, fontWeight: 800, letterSpacing: "-0.02em" }}>
-            {course.totalModules} moduÄ¼i Ā· {course.totalLessons} nodarbÄ«bas Ā· {course.totalDuration}
+            {course.totalModules} moduļi · {course.totalLessons} nodarbības · {course.totalDuration}
           </h2>
         </div>
         <button
           onClick={() => setOpen(open.length === course.modules.length ? [] : course.modules.map((m) => m.id))}
           style={{ fontSize: 12, color: "#a855f7", background: "transparent", border: "none", cursor: "pointer", fontWeight: 600 }}
         >
-          {open.length === course.modules.length ? "AizvÄ“rt visus" : "AtvÄ“rt visus"}
+          {open.length === course.modules.length ? "Aizvērt visus" : "Atvērt visus"}
         </button>
       </div>
 
@@ -1044,7 +1044,7 @@ function CurriculumTab({ onSelectLesson }: { onSelectLesson: (l: Lesson) => void
               <div style={{ flex: 1, textAlign: "left" }}>
                 <div style={{ fontSize: 15, fontWeight: 700 }}>{mod.title}</div>
                 <div style={{ fontSize: 12, color: "#555", marginTop: 2 }}>
-                  {mod.lessons.length} nodarbÄ«bas Ā· {mod.duration}
+                  {mod.lessons.length} nodarbības · {mod.duration}
                 </div>
               </div>
               <div style={{ color: "#444" }}><ChevronIcon open={isOpen} /></div>
@@ -1106,16 +1106,16 @@ function CurriculumTab({ onSelectLesson }: { onSelectLesson: (l: Lesson) => void
   );
 }
 
-// ā”€ā”€ā”€ Tools Tab ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€
+// ─── Tools Tab ────────────────────────────────────────────────────────────────
 function ToolsTab() {
   return (
     <div>
-      <SectionLabel>Izmantotie rÄ«ki</SectionLabel>
+      <SectionLabel>Izmantotie rīki</SectionLabel>
       <h2 style={{ fontSize: 24, fontWeight: 800, marginBottom: 8, letterSpacing: "-0.02em" }}>
-        7 AI rÄ«ki ko apgÅ«si kursÄ
+        7 AI rīki ko apgūsi kursā
       </h2>
       <p style={{ fontSize: 14, color: "#666", lineHeight: 1.7, marginBottom: 32 }}>
-        Visi nepiecieÅamie rÄ«ki ar bezmaksas plÄniem vai izmÄ“Ä£inÄjuma periodiem. Setup instrukcijas iekÄ¼autas kursÄ.
+        Visi nepieciešamie rīki ar bezmaksas plāniem vai izmēģinājuma periodiem. Setup instrukcijas iekļautas kursā.
       </p>
       <div className="grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 40 }}>
         {course.tools.map((tool) => (
@@ -1139,7 +1139,7 @@ function ToolsTab() {
                 fontSize: 20,
               }}
             >
-              {tool.name === "Runway ML" ? "šˇ¬" : tool.name === "HeyGen" ? "š¤–" : tool.name === "CapCut" ? "ā‚ļø¸" : tool.name === "Midjourney" ? "šˇØ" : tool.name === "Canva AI" ? "š–ļø¸" : tool.name === "Adobe Firefly" ? "š”" : "š“…"}
+              {tool.name === "Runway ML" ? "🎬" : tool.name === "HeyGen" ? "🤖" : tool.name === "CapCut" ? "✂️" : tool.name === "Midjourney" ? "🎨" : tool.name === "Canva AI" ? "🖌️" : tool.name === "Adobe Firefly" ? "🔥" : "📅"}
             </div>
             <div>
               <div style={{ fontSize: 14, fontWeight: 700, color: "#fff", marginBottom: 3 }}>{tool.name}</div>
@@ -1160,19 +1160,19 @@ function ToolsTab() {
         }}
       >
         <div style={{ fontSize: 13, fontWeight: 700, color: "#00ff88", marginBottom: 12 }}>
-          ā“ Kas nepiecieÅams lai sÄktu
+          ✓ Kas nepieciešams lai sāktu
         </div>
         <div className="grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
           {[
-            "Dators vai klÄ“pjdators (Windows/Mac)",
+            "Dators vai klēpjdators (Windows/Mac)",
             "Stabils interneta savienojums",
             "E-pasta adrese kontiem",
-            "~ā‚¬20ā€“50/mÄ“n rÄ«ku izmaksas (sÄkumÄ)",
-            "5ā€“10 stundas nedÄ“Ä¼Ä ieguldÄ«jumam",
-            "NekÄdas programmÄ“Åanas zinÄÅanas nav vajadzÄ«gas",
+            "~€20–50/mēn rīku izmaksas (sākumā)",
+            "5–10 stundas nedēļā ieguldījumam",
+            "Nekādas programmēšanas zināšanas nav vajadzīgas",
           ].map((req) => (
             <div key={req} style={{ display: "flex", alignItems: "flex-start", gap: 8, fontSize: 12, color: "#888" }}>
-              <span style={{ color: "#00ff88", flexShrink: 0, marginTop: 1 }}>ā“</span>
+              <span style={{ color: "#00ff88", flexShrink: 0, marginTop: 1 }}>✓</span>
               {req}
             </div>
           ))}
@@ -1182,10 +1182,10 @@ function ToolsTab() {
   );
 }
 
-// ā”€ā”€ā”€ Lesson View ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€
+// ─── Lesson View ──────────────────────────────────────────────────────────────
 function LessonView({ lesson, onBack }: { lesson: Lesson; onBack: () => void }) {
   return (
-    <div style={{ maxWidth: 860, margin: "0 auto", padding: "40px 48px" }}>
+    <div className="lesson-pad" style={{ maxWidth: 860, margin: "0 auto", padding: "40px 48px" }}>
       <button
         onClick={onBack}
         style={{
@@ -1200,7 +1200,7 @@ function LessonView({ lesson, onBack }: { lesson: Lesson; onBack: () => void }) 
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
           <polyline points="15,18 9,12 15,6" />
         </svg>
-        AtpakaÄ¼ uz kursa pÄrskatu
+        Atpakaļ uz kursa pārskatu
       </button>
 
       {/* Lesson type badge */}
@@ -1269,9 +1269,9 @@ function LessonView({ lesson, onBack }: { lesson: Lesson; onBack: () => void }) 
           </div>
           <div style={{ textAlign: "center", position: "relative" }}>
             <div style={{ fontSize: 15, fontWeight: 700, color: "#fff", marginBottom: 4 }}>
-              Video ā€” {lesson.duration}
+              Video — {lesson.duration}
             </div>
-            <div style={{ fontSize: 12, color: "#555" }}>Pieejams ar Pro plÄnu</div>
+            <div style={{ fontSize: 12, color: "#555" }}>Pieejams ar Pro plānu</div>
           </div>
         </div>
       )}
@@ -1285,7 +1285,7 @@ function LessonView({ lesson, onBack }: { lesson: Lesson; onBack: () => void }) 
           }}
         >
           <div style={{ fontSize: 12, fontWeight: 700, color: "#a855f7", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 10 }}>
-            Par Åo nodarbÄ«bu
+            Par šo nodarbību
           </div>
           <p style={{ fontSize: 14, color: "#aaa", lineHeight: 1.8 }}>{lesson.description}</p>
         </div>
@@ -1300,10 +1300,10 @@ function LessonView({ lesson, onBack }: { lesson: Lesson; onBack: () => void }) 
           }}
         >
           <div style={{ fontSize: 12, fontWeight: 700, color: "#00ff88", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 14 }}>
-            šˇÆ Praktiskais uzdevums
+            🎯 Praktiskais uzdevums
           </div>
           <div style={{ fontSize: 13, color: "#888", lineHeight: 1.8 }}>
-            Izpildi uzdevumu un augÅupielÄdÄ“ savu darbu ā€” tas bÅ«s daÄ¼a no tava portfolio, ko vari rÄdÄ«t potenciÄlajiem klientiem.
+            Izpildi uzdevumu un augšupielādē savu darbu — tas būs daļa no tava portfolio, ko vari rādīt potenciālajiem klientiem.
           </div>
           <button
             style={{
@@ -1329,10 +1329,10 @@ function LessonView({ lesson, onBack }: { lesson: Lesson; onBack: () => void }) 
           }}
         >
           <div style={{ fontSize: 12, fontWeight: 700, color: "#00d4ff", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 14 }}>
-            š“„ LejupielÄdÄjams materiÄls
+            📄 Lejupielādājams materiāls
           </div>
           <div style={{ fontSize: 13, color: "#888", lineHeight: 1.8, marginBottom: 14 }}>
-            Å Ä« nodarbÄ«ba ietver lejupielÄdÄjamu template, ko vari tÅ«lÄ«t izmantot darbÄ ar klientiem.
+            Šī nodarbība ietver lejupielādājamu template, ko vari tūlīt izmantot darbā ar klientiem.
           </div>
           <button
             style={{
@@ -1344,7 +1344,7 @@ function LessonView({ lesson, onBack }: { lesson: Lesson; onBack: () => void }) 
             onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(0,212,255,0.2)")}
             onMouseLeave={(e) => (e.currentTarget.style.background = "rgba(0,212,255,0.12)")}
           >
-            ā†“ LejupielÄdÄ“t (PDF)
+            ↓ Lejupielādēt (PDF)
           </button>
         </div>
       )}
@@ -1366,7 +1366,7 @@ function LessonView({ lesson, onBack }: { lesson: Lesson; onBack: () => void }) 
           onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#fff"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.2)"; }}
           onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "#666"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.08)"; }}
         >
-          ā† AtpakaÄ¼
+          ← Atpakaļ
         </button>
         <button
           style={{
@@ -1379,14 +1379,14 @@ function LessonView({ lesson, onBack }: { lesson: Lesson; onBack: () => void }) 
           onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-1px)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 8px 24px rgba(168,85,247,0.4)"; }}
           onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 4px 16px rgba(168,85,247,0.3)"; }}
         >
-          NÄkamÄ nodarbÄ«ba ā†’
+          Nākamā nodarbība →
         </button>
       </div>
     </div>
   );
 }
 
-// ā”€ā”€ā”€ Section Label Helper ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€ā”€
+// ─── Section Label Helper ─────────────────────────────────────────────────────
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
     <div
