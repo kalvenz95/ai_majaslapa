@@ -48,17 +48,16 @@ const VoiceIcon = () => (
   </svg>
 );
 
-const WorkflowIcon = () => (
+const ClaudeIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-    <circle cx="5" cy="12" r="3" fill="url(#g5)" opacity="0.9"/>
-    <circle cx="19" cy="6" r="3" fill="url(#g5)" opacity="0.7"/>
-    <circle cx="19" cy="18" r="3" fill="url(#g5)" opacity="0.7"/>
-    <line x1="8" y1="11" x2="16" y2="7" stroke="url(#g5)" strokeWidth="1.5" strokeLinecap="round"/>
-    <line x1="8" y1="13" x2="16" y2="17" stroke="url(#g5)" strokeWidth="1.5" strokeLinecap="round"/>
+    <path d="M12 3C7.03 3 3 7.03 3 12s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9z" fill="url(#g5)" opacity="0.15" stroke="url(#g5)" strokeWidth="1.2"/>
+    <path d="M8 10h8M8 13h5" stroke="url(#g5)" strokeWidth="1.8" strokeLinecap="round"/>
+    <circle cx="17" cy="8" r="2.5" fill="url(#g5)" opacity="0.9"/>
+    <path d="M16 8.5l1 1 2-2" stroke="#fff" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
     <defs>
       <linearGradient id="g5" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
-        <stop stopColor="#f59e0b"/>
-        <stop offset="1" stopColor="#f97316"/>
+        <stop stopColor="#a78bfa"/>
+        <stop offset="1" stopColor="#ec4899"/>
       </linearGradient>
     </defs>
   </svg>
@@ -144,18 +143,18 @@ const services: Service[] = [
     link: "/kursi/voice-agents",
   },
   {
-    Icon: WorkflowIcon,
-    title: "Make.com / n8n Workflow",
-    desc: "Pilna biznesa automatizācija — e-pasts, CRM, rēķini, rezervācijas. Viss bez cilvēka.",
-    earn: "€300–€700/mēn",
-    difficulty: "Vidējs",
-    gradient: "from-[#f59e0b]/20 to-[#f97316]/20",
-    border: "rgba(245,158,11,0.2)",
-    glow: "rgba(245,158,11,0.08)",
-    glowHover: "rgba(245,158,11,0.15)",
-    tag: "Atkārtoti ienākumi",
-    tagColor: "text-[#f59e0b] bg-[#f59e0b]/10 border-[#f59e0b]/25",
-    includes: ["Make.com vai n8n", "CRM savienojums", "E-pasta automācija"],
+    Icon: ClaudeIcon,
+    title: "Claude AI Asistents",
+    desc: "Iemācies izmantot Claude e-pasta rakstīšanai, dizaina briifiem, satura veidošanai un ikdienas darbu automatizācijai.",
+    earn: "200€–800€/mēn",
+    difficulty: "Iesācējs",
+    gradient: "from-[#a78bfa]/20 to-[#ec4899]/20",
+    border: "rgba(167,139,250,0.2)",
+    glow: "rgba(167,139,250,0.08)",
+    glowHover: "rgba(167,139,250,0.18)",
+    tag: "Iesācējiem",
+    tagColor: "text-[#a78bfa] bg-[#a78bfa]/10 border-[#a78bfa]/25",
+    includes: ["E-pasta veidnes", "Dizaina briifi", "Satura ģenerēšana"],
     link: null,
   },
   {
