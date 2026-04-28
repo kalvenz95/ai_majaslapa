@@ -65,10 +65,15 @@ const ClaudeIcon = () => (
 
 const AppIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-    <rect x="5" y="2" width="14" height="20" rx="3" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5"/>
-    <rect x="8" y="6" width="8" height="5" rx="1.5" fill="rgba(255,255,255,0.15)"/>
-    <line x1="8" y1="14" x2="16" y2="14" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" strokeLinecap="round"/>
-    <line x1="8" y1="17" x2="13" y2="17" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" strokeLinecap="round"/>
+    <rect x="5" y="2" width="14" height="20" rx="3" fill="url(#app-g)" opacity="0.15" stroke="url(#app-g)" strokeWidth="1.5"/>
+    <rect x="8" y="6" width="8" height="5" rx="1.5" fill="url(#app-g)" opacity="0.6"/>
+    <line x1="8" y1="14" x2="16" y2="14" stroke="url(#app-g)" strokeWidth="1.5" strokeLinecap="round"/>
+    <line x1="8" y1="17" x2="13" y2="17" stroke="url(#app-g)" strokeWidth="1.5" strokeLinecap="round"/>
+    <defs>
+      <linearGradient id="app-g" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#38bdf8"/><stop offset="1" stopColor="#818cf8"/>
+      </linearGradient>
+    </defs>
   </svg>
 );
 
@@ -160,16 +165,21 @@ const services: Service[] = [
   {
     Icon: AppIcon,
     title: "Izveido savu Aplikāciju ar A.I.",
-    desc: "Veido mobilās un web aplikācijas ar AI — no idejas līdz darbojošam produktam bez tradicionālās programmēšanas.",
+    desc: "No idejas līdz darbojošai lietotnei — bez programmēšanas. AI palīdz tev veidot, dizainēt un laist klajā produktu.",
     earn: "€800–€3000/projekts",
     difficulty: "Vidējs",
-    gradient: "from-white/5 to-white/3",
-    border: "rgba(255,255,255,0.08)",
-    glow: "rgba(255,255,255,0.02)",
-    glowHover: "rgba(255,255,255,0.04)",
+    gradient: "from-[#38bdf8]/20 to-[#818cf8]/20",
+    border: "rgba(56,189,248,0.22)",
+    glow: "rgba(56,189,248,0.08)",
+    glowHover: "rgba(56,189,248,0.18)",
     tag: "Drīzumā",
-    tagColor: "text-gray-500 bg-white/4 border-white/10",
-    includes: ["No-code AI rīki", "Prototype izveide", "Monetizācija"],
+    tagColor: "text-[#38bdf8] bg-[#38bdf8]/10 border-[#38bdf8]/25",
+    includes: [
+      "Izveido lietotni bez koda",
+      "AI ģenerē dizainu automātiski",
+      "Publicē App Store un Web",
+      "Monetizē no pirmās dienas",
+    ],
     link: null,
     comingSoon: true,
   },
@@ -207,12 +217,10 @@ export default function Services() {
               className={`relative rounded-2xl p-6 group overflow-hidden transition-all duration-300
                 ${idx === 3 ? "lg:col-start-1" : ""}
                 ${idx === 4 ? "lg:col-start-2" : ""}
-                ${s.comingSoon ? "cursor-default opacity-60" : "cursor-pointer"}
+                ${s.comingSoon ? "cursor-default" : "cursor-pointer"}
               `}
               style={{
-                background: s.comingSoon
-                  ? "linear-gradient(135deg, #0d0d12, #0f0f14)"
-                  : `linear-gradient(135deg, #0d0d1a, #0f0f20)`,
+                background: `linear-gradient(135deg, #0d0d1a, #0f0f20)`,
                 border: `1px solid ${s.border}`,
               }}
               onMouseEnter={(e) => {
@@ -271,28 +279,42 @@ export default function Services() {
                 <E id={`srv-${idx}-desc`}>{s.desc}</E>
               </p>
 
-              {/* Includes pills */}
-              <div className="flex flex-wrap gap-1.5 mb-5">
-                {s.includes.map((item) => (
-                  <span
-                    key={item}
-                    className="text-[11px] px-2 py-0.5 rounded-md text-gray-500 font-medium"
-                    style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
+              {/* Includes */}
+              {s.comingSoon ? (
+                <div className="flex flex-col gap-2.5 mb-5">
+                  {s.includes.map((item) => (
+                    <div key={item} className="flex items-center gap-3">
+                      <div className="flex-shrink-0 w-5 h-5 rounded-md flex items-center justify-center"
+                        style={{ background: "rgba(56,189,248,0.15)", border: "1px solid rgba(56,189,248,0.3)" }}>
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="3"><polyline points="20,6 9,17 4,12"/></svg>
+                      </div>
+                      <span className="text-sm font-medium text-gray-300">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="flex flex-wrap gap-1.5 mb-5">
+                  {s.includes.map((item) => (
+                    <span
+                      key={item}
+                      className="text-[11px] px-2 py-0.5 rounded-md text-gray-500 font-medium"
+                      style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              )}
 
               {/* Bottom: earn + difficulty */}
               <div
                 className="flex items-center justify-between pt-4"
                 style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
               >
-                <span className={`font-bold text-sm ${s.comingSoon ? "text-gray-600" : "text-[#00ff88]"}`}>
+                <span className={`font-bold text-sm ${s.comingSoon ? "text-[#38bdf8]" : "text-[#00ff88]"}`}>
                   <E id={`srv-${idx}-earn`}>{s.earn}</E>
                 </span>
-                <span className={`text-xs px-2.5 py-1 rounded-lg border font-semibold ${s.comingSoon ? "text-gray-600 bg-white/4 border-white/8" : difficultyColor[s.difficulty]}`}>
+                <span className={`text-xs px-2.5 py-1 rounded-lg border font-semibold ${s.comingSoon ? "text-[#38bdf8] bg-[#38bdf8]/8 border-[#38bdf8]/20" : difficultyColor[s.difficulty]}`}>
                   {s.difficulty}
                 </span>
               </div>
