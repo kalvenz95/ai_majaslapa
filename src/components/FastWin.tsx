@@ -73,49 +73,56 @@ export default function FastWin() {
             </a>
           </div>
 
-          {/* Right: target niches */}
-          <div>
-            <div className="glass rounded-3xl p-8">
-              <h3 className="font-bold text-white text-xl mb-2">🎯 Mērķa tirgi Latvijā</h3>
-              <p className="text-gray-500 text-sm mb-6">Šie uzņēmumi maksā par AI pakalpojumiem visvairāk:</p>
-
-              <div className="flex flex-wrap gap-2 mb-8">
-                {niches.map((n) => (
-                  <span key={n} className="px-3 py-1.5 rounded-full glass text-sm text-gray-300 border border-white/5 hover:border-[#00ff88]/30 hover:text-[#00ff88] transition-all cursor-default">
-                    {n}
-                  </span>
-                ))}
+          {/* Right */}
+          <div className="flex flex-col gap-4">
+            {/* Niches — compact grid */}
+            <div className="glass rounded-2xl p-6">
+              <div className="flex items-center gap-2 mb-4">
+                <span className="text-lg">🎯</span>
+                <h3 className="font-bold text-white">Mērķa tirgi Latvijā</h3>
               </div>
-
-              <div className="neon-line mb-6" />
-
-              {/* Income calculator preview */}
-              <h4 className="font-semibold text-white mb-4">💡 Ienākumu kalkulators</h4>
-              <div className="flex flex-col gap-3">
-                {[
-                  { service: "AI Video (2 klienti)", price: "€400/mēn" },
-                  { service: "Chatbot (3 klienti)", price: "€900/mēn" },
-                  { service: "WhatsApp Bot (2 klienti)", price: "€600/mēn" },
-                ].map((item) => (
-                  <div key={item.service} className="flex justify-between items-center py-2 border-b border-white/5">
-                    <span className="text-sm text-gray-400">{item.service}</span>
-                    <span className="text-sm font-bold text-[#00ff88]">{item.price}</span>
+              <div className="grid grid-cols-2 gap-2">
+                {niches.map((n) => (
+                  <div key={n} className="flex items-center gap-2 py-1.5 px-3 rounded-lg border border-white/5 hover:border-[#00ff88]/25 hover:text-[#00ff88] transition-all cursor-default"
+                    style={{ background: "rgba(255,255,255,0.02)" }}>
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#00ff88] opacity-50 shrink-0" />
+                    <span className="text-sm text-gray-300">{n}</span>
                   </div>
                 ))}
-                <div className="flex justify-between items-center pt-2">
-                  <span className="font-semibold text-white">Kopā</span>
-                  <span className="text-xl font-black gradient-text-green">€1,900/mēn</span>
-                </div>
               </div>
             </div>
 
-            {/* Quote */}
-            <div className="mt-4 glass rounded-2xl p-5 border-l-2 border-[#00ff88]">
-              <p className="text-gray-300 text-sm italic">
-                "Pēc 3 nedēļām Chademy ieguvu pirmo klientu — restorānu Rīgā. €350 par chatbot. Tagad strādāju ar 4 klientiem."
+            {/* Income calc — compact */}
+            <div className="glass rounded-2xl p-6">
+              <div className="flex items-center gap-2 mb-4">
+                <span className="text-lg">💡</span>
+                <h3 className="font-bold text-white">Ienākumu piemērs</h3>
+              </div>
+              <div className="flex flex-col gap-1.5 mb-3">
+                {[
+                  { label: "AI Video · 2 klienti", val: "€400" },
+                  { label: "Sociālie tīkli · 2 klienti", val: "€700" },
+                  { label: "WhatsApp Bot · 2 klienti", val: "€600" },
+                ].map((r) => (
+                  <div key={r.label} className="flex justify-between items-center py-2 border-b border-white/5 last:border-0">
+                    <span className="text-sm text-gray-400">{r.label}</span>
+                    <span className="text-sm font-bold text-[#00ff88]">{r.val}/mēn</span>
+                  </div>
+                ))}
+              </div>
+              <div className="flex justify-between items-center pt-1">
+                <span className="text-sm font-semibold text-white">Kopā</span>
+                <span className="text-2xl font-black gradient-text-green">€1 700/mēn</span>
+              </div>
+            </div>
+
+            {/* Quote — slim */}
+            <div className="glass rounded-2xl p-4 border-l-2 border-[#00ff88]">
+              <p className="text-gray-300 text-sm italic leading-relaxed">
+                "Pēc 3 nedēļām ieguvu pirmo klientu — restorānu Rīgā. €350 par chatbot. Tagad 4 klienti."
               </p>
-              <div className="mt-3 flex items-center gap-2">
-                <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#00ff88] to-[#00d4ff] flex items-center justify-center text-xs font-bold text-black">M</div>
+              <div className="mt-2 flex items-center gap-2">
+                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#00ff88] to-[#00d4ff] flex items-center justify-center text-xs font-bold text-black shrink-0">M</div>
                 <span className="text-xs text-gray-500">Mārtiņš, 24 — Rīga</span>
               </div>
             </div>
