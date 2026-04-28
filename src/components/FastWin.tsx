@@ -2,41 +2,11 @@
 import E from "@/components/E";
 
 const steps = [
-  {
-    step: "01",
-    title: "Izvēlies vienu pakalpojumu",
-    desc: "Sāc ar faceless video vai AI attēliem. Viegli apgūstami, augsts pieprasījums.",
-    time: "1 diena",
-    icon: "🎯",
-  },
-  {
-    step: "02",
-    title: "Izveido demo",
-    desc: "Viens reāls piemērs vietējam uzņēmumam. Zobārstniecībai, skaistumkopšanai vai restorānam.",
-    time: "2-3 dienas",
-    icon: "🛠️",
-  },
-  {
-    step: "03",
-    title: "Sagatavo piedāvājumu",
-    desc: "Izmanto mūsu gatavos piedāvājumu un cenas veidnes. Pielāgo Latvijas tirgum.",
-    time: "1 diena",
-    icon: "📋",
-  },
-  {
-    step: "04",
-    title: "Kontaktē 10 uzņēmumus",
-    desc: "Izmanto copy-paste ziņu skriptus, ko mēs esam sagatavojuši tieši tev.",
-    time: "2 dienas",
-    icon: "📩",
-  },
-  {
-    step: "05",
-    title: "Noslēdz pirmo darījumu",
-    desc: "Pirmie €100–€500. Paplašini uz ikmēneša abonementu un sāc augt.",
-    time: "1-2 nedēļas",
-    icon: "💰",
-  },
+  { step: "01", title: "Izvēlies pakalpojumu", desc: "Faceless video vai AI attēli — ātri apgūstami, augsts pieprasījums.", time: "1 d.", icon: "🎯" },
+  { step: "02", title: "Izveido demo", desc: "Reāls piemērs vietējam uzņēmumam — zobārstniecībai vai restorānam.", time: "2–3 d.", icon: "🛠️" },
+  { step: "03", title: "Nosūti piedāvājumu", desc: "Gatavi cenu un piedāvājumu template. Copy-paste, pielāgo, sūti.", time: "1 d.", icon: "📋" },
+  { step: "04", title: "Kontaktē 10 biznesi", desc: "Gatavas ziņu veidnes — tikai aizpildi vārdu un nosūti.", time: "2 d.", icon: "📩" },
+  { step: "05", title: "Noslēdz darījumu", desc: "Pirmie €300–€800. Pievieno ikmēneša atbalstu un sāc augt.", time: "1–2 ned.", icon: "💰" },
 ];
 
 const niches = [
@@ -69,24 +39,27 @@ export default function FastWin() {
             </p>
 
             {/* Steps */}
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2">
               {steps.map((s, i) => (
                 <div key={i} className="flex gap-4 items-start">
+                  {/* Icon + connector */}
                   <div className="flex-shrink-0 flex flex-col items-center">
-                    <div className="w-10 h-10 rounded-xl glass flex items-center justify-center text-xl border border-[#00ff88]/20">
+                    <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl border border-[#00ff88]/25"
+                      style={{ background: "rgba(0,255,136,0.07)" }}>
                       {s.icon}
                     </div>
                     {i < steps.length - 1 && (
-                      <div className="w-px h-8 bg-gradient-to-b from-[#00ff88]/20 to-transparent mt-1" />
+                      <div className="w-px h-6 bg-gradient-to-b from-[#00ff88]/25 to-transparent mt-1" />
                     )}
                   </div>
-                  <div className="pb-4">
+                  {/* Text */}
+                  <div className="pb-3 pt-1 flex-1">
                     <div className="flex items-center gap-2 mb-1">
-                      <span className="text-xs text-[#00ff88] font-mono font-bold">{s.step}</span>
-                      <h3 className="font-semibold text-white"><E id={`step-${i}-title`}>{s.title}</E></h3>
-                      <span className="text-xs text-gray-600 ml-auto"><E id={`step-${i}-time`}>{s.time}</E></span>
+                      <span className="text-xs text-[#00ff88] font-black font-mono tracking-wider">{s.step}</span>
+                      <h3 className="font-bold text-white text-base leading-tight"><E id={`step-${i}-title`}>{s.title}</E></h3>
+                      <span className="text-xs text-gray-600 ml-auto font-mono shrink-0">{s.time}</span>
                     </div>
-                    <p className="text-sm text-gray-400"><E id={`step-${i}-desc`}>{s.desc}</E></p>
+                    <p className="text-sm text-gray-500 leading-relaxed"><E id={`step-${i}-desc`}>{s.desc}</E></p>
                   </div>
                 </div>
               ))}
