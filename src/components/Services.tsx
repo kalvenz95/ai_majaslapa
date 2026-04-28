@@ -18,20 +18,6 @@ const SocialMediaIcon = () => (
   </svg>
 );
 
-const ChatbotIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-    <path d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H8l-4 4V6a2 2 0 0 1 2-2z" fill="url(#g2)" opacity="0.15" stroke="url(#g2)" strokeWidth="1.5"/>
-    <circle cx="8.5" cy="11" r="1.5" fill="url(#g2)"/>
-    <circle cx="12" cy="11" r="1.5" fill="url(#g2)"/>
-    <circle cx="15.5" cy="11" r="1.5" fill="url(#g2)"/>
-    <defs>
-      <linearGradient id="g2" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
-        <stop stopColor="#00ff88"/>
-        <stop offset="1" stopColor="#00d4ff"/>
-      </linearGradient>
-    </defs>
-  </svg>
-);
 
 const WhatsAppIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -126,21 +112,6 @@ const services: Service[] = [
     tagColor: "text-[#a855f7] bg-[#a855f7]/10 border-[#a855f7]/25",
     includes: ["AI faceless video", "Reklāmas banneri", "Post vizuāļi"],
     link: "/kursi/socialo-tiklu-parvaldiba",
-  },
-  {
-    Icon: ChatbotIcon,
-    title: "Website Chatbot",
-    desc: "Inteliģents AI chatbot uzņēmumu mājaslapās — automātiski atbild uz jautājumiem 24/7.",
-    earn: "€300–€800/mēn",
-    difficulty: "Vidējs",
-    gradient: "from-[#00ff88]/20 to-[#00d4ff]/20",
-    border: "rgba(0,255,136,0.2)",
-    glow: "rgba(0,255,136,0.08)",
-    glowHover: "rgba(0,255,136,0.15)",
-    tag: "Augsts pieprasījums",
-    tagColor: "text-[#00ff88] bg-[#00ff88]/10 border-[#00ff88]/25",
-    includes: ["Claude API integrācija", "Pielāgota balstiena", "Analytics"],
-    link: "/kursi/website-chatbot",
   },
   {
     Icon: WhatsAppIcon,
