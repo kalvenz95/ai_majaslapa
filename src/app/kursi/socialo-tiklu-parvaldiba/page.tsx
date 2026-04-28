@@ -24,8 +24,8 @@ const course = {
   title: "Sociālo Tīklu Pārvaldība",
   subtitle: "AI video, attēli un reklāmas saturs uzņēmumiem",
   description:
-    "Iemācies veidot pilnu sociālo mediju klātbūtni uzņēmumiem ar mākslīgo intelektu. No AI faceless video līdz reklāmas banneriem — viss, kas nepieciešams, lai iegūtu pirmos klientus un nopelnītu €300–€800 mēnesī.",
-  earn: "€300–€800/mēn",
+    "Iemācies veidot pilnu sociālo mediju klātbūtni uzņēmumiem ar mākslīgo intelektu. No AI faceless video līdz reklāmas banneriem — viss, kas nepieciešams, lai iegūtu pirmos klientus un nopelnītu 300€–1500€ mēnesī.",
+  earn: "300€–1500€/mēn",
   difficulty: "Iesācējs",
   tag: "Populārs",
   totalDuration: "8h 5 min",
@@ -604,200 +604,149 @@ function OverviewTab() {
     <div style={{ display: "flex", flexDirection: "column", gap: 48 }}>
 
       {/* ── HERO SALES SECTION ── */}
-      <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
 
-        {/* Virsraksts + apakšvirsraksts */}
-        <div
-          style={{
-            position: "relative", padding: "40px", borderRadius: 20,
-            background: "linear-gradient(135deg, rgba(168,85,247,0.1) 0%, rgba(236,72,153,0.06) 60%, rgba(5,5,8,0) 100%)",
-            border: "1px solid rgba(168,85,247,0.18)", overflow: "hidden",
-          }}
-        >
-          {/* bg grid */}
+        {/* Virsraksts */}
+        <div style={{ position: "relative", padding: "40px", borderRadius: 20, background: "linear-gradient(135deg, rgba(168,85,247,0.1) 0%, rgba(236,72,153,0.06) 60%, rgba(5,5,8,0) 100%)", border: "1px solid rgba(168,85,247,0.18)", overflow: "hidden" }}>
           <div style={{ position: "absolute", inset: 0, pointerEvents: "none", backgroundImage: "linear-gradient(rgba(168,85,247,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(168,85,247,0.04) 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
-          {/* glow */}
           <div style={{ position: "absolute", top: -60, right: -60, width: 260, height: 260, borderRadius: "50%", background: "radial-gradient(circle, rgba(236,72,153,0.12), transparent 70%)", pointerEvents: "none" }} />
-
           <div style={{ position: "relative" }}>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "4px 12px", borderRadius: 20, background: "rgba(168,85,247,0.12)", border: "1px solid rgba(168,85,247,0.3)", marginBottom: 20 }}>
               <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#a855f7", boxShadow: "0 0 8px #a855f7" }} />
-              <span style={{ fontSize: 11, color: "#a855f7", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase" }}>Digitālā sistēma</span>
+              <span style={{ fontSize: 11, color: "#a855f7", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase" }}>Sociālo tīklu pārvaldība</span>
             </div>
-
             <h2 style={{ fontSize: 32, fontWeight: 900, letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: 14, color: "#fff" }}>
-              Izveido digitālas sistēmas,<br />
-              <span style={{ background: "linear-gradient(135deg, #a855f7, #ec4899)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>kas strādā tavā vietā</span>
+              Sāc pelnīt ar<br />
+              <span style={{ background: "linear-gradient(135deg, #a855f7, #ec4899)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>sociālo tīklu pārvaldību</span>
             </h2>
-
-            <p style={{ fontSize: 15, color: "#888", lineHeight: 1.75, maxWidth: 620 }}>
-              Nevis vienkārši mājaslapas — bet modernus, vizuāli spēcīgus un klientus piesaistošus risinājumus
+            <p style={{ fontSize: 15, color: "#888", lineHeight: 1.75, maxWidth: 580 }}>
+              Izveido saturu biznesiem un pārvērt to par stabilu ienākumu avotu
             </p>
           </div>
         </div>
 
-        {/* Solījums */}
-        <div
-          style={{
-            padding: "28px 32px", borderRadius: 16,
-            background: "#0d0d1a", border: "1px solid rgba(255,255,255,0.06)",
-            display: "flex", alignItems: "flex-start", gap: 20,
-          }}
-        >
-          <div style={{ width: 48, height: 48, borderRadius: 14, flexShrink: 0, background: "linear-gradient(135deg, rgba(168,85,247,0.25), rgba(236,72,153,0.25))", border: "1px solid rgba(168,85,247,0.3)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22 }}>
-            🎯
-          </div>
-          <div>
-            <div style={{ fontSize: 11, fontWeight: 700, color: "#a855f7", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 8 }}>Solījums</div>
-            <p style={{ fontSize: 15, color: "#ccc", lineHeight: 1.75 }}>
-              Tu iemācīsies izveidot mūsdienīgas, dinamiskas un vizuāli pievilcīgas mājaslapas kopā ar automatizācijām, kas pārvērš apmeklētājus klientos
-            </p>
-          </div>
+        {/* Platformas solījums */}
+        <div style={{ padding: "22px 28px", borderRadius: 14, background: "#0d0d1a", border: "1px solid rgba(255,255,255,0.06)", display: "flex", alignItems: "flex-start", gap: 16 }}>
+          <div style={{ width: 40, height: 40, borderRadius: 10, flexShrink: 0, background: "linear-gradient(135deg, rgba(168,85,247,0.25), rgba(236,72,153,0.25))", border: "1px solid rgba(168,85,247,0.3)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>💡</div>
+          <p style={{ fontSize: 14, color: "#ccc", lineHeight: 1.75 }}>
+            Šajā platformā tu mācies un uzreiz liec zināšanas darbībā. Tu apgūsi pakalpojumu, ko vari piedāvāt uzņēmumiem par <span style={{ color: "#a855f7", fontWeight: 700 }}>300€ – 1500€ mēnesī</span>.
+          </p>
         </div>
 
-        {/* Kas padara atšķirīgu */}
-        <div>
-          <SectionLabel>Kas padara šo atšķirīgu</SectionLabel>
-          <div className="grid-3" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 14 }}>
+        {/* Ko tu iemācīsies šajā pakā */}
+        <div style={{ padding: "28px", borderRadius: 16, background: "#0d0d1a", border: "1px solid rgba(168,85,247,0.12)" }}>
+          <div style={{ fontSize: 11, fontWeight: 700, color: "#a855f7", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 18 }}>Šajā pakā tu:</div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
             {[
-              { icon: "✦", color: "#a855f7", title: "Premium dizains", desc: "Dizains, kas izskatās kā premium startupiem" },
-              { icon: "💰", color: "#ec4899", title: "Pārdod, ne tikai izskatās", desc: "Lapas, kas ne tikai izskatās labi, bet pārdod" },
-              { icon: "⚡", color: "#f59e0b", title: "24/7 automatizācija", desc: "Automatizācijas, kas strādā fonā visu diennakti" },
-            ].map((item) => (
-              <div
-                key={item.title}
-                style={{
-                  padding: "22px 20px", borderRadius: 14,
-                  background: "#0d0d1a",
-                  border: `1px solid ${item.color}22`,
-                  transition: "border-color 0.2s, transform 0.2s",
-                }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.borderColor = `${item.color}55`; (e.currentTarget as HTMLDivElement).style.transform = "translateY(-2px)"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.borderColor = `${item.color}22`; (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)"; }}
-              >
-                <div style={{ fontSize: 24, marginBottom: 12 }}>{item.icon}</div>
-                <div style={{ fontSize: 13, fontWeight: 700, color: "#fff", marginBottom: 6 }}>{item.title}</div>
-                <div style={{ fontSize: 12, color: "#666", lineHeight: 1.6 }}>{item.desc}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Ko tu iegūsi + Automatizācijas */}
-        <div className="grid-2-fixed" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
-          {/* Ko tu iegūsi */}
-          <div style={{ padding: "24px", borderRadius: 16, background: "#0d0d1a", border: "1px solid rgba(168,85,247,0.12)" }}>
-            <div style={{ fontSize: 11, fontWeight: 700, color: "#a855f7", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 16 }}>Ko tu iegūsi</div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              {[
-                'Spēju veidot modernu, "wow" līmeņa mājaslapu',
-                "Sapratni, kā pārvērst apmeklētājus klientos",
-                "Automatizētu klientu komunikāciju",
-                "Sistēmu, kas savāc un apstrādā pieteikumus",
-                "Iespēju piedāvāt biznesiem pilnu digitālo risinājumu",
-              ].map((item, i) => (
-                <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
-                  <div style={{ width: 18, height: 18, borderRadius: 5, background: "rgba(168,85,247,0.2)", border: "1px solid rgba(168,85,247,0.35)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 1 }}>
-                    <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#a855f7" strokeWidth="3.5"><polyline points="20,6 9,17 4,12" /></svg>
-                  </div>
-                  <span style={{ fontSize: 12.5, color: "#bbb", lineHeight: 1.5 }}>{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Automatizācijas */}
-          <div style={{ padding: "24px", borderRadius: 16, background: "#0d0d1a", border: "1px solid rgba(236,72,153,0.12)" }}>
-            <div style={{ fontSize: 11, fontWeight: 700, color: "#ec4899", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 16 }}>Automatizācijas, ko apgūsi</div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              {[
-                "WhatsApp atbildes klientiem",
-                "Pieteikumu apstrāde automātiski",
-                "Follow-up ziņas",
-                "Klientu filtrēšana",
-                "Dažādi automatizēti scenāriji biznesiem",
-              ].map((item, i) => (
-                <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
-                  <div style={{ width: 18, height: 18, borderRadius: 5, background: "rgba(236,72,153,0.15)", border: "1px solid rgba(236,72,153,0.3)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 1 }}>
-                    <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#ec4899" strokeWidth="3.5"><polyline points="20,6 9,17 4,12" /></svg>
-                  </div>
-                  <span style={{ fontSize: 12.5, color: "#bbb", lineHeight: 1.5 }}>{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Rezultāts */}
-        <div
-          style={{
-            padding: "28px 32px", borderRadius: 16,
-            background: "rgba(0,255,136,0.04)", border: "1px solid rgba(0,255,136,0.14)",
-          }}
-        >
-          <div style={{ fontSize: 11, fontWeight: 700, color: "#00ff88", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 16 }}>Rezultāts — tu pārdosi sistēmu, ne mājaslapu</div>
-          <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-            {[
-              { icon: "📈", text: "Atved klientus" },
-              { icon: "💬", text: "Atbild klientiem" },
-              { icon: "⏱️", text: "Ietaupa laiku" },
-            ].map((r) => (
-              <div key={r.text} style={{ display: "flex", alignItems: "center", gap: 10, padding: "10px 18px", borderRadius: 10, background: "rgba(0,255,136,0.07)", border: "1px solid rgba(0,255,136,0.15)", flex: 1, minWidth: 140 }}>
-                <span style={{ fontSize: 18 }}>{r.icon}</span>
-                <span style={{ fontSize: 13, fontWeight: 600, color: "#00ff88" }}>{r.text}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Kam tas paredzēts */}
-        <div>
-          <SectionLabel>Kam tas paredzēts</SectionLabel>
-          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-            {[
-              "Ja gribi pāriet uz augstāku līmeni",
-              "Ja gribi pelnīt vairāk no viena klienta",
-              "Ja gribi piedāvāt kaut ko, ko citi nepiedāvā",
+              "Iemācīsies veidot video bez sejas",
+              "Radīsi vizuālus materiālus un reklāmas",
+              "Sapratīsi, kā veidot saturu, kas piesaista klientus",
+              "Izveidosi savu pirmo pakalpojumu",
+              "Sāksi strādāt ar reāliem klientiem",
             ].map((item, i) => (
-              <div key={i} style={{ display: "flex", alignItems: "center", gap: 12, padding: "14px 18px", borderRadius: 10, background: "#0d0d1a", border: "1px solid rgba(255,255,255,0.05)" }}>
-                <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#a855f7", flexShrink: 0 }} />
-                <span style={{ fontSize: 13, color: "#ccc" }}>{item}</span>
+              <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
+                <div style={{ width: 20, height: 20, borderRadius: 6, background: "rgba(168,85,247,0.2)", border: "1px solid rgba(168,85,247,0.4)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 1 }}>
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#a855f7" strokeWidth="3"><polyline points="20,6 9,17 4,12" /></svg>
+                </div>
+                <span style={{ fontSize: 14, color: "#ccc", lineHeight: 1.5 }}>{item}</span>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Tagline + CTA */}
-        <div
-          style={{
-            padding: "40px", borderRadius: 20, textAlign: "center",
-            background: "linear-gradient(135deg, rgba(168,85,247,0.1), rgba(236,72,153,0.08))",
-            border: "1px solid rgba(168,85,247,0.2)",
-            position: "relative", overflow: "hidden",
-          }}
-        >
+        {/* Ienākumi + priekšrocības */}
+        <div style={{ padding: "28px", borderRadius: 16, background: "linear-gradient(135deg, rgba(168,85,247,0.08), rgba(236,72,153,0.05))", border: "1px solid rgba(168,85,247,0.2)" }}>
+          <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginBottom: 20 }}>
+            <span style={{ fontSize: 36, fontWeight: 900, background: "linear-gradient(135deg, #a855f7, #ec4899)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>300€ – 1500€</span>
+            <span style={{ fontSize: 16, color: "#888", fontWeight: 600 }}>mēnesī</span>
+          </div>
+          <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+            {[
+              { icon: "🔥", text: "Pieprasīts pakalpojums" },
+              { icon: "🟢", text: "Piemērots iesācējiem" },
+              { icon: "⚡", text: "Ātrākais veids sākt ar AI" },
+            ].map((r) => (
+              <div key={r.text} style={{ display: "flex", alignItems: "center", gap: 8, padding: "9px 16px", borderRadius: 10, background: "rgba(168,85,247,0.1)", border: "1px solid rgba(168,85,247,0.2)" }}>
+                <span style={{ fontSize: 15 }}>{r.icon}</span>
+                <span style={{ fontSize: 12.5, fontWeight: 600, color: "#ddd" }}>{r.text}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Tagline */}
+        <div style={{ padding: "24px 28px", borderRadius: 14, background: "#0d0d1a", border: "1px solid rgba(255,255,255,0.05)" }}>
+          <p style={{ fontSize: 15, color: "#888", lineHeight: 1.8, marginBottom: 8 }}>
+            Sociālie tīkli ir vieta, kur biznesi katru dienu meklē klientus.
+          </p>
+          <p style={{ fontSize: 16, fontWeight: 700, color: "#fff", lineHeight: 1.6 }}>
+            Tu vari būt tas, kurš viņiem palīdz to izdarīt.
+          </p>
+        </div>
+
+        {/* Mērķis + CTA */}
+        <div style={{ padding: "36px", borderRadius: 20, textAlign: "center", background: "linear-gradient(135deg, rgba(168,85,247,0.1), rgba(236,72,153,0.08))", border: "1px solid rgba(168,85,247,0.2)", position: "relative", overflow: "hidden" }}>
           <div style={{ position: "absolute", inset: 0, pointerEvents: "none", backgroundImage: "linear-gradient(rgba(168,85,247,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(168,85,247,0.03) 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
           <div style={{ position: "relative" }}>
-            <p style={{ fontSize: 14, color: "#666", marginBottom: 6 }}>Lielākā daļa taisa mājaslapas.</p>
-            <p style={{ fontSize: 22, fontWeight: 900, letterSpacing: "-0.02em", marginBottom: 28, color: "#fff" }}>
-              Tu taisīsi sistēmas,{" "}
-              <span style={{ background: "linear-gradient(135deg, #a855f7, #ec4899)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-                kas pelna naudu.
-              </span>
+            <div style={{ fontSize: 11, fontWeight: 700, color: "#a855f7", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 12 }}>Mērķis</div>
+            <p style={{ fontSize: 18, fontWeight: 800, color: "#fff", letterSpacing: "-0.01em", marginBottom: 28 }}>
+              Pēc šīs pakas tu esi gatavs sākt pelnīt<br />
+              <span style={{ background: "linear-gradient(135deg, #a855f7, #ec4899)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>ar sociālo tīklu pārvaldību.</span>
             </p>
             <button
-              style={{
-                padding: "15px 44px", borderRadius: 12, border: "none", cursor: "pointer",
-                background: "linear-gradient(135deg, #a855f7, #ec4899)",
-                color: "#fff", fontWeight: 700, fontSize: 15, letterSpacing: "0.01em",
-                boxShadow: "0 8px 32px rgba(168,85,247,0.4)",
-                transition: "transform 0.2s, box-shadow 0.2s",
-              }}
+              style={{ padding: "15px 44px", borderRadius: 12, border: "none", cursor: "pointer", background: "linear-gradient(135deg, #a855f7, #ec4899)", color: "#fff", fontWeight: 700, fontSize: 15, letterSpacing: "0.01em", boxShadow: "0 8px 32px rgba(168,85,247,0.4)", transition: "transform 0.2s, box-shadow 0.2s" }}
               onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 14px 40px rgba(168,85,247,0.5)"; }}
               onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 8px 32px rgba(168,85,247,0.4)"; }}
             >
-              Izveidot savu pirmo digitālo sistēmu
+              Sākt kursu
             </button>
+          </div>
+        </div>
+
+        {/* Iekšējais saturs — pēc pirkuma */}
+        <div style={{ borderRadius: 16, overflow: "hidden", border: "1px solid rgba(168,85,247,0.2)" }}>
+          <div style={{ padding: "16px 24px", background: "rgba(168,85,247,0.1)", display: "flex", alignItems: "center", gap: 10 }}>
+            <span style={{ fontSize: 16 }}>🔓</span>
+            <span style={{ fontSize: 12, fontWeight: 700, color: "#a855f7", textTransform: "uppercase", letterSpacing: "0.07em" }}>Ko redz pēc pirkuma</span>
+          </div>
+          <div style={{ padding: "24px", background: "#0d0d1a", display: "flex", flexDirection: "column", gap: 20 }}>
+            {[
+              { num: "1", title: "Ievads & pamati", items: ["Kā darbojas šis pakalpojums", "Kā sākt bez pieredzes", "Kā izvēlēties savu nišu"] },
+              { num: "2", title: "Video saturs", items: ["Kā veidot faceless video", "Kā rakstīt scenārijus", "Kā radīt uzmanību piesaistošu saturu"] },
+              { num: "3", title: "Reklāmu vizuāļi", items: ["Kā izveidot bannerus", "Kā radīt reklāmas materiālus", "Uzdevums: 5 banneru komplekts klientam"] },
+              { num: "4", title: "Sociālo tīklu dizains", items: ["Kā veidot Instagram un Facebook feed", "Kā izveidot vienotu stilu", "Kā taisīt carousels, stories un plānot saturu"] },
+              { num: "5", title: "Klientu atrašana & pārdošana", items: ["Kur atrast klientus", "Kā uzrakstīt pirmo ziņu", "Kā izveidot piedāvājumu un vadīt sarunu"] },
+              { num: "6", title: "Automatizācija & skalēšana", items: ["Kā automatizēt publicēšanu", "Kā veidot atskaites", "Kā strādāt ar vairākiem klientiem"] },
+            ].map((mod) => (
+              <div key={mod.num} style={{ display: "flex", gap: 16 }}>
+                <div style={{ width: 28, height: 28, borderRadius: 8, flexShrink: 0, background: "rgba(168,85,247,0.15)", border: "1px solid rgba(168,85,247,0.3)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 800, color: "#a855f7" }}>
+                  {mod.num}
+                </div>
+                <div>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: "#fff", marginBottom: 8 }}>{mod.title}</div>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
+                    {mod.items.map((item, i) => (
+                      <div key={i} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                        <div style={{ width: 4, height: 4, borderRadius: "50%", background: "rgba(168,85,247,0.5)", flexShrink: 0 }} />
+                        <span style={{ fontSize: 12.5, color: "#777" }}>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+            {/* Rezultāts */}
+            <div style={{ padding: "16px 20px", borderRadius: 10, background: "rgba(168,85,247,0.06)", border: "1px solid rgba(168,85,247,0.15)", marginTop: 4 }}>
+              <div style={{ fontSize: 11, fontWeight: 700, color: "#a855f7", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 10 }}>Rezultāts</div>
+              <div className="grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
+                {["Savs pakalpojums", "Gatavi darbi", "Pirmie klienti", "Skaidrs ceļš uz ienākumiem"].map((r) => (
+                  <div key={r} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#a855f7" strokeWidth="3"><polyline points="20,6 9,17 4,12" /></svg>
+                    <span style={{ fontSize: 12, color: "#999" }}>{r}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 

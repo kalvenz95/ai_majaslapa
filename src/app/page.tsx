@@ -2,7 +2,6 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import FastWin from "@/components/FastWin";
-import BuildPack from "@/components/BuildPack";
 import Tools from "@/components/Tools";
 import Testimonials from "@/components/Testimonials";
 import Pricing from "@/components/Pricing";
@@ -37,8 +36,7 @@ export default function Home() {
         <Hero />
         <Services />
         <FastWin />
-        <BuildPack />
-        <Tools />
+<Tools />
         <Testimonials />
         <Pricing />
         <CTA />

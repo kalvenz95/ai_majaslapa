@@ -128,35 +128,6 @@ export default function Testimonials() {
             </div>
           ))}
         </div>
-
-        {/* Community wins feed teaser */}
-        <div className="mt-12 glass rounded-2xl p-6 border border-[#00ff88]/10">
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <h4 className="font-bold text-white">🔴 Live — Kopienas uzvaru plūsma</h4>
-              <p className="text-xs text-gray-500 mt-0.5">Reāllaika paziņojumi par studentu panākumiem</p>
-            </div>
-            <div className="badge-neon text-xs animate-pulse">LIVE</div>
-          </div>
-          <div className="flex flex-col gap-2">
-            {[
-              { msg: "Jānis noslēdza darījumu ar zobārstniecību Rīgā", time: "2 min. atpakaļ", earn: "+€450" },
-              { msg: "Anna pabeidza WhatsApp Automācijas kursu", time: "15 min. atpakaļ", earn: "🎓" },
-              { msg: "Pēteris ieguva otro klientu šomēnes", time: "1 st. atpakaļ", earn: "+€600" },
-            ].map((item, i) => (
-              <div key={i} className="flex items-center justify-between py-2 border-b border-white/5 last:border-0">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-[#00ff88] animate-pulse flex-shrink-0" />
-                  <span className="text-sm text-gray-300">{item.msg}</span>
-                </div>
-                <div className="flex items-center gap-3 flex-shrink-0 ml-4">
-                  <span className="text-xs text-[#00ff88] font-semibold">{item.earn}</span>
-                  <span className="text-xs text-gray-600">{item.time}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );
