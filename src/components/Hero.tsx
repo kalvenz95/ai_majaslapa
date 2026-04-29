@@ -21,10 +21,9 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center pt-24 pb-16 overflow-hidden animated-gradient grid-overlay">
-      {/* Background glow orbs */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#00ff88] opacity-[0.04] rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-[#00d4ff] opacity-[0.05] rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#a855f7] opacity-[0.02] rounded-full blur-3xl pointer-events-none" />
+      {/* Subtle background blobs */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#6633ee] opacity-[0.04] rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-[#4f46e5] opacity-[0.04] rounded-full blur-3xl pointer-events-none" />
 
       {/* Top badge */}
       <div className="badge-neon mb-8 animate-fade-in">
@@ -33,26 +32,26 @@ export default function Hero() {
 
       {/* Headline */}
       <h1 className="text-center max-w-5xl mx-auto px-6 animate-slide-up">
-        <span className="block text-5xl md:text-7xl font-black leading-tight text-white mb-2">
+        <span className="block text-5xl md:text-7xl font-black leading-tight text-[#18181b] mb-2">
           <E id="hero-h1-1">Iemācies veidot</E>
         </span>
         <span
-          className={`block text-5xl md:text-7xl font-black leading-tight gradient-text-green neon-text-green transition-all duration-300 ${
+          className={`block text-5xl md:text-7xl font-black leading-tight gradient-text-green transition-all duration-300 ${
             visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
           }`}
         >
           {rotatingWords[wordIndex]}
         </span>
-        <span className="block text-5xl md:text-7xl font-black leading-tight text-white mt-2">
+        <span className="block text-5xl md:text-7xl font-black leading-tight text-[#18181b] mt-2">
           <E id="hero-h1-3">un pārdod uzņēmumiem</E>
         </span>
       </h1>
 
       {/* Subheadline */}
-      <p className="mt-8 text-center max-w-2xl mx-auto px-6 text-gray-400 text-lg md:text-xl leading-relaxed animate-fade-in">
-        <strong className="text-white">Chademy</strong>{" "}
+      <p className="mt-8 text-center max-w-2xl mx-auto px-6 text-[#52525b] text-lg md:text-xl leading-relaxed animate-fade-in">
+        <strong className="text-[#18181b]">Chademy</strong>{" "}
         <E id="hero-sub-1">— praktiska AI platforma latviešu valodā. Soli pa solim iemācies AI pakalpojumus un sāc pārdot tos reāliem uzņēmumiem.</E>
-        <span className="text-[#00ff88]"> <E id="hero-sub-2">Bez teorijas. Tikai rezultāti.</E></span>
+        <span className="text-[#6633ee]"> <E id="hero-sub-2">Bez teorijas. Tikai rezultāti.</E></span>
       </p>
 
       {/* CTA Buttons */}
@@ -81,36 +80,36 @@ export default function Hero() {
         ].map((stat) => (
           <div key={stat.label} className="text-center">
             <div className="text-3xl font-black gradient-text-green">{stat.number}</div>
-            <div className="text-xs text-gray-500 mt-1 uppercase tracking-wider">{stat.label}</div>
+            <div className="text-xs text-[#71717a] mt-1 uppercase tracking-wider">{stat.label}</div>
           </div>
         ))}
       </div>
 
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
-        <span className="text-xs text-gray-500 uppercase tracking-widest">Ritini</span>
-        <div className="w-0.5 h-8 bg-gradient-to-b from-[#00ff88] to-transparent" />
+        <span className="text-xs text-[#71717a] uppercase tracking-widest">Ritini</span>
+        <div className="w-0.5 h-8 bg-gradient-to-b from-[#6633ee] to-transparent" />
       </div>
 
       {/* Hero floating cards */}
       <div className="absolute right-8 top-1/3 hidden xl:block animate-float">
         <div className="glass rounded-2xl p-4 w-48">
           <div className="flex items-center gap-2 mb-2">
-            <div className="w-2 h-2 rounded-full bg-[#00ff88]" />
-            <span className="text-xs text-gray-400">Pārdošana</span>
+            <div className="w-2 h-2 rounded-full bg-[#6633ee]" />
+            <span className="text-xs text-[#71717a]">Pārdošana</span>
           </div>
-          <div className="text-2xl font-black text-white">€850</div>
-          <div className="text-xs text-gray-500">Pirmais klients</div>
-          <div className="mt-2 h-1 rounded-full bg-gray-800">
-            <div className="h-1 rounded-full bg-gradient-to-r from-[#00ff88] to-[#00d4ff]" style={{width:"75%"}} />
+          <div className="text-2xl font-black text-[#18181b]">€850</div>
+          <div className="text-xs text-[#71717a]">Pirmais klients</div>
+          <div className="mt-2 h-1 rounded-full bg-[#e5e7eb]">
+            <div className="h-1 rounded-full bg-gradient-to-r from-[#6633ee] to-[#4f46e5]" style={{width:"75%"}} />
           </div>
         </div>
       </div>
 
       <div className="absolute left-8 top-1/2 hidden xl:block" style={{animationDelay:"2s"}}>
         <div className="glass rounded-2xl p-4 w-52 animate-float">
-          <div className="text-xs text-gray-500 mb-2">✓ Kurss pabeigts</div>
-          <div className="font-semibold text-white text-sm">Voice Agents ar Vapi</div>
+          <div className="text-xs text-[#71717a] mb-2">✓ Kurss pabeigts</div>
+          <div className="font-semibold text-[#18181b] text-sm">Voice Agents ar Vapi</div>
           <div className="flex gap-1 mt-2">
             {["🤖","💼","💰"].map((e, i) => (
               <span key={i} className="text-base">{e}</span>
