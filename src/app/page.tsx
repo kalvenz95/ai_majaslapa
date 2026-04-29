@@ -2,6 +2,7 @@ import { HeroLanding } from "@/components/ui/hero-1";
 import Services from "@/components/Services";
 import FastWin from "@/components/FastWin";
 import Tools from "@/components/Tools";
+import AILaunchpad from "@/components/AILaunchpad";
 import Testimonials from "@/components/Testimonials";
 import Pricing from "@/components/Pricing";
 import CTA from "@/components/CTA";
@@ -43,6 +44,7 @@ export default function Home() {
         <Services />
         <FastWin />
 <Tools />
+        <AILaunchpad />
         <Testimonials />
         <Pricing />
         <CTA />
