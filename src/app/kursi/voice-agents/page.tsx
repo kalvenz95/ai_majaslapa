@@ -61,7 +61,7 @@ const course = {
   modules: [
     {
       id: 1,
-      title: "Ievads — Kāpēc balss aģenti maina spēles noteikumus",
+      title: "Ievads",
       duration: "55 min",
       lessons: [
         { id: "1-1", title: "Kas ir AI balss aģents un kā tas darbojas?", type: "video" as LessonType, duration: "14 min", free: true, description: "Salīdzinājums: cilvēks vs AI aģents zvanos. Reāli piemēri — zobārsta kabinets, restorāns, nekustamais īpašums. Kāpēc uzņēmumi maksā par šo." },
@@ -871,6 +871,8 @@ function LessonView({ lesson, onBack }: { lesson: Lesson; onBack: () => void }) 
         </div>
       )}
 
+      {lesson.id === "1-1" && <Lesson1Content />}
+
       {lesson.type === "task" && (
         <div style={{ padding: "24px", borderRadius: 12, marginBottom: 24, background: "rgba(0,255,136,0.04)", border: "1px solid rgba(0,255,136,0.15)" }}>
           <div style={{ fontSize: 12, fontWeight: 700, color: "#00ff88", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 14 }}>🎯 Praktiskais uzdevums</div>
@@ -904,6 +906,184 @@ function LessonView({ lesson, onBack }: { lesson: Lesson; onBack: () => void }) 
           onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 4px 16px rgba(249,115,22,0.3)"; }}
         >Nākamā nodarbība →</button>
       </div>
+    </div>
+  );
+}
+
+function Lesson1Content() {
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 40, marginTop: 8 }}>
+
+      {/* Section 1 — Kas ir AI balss aģents */}
+      <div>
+        <div style={{ fontSize: 11, fontWeight: 700, color: A, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 10 }}>1. sadaļa</div>
+        <h2 style={{ fontSize: 22, fontWeight: 800, letterSpacing: "-0.02em", marginBottom: 20 }}>Kas ir AI balss aģents?</h2>
+
+        {/* Image */}
+        <div style={{ borderRadius: 16, overflow: "hidden", border: ABorder, marginBottom: 24, position: "relative" }}>
+          <img
+            src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1200&q=85&fit=crop"
+            alt="AI valodas modelis"
+            style={{ width: "100%", height: 260, objectFit: "cover", display: "block" }}
+          />
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(5,5,8,0.7) 0%, rgba(5,5,8,0.1) 60%)" }} />
+          <div style={{ position: "absolute", inset: 0, background: `rgba(249,115,22,0.07)`, mixBlendMode: "multiply" }} />
+          <div style={{ position: "absolute", bottom: 0, left: 0, padding: "24px 28px" }}>
+            <div style={{ fontSize: 11, color: A, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 6 }}>Mākslīgais intelekts + balss</div>
+            <div style={{ fontSize: 18, fontWeight: 800, color: "#fff", lineHeight: 1.2 }}>AI, kas runā kā cilvēks —<br />bet strādā 24/7</div>
+          </div>
+        </div>
+
+        <div style={{ fontSize: 15, color: "#ccc", lineHeight: 1.85, marginBottom: 20 }}>
+          <strong style={{ color: "#fff" }}>AI balss aģents</strong> ir programmatūra, kas spēj sarunāties ar cilvēkiem pa tālruni <em>reāllaikā</em> — bez cilvēka klātbūtnes. Tas saprot dabisko valodu, uzdod jautājumus, pieņem lēmumus un atbild ar sintētisku, dabiski skanošu balsi.
+        </div>
+
+        {/* 3 key properties */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 12, marginBottom: 24 }} className="grid-3">
+          {[
+            { icon: "🧠", color: "#a855f7", title: "Saprot valodu", desc: "Atpazīst jautājumus, akcents, saīsinājumus un nestandarta frāzes" },
+            { icon: "🎙️", color: A, title: "Runā dabīgi", desc: "ElevenLabs balsis ir tik reālistiskas, ka 80% cilvēku neatpazīst AI" },
+            { icon: "⚡", color: "#00ff88", title: "Reaģē nekavējoties", desc: "Atbildes tiek ģenerētas 300–600ms laikā — ātrāk nekā cilvēks domā" },
+          ].map((p) => (
+            <div key={p.title} style={{ padding: "18px 16px", borderRadius: 12, background: "#0d0d1a", border: `1px solid ${p.color}22` }}>
+              <div style={{ fontSize: 22, marginBottom: 10 }}>{p.icon}</div>
+              <div style={{ fontSize: 13, fontWeight: 700, color: "#fff", marginBottom: 5 }}>{p.title}</div>
+              <div style={{ fontSize: 12, color: "#666", lineHeight: 1.6 }}>{p.desc}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Comparison table */}
+        <div style={{ borderRadius: 14, border: "1px solid rgba(255,255,255,0.07)", overflow: "hidden" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", background: "#0d0d1a", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+            <div style={{ padding: "12px 16px", fontSize: 11, fontWeight: 700, color: "#555", textTransform: "uppercase", letterSpacing: "0.06em" }}>Aspekts</div>
+            <div style={{ padding: "12px 16px", fontSize: 11, fontWeight: 700, color: "#555", textTransform: "uppercase", letterSpacing: "0.06em", borderLeft: "1px solid rgba(255,255,255,0.05)" }}>Cilvēks receptors</div>
+            <div style={{ padding: "12px 16px", fontSize: 11, fontWeight: 700, color: A, textTransform: "uppercase", letterSpacing: "0.06em", borderLeft: "1px solid rgba(255,255,255,0.05)" }}>AI balss aģents</div>
+          </div>
+          {[
+            ["Darba laiks", "8h/dienā, 5 dienas", "24/7, bez pārtraukumiem"],
+            ["Vienlaicīgie zvani", "1", "Neierobežoti"],
+            ["Izmaksas/mēn", "800€–1500€ (alga)", "15€–60€ (rīki)"],
+            ["Kļūdas", "Nogurums, aizmirstība", "Konsistents katru reizi"],
+            ["Valodas", "1–2", "Jebkura (latviešu ieskaitot)"],
+          ].map(([aspect, human, ai], i) => (
+            <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", borderTop: "1px solid rgba(255,255,255,0.04)" }}>
+              <div style={{ padding: "11px 16px", fontSize: 13, color: "#aaa" }}>{aspect}</div>
+              <div style={{ padding: "11px 16px", fontSize: 13, color: "#666", borderLeft: "1px solid rgba(255,255,255,0.04)" }}>{human}</div>
+              <div style={{ padding: "11px 16px", fontSize: 13, color: "#00ff88", fontWeight: 600, borderLeft: "1px solid rgba(255,255,255,0.04)" }}>{ai}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Divider */}
+      <div style={{ height: 1, background: "linear-gradient(to right, transparent, rgba(249,115,22,0.3), transparent)" }} />
+
+      {/* Section 2 — Kā tas darbojas */}
+      <div>
+        <div style={{ fontSize: 11, fontWeight: 700, color: A, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 10 }}>2. sadaļa</div>
+        <h2 style={{ fontSize: 22, fontWeight: 800, letterSpacing: "-0.02em", marginBottom: 8 }}>Kā tas darbojas?</h2>
+        <p style={{ fontSize: 14, color: "#888", lineHeight: 1.7, marginBottom: 28 }}>
+          AI balss aģents strādā kā konveijers — katrs zvans iziet cauri 5 posmiem mazāk kā 1 sekundē.
+        </p>
+
+        {/* Flow diagram */}
+        <div style={{ borderRadius: 16, border: `1px solid ${ABorder}`, background: "#0a0a14", padding: "32px 24px", marginBottom: 28, overflowX: "auto" }}>
+          <div style={{ display: "flex", alignItems: "stretch", gap: 0, minWidth: 560, justifyContent: "center" }}>
+            {[
+              { step: "01", icon: "📱", label: "Klients zvana", sublabel: "Latvijas numurs", color: "#00ff88" },
+              { step: "02", icon: "🎙️", label: "Balss → Teksts", sublabel: "Deepgram / Whisper", color: "#00d4ff" },
+              { step: "03", icon: "🧠", label: "AI domā", sublabel: "Claude / GPT-4", color: A },
+              { step: "04", icon: "🔊", label: "Teksts → Balss", sublabel: "ElevenLabs", color: "#a855f7" },
+              { step: "05", icon: "✅", label: "Atbild klientam", sublabel: "< 600ms", color: "#f43f5e" },
+            ].map((node, i, arr) => (
+              <div key={i} style={{ display: "flex", alignItems: "center" }}>
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 10, width: 90 }}>
+                  <div style={{ fontSize: 9, fontWeight: 800, color: node.color, letterSpacing: "0.1em" }}>SOLIS {node.step}</div>
+                  <div style={{ width: 52, height: 52, borderRadius: 14, background: `${node.color}14`, border: `1.5px solid ${node.color}40`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22 }}>
+                    {node.icon}
+                  </div>
+                  <div style={{ textAlign: "center" }}>
+                    <div style={{ fontSize: 11, fontWeight: 700, color: "#fff", lineHeight: 1.3 }}>{node.label}</div>
+                    <div style={{ fontSize: 10, color: "#555", marginTop: 2 }}>{node.sublabel}</div>
+                  </div>
+                </div>
+                {i < arr.length - 1 && (
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "0 4px", marginTop: -20 }}>
+                    <div style={{ width: 28, height: 1.5, background: `linear-gradient(to right, ${node.color}60, ${arr[i+1].color}60)` }} />
+                    <div style={{ fontSize: 10, color: "#333", marginTop: 2 }}>→</div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+          <div style={{ marginTop: 24, paddingTop: 20, borderTop: "1px solid rgba(255,255,255,0.05)", textAlign: "center" }}>
+            <span style={{ fontSize: 12, color: "#555" }}>Viss process aizņem </span>
+            <span style={{ fontSize: 12, color: A, fontWeight: 700 }}>300–600 milisekundes</span>
+            <span style={{ fontSize: 12, color: "#555" }}> — cilvēks to nejūt kā pauzi</span>
+          </div>
+        </div>
+
+        {/* 3 layers explanation */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+          {[
+            {
+              layer: "Kārta 1",
+              title: "Balss atpazīšana (STT)",
+              desc: "Kad klients sāk runāt, mikrofons uztver audio un Deepgram vai Whisper pārveido to tekstā reāllaikā. Šis process ir tik ātrs, ka var apstrādāt 3–5 vārdus jau pirms teikums beidzies.",
+              tools: ["Deepgram", "Whisper", "AssemblyAI"],
+              color: "#00d4ff",
+              icon: "🎙️",
+            },
+            {
+              layer: "Kārta 2",
+              title: "AI smadzenes (LLM)",
+              desc: "Teksts nonāk valodas modelī (Claude, GPT-4), kuram ir iepriekš iestatīts sistēmas promts ar biznesa informāciju — darba laiki, pakalpojumi, cenas. AI izlemj, ko atbildēt vai kādu darbību veikt.",
+              tools: ["Claude Sonnet", "GPT-4o", "Gemini"],
+              color: A,
+              icon: "🧠",
+            },
+            {
+              layer: "Kārta 3",
+              title: "Balss sintēze (TTS)",
+              desc: "AI atbilde tiek nosūtīta ElevenLabs, kas to pārvērš dabiskā balsī ar izvēlētu personību un toni. Klients dzird atbildi ar tādu pašu plūstamību kā no dzīva cilvēka.",
+              tools: ["ElevenLabs", "Azure TTS", "OpenAI TTS"],
+              color: "#a855f7",
+              icon: "🔊",
+            },
+          ].map((layer) => (
+            <div key={layer.layer} style={{ display: "flex", gap: 16, padding: "20px", borderRadius: 14, background: "#0d0d1a", border: `1px solid ${layer.color}18` }}>
+              <div style={{ width: 44, height: 44, borderRadius: 12, flexShrink: 0, background: `${layer.color}14`, border: `1px solid ${layer.color}30`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>
+                {layer.icon}
+              </div>
+              <div style={{ flex: 1 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 5 }}>
+                  <span style={{ fontSize: 10, fontWeight: 700, color: layer.color, letterSpacing: "0.08em" }}>{layer.layer.toUpperCase()}</span>
+                  <span style={{ fontSize: 14, fontWeight: 700, color: "#fff" }}>{layer.title}</span>
+                </div>
+                <p style={{ fontSize: 13, color: "#888", lineHeight: 1.75, marginBottom: 10 }}>{layer.desc}</p>
+                <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                  {layer.tools.map((t) => (
+                    <span key={t} style={{ fontSize: 10, padding: "3px 8px", borderRadius: 6, background: `${layer.color}10`, border: `1px solid ${layer.color}25`, color: layer.color, fontWeight: 600 }}>{t}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Callout */}
+        <div style={{ marginTop: 24, padding: "20px 24px", borderRadius: 12, background: ABg, border: ABorder, display: "flex", gap: 14, alignItems: "flex-start" }}>
+          <span style={{ fontSize: 24, flexShrink: 0 }}>💡</span>
+          <div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: "#fff", marginBottom: 4 }}>Ko tas nozīmē tavai nišai?</div>
+            <p style={{ fontSize: 13, color: "#888", lineHeight: 1.7 }}>
+              Zobārstam tas nozīmē: pacients zvana, aģents piedāvā brīvos laikus, rezervē tikšanos un nosūta apstiprinājumu — bez receptores. Restorānam — galda rezervācija naktī plkst. 2:00, kad neviens neatbild.
+            </p>
+          </div>
+        </div>
+      </div>
+
     </div>
   );
 }
