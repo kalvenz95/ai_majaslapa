@@ -242,7 +242,7 @@ function ServicePricing() {
   return (
     <div className="mt-8">
       <div className="text-center mb-5">
-        <div className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Ko vari iekasēt no klientiem</div>
+        <div className="text-xs font-bold text-gray-300 uppercase tracking-widest mb-1">Ko vari iekasēt no klientiem</div>
         <div className="text-sm text-gray-400">Ieteicamās cenas Latvijā</div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -254,10 +254,10 @@ function ServicePricing() {
               {s.icon}
             </div>
             <div className="flex-1 min-w-0">
-              <div className="text-xs text-gray-500 mb-0.5">{s.num} · {s.name}</div>
+              <div className="text-xs text-gray-400 mb-0.5">{s.num} · {s.name}</div>
               <div className="flex items-baseline gap-2 flex-wrap">
                 <span className="text-base font-black" style={{ color: s.color }}>{s.price}</span>
-                <span className="text-xs text-gray-600">vai {s.monthly}/mēn atbalsts</span>
+                <span className="text-xs text-gray-400">vai {s.monthly}/mēn atbalsts</span>
               </div>
             </div>
           </div>

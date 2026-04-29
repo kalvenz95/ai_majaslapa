@@ -11,9 +11,9 @@ export const YellowGlowBackground = ({ className }: BackgroundProps) => {
       className={cn("absolute inset-0 w-full h-full overflow-hidden", className)}
       style={{ background: "#06060e" }}
     >
-      {/* Top teal gradient — matches HeroLanding accent */}
+      {/* Top teal gradient */}
       <div
-        className="absolute -z-10 transform-gpu overflow-hidden blur-3xl pointer-events-none"
+        className="absolute transform-gpu overflow-hidden blur-3xl pointer-events-none"
         style={{ inset: "0 0 auto 0", top: "-10rem" }}
       >
         <div
@@ -31,7 +31,7 @@ export const YellowGlowBackground = ({ className }: BackgroundProps) => {
       </div>
       {/* Bottom teal gradient */}
       <div
-        className="absolute -z-10 transform-gpu overflow-hidden blur-3xl pointer-events-none"
+        className="absolute transform-gpu overflow-hidden blur-3xl pointer-events-none"
         style={{ inset: "auto 0 0 0", bottom: "-10rem" }}
       >
         <div
