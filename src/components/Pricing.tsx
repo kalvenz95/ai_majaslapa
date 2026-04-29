@@ -39,7 +39,8 @@ const plans = [
     highlight: true,
     badge: null,
     courses: [
-      { icon: "🌐", name: "Mājaslapa + Web Chatbot", desc: "24/7 automātiskas atbildes klientiem" },
+      { icon: "🌐", name: "Mājaslapa", desc: "AI dizains, SEO, mobilā versija" },
+      { icon: "💬", name: "Web Chatbot", desc: "24/7 automātiskas atbildes, lead ģenerēšana" },
       { icon: "🤖", name: "AI Asistents uz E-pastiem", desc: "Automatizēti e-pasti un komunikācija" },
     ],
     skills: [
@@ -276,13 +277,25 @@ function GroupedCourses() {
       courses: [
         {
           icon: "🌐",
-          title: "Mājaslapa + Web Chatbot",
+          title: "Mājaslapa",
           tag: "Pieprasīts",
           tagColor: "#00d4ff",
-          earn: "€500–€1200/projekts",
+          earn: "€300–€800/projekts",
+          difficulty: "Iesācējs",
+          diffColor: "#00ff88",
+          desc: "Izveido modernu mājaslapa uzņēmumam bez programmēšanas — ar AI palīdzību dizainē, tekstu un struktūru.",
+          includes: ["AI dizains", "SEO optimizācija", "Mobilā versija"],
+          link: "/kursi/website-chatbot",
+        },
+        {
+          icon: "💬",
+          title: "Web Chatbot",
+          tag: "Populārs",
+          tagColor: "#00d4ff",
+          earn: "€200–€500/mēn",
           difficulty: "Vidējs",
           diffColor: "#00d4ff",
-          desc: "Izveido mājaslapa ar iebūvētu AI chatbot, kas atbild klientiem 24/7 un ģenerē lead automātiski.",
+          desc: "Pievieno AI chatbot jebkurai mājaslapa — atbild klientiem 24/7 un ģenerē lead automātiski.",
           includes: ["AI chatbot integrācija", "Lead veidlapas", "24/7 atbildes"],
           link: "/kursi/website-chatbot",
         },
