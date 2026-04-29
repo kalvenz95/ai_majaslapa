@@ -283,9 +283,9 @@ function GroupedCourses() {
           earn: "€300–€800/projekts",
           difficulty: "Iesācējs",
           diffColor: "#00ff88",
-          desc: "Izveido modernu mājaslapa uzņēmumam bez programmēšanas — AI dizains, teksts un struktūra.",
-          includes: ["AI dizains", "SEO optimizācija", "Mobilā versija"],
-          link: "/kursi/website-chatbot",
+          desc: "Iemācies izveidot profesionālu mājaslapa vietējiem uzņēmumiem — no dizaina līdz publicēšanai, bez programmēšanas.",
+          includes: ["Dizains bez koda", "SEO optimizācija", "Mobilā versija", "Satura pārvaldība"],
+          link: null,
         },
         {
           icon: "💬",
