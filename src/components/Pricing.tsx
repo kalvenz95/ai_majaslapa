@@ -350,12 +350,6 @@ function GroupedCourses() {
 
   return (
     <div className="mt-16 mb-4">
-      <div className="text-center mb-10">
-        <div className="text-xs font-bold text-gray-300 uppercase tracking-widest mb-3">Iekļautie kursi</div>
-        <h3 className="text-2xl md:text-3xl font-black text-white mb-3">Ko tu iemācīsies <span className="gradient-text-green">pārdot</span></h3>
-        <p className="text-gray-400 text-base max-w-lg mx-auto">Katrs kurss beidzas ar gatavu pakalpojumu, cenu sarakstu un klientu piesaistes skriptiem.</p>
-      </div>
-
       <div className="flex flex-col gap-10">
         {groups.map((group) => (
           <div key={group.plan}>
