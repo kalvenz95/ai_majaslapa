@@ -25,10 +25,17 @@ html {
 }
 
 body {
-  background-color: #020208;
+  background-color: #000000;
   color: #ffffff;
   font-family: 'Inter', system-ui, sans-serif;
   overflow-x: hidden;
+}
+
+/* Unified secondary text tone — fewer shades for dark gradient bg */
+.text-gray-400,
+.text-gray-500,
+.text-gray-600 {
+  color: rgba(255, 255, 255, 0.60) !important;
 }
 
 /* Neon glow effects */
