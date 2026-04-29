@@ -45,10 +45,10 @@ export default function CTA() {
         {/* Trust signals */}
         <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-500">
           {[
-            "✓ Bez kredītkartēm",
-            "✓ Atceļams jebkurā laikā",
-            "✓ 30 dienu garantija",
             "✓ Latviešu valodā",
+            "✓ AI jaunākie produkti",
+            "✓ 2026. gada aprīlis",
+            "✓ 14 dienu garantija",
           ].map((item) => (
             <span key={item} className="hover:text-gray-300 transition-colors">{item}</span>
           ))}
