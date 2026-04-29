@@ -1,5 +1,4 @@
 import { HeroLanding } from "@/components/ui/hero-1";
-import Services from "@/components/Services";
 import FastWin from "@/components/FastWin";
 import Tools from "@/components/Tools";
 import AILaunchpad from "@/components/AILaunchpad";
@@ -55,7 +54,6 @@ export default function Home() {
             to: "oklch(0.55 0.20 200)",
           }}
         />
-        <Services />
         <FastWin />
 <Tools />
         <AILaunchpad />

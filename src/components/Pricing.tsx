@@ -211,6 +211,9 @@ export default function Pricing() {
           ))}
         </div>
 
+        {/* Grouped courses by plan */}
+        <GroupedCourses />
+
         {/* Service pricing toggle */}
         <ServicePricing />
 
@@ -226,6 +229,219 @@ export default function Pricing() {
         </div>
       </div>
     </section>
+  );
+}
+
+function GroupedCourses() {
+  const groups = [
+    {
+      plan: "Satura Speciālists",
+      price: "€29/mēn",
+      color: "#a855f7",
+      borderColor: "rgba(168,85,247,0.25)",
+      bg: "rgba(168,85,247,0.06)",
+      courses: [
+        {
+          icon: "🎬",
+          title: "AI Faceless Video",
+          tag: "Populārs",
+          tagColor: "#a855f7",
+          earn: "€300–€800/mēn",
+          difficulty: "Iesācējs",
+          diffColor: "#00ff88",
+          desc: "Veido AI video saturu sociālajiem tīkliem bez sejas. Pilna automatizācija no skripta līdz publicēšanai.",
+          includes: ["AI video ģenerēšana", "Reklāmas banneri", "Post vizuāļi"],
+          link: "/kursi/socialo-tiklu-parvaldiba",
+        },
+        {
+          icon: "📱",
+          title: "Sociālo Tīklu Pārvaldība",
+          tag: "Iesācējiem",
+          tagColor: "#a855f7",
+          earn: "€300–€800/mēn",
+          difficulty: "Iesācējs",
+          diffColor: "#00ff88",
+          desc: "AI video, attēli un reklāmas saturs. Veido pilnu sociālo mediju klātbūtni uzņēmumiem ar mākslīgo intelektu.",
+          includes: ["Content plāns", "AI copy", "Feed dizains"],
+          link: "/kursi/socialo-tiklu-parvaldiba",
+        },
+      ],
+    },
+    {
+      plan: "Digitālais Speciālists",
+      price: "€59/mēn",
+      color: "#00ff88",
+      borderColor: "rgba(0,255,136,0.3)",
+      bg: "rgba(0,255,136,0.06)",
+      courses: [
+        {
+          icon: "🌐",
+          title: "Mājaslapa + Web Chatbot",
+          tag: "Pieprasīts",
+          tagColor: "#00d4ff",
+          earn: "€500–€1200/projekts",
+          difficulty: "Vidējs",
+          diffColor: "#00d4ff",
+          desc: "Izveido mājaslapa ar iebūvētu AI chatbot, kas atbild klientiem 24/7 un ģenerē lead automātiski.",
+          includes: ["AI chatbot integrācija", "Lead veidlapas", "24/7 atbildes"],
+          link: "/kursi/website-chatbot",
+        },
+        {
+          icon: "🤖",
+          title: "AI Asistents uz E-pastiem",
+          tag: "Iesācējiem",
+          tagColor: "#a78bfa",
+          earn: "€200–€800/mēn",
+          difficulty: "Iesācējs",
+          diffColor: "#00ff88",
+          desc: "Iemācies izmantot Claude e-pasta rakstīšanai, dizaina briifiem, satura veidošanai un ikdienas darbu automatizācijai.",
+          includes: ["E-pasta veidnes", "Dizaina briifi", "Satura ģenerēšana"],
+          link: null,
+        },
+      ],
+    },
+    {
+      plan: "AI Aģentu Eksperts",
+      price: "€149/mēn",
+      color: "#f97316",
+      borderColor: "rgba(249,115,22,0.28)",
+      bg: "rgba(249,115,22,0.06)",
+      courses: [
+        {
+          icon: "🎙️",
+          title: "AI Balss Aģenti",
+          tag: "Premium",
+          tagColor: "#f97316",
+          earn: "€500–€1800/projekts",
+          difficulty: "Vidējs",
+          diffColor: "#00d4ff",
+          desc: "AI balss aģents, kas pieņem zvanus, rezervē tikšanās un atbild klientiem automātiski — 24/7.",
+          includes: ["AI balss ģenerēšana", "LV numura integrācija", "Zvanu analytics"],
+          link: "/kursi/voice-agents",
+        },
+        {
+          icon: "💬",
+          title: "WhatsApp Automatizācija",
+          tag: "Populārs LV",
+          tagColor: "#22c55e",
+          earn: "€400–€900/mēn",
+          difficulty: "Vidējs",
+          diffColor: "#00d4ff",
+          desc: "Automatizē klientu komunikāciju WhatsApp ar Make.com vai n8n. Latvijas uzņēmumiem.",
+          includes: ["Automātiski atbildes", "Lead notifikācijas", "Vonage integrācija"],
+          link: null,
+        },
+        {
+          icon: "📱",
+          title: "Izveido savu Aplikāciju ar AI",
+          tag: "Drīzumā",
+          tagColor: "#38bdf8",
+          earn: "€800–€3000/projekts",
+          difficulty: "Vidējs",
+          diffColor: "#00d4ff",
+          desc: "No idejas līdz darbojošai lietotnei — bez programmēšanas. AI palīdz veidot, dizainēt un laist klajā produktu.",
+          includes: ["Lietotne bez koda", "AI dizains", "App Store publicēšana"],
+          link: null,
+          comingSoon: true,
+        },
+      ],
+    },
+  ];
+
+  return (
+    <div className="mt-16 mb-4">
+      <div className="text-center mb-10">
+        <div className="text-xs font-bold text-gray-300 uppercase tracking-widest mb-3">Iekļautie kursi</div>
+        <h3 className="text-2xl md:text-3xl font-black text-white mb-3">Ko tu iemācīsies <span className="gradient-text-green">pārdot</span></h3>
+        <p className="text-gray-400 text-base max-w-lg mx-auto">Katrs kurss beidzas ar gatavu pakalpojumu, cenu sarakstu un klientu piesaistes skriptiem.</p>
+      </div>
+
+      <div className="flex flex-col gap-10">
+        {groups.map((group) => (
+          <div key={group.plan}>
+            {/* Group header */}
+            <div className="flex items-center gap-3 mb-5">
+              <div className="h-px flex-1" style={{ background: `linear-gradient(to right, ${group.borderColor}, transparent)` }} />
+              <div className="flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider"
+                style={{ background: group.bg, border: `1px solid ${group.borderColor}`, color: group.color }}>
+                {group.plan} · {group.price}
+              </div>
+              <div className="h-px flex-1" style={{ background: `linear-gradient(to left, ${group.borderColor}, transparent)` }} />
+            </div>
+
+            {/* Course cards */}
+            <div className={`grid gap-4 ${group.courses.length === 3 ? "grid-cols-1 md:grid-cols-3" : "grid-cols-1 md:grid-cols-2"}`}>
+              {group.courses.map((c) => (
+                <div key={c.title}
+                  className="relative rounded-2xl p-5 flex flex-col gap-3 transition-all duration-300"
+                  style={{ background: "rgba(13,13,26,0.9)", border: `1px solid rgba(255,255,255,0.07)` }}
+                  onMouseEnter={(e) => {
+                    if (!c.comingSoon) {
+                      (e.currentTarget as HTMLDivElement).style.border = `1px solid ${group.borderColor}`;
+                      (e.currentTarget as HTMLDivElement).style.transform = "translateY(-3px)";
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLDivElement).style.border = "1px solid rgba(255,255,255,0.07)";
+                    (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)";
+                  }}
+                >
+                  {/* Top row */}
+                  <div className="flex items-start justify-between">
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl"
+                      style={{ background: group.bg, border: `1px solid ${group.borderColor}` }}>
+                      {c.icon}
+                    </div>
+                    <span className="text-xs px-2.5 py-1 rounded-lg font-semibold"
+                      style={{ background: `${c.tagColor}18`, border: `1px solid ${c.tagColor}30`, color: c.tagColor }}>
+                      {c.tag}
+                    </span>
+                  </div>
+
+                  {/* Title + desc */}
+                  <div>
+                    <h4 className="text-sm font-bold text-white mb-1">{c.title}</h4>
+                    <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>{c.desc}</p>
+                  </div>
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-1.5">
+                    {c.includes.map((tag) => (
+                      <span key={tag} className="text-[11px] px-2 py-0.5 rounded-md"
+                        style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.5)" }}>
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Bottom */}
+                  <div className="flex items-center justify-between pt-2 mt-auto" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                    <span className="text-sm font-bold" style={{ color: c.comingSoon ? "#38bdf8" : "#00ff88" }}>{c.earn}</span>
+                    <span className="text-xs px-2 py-0.5 rounded-md font-semibold"
+                      style={{ background: `${c.diffColor}12`, border: `1px solid ${c.diffColor}25`, color: c.diffColor }}>
+                      {c.difficulty}
+                    </span>
+                  </div>
+
+                  {c.comingSoon ? (
+                    <div className="text-xs text-gray-600 font-semibold uppercase tracking-wide">🔒 Drīzumā pieejams</div>
+                  ) : c.link ? (
+                    <a href={c.link} className="text-xs font-semibold uppercase tracking-wide transition-colors"
+                      style={{ color: "rgba(255,255,255,0.4)" }}
+                      onMouseEnter={(e) => (e.currentTarget.style.color = group.color)}
+                      onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.4)")}>
+                      Skatīt kursu →
+                    </a>
+                  ) : (
+                    <div className="text-xs font-semibold uppercase tracking-wide" style={{ color: "rgba(255,255,255,0.4)" }}>Skatīt kursu →</div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
 
