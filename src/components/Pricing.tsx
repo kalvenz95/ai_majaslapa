@@ -37,7 +37,7 @@ const plans = [
     border: "rgba(0,255,136,0.3)",
     bg: "rgba(0,255,136,0.06)",
     highlight: true,
-    badge: "Populārākais",
+    badge: null,
     courses: [
       { icon: "🌐", name: "Mājaslapa + AI Chatbot", desc: "24/7 automātiskas atbildes" },
       { icon: "📱", name: "Sociālo Tīklu Pārvaldība", desc: "AI video, banneri, feed" },
@@ -63,7 +63,7 @@ const plans = [
     border: "rgba(249,115,22,0.28)",
     bg: "rgba(249,115,22,0.06)",
     highlight: false,
-    badge: "Vislielākie ienākumi",
+    badge: null,
     courses: [
       { icon: "💬", name: "WhatsApp Automatizācija", desc: "Automātiskas atbildes un lead apstrāde" },
       { icon: "🎙️", name: "AI Balss Aģenti", desc: "Automātiski zvani un pieraksti" },
