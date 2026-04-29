@@ -15,8 +15,8 @@ const plans = [
     highlight: false,
     badge: null,
     courses: [
+      { icon: "🎬", name: "AI Faceless Video", desc: "Satura veidošana bez kameras" },
       { icon: "📱", name: "Sociālo Tīklu Pārvaldība", desc: "AI video, banneri, feed dizains" },
-      { icon: "🤖", name: "Claude AI Asistents", desc: "E-pasti, teksti, dizaina briifi" },
     ],
     skills: [
       "Kā izveidot portfolio no 0",
@@ -39,9 +39,8 @@ const plans = [
     highlight: true,
     badge: null,
     courses: [
-      { icon: "🌐", name: "Mājaslapa + AI Chatbot", desc: "24/7 automātiskas atbildes" },
-      { icon: "📱", name: "Sociālo Tīklu Pārvaldība", desc: "AI video, banneri, feed" },
-      { icon: "🤖", name: "Claude AI Asistents", desc: "Automatizēts saturs un e-pasti" },
+      { icon: "🌐", name: "Mājaslapa + Web Chatbot", desc: "24/7 automātiskas atbildes klientiem" },
+      { icon: "🤖", name: "AI Asistents uz E-pastiem", desc: "Automatizēti e-pasti un komunikācija" },
     ],
     skills: [
       "Kā izveidot portfolio ar reāliem darbiem",
@@ -65,10 +64,9 @@ const plans = [
     highlight: false,
     badge: null,
     courses: [
+      { icon: "🎙️", name: "AI Balss Aģenti", desc: "Automātiski zvani un pierakstu rezervācija" },
       { icon: "💬", name: "WhatsApp Automatizācija", desc: "Automātiskas atbildes un lead apstrāde" },
-      { icon: "🎙️", name: "AI Balss Aģenti", desc: "Automātiski zvani un pieraksti" },
-      { icon: "🌐", name: "Mājaslapa + AI Chatbot", desc: "24/7 klientu apkalpošana" },
-      { icon: "📱", name: "Sociālo Tīklu Pārvaldība", desc: "AI video, banneri, feed" },
+      { icon: "📱", name: "Izveido savu Aplikāciju ar AI", desc: "No idejas līdz darbojošai lietotnei" },
     ],
     skills: [
       "Kā izveidot portfolio ar demo aģentiem",
