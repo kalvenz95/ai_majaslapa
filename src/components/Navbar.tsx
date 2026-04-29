@@ -27,10 +27,10 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <a href="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#6633ee] to-[#4f46e5] flex items-center justify-center">
-            <span className="text-white font-black text-sm">C</span>
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#00ff88] to-[#00d4ff] flex items-center justify-center">
+            <span className="text-black font-black text-sm">C</span>
           </div>
-          <span className="font-black text-xl tracking-tight text-[#18181b]">
+          <span className="font-black text-xl tracking-tight">
             Chad<span className="gradient-text-green">emy</span>
           </span>
         </a>
@@ -41,7 +41,7 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm text-[#52525b] hover:text-[#6633ee] transition-colors duration-200"
+              className="text-sm text-gray-400 hover:text-white transition-colors duration-200 hover:text-[#00ff88]"
             >
               {link.label}
             </a>
@@ -50,7 +50,7 @@ export default function Navbar() {
 
         {/* CTA */}
         <div className="hidden md:flex items-center gap-3">
-          <a href="/login" className="text-sm text-[#52525b] hover:text-[#18181b] transition-colors">
+          <a href="/login" className="text-sm text-gray-400 hover:text-white transition-colors">
             Pieslēgties
           </a>
           <a
@@ -66,9 +66,9 @@ export default function Navbar() {
           className="md:hidden flex flex-col gap-1.5 p-2"
           onClick={() => setMenuOpen(!menuOpen)}
         >
-          <span className={`block w-6 h-0.5 bg-[#18181b] transition-all ${menuOpen ? "rotate-45 translate-y-2" : ""}`} />
-          <span className={`block w-6 h-0.5 bg-[#18181b] transition-all ${menuOpen ? "opacity-0" : ""}`} />
-          <span className={`block w-6 h-0.5 bg-[#18181b] transition-all ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+          <span className={`block w-6 h-0.5 bg-white transition-all ${menuOpen ? "rotate-45 translate-y-2" : ""}`} />
+          <span className={`block w-6 h-0.5 bg-white transition-all ${menuOpen ? "opacity-0" : ""}`} />
+          <span className={`block w-6 h-0.5 bg-white transition-all ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
         </button>
       </div>
 
@@ -79,7 +79,7 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-[#374151] hover:text-[#6633ee] transition-colors text-lg"
+              className="text-gray-300 hover:text-[#00ff88] transition-colors text-lg"
               onClick={() => setMenuOpen(false)}
             >
               {link.label}

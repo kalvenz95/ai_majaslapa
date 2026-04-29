@@ -18,6 +18,7 @@ const SocialMediaIcon = () => (
   </svg>
 );
 
+
 const WhatsAppIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
     <path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.37 5.07L2 22l5.12-1.34A9.96 9.96 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z" fill="url(#g3)" opacity="0.15" stroke="url(#g3)" strokeWidth="1.5"/>
@@ -108,9 +109,9 @@ const services: Service[] = [
     earn: "€300–€800/mēn",
     difficulty: "Iesācējs",
     gradient: "from-[#a855f7]/20 to-[#ec4899]/20",
-    border: "rgba(168,85,247,0.25)",
-    glow: "rgba(168,85,247,0.08)",
-    glowHover: "rgba(168,85,247,0.15)",
+    border: "rgba(168,85,247,0.2)",
+    glow: "rgba(168,85,247,0.12)",
+    glowHover: "rgba(168,85,247,0.2)",
     tag: "Populārs",
     tagColor: "text-[#a855f7] bg-[#a855f7]/10 border-[#a855f7]/25",
     includes: ["AI faceless video", "Reklāmas banneri", "Post vizuāļi"],
@@ -123,9 +124,9 @@ const services: Service[] = [
     earn: "€400–€900/mēn",
     difficulty: "Vidējs",
     gradient: "from-[#22c55e]/20 to-[#00d4ff]/20",
-    border: "rgba(34,197,94,0.25)",
-    glow: "rgba(34,197,94,0.06)",
-    glowHover: "rgba(34,197,94,0.12)",
+    border: "rgba(34,197,94,0.2)",
+    glow: "rgba(34,197,94,0.08)",
+    glowHover: "rgba(34,197,94,0.15)",
     tag: "Populārs LV",
     tagColor: "text-[#22c55e] bg-[#22c55e]/10 border-[#22c55e]/25",
     includes: ["Automātiski atbilde", "Lead notifikācijas", "Vonage integrācija"],
@@ -138,9 +139,9 @@ const services: Service[] = [
     earn: "€500–€1800/projekts",
     difficulty: "Vidējs",
     gradient: "from-[#f97316]/20 to-[#ef4444]/20",
-    border: "rgba(249,115,22,0.25)",
-    glow: "rgba(249,115,22,0.06)",
-    glowHover: "rgba(249,115,22,0.14)",
+    border: "rgba(249,115,22,0.2)",
+    glow: "rgba(249,115,22,0.08)",
+    glowHover: "rgba(249,115,22,0.18)",
     tag: "Premium",
     tagColor: "text-[#f97316] bg-[#f97316]/10 border-[#f97316]/25",
     includes: ["AI balss ģenerēšana", "LV numura integrācija", "Zvanu analytics"],
@@ -153,9 +154,9 @@ const services: Service[] = [
     earn: "200€–800€/mēn",
     difficulty: "Iesācējs",
     gradient: "from-[#a78bfa]/20 to-[#ec4899]/20",
-    border: "rgba(167,139,250,0.25)",
-    glow: "rgba(167,139,250,0.06)",
-    glowHover: "rgba(167,139,250,0.14)",
+    border: "rgba(167,139,250,0.2)",
+    glow: "rgba(167,139,250,0.08)",
+    glowHover: "rgba(167,139,250,0.18)",
     tag: "Iesācējiem",
     tagColor: "text-[#a78bfa] bg-[#a78bfa]/10 border-[#a78bfa]/25",
     includes: ["E-pasta veidnes", "Dizaina briifi", "Satura ģenerēšana"],
@@ -168,9 +169,9 @@ const services: Service[] = [
     earn: "€800–€3000/projekts",
     difficulty: "Vidējs",
     gradient: "from-[#38bdf8]/20 to-[#818cf8]/20",
-    border: "rgba(56,189,248,0.25)",
-    glow: "rgba(56,189,248,0.06)",
-    glowHover: "rgba(56,189,248,0.14)",
+    border: "rgba(56,189,248,0.22)",
+    glow: "rgba(56,189,248,0.08)",
+    glowHover: "rgba(56,189,248,0.18)",
     tag: "Drīzumā",
     tagColor: "text-[#38bdf8] bg-[#38bdf8]/10 border-[#38bdf8]/25",
     includes: [
@@ -185,9 +186,9 @@ const services: Service[] = [
 ];
 
 const difficultyColor: Record<string, string> = {
-  "Iesācējs":   "text-[#6633ee] bg-[#6633ee]/8 border-[#6633ee]/20",
-  "Vidējs":     "text-[#4f46e5] bg-[#4f46e5]/8 border-[#4f46e5]/20",
-  "Progresīvs": "text-[#7c3aed] bg-[#7c3aed]/8 border-[#7c3aed]/20",
+  "Iesācējs":   "text-[#00ff88] bg-[#00ff88]/8 border-[#00ff88]/20",
+  "Vidējs":     "text-[#00d4ff] bg-[#00d4ff]/8 border-[#00d4ff]/20",
+  "Progresīvs": "text-[#a855f7] bg-[#a855f7]/8 border-[#a855f7]/20",
 };
 
 export default function Services() {
@@ -199,16 +200,16 @@ export default function Services() {
         {/* Header */}
         <div className="text-center mb-16">
           <div className="badge-neon mb-4 inline-block"><E id="services-badge">5 AI Pakalpojumi</E></div>
-          <h2 className="text-4xl md:text-5xl font-black text-[#18181b] mb-4">
+          <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
             <E id="services-h2-1">Ko tu iemācīsies</E>{" "}
             <span className="gradient-text-green"><E id="services-h2-accent">pārdot</E></span>
           </h2>
-          <p className="text-[#52525b] text-lg max-w-2xl mx-auto">
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             <E id="services-subtitle">Katrs kurss beidzas ar gatavu pakalpojumu, cenu sarakstu un klientu piesaistes skriptiem.</E>
           </p>
         </div>
 
-        {/* Grid */}
+        {/* Grid — 3 top, 2 bottom centred */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {services.map((s, idx) => (
             <div
@@ -219,13 +220,12 @@ export default function Services() {
                 ${s.comingSoon ? "cursor-default" : "cursor-pointer"}
               `}
               style={{
-                background: "rgba(255,255,255,0.82)",
+                background: `linear-gradient(135deg, #0d0d1a, #0f0f20)`,
                 border: `1px solid ${s.border}`,
-                backdropFilter: "blur(12px)",
               }}
               onMouseEnter={(e) => {
                 if (!s.comingSoon) {
-                  (e.currentTarget as HTMLDivElement).style.boxShadow = `0 16px 40px rgba(0,0,0,0.08), 0 0 32px ${s.glowHover}`;
+                  (e.currentTarget as HTMLDivElement).style.boxShadow = `0 20px 40px rgba(0,0,0,0.3), 0 0 40px ${s.glowHover}`;
                   (e.currentTarget as HTMLDivElement).style.transform = "translateY(-4px)";
                 }
               }}
@@ -234,7 +234,7 @@ export default function Services() {
                 (e.currentTarget as HTMLDivElement).style.transform = "";
               }}
             >
-              {/* Gradient blob on hover */}
+              {/* Gradient blob on hover (not for coming soon) */}
               {!s.comingSoon && (
                 <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl"
@@ -244,7 +244,7 @@ export default function Services() {
 
               {/* Coming soon lock overlay */}
               {s.comingSoon && (
-                <div className="absolute top-4 right-4 flex items-center gap-1.5 text-[#9ca3af]">
+                <div className="absolute top-4 right-4 flex items-center gap-1.5 text-gray-500">
                   <LockIcon />
                 </div>
               )}
@@ -263,18 +263,19 @@ export default function Services() {
               </div>
 
               {/* Title + no-coding badge + desc */}
-              <h3 className="text-[1.05rem] font-bold text-[#18181b] mb-2 leading-snug">
+              <h3 className="text-[1.05rem] font-bold text-white mb-2 leading-snug">
                 <E id={`srv-${idx}-title`}>{s.title}</E>
               </h3>
+              {/* Nav programmēšanas teksts */}
               <div className="flex items-center gap-1.5 mb-3">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#6633ee" strokeWidth="3">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#00ff88" strokeWidth="3">
                   <polyline points="20,6 9,17 4,12"/>
                 </svg>
-                <span className="text-[11px] text-[#71717a] font-medium">
+                <span className="text-[11px] text-gray-500 font-medium">
                   Nav nepieciešamas programmēšanas vai citas sarežģītas datorprasmes
                 </span>
               </div>
-              <p className="text-[#52525b] text-sm leading-relaxed mb-4">
+              <p className="text-gray-400 text-sm leading-relaxed mb-4">
                 <E id={`srv-${idx}-desc`}>{s.desc}</E>
               </p>
 
@@ -284,10 +285,10 @@ export default function Services() {
                   {s.includes.map((item) => (
                     <div key={item} className="flex items-center gap-3">
                       <div className="flex-shrink-0 w-5 h-5 rounded-md flex items-center justify-center"
-                        style={{ background: "rgba(56,189,248,0.12)", border: "1px solid rgba(56,189,248,0.25)" }}>
+                        style={{ background: "rgba(56,189,248,0.15)", border: "1px solid rgba(56,189,248,0.3)" }}>
                         <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="3"><polyline points="20,6 9,17 4,12"/></svg>
                       </div>
-                      <span className="text-sm font-medium text-[#374151]">{item}</span>
+                      <span className="text-sm font-medium text-gray-300">{item}</span>
                     </div>
                   ))}
                 </div>
@@ -296,8 +297,8 @@ export default function Services() {
                   {s.includes.map((item) => (
                     <span
                       key={item}
-                      className="text-[11px] px-2 py-0.5 rounded-md text-[#52525b] font-medium"
-                      style={{ background: "rgba(0,0,0,0.04)", border: "1px solid rgba(0,0,0,0.07)" }}
+                      className="text-[11px] px-2 py-0.5 rounded-md text-gray-500 font-medium"
+                      style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}
                     >
                       {item}
                     </span>
@@ -308,9 +309,9 @@ export default function Services() {
               {/* Bottom: earn + difficulty */}
               <div
                 className="flex items-center justify-between pt-4"
-                style={{ borderTop: "1px solid rgba(0,0,0,0.06)" }}
+                style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
               >
-                <span className={`font-bold text-sm ${s.comingSoon ? "text-[#38bdf8]" : "text-[#6633ee]"}`}>
+                <span className={`font-bold text-sm ${s.comingSoon ? "text-[#38bdf8]" : "text-[#00ff88]"}`}>
                   <E id={`srv-${idx}-earn`}>{s.earn}</E>
                 </span>
                 <span className={`text-xs px-2.5 py-1 rounded-lg border font-semibold ${s.comingSoon ? "text-[#38bdf8] bg-[#38bdf8]/8 border-[#38bdf8]/20" : difficultyColor[s.difficulty]}`}>
@@ -320,20 +321,20 @@ export default function Services() {
 
               {/* CTA row */}
               {s.comingSoon ? (
-                <div className="mt-3 flex items-center gap-1.5 text-[#9ca3af] text-xs font-semibold tracking-wide uppercase">
+                <div className="mt-3 flex items-center gap-1.5 text-gray-600 text-xs font-semibold tracking-wide uppercase">
                   <LockIcon />
                   Drīzumā pieejams
                 </div>
               ) : s.link ? (
                 <Link
                   href={s.link}
-                  className="mt-3 flex items-center gap-1 text-[#9ca3af] group-hover:text-[#6633ee] transition-colors text-xs font-semibold tracking-wide uppercase"
+                  className="mt-3 flex items-center gap-1 text-gray-600 group-hover:text-[#00ff88] transition-colors text-xs font-semibold tracking-wide uppercase"
                 >
                   Skatīt kursu
                   <span className="group-hover:translate-x-1 transition-transform inline-block">→</span>
                 </Link>
               ) : (
-                <div className="mt-3 flex items-center gap-1 text-[#9ca3af] group-hover:text-[#6633ee] transition-colors text-xs font-semibold tracking-wide uppercase">
+                <div className="mt-3 flex items-center gap-1 text-gray-600 group-hover:text-[#00ff88] transition-colors text-xs font-semibold tracking-wide uppercase">
                   Skatīt kursu
                   <span className="group-hover:translate-x-1 transition-transform inline-block">→</span>
                 </div>
@@ -350,18 +351,18 @@ export default function Services() {
           ].map((item) => (
             <div
               key={item.title}
-              className="flex items-center gap-4 rounded-2xl p-4 opacity-60 border border-dashed"
-              style={{ background: "rgba(0,0,0,0.02)", borderColor: "rgba(0,0,0,0.1)" }}
+              className="flex items-center gap-4 rounded-2xl p-4 opacity-50 border border-dashed border-white/10"
+              style={{ background: "rgba(255,255,255,0.015)" }}
             >
-              <div className="w-10 h-10 rounded-xl bg-black/5 flex items-center justify-center text-xl flex-shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-xl flex-shrink-0">
                 {item.icon}
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="font-semibold text-[#18181b] text-sm">{item.title}</span>
-                  <span className="text-xs px-2 py-0.5 rounded-md font-semibold text-[#6633ee] bg-[#6633ee]/8 border border-[#6633ee]/20">Drīzumā</span>
+                  <span className="font-semibold text-white text-sm">{item.title}</span>
+                  <span className="text-xs px-2 py-0.5 rounded-md font-semibold" style={{ background: "rgba(168,85,247,0.1)", border: "1px solid rgba(168,85,247,0.25)", color: "#a855f7" }}>Drīzumā</span>
                 </div>
-                <p className="text-xs text-[#71717a] mt-0.5">{item.desc}</p>
+                <p className="text-xs text-gray-500 mt-0.5">{item.desc}</p>
               </div>
             </div>
           ))}
