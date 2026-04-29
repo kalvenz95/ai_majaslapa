@@ -1,5 +1,4 @@
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
+import { HeroLanding } from "@/components/ui/hero-1";
 import Services from "@/components/Services";
 import FastWin from "@/components/FastWin";
 import Tools from "@/components/Tools";
@@ -16,8 +15,31 @@ export default function Home() {
         <YellowGlowBackground />
       </div>
       <div className="relative" style={{ zIndex: 1 }}>
-        <Navbar />
-        <Hero />
+        <HeroLanding
+          title="Apgūsti AI rīkus latviski"
+          description="Praktiskas lekcijas iesācējiem — bez tehniskas pieredzes."
+          navigation={[
+            { name: "Kursi", href: "#courses" },
+            { name: "Cena", href: "#pricing" },
+            { name: "Par mums", href: "#about" },
+            { name: "Rezultāti", href: "#results" },
+          ]}
+          loginText="Pieslēgties"
+          loginHref="/login"
+          announcementBanner={{
+            text: "🇱🇻 Latvijas pirmā AI monetizācijas platforma",
+            linkText: "Skatīt kursus",
+            linkHref: "#courses",
+          }}
+          callToActions={[
+            { text: "Sākt tagad", href: "#start", variant: "primary" },
+            { text: "Uzzināt vairāk", href: "#about", variant: "secondary" },
+          ]}
+          gradientColors={{
+            from: "oklch(0.75 0.18 150)",
+            to: "oklch(0.55 0.20 200)",
+          }}
+        />
         <Services />
         <FastWin />
 <Tools />
