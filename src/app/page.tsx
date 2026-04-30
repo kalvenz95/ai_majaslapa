@@ -1,7 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import FastWin from "@/components/FastWin";
-import Services from "@/components/Services";
 import AILaunchpad from "@/components/AILaunchpad";
 import Testimonials from "@/components/Testimonials";
 import Pricing from "@/components/Pricing";
@@ -37,10 +36,7 @@ export default function Home() {
         {/* 3. Roadmap */}
         <FastWin />
 
-        {/* 4. Virzienu bloks */}
-        <Services />
-
-        {/* 5. Income bloks */}
+        {/* 4. Income bloks */}
         <AILaunchpad />
 
         {/* 6. Social proof */}
