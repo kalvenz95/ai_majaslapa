@@ -1,5 +1,6 @@
 "use client";
 import E from "@/components/E";
+import Link from "next/link";
 
 const plans = [
   {
@@ -14,6 +15,7 @@ const plans = [
     bg: "rgba(168,85,247,0.06)",
     highlight: false,
     badge: null,
+    href: "/kursi/satura-specialists",
     courses: [
       { icon: "🎬", name: "AI Faceless Video", desc: "Satura veidošana bez kameras" },
       { icon: "📱", name: "Sociālo Tīklu Pārvaldība", desc: "AI video, banneri, feed dizains" },
@@ -38,6 +40,7 @@ const plans = [
     bg: "rgba(0,255,136,0.06)",
     highlight: true,
     badge: null,
+    href: "/kursi/digitalais-specialists",
     courses: [
       { icon: "🌐", name: "Mājaslapa", desc: "AI dizains, SEO, mobilā versija" },
       { icon: "💬", name: "Web Chatbot", desc: "24/7 automātiskas atbildes, lead ģenerēšana" },
@@ -64,6 +67,7 @@ const plans = [
     bg: "rgba(249,115,22,0.06)",
     highlight: false,
     badge: null,
+    href: "/kursi/ai-agentu-eksperts",
     courses: [
       { icon: "🎙️", name: "AI Balss Aģenti", desc: "Automātiski zvani un pierakstu rezervācija" },
       { icon: "💬", name: "WhatsApp Automatizācija", desc: "Automātiskas atbildes un lead apstrāde" },
@@ -192,21 +196,22 @@ export default function Pricing() {
                 </div>
 
                 {/* CTA */}
-                <button
-                  className="mt-auto w-full py-3.5 rounded-xl font-bold text-sm transition-all"
+                <Link
+                  href={plan.href}
+                  className="mt-auto w-full py-3.5 rounded-xl font-bold text-sm transition-all text-center block"
                   style={plan.highlight
-                    ? { background: `linear-gradient(135deg, ${plan.color}, #00d4ff)`, color: "#000", boxShadow: `0 4px 20px ${plan.glow}` }
-                    : { background: `${plan.color}18`, border: `1px solid ${plan.color}40`, color: plan.color }
+                    ? { background: `linear-gradient(135deg, ${plan.color}, #00d4ff)`, color: "#000", boxShadow: `0 4px 20px ${plan.glow}`, textDecoration: "none" }
+                    : { background: `${plan.color}18`, border: `1px solid ${plan.color}40`, color: plan.color, textDecoration: "none" }
                   }
                   onMouseEnter={(e) => {
-                    if (!plan.highlight) (e.currentTarget as HTMLButtonElement).style.background = `${plan.color}30`;
+                    if (!plan.highlight) (e.currentTarget as HTMLAnchorElement).style.background = `${plan.color}30`;
                   }}
                   onMouseLeave={(e) => {
-                    if (!plan.highlight) (e.currentTarget as HTMLButtonElement).style.background = `${plan.color}18`;
+                    if (!plan.highlight) (e.currentTarget as HTMLAnchorElement).style.background = `${plan.color}18`;
                   }}
                 >
                   <E id={`plan-${plan.id}-cta`}>{plan.cta}</E>
-                </button>
+                </Link>
               </div>
             </div>
           ))}
