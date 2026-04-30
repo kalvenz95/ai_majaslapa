@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import FastWin from "@/components/FastWin";
+import Services from "@/components/Services";
 import AILaunchpad from "@/components/AILaunchpad";
 import Testimonials from "@/components/Testimonials";
 import Pricing from "@/components/Pricing";
@@ -11,7 +12,6 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <main className="relative min-h-screen text-white overflow-x-hidden">
-      {/* Fixed background */}
       <div className="fixed inset-0" style={{ zIndex: 0 }}>
         <div className="absolute inset-0" style={{
           background: "linear-gradient(180deg, #000000 0%, #05080F 20%, #032F3A 40%, #0891b2 70%, #22d3ee 100%)",
@@ -27,31 +27,15 @@ export default function Home() {
       </div>
 
       <div className="relative" style={{ zIndex: 1 }}>
-        {/* 1. Navbar */}
         <Navbar />
-
-        {/* 2. Hero */}
-        <Hero />
-
-        {/* 3. Roadmap */}
-        <FastWin />
-
-        {/* 4. Income bloks */}
-        <AILaunchpad />
-
-        {/* 6. Social proof */}
-        <Testimonials />
-
-        {/* 7. Pricing */}
-        <Pricing />
-
-        {/* 8. Tools */}
-        <Tools />
-
-        {/* 9. Final CTA */}
-        <CTA />
-
-        {/* 10. Footer */}
+        <Hero />         {/* 1. Hero */}
+        <FastWin />      {/* 2. Roadmap */}
+        <Services />     {/* 3. Virzieni */}
+        <AILaunchpad />  {/* 4. Income */}
+        <Testimonials /> {/* 5. Social Proof */}
+        <Pricing />      {/* 6. Pricing */}
+        <Tools />        {/* 7. Tools */}
+        <CTA />          {/* 8. Final CTA */}
         <Footer />
       </div>
     </main>
