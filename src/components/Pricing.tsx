@@ -109,7 +109,7 @@ export default function Pricing() {
             <span className="gradient-text-purple"><E id="pricing-h2-accent">ceļu</E></span>
           </h2>
           <p className="text-gray-400 text-lg max-w-lg mx-auto">
-            <E id="pricing-sub">Katrai pakai iekšā — kursi, portfolio izveide, klientu uzrunāšana un piedāvājumu veidnes.</E>
+            <E id="pricing-sub">Katrai pakai iekšā — kursi, piemēri, piedāvājumu veidnes un klientu uzrunāšanas materiāli.</E>
           </p>
         </div>
 
@@ -223,8 +223,13 @@ export default function Pricing() {
         {/* Service pricing toggle */}
         <ServicePricing />
 
+        {/* Disclaimer */}
+        <p className="mt-6 text-center text-xs text-gray-600 max-w-lg mx-auto leading-relaxed">
+          Norādītie ienākumi ir potenciāls pakalpojumu cenu piemērs, nevis garantēta peļņa.
+        </p>
+
         {/* Guarantee */}
-        <div className="mt-6 glass rounded-2xl p-5 text-center border border-[#00ff88]/10">
+        <div className="mt-4 glass rounded-2xl p-5 text-center border border-[#00ff88]/10">
           <span className="text-2xl">🛡️</span>
           <div className="font-bold text-white mt-1 mb-1">
             <E id="pricing-guarantee-title">30 dienu garantija</E>

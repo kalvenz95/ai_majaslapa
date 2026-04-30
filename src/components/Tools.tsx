@@ -22,11 +22,11 @@ export default function Tools() {
 
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <div className="badge-neon mb-4 inline-block">🛠️ AI Rīku Direktorijs</div>
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-3">
-            Instrumenti, kurus <span className="gradient-text-cyan neon-text-cyan">tu apgūsi</span>
+          <div className="badge-neon mb-4 inline-block">🛠️ Rīki</div>
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-3" style={{ letterSpacing: "-0.02em" }}>
+            Rīki, kurus <span className="gradient-text-cyan neon-text-cyan">izmantosi kursā</span>
           </h2>
-          <p className="text-gray-400">Visi rīki, kas nepieciešami profesionālai AI pakalpojumu piegādei</p>
+          <p className="text-gray-400">Praktiski rīki, kas palīdz izveidot AI pakalpojumus, automatizācijas un saturu uzņēmumiem.</p>
         </div>
 
         {/* Tools grid */}

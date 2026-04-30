@@ -75,14 +75,14 @@ export default function Testimonials() {
         {/* Header */}
         <div className="text-center mb-16">
           <div className="badge-neon mb-4 inline-block" style={{ background: "rgba(0,212,255,0.1)", borderColor: "rgba(0,212,255,0.3)", color: "#00d4ff" }}>
-            <E id="testimonials-badge">🏆 Reāli rezultāti</E>
+            🏆 Reāli piemēri
           </div>
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-            <E id="testimonials-h2-1">Studenti, kas</E>{" "}
-            <span className="gradient-text-cyan neon-text-cyan"><E id="testimonials-h2-accent">jau nopelna</E></span>
+          <h2 className="text-4xl md:text-5xl font-black text-white mb-4" style={{ letterSpacing: "-0.02em" }}>
+            Cilvēki, kas jau{" "}
+            <span className="gradient-text-cyan neon-text-cyan">pelna ar šiem pakalpojumiem</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-xl mx-auto">
-            <E id="testimonials-subtitle">Latvieši, kas izmantoja Chademy un sāka pārdot AI pakalpojumus reāliem uzņēmumiem.</E>
+            Piemēri, kā Chademy prasmes var pārvērst reālos pakalpojumos uzņēmumiem.
           </p>
         </div>
 

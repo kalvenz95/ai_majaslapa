@@ -3,8 +3,8 @@ import E from "@/components/E";
 
 const footerLinks = {
   Platforma: ["Kursi", "Cenas", "Kopiena", "Sertifikāti", "Veidņu glabātuve"],
-  Kursi: ["AI Faceless Video", "AI Attēli", "Website Chatbot", "WhatsApp Bot", "Voice Agents", "Make.com / n8n"],
-  Uzņēmums: ["Par Chademy", "Misija", "Kontakti", "Blog", "Privātuma politika"],
+  Kursi: ["Sociālo tīklu pārvaldība", "Mājaslapas & automatizācija", "WhatsApp automatizācija", "Balss aģenti", "AI rīki"],
+  Uzņēmums: ["Par Chademy", "Misija", "Kontakti", "Privātuma politika"],
 };
 
 export default function Footer() {

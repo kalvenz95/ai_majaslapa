@@ -1,65 +1,59 @@
 "use client";
-import E from "@/components/E";
+
+const trust = [
+  "+ Latviešu valodā",
+  "+ Praktiski kursi",
+  "+ Gatavas veidnes",
+  "+ Kopiena",
+];
 
 export default function CTA() {
   return (
     <section className="py-24 px-6 relative overflow-hidden">
-      {/* Big glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-[#00ff88] opacity-[0.04] rounded-full blur-3xl pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#00ff88]/20 to-transparent" />
 
-      <div className="max-w-4xl mx-auto text-center relative">
+      <div className="max-w-3xl mx-auto text-center relative">
         {/* Badge */}
         <div className="badge-neon mb-6 inline-block animate-glow-pulse">
-          <E id="cta-badge">🚀 Sāc šodien — bezmaksas pirmā nedēļa</E>
+          🚀 Sāc šodien
         </div>
 
         {/* Headline */}
-        <h2 className="text-4xl md:text-6xl font-black text-white leading-tight mb-6">
-          <E id="cta-h2-1">Tavi pirmie</E>{" "}
-          <span className="gradient-text-green neon-text-green"><E id="cta-h2-accent">€500 ar AI</E></span>
-          <br />
-          <E id="cta-h2-end">sākas šeit.</E>
+        <h2 className="text-4xl md:text-6xl font-black text-white leading-tight mb-6" style={{ letterSpacing: "-0.02em" }}>
+          Tavs pirmais klients{" "}
+          <span className="gradient-text-green neon-text-green">sākas šeit</span>
         </h2>
 
-        <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-          <E id="cta-para">Pievienojies simtiem latvijas iedzīvotāju, kas jau pārdod AI pakalpojumus reāliem uzņēmumiem. Kursi latviešu valodā. Praktisks saturs. Reāli ienākumi.</E>
+        <p className="text-gray-400 text-lg md:text-xl max-w-xl mx-auto mb-10 leading-relaxed">
+          Izvēlies virzienu,<br />
+          apgūsti prasmes<br />
+          un pārvērt tās ienākumos.
         </p>
 
-        {/* CTA buttons */}
+        {/* CTAs */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-          <a
-            href="#pricing"
-            className="btn-primary px-10 py-4 rounded-xl font-bold text-lg"
-          >
-            <E id="cta-btn-1">Sākt bezmaksas →</E>
+          <a href="#pricing" className="btn-primary px-10 py-4 rounded-xl font-bold text-lg">
+            Sākt bez maksas →
           </a>
-          <a
-            href="#courses"
-            className="btn-secondary px-10 py-4 rounded-xl font-semibold text-lg"
-          >
-            <E id="cta-btn-2">Skatīt visus kursus</E>
+          <a href="#courses" className="btn-secondary px-10 py-4 rounded-xl font-semibold text-lg">
+            Skatīt visus kursus
           </a>
         </div>
 
         {/* Trust signals */}
-        <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-500">
-          {[
-            "✓ Latviešu valodā",
-            "✓ AI jaunākie produkti",
-            "✓ 2026. gada aprīlis",
-            "✓ 14 dienu garantija",
-          ].map((item) => (
-            <span key={item} className="hover:text-gray-300 transition-colors">{item}</span>
+        <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-500 mb-14">
+          {trust.map((item) => (
+            <span key={item} className="hover:text-[#00ff88] transition-colors font-medium">{item}</span>
           ))}
         </div>
 
-        {/* Final social proof */}
-        <div className="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {/* Feature cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {[
-            { icon: "🎓", title: "8 Praktisko kursu", desc: "No video līdz voice agents" },
-            { icon: "📋", title: "50+ Veidnes", desc: "Gatavi skripti un piedāvājumi" },
-            { icon: "🤝", title: "Kopiena", desc: "Aktīvi studenti no Latvijas" },
+            { icon: "🎓", title: "Praktiski kursi", desc: "Apgūsti vienu pakalpojumu no A līdz Z" },
+            { icon: "📋", title: "Gatavas veidnes", desc: "Piedāvājumi, ziņu skripti, onboarding" },
+            { icon: "🤝", title: "Kopiena", desc: "Latvieši, kas strādā ar AI pakalpojumiem" },
           ].map((item) => (
             <div key={item.title} className="glass rounded-2xl p-5 text-center card-hover">
               <div className="text-3xl mb-2">{item.icon}</div>
