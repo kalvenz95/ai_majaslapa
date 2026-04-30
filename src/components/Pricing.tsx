@@ -217,9 +217,6 @@ export default function Pricing() {
           ))}
         </div>
 
-        {/* Grouped courses by plan */}
-        <GroupedCourses />
-
         {/* Service pricing toggle */}
         <ServicePricing />
 
