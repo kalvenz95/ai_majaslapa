@@ -1,0 +1,111 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ── Lietotājs ────────────────────────────────────────────────
+model User {
+  id               String    @id @default(cuid())
+  clerkId          String    @unique
+  email            String    @unique
+  name             String?
+  avatarUrl        String?
+  stripeCustomerId String?   @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  subscription Subscription?
+  progress     LessonProgress[]
+}
+
+// ── Abonements ───────────────────────────────────────────────
+model Subscription {
+  id                   String             @id @default(cuid())
+  userId               String             @unique
+  user                 User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  plan                 Plan
+  status               SubscriptionStatus
+  stripeSubscriptionId String             @unique
+  stripePriceId        String
+  currentPeriodStart   DateTime
+  currentPeriodEnd     DateTime
+  cancelAtPeriodEnd    Boolean            @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Plan {
+  PAMATI    // €29/mēn — Satura Speciālists
+  IZAUGSME  // €59/mēn — Digitālais Speciālists
+  MEISTARS  // €149/mēn — AI Aģentu Eksperts
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  CANCELED
+  PAST_DUE
+  TRIALING
+  INCOMPLETE
+}
+
+// ── Kursi ────────────────────────────────────────────────────
+model Course {
+  id           String  @id @default(cuid())
+  slug         String  @unique
+  title        String
+  description  String
+  icon         String
+  color        String  @default("#00ff88")
+  planRequired Plan
+  order        Int     @default(0)
+  published    Boolean @default(false)
+
+  lessons   Lesson[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ── Lekcijas ─────────────────────────────────────────────────
+model Lesson {
+  id          String  @id @default(cuid())
+  courseId    String
+  course      Course  @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  title       String
+  description String?
+  // Atbalsta: YouTube unlisted, Vimeo, Mux, vai tiešs .mp4 URL
+  // YouTube:  https://www.youtube.com/watch?v=VIDEO_ID
+  // Vimeo:    https://vimeo.com/VIDEO_ID
+  // Tiešs:    https://example.com/video.mp4
+  videoUrl    String?
+  duration    Int?    // sekundes
+  order       Int     @default(0)
+  isFree      Boolean @default(false) // preview bez abonēšanas
+
+  progress  LessonProgress[]
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+}
+
+// ── Progresa sekošana ────────────────────────────────────────
+model LessonProgress {
+  id             String    @id @default(cuid())
+  userId         String
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lessonId       String
+  lesson         Lesson    @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  completed      Boolean   @default(false)
+  watchedSeconds Int       @default(0)
+  completedAt    DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, lessonId])
+}

@@ -1,6 +1,7 @@
 "use client";
 import E from "@/components/E";
 import Link from "next/link";
+import { PricingCheckoutButton } from "@/components/PricingCheckoutButton";
 
 const plans = [
   {
@@ -195,23 +196,22 @@ export default function Pricing() {
                   </div>
                 </div>
 
-                {/* CTA */}
-                <Link
-                  href={plan.href}
+                {/* CTA — checkout */}
+                <PricingCheckoutButton
+                  plan={plan.id === "pamati" ? "PAMATI" : plan.id === "izaugsme" ? "IZAUGSME" : "MEISTARS"}
+                  label={plan.cta}
                   className="mt-auto w-full py-3.5 rounded-xl font-bold text-sm transition-all text-center block"
                   style={plan.highlight
-                    ? { background: `linear-gradient(135deg, ${plan.color}, #00d4ff)`, color: "#000", boxShadow: `0 4px 20px ${plan.glow}`, textDecoration: "none" }
-                    : { background: `${plan.color}18`, border: `1px solid ${plan.color}40`, color: plan.color, textDecoration: "none" }
+                    ? { background: `linear-gradient(135deg, ${plan.color}, #00d4ff)`, color: "#000", boxShadow: `0 4px 20px ${plan.glow}` }
+                    : { background: `${plan.color}18`, border: `1px solid ${plan.color}40`, color: plan.color }
                   }
                   onMouseEnter={(e) => {
-                    if (!plan.highlight) (e.currentTarget as HTMLAnchorElement).style.background = `${plan.color}30`;
+                    if (!plan.highlight) (e.currentTarget as HTMLButtonElement).style.background = `${plan.color}30`;
                   }}
                   onMouseLeave={(e) => {
-                    if (!plan.highlight) (e.currentTarget as HTMLAnchorElement).style.background = `${plan.color}18`;
+                    if (!plan.highlight) (e.currentTarget as HTMLButtonElement).style.background = `${plan.color}18`;
                   }}
-                >
-                  <E id={`plan-${plan.id}-cta`}>{plan.cta}</E>
-                </Link>
+                />
               </div>
             </div>
           ))}

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { EditProvider } from "@/context/EditContext";
 import EditBar from "@/components/EditBar";
+import { ClerkProvider } from "@clerk/nextjs";
 
 export const metadata: Metadata = {
   title: "Chademy — Nopelni ar AI",
@@ -27,10 +28,12 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
       </head>
       <body>
-        <EditProvider>
-          {children}
-          <EditBar />
-        </EditProvider>
+        <ClerkProvider>
+          <EditProvider>
+            {children}
+            <EditBar />
+          </EditProvider>
+        </ClerkProvider>
       </body>
     </html>
   );
