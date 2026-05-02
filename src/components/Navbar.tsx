@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Show, UserButton, SignInButton, SignUpButton } from "@clerk/nextjs";
+import { useAuth } from "@clerk/nextjs";
+import { UserButton, SignInButton, SignUpButton } from "@clerk/nextjs";
 
 const navLinks = [
   { label: "Kursi", href: "#courses" },
@@ -10,6 +11,7 @@ const navLinks = [
 ];
 
 export default function Navbar() {
+  const { isSignedIn, isLoaded } = useAuth();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -51,27 +53,29 @@ export default function Navbar() {
 
         {/* CTA */}
         <div className="hidden md:flex items-center gap-3">
-          <Show when="signed-out">
-            <SignInButton mode="redirect">
-              <button className="text-sm text-gray-400 hover:text-white transition-colors">
-                Pieslēgties
-              </button>
-            </SignInButton>
-            <SignUpButton mode="redirect">
-              <button className="btn-primary text-sm px-5 py-2.5 rounded-lg font-semibold">
-                Sākt bezmaksas →
-              </button>
-            </SignUpButton>
-          </Show>
-          <Show when="signed-in">
-            <a
-              href="/dashboard"
-              className="text-sm text-gray-400 hover:text-white transition-colors"
-            >
-              Mans konts
-            </a>
-            <UserButton />
-          </Show>
+          {!isLoaded ? (
+            <div className="w-24 h-8 rounded-lg animate-pulse" style={{ background: "rgba(255,255,255,0.08)" }} />
+          ) : isSignedIn ? (
+            <>
+              <a href="/dashboard" className="text-sm text-gray-400 hover:text-white transition-colors">
+                Mans konts
+              </a>
+              <UserButton />
+            </>
+          ) : (
+            <>
+              <SignInButton mode="redirect">
+                <button className="text-sm text-gray-400 hover:text-white transition-colors">
+                  Pieslēgties
+                </button>
+              </SignInButton>
+              <SignUpButton mode="redirect">
+                <button className="btn-primary text-sm px-5 py-2.5 rounded-lg font-semibold">
+                  Sākt bezmaksas →
+                </button>
+              </SignUpButton>
+            </>
+          )}
         </div>
 
         {/* Mobile menu button */}
@@ -99,21 +103,20 @@ export default function Navbar() {
             </a>
           ))}
           <div className="neon-line my-2" />
-          <Show when="signed-out">
-            <SignUpButton mode="redirect">
-              <button className="btn-primary text-center py-3 rounded-xl font-semibold w-full">
-                Sākt bezmaksas →
-              </button>
-            </SignUpButton>
-          </Show>
-          <Show when="signed-in">
+          {isSignedIn ? (
             <div className="flex items-center justify-between">
               <a href="/dashboard" className="text-gray-300 hover:text-[#00ff88] transition-colors text-lg">
                 Mans konts
               </a>
               <UserButton />
             </div>
-          </Show>
+          ) : (
+            <SignUpButton mode="redirect">
+              <button className="btn-primary text-center py-3 rounded-xl font-semibold w-full">
+                Sākt bezmaksas →
+              </button>
+            </SignUpButton>
+          )}
         </div>
       )}
     </nav>
