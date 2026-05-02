@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import WhyAI from "@/components/WhyAI";
 import FastWin from "@/components/FastWin";
 import Services from "@/components/Services";
 import AILaunchpad from "@/components/AILaunchpad";
@@ -29,7 +30,8 @@ export default function Home() {
       <div className="relative" style={{ zIndex: 1 }}>
         <Navbar />
         <Hero />         {/* 1. Hero */}
-        <FastWin />      {/* 2. Roadmap */}
+        <WhyAI />        {/* 2. Kāpēc AI */}
+        <FastWin />      {/* 3. Roadmap */}
         <Services />     {/* 3. Virzieni */}
         <AILaunchpad />  {/* 4. Income */}
         <Testimonials /> {/* 5. Social Proof */}
