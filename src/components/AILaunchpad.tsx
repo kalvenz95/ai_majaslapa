@@ -67,8 +67,8 @@ export default function AILaunchpad() {
                   {block.service}
                 </div>
                 <div
-                  className="text-3xl md:text-4xl font-black leading-none mb-1"
-                  style={{ color: block.color }}
+                  className="font-black leading-none mb-1"
+                  style={{ color: block.color, fontSize: "clamp(22px, 3.5vw, 36px)", wordBreak: "keep-all", whiteSpace: "nowrap" }}
                 >
                   {block.range}
                 </div>
@@ -78,12 +78,12 @@ export default function AILaunchpad() {
           </div>
 
           {/* Summary text */}
-          <div className="text-center mb-4">
+          <div className="text-center mb-4 space-y-2">
             <p className="text-gray-300 text-base font-medium">
-              Nav nepieciešams daudz klientu.
+              Šie ir pakalpojumi, kurus uzņēmumi jau šobrīd meklē.
             </p>
             <p className="text-gray-400 text-sm">
-              Pietiek ar dažiem, lai izveidotu stabilus ienākumus.
+              Tu apgūsti, kā tos izveidot un piedāvāt praksē.
             </p>
           </div>
 
