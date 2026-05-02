@@ -4,6 +4,7 @@ import WhyAI from "@/components/WhyAI";
 import FastWin from "@/components/FastWin";
 import Services from "@/components/Services";
 import AILaunchpad from "@/components/AILaunchpad";
+import EasyStart from "@/components/EasyStart";
 import Testimonials from "@/components/Testimonials";
 import Pricing from "@/components/Pricing";
 import Tools from "@/components/Tools";
@@ -34,7 +35,8 @@ export default function Home() {
         <FastWin />      {/* 3. Roadmap */}
         <Services />     {/* 3. Virzieni */}
         <AILaunchpad />  {/* 4. Income */}
-        <Testimonials /> {/* 5. Social Proof */}
+        <EasyStart />    {/* 5. No-code */}
+        <Testimonials /> {/* 6. Social Proof */}
         <Pricing />      {/* 6. Pricing */}
         <Tools />        {/* 7. Tools */}
         <CTA />          {/* 8. Final CTA */}
