@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { Show, UserButton, SignInButton, SignUpButton } from "@clerk/nextjs";
 
 const navLinks = [
   { label: "Kursi", href: "#courses" },
@@ -50,15 +51,27 @@ export default function Navbar() {
 
         {/* CTA */}
         <div className="hidden md:flex items-center gap-3">
-          <a href="/login" className="text-sm text-gray-400 hover:text-white transition-colors">
-            Pieslēgties
-          </a>
-          <a
-            href="#start"
-            className="btn-primary text-sm px-5 py-2.5 rounded-lg font-semibold"
-          >
-            Sākt bezmaksas →
-          </a>
+          <Show when="signed-out">
+            <SignInButton mode="redirect">
+              <button className="text-sm text-gray-400 hover:text-white transition-colors">
+                Pieslēgties
+              </button>
+            </SignInButton>
+            <SignUpButton mode="redirect">
+              <button className="btn-primary text-sm px-5 py-2.5 rounded-lg font-semibold">
+                Sākt bezmaksas →
+              </button>
+            </SignUpButton>
+          </Show>
+          <Show when="signed-in">
+            <a
+              href="/dashboard"
+              className="text-sm text-gray-400 hover:text-white transition-colors"
+            >
+              Mans konts
+            </a>
+            <UserButton />
+          </Show>
         </div>
 
         {/* Mobile menu button */}
@@ -86,9 +99,21 @@ export default function Navbar() {
             </a>
           ))}
           <div className="neon-line my-2" />
-          <a href="#start" className="btn-primary text-center py-3 rounded-xl font-semibold">
-            Sākt bezmaksas →
-          </a>
+          <Show when="signed-out">
+            <SignUpButton mode="redirect">
+              <button className="btn-primary text-center py-3 rounded-xl font-semibold w-full">
+                Sākt bezmaksas →
+              </button>
+            </SignUpButton>
+          </Show>
+          <Show when="signed-in">
+            <div className="flex items-center justify-between">
+              <a href="/dashboard" className="text-gray-300 hover:text-[#00ff88] transition-colors text-lg">
+                Mans konts
+              </a>
+              <UserButton />
+            </div>
+          </Show>
         </div>
       )}
     </nav>
