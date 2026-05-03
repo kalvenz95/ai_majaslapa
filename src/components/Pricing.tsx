@@ -217,24 +217,6 @@ export default function Pricing() {
           ))}
         </div>
 
-        {/* Service pricing toggle */}
-        <ServicePricing />
-
-        {/* Disclaimer */}
-        <p className="mt-6 text-center text-xs text-gray-600 max-w-lg mx-auto leading-relaxed">
-          Norādītie ienākumi ir potenciāls pakalpojumu cenu piemērs, nevis garantēta peļņa.
-        </p>
-
-        {/* Guarantee */}
-        <div className="mt-4 glass rounded-2xl p-5 text-center border border-[#00ff88]/10">
-          <span className="text-2xl">🛡️</span>
-          <div className="font-bold text-white mt-1 mb-1">
-            <E id="pricing-guarantee-title">30 dienu garantija</E>
-          </div>
-          <p className="text-sm text-gray-400 max-w-sm mx-auto">
-            <E id="pricing-guarantee-desc">Ja pirmajās 30 dienās neesi apmierināts, atmaksāsim visu. Bez jautājumiem.</E>
-          </p>
-        </div>
       </div>
     </section>
   );
@@ -459,38 +441,3 @@ function GroupedCourses() {
   );
 }
 
-function ServicePricing() {
-  const services = [
-    { num: "01", icon: "📱", name: "Sociālie tīkli", price: "300€–1 500€", monthly: "150€–400€", color: "#a855f7", glow: "168,85,247" },
-    { num: "02", icon: "🌐", name: "Mājaslapa + Chatbot", price: "250€–900€", monthly: "150€–200€", color: "#00d4ff", glow: "0,212,255" },
-    { num: "03", icon: "💬", name: "WhatsApp Automatizācija", price: "300€–1 200€", monthly: "200€–300€", color: "#00ff88", glow: "0,255,136" },
-    { num: "04", icon: "🎙️", name: "Voice Agents", price: "500€–1 800€", monthly: "250€–400€", color: "#f97316", glow: "249,115,22" },
-  ];
-
-  return (
-    <div className="mt-8">
-      <div className="text-center mb-5">
-        <div className="text-xs font-bold text-gray-300 uppercase tracking-widest mb-1">Ko vari iekasēt no klientiem</div>
-        <div className="text-sm text-gray-400">Ieteicamās cenas Latvijā</div>
-      </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        {services.map((s) => (
-          <div key={s.name} className="rounded-xl p-4 flex items-center gap-4"
-            style={{ background: `rgba(${s.glow},0.05)`, border: `1px solid rgba(${s.glow},0.18)` }}>
-            <div className="w-10 h-10 rounded-xl shrink-0 flex items-center justify-center text-xl"
-              style={{ background: `rgba(${s.glow},0.12)`, border: `1px solid rgba(${s.glow},0.25)` }}>
-              {s.icon}
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="text-xs text-gray-400 mb-0.5">{s.num} · {s.name}</div>
-              <div className="flex items-baseline gap-2 flex-wrap">
-                <span className="text-base font-black" style={{ color: s.color }}>{s.price}</span>
-                <span className="text-xs text-gray-400">vai {s.monthly}/mēn atbalsts</span>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}

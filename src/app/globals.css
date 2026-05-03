@@ -195,6 +195,11 @@ body {
   to { transform: translateX(-50%); }
 }
 
+@keyframes marqueeReverse {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
 /* Neon line */
 .neon-line {
   height: 1px;

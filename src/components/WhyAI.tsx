@@ -1,10 +1,10 @@
 "use client";
 
 const points = [
-  { icon: "⚡", text: "Pieprasīta prasme biznesā" },
-  { icon: "🧠", text: "Nav nepieciešama programmēšana" },
-  { icon: "💼", text: "Pakalpojumi, ko uzņēmumi jau meklē" },
-  { icon: "💰", text: "Iespēja veidot ikmēneša ienākumus" },
+  { icon: "📉", text: "Samazini uzņēmumu izmaksas" },
+  { icon: "🧠", text: "Veido risinājumus bez programmēšanas prasmēm" },
+  { icon: "💼", text: "Piedāvā pakalpojumus, kas uzņēmumiem ir nepieciešams" },
+  { icon: "💰", text: "Pārvērt prasmes ikmēneša ienākumos" },
 ];
 
 export default function WhyAI() {
@@ -51,7 +51,7 @@ export default function WhyAI() {
               className="w-1.5 h-1.5 rounded-full"
               style={{ background: "#00d4ff", boxShadow: "0 0 6px #00d4ff" }}
             />
-            AI ir jaunā biznesa prasme
+            AI prasmes biznesam
           </span>
         </div>
 
@@ -65,7 +65,7 @@ export default function WhyAI() {
             color: "#fff",
           }}
         >
-          Kāpēc šī prasme ir{" "}
+          Apgūsti prasmes,{" "}
           <span
             style={{
               background: "linear-gradient(90deg, #00ff88, #00d4ff)",
@@ -73,7 +73,7 @@ export default function WhyAI() {
               WebkitTextFillColor: "transparent",
             }}
           >
-            tik pieprasīta?
+            kas uzņēmumiem šobrīd ir vajadzīgas
           </span>
         </h2>
 
@@ -116,29 +116,31 @@ export default function WhyAI() {
         </div>
 
         {/* Description */}
-        <div
-          className="mb-10 space-y-4"
-          style={{
-            background: "rgba(255,255,255,0.02)",
-            border: "1px solid rgba(255,255,255,0.05)",
-            borderRadius: "12px",
-            padding: "clamp(16px, 3vw, 24px)",
-          }}
-        >
+        <div className="mb-10 space-y-5">
           <p
-            className="text-sm leading-relaxed"
-            style={{ color: "rgba(255,255,255,0.65)", lineHeight: "1.75" }}
+            style={{
+              fontSize: "clamp(17px, 2.5vw, 22px)",
+              color: "rgba(255,255,255,0.88)",
+              lineHeight: "1.7",
+              fontWeight: 400,
+            }}
           >
             Mākslīgais intelekts kļūst par vienu no augstāk novērtētajām un pieprasītākajām prasmēm
-            biznesā — uzņēmumiem ir vajadzīgi cilvēki, kas ar to palīdz samazināt izmaksas, strādāt
-            efektīvāk un iegūt vairāk klientu.
+            biznesā — uzņēmumiem ir vajadzīgi cilvēki, kas ar to palīdz{" "}
+            <span style={{ color: "#00d4ff", fontWeight: 600 }}>samazināt izmaksas</span>,{" "}
+            <span style={{ color: "#00d4ff", fontWeight: 600 }}>strādāt efektīvāk</span> un{" "}
+            <span style={{ color: "#00d4ff", fontWeight: 600 }}>iegūt vairāk klientu</span>.
           </p>
           <p
-            className="text-sm leading-relaxed"
-            style={{ color: "rgba(255,255,255,0.65)", lineHeight: "1.75" }}
+            style={{
+              fontSize: "clamp(17px, 2.5vw, 22px)",
+              color: "rgba(255,255,255,0.65)",
+              lineHeight: "1.7",
+              fontWeight: 400,
+            }}
           >
             Mēs parādām, kā izveidot augstvērtīgu AI pakalpojumu un produktu, un soli pa solim
-            iemācām, kā to piedāvāt uzņēmumiem un attīstīt kā savu ikmēneša ienākumu avotu.
+            iemācām, kā to piedāvāt uzņēmumiem un attīstīt kā savu ikmēneša ienākumu virzienu.
           </p>
         </div>
 
