@@ -1,6 +1,7 @@
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { Sidebar } from "@/components/dashboard/Sidebar";
+import { StreakTracker } from "@/components/dashboard/StreakTracker";
 import { upsertUser } from "@/lib/subscriptions";
 
 export default async function DashboardLayout({
@@ -24,6 +25,7 @@ export default async function DashboardLayout({
 
   return (
     <div className="min-h-screen" style={{ background: "#05080F" }}>
+      <StreakTracker />
       <Sidebar />
       <main className="ml-60 min-h-screen">
         <div className="max-w-5xl mx-auto px-6 py-8">{children}</div>
