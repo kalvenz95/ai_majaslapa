@@ -91,6 +91,13 @@ body {
   background-clip: text;
 }
 
+.gradient-text-cyan {
+  background: linear-gradient(135deg, #00d4ff, #00ff88);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 .gradient-text-gold {
   background: linear-gradient(135deg, #f59e0b, #ef4444);
   -webkit-background-clip: text;
@@ -187,6 +194,12 @@ body {
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+}
+
+/* Float animation for Hero cards */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
 }
 
 /* Marquee scroll */

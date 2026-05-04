@@ -7,6 +7,7 @@ import AILaunchpad from "@/components/AILaunchpad";
 import EasyStart from "@/components/EasyStart";
 import Testimonials from "@/components/Testimonials";
 import Pricing from "@/components/Pricing";
+import BuildPack from "@/components/BuildPack";
 import Tools from "@/components/Tools";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
@@ -38,7 +39,8 @@ export default function Home() {
         <EasyStart />    {/* 5. No-code */}
         <Testimonials /> {/* 6. Social Proof */}
         <Pricing />      {/* 6. Pricing */}
-        <Tools />        {/* 7. Tools */}
+        <BuildPack />    {/* 7. Par mums / Build Pack */}
+        <Tools />        {/* 8. Tools */}
         <CTA />          {/* 8. Final CTA */}
         <Footer />
       </div>
