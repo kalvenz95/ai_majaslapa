@@ -9,18 +9,29 @@ export default async function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { userId } = await auth();
+  let userId: string | null = null;
+
+  try {
+    const authResult = await auth();
+    userId = authResult.userId;
+  } catch {
+    redirect("/login");
+  }
+
   if (!userId) redirect("/login");
 
-  // Sinhrona lietotāja izveide DB pēc pirmās pieteikšanās
-  const clerkUser = await currentUser();
-  if (clerkUser) {
-    await upsertUser({
-      clerkId: userId,
-      email: clerkUser.emailAddresses[0]?.emailAddress ?? "",
-      name: `${clerkUser.firstName ?? ""} ${clerkUser.lastName ?? ""}`.trim() || undefined,
-      avatarUrl: clerkUser.imageUrl || undefined,
-    }).catch(() => null); // Klusina kļūdas DB nav iestatīta
+  try {
+    const clerkUser = await currentUser();
+    if (clerkUser) {
+      await upsertUser({
+        clerkId: userId,
+        email: clerkUser.emailAddresses[0]?.emailAddress ?? "",
+        name: `${clerkUser.firstName ?? ""} ${clerkUser.lastName ?? ""}`.trim() || undefined,
+        avatarUrl: clerkUser.imageUrl || undefined,
+      }).catch(() => null);
+    }
+  } catch {
+    // DB nav pieejama — turpina bez lietotāja datu saglabāšanas
   }
 
   return (
