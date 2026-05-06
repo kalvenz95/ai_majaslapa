@@ -7,13 +7,13 @@ import { Plan } from "@prisma/client";
 
 export default async function KursiPage() {
   const { userId } = await auth();
-  const userPlan = userId ? await getUserPlan(userId) : null;
+  const userPlan = userId ? await getUserPlan(userId).catch(() => null) : null;
 
   const courses = await prisma.course.findMany({
     where: { published: true },
     orderBy: [{ planRequired: "asc" }, { order: "asc" }],
     include: { lessons: { select: { id: true } } },
-  });
+  }).catch(() => [] as any[]);
 
   const planColors: Record<Plan, string> = {
     PAMATI: "#a855f7",

@@ -32,6 +32,7 @@ export default function RegisterPage() {
         </div>
 
         <SignUp
+          fallbackRedirectUrl="/dashboard"
           appearance={{
             elements: {
               rootBox: "w-full",

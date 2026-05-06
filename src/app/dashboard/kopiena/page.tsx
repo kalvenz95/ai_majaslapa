@@ -8,7 +8,7 @@ export default async function KopienasPage() {
   const { userId } = await auth();
   const clerkUser = await currentUser();
 
-  const user = userId ? await prisma.user.findUnique({ where: { clerkId: userId } }) : null;
+  const user = userId ? await prisma.user.findUnique({ where: { clerkId: userId } }).catch(() => null) : null;
 
   const posts = await prisma.post.findMany({
     orderBy: [{ pinned: "desc" }, { createdAt: "desc" }],
@@ -17,15 +17,15 @@ export default async function KopienasPage() {
       author: { select: { id: true, name: true, avatarUrl: true } },
       _count: { select: { likes: true, comments: true } },
     },
-  });
+  }).catch(() => [] as any[]);
 
   let likedPostIds: string[] = [];
   if (user) {
     const likes = await prisma.postLike.findMany({
-      where: { userId: user.id, postId: { in: posts.map((p) => p.id) } },
+      where: { userId: user.id, postId: { in: posts.map((p: any) => p.id) } },
       select: { postId: true },
-    });
-    likedPostIds = likes.map((l) => l.postId);
+    }).catch(() => [] as any[]);
+    likedPostIds = likes.map((l: any) => l.postId);
   }
 
   const postsWithLiked = posts.map((p) => ({ ...p, liked: likedPostIds.includes(p.id) }));

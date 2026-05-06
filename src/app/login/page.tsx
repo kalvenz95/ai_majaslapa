@@ -36,6 +36,7 @@ export default function LoginPage() {
 
         {/* Clerk SignIn — pilna auth loģika (Google, Facebook, Microsoft, e-pasts) */}
         <SignIn
+          fallbackRedirectUrl="/dashboard"
           appearance={{
             elements: {
               rootBox: "w-full",
