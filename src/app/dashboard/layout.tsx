@@ -54,8 +54,8 @@ export default async function DashboardLayout({
     <div className="min-h-screen" style={{ background: "#05080F" }}>
       <StreakTracker />
       <Sidebar />
-      <main className="ml-60 min-h-screen">
-        <div className="max-w-5xl mx-auto px-6 py-8">{children}</div>
+      <main style={{ marginLeft: "var(--d-side-w, 220px)", minHeight: "100vh" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "32px 28px" }}>{children}</div>
       </main>
     </div>
   );
