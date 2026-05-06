@@ -9,15 +9,7 @@ export default async function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  let userId: string | null = null;
-
-  try {
-    const authResult = await auth();
-    userId = authResult.userId;
-  } catch {
-    redirect("/login");
-  }
-
+  const { userId } = await auth();
   if (!userId) redirect("/login");
 
   try {
