@@ -199,6 +199,7 @@ export default function Pricing() {
                 {/* CTA — checkout */}
                 <PricingCheckoutButton
                   plan={plan.id === "pamati" ? "PAMATI" : plan.id === "izaugsme" ? "IZAUGSME" : "MEISTARS"}
+                  href={plan.href}
                   label={plan.cta}
                   className="mt-auto w-full py-3.5 rounded-xl font-bold text-sm transition-all text-center block"
                   style={plan.highlight

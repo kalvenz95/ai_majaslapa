@@ -6,6 +6,7 @@ import { stripeApi } from "@/lib/api";
 
 interface PricingCheckoutButtonProps {
   plan: "PAMATI" | "IZAUGSME" | "MEISTARS";
+  href: string;
   label: string;
   style?: React.CSSProperties;
   className?: string;
@@ -15,6 +16,7 @@ interface PricingCheckoutButtonProps {
 
 export function PricingCheckoutButton({
   plan,
+  href,
   label,
   style,
   className,
@@ -27,7 +29,7 @@ export function PricingCheckoutButton({
 
   async function handleClick() {
     if (!isSignedIn) {
-      router.push(`/login?redirect=checkout&plan=${plan}`);
+      router.push(href);
       return;
     }
 
