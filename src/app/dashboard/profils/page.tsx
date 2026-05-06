@@ -49,7 +49,7 @@ export default async function ProfilsPage() {
           subscription: true,
           streak: true,
         },
-      })
+      }).catch(() => null)
     : null;
 
   const sub = user?.subscription;
@@ -60,12 +60,12 @@ export default async function ProfilsPage() {
         where: { published: true },
         orderBy: { order: "asc" },
         include: { lessons: { select: { id: true } } },
-      })
+      }).catch(() => [] as any[])
     : [];
 
   const progressData = await Promise.all(
     courses.map(async (course) => {
-      const p = user ? await getCourseProgress(user.id, course.id) : null;
+      const p = user ? await getCourseProgress(user.id, course.id).catch(() => null) : null;
       return { ...course, progress: p };
     })
   );
