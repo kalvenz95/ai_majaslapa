@@ -9,7 +9,31 @@ export default async function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { userId } = await auth();
+  let userId: string | null = null;
+  let authError: string | null = null;
+
+  try {
+    const result = await auth();
+    userId = result.userId;
+  } catch (e) {
+    authError = e instanceof Error ? `${e.name}: ${e.message}` : String(e);
+  }
+
+  if (authError) {
+    return (
+      <div style={{ background: "#050508", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", padding: 24 }}>
+        <div style={{ maxWidth: 560, width: "100%", textAlign: "center" }}>
+          <div style={{ fontSize: 48, marginBottom: 16 }}>🔑</div>
+          <h2 style={{ color: "#fff", fontWeight: 900, fontSize: 22, marginBottom: 12 }}>Autentifikācijas kļūda</h2>
+          <div style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.3)", borderRadius: 12, padding: 16, textAlign: "left", marginBottom: 20 }}>
+            <code style={{ color: "rgba(239,68,68,0.9)", fontSize: 12, wordBreak: "break-all", whiteSpace: "pre-wrap" }}>{authError}</code>
+          </div>
+          <a href="/" style={{ color: "#a855f7", fontSize: 14 }}>← Atpakaļ uz sākumlapu</a>
+        </div>
+      </div>
+    );
+  }
+
   if (!userId) redirect("/login");
 
   try {
@@ -23,7 +47,7 @@ export default async function DashboardLayout({
       }).catch(() => null);
     }
   } catch {
-    // DB nav pieejama — turpina bez lietotāja datu saglabāšanas
+    // DB nav pieejama
   }
 
   return (
