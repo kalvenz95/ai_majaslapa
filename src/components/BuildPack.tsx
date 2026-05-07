@@ -1,4 +1,5 @@
 "use client";
+import { MessageSquare, Mic2, Zap, ArrowRight } from "lucide-react";
 
 const buildModules = [
   {
@@ -6,7 +7,7 @@ const buildModules = [
     title: "Website Chatbot",
     price: "€250–€900",
     retainer: "€150/mēn",
-    icon: "🤖",
+    Icon: MessageSquare,
     steps: ["Veido chatbot demonstrāciju", "Pielāgo uzņēmuma balsij", "Uzstāda mājas lapā", "Apmāca klientu"],
   },
   {
@@ -14,7 +15,7 @@ const buildModules = [
     title: "WhatsApp + Voice Agents",
     price: "€400–€1800",
     retainer: "€250/mēn",
-    icon: "💬",
+    Icon: Mic2,
     steps: ["Uzstāda WhatsApp automatizāciju", "Izveido AI balss aģentu", "Integrē ar klienta numuru", "Testē un piegādā klientam"],
   },
   {
@@ -22,7 +23,7 @@ const buildModules = [
     title: "CRM Automatizācija",
     price: "€400–€1000",
     retainer: "€250/mēn",
-    icon: "⚡",
+    Icon: Zap,
     steps: ["Auditē klienta procesu", "Izveido workflow", "Testa periods", "Nodod un apmāca"],
   },
 ];
@@ -33,7 +34,6 @@ export default function BuildPack() {
       <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg, transparent, var(--line-2), transparent)" }} />
 
       <div style={{ maxWidth: 1120, margin: "0 auto" }}>
-        {/* Header */}
         <div style={{ textAlign: "center", marginBottom: 64 }}>
           <div className="chip chip-accent" style={{ marginBottom: 16 }}>Build Pakete</div>
           <h2 style={{ fontFamily: "Inter Tight, sans-serif", fontSize: "clamp(32px, 5vw, 48px)", fontWeight: 800, color: "var(--ink)", letterSpacing: "-0.03em", marginBottom: 16 }}>
@@ -46,13 +46,12 @@ export default function BuildPack() {
           </p>
         </div>
 
-        {/* Modules */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 16, marginBottom: 48 }}>
           {buildModules.map((mod) => (
             <div key={mod.num} className="card card-hover" style={{ padding: 24 }}>
               <div style={{ display: "flex", alignItems: "flex-start", gap: 16, marginBottom: 16 }}>
-                <div style={{ width: 48, height: 48, borderRadius: 14, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, flexShrink: 0, background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-                  {mod.icon}
+                <div style={{ width: 44, height: 44, borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, background: "color-mix(in oklab, var(--accent) 10%, transparent)", border: "1px solid color-mix(in oklab, var(--accent) 20%, transparent)" }}>
+                  <mod.Icon size={20} color="var(--accent)" />
                 </div>
                 <div>
                   <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -74,7 +73,6 @@ export default function BuildPack() {
               </div>
 
               <div style={{ height: 1, background: "var(--line)", marginBottom: 16 }} />
-
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                 <div>
                   <div style={{ fontSize: 11, color: "var(--ink-4)", marginBottom: 2, fontFamily: "JetBrains Mono, monospace" }}>Projekta cena</div>
@@ -89,9 +87,7 @@ export default function BuildPack() {
           ))}
         </div>
 
-        {/* Path comparison */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 16 }}>
-          {/* Beginner path */}
           <div className="card" style={{ padding: 24, borderColor: "color-mix(in oklab, var(--accent) 20%, transparent)" }}>
             <div className="chip chip-dot" style={{ marginBottom: 16, fontSize: 10 }}>⚡ Ātrais ceļš</div>
             <h4 style={{ fontFamily: "Inter Tight, sans-serif", fontWeight: 700, color: "var(--ink)", fontSize: 18, marginBottom: 8 }}>Pirmie €500 ar AI</h4>
@@ -99,7 +95,7 @@ export default function BuildPack() {
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
               {["AI Faceless Video", "AI Attēli sociālajiem medijiem", "Vienkāršs chatbot"].map((item) => (
                 <div key={item} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, color: "var(--ink-2)" }}>
-                  <span style={{ color: "var(--accent)", fontWeight: 700 }}>→</span> {item}
+                  <ArrowRight size={14} color="var(--accent)" /> {item}
                 </div>
               ))}
             </div>
@@ -109,7 +105,6 @@ export default function BuildPack() {
             </div>
           </div>
 
-          {/* Build path */}
           <div className="card" style={{ padding: 24, background: "color-mix(in oklab, var(--accent) 4%, var(--bg-1))", borderColor: "color-mix(in oklab, var(--accent) 25%, transparent)" }}>
             <div className="chip chip-accent" style={{ marginBottom: 16, fontSize: 10 }}>💎 Build Pakete</div>
             <h4 style={{ fontFamily: "Inter Tight, sans-serif", fontWeight: 700, color: "var(--ink)", fontSize: 18, marginBottom: 8 }}>Aģentūras ceļš</h4>
@@ -117,7 +112,7 @@ export default function BuildPack() {
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
               {["WhatsApp + Voice Agents", "Website Chatbot", "CRM automatizācija", "Ikmēneša support reteners"].map((item) => (
                 <div key={item} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, color: "var(--ink-2)" }}>
-                  <span style={{ color: "var(--accent)", fontWeight: 700 }}>→</span> {item}
+                  <ArrowRight size={14} color="var(--accent)" /> {item}
                 </div>
               ))}
             </div>

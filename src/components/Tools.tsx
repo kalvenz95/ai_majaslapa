@@ -1,73 +1,89 @@
 "use client";
 import { useState } from "react";
+import {
+  Bot, Zap, Film, Mic2, Megaphone, CreditCard,
+  MessageSquare, Search, PenTool, Edit3,
+  Link2, Plug, Database, FileText,
+  Palette, Video, User, Sparkles, Camera, Image, Flame,
+  Volume2, Mail, Phone, Smartphone,
+  TrendingUp, Calendar, Paintbrush, Target, Scissors,
+  ChevronDown,
+} from "lucide-react";
 
 const categories = [
   {
-    label: "🤖 AI Assistenti",
+    label: "AI Assistenti",
+    Icon: Bot,
     tools: [
-      { name: "ChatGPT", desc: "Skripting & Sales", icon: "💬" },
-      { name: "Claude", desc: "AI rakstīšana", icon: "🤖" },
-      { name: "Perplexity", desc: "AI Meklēšana", icon: "🔍" },
-      { name: "Jasper", desc: "Mārketinga teksti", icon: "🖊️" },
-      { name: "Copy.ai", desc: "AI Teksts", icon: "✍️" },
+      { name: "ChatGPT", desc: "Skripting & Sales", Icon: MessageSquare },
+      { name: "Claude", desc: "AI rakstīšana", Icon: Bot },
+      { name: "Perplexity", desc: "AI Meklēšana", Icon: Search },
+      { name: "Jasper", desc: "Mārketinga teksti", Icon: PenTool },
+      { name: "Copy.ai", desc: "AI Teksts", Icon: Edit3 },
     ],
   },
   {
-    label: "⚡ Automatizācija",
+    label: "Automatizācija",
+    Icon: Zap,
     tools: [
-      { name: "Make.com", desc: "Visual workflow", icon: "⚡" },
-      { name: "n8n", desc: "Workflow Builder", icon: "🔗" },
-      { name: "Zapier", desc: "App integrācijas", icon: "🔌" },
-      { name: "Airtable", desc: "Datu bāze", icon: "📊" },
-      { name: "Notion AI", desc: "AI Darbvieta", icon: "📝" },
+      { name: "Make.com", desc: "Visual workflow", Icon: Zap },
+      { name: "n8n", desc: "Workflow Builder", Icon: Link2 },
+      { name: "Zapier", desc: "App integrācijas", Icon: Plug },
+      { name: "Airtable", desc: "Datu bāze", Icon: Database },
+      { name: "Notion AI", desc: "AI Darbvieta", Icon: FileText },
     ],
   },
   {
-    label: "🎬 AI Video & Attēli",
+    label: "AI Video & Attēli",
+    Icon: Film,
     tools: [
-      { name: "Midjourney", desc: "AI Attēli", icon: "🎨" },
-      { name: "Runway", desc: "AI Video", icon: "🎬" },
-      { name: "HeyGen", desc: "Avatar Video", icon: "👤" },
-      { name: "Pika Labs", desc: "Video ģenerēšana", icon: "✨" },
-      { name: "Synthesia", desc: "Video avatāri", icon: "🎭" },
-      { name: "Sora", desc: "AI Video", icon: "🎥" },
-      { name: "Stable Diffusion", desc: "AI Attēli", icon: "🖼️" },
-      { name: "Adobe Firefly", desc: "AI Radošums", icon: "🔥" },
+      { name: "Midjourney", desc: "AI Attēli", Icon: Palette },
+      { name: "Runway", desc: "AI Video", Icon: Film },
+      { name: "HeyGen", desc: "Avatar Video", Icon: User },
+      { name: "Pika Labs", desc: "Video ģenerēšana", Icon: Sparkles },
+      { name: "Synthesia", desc: "Video avatāri", Icon: Video },
+      { name: "Sora", desc: "AI Video", Icon: Camera },
+      { name: "Stable Diffusion", desc: "AI Attēli", Icon: Image },
+      { name: "Adobe Firefly", desc: "AI Radošums", Icon: Flame },
     ],
   },
   {
-    label: "🔊 AI Balss & Chat",
+    label: "AI Balss & Chat",
+    Icon: Mic2,
     tools: [
-      { name: "Vapi", desc: "Voice Agents", icon: "🎙️" },
-      { name: "ElevenLabs", desc: "AI Balss", icon: "🔊" },
-      { name: "Manychat", desc: "Chat automācija", icon: "💌" },
-      { name: "Vonage", desc: "LV numuri", icon: "📞" },
-      { name: "Twilio", desc: "SMS & Zvani", icon: "📲" },
+      { name: "Vapi", desc: "Voice Agents", Icon: Mic2 },
+      { name: "ElevenLabs", desc: "AI Balss", Icon: Volume2 },
+      { name: "Manychat", desc: "Chat automācija", Icon: MessageSquare },
+      { name: "Vonage", desc: "LV numuri", Icon: Phone },
+      { name: "Twilio", desc: "SMS & Zvani", Icon: Smartphone },
     ],
   },
   {
-    label: "📣 Mārketings & SEO",
+    label: "Mārketings & SEO",
+    Icon: Megaphone,
     tools: [
-      { name: "Buffer", desc: "Sociālie tīkli", icon: "📱" },
-      { name: "Surfer SEO", desc: "SEO Optimizācija", icon: "🌊" },
-      { name: "ActiveCampaign", desc: "E-pasta mārketings", icon: "📧" },
-      { name: "Typeform", desc: "Viedās formas", icon: "📋" },
+      { name: "Buffer", desc: "Sociālie tīkli", Icon: Smartphone },
+      { name: "Surfer SEO", desc: "SEO Optimizācija", Icon: TrendingUp },
+      { name: "ActiveCampaign", desc: "E-pasta mārketings", Icon: Mail },
+      { name: "Typeform", desc: "Viedās formas", Icon: Target },
     ],
   },
   {
-    label: "💳 Bizness & Maksājumi",
+    label: "Bizness & Maksājumi",
+    Icon: CreditCard,
     tools: [
-      { name: "Stripe", desc: "Maksājumi", icon: "💳" },
-      { name: "Calendly", desc: "Tikšanās booking", icon: "📅" },
-      { name: "Canva AI", desc: "AI Dizains", icon: "🖌️" },
-      { name: "Figma AI", desc: "UI/UX Dizains", icon: "🎯" },
-      { name: "Descript", desc: "Audio/Video edit", icon: "✂️" },
+      { name: "Stripe", desc: "Maksājumi", Icon: CreditCard },
+      { name: "Calendly", desc: "Tikšanās booking", Icon: Calendar },
+      { name: "Canva AI", desc: "AI Dizains", Icon: Paintbrush },
+      { name: "Figma AI", desc: "UI/UX Dizains", Icon: Target },
+      { name: "Descript", desc: "Audio/Video edit", Icon: Scissors },
     ],
   },
 ];
 
-const row1 = categories.flatMap((c) => c.tools).slice(0, 16);
-const row2 = categories.flatMap((c) => c.tools).slice(16);
+const allTools = categories.flatMap((c) => c.tools);
+const row1 = allTools.slice(0, 16);
+const row2 = allTools.slice(16);
 
 export default function Tools() {
   const [open, setOpen] = useState<number | null>(null);
@@ -91,39 +107,45 @@ export default function Tools() {
           {categories.map((cat, i) => {
             const isOpen = open === i;
             return (
-              <div
-                key={i}
-                className="card"
-                style={{
-                  overflow: "hidden",
-                  borderColor: isOpen ? "var(--line-2)" : "var(--line)",
-                  background: isOpen ? "var(--bg-2)" : "var(--bg-1)",
-                  transition: "background 0.2s ease, border-color 0.2s ease",
-                }}
-              >
+              <div key={i} className="card" style={{
+                overflow: "hidden",
+                borderColor: isOpen ? "var(--line-2)" : "var(--line)",
+                background: isOpen ? "var(--bg-2)" : "var(--bg-1)",
+                transition: "background 0.2s ease, border-color 0.2s ease",
+              }}>
                 <button
                   onClick={() => setOpen(isOpen ? null : i)}
-                  style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "16px 20px", textAlign: "left", background: "none", border: "none", cursor: "pointer" }}
+                  style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 18px", textAlign: "left", background: "none", border: "none", cursor: "pointer" }}
                 >
-                  <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                    <div style={{ width: 6, height: 6, borderRadius: 999, background: isOpen ? "var(--accent)" : "var(--ink-4)", flexShrink: 0 }} />
+                  <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                    <div style={{
+                      width: 28, height: 28, borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
+                      background: isOpen ? "color-mix(in oklab, var(--accent) 12%, transparent)" : "var(--bg-3)",
+                      border: `1px solid ${isOpen ? "color-mix(in oklab, var(--accent) 20%, transparent)" : "var(--line)"}`,
+                      transition: "background 0.2s, border-color 0.2s",
+                    }}>
+                      <cat.Icon size={14} color={isOpen ? "var(--accent)" : "var(--ink-3)"} />
+                    </div>
                     <span style={{ color: "var(--ink)", fontWeight: 600, fontSize: 14 }}>{cat.label}</span>
                     <span className="chip" style={{ fontSize: 10, padding: "2px 8px" }}>{cat.tools.length}</span>
                   </div>
-                  <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" strokeWidth={2}
-                    style={{ flexShrink: 0, transform: isOpen ? "rotate(180deg)" : "none", transition: "transform 0.3s ease" }}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                  </svg>
+                  <ChevronDown size={16} color="var(--ink-3)"
+                    style={{ flexShrink: 0, transform: isOpen ? "rotate(180deg)" : "none", transition: "transform 0.3s ease" }} />
                 </button>
 
                 <div style={{ maxHeight: isOpen ? `${cat.tools.length * 52 + 16}px` : "0px", overflow: "hidden", transition: "max-height 0.4s ease" }}>
                   <div style={{ padding: "0 12px 12px", display: "flex", flexDirection: "column", gap: 4 }}>
                     {cat.tools.map((tool) => (
                       <div key={tool.name} style={{ display: "flex", alignItems: "center", gap: 12, padding: "10px 12px", borderRadius: 10, background: "var(--bg-3)" }}>
-                        <span style={{ fontSize: 16, width: 28, textAlign: "center" }}>{tool.icon}</span>
+                        <div style={{
+                          width: 28, height: 28, borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
+                          background: "var(--bg-2)", border: "1px solid var(--line)",
+                        }}>
+                          <tool.Icon size={14} color="var(--ink-2)" />
+                        </div>
                         <div style={{ flex: 1 }}>
-                          <div style={{ fontSize: 14, fontWeight: 600, color: "var(--ink)" }}>{tool.name}</div>
-                          <div style={{ fontSize: 12, color: "var(--ink-3)" }}>{tool.desc}</div>
+                          <div style={{ fontSize: 13, fontWeight: 600, color: "var(--ink)" }}>{tool.name}</div>
+                          <div style={{ fontSize: 11, color: "var(--ink-3)" }}>{tool.desc}</div>
                         </div>
                         <div style={{ width: 5, height: 5, borderRadius: 999, background: "var(--accent)", opacity: 0.5, flexShrink: 0 }} />
                       </div>
@@ -141,11 +163,11 @@ export default function Tools() {
         <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 96, background: "linear-gradient(to right, var(--bg), transparent)", zIndex: 10, pointerEvents: "none" }} />
         <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: 96, background: "linear-gradient(to left, var(--bg), transparent)", zIndex: 10, pointerEvents: "none" }} />
 
-        <div style={{ overflow: "hidden", marginBottom: 12 }}>
-          <div style={{ display: "flex", gap: 10, whiteSpace: "nowrap", width: "max-content", animation: "marqueeScroll 22s linear infinite" }}>
+        <div style={{ overflow: "hidden", marginBottom: 10 }}>
+          <div style={{ display: "flex", gap: 8, whiteSpace: "nowrap", width: "max-content", animation: "marqueeScroll 22s linear infinite" }}>
             {[...row1, ...row1].map((tool, i) => (
               <div key={i} style={{ display: "flex", alignItems: "center", gap: 8, padding: "8px 14px", borderRadius: 10, border: "1px solid var(--line)", background: "var(--bg-1)", flexShrink: 0 }}>
-                <span style={{ fontSize: 14 }}>{tool.icon}</span>
+                <tool.Icon size={13} color="var(--ink-3)" />
                 <span style={{ fontSize: 12, fontWeight: 500, color: "var(--ink-2)", fontFamily: "JetBrains Mono, monospace" }}>{tool.name}</span>
               </div>
             ))}
@@ -153,10 +175,10 @@ export default function Tools() {
         </div>
 
         <div style={{ overflow: "hidden" }}>
-          <div style={{ display: "flex", gap: 10, whiteSpace: "nowrap", width: "max-content", animation: "marqueeReverse 18s linear infinite" }}>
+          <div style={{ display: "flex", gap: 8, whiteSpace: "nowrap", width: "max-content", animation: "marqueeReverse 18s linear infinite" }}>
             {[...row2, ...row2].map((tool, i) => (
               <div key={i} style={{ display: "flex", alignItems: "center", gap: 8, padding: "8px 14px", borderRadius: 10, border: "1px solid var(--line)", background: "var(--bg-1)", flexShrink: 0 }}>
-                <span style={{ fontSize: 14 }}>{tool.icon}</span>
+                <tool.Icon size={13} color="var(--ink-3)" />
                 <span style={{ fontSize: 12, fontWeight: 500, color: "var(--ink-2)", fontFamily: "JetBrains Mono, monospace" }}>{tool.name}</span>
               </div>
             ))}
