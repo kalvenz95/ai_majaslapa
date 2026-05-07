@@ -212,31 +212,6 @@ export default function CourseDetailPage() {
 
   return (
     <div style={{ background: "#050508", minHeight: "100vh", color: "#fff", fontFamily: "'Inter', sans-serif" }}>
-      <style>{`
-        @media (max-width: 768px) {
-          .course-sidebar { display: none !important; }
-          .course-sidebar.open { display: flex !important; position: fixed; inset: 0; z-index: 200; width: 100% !important; height: 100vh; }
-          .course-layout { height: auto !important; min-height: calc(100vh - 56px); }
-          .course-main { overflow-y: visible !important; }
-          .course-hero { padding: 24px 16px 20px !important; }
-          .course-tabs { padding: 0 12px !important; }
-          .course-content { padding: 24px 16px !important; }
-          .grid-3 { grid-template-columns: 1fr !important; }
-          .grid-2 { grid-template-columns: 1fr !important; }
-          .grid-2-fixed { grid-template-columns: 1fr !important; }
-          .hero-h1 { font-size: 26px !important; }
-          .hero-desc { font-size: 14px !important; }
-          .stat-row { gap: 12px !important; }
-          .earn-display { margin-left: 0 !important; }
-          .sidebar-overlay-bg { display: block; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 199; }
-          .mobile-sidebar-btn { display: flex !important; }
-          .lesson-pad { padding: 24px 16px !important; }
-        }
-        @media (min-width: 769px) {
-          .sidebar-overlay-bg { display: none; }
-          .mobile-sidebar-btn { display: none !important; }
-        }
-      `}</style>
 
       {/* ── Top Navbar ── */}
       <nav

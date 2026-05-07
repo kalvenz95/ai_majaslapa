@@ -174,14 +174,14 @@ export default function DigitaalaisSpecialistsPage() {
       </div>
 
       {/* Main content */}
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "48px 24px", display: "grid", gridTemplateColumns: "1fr 340px", gap: 40, alignItems: "start" }}>
+      <div className="course-grid-main" style={{ maxWidth: 1200, margin: "0 auto", padding: "48px 24px", display: "grid", gridTemplateColumns: "1fr 340px", gap: 40, alignItems: "start" }}>
 
         {/* LEFT */}
         <div>
           {/* Ko tu iemācīsies */}
           <div style={{ background: "rgba(13,13,26,0.9)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 20, padding: "28px 32px", marginBottom: 32 }}>
             <h2 style={{ fontSize: 18, fontWeight: 800, marginBottom: 20 }}>Ko tu iemācīsies</h2>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px 24px" }}>
+            <div className="grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px 24px" }}>
               {PLAN.learn.map(item => (
                 <div key={item} style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style={{ marginTop: 2, flexShrink: 0 }}>
@@ -337,16 +337,6 @@ export default function DigitaalaisSpecialistsPage() {
         </div>
       </div>
 
-      <style>{`
-        @media (max-width: 768px) {
-          div[style*="gridTemplateColumns: 1fr 340px"] {
-            grid-template-columns: 1fr !important;
-          }
-          div[style*="gridTemplateColumns: 1fr 1fr"] {
-            grid-template-columns: 1fr !important;
-          }
-        }
-      `}</style>
     </div>
   );
 }
