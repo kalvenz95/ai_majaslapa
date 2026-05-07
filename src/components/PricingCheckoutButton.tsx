@@ -36,8 +36,15 @@ export function PricingCheckoutButton({
     setLoading(true);
     try {
       const { url } = await stripeApi.createCheckout(plan);
-      window.location.href = url;
+      if (url) {
+        window.location.href = url;
+      } else {
+        router.push(href);
+        setLoading(false);
+      }
     } catch {
+      // Stripe nav konfigurēts vai DB kļūda — virzi uz kursa lapu
+      router.push(href);
       setLoading(false);
     }
   }
