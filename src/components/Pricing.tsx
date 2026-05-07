@@ -82,7 +82,7 @@ export default function Pricing() {
           <div className="chip chip-dot" style={{ marginBottom: 16 }}>
             💎 <E id="pricing-badge">Pakas</E>
           </div>
-          <h2 style={{ fontFamily: "Inter Tight, sans-serif", fontSize: "clamp(32px, 5vw, 48px)", fontWeight: 800, color: "var(--ink)", letterSpacing: "-0.03em", marginBottom: 16 }}>
+          <h2 style={{ fontFamily: "Inter Tight, sans-serif", fontSize: "clamp(32px, 5vw, 48px)", fontWeight: 600, color: "var(--ink)", letterSpacing: "-0.03em", marginBottom: 16 }}>
             <E id="pricing-h2">Izvēlies savu</E>{" "}
             <span style={{ color: "var(--accent)" }}><E id="pricing-h2-accent">ceļu</E></span>
           </h2>
@@ -115,7 +115,7 @@ export default function Pricing() {
                   <div style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 12, fontWeight: 700, color: "var(--accent)", marginBottom: 6 }}>
                     €{plan.price}/mēn
                   </div>
-                  <h3 style={{ fontFamily: "Inter Tight, sans-serif", fontSize: 20, fontWeight: 800, color: "var(--ink)", marginBottom: 4, letterSpacing: "-0.01em" }}>
+                  <h3 style={{ fontFamily: "Inter Tight, sans-serif", fontSize: 20, fontWeight: 600, color: "var(--ink)", marginBottom: 4, letterSpacing: "-0.01em" }}>
                     <E id={`plan-${plan.id}-name`}>{plan.name}</E>
                   </h3>
                   <p style={{ fontSize: 13, color: "var(--ink-3)" }}>

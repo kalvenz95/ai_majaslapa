@@ -21,7 +21,7 @@ export default function Footer() {
                 display: "grid", placeItems: "center",
                 fontWeight: 800, fontSize: 16, fontFamily: "Inter Tight, sans-serif",
               }}>C</div>
-              <span style={{ fontFamily: "Inter Tight, sans-serif", fontWeight: 800, fontSize: 18, letterSpacing: "-0.02em", color: "var(--ink)" }}>Chademy</span>
+              <span className="font-display" style={{ fontSize: 18, color: "var(--ink)" }}>Chademy</span>
             </div>
             <p style={{ color: "var(--ink-3)", fontSize: 14, lineHeight: 1.6, maxWidth: 260 }}>
               <E id="footer-brand-desc">Latvijas pirmā praktiskā AI monetizācijas platforma. Iemācies, izveido, pārdod.</E>

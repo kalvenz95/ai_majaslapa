@@ -93,7 +93,7 @@ export default function Tools() {
       <div style={{ maxWidth: 640, margin: "0 auto", padding: "0 24px" }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>
           <div className="chip chip-dot" style={{ marginBottom: 16 }}>🛠️ Rīki</div>
-          <h2 style={{ fontFamily: "Inter Tight, sans-serif", fontSize: "clamp(28px,4vw,40px)", fontWeight: 800, color: "var(--ink)", letterSpacing: "-0.02em", marginBottom: 12 }}>
+          <h2 style={{ fontFamily: "Inter Tight, sans-serif", fontSize: "clamp(28px,4vw,40px)", fontWeight: 600, color: "var(--ink)", letterSpacing: "-0.02em", marginBottom: 12 }}>
             Rīki, kurus{" "}
             <span style={{ color: "var(--accent)" }}>izmantosi kursā</span>
           </h2>

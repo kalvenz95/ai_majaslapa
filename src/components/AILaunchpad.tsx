@@ -17,7 +17,7 @@ export default function AILaunchpad() {
           {/* Header */}
           <div style={{ textAlign: "center", marginBottom: 40 }}>
             <div className="chip chip-dot" style={{ marginBottom: 16 }}>💰 Ienākumu piemērs</div>
-            <h2 style={{ fontFamily: "Inter Tight, sans-serif", fontSize: "clamp(26px, 4vw, 40px)", fontWeight: 800, color: "var(--ink)", letterSpacing: "-0.02em", marginBottom: 12 }}>
+            <h2 style={{ fontFamily: "Inter Tight, sans-serif", fontSize: "clamp(26px, 4vw, 40px)", fontWeight: 600, color: "var(--ink)", letterSpacing: "-0.02em", marginBottom: 12 }}>
               2–3 klienti var izskatīties šādi
             </h2>
             <p style={{ color: "var(--ink-3)", fontSize: 15, maxWidth: 400, margin: "0 auto" }}>

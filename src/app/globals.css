@@ -52,9 +52,9 @@ html {
 }
 
 body {
-  background: var(--bg);
+  background: #050505;
   color: var(--ink);
-  font-family: 'Inter', system-ui, -apple-system, Helvetica, sans-serif;
+  font-family: 'Inter Tight', 'Inter', system-ui, -apple-system, Helvetica, sans-serif;
   font-feature-settings: "ss01", "cv11";
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -69,7 +69,7 @@ a { color: inherit; text-decoration: none; }
 
 /* ── Typography ─────────────────────────────────────────────────── */
 .font-mono { font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; }
-.font-display { font-family: 'Inter Tight', 'Inter', system-ui, sans-serif; font-weight: 700; letter-spacing: -0.02em; }
+.font-display { font-family: 'Inter Tight', 'Inter', system-ui, sans-serif; font-weight: 600; letter-spacing: -0.02em; }
 
 /* ── Core atoms ─────────────────────────────────────────────────── */
 .chip {
@@ -84,7 +84,7 @@ a { color: inherit; text-decoration: none; }
   background: var(--accent);
   color: var(--accent-ink);
   border-color: var(--accent);
-  font-weight: 700;
+  font-weight: 600;
 }
 .chip-dot::before {
   content: ""; width: 6px; height: 6px; border-radius: 999px;
@@ -116,8 +116,8 @@ a { color: inherit; text-decoration: none; }
 .btn-primary {
   background: var(--accent);
   color: var(--accent-ink);
-  font-weight: 700;
-  padding: 14px 20px;
+  font-weight: 600;
+  padding: 14px 18px;
   border-radius: 14px;
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   font-size: 15px; letter-spacing: -0.01em;
@@ -252,7 +252,7 @@ a { color: inherit; text-decoration: none; }
 
 /* ── Metric numbers ──────────────────────────────────────────────── */
 .metric {
-  font-family: 'Inter Tight', sans-serif; font-weight: 700;
+  font-family: 'Inter Tight', sans-serif; font-weight: 600;
   letter-spacing: -0.04em; line-height: 0.95;
   font-variant-numeric: tabular-nums;
 }
@@ -302,12 +302,12 @@ a { color: inherit; text-decoration: none; }
 
 .d-metric {
   font-family: 'Inter Tight', 'Inter', sans-serif;
-  font-weight: 700; letter-spacing: -0.04em;
+  font-weight: 600; letter-spacing: -0.04em;
   font-variant-numeric: tabular-nums;
 }
 .d-display {
   font-family: 'Inter Tight', 'Inter', sans-serif;
-  font-weight: 800; letter-spacing: -0.03em;
+  font-weight: 600; letter-spacing: -0.03em;
 }
 .d-mono {
   font-family: 'JetBrains Mono', 'Fira Mono', monospace; font-weight: 500;

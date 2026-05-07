@@ -70,7 +70,7 @@ export default function Testimonials() {
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: 40 }}>
           <div className="chip chip-dot" style={{ marginBottom: 16 }}>🏆 Reāli piemēri</div>
-          <h2 style={{ fontFamily: "Inter Tight, sans-serif", fontSize: "clamp(28px,4vw,40px)", fontWeight: 800, color: "var(--ink)", letterSpacing: "-0.02em", marginBottom: 12 }}>
+          <h2 style={{ fontFamily: "Inter Tight, sans-serif", fontSize: "clamp(28px,4vw,40px)", fontWeight: 600, color: "var(--ink)", letterSpacing: "-0.02em", marginBottom: 12 }}>
             Cilvēki, kas jau{" "}
             <span style={{ color: "var(--accent)" }}>strādā ar šiem pakalpojumiem</span>
           </h2>

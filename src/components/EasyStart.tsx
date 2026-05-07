@@ -45,7 +45,7 @@ export default function EasyStart() {
         </div>
 
         {/* Title */}
-        <h2 style={{ textAlign: "center", fontFamily: "Inter Tight, sans-serif", fontWeight: 800, color: "var(--ink)", letterSpacing: "-0.03em", lineHeight: 1.15, marginBottom: 32, fontSize: "clamp(24px, 3.5vw, 40px)" }}>
+        <h2 style={{ textAlign: "center", fontFamily: "Inter Tight, sans-serif", fontWeight: 600, color: "var(--ink)", letterSpacing: "-0.03em", lineHeight: 1.15, marginBottom: 32, fontSize: "clamp(24px, 3.5vw, 40px)" }}>
           Nav jābūt <span style={{ color: "var(--accent)" }}>tehniskam,</span> lai sāktu
         </h2>
 
@@ -73,7 +73,7 @@ export default function EasyStart() {
               transform: visible ? "translateY(0)" : "translateY(16px)",
               transition: `opacity 0.5s ease ${0.2 + i * 0.12}s, transform 0.5s ease ${0.2 + i * 0.12}s`,
             }}>
-              <span style={{ color: "var(--accent)", fontWeight: 800, fontSize: 12 }}>{f.icon}</span>
+              <span style={{ color: "var(--accent)", fontWeight: 600, fontSize: 12 }}>{f.icon}</span>
               <span style={{ fontSize: 14, fontWeight: 500, color: "var(--ink-2)" }}>{f.title}</span>
             </div>
           ))}

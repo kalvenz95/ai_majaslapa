@@ -19,7 +19,7 @@ export default function Home() {
       <div className="fixed inset-0" style={{ zIndex: 0, pointerEvents: "none" }}>
         <div style={{
           position: "absolute", inset: 0,
-          background: "radial-gradient(ellipse 80% 50% at 15% 0%, color-mix(in oklab, var(--accent) 6%, transparent), transparent 60%), radial-gradient(ellipse 60% 40% at 85% 100%, color-mix(in oklab, var(--accent) 3%, transparent), transparent 55%)",
+          background: "radial-gradient(ellipse 70% 45% at 15% 0%, rgba(198,255,61,0.04), transparent 55%), radial-gradient(ellipse 55% 35% at 85% 100%, rgba(198,255,61,0.02), transparent 50%)",
         }} />
       </div>
 

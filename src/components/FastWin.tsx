@@ -23,7 +23,7 @@ export default function FastWin() {
         </div>
 
         <div className="chip chip-dot" style={{ marginBottom: 20 }}>🚀 Ceļvedis</div>
-        <h2 style={{ fontFamily: "Inter Tight, sans-serif", fontSize: "clamp(32px,5vw,48px)", fontWeight: 800, color: "var(--ink)", letterSpacing: "-0.03em", marginBottom: 20 }}>
+        <h2 style={{ fontFamily: "Inter Tight, sans-serif", fontSize: "clamp(32px,5vw,48px)", fontWeight: 600, color: "var(--ink)", letterSpacing: "-0.03em", marginBottom: 20 }}>
           No nulles līdz <span style={{ color: "var(--accent)" }}>pirmajam klientam</span>
         </h2>
         <p style={{ color: "var(--ink-3)", fontSize: 17, marginBottom: 56, maxWidth: 500, margin: "0 auto 56px", lineHeight: 1.6 }}>

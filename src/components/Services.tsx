@@ -43,7 +43,7 @@ export default function Services() {
       <div style={{ maxWidth: 960, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 56 }}>
           <div className="chip chip-dot" style={{ marginBottom: 16 }}>🎯 Virzieni</div>
-          <h2 style={{ fontFamily: "Inter Tight, sans-serif", fontSize: "clamp(32px,5vw,48px)", fontWeight: 800, color: "var(--ink)", letterSpacing: "-0.03em", marginBottom: 16 }}>
+          <h2 style={{ fontFamily: "Inter Tight, sans-serif", fontSize: "clamp(32px,5vw,48px)", fontWeight: 600, color: "var(--ink)", letterSpacing: "-0.03em", marginBottom: 16 }}>
             Izvēlies savu <span style={{ color: "var(--accent)" }}>virzienu</span>
           </h2>
           <p style={{ color: "var(--ink-3)", fontSize: 16, maxWidth: 480, margin: "0 auto", lineHeight: 1.6 }}>

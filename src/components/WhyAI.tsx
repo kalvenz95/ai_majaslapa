@@ -20,7 +20,7 @@ export default function WhyAI() {
           <div className="chip chip-dot">AI prasmes biznesam</div>
         </div>
 
-        <h2 style={{ textAlign: "center", fontFamily: "Inter Tight, sans-serif", fontWeight: 800, letterSpacing: "-0.03em", lineHeight: 1.15, color: "var(--ink)", marginBottom: 40, fontSize: "clamp(26px, 4vw, 44px)" }}>
+        <h2 style={{ textAlign: "center", fontFamily: "Inter Tight, sans-serif", fontWeight: 600, letterSpacing: "-0.03em", lineHeight: 1.15, color: "var(--ink)", marginBottom: 40, fontSize: "clamp(26px, 4vw, 44px)" }}>
           Apgūsti prasmes,{" "}
           <span style={{ color: "var(--accent)" }}>kas uzņēmumiem šobrīd ir vajadzīgas</span>
         </h2>

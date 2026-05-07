@@ -23,7 +23,7 @@ export default function CTA() {
       <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center", position: "relative" }}>
         <div className="chip chip-dot" style={{ marginBottom: 24 }}>🚀 Sāc šodien</div>
 
-        <h2 style={{ fontFamily: "Inter Tight, sans-serif", fontSize: "clamp(36px,6vw,60px)", fontWeight: 800, color: "var(--ink)", letterSpacing: "-0.03em", lineHeight: 1.05, marginBottom: 24 }}>
+        <h2 style={{ fontFamily: "Inter Tight, sans-serif", fontSize: "clamp(36px,6vw,60px)", fontWeight: 600, color: "var(--ink)", letterSpacing: "-0.03em", lineHeight: 1.05, marginBottom: 24 }}>
           Tavs pirmais klients{" "}
           <span style={{ color: "var(--accent)" }}>sākas šeit</span>
         </h2>
