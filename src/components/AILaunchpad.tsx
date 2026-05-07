@@ -1,94 +1,53 @@
 "use client";
 
 const incomeBlocks = [
-  {
-    icon: "📱",
-    service: "Sociālie tīkli",
-    range: "€800–€1 600",
-    period: "/ mēn",
-    color: "#a855f7",
-    border: "rgba(168,85,247,0.22)",
-    bg: "rgba(168,85,247,0.06)",
-  },
-  {
-    icon: "💬",
-    service: "WhatsApp automatizācija",
-    range: "€1 000–€2 000",
-    period: "/ mēn",
-    color: "#00d4ff",
-    border: "rgba(0,212,255,0.22)",
-    bg: "rgba(0,212,255,0.06)",
-  },
-  {
-    icon: "📞",
-    service: "Balss aģenti",
-    range: "€1 000–€3 000+",
-    period: "/ mēn",
-    color: "#00ff88",
-    border: "rgba(0,255,136,0.22)",
-    bg: "rgba(0,255,136,0.06)",
-  },
+  { icon: "📱", service: "Sociālie tīkli", range: "€800–€1 600", period: "/ mēn" },
+  { icon: "💬", service: "WhatsApp automatizācija", range: "€1 000–€2 000", period: "/ mēn" },
+  { icon: "📞", service: "Balss aģenti", range: "€1 000–€3 000+", period: "/ mēn" },
 ];
 
 export default function AILaunchpad() {
   return (
-    <section className="py-20 px-6 relative overflow-hidden">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+    <section style={{ padding: "80px 24px", position: "relative", overflow: "hidden" }}>
+      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg, transparent, var(--line-2), transparent)" }} />
 
-      <div className="max-w-4xl mx-auto">
-        <div
-          className="rounded-3xl p-8 md:p-12"
-          style={{
-            background: "linear-gradient(135deg, #0d0d1a, #0f0f20)",
-            border: "1px solid rgba(255,255,255,0.07)",
-          }}
-        >
+      <div style={{ maxWidth: 880, margin: "0 auto" }}>
+        <div className="card" style={{ padding: "clamp(32px, 6vw, 64px)", borderColor: "color-mix(in oklab, var(--accent) 15%, transparent)" }}>
+
           {/* Header */}
-          <div className="text-center mb-10">
-            <div className="badge-neon mb-4 inline-block">💰 Ienākumu piemērs</div>
-            <h2 className="text-3xl md:text-4xl font-black text-white mb-3" style={{ letterSpacing: "-0.02em" }}>
+          <div style={{ textAlign: "center", marginBottom: 40 }}>
+            <div className="chip chip-dot" style={{ marginBottom: 16 }}>💰 Ienākumu piemērs</div>
+            <h2 style={{ fontFamily: "Inter Tight, sans-serif", fontSize: "clamp(26px, 4vw, 40px)", fontWeight: 800, color: "var(--ink)", letterSpacing: "-0.02em", marginBottom: 12 }}>
               2–3 klienti var izskatīties šādi
             </h2>
-            <p className="text-gray-500 text-base max-w-md mx-auto">
+            <p style={{ color: "var(--ink-3)", fontSize: 15, maxWidth: 400, margin: "0 auto" }}>
               Šie ir pakalpojumi, par kuriem uzņēmumi jau maksā šodien.
             </p>
           </div>
 
           {/* Income cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-            {incomeBlocks.map((block) => (
-              <div
-                key={block.service}
-                className="rounded-2xl p-6 text-center transition-all duration-300"
-                style={{ background: block.bg, border: `1px solid ${block.border}` }}
-              >
-                <div className="text-3xl mb-3">{block.icon}</div>
-                <div className="text-xs text-gray-500 uppercase tracking-widest mb-3 font-semibold">
-                  {block.service}
-                </div>
-                <div
-                  className="font-black leading-none mb-1"
-                  style={{ color: block.color, fontSize: "clamp(22px, 3.5vw, 36px)", wordBreak: "keep-all", whiteSpace: "nowrap" }}
-                >
-                  {block.range}
-                </div>
-                <div className="text-gray-500 text-sm">{block.period}</div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 12, marginBottom: 32 }}>
+            {incomeBlocks.map((block, i) => (
+              <div key={block.service} style={{ padding: 24, textAlign: "center", background: "var(--bg-2)", border: "1px solid var(--line)", borderRadius: 14 }}>
+                <div style={{ fontSize: 32, marginBottom: 12 }}>{block.icon}</div>
+                <div style={{ fontSize: 11, color: "var(--ink-4)", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 12, fontFamily: "JetBrains Mono, monospace" }}>{block.service}</div>
+                <div className="metric" style={{ color: "var(--accent)", fontSize: "clamp(20px, 3vw, 32px)", whiteSpace: "nowrap", marginBottom: 4 }}>{block.range}</div>
+                <div style={{ color: "var(--ink-3)", fontSize: 13 }}>{block.period}</div>
               </div>
             ))}
           </div>
 
-          {/* Summary text */}
-          <div className="text-center mb-4 space-y-2">
-            <p className="text-gray-300 text-base font-medium">
+          {/* Summary */}
+          <div style={{ textAlign: "center", marginBottom: 16 }}>
+            <p style={{ color: "var(--ink-2)", fontSize: 15, fontWeight: 500 }}>
               Šie ir pakalpojumi, kurus uzņēmumi jau šobrīd meklē.
             </p>
-            <p className="text-gray-400 text-sm">
+            <p style={{ color: "var(--ink-3)", fontSize: 14, marginTop: 8 }}>
               Tu apgūsti, kā tos izveidot un piedāvāt praksē.
             </p>
           </div>
 
-          {/* Disclaimer */}
-          <p className="text-center text-xs text-gray-600 max-w-lg mx-auto leading-relaxed">
+          <p style={{ textAlign: "center", fontSize: 11, color: "var(--ink-4)", maxWidth: 480, margin: "0 auto", lineHeight: 1.6, fontFamily: "JetBrains Mono, monospace" }}>
             Rezultāti nav garantēti. Ienākumi atkarīgi no ieguldītā darba, piedāvājuma un klientu piesaistes.
           </p>
         </div>

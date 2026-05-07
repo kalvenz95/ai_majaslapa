@@ -102,12 +102,12 @@ export function Sidebar() {
       <Link href="/" style={{ display: "flex", alignItems: "center", gap: 9, textDecoration: "none", marginBottom: 28, padding: "0 4px" }}>
         <div style={{
           width: 30, height: 30, borderRadius: 8,
-          background: "linear-gradient(135deg, #00ff88, #00d4ff)",
+          background: "var(--accent)", color: "var(--accent-ink)",
           display: "flex", alignItems: "center", justifyContent: "center",
-          fontSize: 14, fontWeight: 900, color: "#000", flexShrink: 0,
+          fontSize: 14, fontWeight: 900, flexShrink: 0,
           fontFamily: "'Inter Tight', sans-serif",
         }}>C</div>
-        <span style={{ fontFamily: "'Inter Tight', sans-serif", fontWeight: 800, fontSize: 17, letterSpacing: "-0.02em", color: "#fff" }}>
+        <span style={{ fontFamily: "'Inter Tight', sans-serif", fontWeight: 800, fontSize: 17, letterSpacing: "-0.02em", color: "var(--ink)" }}>
           Chademy
         </span>
       </Link>
@@ -150,18 +150,13 @@ export function Sidebar() {
       {/* Bottom — upgrade card + user */}
       <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
         {/* Upgrade card */}
-        <div style={{
-          background: "rgba(0,255,136,0.05)",
-          border: "1px solid rgba(0,255,136,0.12)",
-          borderRadius: 12,
-          padding: "12px 14px",
-        }}>
+        <div className="card" style={{ padding: "12px 14px", borderColor: "color-mix(in oklab, var(--accent) 20%, transparent)" }}>
           <span className="d-chip d-chip-accent" style={{ marginBottom: 8, display: "inline-flex" }}>BUILD</span>
-          <div style={{ fontSize: 12, fontWeight: 600, color: "#fff", marginBottom: 4 }}>Pāriet uz Build paketi</div>
-          <div style={{ fontSize: 11, color: "var(--d-ink3)", lineHeight: 1.4, marginBottom: 10 }}>1:1 zvani + proposal review</div>
+          <div style={{ fontSize: 12, fontWeight: 600, color: "var(--ink)", marginBottom: 4 }}>Pāriet uz Build paketi</div>
+          <div style={{ fontSize: 11, color: "var(--ink-3)", lineHeight: 1.4, marginBottom: 10 }}>1:1 zvani + proposal review</div>
           <Link href="/#pricing" style={{
             display: "block", textAlign: "center",
-            background: "#00ff88", color: "#000",
+            background: "var(--accent)", color: "var(--accent-ink)",
             borderRadius: 8, padding: "7px 10px",
             fontSize: 11, fontWeight: 700, textDecoration: "none",
           }}>

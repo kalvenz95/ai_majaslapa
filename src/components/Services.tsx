@@ -3,132 +3,98 @@ import Link from "next/link";
 
 const directions = [
   {
-    icon: "📱",
+    num: "01",
     title: "Sociālo tīklu pārvaldība",
     desc: "Veido video, vizuāļus un reklāmas saturu uzņēmumiem.",
     tags: ["AI video", "Reklāmas vizuāļi", "Postu dizains"],
     earn: "€300–€800/mēn",
     level: "Iesācējs",
-    levelColor: "#00ff88",
-    color: "#a855f7",
-    border: "rgba(168,85,247,0.22)",
-    glow: "rgba(168,85,247,0.12)",
-    glowHover: "rgba(168,85,247,0.2)",
     link: "/kursi/satura-specialists",
   },
   {
-    icon: "🌐",
+    num: "02",
     title: "Mājaslapas & automatizācija",
     desc: "Izveido modernu mājaslapu un automatizē klientu pieteikumus.",
     tags: ["Mājaslapas", "Klientu pieteikumi", "Automatizācija"],
     earn: "€500–€1500+",
     level: "Vidējs",
-    levelColor: "#00d4ff",
-    color: "#00d4ff",
-    border: "rgba(0,212,255,0.22)",
-    glow: "rgba(0,212,255,0.10)",
-    glowHover: "rgba(0,212,255,0.18)",
     link: "/kursi/digitalais-specialists",
   },
   {
-    icon: "📞",
+    num: "03",
     title: "Balss aģenti & WhatsApp",
     desc: "Automatizē zvanus un ziņas — komunikācija strādā 24/7.",
     tags: ["Balss aģenti", "WhatsApp", "Klientu komunikācija"],
     earn: "€1000–€3000+",
     level: "Premium",
-    levelColor: "#f97316",
-    color: "#f97316",
-    border: "rgba(249,115,22,0.22)",
-    glow: "rgba(249,115,22,0.10)",
-    glowHover: "rgba(249,115,22,0.2)",
     link: "/kursi/ai-agentu-eksperts",
   },
 ];
 
 export default function Services() {
   return (
-    <section id="courses" className="py-24 px-6 relative">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+    <section id="courses" style={{ padding: "96px 24px", position: "relative" }}>
+      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg, transparent, var(--line-2), transparent)" }} />
 
-      <div className="max-w-5xl mx-auto">
+      <div style={{ maxWidth: 960, margin: "0 auto" }}>
         {/* Header */}
-        <div className="text-center mb-14">
-          <div className="badge-neon mb-4 inline-block">🎯 Virzieni</div>
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-4" style={{ letterSpacing: "-0.02em" }}>
-            Izvēlies savu{" "}
-            <span style={{ background: "linear-gradient(90deg, #00ff88, #00d4ff)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-              virzienu
-            </span>
+        <div style={{ textAlign: "center", marginBottom: 56 }}>
+          <div className="chip chip-dot" style={{ marginBottom: 16 }}>🎯 Virzieni</div>
+          <h2 style={{ fontFamily: "Inter Tight, sans-serif", fontSize: "clamp(32px,5vw,48px)", fontWeight: 800, color: "var(--ink)", letterSpacing: "-0.03em", marginBottom: 16 }}>
+            Izvēlies savu <span style={{ color: "var(--accent)" }}>virzienu</span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-lg mx-auto">
+          <p style={{ color: "var(--ink-3)", fontSize: 16, maxWidth: 480, margin: "0 auto", lineHeight: 1.6 }}>
             Sāc ar pakalpojumu, kas tev šķiet tuvākais, un apgūsti to soli pa solim.
           </p>
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 16 }}>
           {directions.map((d) => (
             <div
               key={d.title}
-              className="relative rounded-2xl p-6 flex flex-col gap-4 transition-all duration-300 group cursor-pointer"
-              style={{ background: "linear-gradient(135deg, #0d0d1a, #0f0f20)", border: `1px solid ${d.border}` }}
+              className="card card-hover"
+              style={{ padding: 24, display: "flex", flexDirection: "column", gap: 16 }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLDivElement).style.boxShadow = `0 20px 40px rgba(0,0,0,0.3), 0 0 40px ${d.glowHover}`;
+                (e.currentTarget as HTMLDivElement).style.borderColor = "var(--line-2)";
                 (e.currentTarget as HTMLDivElement).style.transform = "translateY(-4px)";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLDivElement).style.boxShadow = "";
+                (e.currentTarget as HTMLDivElement).style.borderColor = "var(--line)";
                 (e.currentTarget as HTMLDivElement).style.transform = "";
               }}
             >
-              {/* Glow on hover */}
-              <div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl"
-                style={{ background: `radial-gradient(ellipse at 30% 0%, ${d.glowHover}, transparent 65%)` }}
-              />
-
-              {/* Icon + level */}
-              <div className="flex items-start justify-between">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl"
-                  style={{ background: `${d.color}15`, border: `1px solid ${d.color}30` }}>
-                  {d.icon}
-                </div>
-                <span className="text-xs px-2.5 py-1 rounded-lg font-semibold"
-                  style={{ background: `${d.levelColor}12`, border: `1px solid ${d.levelColor}25`, color: d.levelColor }}>
-                  {d.level}
-                </span>
+              {/* Num + level */}
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                <span style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", color: "var(--accent)" }}>{d.num}</span>
+                <span className="chip" style={{ fontSize: 10 }}>{d.level}</span>
               </div>
 
               {/* Title + desc */}
               <div>
-                <h3 className="text-base font-bold text-white mb-2 leading-snug">{d.title}</h3>
-                <p className="text-sm text-gray-400 leading-relaxed">{d.desc}</p>
+                <h3 style={{ fontFamily: "Inter Tight, sans-serif", fontSize: 18, fontWeight: 700, color: "var(--ink)", marginBottom: 8, letterSpacing: "-0.01em" }}>{d.title}</h3>
+                <p style={{ fontSize: 14, color: "var(--ink-3)", lineHeight: 1.55 }}>{d.desc}</p>
               </div>
 
               {/* Tags */}
-              <div className="flex flex-wrap gap-1.5">
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
                 {d.tags.map((tag) => (
-                  <span key={tag} className="text-[11px] px-2 py-0.5 rounded-md font-medium"
-                    style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", color: "rgba(255,255,255,0.5)" }}>
+                  <span key={tag} style={{ fontSize: 11, padding: "4px 10px", borderRadius: 8, background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--ink-3)", fontFamily: "JetBrains Mono, monospace" }}>
                     {tag}
                   </span>
                 ))}
               </div>
 
               {/* Bottom: earn + CTA */}
-              <div className="flex items-center justify-between pt-3 mt-auto"
-                style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-                <span className="text-sm font-bold" style={{ color: d.color }}>{d.earn}</span>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: 12, marginTop: "auto", borderTop: "1px solid var(--line)" }}>
+                <span style={{ fontSize: 14, fontWeight: 700, color: "var(--accent)", fontFamily: "Inter Tight, sans-serif" }}>{d.earn}</span>
                 <Link
                   href={d.link}
-                  className="text-xs font-semibold uppercase tracking-wide flex items-center gap-1 transition-colors"
-                  style={{ color: "rgba(255,255,255,0.35)" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = d.color)}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.35)")}
+                  style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--ink-3)", textDecoration: "none", fontFamily: "JetBrains Mono, monospace", transition: "color 0.15s ease" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "var(--ink)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "var(--ink-3)")}
                 >
-                  Skatīt kursu
-                  <span className="group-hover:translate-x-1 transition-transform inline-block">→</span>
+                  Skatīt kursu →
                 </Link>
               </div>
             </div>

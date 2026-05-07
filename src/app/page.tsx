@@ -14,18 +14,12 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen text-white overflow-x-hidden">
-      <div className="fixed inset-0" style={{ zIndex: 0 }}>
-        <div className="absolute inset-0" style={{
-          background: "linear-gradient(180deg, #000000 0%, #05080F 20%, #032F3A 40%, #0891b2 70%, #22d3ee 100%)",
-        }} />
-        <div className="absolute inset-0 opacity-5 bg-repeat" style={{
-          backgroundImage: 'url("https://framerusercontent.com/images/6mcf62RlDfRfU61Yg5vb2pefpi4.png")',
-          backgroundSize: "149.76px",
-        }} />
-        <div className="absolute inset-0 opacity-20" style={{
-          backgroundImage: "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
+    <main className="relative min-h-screen overflow-x-hidden" style={{ background: "var(--bg)", color: "var(--ink)" }}>
+      {/* Subtle radial accent glows — fixed behind all content */}
+      <div className="fixed inset-0" style={{ zIndex: 0, pointerEvents: "none" }}>
+        <div style={{
+          position: "absolute", inset: 0,
+          background: "radial-gradient(ellipse 80% 50% at 15% 0%, color-mix(in oklab, var(--accent) 6%, transparent), transparent 60%), radial-gradient(ellipse 60% 40% at 85% 100%, color-mix(in oklab, var(--accent) 3%, transparent), transparent 55%)",
         }} />
       </div>
 

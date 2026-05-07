@@ -14,7 +14,7 @@ const buildModules = [
     title: "WhatsApp + Voice Agents",
     price: "€400–€1800",
     retainer: "€250/mēn",
-    icon: "💬🎙️",
+    icon: "💬",
     steps: ["Uzstāda WhatsApp automatizāciju", "Izveido AI balss aģentu", "Integrē ar klienta numuru", "Testē un piegādā klientam"],
   },
   {
@@ -29,71 +29,60 @@ const buildModules = [
 
 export default function BuildPack() {
   return (
-    <section id="about" className="py-24 px-6 relative overflow-hidden">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#a855f7]/30 to-transparent" />
-      <div className="absolute -left-40 top-1/3 w-80 h-80 bg-[#a855f7] opacity-[0.05] rounded-full blur-3xl" />
+    <section id="about" style={{ padding: "96px 24px", position: "relative", overflow: "hidden" }}>
+      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg, transparent, var(--line-2), transparent)" }} />
 
-      <div className="max-w-7xl mx-auto">
+      <div style={{ maxWidth: 1120, margin: "0 auto" }}>
         {/* Header */}
-        <div className="text-center mb-16">
-          <div className="mb-4 inline-flex items-center gap-2 px-4 py-1.5 rounded-full" style={{ background: "rgba(168,85,247,0.1)", border: "1px solid rgba(168,85,247,0.3)" }}>
-            <span className="w-2 h-2 rounded-full bg-[#a855f7] animate-pulse" />
-            <span className="text-[#a855f7] text-sm font-semibold uppercase tracking-wider">Build Pakete</span>
-          </div>
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-            Augstvērtīgi pakalpojumi.{" "}
-            <br />
-            <span className="gradient-text-purple">Lielāki ienākumi.</span>
+        <div style={{ textAlign: "center", marginBottom: 64 }}>
+          <div className="chip chip-accent" style={{ marginBottom: 16 }}>Build Pakete</div>
+          <h2 style={{ fontFamily: "Inter Tight, sans-serif", fontSize: "clamp(32px, 5vw, 48px)", fontWeight: 800, color: "var(--ink)", letterSpacing: "-0.03em", marginBottom: 16 }}>
+            Augstvērtīgi pakalpojumi.<br />
+            <span style={{ color: "var(--accent)" }}>Lielāki ienākumi.</span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p style={{ color: "var(--ink-3)", fontSize: 16, maxWidth: 560, margin: "0 auto", lineHeight: 1.6 }}>
             Kad pamata kursi apgūti — pārej uz premium pakalpojumiem ar ikmēneša reteneru.
             Voice agents, WhatsApp bots, CRM automatizācija — tas ir nākamais līmenis.
           </p>
         </div>
 
         {/* Modules */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 16, marginBottom: 48 }}>
           {buildModules.map((mod) => (
-            <div
-              key={mod.num}
-              className="glass rounded-2xl p-6 card-hover relative overflow-hidden group border border-white/5 hover:border-[#a855f7]/30"
-            >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#a855f7] opacity-0 group-hover:opacity-[0.04] rounded-full blur-2xl transition-opacity duration-500 pointer-events-none" />
-
-              <div className="flex items-start gap-4 mb-4">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl flex-shrink-0" style={{ background: "rgba(168,85,247,0.15)", border: "1px solid rgba(168,85,247,0.2)" }}>
+            <div key={mod.num} className="card card-hover" style={{ padding: 24 }}>
+              <div style={{ display: "flex", alignItems: "flex-start", gap: 16, marginBottom: 16 }}>
+                <div style={{ width: 48, height: 48, borderRadius: 14, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, flexShrink: 0, background: "var(--bg-2)", border: "1px solid var(--line)" }}>
                   {mod.icon}
                 </div>
                 <div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs font-mono text-[#a855f7]">{mod.num}</span>
-                    <h3 className="font-bold text-white text-lg">{mod.title}</h3>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                    <span style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 11, color: "var(--accent)", fontWeight: 700 }}>{mod.num}</span>
+                    <h3 style={{ fontFamily: "Inter Tight, sans-serif", fontWeight: 700, color: "var(--ink)", fontSize: 17 }}>{mod.title}</h3>
                   </div>
                 </div>
               </div>
 
-              {/* Steps */}
-              <div className="flex flex-col gap-2 mb-4">
+              <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 16 }}>
                 {mod.steps.map((step, i) => (
-                  <div key={i} className="flex items-center gap-2 text-sm text-gray-400">
-                    <span className="w-5 h-5 rounded-full bg-[#a855f7]/15 text-[#a855f7] text-xs flex items-center justify-center flex-shrink-0 font-semibold">
+                  <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 13, color: "var(--ink-3)" }}>
+                    <div style={{ width: 20, height: 20, borderRadius: 999, background: "color-mix(in oklab, var(--accent) 12%, transparent)", color: "var(--accent)", fontSize: 11, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontWeight: 700 }}>
                       {i + 1}
-                    </span>
+                    </div>
                     {step}
                   </div>
                 ))}
               </div>
 
-              <div className="neon-line mb-4" style={{ background: "linear-gradient(90deg, transparent, rgba(168,85,247,0.4), transparent)" }} />
+              <div style={{ height: 1, background: "var(--line)", marginBottom: 16 }} />
 
-              <div className="flex items-center justify-between">
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                 <div>
-                  <div className="text-xs text-gray-500 mb-0.5">Projekta cena</div>
-                  <div className="font-bold text-white">{mod.price}</div>
+                  <div style={{ fontSize: 11, color: "var(--ink-4)", marginBottom: 2, fontFamily: "JetBrains Mono, monospace" }}>Projekta cena</div>
+                  <div style={{ fontWeight: 700, color: "var(--ink)", fontSize: 15 }}>{mod.price}</div>
                 </div>
-                <div className="text-right">
-                  <div className="text-xs text-gray-500 mb-0.5">Ikmēneša reteners</div>
-                  <div className="font-bold text-[#a855f7]">{mod.retainer}</div>
+                <div style={{ textAlign: "right" }}>
+                  <div style={{ fontSize: 11, color: "var(--ink-4)", marginBottom: 2, fontFamily: "JetBrains Mono, monospace" }}>Ikmēneša reteners</div>
+                  <div style={{ fontWeight: 700, color: "var(--accent)", fontSize: 15 }}>{mod.retainer}</div>
                 </div>
               </div>
             </div>
@@ -101,42 +90,40 @@ export default function BuildPack() {
         </div>
 
         {/* Path comparison */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 16 }}>
           {/* Beginner path */}
-          <div className="glass rounded-2xl p-6 border border-[#00ff88]/15">
-            <div className="badge-neon text-xs mb-4 inline-block">⚡ Ātrais ceļš</div>
-            <h4 className="font-bold text-white text-lg mb-2">Pirmie €500 ar AI</h4>
-            <p className="text-sm text-gray-400 mb-4">Iesācējiem. Ātri pārdodami pakalpojumi, minimāls laiks.</p>
-            <div className="flex flex-col gap-2">
+          <div className="card" style={{ padding: 24, borderColor: "color-mix(in oklab, var(--accent) 20%, transparent)" }}>
+            <div className="chip chip-dot" style={{ marginBottom: 16, fontSize: 10 }}>⚡ Ātrais ceļš</div>
+            <h4 style={{ fontFamily: "Inter Tight, sans-serif", fontWeight: 700, color: "var(--ink)", fontSize: 18, marginBottom: 8 }}>Pirmie €500 ar AI</h4>
+            <p style={{ fontSize: 13, color: "var(--ink-3)", marginBottom: 16, lineHeight: 1.5 }}>Iesācējiem. Ātri pārdodami pakalpojumi, minimāls laiks.</p>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
               {["AI Faceless Video", "AI Attēli sociālajiem medijiem", "Vienkāršs chatbot"].map((item) => (
-                <div key={item} className="flex items-center gap-2 text-sm text-gray-300">
-                  <span className="text-[#00ff88]">→</span> {item}
+                <div key={item} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, color: "var(--ink-2)" }}>
+                  <span style={{ color: "var(--accent)", fontWeight: 700 }}>→</span> {item}
                 </div>
               ))}
             </div>
-            <div className="mt-4 pt-4 border-t border-white/5 flex items-center justify-between">
-              <span className="text-sm text-gray-500">Sagaidāmais rezultāts</span>
-              <span className="font-bold text-[#00ff88]">€300–€700/mēn</span>
+            <div style={{ marginTop: 16, paddingTop: 16, borderTop: "1px solid var(--line)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+              <span style={{ fontSize: 13, color: "var(--ink-3)" }}>Sagaidāmais rezultāts</span>
+              <span style={{ fontWeight: 700, color: "var(--accent)", fontFamily: "JetBrains Mono, monospace" }}>€300–€700/mēn</span>
             </div>
           </div>
 
           {/* Build path */}
-          <div className="glass rounded-2xl p-6 border border-[#a855f7]/25" style={{ background: "rgba(168,85,247,0.03)" }}>
-            <div className="mb-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold" style={{ background: "rgba(168,85,247,0.15)", border: "1px solid rgba(168,85,247,0.3)", color: "#a855f7" }}>
-              💎 Build Pakete
-            </div>
-            <h4 className="font-bold text-white text-lg mb-2">Aģentūras ceļš</h4>
-            <p className="text-sm text-gray-400 mb-4">Progresīviem. Lielāki projekti, ikmēneša reteners, skalēšana.</p>
-            <div className="flex flex-col gap-2">
+          <div className="card" style={{ padding: 24, background: "color-mix(in oklab, var(--accent) 4%, var(--bg-1))", borderColor: "color-mix(in oklab, var(--accent) 25%, transparent)" }}>
+            <div className="chip chip-accent" style={{ marginBottom: 16, fontSize: 10 }}>💎 Build Pakete</div>
+            <h4 style={{ fontFamily: "Inter Tight, sans-serif", fontWeight: 700, color: "var(--ink)", fontSize: 18, marginBottom: 8 }}>Aģentūras ceļš</h4>
+            <p style={{ fontSize: 13, color: "var(--ink-3)", marginBottom: 16, lineHeight: 1.5 }}>Progresīviem. Lielāki projekti, ikmēneša reteners, skalēšana.</p>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
               {["WhatsApp + Voice Agents", "Website Chatbot", "CRM automatizācija", "Ikmēneša support reteners"].map((item) => (
-                <div key={item} className="flex items-center gap-2 text-sm text-gray-300">
-                  <span className="text-[#a855f7]">→</span> {item}
+                <div key={item} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, color: "var(--ink-2)" }}>
+                  <span style={{ color: "var(--accent)", fontWeight: 700 }}>→</span> {item}
                 </div>
               ))}
             </div>
-            <div className="mt-4 pt-4 border-t border-white/5 flex items-center justify-between">
-              <span className="text-sm text-gray-500">Sagaidāmais rezultāts</span>
-              <span className="font-bold text-[#a855f7]">€1,500–€4,000/mēn</span>
+            <div style={{ marginTop: 16, paddingTop: 16, borderTop: "1px solid color-mix(in oklab, var(--accent) 20%, transparent)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+              <span style={{ fontSize: 13, color: "var(--ink-3)" }}>Sagaidāmais rezultāts</span>
+              <span style={{ fontWeight: 700, color: "var(--accent)", fontFamily: "JetBrains Mono, monospace" }}>€1,500–€4,000/mēn</span>
             </div>
           </div>
         </div>

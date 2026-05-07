@@ -23,28 +23,38 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "glass-dark py-3" : "py-5"
-      }`}
+      style={{
+        position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
+        transition: "background 0.3s ease, border-color 0.3s ease, padding 0.3s ease",
+        background: scrolled ? "color-mix(in oklab, var(--bg) 90%, transparent)" : "transparent",
+        borderBottom: scrolled ? "1px solid var(--line)" : "1px solid transparent",
+        backdropFilter: scrolled ? "blur(20px)" : "none",
+        padding: scrolled ? "12px 0" : "20px 0",
+      }}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <div style={{ maxWidth: 1120, margin: "0 auto", padding: "0 24px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         {/* Logo */}
-        <a href="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#00ff88] to-[#00d4ff] flex items-center justify-center">
-            <span className="text-black font-black text-sm">C</span>
-          </div>
-          <span className="font-black text-xl tracking-tight">
-            Chad<span className="gradient-text-green">emy</span>
+        <a href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
+          <div style={{
+            width: 32, height: 32, borderRadius: 9,
+            background: "var(--accent)", color: "var(--accent-ink)",
+            display: "grid", placeItems: "center",
+            fontWeight: 800, fontSize: 16, fontFamily: "Inter Tight, sans-serif",
+          }}>C</div>
+          <span style={{ fontFamily: "Inter Tight, sans-serif", fontWeight: 800, fontSize: 18, letterSpacing: "-0.02em", color: "var(--ink)" }}>
+            Chademy
           </span>
         </a>
 
         {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div style={{ display: "flex", alignItems: "center", gap: 32 }} className="hidden md:flex">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-sm text-gray-400 hover:text-white transition-colors duration-200 hover:text-[#00ff88]"
+              style={{ fontSize: 14, color: "var(--ink-3)", transition: "color 0.15s ease", textDecoration: "none" }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "var(--ink)")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--ink-3)")}
             >
               {link.label}
             </a>
@@ -52,12 +62,14 @@ export default function Navbar() {
         </div>
 
         {/* CTA */}
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden md:flex" style={{ display: "flex", alignItems: "center", gap: 12 }}>
           {!isLoaded ? (
-            <div className="w-24 h-8 rounded-lg animate-pulse" style={{ background: "rgba(255,255,255,0.08)" }} />
+            <div style={{ width: 96, height: 32, borderRadius: 10, background: "var(--bg-2)" }} />
           ) : isSignedIn ? (
             <>
-              <a href="/dashboard" className="text-sm text-gray-400 hover:text-white transition-colors">
+              <a href="/dashboard" style={{ fontSize: 14, color: "var(--ink-3)", transition: "color 0.15s ease", textDecoration: "none" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--ink)")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--ink-3)")}>
                 Mans konts
               </a>
               <UserButton />
@@ -65,12 +77,14 @@ export default function Navbar() {
           ) : (
             <>
               <SignInButton mode="redirect">
-                <button className="text-sm text-gray-400 hover:text-white transition-colors">
+                <button style={{ fontSize: 14, color: "var(--ink-3)", transition: "color 0.15s ease", background: "none", border: "none", cursor: "pointer" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "var(--ink)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "var(--ink-3)")}>
                   Pieslēgties
                 </button>
               </SignInButton>
               <SignUpButton mode="redirect">
-                <button className="btn-primary text-sm px-5 py-2.5 rounded-lg font-semibold">
+                <button className="btn-primary" style={{ fontSize: 13, padding: "9px 18px", borderRadius: 10 }}>
                   Sākt bezmaksas →
                 </button>
               </SignUpButton>
@@ -80,43 +94,50 @@ export default function Navbar() {
 
         {/* Mobile menu button */}
         <button
-          className="md:hidden flex flex-col gap-1.5 p-2"
+          className="md:hidden"
           onClick={() => setMenuOpen(!menuOpen)}
+          style={{ display: "flex", flexDirection: "column", gap: 5, padding: 8, background: "none", border: "none", cursor: "pointer" }}
         >
-          <span className={`block w-6 h-0.5 bg-white transition-all ${menuOpen ? "rotate-45 translate-y-2" : ""}`} />
-          <span className={`block w-6 h-0.5 bg-white transition-all ${menuOpen ? "opacity-0" : ""}`} />
-          <span className={`block w-6 h-0.5 bg-white transition-all ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+          <span style={{ display: "block", width: 22, height: 1.5, background: "var(--ink)", transition: "all 0.2s ease", transform: menuOpen ? "rotate(45deg) translate(5px, 5px)" : "none" }} />
+          <span style={{ display: "block", width: 22, height: 1.5, background: "var(--ink)", transition: "all 0.2s ease", opacity: menuOpen ? 0 : 1 }} />
+          <span style={{ display: "block", width: 22, height: 1.5, background: "var(--ink)", transition: "all 0.2s ease", transform: menuOpen ? "rotate(-45deg) translate(5px, -5px)" : "none" }} />
         </button>
       </div>
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden glass-dark mt-2 mx-4 rounded-2xl p-6 flex flex-col gap-4">
+        <div style={{
+          margin: "8px 16px 0",
+          background: "var(--bg-1)",
+          border: "1px solid var(--line)",
+          borderRadius: 18,
+          padding: 24,
+          display: "flex", flexDirection: "column", gap: 4,
+        }}>
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-gray-300 hover:text-[#00ff88] transition-colors text-lg"
               onClick={() => setMenuOpen(false)}
+              style={{ fontSize: 15, color: "var(--ink-2)", padding: "12px 4px", textDecoration: "none", borderBottom: "1px solid var(--line)", display: "block" }}
             >
               {link.label}
             </a>
           ))}
-          <div className="neon-line my-2" />
-          {isSignedIn ? (
-            <div className="flex items-center justify-between">
-              <a href="/dashboard" className="text-gray-300 hover:text-[#00ff88] transition-colors text-lg">
-                Mans konts
-              </a>
-              <UserButton />
-            </div>
-          ) : (
-            <SignUpButton mode="redirect">
-              <button className="btn-primary text-center py-3 rounded-xl font-semibold w-full">
-                Sākt bezmaksas →
-              </button>
-            </SignUpButton>
-          )}
+          <div style={{ paddingTop: 16 }}>
+            {isSignedIn ? (
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                <a href="/dashboard" style={{ fontSize: 15, color: "var(--ink-2)", textDecoration: "none" }}>Mans konts</a>
+                <UserButton />
+              </div>
+            ) : (
+              <SignUpButton mode="redirect">
+                <button className="btn-primary" style={{ width: "100%", justifyContent: "center" }}>
+                  Sākt bezmaksas →
+                </button>
+              </SignUpButton>
+            )}
+          </div>
         </div>
       )}
     </nav>

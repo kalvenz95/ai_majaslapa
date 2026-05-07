@@ -2,21 +2,9 @@
 import { useEffect, useRef, useState } from "react";
 
 const features = [
-  {
-    icon: "✦",
-    title: "Nav nepieciešama programmēšana",
-    color: "#00d4ff",
-  },
-  {
-    icon: "✦",
-    title: "Soli pa solim struktūra",
-    color: "#00ff88",
-  },
-  {
-    icon: "✦",
-    title: "Praktisks pielietojums",
-    color: "#a855f7",
-  },
+  { icon: "✦", title: "Nav nepieciešama programmēšana" },
+  { icon: "✦", title: "Soli pa solim struktūra" },
+  { icon: "✦", title: "Praktisks pielietojums" },
 ];
 
 export default function EasyStart() {
@@ -33,183 +21,67 @@ export default function EasyStart() {
   }, []);
 
   return (
-    <section className="relative py-20 px-6 flex justify-center overflow-hidden">
-      {/* Background glow */}
-      <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] pointer-events-none"
-        style={{
-          background: "radial-gradient(ellipse, rgba(0,212,255,0.05) 0%, transparent 70%)",
-          filter: "blur(48px)",
-        }}
-      />
-      {/* Grid lines */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-[0.025]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(0,212,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,212,255,1) 1px, transparent 1px)",
-          backgroundSize: "48px 48px",
-        }}
-      />
+    <section style={{ position: "relative", padding: "80px 24px", display: "flex", justifyContent: "center", overflow: "hidden" }}>
+      <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 600, height: 400, background: "color-mix(in oklab, var(--accent) 4%, transparent)", filter: "blur(80px)", pointerEvents: "none" }} />
+      <div className="grid-overlay" style={{ position: "absolute", inset: 0, pointerEvents: "none", opacity: 0.4 }} />
 
-      {/* Card */}
       <div
         ref={sectionRef}
-        className="relative w-full"
+        className="card"
         style={{
-          maxWidth: "920px",
-          background: "linear-gradient(150deg, #0b0f14 0%, #0f1c24 100%)",
-          border: "1px solid rgba(0,255,200,0.18)",
-          borderRadius: "28px",
+          position: "relative", width: "100%", maxWidth: 920,
           padding: "clamp(28px, 6vw, 64px)",
-          boxShadow:
-            "0 0 80px rgba(0,212,255,0.05), 0 32px 80px rgba(0,0,0,0.55), inset 0 1px 0 rgba(0,255,200,0.07)",
+          borderColor: "color-mix(in oklab, var(--accent) 20%, transparent)",
           opacity: visible ? 1 : 0,
           transform: visible ? "translateY(0)" : "translateY(32px)",
           transition: "opacity 0.7s ease, transform 0.7s ease",
         }}
       >
-        {/* Top glow line */}
-        <div
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-px pointer-events-none"
-          style={{
-            background: "linear-gradient(90deg, transparent, rgba(0,212,255,0.5), transparent)",
-          }}
-        />
+        <div style={{ position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)", width: 192, height: 1, background: "linear-gradient(90deg, transparent, color-mix(in oklab, var(--accent) 50%, transparent), transparent)" }} />
 
         {/* Badge */}
-        <div className="flex justify-center mb-5">
-          <span
-            className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest px-4 py-1.5 rounded-full"
-            style={{
-              background: "rgba(0,212,255,0.07)",
-              border: "1px solid rgba(0,212,255,0.22)",
-              color: "#00d4ff",
-            }}
-          >
-            <span
-              className="w-1.5 h-1.5 rounded-full"
-              style={{ background: "#00d4ff", boxShadow: "0 0 6px #00d4ff" }}
-            />
-            Sāc bez tehniskām zināšanām
-          </span>
+        <div style={{ display: "flex", justifyContent: "center", marginBottom: 20 }}>
+          <div className="chip chip-dot">Sāc bez tehniskām zināšanām</div>
         </div>
 
         {/* Title */}
-        <h2
-          className="text-center font-black text-white mb-8"
-          style={{
-            fontSize: "clamp(24px, 3.5vw, 40px)",
-            letterSpacing: "-0.03em",
-            lineHeight: 1.15,
-          }}
-        >
-          Nav jābūt{" "}
-          <span
-            style={{
-              background: "linear-gradient(90deg, #00ff88, #00d4ff)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
-          >
-            tehniskam,
-          </span>{" "}
-          lai sāktu
+        <h2 style={{ textAlign: "center", fontFamily: "Inter Tight, sans-serif", fontWeight: 800, color: "var(--ink)", letterSpacing: "-0.03em", lineHeight: 1.15, marginBottom: 32, fontSize: "clamp(24px, 3.5vw, 40px)" }}>
+          Nav jābūt <span style={{ color: "var(--accent)" }}>tehniskam,</span> lai sāktu
         </h2>
 
         {/* Text block */}
-        <div
-          className="mb-10 space-y-4"
-          style={{
-            background: "rgba(255,255,255,0.02)",
-            border: "1px solid rgba(255,255,255,0.05)",
-            borderRadius: "14px",
-            padding: "clamp(18px, 3vw, 28px)",
-          }}
-        >
-          <p
-            style={{
-              color: "#bcd0d8",
-              fontSize: "15px",
-              lineHeight: "1.75",
-            }}
-          >
+        <div style={{ background: "var(--bg-2)", border: "1px solid var(--line)", borderRadius: 14, padding: "clamp(18px, 3vw, 28px)", marginBottom: 40 }}>
+          <p style={{ color: "var(--ink-2)", fontSize: 15, lineHeight: 1.75, marginBottom: 16 }}>
             Nav nepieciešamas programmēšanas vai sarežģītas datorprasmes. Apmācība ir veidota{" "}
-            <span
-              style={{
-                color: "#00d4ff",
-                textShadow: "0 0 12px rgba(0,212,255,0.4)",
-                fontWeight: 600,
-              }}
-            >
-              soli pa solim
-            </span>{" "}
+            <span style={{ color: "var(--accent)", fontWeight: 600 }}>soli pa solim</span>{" "}
             — vari sekot līdzi un uzreiz pielietot.
           </p>
-          <p
-            style={{
-              color: "#bcd0d8",
-              fontSize: "15px",
-              lineHeight: "1.75",
-            }}
-          >
+          <p style={{ color: "var(--ink-2)", fontSize: 15, lineHeight: 1.75 }}>
             Tu apgūsti prasmes, kuras jau šobrīd tiek izmantotas uzņēmumos, un kļūsti par daļu no
             jomas, kas strauji attīstās.
           </p>
         </div>
 
         {/* Feature points */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 12, marginBottom: 40 }}>
           {features.map((f, i) => (
-            <div
-              key={f.title}
-              className="flex items-center gap-3 rounded-xl px-4 py-3"
-              style={{
-                background: "rgba(255,255,255,0.025)",
-                border: `1px solid ${f.color}18`,
-                opacity: visible ? 1 : 0,
-                transform: visible ? "translateY(0)" : "translateY(16px)",
-                transition: `opacity 0.5s ease ${0.2 + i * 0.12}s, transform 0.5s ease ${0.2 + i * 0.12}s`,
-              }}
-            >
-              <span
-                className="text-xs font-black"
-                style={{ color: f.color, textShadow: `0 0 10px ${f.color}80` }}
-              >
-                {f.icon}
-              </span>
-              <span
-                className="text-sm font-medium"
-                style={{ color: "rgba(255,255,255,0.82)" }}
-              >
-                {f.title}
-              </span>
+            <div key={f.title} style={{
+              display: "flex", alignItems: "center", gap: 12,
+              padding: "12px 16px", borderRadius: 12,
+              background: "var(--bg-2)", border: "1px solid color-mix(in oklab, var(--accent) 15%, transparent)",
+              opacity: visible ? 1 : 0,
+              transform: visible ? "translateY(0)" : "translateY(16px)",
+              transition: `opacity 0.5s ease ${0.2 + i * 0.12}s, transform 0.5s ease ${0.2 + i * 0.12}s`,
+            }}>
+              <span style={{ color: "var(--accent)", fontWeight: 800, fontSize: 12 }}>{f.icon}</span>
+              <span style={{ fontSize: 14, fontWeight: 500, color: "var(--ink-2)" }}>{f.title}</span>
             </div>
           ))}
         </div>
 
         {/* CTA */}
-        <div className="flex justify-center">
-          <a
-            href="#pricing"
-            className="inline-flex items-center gap-2 font-bold text-sm px-8 py-3.5 rounded-xl"
-            style={{
-              background: "linear-gradient(135deg, #00d4ff, #00ff88)",
-              color: "#000",
-              boxShadow: "0 0 28px rgba(0,212,255,0.22), 0 8px 24px rgba(0,0,0,0.3)",
-              transition: "transform 0.2s ease, box-shadow 0.2s ease",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px)";
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow =
-                "0 0 50px rgba(0,212,255,0.45), 0 12px 32px rgba(0,0,0,0.4)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)";
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow =
-                "0 0 28px rgba(0,212,255,0.22), 0 8px 24px rgba(0,0,0,0.3)";
-            }}
-          >
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <a href="#pricing" className="btn-primary" style={{ textDecoration: "none" }}>
             Pievienoties platformai →
           </a>
         </div>

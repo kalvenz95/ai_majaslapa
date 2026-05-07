@@ -9,56 +9,54 @@ const trust = [
 
 export default function CTA() {
   return (
-    <section className="py-24 px-6 relative overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-[#00ff88] opacity-[0.04] rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#00ff88]/20 to-transparent" />
+    <section style={{ padding: "96px 24px", position: "relative", overflow: "hidden" }}>
+      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg, transparent, color-mix(in oklab, var(--accent) 20%, transparent), transparent)" }} />
+      <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: 600, height: 300, background: "var(--accent)", opacity: 0.03, borderRadius: 999, filter: "blur(80px)", pointerEvents: "none" }} />
 
-      <div className="max-w-3xl mx-auto text-center relative">
+      <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center", position: "relative" }}>
         {/* Badge */}
-        <div className="badge-neon mb-6 inline-block animate-glow-pulse">
-          🚀 Sāc šodien
-        </div>
+        <div className="chip chip-dot" style={{ marginBottom: 24 }}>🚀 Sāc šodien</div>
 
         {/* Headline */}
-        <h2 className="text-4xl md:text-6xl font-black text-white leading-tight mb-6" style={{ letterSpacing: "-0.02em" }}>
+        <h2 style={{ fontFamily: "Inter Tight, sans-serif", fontSize: "clamp(36px,6vw,60px)", fontWeight: 800, color: "var(--ink)", letterSpacing: "-0.03em", lineHeight: 1.05, marginBottom: 24 }}>
           Tavs pirmais klients{" "}
-          <span className="gradient-text-green neon-text-green">sākas šeit</span>
+          <span style={{ color: "var(--accent)" }}>sākas šeit</span>
         </h2>
 
-        <p className="text-gray-400 text-lg md:text-xl max-w-xl mx-auto mb-10 leading-relaxed">
+        <p style={{ color: "var(--ink-3)", fontSize: 18, maxWidth: 480, margin: "0 auto 40px", lineHeight: 1.6 }}>
           Izvēlies virzienu,<br />
           apgūsti prasmes<br />
           un pārvērt tās ienākumos.
         </p>
 
         {/* CTAs */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-          <a href="#pricing" className="btn-primary px-10 py-4 rounded-xl font-bold text-lg">
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 12, justifyContent: "center", marginBottom: 48 }}>
+          <a href="#pricing" className="btn-primary" style={{ textDecoration: "none", fontSize: 16, padding: "16px 32px" }}>
             Sākt bez maksas →
           </a>
-          <a href="#courses" className="btn-secondary px-10 py-4 rounded-xl font-semibold text-lg">
+          <a href="#courses" className="btn-ghost" style={{ textDecoration: "none", fontSize: 16, padding: "16px 32px" }}>
             Skatīt visus kursus
           </a>
         </div>
 
         {/* Trust signals */}
-        <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-500 mb-14">
+        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "8px 24px", marginBottom: 56 }}>
           {trust.map((item) => (
-            <span key={item} className="hover:text-[#00ff88] transition-colors font-medium">{item}</span>
+            <span key={item} style={{ fontSize: 13, color: "var(--ink-3)", fontWeight: 500, fontFamily: "JetBrains Mono, monospace" }}>{item}</span>
           ))}
         </div>
 
         {/* Feature cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 12 }}>
           {[
             { icon: "🎓", title: "Praktiski kursi", desc: "Apgūsti vienu pakalpojumu no A līdz Z" },
             { icon: "📋", title: "Gatavas veidnes", desc: "Piedāvājumi, ziņu skripti, onboarding" },
             { icon: "🤝", title: "Kopiena", desc: "Latvieši, kas strādā ar AI pakalpojumiem" },
           ].map((item) => (
-            <div key={item.title} className="glass rounded-2xl p-5 text-center card-hover">
-              <div className="text-3xl mb-2">{item.icon}</div>
-              <div className="font-semibold text-white mb-1">{item.title}</div>
-              <div className="text-xs text-gray-500">{item.desc}</div>
+            <div key={item.title} className="card" style={{ padding: 20, textAlign: "center" }}>
+              <div style={{ fontSize: 28, marginBottom: 8 }}>{item.icon}</div>
+              <div style={{ fontWeight: 600, color: "var(--ink)", marginBottom: 4, fontSize: 14 }}>{item.title}</div>
+              <div style={{ fontSize: 12, color: "var(--ink-3)", lineHeight: 1.5 }}>{item.desc}</div>
             </div>
           ))}
         </div>

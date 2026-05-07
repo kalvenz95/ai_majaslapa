@@ -8,101 +8,94 @@ const bullets = [
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-20 px-6 overflow-hidden">
-      {/* Background glow orbs */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#00d4ff] opacity-[0.05] rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-[#00ff88] opacity-[0.04] rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#0891b2] opacity-[0.03] rounded-full blur-3xl pointer-events-none" />
+    <section style={{ position: "relative", minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "128px 24px 80px", overflow: "hidden" }}>
+      {/* Radial glow background */}
+      <div style={{ position: "absolute", inset: 0, pointerEvents: "none",
+        background: "radial-gradient(ellipse at 20% 0%, color-mix(in oklab, var(--accent) 7%, transparent), transparent 55%), radial-gradient(ellipse at 80% 100%, color-mix(in oklab, var(--accent) 4%, transparent), transparent 50%)" }} />
 
       {/* Badge */}
-      <div className="badge-neon mb-8">
+      <div className="chip chip-dot" style={{ marginBottom: 32 }}>
         🇱🇻 Latvijas pirmā AI monetizācijas platforma
       </div>
 
       {/* Headline */}
-      <h1 className="text-center max-w-4xl mx-auto mb-6">
-        <span className="block text-5xl md:text-6xl lg:text-7xl font-black leading-tight text-white" style={{ letterSpacing: "-0.02em" }}>
+      <h1 style={{ textAlign: "center", maxWidth: 800, margin: "0 auto 24px", fontFamily: "Inter Tight, sans-serif" }}>
+        <span style={{ display: "block", fontSize: "clamp(40px,7vw,72px)", fontWeight: 800, lineHeight: 1.02, color: "var(--ink)", letterSpacing: "-0.03em" }}>
           Iemācies veidot AI pakalpojumus
         </span>
-        <span className="block text-5xl md:text-6xl lg:text-7xl font-black leading-tight mt-1" style={{ letterSpacing: "-0.02em", background: "linear-gradient(90deg, #00ff88, #00d4ff)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+        <span style={{ display: "block", fontSize: "clamp(40px,7vw,72px)", fontWeight: 800, lineHeight: 1.02, color: "var(--accent)", letterSpacing: "-0.03em", marginTop: 4 }}>
           un pelnīt ar tiem uzņēmumiem
         </span>
       </h1>
 
       {/* Subtitle */}
-      <p className="text-center max-w-xl mx-auto text-gray-400 text-lg md:text-xl leading-relaxed mb-8">
+      <p style={{ textAlign: "center", maxWidth: 480, margin: "0 auto 32px", color: "var(--ink-3)", fontSize: 18, lineHeight: 1.6 }}>
         Praktiska apmācība latviešu valodā.<br />
         Sāc ar vienu pakalpojumu un pārvērt to ienākumos.
       </p>
 
       {/* Bullets */}
-      <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 items-center mb-10">
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "10px 24px", alignItems: "center", justifyContent: "center", marginBottom: 40 }}>
         {bullets.map((b) => (
-          <div key={b} className="flex items-center gap-2">
-            <span className="text-[#00ff88] font-black text-base">+</span>
-            <span className="text-sm text-gray-300 font-medium">{b}</span>
+          <div key={b} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <span style={{ color: "var(--accent)", fontWeight: 700, fontSize: 14, fontFamily: "JetBrains Mono, monospace" }}>+</span>
+            <span style={{ fontSize: 14, color: "var(--ink-2)", fontWeight: 500 }}>{b}</span>
           </div>
         ))}
       </div>
 
       {/* CTAs */}
-      <div className="flex flex-col sm:flex-row gap-4 items-center mb-16">
-        <a
-          href="#pricing"
-          className="btn-primary px-8 py-4 rounded-xl font-bold text-base"
-        >
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 12, alignItems: "center", justifyContent: "center", marginBottom: 64 }}>
+        <a href="#pricing" className="btn-primary" style={{ textDecoration: "none" }}>
           Sākt bez maksas →
         </a>
-        <a
-          href="#courses"
-          className="btn-secondary px-8 py-4 rounded-xl font-semibold text-base"
-        >
+        <a href="#courses" className="btn-ghost" style={{ textDecoration: "none" }}>
           Skatīt kursus
         </a>
       </div>
 
       {/* Stats */}
-      <div className="flex flex-wrap justify-center gap-10">
+      <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "16px 40px" }}>
         {[
           { number: "3", label: "AI pakalpojumu virzieni" },
           { number: "100%", label: "Praktisks saturs" },
           { number: "LV", label: "Latviešu valodā" },
           { number: "€0", label: "Sākt var bez pieredzes" },
         ].map((stat) => (
-          <div key={stat.label} className="text-center">
-            <div className="text-3xl font-black gradient-text-green">{stat.number}</div>
-            <div className="text-xs text-gray-500 mt-1 uppercase tracking-wider">{stat.label}</div>
+          <div key={stat.label} style={{ textAlign: "center" }}>
+            <div className="metric" style={{ fontSize: 32, color: "var(--accent)" }}>{stat.number}</div>
+            <div style={{ fontSize: 11, color: "var(--ink-4)", marginTop: 4, textTransform: "uppercase", letterSpacing: "0.1em", fontFamily: "JetBrains Mono, monospace" }}>{stat.label}</div>
           </div>
         ))}
       </div>
 
       {/* Floating cards */}
-      <div className="absolute right-8 top-1/3 hidden xl:block" style={{ animation: "float 6s ease-in-out infinite" }}>
-        <div className="glass rounded-2xl p-4 w-48">
-          <div className="flex items-center gap-2 mb-2">
-            <div className="w-2 h-2 rounded-full bg-[#00ff88]" />
-            <span className="text-xs text-gray-400">Jaunākais darījums</span>
+      <div className="hidden xl:block" style={{ position: "absolute", right: 32, top: "33%", animation: "float 6s ease-in-out infinite" }}>
+        <div className="card" style={{ padding: 16, width: 196 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
+            <div style={{ width: 6, height: 6, borderRadius: 999, background: "var(--accent)" }} />
+            <span style={{ fontSize: 11, color: "var(--ink-3)", fontFamily: "JetBrains Mono, monospace" }}>Jaunākais darījums</span>
           </div>
-          <div className="text-2xl font-black text-white">€850</div>
-          <div className="text-xs text-gray-500 mb-2">WhatsApp Bot · Rīga</div>
-          <div className="h-1 rounded-full bg-gray-800">
-            <div className="h-1 rounded-full bg-gradient-to-r from-[#00ff88] to-[#00d4ff]" style={{ width: "75%" }} />
+          <div className="metric" style={{ fontSize: 28, color: "var(--ink)" }}>€850</div>
+          <div style={{ fontSize: 11, color: "var(--ink-4)", marginBottom: 10, fontFamily: "JetBrains Mono, monospace" }}>WhatsApp Bot · Rīga</div>
+          <div style={{ height: 3, borderRadius: 999, background: "var(--bg-3)" }}>
+            <div style={{ width: "75%", height: "100%", borderRadius: 999, background: "var(--accent)" }} />
           </div>
         </div>
       </div>
 
-      <div className="absolute left-8 top-1/2 hidden xl:block" style={{ animation: "float 6s ease-in-out infinite 2s" }}>
-        <div className="glass rounded-2xl p-4 w-52">
-          <div className="text-xs text-gray-500 mb-2">✓ Pirmais klients</div>
-          <div className="font-semibold text-white text-sm">AI Balss Aģents · Zobārsts</div>
-          <div className="mt-2 badge-neon text-xs inline-block">+€1200/mēn</div>
+      <div className="hidden xl:block" style={{ position: "absolute", left: 32, top: "50%", animation: "float 6s ease-in-out infinite 2s" }}>
+        <div className="card" style={{ padding: 16, width: 212 }}>
+          <div style={{ fontSize: 11, color: "var(--ink-4)", marginBottom: 8, fontFamily: "JetBrains Mono, monospace" }}>✓ Pirmais klients</div>
+          <div style={{ fontWeight: 600, color: "var(--ink)", fontSize: 14 }}>AI Balss Aģents · Zobārsts</div>
+          <div className="chip chip-accent" style={{ marginTop: 10, fontSize: 11 }}>+€1200/mēn</div>
         </div>
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-30">
-        <span className="text-xs text-gray-500 uppercase tracking-widest">Ritini</span>
-        <div className="w-0.5 h-8 bg-gradient-to-b from-[#00ff88] to-transparent" />
+      <div style={{ position: "absolute", bottom: 32, left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: 8, opacity: 0.3 }}>
+        <span style={{ fontSize: 10, color: "var(--ink-4)", textTransform: "uppercase", letterSpacing: "0.15em", fontFamily: "JetBrains Mono, monospace" }}>Ritini</span>
+        <div style={{ width: 1, height: 32, background: "linear-gradient(to bottom, var(--accent), transparent)" }} />
       </div>
     </section>
   );

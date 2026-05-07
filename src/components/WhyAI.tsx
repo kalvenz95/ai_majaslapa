@@ -9,106 +9,43 @@ const points = [
 
 export default function WhyAI() {
   return (
-    <section className="relative py-20 px-6 flex justify-center overflow-hidden">
-      {/* Background glow */}
-      <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] pointer-events-none"
-        style={{
-          background: "radial-gradient(ellipse, rgba(0,212,255,0.07) 0%, transparent 70%)",
-          filter: "blur(40px)",
-        }}
-      />
+    <section style={{ position: "relative", padding: "80px 24px", display: "flex", justifyContent: "center", overflow: "hidden" }}>
+      <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: 700, height: 500, background: "color-mix(in oklab, var(--accent) 5%, transparent)", filter: "blur(80px)", pointerEvents: "none" }} />
 
       {/* Main card */}
       <div
-        className="relative w-full"
+        className="card"
         style={{
-          maxWidth: "960px",
-          background: "linear-gradient(160deg, rgba(0,20,30,0.95) 0%, rgba(2,10,20,0.98) 100%)",
-          border: "1px solid rgba(0,255,200,0.2)",
-          borderRadius: "28px",
+          position: "relative", width: "100%", maxWidth: 960,
           padding: "clamp(28px, 6vw, 64px)",
-          boxShadow: "0 0 60px rgba(0,212,255,0.06), 0 32px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(0,255,200,0.08)",
+          borderColor: "color-mix(in oklab, var(--accent) 20%, transparent)",
         }}
       >
-        {/* Corner glow */}
-        <div
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-px pointer-events-none"
-          style={{ background: "linear-gradient(90deg, transparent, rgba(0,212,255,0.5), transparent)" }}
-        />
+        {/* Top edge accent */}
+        <div style={{ position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)", width: 256, height: 1, background: "linear-gradient(90deg, transparent, color-mix(in oklab, var(--accent) 50%, transparent), transparent)" }} />
 
         {/* Badge */}
-        <div className="flex justify-center mb-6">
-          <span
-            className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest px-4 py-1.5 rounded-full"
-            style={{
-              background: "rgba(0,212,255,0.08)",
-              border: "1px solid rgba(0,212,255,0.25)",
-              color: "#00d4ff",
-            }}
-          >
-            <span
-              className="w-1.5 h-1.5 rounded-full"
-              style={{ background: "#00d4ff", boxShadow: "0 0 6px #00d4ff" }}
-            />
-            AI prasmes biznesam
-          </span>
+        <div style={{ display: "flex", justifyContent: "center", marginBottom: 24 }}>
+          <div className="chip chip-dot">AI prasmes biznesam</div>
         </div>
 
         {/* Title */}
-        <h2
-          className="text-center font-black mb-10"
-          style={{
-            fontSize: "clamp(26px, 4vw, 44px)",
-            letterSpacing: "-0.03em",
-            lineHeight: 1.15,
-            color: "#fff",
-          }}
-        >
+        <h2 style={{ textAlign: "center", fontFamily: "Inter Tight, sans-serif", fontWeight: 800, letterSpacing: "-0.03em", lineHeight: 1.15, color: "var(--ink)", marginBottom: 40, fontSize: "clamp(26px, 4vw, 44px)" }}>
           Apgūsti prasmes,{" "}
-          <span
-            style={{
-              background: "linear-gradient(90deg, #00ff88, #00d4ff)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
-          >
-            kas uzņēmumiem šobrīd ir vajadzīgas
-          </span>
+          <span style={{ color: "var(--accent)" }}>kas uzņēmumiem šobrīd ir vajadzīgas</span>
         </h2>
 
         {/* Inner info card */}
-        <div
-          className="mb-8"
-          style={{
-            background: "rgba(255,255,255,0.03)",
-            border: "1px solid rgba(0,255,200,0.1)",
-            borderRadius: "16px",
-            padding: "clamp(20px, 4vw, 32px)",
-          }}
-        >
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div style={{ background: "var(--bg-2)", border: "1px solid var(--line)", borderRadius: 14, padding: "clamp(20px, 4vw, 32px)", marginBottom: 32 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 16 }}>
             {points.map((p) => (
-              <div key={p.text} className="flex items-center gap-3">
-                <div
-                  className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0 text-sm"
-                  style={{
-                    background: "rgba(0,212,255,0.08)",
-                    border: "1px solid rgba(0,212,255,0.15)",
-                  }}
-                >
+              <div key={p.text} style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                <div style={{ width: 36, height: 36, borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: 18, background: "var(--bg-3)", border: "1px solid var(--line)" }}>
                   {p.icon}
                 </div>
-                <div className="flex items-center gap-2">
-                  <span
-                    className="font-black text-sm"
-                    style={{ color: "#00d4ff" }}
-                  >
-                    +
-                  </span>
-                  <span className="text-sm font-medium" style={{ color: "rgba(255,255,255,0.85)" }}>
-                    {p.text}
-                  </span>
+                <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                  <span style={{ color: "var(--accent)", fontWeight: 700, fontSize: 14, fontFamily: "JetBrains Mono, monospace" }}>+</span>
+                  <span style={{ fontSize: 14, fontWeight: 500, color: "var(--ink-2)" }}>{p.text}</span>
                 </div>
               </div>
             ))}
@@ -116,53 +53,23 @@ export default function WhyAI() {
         </div>
 
         {/* Description */}
-        <div className="mb-10 space-y-5">
-          <p
-            style={{
-              fontSize: "clamp(17px, 2.5vw, 22px)",
-              color: "rgba(255,255,255,0.88)",
-              lineHeight: "1.7",
-              fontWeight: 400,
-            }}
-          >
+        <div style={{ marginBottom: 40, display: "flex", flexDirection: "column", gap: 20 }}>
+          <p style={{ fontSize: "clamp(17px, 2.5vw, 20px)", color: "var(--ink-2)", lineHeight: 1.7 }}>
             Mākslīgais intelekts kļūst par vienu no augstāk novērtētajām un pieprasītākajām prasmēm
             biznesā — uzņēmumiem ir vajadzīgi cilvēki, kas ar to palīdz{" "}
-            <span style={{ color: "#00d4ff", fontWeight: 600 }}>samazināt izmaksas</span>,{" "}
-            <span style={{ color: "#00d4ff", fontWeight: 600 }}>strādāt efektīvāk</span> un{" "}
-            <span style={{ color: "#00d4ff", fontWeight: 600 }}>iegūt vairāk klientu</span>.
+            <span style={{ color: "var(--accent)", fontWeight: 600 }}>samazināt izmaksas</span>,{" "}
+            <span style={{ color: "var(--accent)", fontWeight: 600 }}>strādāt efektīvāk</span> un{" "}
+            <span style={{ color: "var(--accent)", fontWeight: 600 }}>iegūt vairāk klientu</span>.
           </p>
-          <p
-            style={{
-              fontSize: "clamp(17px, 2.5vw, 22px)",
-              color: "rgba(255,255,255,0.65)",
-              lineHeight: "1.7",
-              fontWeight: 400,
-            }}
-          >
+          <p style={{ fontSize: "clamp(17px, 2.5vw, 20px)", color: "var(--ink-3)", lineHeight: 1.7 }}>
             Mēs parādām, kā izveidot augstvērtīgu AI pakalpojumu un produktu, un soli pa solim
             iemācām, kā to piedāvāt uzņēmumiem un attīstīt kā savu ikmēneša ienākumu virzienu.
           </p>
         </div>
 
         {/* CTA */}
-        <div className="flex justify-center">
-          <a
-            href="#courses"
-            className="inline-flex items-center gap-2 font-bold text-sm px-8 py-3.5 rounded-xl transition-transform duration-200 hover:-translate-y-0.5"
-            style={{
-              background: "linear-gradient(135deg, #00d4ff, #00ff88)",
-              color: "#000",
-              boxShadow: "0 0 30px rgba(0,212,255,0.25), 0 8px 24px rgba(0,0,0,0.3)",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow =
-                "0 0 50px rgba(0,212,255,0.45), 0 8px 32px rgba(0,0,0,0.4)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow =
-                "0 0 30px rgba(0,212,255,0.25), 0 8px 24px rgba(0,0,0,0.3)";
-            }}
-          >
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <a href="#courses" className="btn-primary" style={{ textDecoration: "none" }}>
             Skatīt, kā tas strādā →
           </a>
         </div>
