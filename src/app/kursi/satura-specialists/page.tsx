@@ -284,8 +284,18 @@ export default function SaturaSpecialistsPage() {
 
             {/* Earn */}
             <div style={{ background: `rgba(${PLAN.glow},0.08)`, padding: "20px 24px", borderBottom: `1px solid rgba(${PLAN.glow},0.15)` }}>
-              <div style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 4 }}>Potenciālie ienākumi</div>
-              <div style={{ fontSize: 28, fontWeight: 900, color: PLAN.color }}>{PLAN.earn}</div>
+              <div style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 14 }}>Potenciālie ienākumi</div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <span style={{ fontSize: 12, color: "rgba(255,255,255,0.45)", fontFamily: "JetBrains Mono, monospace" }}>2–3 klienti</span>
+                  <span style={{ fontSize: 15, fontWeight: 800, color: PLAN.color }}>€600–€1 800/mēn</span>
+                </div>
+                <div style={{ height: 1, background: `rgba(${PLAN.glow},0.2)` }} />
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <span style={{ fontSize: 12, color: "rgba(255,255,255,0.45)", fontFamily: "JetBrains Mono, monospace" }}>4–6 klienti</span>
+                  <span style={{ fontSize: 18, fontWeight: 900, color: PLAN.color }}>€1 200–€3 600/mēn</span>
+                </div>
+              </div>
             </div>
 
             <div style={{ padding: "24px" }}>
