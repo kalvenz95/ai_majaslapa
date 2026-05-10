@@ -1,67 +1,71 @@
 "use client";
-import { Compass, Wrench, FileText, Send, CircleDollarSign } from "lucide-react";
 
 const steps = [
-  { step: "01", title: "Izvēlies virzienu", desc: "Sociālie tīkli, automatizācija vai balss aģenti.", Icon: Compass },
-  { step: "02", title: "Izveido demo", desc: "Reāls piemērs uzņēmumam.", Icon: Wrench },
-  { step: "03", title: "Sagatavo piedāvājumu", desc: "Gatavas veidnes un struktūra.", Icon: FileText },
-  { step: "04", title: "Uzrunā uzņēmumus", desc: "Vienkārši teksti un pieeja.", Icon: Send },
-  { step: "05", title: "Noslēdz darījumu", desc: "Pirmais klients un ienākums.", Icon: CircleDollarSign },
+  { num: "01", title: "Izvēlies virzienu", desc: "Saturs, mājaslapas vai balss aģenti — sāc ar to, kas tev tuvāks.", img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&auto=format&fit=crop&q=80", active: true },
+  { num: "02", title: "Apgūsti prasmi", desc: "Praktiskas nodarbības, video un veidnes latviešu valodā.", img: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&auto=format&fit=crop&q=80", active: false },
+  { num: "03", title: "Izveido demo", desc: "Reāls darba piemērs, ko vari rādīt potenciālajiem klientiem.", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&auto=format&fit=crop&q=80", active: false },
+  { num: "04", title: "Uzrunā uzņēmumus", desc: "Gatavas veidnes ziņām, e-pastiem un sarunām.", img: "https://images.unsplash.com/photo-1611605698335-8b1569810432?w=600&auto=format&fit=crop&q=80", active: false },
+  { num: "05", title: "Noslēdz darījumu", desc: "Pirmais klients un pirmais ienākums no AI pakalpojuma.", img: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&auto=format&fit=crop&q=80", active: false },
 ];
 
 export default function FastWin() {
   return (
-    <section id="start" style={{ padding: "96px 24px", position: "relative", overflow: "hidden" }}>
-      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg, transparent, color-mix(in oklab, var(--accent) 20%, transparent), transparent)" }} />
-
-      <div style={{ maxWidth: 640, margin: "0 auto", textAlign: "center" }}>
-        <div style={{ marginBottom: 40 }}>
-          <p style={{ color: "var(--ink-3)", fontSize: 16, fontStyle: "italic", lineHeight: 1.6, borderLeft: "2px solid color-mix(in oklab, var(--accent) 40%, transparent)", paddingLeft: 16, textAlign: "left", maxWidth: 480, margin: "0 auto" }}>
-            "Pirmais klients nāk no darbības,<br />
-            nevis no perfekta plāna."
-          </p>
+    <section id="how" style={{ padding: "120px 0", position: "relative", borderTop: "1px solid var(--line)" }}>
+      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px" }}>
+        {/* Header */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "end", marginBottom: 72 }}>
+          <div>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: "JetBrains Mono, monospace", fontSize: 11, letterSpacing: "0.15em", color: "var(--ink-3)", textTransform: "uppercase" as const }}>
+              <span style={{ display: "inline-block", width: 24, height: 1, background: "var(--accent)" }} />
+              Soli pa solim
+            </span>
+            <h2 style={{ fontSize: "clamp(40px, 6vw, 84px)", lineHeight: 0.98, letterSpacing: "-0.035em", fontWeight: 600, margin: "16px 0 0", maxWidth: "14ch" }}>
+              No nulles līdz{" "}
+              <span style={{ background: "linear-gradient(120deg, var(--accent), color-mix(in oklab, var(--accent) 70%, white))", WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent", fontStyle: "italic", fontFamily: "Fraunces, Georgia, serif", fontWeight: 500 }}>
+                pirmajam klientam
+              </span>
+            </h2>
+          </div>
+          <div style={{ paddingBottom: 8 }}>
+            <p style={{ fontSize: 18, color: "var(--ink-2)", maxWidth: 640, lineHeight: 1.5 }}>
+              5 skaidri soļi. Katrā solī apgūsti vienu prasmi un sagatavojies darbam ar uzņēmumiem.
+            </p>
+          </div>
         </div>
 
-        <div className="chip chip-dot" style={{ marginBottom: 20 }}>🚀 Ceļvedis</div>
-        <h2 style={{ fontFamily: "Inter Tight, sans-serif", fontSize: "clamp(32px,5vw,48px)", fontWeight: 600, color: "var(--ink)", letterSpacing: "-0.03em", marginBottom: 20 }}>
-          No nulles līdz <span style={{ color: "var(--accent)" }}>pirmajam klientam</span>
-        </h2>
-        <p style={{ color: "var(--ink-3)", fontSize: 17, marginBottom: 56, maxWidth: 500, margin: "0 auto 56px", lineHeight: 1.6 }}>
-          Strukturēta apmācība, kur apgūsti vienu pieprasītu pakalpojumu
-          un sagatavojies darbam ar uzņēmumiem.
-        </p>
+        {/* Roadmap */}
+        <div style={{ position: "relative" }}>
+          {/* Horizontal connector line */}
+          <div style={{ position: "absolute", left: 0, right: 0, top: 28, height: 1, background: "linear-gradient(to right, transparent, var(--line-2) 8%, var(--line-2) 92%, transparent)", zIndex: 0 }} />
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 0, textAlign: "left", maxWidth: 480, margin: "0 auto 48px" }}>
-          {steps.map((s, i) => (
-            <div key={s.step} style={{ display: "flex", alignItems: "stretch", gap: 20 }}>
-              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flexShrink: 0, width: 44 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 24, position: "relative", zIndex: 1 }}>
+            {steps.map((s) => (
+              <div key={s.num} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+                {/* Circle */}
                 <div style={{
-                  width: 44, height: 44, borderRadius: 12, flexShrink: 0,
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  background: "color-mix(in oklab, var(--accent) 10%, transparent)",
-                  border: "1px solid color-mix(in oklab, var(--accent) 25%, transparent)",
+                  width: 56, height: 56, borderRadius: 999,
+                  background: s.active ? "var(--accent)" : "var(--bg)",
+                  border: `1px solid ${s.active ? "var(--accent)" : "var(--line-2)"}`,
+                  display: "grid", placeItems: "center",
+                  fontFamily: "JetBrains Mono, monospace", fontSize: 18, fontWeight: 700,
+                  color: s.active ? "var(--accent-ink)" : "var(--ink)",
+                  boxShadow: s.active
+                    ? "0 0 0 8px var(--bg), 0 0 0 12px color-mix(in oklab, var(--accent) 30%, transparent)"
+                    : "0 0 0 8px var(--bg)",
+                  flexShrink: 0,
                 }}>
-                  <s.Icon size={18} color="var(--accent)" />
+                  {s.num}
                 </div>
-                {i < steps.length - 1 && (
-                  <div style={{ width: 1, flex: 1, margin: "4px 0", background: "var(--line)" }} />
-                )}
-              </div>
-
-              <div style={{ paddingBottom: i < steps.length - 1 ? 24 : 0, paddingTop: 10, flex: 1 }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 4 }}>
-                  <span style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 10, color: "var(--accent)", fontWeight: 700, letterSpacing: "0.1em" }}>{s.step}</span>
-                  <h3 style={{ fontWeight: 700, color: "var(--ink)", fontSize: 15 }}>{s.title}</h3>
+                {/* Image box */}
+                <div style={{ aspectRatio: "4/3", borderRadius: 14, overflow: "hidden", background: "var(--bg-2)", border: "1px solid var(--line)" }}>
+                  <img src={s.img} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} loading="lazy" />
                 </div>
-                <p style={{ fontSize: 14, color: "var(--ink-3)", lineHeight: 1.55 }}>{s.desc}</p>
+                <h4 style={{ fontSize: 18, fontWeight: 600, margin: "4px 0 0", letterSpacing: "-0.01em" }}>{s.title}</h4>
+                <p style={{ fontSize: 13, color: "var(--ink-2)", lineHeight: 1.5, margin: 0 }}>{s.desc}</p>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-
-        <a href="#courses" className="btn-primary" style={{ textDecoration: "none", display: "inline-flex" }}>
-          Skatīt virzienus →
-        </a>
       </div>
     </section>
   );

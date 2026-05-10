@@ -1,94 +1,99 @@
 "use client";
 import Link from "next/link";
-import { Share2, Globe, Phone } from "lucide-react";
 
-const directions = [
+const tracks = [
   {
-    num: "01",
+    num: "01 · IESĀCĒJS",
+    level: "3–5 ned.",
     title: "Sociālo tīklu pārvaldība",
-    desc: "Veido video, vizuāļus un reklāmas saturu uzņēmumiem.",
-    tags: ["AI video", "Reklāmas vizuāļi", "Postu dizains"],
-    earn: "€300–€800/mēn",
-    level: "Iesācējs",
-    Icon: Share2,
+    desc: "Veido AI video, vizuāļus un reklāmas saturu vietējiem uzņēmumiem — bez kameras, bez aģentūras pieredzes.",
+    skills: ["Faceless video", "AI bildes", "Postu dizains", "Reklāmas"],
+    earn: "€300–€800",
+    earnSuffix: "/mēn",
+    img: "https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=900&auto=format&fit=crop&q=80",
     link: "/kursi/satura-specialists",
   },
   {
-    num: "02",
-    title: "Mājaslapas & automatizācija",
-    desc: "Izveido modernu mājaslapu un automatizē klientu pieteikumus.",
-    tags: ["Mājaslapas", "Klientu pieteikumi", "Automatizācija"],
-    earn: "€500–€1500+",
-    level: "Vidējs",
-    Icon: Globe,
+    num: "02 · VIDĒJS",
+    level: "5–8 ned.",
+    title: "Mājaslapas & chatboti",
+    desc: "Izveido modernas mājaslapas un AI chatbotus, kas atbild klientiem 24/7 un automatizē pieteikumus.",
+    skills: ["Mājaslapas", "Web chatbots", "Lead gen", "Workflow"],
+    earn: "€500–€1 500",
+    earnSuffix: "+",
+    img: "https://images.unsplash.com/photo-1559028012-481c04fa702d?w=900&auto=format&fit=crop&q=80",
     link: "/kursi/digitalais-specialists",
   },
   {
-    num: "03",
+    num: "03 · PREMIUM",
+    level: "6–10 ned.",
     title: "Balss aģenti & WhatsApp",
-    desc: "Automatizē zvanus un ziņas — komunikācija strādā 24/7.",
-    tags: ["Balss aģenti", "WhatsApp", "Klientu komunikācija"],
-    earn: "€1000–€3000+",
-    level: "Premium",
-    Icon: Phone,
+    desc: "Automatizē klientu zvanus un ziņas — augstvērtīgi pakalpojumi ar lielāko peļņas potenciālu.",
+    skills: ["Voice agenti", "WhatsApp", "Vapi", "Vonage"],
+    earn: "€1 000–€3 000",
+    earnSuffix: "+",
+    img: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=900&auto=format&fit=crop&q=80",
     link: "/kursi/ai-agentu-eksperts",
   },
 ];
 
 export default function Services() {
   return (
-    <section id="courses" style={{ padding: "96px 24px", position: "relative" }}>
-      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg, transparent, var(--line-2), transparent)" }} />
-
-      <div style={{ maxWidth: 960, margin: "0 auto" }}>
-        <div style={{ textAlign: "center", marginBottom: 56 }}>
-          <div className="chip chip-dot" style={{ marginBottom: 16 }}>🎯 Virzieni</div>
-          <h2 style={{ fontFamily: "Inter Tight, sans-serif", fontSize: "clamp(32px,5vw,48px)", fontWeight: 600, color: "var(--ink)", letterSpacing: "-0.03em", marginBottom: 16 }}>
-            Izvēlies savu <span style={{ color: "var(--accent)" }}>virzienu</span>
-          </h2>
-          <p style={{ color: "var(--ink-3)", fontSize: 16, maxWidth: 480, margin: "0 auto", lineHeight: 1.6 }}>
-            Sāc ar pakalpojumu, kas tev šķiet tuvākais, un apgūsti to soli pa solim.
-          </p>
+    <section id="courses" style={{ padding: "120px 0", position: "relative", borderTop: "1px solid var(--line)" }}>
+      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px" }}>
+        {/* Header */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "end", marginBottom: 64 }}>
+          <div>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: "JetBrains Mono, monospace", fontSize: 11, letterSpacing: "0.15em", color: "var(--ink-3)", textTransform: "uppercase" as const }}>
+              <span style={{ display: "inline-block", width: 24, height: 1, background: "var(--accent)" }} />
+              Trīs virzieni
+            </span>
+            <h2 style={{ fontSize: "clamp(40px, 6vw, 84px)", lineHeight: 0.98, letterSpacing: "-0.035em", fontWeight: 600, margin: "16px 0 0", maxWidth: "14ch" }}>
+              Izvēlies, ko pārdot{" "}
+              <span style={{ background: "linear-gradient(120deg, var(--accent), color-mix(in oklab, var(--accent) 70%, white))", WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent", fontStyle: "italic", fontFamily: "Fraunces, Georgia, serif", fontWeight: 500 }}>
+                uzņēmumiem
+              </span>
+            </h2>
+          </div>
+          <div style={{ paddingBottom: 8 }}>
+            <p style={{ fontSize: 18, color: "var(--ink-2)", maxWidth: 640, lineHeight: 1.5 }}>
+              Katrs virziens — ar pieprasītiem pakalpojumiem, kuriem ir reāls pieprasījums Latvijas un Eiropas tirgū.
+            </p>
+          </div>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 16 }}>
-          {directions.map((d) => (
-            <div
-              key={d.title}
-              className="card"
-              style={{ padding: 24, display: "flex", flexDirection: "column", gap: 16, transition: "border-color 0.15s, transform 0.15s" }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.borderColor = "var(--line-2)"; (e.currentTarget as HTMLDivElement).style.transform = "translateY(-4px)"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.borderColor = "var(--line)"; (e.currentTarget as HTMLDivElement).style.transform = ""; }}
-            >
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                <div style={{ width: 40, height: 40, borderRadius: 11, display: "flex", alignItems: "center", justifyContent: "center", background: "color-mix(in oklab, var(--accent) 10%, transparent)", border: "1px solid color-mix(in oklab, var(--accent) 20%, transparent)" }}>
-                  <d.Icon size={18} color="var(--accent)" />
+        {/* Track cards */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+          {tracks.map((t) => (
+            <article key={t.title} style={{ border: "1px solid var(--line)", borderRadius: 28, background: "var(--bg-1)", overflow: "hidden", display: "flex", flexDirection: "column", transition: "transform 0.3s ease, border-color 0.3s ease" }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)"; (e.currentTarget as HTMLElement).style.borderColor = "var(--line-2)"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = ""; (e.currentTarget as HTMLElement).style.borderColor = "var(--line)"; }}>
+              {/* Image */}
+              <div style={{ aspectRatio: "5/3", position: "relative", overflow: "hidden", background: "var(--bg-3)" }}>
+                <img src={t.img} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} loading="lazy" />
+                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, var(--bg-1) 0%, transparent 40%)", pointerEvents: "none" }} />
+                <span style={{ position: "absolute", top: 18, left: 18, zIndex: 2, background: "rgba(0,0,0,0.5)", backdropFilter: "blur(10px)", color: "white", fontFamily: "JetBrains Mono, monospace", fontSize: 11, padding: "6px 12px", borderRadius: 999, letterSpacing: "0.1em", fontWeight: 600 }}>{t.num}</span>
+                <span style={{ position: "absolute", top: 18, right: 18, zIndex: 2, background: "rgba(0,0,0,0.5)", backdropFilter: "blur(10px)", color: "white", fontSize: 11, padding: "6px 12px", borderRadius: 999, fontWeight: 500 }}>{t.level}</span>
+              </div>
+              {/* Body */}
+              <div style={{ padding: "24px 26px 26px", flex: 1, display: "flex", flexDirection: "column" }}>
+                <h3 style={{ fontSize: 26, letterSpacing: "-0.02em", fontWeight: 600, margin: "0 0 10px", lineHeight: 1.1 }}>{t.title}</h3>
+                <p style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 1.55, margin: "0 0 22px" }}>{t.desc}</p>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 24 }}>
+                  {t.skills.map((s) => (
+                    <span key={s} style={{ padding: "5px 11px", borderRadius: 999, fontSize: 11, border: "1px solid var(--line-2)", color: "var(--ink-2)", fontFamily: "JetBrains Mono, monospace" }}>{s}</span>
+                  ))}
                 </div>
-                <span className="chip" style={{ fontSize: 10 }}>{d.level}</span>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "auto", paddingTop: 18, borderTop: "1px solid var(--line)" }}>
+                  <div style={{ fontWeight: 600, fontSize: 18, letterSpacing: "-0.02em" }}>
+                    {t.earn}<small style={{ fontSize: 12, color: "var(--ink-3)", fontWeight: 400 }}>{t.earnSuffix}</small>
+                  </div>
+                  <Link href={t.link} style={{ fontSize: 13, color: "var(--accent)", fontWeight: 600, display: "inline-flex", gap: 6, alignItems: "center", textDecoration: "none" }}>
+                    Skatīt kursu →
+                  </Link>
+                </div>
               </div>
-
-              <div>
-                <h3 style={{ fontFamily: "Inter Tight, sans-serif", fontSize: 18, fontWeight: 700, color: "var(--ink)", marginBottom: 8, letterSpacing: "-0.01em" }}>{d.title}</h3>
-                <p style={{ fontSize: 14, color: "var(--ink-3)", lineHeight: 1.55 }}>{d.desc}</p>
-              </div>
-
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-                {d.tags.map((tag) => (
-                  <span key={tag} style={{ fontSize: 11, padding: "4px 10px", borderRadius: 8, background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--ink-3)", fontFamily: "JetBrains Mono, monospace" }}>
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: 12, marginTop: "auto", borderTop: "1px solid var(--line)" }}>
-                <span style={{ fontSize: 14, fontWeight: 700, color: "var(--accent)", fontFamily: "Inter Tight, sans-serif" }}>{d.earn}</span>
-                <Link href={d.link} style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--ink-3)", textDecoration: "none", fontFamily: "JetBrains Mono, monospace", transition: "color 0.15s ease" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "var(--ink)")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "var(--ink-3)")}>
-                  Skatīt kursu →
-                </Link>
-              </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>
