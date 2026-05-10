@@ -1,11 +1,11 @@
 "use client";
 
 const steps = [
-  { num: "01", title: "Izvēlies virzienu", desc: "Saturs, mājaslapas vai balss aģenti — sāc ar to, kas tev tuvāks.", img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&auto=format&fit=crop&q=80", active: true },
-  { num: "02", title: "Apgūsti prasmi", desc: "Praktiskas nodarbības, video un veidnes latviešu valodā.", img: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&auto=format&fit=crop&q=80", active: false },
-  { num: "03", title: "Izveido demo", desc: "Reāls darba piemērs, ko vari rādīt potenciālajiem klientiem.", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&auto=format&fit=crop&q=80", active: false },
-  { num: "04", title: "Uzrunā uzņēmumus", desc: "Gatavas veidnes ziņām, e-pastiem un sarunām.", img: "https://images.unsplash.com/photo-1611605698335-8b1569810432?w=600&auto=format&fit=crop&q=80", active: false },
-  { num: "05", title: "Noslēdz darījumu", desc: "Pirmais klients un pirmais ienākums no AI pakalpojuma.", img: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&auto=format&fit=crop&q=80", active: false },
+  { num: "01", title: "Izvēlies virzienu", desc: "Saturs, mājaslapas vai balss aģenti — sāc ar to, kas tev tuvāks.", img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&auto=format&fit=crop&q=80" },
+  { num: "02", title: "Apgūsti prasmi", desc: "Praktiskas nodarbības, video un veidnes latviešu valodā.", img: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&auto=format&fit=crop&q=80" },
+  { num: "03", title: "Izveido demo", desc: "Reāls darba piemērs, ko vari rādīt potenciālajiem klientiem.", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&auto=format&fit=crop&q=80" },
+  { num: "04", title: "Uzrunā uzņēmumus", desc: "Gatavas veidnes ziņām, e-pastiem un sarunām.", img: "https://images.unsplash.com/photo-1611605698335-8b1569810432?w=600&auto=format&fit=crop&q=80" },
+  { num: "05", title: "Noslēdz darījumu", desc: "Pirmais klients un pirmais ienākums no AI pakalpojuma.", img: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&auto=format&fit=crop&q=80" },
 ];
 
 export default function FastWin() {
@@ -44,14 +44,12 @@ export default function FastWin() {
                 {/* Circle */}
                 <div style={{
                   width: 56, height: 56, borderRadius: 999,
-                  background: s.active ? "var(--accent)" : "var(--bg)",
-                  border: `1px solid ${s.active ? "var(--accent)" : "var(--line-2)"}`,
+                  background: "var(--accent)",
+                  border: "1px solid var(--accent)",
                   display: "grid", placeItems: "center",
                   fontFamily: "JetBrains Mono, monospace", fontSize: 18, fontWeight: 700,
-                  color: s.active ? "var(--accent-ink)" : "var(--ink)",
-                  boxShadow: s.active
-                    ? "0 0 0 8px var(--bg), 0 0 0 12px color-mix(in oklab, var(--accent) 30%, transparent)"
-                    : "0 0 0 8px var(--bg)",
+                  color: "var(--accent-ink)",
+                  boxShadow: "0 0 0 8px var(--bg), 0 0 0 12px color-mix(in oklab, var(--accent) 30%, transparent)",
                   flexShrink: 0,
                 }}>
                   {s.num}
