@@ -1,5 +1,5 @@
 "use client";
-import { useState, useTransition } from "react";
+import { useState } from "react";
 import Link from "next/link";
 
 type Author = { id: string; name: string | null; avatarUrl: string | null };
@@ -54,7 +54,7 @@ export default function PostClient({
 }) {
   const [post, setPost] = useState(initialPost);
   const [commentText, setCommentText] = useState("");
-  const [isPending, startTransition] = useTransition();
+  const [isSubmittingComment, setIsSubmittingComment] = useState(false);
 
   async function handleLike() {
     if (!currentUser) return;
@@ -68,7 +68,8 @@ export default function PostClient({
     e.preventDefault();
     if (!commentText.trim() || !currentUser) return;
 
-    startTransition(async () => {
+    setIsSubmittingComment(true);
+    try {
       const res = await fetch(`/api/community/posts/${post.id}/comments`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -82,7 +83,9 @@ export default function PostClient({
         _count: { ...prev._count, comments: prev._count.comments + 1 },
       }));
       setCommentText("");
-    });
+    } finally {
+      setIsSubmittingComment(false);
+    }
   }
 
   async function handleDeleteComment(commentId: string) {
@@ -182,11 +185,11 @@ export default function PostClient({
               />
               <button
                 type="submit"
-                disabled={isPending || !commentText.trim()}
+                disabled={isSubmittingComment || !commentText.trim()}
                 className="px-4 py-2 rounded-xl text-xs font-bold transition-opacity"
-                style={{ background: "#00ff88", color: "#000", opacity: isPending || !commentText.trim() ? 0.5 : 1 }}
+                style={{ background: "#00ff88", color: "#000", opacity: isSubmittingComment || !commentText.trim() ? 0.5 : 1 }}
               >
-                {isPending ? "Sūta..." : "Komentēt"}
+                {isSubmittingComment ? "Sūta..." : "Komentēt"}
               </button>
             </div>
           </form>

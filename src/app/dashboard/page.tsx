@@ -65,9 +65,9 @@ function EarningsChart() {
 export default async function DashboardPage({
   searchParams,
 }: {
-  searchParams: Promise<{ success?: string; plan?: string }>;
+  searchParams: { success?: string; plan?: string };
 }) {
-  const params = await searchParams;
+  const params = searchParams ?? {};
   const { userId } = await auth();
   const clerkUser = await currentUser();
 

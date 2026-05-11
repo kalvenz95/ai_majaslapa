@@ -1,3 +1,5 @@
+"use client";
+
 import { SignIn } from "@clerk/nextjs";
 import { YellowGlowBackground } from "@/components/ui/background-components";
 import Link from "next/link";

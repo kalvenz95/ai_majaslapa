@@ -1,5 +1,6 @@
 import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
+import { CourseLinkCard } from "@/components/dashboard/CourseLinkCard";
 import { prisma } from "@/lib/prisma";
 import { getUserPlan } from "@/lib/subscriptions";
 import { hasAccessToPlan, PLAN_NAMES } from "@/lib/stripe";
@@ -67,26 +68,9 @@ export default async function KursiPage() {
               {planCourses.map((course) => (
                 <div key={course.id}>
                   {hasAccess ? (
-                    <Link
-                      href={`/dashboard/kursi/${course.slug}`}
-                      className="block rounded-2xl p-5 transition-all duration-200"
-                      style={{
-                        background: "rgba(255,255,255,0.03)",
-                        border: "1px solid rgba(255,255,255,0.07)",
-                        textDecoration: "none",
-                      }}
-                      onMouseEnter={(e) => {
-                        (e.currentTarget as HTMLAnchorElement).style.border = `1px solid ${color}40`;
-                        (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px)";
-                      }}
-                      onMouseLeave={(e) => {
-                        (e.currentTarget as HTMLAnchorElement).style.border =
-                          "1px solid rgba(255,255,255,0.07)";
-                        (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)";
-                      }}
-                    >
+                    <CourseLinkCard href={`/dashboard/kursi/${course.slug}`} color={color}>
                       <CourseCard course={course} color={color} locked={false} />
-                    </Link>
+                    </CourseLinkCard>
                   ) : (
                     <div
                       className="rounded-2xl p-5 opacity-50"

@@ -1,5 +1,5 @@
 "use client";
-import { useState, useTransition } from "react";
+import { useState } from "react";
 import Link from "next/link";
 
 type Author = { id: string; name: string | null; avatarUrl: string | null };
@@ -58,7 +58,7 @@ export default function CommunityClient({
   const [newTitle, setNewTitle] = useState("");
   const [newBody, setNewBody] = useState("");
   const [newCategory, setNewCategory] = useState("Vispārīgi");
-  const [isPending, startTransition] = useTransition();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
 
   const filtered = activeCategory === "Visi" ? posts : posts.filter((p) => p.category === activeCategory);
@@ -80,17 +80,26 @@ export default function CommunityClient({
     setError("");
     if (!newTitle.trim() || !newBody.trim()) { setError("Aizpildi virsrakstu un tekstu"); return; }
 
-    startTransition(async () => {
+    setIsSubmitting(true);
+    try {
       const res = await fetch("/api/community/posts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ title: newTitle, body: newBody, category: newCategory }),
       });
-      if (!res.ok) { const d = await res.json(); setError(d.error ?? "Kļūda"); return; }
+      if (!res.ok) {
+        const d = await res.json();
+        setError(d.error ?? "Kļūda");
+        return;
+      }
       const post = await res.json();
       setPosts((prev) => [post, ...prev]);
-      setNewTitle(""); setNewBody(""); setShowNewPost(false);
-    });
+      setNewTitle("");
+      setNewBody("");
+      setShowNewPost(false);
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -167,11 +176,11 @@ export default function CommunityClient({
               </button>
               <button
                 type="submit"
-                disabled={isPending}
+                disabled={isSubmitting}
                 className="px-4 py-2 rounded-xl text-xs font-bold transition-opacity"
-                style={{ background: "#00ff88", color: "#000", opacity: isPending ? 0.6 : 1 }}
+                style={{ background: "#00ff88", color: "#000", opacity: isSubmitting ? 0.6 : 1 }}
               >
-                {isPending ? "Publicē..." : "Publicēt"}
+                {isSubmitting ? "Publicē..." : "Publicēt"}
               </button>
             </div>
           </div>
