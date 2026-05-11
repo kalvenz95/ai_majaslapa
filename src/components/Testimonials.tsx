@@ -25,15 +25,15 @@ export default function Testimonials() {
               Reāli rezultāti
             </span>
             <h2 style={{ fontSize: "clamp(40px, 6vw, 84px)", lineHeight: 1.05, letterSpacing: "-0.035em", fontWeight: 600, margin: "16px 0 0", maxWidth: "14ch" }}>
-              Studenti, kas{" "}
+              Mūsu kopienas{" "}
               <span style={{ background: "linear-gradient(120deg, var(--accent), color-mix(in oklab, var(--accent) 70%, white))", WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent", fontStyle: "italic", fontFamily: "Fraunces, Georgia, serif", fontWeight: 500 }}>
-                jau pelna
+                piemēri praksē
               </span>
             </h2>
           </div>
           <div style={{ paddingBottom: 8 }}>
             <p style={{ fontSize: 18, color: "var(--ink-2)", maxWidth: 640, lineHeight: 1.5 }}>
-              Cilvēki no Rīgas, Liepājas un Jūrmalas, kuri sāka no nulles un šobrīd strādā ar reāliem klientiem.
+              Pirmie soļi no apmācības līdz darbam ar klientiem.
             </p>
           </div>
         </div>
