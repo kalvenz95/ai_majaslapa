@@ -47,7 +47,7 @@ export default function Navbar() {
         </a>
 
         {/* Desktop nav */}
-        <div style={{ display: "flex", alignItems: "center", gap: 32 }} className="hidden md:flex">
+        <div style={{ alignItems: "center", gap: 32 }} className="hidden md:flex">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -62,7 +62,7 @@ export default function Navbar() {
         </div>
 
         {/* CTA */}
-        <div className="hidden md:flex" style={{ display: "flex", alignItems: "center", gap: 12 }}>
+        <div className="hidden md:flex" style={{ alignItems: "center", gap: 12 }}>
           {!isLoaded ? (
             <div style={{ width: 96, height: 32, borderRadius: 10, background: "var(--bg-2)" }} />
           ) : isSignedIn ? (
