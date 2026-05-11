@@ -608,6 +608,43 @@ function OverviewTab() {
           </p>
         </div>
 
+        {/* Klientu ienākumu piemērs */}
+        <div style={{ padding: "28px", borderRadius: 16, background: "#0d0d1a", border: "1px solid rgba(168,85,247,0.18)", position: "relative", overflow: "hidden" }}>
+          <div style={{ position: "absolute", top: -40, right: -40, width: 200, height: 200, borderRadius: "50%", background: "radial-gradient(circle, rgba(168,85,247,0.08), transparent 70%)", pointerEvents: "none" }} />
+          <div style={{ fontSize: 11, fontWeight: 700, color: "#a855f7", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 6 }}>Potenciālie ienākumi</div>
+          <div style={{ fontSize: 13, color: "#666", marginBottom: 20 }}>Reāls piemērs — 3–4 klienti mēnesī</div>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 22 }}>
+            {[
+              { clients: "1 klients", price: "€300–€500", suffix: "/mēn", note: "Sākotnējā cena, iesācējs" },
+              { clients: "2 klienti", price: "€600–€1 000", suffix: "/mēn", note: "Pēc 1. mēneša" },
+              { clients: "3 klienti", price: "€1 200–€1 800", suffix: "/mēn", note: "Paceltas cenas, stabils darbs" },
+              { clients: "4 klienti", price: "€1 800–€3 500", suffix: "/mēn", note: "Premium klienti + upsell" },
+            ].map((row, i) => (
+              <div key={i} style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 16px", borderRadius: 10, background: i === 3 ? "rgba(168,85,247,0.08)" : "rgba(255,255,255,0.03)", border: `1px solid ${i === 3 ? "rgba(168,85,247,0.25)" : "rgba(255,255,255,0.05)"}` }}>
+                <div style={{ width: 28, height: 28, borderRadius: 8, background: i === 3 ? "rgba(168,85,247,0.2)" : "rgba(255,255,255,0.05)", border: `1px solid ${i === 3 ? "rgba(168,85,247,0.4)" : "rgba(255,255,255,0.08)"}`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 800, color: i === 3 ? "#a855f7" : "#555", flexShrink: 0 }}>
+                  {i + 1}
+                </div>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ fontSize: 12, fontWeight: 600, color: i === 3 ? "#fff" : "#aaa" }}>{row.clients}</div>
+                  <div style={{ fontSize: 11, color: "#555", marginTop: 1 }}>{row.note}</div>
+                </div>
+                <div style={{ textAlign: "right", flexShrink: 0 }}>
+                  <span style={{ fontSize: i === 3 ? 17 : 15, fontWeight: 800, background: i === 3 ? "linear-gradient(135deg, #a855f7, #ec4899)" : "none", WebkitBackgroundClip: i === 3 ? "text" : "unset", WebkitTextFillColor: i === 3 ? "transparent" : "#ccc" }}>{row.price}</span>
+                  <span style={{ fontSize: 11, color: "#555" }}>{row.suffix}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ padding: "14px 16px", borderRadius: 10, background: "rgba(168,85,247,0.06)", border: "1px solid rgba(168,85,247,0.15)", display: "flex", alignItems: "center", gap: 12 }}>
+            <span style={{ fontSize: 18 }}>💡</span>
+            <p style={{ fontSize: 12.5, color: "#888", lineHeight: 1.6, margin: 0 }}>
+              Lielākajai daļai studentu pirmais klients nāk <span style={{ color: "#a855f7", fontWeight: 700 }}>3 nedēļu laikā</span>. Ar 3–4 klientiem un paceltu cenu var sasniegt <span style={{ color: "#a855f7", fontWeight: 700 }}>€1 200–€3 500/mēn</span>.
+            </p>
+          </div>
+        </div>
+
         {/* Ko tu iemācīsies šajā pakā */}
         <div style={{ padding: "28px", borderRadius: 16, background: "#0d0d1a", border: "1px solid rgba(168,85,247,0.12)" }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: "#a855f7", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 18 }}>Šajā pakā tu:</div>
@@ -629,24 +666,18 @@ function OverviewTab() {
           </div>
         </div>
 
-        {/* Ienākumi + priekšrocības */}
-        <div style={{ padding: "28px", borderRadius: 16, background: "linear-gradient(135deg, rgba(168,85,247,0.08), rgba(236,72,153,0.05))", border: "1px solid rgba(168,85,247,0.2)" }}>
-          <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginBottom: 20 }}>
-            <span style={{ fontSize: 36, fontWeight: 900, background: "linear-gradient(135deg, #a855f7, #ec4899)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>300€ – 1500€</span>
-            <span style={{ fontSize: 16, color: "#888", fontWeight: 600 }}>mēnesī</span>
-          </div>
-          <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-            {[
-              { icon: "🔥", text: "Pieprasīts pakalpojums" },
-              { icon: "🟢", text: "Piemērots iesācējiem" },
-              { icon: "⚡", text: "Ātrākais veids sākt ar AI" },
-            ].map((r) => (
-              <div key={r.text} style={{ display: "flex", alignItems: "center", gap: 8, padding: "9px 16px", borderRadius: 10, background: "rgba(168,85,247,0.1)", border: "1px solid rgba(168,85,247,0.2)" }}>
-                <span style={{ fontSize: 15 }}>{r.icon}</span>
-                <span style={{ fontSize: 12.5, fontWeight: 600, color: "#ddd" }}>{r.text}</span>
-              </div>
-            ))}
-          </div>
+        {/* Priekšrocības */}
+        <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+          {[
+            { icon: "🔥", text: "Pieprasīts pakalpojums" },
+            { icon: "🟢", text: "Piemērots iesācējiem" },
+            { icon: "⚡", text: "Ātrākais veids sākt ar AI" },
+          ].map((r) => (
+            <div key={r.text} style={{ display: "flex", alignItems: "center", gap: 8, padding: "9px 16px", borderRadius: 10, background: "rgba(168,85,247,0.08)", border: "1px solid rgba(168,85,247,0.18)" }}>
+              <span style={{ fontSize: 15 }}>{r.icon}</span>
+              <span style={{ fontSize: 12.5, fontWeight: 600, color: "#ddd" }}>{r.text}</span>
+            </div>
+          ))}
         </div>
 
         {/* Tagline */}

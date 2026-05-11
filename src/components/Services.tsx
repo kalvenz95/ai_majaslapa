@@ -6,8 +6,8 @@ const tracks = [
     num: "01 · IESĀCĒJS",
     level: "3–5 ned.",
     title: "Sociālo tīklu pārvaldība",
-    desc: "Veido AI video, vizuāļus un reklāmas saturu vietējiem uzņēmumiem — bez kameras, bez aģentūras pieredzes.",
-    skills: ["Faceless video", "AI bildes", "Postu dizains", "Reklāmas"],
+    desc: "Apgūsti vispārējas SMM prasmes un veido AI video, vizuāļus un reklāmas saturu uzņēmumiem — bez kameras, bez pieredzes.",
+    skills: ["SMM pārvaldība", "Faceless video", "AI bildes", "Postu dizains", "Reklāmas"],
     earn: "€300–€800",
     earnSuffix: "/mēn",
     img: "https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=900&auto=format&fit=crop&q=80",
@@ -84,10 +84,7 @@ export default function Services() {
                     <span key={s} style={{ padding: "5px 11px", borderRadius: 999, fontSize: 11, border: "1px solid var(--line-2)", color: "var(--ink-2)", fontFamily: "JetBrains Mono, monospace" }}>{s}</span>
                   ))}
                 </div>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "auto", paddingTop: 18, borderTop: "1px solid var(--line)" }}>
-                  <div style={{ fontWeight: 600, fontSize: 18, letterSpacing: "-0.02em" }}>
-                    {t.earn}<small style={{ fontSize: 12, color: "var(--ink-3)", fontWeight: 400 }}>{t.earnSuffix}</small>
-                  </div>
+                <div style={{ marginTop: "auto", paddingTop: 18, borderTop: "1px solid var(--line)" }}>
                   <Link href={t.link} style={{ fontSize: 13, color: "var(--accent)", fontWeight: 600, display: "inline-flex", gap: 6, alignItems: "center", textDecoration: "none" }}>
                     Skatīt kursu →
                   </Link>
