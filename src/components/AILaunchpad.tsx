@@ -30,7 +30,7 @@ export default function AILaunchpad() {
         <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 32 }}>
           <span style={{ display: "inline-block", width: 24, height: 1, background: "var(--accent)" }} />
           <span style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 11, letterSpacing: "0.15em", color: "var(--ink-3)", textTransform: "uppercase" }}>
-            Tirgus likmes
+            Piemērs, kā var izskatīties ienākumi ar 2–4 klientiem mēnesī
           </span>
         </div>
 
@@ -47,14 +47,14 @@ export default function AILaunchpad() {
                 position: "relative",
               }}
             >
-              <div style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 10, color: "var(--ink-4)", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 14 }}>
+              <div style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 10, color: "var(--ink-2)", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 14 }}>
                 {item.label}
               </div>
-              <div style={{ fontSize: "clamp(22px, 3vw, 30px)", fontWeight: 700, letterSpacing: "-0.03em", color: item.color, lineHeight: 1, marginBottom: 10 }}>
+              <div style={{ whiteSpace: "nowrap", fontSize: "clamp(20px, 2.4vw, 28px)", fontWeight: 700, letterSpacing: "-0.03em", color: item.color, lineHeight: 1.1, marginBottom: 4 }}>
                 {item.range}
-                <span style={{ fontSize: 13, color: "var(--ink-4)", fontWeight: 400, letterSpacing: 0 }}> / mēn</span>
               </div>
-              <div style={{ fontSize: 12, color: "var(--ink-4)", lineHeight: 1.5 }}>{item.desc}</div>
+              <div style={{ fontSize: 12, color: "var(--ink-3)", marginBottom: 12 }}>/ mēnesī</div>
+              <div style={{ fontSize: 12, color: "var(--ink-2)", lineHeight: 1.5 }}>{item.desc}</div>
             </div>
           ))}
         </div>
