@@ -24,7 +24,7 @@ export default function Testimonials() {
               <span style={{ display: "inline-block", width: 24, height: 1, background: "var(--accent)" }} />
               Reāli rezultāti
             </span>
-            <h2 style={{ fontSize: "clamp(40px, 6vw, 84px)", lineHeight: 0.98, letterSpacing: "-0.035em", fontWeight: 600, margin: "16px 0 0", maxWidth: "14ch" }}>
+            <h2 style={{ fontSize: "clamp(40px, 6vw, 84px)", lineHeight: 1.05, letterSpacing: "-0.035em", fontWeight: 600, margin: "16px 0 0", maxWidth: "14ch" }}>
               Studenti, kas{" "}
               <span style={{ background: "linear-gradient(120deg, var(--accent), color-mix(in oklab, var(--accent) 70%, white))", WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent", fontStyle: "italic", fontFamily: "Fraunces, Georgia, serif", fontWeight: 500 }}>
                 jau pelna
@@ -42,7 +42,7 @@ export default function Testimonials() {
         <div className="lp-four-stats" style={{ marginTop: 56, display: "grid", gridTemplateColumns: "repeat(4, 1fr)", borderTop: "1px solid var(--line)", borderBottom: "1px solid var(--line)" }}>
           {bigStats.map((s, i) => (
             <div key={i} style={{ padding: "40px 24px", borderRight: i < 3 ? "1px solid var(--line)" : "none", display: "flex", flexDirection: "column", gap: 16 }}>
-              <div className="lp-stat-num" style={{ fontSize: 64, fontWeight: 600, letterSpacing: "-0.045em", lineHeight: 0.95, fontVariantNumeric: "tabular-nums" }}>
+              <div className="lp-stat-num" style={{ fontSize: 64, fontWeight: 600, letterSpacing: "-0.045em", lineHeight: 1.0, fontVariantNumeric: "tabular-nums" }}>
                 {s.accent ? <span style={{ color: "var(--accent)" }}>{s.v}</span> : s.v}
                 <span style={{ fontSize: 32, color: "var(--ink-3)" }}>{s.suffix}</span>
                 {s.accentPlus && <span style={{ fontSize: 32, color: "var(--accent)" }}>+</span>}

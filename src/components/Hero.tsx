@@ -14,7 +14,7 @@ export default function Hero() {
               Latvijas pirmā AI monetizācijas akadēmija
             </span>
 
-            <h1 style={{ fontSize: "clamp(48px, 8.5vw, 124px)", lineHeight: 0.92, letterSpacing: "-0.045em", fontWeight: 600, margin: "0 0 28px", maxWidth: "14ch" }}>
+            <h1 style={{ fontSize: "clamp(48px, 8.5vw, 124px)", lineHeight: 1.05, letterSpacing: "-0.045em", fontWeight: 600, margin: "0 0 28px", maxWidth: "14ch" }}>
               Iemācies veidot AI pakalpojumus un{" "}
               <span style={{ background: "linear-gradient(120deg, var(--accent), color-mix(in oklab, var(--accent) 70%, white))", WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent", fontStyle: "italic", fontFamily: "Fraunces, Georgia, serif", fontWeight: 500 }}>
                 pelnīt

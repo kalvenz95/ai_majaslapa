@@ -24,7 +24,7 @@ export default function CTA() {
           Sāc šodien
         </span>
 
-        <h2 style={{ fontSize: "clamp(56px, 8vw, 112px)", lineHeight: 0.94, letterSpacing: "-0.04em", fontWeight: 600, margin: "16px auto 28px", maxWidth: "14ch" }}>
+        <h2 style={{ fontSize: "clamp(56px, 8vw, 112px)", lineHeight: 1.05, letterSpacing: "-0.04em", fontWeight: 600, margin: "16px auto 28px", maxWidth: "14ch" }}>
           Tavs pirmais klients{" "}
           <span style={{ background: "linear-gradient(120deg, var(--accent), color-mix(in oklab, var(--accent) 70%, white))", WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent", fontStyle: "italic", fontFamily: "Fraunces, Georgia, serif", fontWeight: 500 }}>
             sākas šeit
