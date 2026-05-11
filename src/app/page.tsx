@@ -6,7 +6,6 @@ import Services from "@/components/Services";
 import AILaunchpad from "@/components/AILaunchpad";
 import Testimonials from "@/components/Testimonials";
 import Pricing from "@/components/Pricing";
-import Tools from "@/components/Tools";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 
@@ -21,7 +20,6 @@ export default function Home() {
       <AILaunchpad />
       <Testimonials />
       <Pricing />
-      <Tools />
       <CTA />
       <Footer />
     </main>
