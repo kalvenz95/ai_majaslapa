@@ -1,6 +1,8 @@
 "use client";
+
 import { useUser } from "@clerk/nextjs";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { stripeApi } from "@/lib/api";
 
@@ -26,6 +28,7 @@ export function PricingCheckoutButton({
   const { isSignedIn } = useUser();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const tc = useTranslations("Common");
 
   async function handleClick() {
     if (!isSignedIn) {
@@ -43,7 +46,6 @@ export function PricingCheckoutButton({
         setLoading(false);
       }
     } catch {
-      // Stripe nav konfigurēts vai DB kļūda — virzi uz kursa lapu
       router.push(href);
       setLoading(false);
     }
@@ -51,14 +53,15 @@ export function PricingCheckoutButton({
 
   return (
     <button
-      onClick={handleClick}
+      type="button"
+      onClick={() => void handleClick()}
       disabled={loading}
       className={className}
       style={{ ...style, cursor: loading ? "wait" : "pointer" }}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      {loading ? "Apstrādā..." : label}
+      {loading ? tc("processing") : label}
     </button>
   );
 }

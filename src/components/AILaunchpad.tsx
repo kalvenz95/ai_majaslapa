@@ -1,44 +1,38 @@
 "use client";
 
-const items = [
-  {
-    label: "Sociālie tīkli",
-    range: "€800–€1 600",
-    desc: "Saturs, vizuāļi, feed pārvaldība",
-    color: "var(--accent)",
-  },
-  {
-    label: "WhatsApp automatizācija",
-    range: "€1 000–€2 000",
-    desc: "Automātiskas atbildes, lead apstrāde",
-    color: "#7FF6E0",
-  },
-  {
-    label: "Balss aģenti",
-    range: "€1 000–€3 000+",
-    desc: "Zvanu automatizācija, rezervācijas",
-    color: "#a78bfa",
-  },
-];
+import { useTranslations } from "next-intl";
+
+type CardCopy = {
+  label: string;
+  range: string;
+  desc: string;
+  color?: string;
+};
 
 export default function AILaunchpad() {
+  const t = useTranslations("AILaunchpad");
+  const cardColors = ["var(--accent)", "#7FF6E0", "#a78bfa"];
+  const cards = (
+    ((t.raw("cards") ?? []) as CardCopy[]).map((c, i) => ({
+      ...c,
+      color: c.color ?? cardColors[i] ?? "var(--accent)",
+    }))
+  );
+
   return (
     <section style={{ padding: "64px 24px", position: "relative", overflow: "hidden", borderTop: "1px solid var(--line)" }}>
       <div style={{ maxWidth: 900, margin: "0 auto" }}>
-
-        {/* Label */}
         <div style={{ display: "flex", alignItems: "flex-start", gap: 10, marginBottom: 24 }}>
           <span style={{ display: "inline-block", width: 24, height: 1, background: "var(--accent)", marginTop: 7, flexShrink: 0 }} />
           <span style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 11, letterSpacing: "0.08em", color: "var(--ink-2)", lineHeight: 1.6 }}>
-            Piemērs, kā var izskatīties ienākumi ar 2–4 klientiem mēnesī
+            {t("kicker")}
           </span>
         </div>
 
-        {/* Cards */}
         <div className="lp-three-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 2 }}>
-          {items.map((item, i) => (
+          {cards.map((item, i) => (
             <div
-              key={item.label}
+              key={`${item.label}-${i}`}
               style={{
                 padding: "24px 20px",
                 background: "var(--bg-1)",
@@ -52,19 +46,17 @@ export default function AILaunchpad() {
               <div style={{ fontSize: "clamp(18px, 4vw, 26px)", fontWeight: 700, letterSpacing: "-0.03em", color: item.color, lineHeight: 1.1, marginBottom: 4 }}>
                 {item.range}
               </div>
-              <div style={{ fontSize: 12, color: "var(--ink-3)", marginBottom: 10 }}>/ mēnesī</div>
+              <div style={{ fontSize: 12, color: "var(--ink-3)", marginBottom: 10 }}>{t("perMonth")}</div>
               <div style={{ fontSize: 12, color: "var(--ink-2)", lineHeight: 1.5 }}>{item.desc}</div>
             </div>
           ))}
         </div>
 
-        {/* Footer */}
         <div style={{ marginTop: 14 }}>
           <p style={{ fontSize: 10, color: "var(--ink-3)", fontFamily: "JetBrains Mono, monospace", lineHeight: 1.6 }}>
-            Rezultāti nav garantēti. Atkarīgi no ieguldītā darba un klientu piesaistes.
+            {t("footer")}
           </p>
         </div>
-
       </div>
     </section>
   );

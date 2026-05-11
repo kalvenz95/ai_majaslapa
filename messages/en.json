@@ -1,0 +1,591 @@
+{
+  "Metadata": {
+    "title": "Chademy — Earn with AI",
+    "description": "Hands-on AI training built for Latvian learners—in English navigation. Learn to build AI services and sell them to businesses.",
+    "keywords": "AI, artificial intelligence, courses, monetization, Latvia, Chademy, automation, chatbot",
+    "ogTitle": "Chademy — Earn with AI",
+    "ogDescription": "Latvia’s practical AI monetization academy"
+  },
+  "Navbar": {
+    "courses": "Courses",
+    "pricing": "Pricing",
+    "about": "About",
+    "results": "Results",
+    "myAccount": "My account",
+    "signIn": "Sign in",
+    "signUp": "Start for free →"
+  },
+  "Lang": {
+    "lv": "LV",
+    "en": "EN"
+  },
+  "Hero": {
+    "badgeRegion": "LV",
+    "badgeLine": "Latvia’s first AI monetization academy",
+    "h1Line1": "Learn to build AI services and ",
+    "h1Gradient": "earn money",
+    "h1Line2": " selling them.",
+    "sub": "Practical learning—step by step from your first skill to your first paying client.",
+    "ctaPrimary": "Start free →",
+    "ctaSecondary": "How it works",
+    "stat1Val": "3",
+    "stat1Label": "AI service tracks",
+    "stat2Val": "100",
+    "stat2Percent": "%",
+    "stat2Label": "Practical content",
+    "stat3Val": "350",
+    "stat3Label": "Active learners",
+    "stat4Val": "€0",
+    "stat4Label": "Start without experience",
+    "floatTag1": "Build · Sell · Scale",
+    "floatTag2": "First client in ~3 weeks"
+  },
+  "FastWin": {
+    "kicker": "Step by step",
+    "titleA": "From zero to ",
+    "titleB": "your first client",
+    "lead": "Five clear steps. Each step trains one concrete skill so you’re ready for real SMB work.",
+    "steps": [
+      {
+        "num": "01",
+        "title": "Pick a lane",
+        "desc": "Content, websites, or voice agents — start where you’re strongest."
+      },
+      {
+        "num": "02",
+        "title": "Build skill",
+        "desc": "Practice lessons, recordings, templates, and bilingual support."
+      },
+      {
+        "num": "03",
+        "title": "Ship a demo",
+        "desc": "A credible sample you can show on a discovery call."
+      },
+      {
+        "num": "04",
+        "title": "Reach out",
+        "desc": "Ready outreach templates for DMs and email."
+      },
+      {
+        "num": "05",
+        "title": "Close the sale",
+        "desc": "Your first euro from an AI-delivered outcome."
+      }
+    ]
+  },
+  "Services": {
+    "kicker": "Three lanes",
+    "titleA": "Choose what you sell ",
+    "titleB": "to businesses",
+    "lead": "Each track focuses on demand-driven services buyers already pay for in Latvia and across Europe.",
+    "viewCourse": "View course →",
+    "tracks": [
+      {
+        "num": "01 · STARTER",
+        "level": "3–5 wks",
+        "title": "Social media ops",
+        "desc": "Grow general social skills and produce AI video, visuals, and ad-ready content for businesses.",
+        "skills": [
+          "SMM management",
+          "Faceless video",
+          "AI visuals",
+          "Post design",
+          "Ads"
+        ],
+        "earn": "€300–€800",
+        "earnSuffix": "/mo",
+        "link": "/kursi/satura-specialists"
+      },
+      {
+        "num": "02 · GROWTH",
+        "level": "5–8 wks",
+        "title": "Sites & chatbots",
+        "desc": "Ship AI-assisted landing pages and add 24/7 chatbots plus lightweight automation workflows.",
+        "skills": [
+          "Websites w/ AI",
+          "Chatbots",
+          "Lead outreach",
+          "Automation",
+          "AI decks"
+        ],
+        "earn": "€500–€1 500",
+        "earnSuffix": "+",
+        "link": "/kursi/digitalais-specialists"
+      },
+      {
+        "num": "03 · PREMIUM",
+        "level": "6–10 wks",
+        "title": "Voice & WhatsApp AI",
+        "desc": "Automate calls and chats with higher-ticket workflows for demanding teams.",
+        "skills": [
+          "Voice agents",
+          "WhatsApp",
+          "Vapi",
+          "Vonage"
+        ],
+        "earn": "€1 000–€3 000",
+        "earnSuffix": "+",
+        "link": "/kursi/ai-agentu-eksperts"
+      }
+    ]
+  },
+  "AILaunchpad": {
+    "kicker": "Example monthly upside with ~2–4 active clients",
+    "footer": "Results aren’t guaranteed. Outcomes depend on execution and outbound effort.",
+    "perMonth": "/ month",
+    "cards": [
+      {
+        "label": "Social feeds",
+        "range": "€800–€1,600",
+        "desc": "Creative ops, thumbnails, consistent posting"
+      },
+      {
+        "label": "WhatsApp automation",
+        "range": "€1,000–€2,000",
+        "desc": "Instant replies plus lightweight CRM sync"
+      },
+      {
+        "label": "Voice agents",
+        "range": "€1,000–€3,000+",
+        "desc": "Call workflows, reminders, bookings"
+      }
+    ]
+  },
+  "Testimonials": {
+    "kicker": "Real wins",
+    "titleA": "Community ",
+    "titleB": "case studies",
+    "lead": "From finishing lessons to shipping client work—in their own words.",
+    "bigStats": [
+      {
+        "v": "3",
+        "suffix": " wks",
+        "l": "Median time-to-first outbound"
+      },
+      {
+        "v": "94",
+        "accent": true,
+        "suffix": "%",
+        "l": "Learner satisfaction pulse"
+      },
+      {
+        "v": "350",
+        "accentPlus": true,
+        "suffix": "",
+        "l": "Active Latvia-based cohort"
+      },
+      {
+        "v": "6",
+        "accentPlus": true,
+        "suffix": "",
+        "l": "Monetizable playbooks"
+      }
+    ],
+    "quotes": [
+      {
+        "tag": "WEB CHATBOT",
+        "text": "\"Three weeks later I pitched a Riga restaurant. The install landed clean—now juggling four retainers beside my day job.\"",
+        "name": "Martins K.",
+        "role": "Freelancer · Riga",
+        "amt": "€1,400/mo"
+      },
+      {
+        "tag": "FACELESS VIDEO",
+        "text": "\"Exactly the pragmatic AI-video stack I wanted. Zero fluff—I now run feeds for three local brands and finally own my calendar.\"",
+        "name": "Laura B.",
+        "role": "Creator · Jurmala",
+        "amt": "€900/mo"
+      },
+      {
+        "tag": "VOICE AGENTS",
+        "text": "\"Post-course I shipped a dentistry voice agent stack. Automated reminders blew their mind—in a good way.\"",
+        "name": "Raivis D.",
+        "role": "Marketing · Liepaja",
+        "amt": "€800 + €200/mo"
+      }
+    ]
+  },
+  "Pricing": {
+    "label": "Stacks",
+    "titleA": "Pick your ",
+    "titleB": "lane",
+    "subtitle": "Courses, demos, outbound kits, proposal templates—we bundle everything we wish we had.",
+    "popular": "MOST POPULAR",
+    "monthly": "/mo",
+    "earnLabel": "Potential upside",
+    "includedCourses": "Included courses",
+    "whatsIncludedLabel": "What else you unlock",
+    "plans": [
+      {
+        "id": "pamati",
+        "name": "Content Specialist",
+        "tagline": "Earn with social-ready AI media",
+        "price": "29",
+        "earn": "€300–€1,500/mo",
+        "highlight": false,
+        "href": "/kursi/satura-specialists",
+        "courses": [
+          {
+            "icon": "🎬",
+            "name": "AI Faceless Video",
+            "desc": "Produce scroll-stopping reels without filming yourself"
+          },
+          {
+            "icon": "📱",
+            "name": "Social OS playbook",
+            "desc": "Stories, grids, banners, done-for-you rhythms"
+          }
+        ],
+        "skills": [
+          "Portfolio from scratch",
+          "Outbound templates",
+          "Quotable scopes",
+          "Paste-ready messaging"
+        ],
+        "cta": "Start →"
+      },
+      {
+        "id": "izaugsme",
+        "name": "Digital Builder",
+        "tagline": "Ship landing pages plus AI ops stacks",
+        "price": "59",
+        "earn": "€500–€1,800/mo",
+        "highlight": true,
+        "href": "/kursi/digitalais-specialists",
+        "courses": [
+          {
+            "icon": "🌐",
+            "name": "Modern websites",
+            "desc": "AI layout, responsive polish, pragmatic SEO"
+          },
+          {
+            "icon": "💬",
+            "name": "Web Chatbot Studio",
+            "desc": "Answers + lead capture wired to automations"
+          },
+          {
+            "icon": "🤖",
+            "name": "Inbox assistants",
+            "desc": "AI email triage tailored to Latvian SMEs"
+          }
+        ],
+        "skills": [
+          "Credibility via shipped builds",
+          "Hybrid cold outbound",
+          "Professional proposals",
+          "Onboarding rhythms",
+          "Monthly care plans"
+        ],
+        "cta": "Start →"
+      },
+      {
+        "id": "meistars",
+        "name": "AI Agent Specialist",
+        "tagline": "Voice + WhatsApp automations premium buyers want",
+        "price": "149",
+        "earn": "€800–€3,500/mo",
+        "highlight": false,
+        "href": "/kursi/ai-agentu-eksperts",
+        "courses": [
+          {
+            "icon": "🎙",
+            "name": "AI Voice Operators",
+            "desc": "Outbound/inbound dialing with safeguards"
+          },
+          {
+            "icon": "💬",
+            "name": "WhatsApp concierge flows",
+            "desc": "Sequences that qualify inbound leads"
+          },
+          {
+            "icon": "📱",
+            "name": "Micro apps with AI",
+            "desc": "From concept to clickable prototype"
+          }
+        ],
+        "skills": [
+          "Demo-grade agent portfolio",
+          "Executive outreach",
+          "Premium packaging",
+          "Monthly mentor calls twice",
+          "Private accelerator",
+          "Growing a micro-agency"
+        ],
+        "cta": "Start →"
+      }
+    ]
+  },
+  "CTA": {
+    "kicker": "Start today",
+    "titleA": "Your first buyer ",
+    "titleB": "starts here",
+    "lead": "Choose a playbook, practise the drills, invoice with confidence.",
+    "ctaPrimary": "Start free →",
+    "ctaSecondary": "Browse every course",
+    "bullets": [
+      "Bilingual-ready team",
+      "Practice-first lessons",
+      "Template vault",
+      "Hot community"
+    ]
+  },
+  "Footer": {
+    "brandDesc": "Hands-on monetization drills for Latvian builders who want outbound leverage with AI.",
+    "newsletterLabel": "Free AI monetization newsletter",
+    "emailPlaceholder": "you@team.com",
+    "copyright": "© 2026 Chademy. All rights reserved.",
+    "madeIn": "Crafted with",
+    "inLatvia": "Latvia",
+    "terms": "Terms",
+    "privacy": "Privacy",
+    "columns": [
+      {
+        "title": "Platform",
+        "links": [
+          "Courses",
+          "Pricing",
+          "Community",
+          "Templates",
+          "Certs"
+        ]
+      },
+      {
+        "title": "Tracks",
+        "links": [
+          "Social mastery",
+          "Sites & automation",
+          "WhatsApp concierge",
+          "Voice agents",
+          "Toolkit"
+        ]
+      },
+      {
+        "title": "Company",
+        "links": [
+          "About Chademy",
+          "Mission",
+          "Contact",
+          "Privacy policy"
+        ]
+      }
+    ]
+  },
+  "Common": {
+    "processing": "Processing..."
+  },
+  "Auth": {
+    "fallbackDashboard": "/dashboard"
+  },
+  "CoursesMeta": {
+    "saturaSpecialists": {
+      "title": "Content Specialist — Chademy",
+      "description": "Learn AI content systems you can invoice this quarter."
+    },
+    "digitalaisSpecialists": {
+      "title": "Digital Builder — Chademy",
+      "description": "Landing pages, chatbots, and operational automations for SMBs."
+    },
+    "aiAgentuEksperts": {
+      "title": "Agent Expert — Chademy",
+      "description": "Premium voice plus WhatsApp automations bundled for operators."
+    },
+    "websiteChatbot": {
+      "title": "Website Chatbot — Chademy",
+      "description": "Ship conversion-ready conversational AI for business sites."
+    },
+    "voiceAgents": {
+      "title": "AI Voice Operators — Chademy",
+      "description": "Architect voice workflows your clients expense without drama."
+    },
+    "socialoTikluParvaldiba": {
+      "title": "Social Media OS — Chademy",
+      "description": "Operate feeds, creatives, and automations powered by MI."
+    }
+  },
+  "CoursesChrome": {
+    "syllabus": "CURRICULUM",
+    "whatYouLearn": "WHAT YOU'LL MASTER",
+    "toolsHeading": "STACK & PLATFORMS",
+    "includes": "Includes",
+    "access24": "Lifetime access",
+    "mentorSupport": "Mentor support",
+    "cert": "Certificate",
+    "whatsIncludes": [
+      "All lessons",
+      "Changelog notices",
+      "Community access",
+      "Certificate",
+      "Lifetime"
+    ],
+    "ctaSticky": "Enroll today",
+    "stickyPerMonth": "mo",
+    "backHomePrefix": "",
+    "backHome": "Back to home",
+    "stickyMostPopular": "Most enrolled",
+    "syllabusTitle": "Detailed syllabus",
+    "expand": "",
+    "promoTitle": "",
+    "promoCtaPrefix": "",
+    "backHomeShort": "Home",
+    "topBarBack": "Back to home",
+    "comparePlans": "Compare stacks →",
+    "viewPlans": "View pricing",
+    "navBackShort": "Back",
+    "breadcrumbCourses": "Courses",
+    "lessonTypeVideo": "Video",
+    "lessonTypeText": "Text",
+    "lessonTypeTask": "Task",
+    "lessonTypeQuiz": "Quiz",
+    "videoLessonTitle": "Lesson video"
+  },
+  "CourseMarketingChrome": {
+    "tabOverview": "Overview",
+    "tabCurriculum": "Syllabus",
+    "tabTools": "Tools",
+    "progressLabel": "Progress",
+    "lessonsDuration": "{lessons} lessons · {duration}",
+    "statModules": "Modules",
+    "statLessons": "Lessons",
+    "statDuration": "Length",
+    "statStudents": "Students",
+    "ratingLabel": "rating",
+    "earnPotentialSuffix": "potential",
+    "mobileProgram": "📋 Syllabus",
+    "enrollCta": "Start the course — {earn}",
+    "enrollFootnote": "✓ First 2 lessons free · ✓ Full access with Pro",
+    "enrollFootnoteNoCoding": "✓ First 2 lessons free · ✓ No coding required",
+    "heroPillNoCoding": "No coding required",
+    "freeLessonBadge": "FREE",
+    "collapseAllModules": "Collapse all",
+    "expandAllModules": "Expand all",
+    "curriculumLeadTitle": "Syllabus",
+    "curriculumHeadline": "{modules} modules · {lessons} lessons · {duration}",
+    "learnSectionLabel": "What you'll learn",
+    "headingFromZero": "From zero to your first paying client",
+    "contentSectionLabel": "Course curriculum",
+    "contentHeadlineModules": "{modules} modules · {lessons} lessons",
+    "whySectionLabel": "Why this course",
+    "whySectionHeading": "Real outcomes, not just theory",
+    "instructorSectionLabel": "Instructor",
+    "instructorStatStudents": "learners",
+    "instructorStatCourses": "courses",
+    "instructorAvgRating": "average rating",
+    "footerEarnTitle": "Ready to earn {earn}?",
+    "footerEarnSubtitle": "Join {students} learners who are taking this course.",
+    "footerStartFree": "Start the course — first 2 lessons free",
+    "backToOverview": "Back to course overview",
+    "proOnlyVideo": "Included with Pro",
+    "lessonAboutHeading": "About this lesson",
+    "practiceTaskBadge": "Hands-on assignment",
+    "practiceTaskHelp": "Complete the assignment and upload your work — ideal for portfolios and pitching clients.",
+    "submitAssignment": "Submit assignment",
+    "materialHeading": "Downloadable material",
+    "materialIntro": "This lesson includes downloadable templates you can use with clients.",
+    "downloadPdf": "↓ Download (PDF)",
+    "backChevronLabel": "← Back",
+    "nextLessonCta": "Next lesson →",
+    "toolsHeadlineCount": "{count} tools you'll use in this course",
+    "toolsIntroDefault": "Everything above has a free tier or trial. Lesson walkthroughs cover setup.",
+    "startingRequirementsHeading": "What you need to begin",
+    "startingRequirements": [
+      "Computer or laptop (Windows/Mac)",
+      "Stable broadband internet",
+      "An email for tool sign-ups",
+      "~€10–30/month in tools (start lean)",
+      "5–8 hours per week to study",
+      "No coding experience required"
+    ],
+    "startingRequirementsVoice": [
+      "Computer or laptop (Windows/Mac)",
+      "Stable broadband internet",
+      "An email for tool sign-ups",
+      "~€15–40/month in tools initially",
+      "4–8 hours per week to study",
+      "No coding required"
+    ],
+    "startingRequirementsSocial": [
+      "Computer or laptop (Windows/Mac)",
+      "Stable broadband internet",
+      "An email for tool sign-ups",
+      "~€20–50/month in tools initially",
+      "5–10 hours per week to study",
+      "No coding experience required"
+    ],
+    "marketingToolsEyebrow": "Tools you'll master"
+  },
+  "Plans": {
+    "PAMATI": "Content Specialist",
+    "IZAUGSME": "Digital Builder",
+    "MEISTARS": "AI Agent Specialist"
+  },
+  "Dashboard": {
+    "myCourses": "My courses",
+    "activePlan": "Active plan: {plan} — you can access all lower tiers too",
+    "noSubscription": "No active subscription",
+    "lessonsCount": "{count} lessons",
+    "upgradeTo": "Upgrade to {plan} →",
+    "backToCourses": "Back to courses",
+    "completedOf": "{done}/{total} completed",
+    "noAccessTitle": "No access to this course",
+    "noAccessBody": "Upgrade your subscription to unlock this course.",
+    "viewPlansCta": "View plans →",
+    "loadingLesson": "Loading lesson…",
+    "videoSoon": "Video coming soon",
+    "contentInProgress": "Content is being prepared",
+    "lessonN": "Lesson {n}",
+    "complete": "Complete",
+    "markComplete": "Mark as complete",
+    "saving": "Saving…",
+    "prevLesson": "Previous",
+    "nextLesson": "Next lesson",
+    "courseFinished": "Course complete!"
+  },
+  "DashboardNav": {
+    "home": "Home",
+    "academy": "Academy",
+    "templates": "Templates",
+    "scripts": "Scripts",
+    "calculator": "Calculator",
+    "community": "Community",
+    "aiTools": "AI tools",
+    "profile": "Profile",
+    "billing": "Billing",
+    "calendar": "Calendar",
+    "upgradeTitle": "Move to the Build stack",
+    "upgradeBody": "1:1 calls + proposal review",
+    "viewPricing": "View →",
+    "myAccount": "My account",
+    "backToSite": "Back to site"
+  },
+  "DashboardAuth": {
+    "title": "Authentication error",
+    "backHome": "← Back to home"
+  },
+  "CourseStackCommon": {
+    "buyHidden": "Buy →",
+    "whatYouLearn": "What you’ll learn",
+    "curriculum": "Curriculum",
+    "lessonsMeta": "{count} lessons · {duration}",
+    "freePreview": "{duration} · Free preview",
+    "freeBadge": "Free",
+    "videoMeta": "{icon} video · {duration}",
+    "unlockLessons": "Unlock {count} lessons",
+    "purchaseCta": "Get access →",
+    "potentialEarnings": "Earning potential",
+    "perMonth": "/month",
+    "cancelAnytime": "Cancel anytime",
+    "refundNote": "🛡️ 30-day money-back guarantee",
+    "includedCourses": "Courses included",
+    "alsoIncluded": "You also get",
+    "premiumBonuses": "Premium extras",
+    "statsLessons": "Lessons",
+    "statsModules": "Modules",
+    "statsHours": "Total time",
+    "statsStudents": "Learners",
+    "metaVideo": "video"
+  },
+  "VideoPlayer": {
+    "defaultTitle": "Lesson video",
+    "unavailable": "Video unavailable"
+  }
+}

@@ -2,11 +2,13 @@ import { auth } from "@clerk/nextjs/server";
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
-export async function GET(_req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const { userId } = await auth();
 
+  const { id } = await params;
+
   const post = await prisma.post.findUnique({
-    where: { id: params.id },
+    where: { id },
     include: {
       author: { select: { id: true, name: true, avatarUrl: true } },
       _count: { select: { likes: true, comments: true } },
@@ -31,18 +33,20 @@ export async function GET(_req: NextRequest, { params }: { params: { id: string 
   return NextResponse.json({ ...post, liked });
 }
 
-export async function DELETE(_req: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const { userId } = await auth();
   if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const user = await prisma.user.findUnique({ where: { clerkId: userId } });
   if (!user) return NextResponse.json({ error: "User not found" }, { status: 404 });
 
-  const post = await prisma.post.findUnique({ where: { id: params.id } });
+  const { id } = await params;
+
+  const post = await prisma.post.findUnique({ where: { id } });
   if (!post || post.authorId !== user.id) {
     return NextResponse.json({ error: "Aizliegts" }, { status: 403 });
   }
 
-  await prisma.post.delete({ where: { id: params.id } });
+  await prisma.post.delete({ where: { id } });
   return NextResponse.json({ success: true });
 }
