@@ -29,7 +29,7 @@ export default function AILaunchpad() {
         {/* Label */}
         <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 32 }}>
           <span style={{ display: "inline-block", width: 24, height: 1, background: "var(--accent)" }} />
-          <span style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 11, letterSpacing: "0.15em", color: "var(--ink-3)", textTransform: "uppercase" }}>
+          <span style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 11, letterSpacing: "0.15em", color: "var(--ink-2)", textTransform: "uppercase" }}>
             Piemērs, kā var izskatīties ienākumi ar 2–4 klientiem mēnesī
           </span>
         </div>
@@ -61,7 +61,7 @@ export default function AILaunchpad() {
 
         {/* Footer */}
         <div style={{ marginTop: 16, display: "flex", justifyContent: "flex-end" }}>
-          <p style={{ fontSize: 10, color: "var(--ink-4)", fontFamily: "JetBrains Mono, monospace", lineHeight: 1.6 }}>
+          <p style={{ fontSize: 10, color: "var(--ink-3)", fontFamily: "JetBrains Mono, monospace", lineHeight: 1.6 }}>
             Rezultāti nav garantēti. Atkarīgi no ieguldītā darba un klientu piesaistes.
           </p>
         </div>
