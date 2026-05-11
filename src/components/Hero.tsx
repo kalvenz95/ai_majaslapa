@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import type { CSSProperties } from "react";
 
 const EASE_OUT = [0.215, 0.61, 0.355, 1] as const;
@@ -55,6 +56,7 @@ function HeroFloatLayer({
 
 export default function Hero() {
   const reduceMotion = useReducedMotion();
+  const t = useTranslations("Hero");
 
   return (
     <header style={{ padding: "96px 0 80px", position: "relative", overflow: "hidden" }}>
@@ -72,31 +74,31 @@ export default function Hero() {
               variants={fadeUpItem}
               style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "6px 14px 6px 6px", background: "color-mix(in oklab, var(--accent) 12%, transparent)", border: "1px solid color-mix(in oklab, var(--accent) 35%, transparent)", borderRadius: 999, fontSize: 12, color: "var(--ink)", fontWeight: 500, marginBottom: 28 }}
             >
-              <span style={{ background: "var(--accent)", color: "var(--accent-ink)", padding: "3px 9px", borderRadius: 999, fontFamily: "JetBrains Mono, monospace", fontSize: 10, fontWeight: 700, letterSpacing: "0.08em" }}>LV</span>
-              Latvijas pirmā AI monetizācijas akadēmija
+              <span style={{ background: "var(--accent)", color: "var(--accent-ink)", padding: "3px 9px", borderRadius: 999, fontFamily: "JetBrains Mono, monospace", fontSize: 10, fontWeight: 700, letterSpacing: "0.08em" }}>{t("badgeRegion")}</span>
+              {t("badgeLine")}
             </motion.span>
 
             <motion.h1
               variants={fadeUpItem}
               style={{ fontSize: "clamp(48px, 8.5vw, 124px)", lineHeight: 1.05, letterSpacing: "-0.045em", fontWeight: 600, margin: "0 0 28px", maxWidth: "14ch" }}
             >
-              Iemācies veidot AI pakalpojumus un{" "}
+              {t("h1Line1")}
               <span style={{ background: "linear-gradient(120deg, var(--accent), color-mix(in oklab, var(--accent) 70%, white))", WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent", fontStyle: "italic", fontFamily: "Fraunces, Georgia, serif", fontWeight: 500 }}>
-                pelnīt
-              </span>{" "}
-              ar tiem.
+                {t("h1Gradient")}
+              </span>
+              {t("h1Line2")}
             </motion.h1>
 
             <motion.p
               variants={fadeUpItem}
               style={{ fontSize: 19, lineHeight: 1.55, color: "var(--ink-2)", maxWidth: 560 }}
             >
-              Praktiska apmācība latviešu valodā. Soli pa solim — no pirmās prasmes līdz pirmajam klientam.
+              {t("sub")}
             </motion.p>
 
             <motion.div variants={fadeUpItem} style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 36 }}>
-              <a href="#pricing" className="btn-primary" style={{ textDecoration: "none" }}>Sākt bez maksas →</a>
-              <a href="#how" className="btn-ghost" style={{ textDecoration: "none" }}>Kā tas strādā</a>
+              <a href="#pricing" className="btn-primary" style={{ textDecoration: "none" }}>{t("ctaPrimary")}</a>
+              <a href="#how" className="btn-ghost" style={{ textDecoration: "none" }}>{t("ctaSecondary")}</a>
             </motion.div>
 
             {/* Stats */}
@@ -106,24 +108,24 @@ export default function Hero() {
               style={{ marginTop: 64, paddingTop: 28, borderTop: "1px solid var(--line)", display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }}
             >
               <div>
-                <div style={{ fontSize: 44, fontWeight: 600, letterSpacing: "-0.04em", lineHeight: 1 }}>3</div>
-                <div style={{ fontSize: 13, color: "var(--ink-3)", marginTop: 10, lineHeight: 1.4 }}>AI pakalpojumu virzieni</div>
+                <div style={{ fontSize: 44, fontWeight: 600, letterSpacing: "-0.04em", lineHeight: 1 }}>{t("stat1Val")}</div>
+                <div style={{ fontSize: 13, color: "var(--ink-3)", marginTop: 10, lineHeight: 1.4 }}>{t("stat1Label")}</div>
               </div>
               <div>
                 <div style={{ fontSize: 44, fontWeight: 600, letterSpacing: "-0.04em", lineHeight: 1 }}>
-                  <span style={{ color: "var(--accent)" }}>100</span><span style={{ fontSize: 24, color: "var(--ink-3)" }}>%</span>
+                  <span style={{ color: "var(--accent)" }}>{t("stat2Val")}</span><span style={{ fontSize: 24, color: "var(--ink-3)" }}>{t("stat2Percent")}</span>
                 </div>
-                <div style={{ fontSize: 13, color: "var(--ink-3)", marginTop: 10, lineHeight: 1.4 }}>Praktisks saturs</div>
+                <div style={{ fontSize: 13, color: "var(--ink-3)", marginTop: 10, lineHeight: 1.4 }}>{t("stat2Label")}</div>
               </div>
               <div>
                 <div style={{ fontSize: 44, fontWeight: 600, letterSpacing: "-0.04em", lineHeight: 1 }}>
                   350<span style={{ fontSize: 24, color: "var(--accent)" }}>+</span>
                 </div>
-                <div style={{ fontSize: 13, color: "var(--ink-3)", marginTop: 10, lineHeight: 1.4 }}>Aktīvi studenti</div>
+                <div style={{ fontSize: 13, color: "var(--ink-3)", marginTop: 10, lineHeight: 1.4 }}>{t("stat3Label")}</div>
               </div>
               <div>
-                <div style={{ fontSize: 44, fontWeight: 600, letterSpacing: "-0.04em", lineHeight: 1 }}>€0</div>
-                <div style={{ fontSize: 13, color: "var(--ink-3)", marginTop: 10, lineHeight: 1.4 }}>Sākt bez pieredzes</div>
+                <div style={{ fontSize: 44, fontWeight: 600, letterSpacing: "-0.04em", lineHeight: 1 }}>{t("stat4Val")}</div>
+                <div style={{ fontSize: 13, color: "var(--ink-3)", marginTop: 10, lineHeight: 1.4 }}>{t("stat4Label")}</div>
               </div>
             </motion.div>
           </motion.div>
@@ -173,14 +175,14 @@ export default function Hero() {
             <HeroFloatLayer duration={4.8} amplitude={6} delay={0.35} style={{ top: "8%", right: "-2%", zIndex: 10 }}>
               <div style={{ background: "var(--bg-1)", border: "1px solid var(--line-2)", borderRadius: 14, padding: "10px 14px", fontSize: 12, fontWeight: 500, display: "flex", alignItems: "center", gap: 8, boxShadow: "0 12px 32px -8px rgba(0,0,0,0.5)" }}>
                 <span style={{ width: 8, height: 8, borderRadius: 999, background: "var(--accent)", flexShrink: 0 }} />
-                Build · Sell · Scale
+                {t("floatTag1")}
               </div>
             </HeroFloatLayer>
             {/* Floating tag 2 */}
             <HeroFloatLayer duration={5.4} amplitude={7} delay={1.1} style={{ bottom: "12%", left: "-4%", zIndex: 10 }}>
               <div style={{ background: "var(--bg-1)", border: "1px solid var(--line-2)", borderRadius: 14, padding: "10px 14px", fontSize: 12, fontWeight: 500, display: "flex", alignItems: "center", gap: 8, boxShadow: "0 12px 32px -8px rgba(0,0,0,0.5)" }}>
                 <span style={{ width: 8, height: 8, borderRadius: 999, background: "var(--accent)", flexShrink: 0 }} />
-                Pirmais klients 3 nedēļās
+                {t("floatTag2")}
               </div>
             </HeroFloatLayer>
           </motion.div>

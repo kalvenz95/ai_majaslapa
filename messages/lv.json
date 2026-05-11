@@ -1,0 +1,436 @@
+{
+  "Metadata": {
+    "title": "Chademy — Nopelni ar AI",
+    "description": "Praktiska AI mācību platforma latvietiem. Iemācies veidot AI pakalpojumus un pārdot tos uzņēmumiem. Sāc nopelnīt ar mākslīgo intelektu jau šodien.",
+    "keywords": "AI, mākslīgais intelekts, kursi, nopelnīt, Latvija, Chademy, automatizācija, chatbot",
+    "ogTitle": "Chademy — Nopelni ar AI",
+    "ogDescription": "Latvijas pirmā praktiskā AI monetizācijas platforma"
+  },
+  "Navbar": {
+    "courses": "Kursi",
+    "pricing": "Cenas",
+    "about": "Par mums",
+    "results": "Rezultāti",
+    "myAccount": "Mans konts",
+    "signIn": "Pieslēgties",
+    "signUp": "Sākt bezmaksas →"
+  },
+  "Lang": {
+    "lv": "LV",
+    "en": "EN"
+  },
+  "Hero": {
+    "badgeRegion": "LV",
+    "badgeLine": "Latvijas pirmā AI monetizācijas akadēmija",
+    "h1Line1": "Iemācies veidot AI pakalpojumus un ",
+    "h1Gradient": "pelnīt",
+    "h1Line2": " ar tiem.",
+    "sub": "Praktiska apmācība latviešu valodā. Soli pa solim — no pirmās prasmes līdz pirmajam klientam.",
+    "ctaPrimary": "Sākt bez maksas →",
+    "ctaSecondary": "Kā tas strādā",
+    "stat1Val": "3",
+    "stat1Label": "AI pakalpojumu virzieni",
+    "stat2Val": "100",
+    "stat2Percent": "%",
+    "stat2Label": "Praktisks saturs",
+    "stat3Val": "350",
+    "stat3Label": "Aktīvi studenti",
+    "stat4Val": "€0",
+    "stat4Label": "Sākt bez pieredzes",
+    "floatTag1": "Build · Sell · Scale",
+    "floatTag2": "Pirmais klients 3 nedēļās"
+  },
+  "FastWin": {
+    "kicker": "Soli pa solim",
+    "titleA": "No nulles līdz ",
+    "titleB": "pirmajam klientam",
+    "lead": "5 skaidri soļi. Katrā solī apgūsti vienu prasmi un sagatavojies darbam ar uzņēmumiem.",
+    "steps": [
+      {
+        "num": "01",
+        "title": "Izvēlies virzienu",
+        "desc": "Saturs, mājaslapas vai balss aģenti — sāc ar to, kas tev tuvāks."
+      },
+      {
+        "num": "02",
+        "title": "Apgūsti prasmi",
+        "desc": "Praktiskas nodarbības, video un veidnes latviešu valodā."
+      },
+      {
+        "num": "03",
+        "title": "Izveido demo",
+        "desc": "Reāls darba piemērs, ko vari rādīt potenciālajiem klientiem."
+      },
+      {
+        "num": "04",
+        "title": "Uzrunā uzņēmumus",
+        "desc": "Gatavas veidnes ziņām, e-pastiem un sarunām."
+      },
+      {
+        "num": "05",
+        "title": "Noslēdz darījumu",
+        "desc": "Pirmais klients un pirmais ienākums no AI pakalpojuma."
+      }
+    ]
+  },
+  "Services": {
+    "kicker": "Trīs virzieni",
+    "titleA": "Izvēlies, ko pārdot ",
+    "titleB": "uzņēmumiem",
+    "lead": "Katrs virziens — ar pieprasītiem pakalpojumiem, kuriem ir reāls pieprasījums Latvijas un Eiropas tirgū.",
+    "viewCourse": "Skatīt kursu →",
+    "tracks": [
+      {
+        "num": "01 · IESĀCĒJS",
+        "level": "3–5 ned.",
+        "title": "Sociālo tīklu pārvaldība",
+        "desc": "Apgūsti vispārējas SMM prasmes un veido AI video, vizuāļus un reklāmas saturu uzņēmumiem — bez kameras, bez pieredzes.",
+        "skills": [
+          "SMM pārvaldība",
+          "Faceless video",
+          "AI bildes",
+          "Postu dizains",
+          "Reklāmas"
+        ],
+        "earn": "€300–€800",
+        "earnSuffix": "/mēn",
+        "link": "/kursi/satura-specialists"
+      },
+      {
+        "num": "02 · VIDĒJS",
+        "level": "5–8 ned.",
+        "title": "Mājaslapas & chatboti",
+        "desc": "Iemācies veidot mājaslapas ar mākslīgā intelekta palīdzību, pievienot chatbotus, kas atbild klientiem 24/7, automatizēt pieteikumu plūsmu un veidot profesionālas prezentācijas ar MI.",
+        "skills": [
+          "Mājaslapa ar MI",
+          "Chatboti",
+          "Klientu piesaiste",
+          "Automatizācija",
+          "Prezentācijas ar MI"
+        ],
+        "earn": "€500–€1 500",
+        "earnSuffix": "+",
+        "link": "/kursi/digitalais-specialists"
+      },
+      {
+        "num": "03 · PREMIUM",
+        "level": "6–10 ned.",
+        "title": "Balss aģenti & WhatsApp",
+        "desc": "Automatizē klientu zvanus un ziņas — augstvērtīgi pakalpojumi ar lielāko peļņas potenciālu.",
+        "skills": [
+          "Voice agenti",
+          "WhatsApp",
+          "Vapi",
+          "Vonage"
+        ],
+        "earn": "€1 000–€3 000",
+        "earnSuffix": "+",
+        "link": "/kursi/ai-agentu-eksperts"
+      }
+    ]
+  },
+  "AILaunchpad": {
+    "kicker": "Piemērs, kā var izskatīties ienākumi ar 2–4 klientiem mēnesī",
+    "footer": "Rezultāti nav garantēti. Atkarīgi no ieguldītā darba un klientu piesaistes.",
+    "perMonth": "/ mēnesī",
+    "cards": [
+      {
+        "label": "Sociālie tīkli",
+        "range": "€800–€1 600",
+        "desc": "Saturs, vizuāļi, feed pārvaldība"
+      },
+      {
+        "label": "WhatsApp automatizācija",
+        "range": "€1 000–€2 000",
+        "desc": "Automātiskas atbildes, lead apstrāde"
+      },
+      {
+        "label": "Balss aģenti",
+        "range": "€1 000–€3 000+",
+        "desc": "Zvanu automatizācija, rezervācijas"
+      }
+    ]
+  },
+  "Testimonials": {
+    "kicker": "Reāli rezultāti",
+    "titleA": "Mūsu kopienas ",
+    "titleB": "piemēri praksē",
+    "lead": "Pirmie soļi no apmācības līdz darbam ar klientiem.",
+    "bigStats": [
+      {
+        "v": "3",
+        "suffix": " ned.",
+        "l": "Vidējais laiks līdz pirmajam klientam"
+      },
+      {
+        "v": "94",
+        "accent": true,
+        "suffix": "%",
+        "l": "Studentu apmierinātības rādītājs"
+      },
+      {
+        "v": "350",
+        "accentPlus": true,
+        "suffix": "",
+        "l": "Aktīvi studenti Latvijā"
+      },
+      {
+        "v": "6",
+        "accentPlus": true,
+        "suffix": "",
+        "l": "Apgūstami pakalpojumi"
+      }
+    ],
+    "quotes": [
+      {
+        "tag": "WEB CHATBOT",
+        "text": "\"Pēc 3 nedēļām uzrunāju pirmo klientu — restorānu Rīgā. Chatbot uzstādīšana aizgāja gludi. Tagad strādāju ar 4 klientiem paralēli pamata darbam.\"",
+        "name": "Mārtiņš K.",
+        "role": "Freelancer · Rīga",
+        "amt": "€1 400/mēn"
+      },
+      {
+        "tag": "FACELESS VIDEO",
+        "text": "\"AI video kurss bija tieši tas, ko meklēju. Vienkāršs, praktisks, bez teorijām. Tagad vadu sociālo mediju saturu 3 vietējiem uzņēmumiem un pati plānoju savu laiku.\"",
+        "name": "Laura B.",
+        "role": "Satura veidotāja · Jūrmala",
+        "amt": "€900/mēn"
+      },
+      {
+        "tag": "VOICE AGENTS",
+        "text": "\"Voice aģentu sistēmu zobārstniecībai saliku kopā pēc kursa. Klients ir sajūsmā — automātiski zvanu atgādinājumi strādā bez iejaukšanās.\"",
+        "name": "Raivis D.",
+        "role": "Mārketings · Liepāja",
+        "amt": "€800 + €200/mēn"
+      }
+    ]
+  },
+  "Pricing": {
+    "label": "Pakas",
+    "titleA": "Izvēlies savu ",
+    "titleB": "ceļu",
+    "subtitle": "Katrai pakai — kursi, demo veidnes, klientu uzrunāšanas materiāli un cenu piedāvājumi.",
+    "popular": "POPULĀRĀKAIS",
+    "monthly": "/mēn",
+    "earnLabel": "Potenciālie ienākumi",
+    "includedCourses": "Iekļautie kursi",
+    "whatsIncludedLabel": "Ko vēl iegūsti",
+    "plans": [
+      {
+        "id": "pamati",
+        "name": "Satura Speciālists",
+        "tagline": "Sāc pelnīt ar sociālo mediju saturu",
+        "price": "29",
+        "earn": "300€–1 500€/mēn",
+        "highlight": false,
+        "href": "/kursi/satura-specialists",
+        "courses": [
+          {
+            "icon": "🎬",
+            "name": "AI Faceless Video",
+            "desc": "Satura veidošana bez kameras"
+          },
+          {
+            "icon": "📱",
+            "name": "Sociālo Tīklu Pārvaldība",
+            "desc": "AI video, banneri, feed dizains"
+          }
+        ],
+        "skills": [
+          "Kā izveidot portfolio no 0",
+          "Kā uzrunāt pirmos klientus",
+          "Kā sagatavot cenu piedāvājumu",
+          "Copy-paste ziņu veidnes"
+        ],
+        "cta": "Sākt →"
+      },
+      {
+        "id": "izaugsme",
+        "name": "Digitālais Speciālists",
+        "tagline": "Izveido AI risinājumus biznesiem",
+        "price": "59",
+        "earn": "500€–1 800€/mēn",
+        "highlight": true,
+        "href": "/kursi/digitalais-specialists",
+        "courses": [
+          {
+            "icon": "🌐",
+            "name": "Mājaslapa",
+            "desc": "AI dizains, SEO, mobilā versija"
+          },
+          {
+            "icon": "💬",
+            "name": "Web Chatbot",
+            "desc": "24/7 automātiskas atbildes, lead ģenerēšana"
+          },
+          {
+            "icon": "🤖",
+            "name": "AI Asistents uz E-pastiem",
+            "desc": "Automatizēti e-pasti un komunikācija"
+          }
+        ],
+        "skills": [
+          "Kā izveidot portfolio ar reāliem darbiem",
+          "Kā uzrunāt klientus (aukstie zvani + DM)",
+          "Kā sagatavot profesionālu piedāvājumu",
+          "Klientu onboarding process",
+          "Ikmēneša atbalsta paketes"
+        ],
+        "cta": "Sākt →"
+      },
+      {
+        "id": "meistars",
+        "name": "AI Aģentu Eksperts",
+        "tagline": "Augstvērtīgi aģentu risinājumi",
+        "price": "149",
+        "earn": "800€–3 500€/mēn",
+        "highlight": false,
+        "href": "/kursi/ai-agentu-eksperts",
+        "courses": [
+          {
+            "icon": "🎙",
+            "name": "AI Balss Aģenti",
+            "desc": "Automātiski zvani un pierakstu rezervācija"
+          },
+          {
+            "icon": "💬",
+            "name": "WhatsApp Automatizācija",
+            "desc": "Automātiskas atbildes un lead apstrāde"
+          },
+          {
+            "icon": "📱",
+            "name": "Izveido savu Aplikāciju ar AI",
+            "desc": "No idejas līdz darbojošai lietotnei"
+          }
+        ],
+        "skills": [
+          "Kā izveidot portfolio ar demo aģentiem",
+          "Kā uzrunāt augstvērtīgus klientus",
+          "Kā sagatavot premium piedāvājumu",
+          "1:1 mentorings (2× mēnesī)",
+          "Privāta kopiena",
+          "Aģentūras augšanas ceļvedis"
+        ],
+        "cta": "Sākt →"
+      }
+    ]
+  },
+  "CTA": {
+    "kicker": "Sāc šodien",
+    "titleA": "Tavs pirmais klients ",
+    "titleB": "sākas šeit",
+    "lead": "Izvēlies virzienu, apgūsti prasmes un pārvērt tās ienākumos.",
+    "ctaPrimary": "Sākt bez maksas →",
+    "ctaSecondary": "Skatīt visus kursus",
+    "bullets": [
+      "Latviešu valodā",
+      "Praktiski kursi",
+      "Gatavas veidnes",
+      "Aktīva kopiena"
+    ]
+  },
+  "Footer": {
+    "brandDesc": "Latvijas pirmā praktiskā AI monetizācijas platforma. Iemācies, izveido, pārdod.",
+    "newsletterLabel": "Saņem bezmaksas AI padomus",
+    "emailPlaceholder": "tava@epasts.lv",
+    "copyright": "© 2025 Chademy. Visas tiesības aizsargātas.",
+    "madeIn": "Veidots ar",
+    "inLatvia": "Latvijā",
+    "terms": "Noteikumi",
+    "privacy": "Privātums",
+    "columns": [
+      {
+        "title": "Platforma",
+        "links": [
+          "Kursi",
+          "Cenas",
+          "Kopiena",
+          "Sertifikāti",
+          "Veidņu glabātuve"
+        ]
+      },
+      {
+        "title": "Kursi",
+        "links": [
+          "Sociālo tīklu pārvaldība",
+          "Mājaslapas & automatizācija",
+          "WhatsApp automatizācija",
+          "Balss aģenti",
+          "AI rīki"
+        ]
+      },
+      {
+        "title": "Uzņēmums",
+        "links": [
+          "Par Chademy",
+          "Misija",
+          "Kontakti",
+          "Privātuma politika"
+        ]
+      }
+    ]
+  },
+  "Common": {
+    "processing": "Apstrādā..."
+  },
+  "Auth": {
+    "fallbackDashboard": "/dashboard"
+  },
+  "CoursesMeta": {
+    "saturaSpecialists": {
+      "title": "Satura Speciālists — Chademy",
+      "description": "Iemācies veidot AI saturu un pārdot to uzņēmumiem."
+    },
+    "digitalaisSpecialists": {
+      "title": "Digitālais Speciālists — Chademy",
+      "description": "Izveido AI risinājumus mājaslapām, chatbotiem un komunikācijai."
+    },
+    "aiAgentuEksperts": {
+      "title": "AI Aģentu Eksperts — Chademy",
+      "description": "Balss un WhatsApp automatizācija ar AI aģentiem."
+    },
+    "websiteChatbot": {
+      "title": "Website Chatbot — Chademy",
+      "description": "AI chatbots uzņēmumu mājaslapām."
+    },
+    "voiceAgents": {
+      "title": "AI Balss Aģenti — Chademy",
+      "description": "Izveido AI balss aģentus un pārdot uzņēmumiem Latvijā."
+    },
+    "socialoTikluParvaldiba": {
+      "title": "Sociālo tīklu pārvaldība — Chademy",
+      "description": "Satura un Sociālo mediju vadīšana ar MI."
+    }
+  },
+  "CoursesChrome": {
+    "syllabus": "PROGRAMMA",
+    "whatYouLearn": "KO APGŪSI",
+    "toolsHeading": "RĪKI & TEHNOLOGIJA",
+    "includes": "Iekļauts",
+    "access24": "Uz mūžu",
+    "mentorSupport": "Mentoru atbalsts",
+    "cert": "Sertifikāts",
+    "whatsIncludes": [
+      "Visas nodarbības",
+      "Izmaiņu vēsture",
+      "Piekļuve kopienā",
+      "Sertifikāts",
+      "Uz mūžu"
+    ],
+    "ctaSticky": "Iegādāties šo kursu",
+    "stickyPerMonth": "mēn",
+    "backHomePrefix": "",
+    "backHome": "Uz sākumu",
+    "stickyMostPopular": "Vispopulārākais",
+    "syllabusTitle": "Kursu programma",
+    "expand": "",
+    "promoTitle": "",
+    "promoCtaPrefix": "",
+    "backHomeShort": "Uz sākumu",
+    "topBarBack": "Atpakaļ uz sākumu",
+    "comparePlans": "Salīdzināt visas pakas →",
+    "viewPlans": "Skatīt cenas",
+    "navBackShort": "Atpakaļ",
+    "breadcrumbCourses": "Kursi"
+  }
+}

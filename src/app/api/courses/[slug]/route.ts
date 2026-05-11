@@ -6,7 +6,7 @@ import { hasAccessToPlan } from "@/lib/stripe";
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> },
 ) {
   try {
     const { userId } = await auth();
@@ -14,8 +14,10 @@ export async function GET(
       return NextResponse.json({ message: "Nav autorizēts" }, { status: 401 });
     }
 
+    const { slug } = await params;
+
     const course = await prisma.course.findUnique({
-      where: { slug: params.slug },
+      where: { slug },
       include: {
         lessons: {
           orderBy: { order: "asc" },
