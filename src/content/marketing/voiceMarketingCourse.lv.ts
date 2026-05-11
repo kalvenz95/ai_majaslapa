@@ -1,0 +1,113 @@
+import type { DetailMarketingCourse } from "@/content/marketing/marketingDetailCourse.types";
+
+export const voiceMarketingCourseLv: DetailMarketingCourse = {
+  title: "AI Balss Aģenti",
+  subtitle: "Izveido sistēmu, kas zvana klientiem tavā vietā",
+  description:
+    "Iemācies no nulles izveidot AI balss aģentu, kas automātiski pieņem zvanus, rezervē pierakstus un atbild uz jautājumiem 24/7. Nav nepieciešamas programmēšanas zināšanas. Gatavs pakalpojums, ko pārdot Latvijas uzņēmumiem par 500€–1800€.",
+  earn: "500€–1800€/projekts",
+  difficulty: "Vidējs",
+  tag: "Jaunākais",
+  totalDuration: "7h 10 min",
+  totalLessons: 22,
+  totalModules: 6,
+  students: 61,
+  rating: 4.9,
+  instructor: {
+    name: "Kārlis Bērziņš",
+    role: "AI Automatizācijas Eksperts",
+    avatar: "KB",
+    bio: "5+ gadi digitālā mārketingā, pēdējos 2 gadus specializējoties AI risinājumos Latvijas uzņēmumiem. Izveidojis 20+ balss aģentus dažādām nišām — ārstu kabineti, restorāni, nekustamais īpašums.",
+    students: 420,
+    courses: 3,
+  },
+  tools: [
+    { name: "ElevenLabs",    desc: "Reālistiskas AI balsis latviski",  color: "#f97316" },
+    { name: "n8n",           desc: "Zvanu automatizācijas backend",     color: "#00d4ff" },
+    { name: "Claude API",    desc: "AI smadzenes aģentam",             color: "#a855f7" },
+    { name: "Twilio / Vonage", desc: "Latvijas numura integrācija",    color: "#f43f5e" },
+    { name: "Google Cal.",   desc: "Automātiska pierakstu rezervācija", color: "#22c55e" },
+    { name: "Google Sheets", desc: "Zvanu datu glabāšana",             color: "#34d399" },
+    { name: "Retell AI",     desc: "Balss aģenta platforma",           color: "#fbbf24" },
+  ],
+  learn: [
+    "Izveidot pilnfunkcionālu AI balss aģentu bez koda",
+    "Pievienot reālistisku latviski runājošu balsi",
+    "Savienot aģentu ar Latvijas tālruņa numuru",
+    "Veidot sarunu skriptus un loģiku",
+    "Integrēt Google Calendar pierakstu rezervācijai",
+    "Saglabāt zvanu datus CRM automātiski",
+    "Pārdot pakalpojumu par 500€–1800€",
+    "Izveidot demo, kas pats pārdod klientam",
+  ],
+  modules: [
+    {
+      id: 1,
+      title: "Ievads",
+      duration: "55 min",
+      lessons: [
+        { id: "1-1", title: "Kas ir AI balss aģents un kā tas darbojas?", type: "video", duration: "14 min", free: true, description: "Salīdzinājums: cilvēks vs AI aģents zvanos. Reāli piemēri — zobārsta kabinets, restorāns, nekustamais īpašums. Kāpēc uzņēmumi maksā par šo." },
+        { id: "1-2", title: "Kādiem biznesiem tas ir piemērots Latvijā?", type: "video", duration: "12 min", free: true, description: "Top 10 nišas, kur balss aģenti darbojas vislabāk Latvijā. Tirgus lielums un iespēja." },
+        { id: "1-3", title: "Cenas, bizness modelis un ROI klientam", type: "video", duration: "15 min", description: "Kāpēc 500€+ ir saprātīgi sākumā. Vienreizējā maksa vs ikmēneša atbalsts. Kā aprēķināt ROI klientam." },
+        { id: "1-4", title: "Klienta onboarding dokuments", type: "text", duration: "8 min", description: "Lejupielādējams template — jautājumi par biznesa scenāriju, biežākajiem zvaniem un vēlamo toni." },
+        { id: "1-5", title: "Uzdevums: izvēlies savu pirmo nišu", type: "task", duration: "6 min", description: "Izvēlies 1 nišu (restorāns, zobārstniecība, u.c.) un apraksti 3 scenārijus, kad balss aģents var aizstāt cilvēku." },
+      ],
+    },
+    {
+      id: 2,
+      title: "Setup — Rīki, konti un pirmais aģents",
+      duration: "1h 25 min",
+      lessons: [
+        { id: "2-1", title: "Rīku saraksts un kontu izveide", type: "video", duration: "16 min", description: "ElevenLabs, Retell AI, n8n un Twilio kontu setup. Bezmaksas plāni un izmēģinājuma periodi." },
+        { id: "2-2", title: "Pirmais aģents: sveiciens un pamata atbildes", type: "video", duration: "22 min", description: "Platforma no nulles — pirmais flow, AI modeļa pievienošana, sveiciena ziņa, pamata jautājumu apstrāde." },
+        { id: "2-3", title: "Zvanu skripts un sarunu loģika", type: "video", duration: "20 min", description: "Kā rakstīt sarunu skriptus, kas izklausās dabiski. Jautājumu un atbilžu struktūra. Edge case apstrāde." },
+        { id: "2-4", title: "Testēšana ar īstu zvanu", type: "video", duration: "14 min", description: "Kā piezvanīt savam aģentam un novērtēt kvalitāti. 10 testjautājumi ko vienmēr pārbaudīt." },
+        { id: "2-5", title: "Uzdevums: pirmais darba aģents", type: "task", duration: "13 min", description: "Izveido darba aģentu izvēlētajai nišai, kurš spēj atbildēt uz vismaz 5 biežiem jautājumiem." },
+      ],
+    },
+    {
+      id: 3,
+      title: "Balss & Identitāte — Izskan profesionāli",
+      duration: "1h 5 min",
+      lessons: [
+        { id: "3-1", title: "ElevenLabs — reālistisku balsi aģentam", type: "video", duration: "20 min", description: "ElevenLabs voice cloning un balss bibliotēka. Latviskai izrunai piemērotas balsis. API savienošana ar aģentu." },
+        { id: "3-2", title: "Tona un personības pielāgošana", type: "video", duration: "18 min", description: "Sistēmas promts aģenta personībai. Formāls vs draudzīgs tonis. Kā pielāgot klienta zīmolam." },
+        { id: "3-3", title: "Latviešu valoda un izruna", type: "video", duration: "15 min", description: "Kā nodrošināt pareizu latviešu valodas apstrādi. Biežākās kļūdas un to labošana." },
+        { id: "3-4", title: "Uzdevums: balss demo klientam", type: "task", duration: "12 min", description: "Izveidot 60 sekunžu audio demo, ko var nosūtīt potenciālajam klientam." },
+      ],
+    },
+    {
+      id: 4,
+      title: "Integrācijas — Kalendarss, CRM un dati",
+      duration: "1h 20 min",
+      lessons: [
+        { id: "4-1", title: "Google Calendar — automātiska pierakstu rezervācija", type: "video", duration: "24 min", description: "n8n workflow: aģents piedāvā brīvos laikus, klients izvēlas, tikšanās izveidojas automātiski. Pilns setup." },
+        { id: "4-2", title: "Google Sheets — zvanu dati un lead capture", type: "video", duration: "18 min", description: "Kā saglabāt zvanu vēsturi, klienta vārdu, vajadzību un kontaktu automātiski pēc katra zvana." },
+        { id: "4-3", title: "E-pasta apstiprinājums pēc zvana", type: "video", duration: "14 min", description: "Automātisks apstiprinājuma e-pasts klientam pēc pieraksta — n8n + Gmail integrācija." },
+        { id: "4-4", title: "Latvijas numurs ar Twilio vai Vonage", type: "video", duration: "12 min", description: "Kā iegūt Latvijas (+371) numuru un pievienot aģentam. Cenas un atšķirības starp Twilio un Vonage." },
+        { id: "4-5", title: "Uzdevums: pilna integrācija", type: "task", duration: "12 min", description: "Savienot aģentu ar Google Calendar un Sheets. Veikt testa zvanu un pārliecināties, ka dati tiek saglabāti." },
+      ],
+    },
+    {
+      id: 5,
+      title: "Reāli Scenāriji — Zobārstniecība, Restorāns, Nekustamais",
+      duration: "55 min",
+      lessons: [
+        { id: "5-1", title: "Zobārstniecības aģents — pieraksti un atgādinājumi", type: "video", duration: "22 min", description: "Pilns use case: pacients zvana, aģents piedāvā laikus, rezervē, nosūta atgādinājumu. Kā pārdot šo zobārstam." },
+        { id: "5-2", title: "Restorāna aģents — galda rezervācijas", type: "video", duration: "18 min", description: "Galda rezervācija, jautājumi par ēdienkarti, darba laiki. Aģents, kas 'zina' visu par restorānu." },
+        { id: "5-3", title: "Nekustamā īpašuma aģents — lead kvalifikācija", type: "video", duration: "15 min", description: "Automātiska lead filtrēšana — aģents uzdod jautājumus un sagatavo apkopojumu brokerim." },
+      ],
+    },
+    {
+      id: 6,
+      title: "Klientu Atrašana & Pirmais Pārdošanas Zvans",
+      duration: "1h",
+      lessons: [
+        { id: "6-1", title: "Kur atrast pirmos klientus Latvijā", type: "video", duration: "20 min", description: "Konkrētas vietas: Lursoft biznesi bez automātiskiem zvaniem, LinkedIn, vietējo ārstu katalogi, ss.lv." },
+        { id: "6-2", title: "Demo aģents, kas pats pārdod pakalpojumu", type: "video", duration: "18 min", description: "Kā izveidot demo zvanu konkrētam klientam 'skatieties, tas jau zina par jūsu biznesu'. Psiholoģija aiz tā." },
+        { id: "6-3", title: "Proposal, līgums un piegāde", type: "text", duration: "12 min", description: "Lejupielādējams PDF proposal ar 3 paketēm un vienkāršs apkopes līgums latviešu valodā." },
+        { id: "6-4", title: "Uzdevums: pirmais klientu demo", type: "task", duration: "10 min", description: "Izveidot personalizētu demo aģentu vienam konkrētam uzņēmumam Latvijā un nosūtīt proposal." },
+      ],
+    },
+  ],
+};

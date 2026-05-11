@@ -1,0 +1,113 @@
+import type { DetailMarketingCourse } from "@/content/marketing/marketingDetailCourse.types";
+
+export const voiceMarketingCourseEn: DetailMarketingCourse = {
+  title: "AI Voice Operators",
+  subtitle: "Ship the system that calls customers for you",
+  description:
+    "Learn to launch an AI voice agent that accepts calls, books appointments, and answers FAQs 24/7—without becoming a telecom engineer. A sellable SKU for Latvian SMEs with €500–€1 800 benchmarks.",
+  earn: "€500–€1,800 / project",
+  difficulty: "Intermediate",
+  tag: "Fresh drop",
+  totalDuration: "7h 10 min",
+  totalLessons: 22,
+  totalModules: 6,
+  students: 61,
+  rating: 4.9,
+  instructor: {
+    name: "Kārlis Bērziņš",
+    role: "AI Automation Specialist",
+    avatar: "KB",
+    bio: "Five years advising digital launches, specializing in Latvian SMEs with pragmatic AI tooling. Shipped twenty niche voice deployments—clinical, hospitality, brokerage.",
+    students: 420,
+    courses: 3,
+  },
+  tools: [
+    { name: "ElevenLabs",    desc: "Realistic AI voices (+ LV tuning)",  color: "#f97316" },
+    { name: "n8n",           desc: "Call-automation backends",     color: "#00d4ff" },
+    { name: "Claude API",    desc: "AI reasoning core for the agent",             color: "#a855f7" },
+    { name: "Twilio / Vonage", desc: "Local DID routing (+371)",    color: "#f43f5e" },
+    { name: "Google Cal.",   desc: "Automatic booking confirmations", color: "#22c55e" },
+    { name: "Google Sheets", desc: "Call log + metadata storage",             color: "#34d399" },
+    { name: "Retell AI",     desc: "Voice-agent orchestration",           color: "#fbbf24" },
+  ],
+  learn: [
+    "Ship a dial-ready AI agent without writing code",
+    "Tune natural Latvian pronunciation in ElevenLabs",
+    "Attach compliant Baltic numbering + SIP trunks",
+    "Architect branching scripts + failover logic",
+    "Sync Google Calendar for self-serve bookings",
+    "Stream conversation metadata into CRM rows",
+    "Price retainers between €500 and €1 800 confidently",
+    "Produce a looping demo reel that demos itself",
+  ],
+  modules: [
+    {
+      id: 1,
+      title: "Foundations",
+      duration: "55 min",
+      lessons: [
+        { id: "1-1", title: "What is an AI voice agent—really?", type: "video", duration: "14 min", free: true, description: "Human vs autonomous dialers—with Baltic proof points from dentists, kitchens, brokers, and CFO worries." },
+        { id: "1-2", title: "Verticals adopting voice AI inside Latvia fastest", type: "video", duration: "12 min", free: true, description: "Top ten Latvian-ready niches showing repeatability, sizing, and entry pricing." },
+        { id: "1-3", title: "Packaging ROI for anxious finance leads", type: "video", duration: "15 min", description: "Why €500+ pilots defend margin, capex vs opex traps, ROI math CFOs nod along to." },
+        { id: "1-4", title: "Client onboarding packet template", type: "text", duration: "8 min", description: "Downloadable briefing covering intents, intents data, tonal guardrails." },
+        { id: "1-5", title: "Task: pick the beachhead niche", type: "task", duration: "6 min", description: "Pick one niche plus three intents where autonomy actually wins vs humans." },
+      ],
+    },
+    {
+      id: 2,
+      title: "Setup — tooling, tenancy, pilot agent",
+      duration: "1h 25 min",
+      lessons: [
+        { id: "2-1", title: "Accounts + sandbox wiring checklist", type: "video", duration: "16 min", description: "Standing up sandbox accounts—free tiers vs production caps across ElevenLabs, Retell AI, n8n, Twilio." },
+        { id: "2-2", title: "Agent zero — greetings & guardrails", type: "video", duration: "22 min", description: "Canvas-first flow: greetings, intents, escalation tags, grounding prompts." },
+        { id: "2-3", title: "Call scripts that survive production traffic", type: "video", duration: "20 min", description: "Breathing scripts—question stacks, confirmations, humane fallbacks." },
+        { id: "2-4", title: "Smoke testing with PSTN callers", type: "video", duration: "14 min", description: "PSTN checklist with ten scripted regression prompts." },
+        { id: "2-5", title: "Task: standing agent for desk hours", type: "task", duration: "13 min", description: "Hands-on sprint: answering five intents with recordings + QA notes." },
+      ],
+    },
+    {
+      id: 3,
+      title: "Voice & persona polish",
+      duration: "1h 5 min",
+      lessons: [
+        { id: "3-1", title: "ElevenLabs rigs for multilingual tone", type: "video", duration: "20 min", description: "Voice cloning etiquette, Latvian consonant quirks, attaching models to Retell." },
+        { id: "3-2", title: "Calibrating brand tone + escalation empathy", type: "video", duration: "18 min", description: "Persona scaffolding—warm vs austere palettes, glossary locks per brand." },
+        { id: "3-3", title: "Latvian phonetics pitfalls + fixes", type: "video", duration: "15 min", description: "ASR/STT quirks for Latvian, common misreads, patching loops." },
+        { id: "3-4", title: "Task: sixty-second loom-style audio demo", type: "task", duration: "12 min", description: "Ship sixty memorable seconds proving tone + fidelity." },
+      ],
+    },
+    {
+      id: 4,
+      title: "Integrations — calendar, CRM, telemetry",
+      duration: "1h 20 min",
+      lessons: [
+        { id: "4-1", title: "Hands-free bookings through Calendar APIs", type: "video", duration: "24 min", description: "End-to-end n8n flow for calendar contention, ICS generation, SLA hooks." },
+        { id: "4-2", title: "Structured lead capture pouring into Sheets", type: "video", duration: "18 min", description: "Sheets-backed logging with hashing + GDPR-friendly trims." },
+        { id: "4-3", title: "Post-call confirmations via email automations", type: "video", duration: "14 min", description: "Post-call confirmation mails with reschedule tokens." },
+        { id: "4-4", title: "Buying + verifying +371 numbers on Twilio/Vonage", type: "video", duration: "12 min", description: "Operator nuance buying +371, Twilio vs Vonage pricing traps." },
+        { id: "4-5", title: "Task: stitched calendar → sheets happy path", type: "task", duration: "12 min", description: "Threaded QA after wiring Calendar + Sheets; verify deltas." },
+      ],
+    },
+    {
+      id: 5,
+      title: "Real scenarios — dentistry, hospitality, brokerage",
+      duration: "55 min",
+      lessons: [
+        { id: "5-1", title: "Dental receptionist playbook", type: "video", duration: "22 min", description: "Clinic playbook from intake to hygienist confirmations—pricing talk track included." },
+        { id: "5-2", title: "Restaurant concierge + FAQs", type: "video", duration: "18 min", description: "Restaurant host tone, menu hallucination guardrails, peak-hour handling." },
+        { id: "5-3", title: "Property intake + broker-ready summaries", type: "video", duration: "15 min", description: "Real-estate triage questionnaires broker-ready summaries." },
+      ],
+    },
+    {
+      id: 6,
+      title: "Acquisition + first outbound stack",
+      duration: "1h",
+      lessons: [
+        { id: "6-1", title: "Where pragmatic Baltic operators buy pilots", type: "video", duration: "20 min", description: "Prospecting overlays—SMB directories, clinician lists, social adjacency." },
+        { id: "6-2", title: "Demo agent that pitches the retainer mid-call", type: "video", duration: "18 min", description: "Hyper-personalized outbound demos anchored on public data + consent." },
+        { id: "6-3", title: "Proposal bundles + maintenance annex", type: "text", duration: "12 min", description: "Tri-tier PDF + Latvian appendix for maintenance wording." },
+        { id: "6-4", title: "Task: deliver hyper-personal outbound demo deck", type: "task", duration: "10 min", description: "Deliver one bespoke demo reel + SOC-friendly proposal per named account." },
+      ],
+    },
+  ],
+};
