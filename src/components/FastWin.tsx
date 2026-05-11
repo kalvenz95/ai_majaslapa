@@ -10,10 +10,10 @@ const steps = [
 
 export default function FastWin() {
   return (
-    <section id="how" style={{ padding: "120px 0", position: "relative", borderTop: "1px solid var(--line)" }}>
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px" }}>
+    <section id="how" className="lp-section" style={{ padding: "120px 0", position: "relative", borderTop: "1px solid var(--line)" }}>
+      <div className="lp-container" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px" }}>
         {/* Header */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "end", marginBottom: 72 }}>
+        <div className="lp-header-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "end", marginBottom: 72 }}>
           <div>
             <span style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: "JetBrains Mono, monospace", fontSize: 11, letterSpacing: "0.15em", color: "var(--ink-3)", textTransform: "uppercase" as const }}>
               <span style={{ display: "inline-block", width: 24, height: 1, background: "var(--accent)" }} />
@@ -36,9 +36,9 @@ export default function FastWin() {
         {/* Roadmap */}
         <div style={{ position: "relative" }}>
           {/* Horizontal connector line */}
-          <div style={{ position: "absolute", left: 0, right: 0, top: 28, height: 1, background: "linear-gradient(to right, transparent, var(--line-2) 8%, var(--line-2) 92%, transparent)", zIndex: 0 }} />
+          <div className="lp-steps-connector" style={{ position: "absolute", left: 0, right: 0, top: 28, height: 1, background: "linear-gradient(to right, transparent, var(--line-2) 8%, var(--line-2) 92%, transparent)", zIndex: 0 }} />
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 24, position: "relative", zIndex: 1 }}>
+          <div className="lp-five-steps" style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 24, position: "relative", zIndex: 1 }}>
             {steps.map((s) => (
               <div key={s.num} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
                 {/* Circle */}

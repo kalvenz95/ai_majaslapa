@@ -2,11 +2,11 @@
 
 export default function CTA() {
   return (
-    <section style={{ padding: "140px 0", borderTop: "1px solid var(--line)", textAlign: "center", position: "relative", overflow: "hidden" }}>
+    <section className="cta-section" style={{ padding: "140px 0", borderTop: "1px solid var(--line)", textAlign: "center", position: "relative", overflow: "hidden" }}>
       <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "radial-gradient(circle at 50% 100%, color-mix(in oklab, var(--accent) 22%, transparent), transparent 60%), radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--accent) 6%, transparent), transparent 50%)" }} />
 
       {/* Image row */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 14, margin: "0 auto 64px", maxWidth: 920, padding: "0 32px" }}>
+      <div className="cta-img-row" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 14, margin: "0 auto 64px", maxWidth: 920, padding: "0 32px" }}>
         <div style={{ aspectRatio: "1/1", borderRadius: 22, overflow: "hidden", border: "1px solid var(--line-2)", background: "var(--bg-2)" }}>
           <img src="https://images.unsplash.com/photo-1542435503-956c469947f6?w=600&auto=format&fit=crop&q=80" alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} loading="lazy" />
         </div>

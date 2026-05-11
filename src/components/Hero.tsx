@@ -32,7 +32,7 @@ export default function Hero() {
             </div>
 
             {/* Stats */}
-            <div style={{ marginTop: 64, paddingTop: 28, borderTop: "1px solid var(--line)", display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }}>
+            <div className="hero-stats-grid" style={{ marginTop: 64, paddingTop: 28, borderTop: "1px solid var(--line)", display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }}>
               <div>
                 <div style={{ fontSize: 44, fontWeight: 600, letterSpacing: "-0.04em", lineHeight: 1 }}>3</div>
                 <div style={{ fontSize: 13, color: "var(--ink-3)", marginTop: 10, lineHeight: 1.4 }}>AI pakalpojumu virzieni</div>
@@ -57,7 +57,7 @@ export default function Hero() {
           </div>
 
           {/* Right: image collage */}
-          <div style={{ position: "relative", aspectRatio: "1/1", marginTop: 48 }}>
+          <div className="hero-img-col" style={{ position: "relative", aspectRatio: "1/1", marginTop: 48 }}>
             {/* Card 1 */}
             <div style={{ position: "absolute", left: "5%", top: 0, width: "62%", aspectRatio: "4/5", borderRadius: 24, overflow: "hidden", border: "1px solid var(--line-2)", boxShadow: "0 30px 80px -20px rgba(0,0,0,0.6), 0 8px 24px -8px rgba(0,0,0,0.4)", transform: "rotate(-2.5deg)", zIndex: 2, background: "var(--bg-2)" }}>
               <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=900&auto=format&fit=crop&q=80" alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} loading="lazy" />

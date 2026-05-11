@@ -39,10 +39,10 @@ const tracks = [
 
 export default function Services() {
   return (
-    <section id="courses" style={{ padding: "120px 0", position: "relative", borderTop: "1px solid var(--line)" }}>
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px" }}>
+    <section id="courses" className="lp-section" style={{ padding: "120px 0", position: "relative", borderTop: "1px solid var(--line)" }}>
+      <div className="lp-container" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px" }}>
         {/* Header */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "end", marginBottom: 64 }}>
+        <div className="lp-header-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "end", marginBottom: 64 }}>
           <div>
             <span style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: "JetBrains Mono, monospace", fontSize: 11, letterSpacing: "0.15em", color: "var(--ink-3)", textTransform: "uppercase" as const }}>
               <span style={{ display: "inline-block", width: 24, height: 1, background: "var(--accent)" }} />
@@ -63,7 +63,7 @@ export default function Services() {
         </div>
 
         {/* Track cards */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+        <div className="lp-three-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
           {tracks.map((t) => (
             <article key={t.title} style={{ border: "1px solid var(--line)", borderRadius: 28, background: "var(--bg-1)", overflow: "hidden", display: "flex", flexDirection: "column", transition: "transform 0.3s ease, border-color 0.3s ease" }}
               onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)"; (e.currentTarget as HTMLElement).style.borderColor = "var(--line-2)"; }}

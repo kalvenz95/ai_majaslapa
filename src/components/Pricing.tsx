@@ -73,11 +73,11 @@ const plans = [
 
 export default function Pricing() {
   return (
-    <section id="pricing" style={{ padding: "120px 0", position: "relative", borderTop: "1px solid var(--line)" }}>
+    <section id="pricing" className="lp-section" style={{ padding: "120px 0", position: "relative", borderTop: "1px solid var(--line)" }}>
 
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px" }}>
+      <div className="lp-container" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px" }}>
         {/* Header */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "end", marginBottom: 56 }}>
+        <div className="lp-header-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "end", marginBottom: 56 }}>
           <div>
             <span style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: "JetBrains Mono, monospace", fontSize: 11, letterSpacing: "0.15em", color: "var(--ink-3)", textTransform: "uppercase" as const }}>
               <span style={{ display: "inline-block", width: 24, height: 1, background: "var(--accent)" }} />
@@ -98,7 +98,7 @@ export default function Pricing() {
         </div>
 
         {/* Plans */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, alignItems: "stretch" }}>
+        <div className="lp-pricing-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, alignItems: "stretch" }}>
           {plans.map((plan) => (
             <div
               key={plan.id}

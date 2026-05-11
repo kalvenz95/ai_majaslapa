@@ -410,3 +410,51 @@ a { color: inherit; text-decoration: none; }
   0% { transform: scale(0.8); opacity: 0.8; }
   100% { transform: scale(1.6); opacity: 0; }
 }
+
+/* ── Landing page — mobile responsive ──────────────────────────── */
+@media (max-width: 768px) {
+  /* Section vertical padding */
+  .lp-section { padding-top: 64px !important; padding-bottom: 64px !important; }
+
+  /* Inner container horizontal padding */
+  .lp-container { padding-left: 20px !important; padding-right: 20px !important; }
+
+  /* All 2-col section headers → single column */
+  .lp-header-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+    margin-bottom: 28px !important;
+    align-items: start !important;
+  }
+
+  /* 3-col card grids (Services, Testimonials quotes) → single column */
+  .lp-three-grid { grid-template-columns: 1fr !important; gap: 14px !important; }
+
+  /* Pricing 3-col → single column */
+  .lp-pricing-grid { grid-template-columns: 1fr !important; }
+
+  /* 4-col stats → 2×2 */
+  .lp-four-stats { grid-template-columns: repeat(2, 1fr) !important; margin-top: 32px !important; }
+  .lp-four-stats > div { border-right: none !important; border-bottom: 1px solid var(--line) !important; }
+  .lp-four-stats > div:nth-child(odd) { border-right: 1px solid var(--line) !important; }
+  .lp-four-stats > div:nth-last-child(-n+2) { border-bottom: none !important; }
+  .lp-four-stats > div { padding: 24px 16px !important; }
+  .lp-four-stats .lp-stat-num { font-size: 44px !important; }
+
+  /* 5-col process steps → 2-col */
+  .lp-five-steps { grid-template-columns: repeat(2, 1fr) !important; gap: 20px !important; }
+  .lp-steps-connector { display: none !important; }
+
+  /* Hero layout */
+  .hero-grid-responsive { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .hero-img-col { display: none !important; }
+  .hero-stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+    margin-top: 32px !important;
+  }
+
+  /* CTA image row — hide on mobile (decorative only) */
+  .cta-img-row { display: none !important; }
+  .cta-section { padding-top: 80px !important; padding-bottom: 80px !important; }
+}
