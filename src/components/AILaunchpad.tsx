@@ -24,7 +24,7 @@ export default function AILaunchpad() {
       <div style={{ maxWidth: 900, margin: "0 auto" }}>
         <div style={{ display: "flex", alignItems: "flex-start", gap: 10, marginBottom: 24 }}>
           <span style={{ display: "inline-block", width: 24, height: 1, background: "var(--accent)", marginTop: 7, flexShrink: 0 }} />
-          <span style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 11, letterSpacing: "0.08em", color: "var(--ink-2)", lineHeight: 1.6 }}>
+          <span style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 16, letterSpacing: "0.06em", color: "var(--ink-2)", lineHeight: 1.6 }}>
             {t("kicker")}
           </span>
         </div>
