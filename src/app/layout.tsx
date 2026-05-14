@@ -5,6 +5,7 @@ import { EditProvider } from "@/context/EditContext";
 import { routing } from "@/i18n/routing";
 import { ClerkProvider } from "@clerk/nextjs";
 import { headers } from "next/headers";
+import { lvLV } from "@/lib/clerkLv";
 
 /** Default fallback when middleware header is unavailable (edge cases / tooling). */
 export const metadata: Metadata = {
@@ -32,7 +33,7 @@ export default async function RootLayout({
         />
       </head>
       <body className="antialiased">
-        <ClerkProvider>
+        <ClerkProvider localization={lvLV}>
           <EditProvider>
             {children}
             <EditBar />
