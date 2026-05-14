@@ -12,10 +12,10 @@ export default function SectionReveal({ children }: { children: React.ReactNode 
   }
   return (
     <motion.div
-      initial={{ opacity: 0, y: 28 }}
+      initial={{ opacity: 1, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-56px", amount: 0.12 }}
-      transition={{ duration: 0.58, ease: EASE_OUT }}
+      viewport={{ once: true, margin: "-40px", amount: 0.08 }}
+      transition={{ duration: 0.48, ease: EASE_OUT }}
     >
       {children}
     </motion.div>
