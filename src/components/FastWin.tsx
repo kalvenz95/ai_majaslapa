@@ -36,8 +36,9 @@ export default function FastWin() {
               </span>
             </h2>
           </div>
-          <div style={{ paddingBottom: 8 }}>
-            <p style={{ fontSize: 18, color: "var(--ink-2)", maxWidth: 640, lineHeight: 1.5 }}>{t("lead")}</p>
+          <div style={{ paddingBottom: 8, display: "flex", flexDirection: "column", gap: 16 }}>
+            <p style={{ fontSize: 17, color: "var(--ink-2)", maxWidth: 560, lineHeight: 1.65, margin: 0 }}>{t("lead1")}</p>
+            <p style={{ fontSize: 17, color: "var(--ink-2)", maxWidth: 560, lineHeight: 1.65, margin: 0 }}>{t("lead2")}</p>
           </div>
         </div>
 
