@@ -57,12 +57,14 @@ export function MarketingCourseCurriculumTab({
   lessonTypeColor,
   theme,
   onSelectLesson,
+  introBefore,
 }: {
   course: DetailMarketingCourse;
   lessonTypeLabel: Record<LessonType, string>;
   lessonTypeColor: Record<LessonType, string>;
   theme: MarketingCourseVisualTheme;
   onSelectLesson: (l: DetailLesson) => void;
+  introBefore?: ReactNode;
 }) {
   const detail = useTranslations("CourseMarketingChrome");
   const [open, setOpen] = useState<number[]>(course.modules.map((m) => m.id));
@@ -71,6 +73,7 @@ export function MarketingCourseCurriculumTab({
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+      {introBefore && <div style={{ marginBottom: 16 }}>{introBefore}</div>}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
         <div>
           <MarketingCourseSectionLabel accent={theme.accentHex}>{detail("curriculumLeadTitle")}</MarketingCourseSectionLabel>

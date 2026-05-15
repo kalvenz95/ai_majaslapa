@@ -7,6 +7,114 @@ import { useTranslations } from "next-intl";
 
 const P = "#a855f7";
 
+export function SocialCurriculumIntro({ course }: { course: DetailMarketingCourse }) {
+  const moduleColors = ["#a855f7", "#ec4899", "#f59e0b", "#00d4ff", "#00ff88", "#8b5cf6"];
+
+  const moduleHighlights: Record<number, string[]> = {
+    1: ["Kas ir AI sociālo mediju pārvaldība", "Visi rīki — no bezmaksas versijām", "Kā noteikt cenas no pirmās dienas"],
+    2: ["AI faceless video bez parādīšanās kamerā", "Runway ML, HeyGen, CapCut praksē", "Gatavs video pirmajam klientam"],
+    3: ["Reklāmas banneri sekundēs ar Canva AI", "Midjourney prompts komerciāliem attēliem", "Facebook, Instagram, LinkedIn komplekts"],
+    4: ["Kā veidot konsekventu feed dizainu", "Brand identity ar Midjourney sistēmu", "Carousels, Stories, captions automātiski"],
+    5: ["Kur atrast pirmos klientus Latvijā", "Cold outreach skripti — copy-paste gatavi", "Kā vadīt pirmo sarunu un noslēgt darījumu"],
+    6: ["Buffer/Later — mēneša saturs 2 stundās", "Klientu atskaites templates", "Kā pārvaldīt 5+ klientus bez stresa"],
+  };
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 20, marginBottom: 8 }}>
+
+      {/* Iespēju sadaļa */}
+      <div style={{ position: "relative", padding: "28px 32px", borderRadius: 16, background: "linear-gradient(135deg, rgba(168,85,247,0.1) 0%, rgba(236,72,153,0.07) 60%, rgba(5,5,8,0) 100%)", border: "1px solid rgba(168,85,247,0.2)", overflow: "hidden" }}>
+        <div style={{ position: "absolute", inset: 0, pointerEvents: "none", backgroundImage: "linear-gradient(rgba(168,85,247,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(168,85,247,0.03) 1px, transparent 1px)", backgroundSize: "28px 28px" }} />
+        <div style={{ position: "absolute", top: -60, right: -60, width: 220, height: 220, borderRadius: "50%", background: "radial-gradient(circle, rgba(236,72,153,0.1), transparent 70%)", pointerEvents: "none" }} />
+        <div style={{ position: "relative" }}>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "3px 10px", borderRadius: 20, background: "rgba(168,85,247,0.12)", border: "1px solid rgba(168,85,247,0.3)", marginBottom: 16 }}>
+            <div style={{ width: 5, height: 5, borderRadius: "50%", background: P, boxShadow: `0 0 6px ${P}` }} />
+            <span style={{ fontSize: 10, color: P, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase" }}>Ko tu iemācīsies šajā kursā</span>
+          </div>
+          <h3 style={{ fontSize: 22, fontWeight: 900, letterSpacing: "-0.025em", lineHeight: 1.15, marginBottom: 10, color: "#fff" }}>
+            No nulles līdz <span style={{ background: "linear-gradient(135deg, #a855f7, #ec4899)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>pirmajam klientam</span>
+          </h3>
+          <p style={{ fontSize: 13.5, color: "#888", lineHeight: 1.7, maxWidth: 560, marginBottom: 22 }}>
+            {course.totalModules} bloki. {course.totalLessons} nodarbības. Katrs bloks ved tevi soli tuvāk reālam ienākumam — bez iepriekšējas pieredzes ar AI vai dizainu.
+          </p>
+
+          {/* Ienākumu solis */}
+          <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+            {[
+              { label: "Sāc ar", amount: "€300/mēn", note: "1. klients", color: "rgba(168,85,247,0.15)", border: "rgba(168,85,247,0.3)", textColor: P },
+              { label: "Pēc 1 mēn.", amount: "€600–€1 000", note: "2 klienti", color: "rgba(236,72,153,0.1)", border: "rgba(236,72,153,0.25)", textColor: "#ec4899" },
+              { label: "Stabils ienākums", amount: "€1 500+", note: "3–4 klienti", color: "rgba(0,255,136,0.08)", border: "rgba(0,255,136,0.2)", textColor: "#00ff88" },
+            ].map((step, i) => (
+              <div key={i} style={{ display: "flex", flexDirection: "column", padding: "12px 16px", borderRadius: 10, background: step.color, border: `1px solid ${step.border}`, minWidth: 130 }}>
+                <span style={{ fontSize: 10, color: "#555", fontWeight: 600, marginBottom: 4, textTransform: "uppercase", letterSpacing: "0.05em" }}>{step.label}</span>
+                <span style={{ fontSize: 18, fontWeight: 900, color: step.textColor, letterSpacing: "-0.01em" }}>{step.amount}</span>
+                <span style={{ fontSize: 10.5, color: "#555", marginTop: 2 }}>{step.note}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Bloku pārskats */}
+      <div style={{ padding: "22px 24px", borderRadius: 16, background: "#09090f", border: "1px solid rgba(255,255,255,0.06)" }}>
+        <div style={{ fontSize: 10, fontWeight: 700, color: P, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 14 }}>Kas tevi sagaida katrā blokā</div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+          {course.modules.map((mod, idx) => {
+            const accent = moduleColors[idx] ?? P;
+            const highlights = moduleHighlights[mod.id] ?? [];
+            return (
+              <div
+                key={mod.id}
+                style={{
+                  display: "flex",
+                  gap: 14,
+                  padding: "14px 0",
+                  borderBottom: idx < course.modules.length - 1 ? "1px solid rgba(255,255,255,0.04)" : "none",
+                }}
+              >
+                <div style={{ width: 28, height: 28, borderRadius: 8, flexShrink: 0, background: `${accent}18`, border: `1px solid ${accent}33`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 800, color: accent, marginTop: 1 }}>
+                  {mod.id}
+                </div>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 7, flexWrap: "wrap" }}>
+                    <span style={{ fontSize: 13, fontWeight: 700, color: "#fff" }}>{mod.title}</span>
+                    <span style={{ fontSize: 10, color: "#444", borderLeft: "1px solid rgba(255,255,255,0.06)", paddingLeft: 10 }}>{mod.lessons.length} nodarbības · {mod.duration}</span>
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+                    {highlights.map((h, hi) => (
+                      <div key={hi} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                        <div style={{ width: 14, height: 14, borderRadius: 4, flexShrink: 0, background: `${accent}15`, border: `1px solid ${accent}30`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                          <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke={accent} strokeWidth="3"><polyline points="20,6 9,17 4,12" /></svg>
+                        </div>
+                        <span style={{ fontSize: 12, color: "#777", lineHeight: 1.45 }}>{h}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Apakšējā info josla */}
+      <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+        {[
+          { icon: "🎯", text: `${course.totalLessons} nodarbības ar praktisku uzdevumu` },
+          { icon: "⬇️", text: "Lejupielādājami templates un skripti" },
+          { icon: "🇱🇻", text: "Pilnībā latviski, Latvijas tirgum" },
+        ].map((b) => (
+          <div key={b.text} style={{ display: "flex", alignItems: "center", gap: 7, padding: "8px 14px", borderRadius: 8, background: "rgba(168,85,247,0.05)", border: "1px solid rgba(168,85,247,0.12)" }}>
+            <span style={{ fontSize: 13 }}>{b.icon}</span>
+            <span style={{ fontSize: 11.5, color: "#888" }}>{b.text}</span>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  );
+}
+
 function SectionLabel({ children }: { children: ReactNode }) {
   return <MarketingCourseSectionLabel accent={P}>{children}</MarketingCourseSectionLabel>;
 }

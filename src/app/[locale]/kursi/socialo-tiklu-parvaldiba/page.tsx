@@ -17,10 +17,12 @@ import { SOCIAL_MARKET_THEME } from "@/components/marketing/marketingCourseVisua
 import {
   SocialMarketingOverviewPanelEn,
   SocialMarketingOverviewPanelLv,
+  SocialCurriculumIntro,
 } from "@/components/marketing/SocialMarketingOverviewPanel";
 import type { AppLocale } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
 import { useLocale, useMessages, useTranslations } from "next-intl";
+import { SocialIntroLessonContent } from "@/components/marketing/SocialIntroLessonContent";
 
 type LessonType = DetailLessonType;
 
@@ -249,6 +251,11 @@ export default function CourseDetailPage() {
               lessonTypeColor={lessonTypeColor}
               theme={theme}
               onBack={() => setActiveLesson(null)}
+              extraBelowDescription={
+                activeLesson.id === "1-1" && locale === "lv"
+                  ? <SocialIntroLessonContent />
+                  : undefined
+              }
             />
           ) : (
             <div>
@@ -341,6 +348,7 @@ export default function CourseDetailPage() {
                     lessonTypeColor={lessonTypeColor}
                     theme={theme}
                     onSelectLesson={setActiveLesson}
+                    introBefore={locale === "lv" ? <SocialCurriculumIntro course={course} /> : undefined}
                   />
                 )}
                 {activeTab === "tools" && (
