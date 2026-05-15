@@ -19,6 +19,8 @@ export type StackPlanMarketingShellProps = {
   skillsListMode: "all" | "first3";
   /** Opacity for hero glow band (e.g. digitalais 0.07) */
   heroGlowAlpha?: number;
+  /** Optional content rendered below the free lesson description */
+  extraAfterFreeLesson?: React.ReactNode;
 };
 
 export function StackPlanMarketingPage({
@@ -30,6 +32,7 @@ export function StackPlanMarketingPage({
   ctaTextColor,
   skillsListMode,
   heroGlowAlpha = 0.08,
+  extraAfterFreeLesson,
 }: StackPlanMarketingShellProps) {
   const tc = useTranslations("CourseStackCommon");
   const [openModules, setOpenModules] = useState<number[]>([1]);
@@ -239,6 +242,7 @@ export function StackPlanMarketingPage({
                                 {lesson.description ? (
                                   <p style={{ fontSize: 13, color: "rgba(255,255,255,0.65)", lineHeight: 1.65 }}>{lesson.description}</p>
                                 ) : null}
+                                {extraAfterFreeLesson}
                               </div>
                             </div>
                           ) : (
