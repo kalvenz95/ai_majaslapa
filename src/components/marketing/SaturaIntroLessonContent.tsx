@@ -125,12 +125,8 @@ export function SaturaIntroLessonContent() {
                 <div style={{ position: "absolute", top: 16, left: 18 }}>
                   <span style={{ fontSize: 9.5, fontWeight: 700, padding: "3px 10px", borderRadius: 20, background: `${s.accent}18`, border: `1px solid ${s.accent}38`, color: s.accent, letterSpacing: "0.07em", textTransform: "uppercase" }}>{s.label}</span>
                 </div>
-                <div style={{ position: "absolute", bottom: 14, left: 18, right: 18, display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 10 }}>
+                <div style={{ position: "absolute", bottom: 14, left: 18, right: 18 }}>
                   <h3 style={{ fontSize: 19, fontWeight: 900, letterSpacing: "-0.02em", color: "#fff", margin: 0 }}>{s.title}</h3>
-                  <div style={{ textAlign: "right", flexShrink: 0 }}>
-                    <div style={{ fontSize: 16, fontWeight: 900, background: `linear-gradient(135deg, ${s.accent}, ${s.accent2})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>{s.earn}</div>
-                    <div style={{ fontSize: 10, color: "rgba(255,255,255,0.35)", marginTop: 1 }}>{s.per}</div>
-                  </div>
                 </div>
               </div>
               {/* Content */}
