@@ -26,8 +26,8 @@ const services = [
     label: "Pakalpojums #1",
     title: "Mājaslapa",
     earn: "€300–€900", per: "projekts + €100/mēn atbalsts",
-    desc: "Profesionāla mājaslapa bez programmēšanas — Framer vai Webflow, SEO, mobilā versija. Klients maksā projektu un ikmēneša atbalstu.",
-    points: ["Framer / Webflow — bez koda", "SEO pamati + Google meklēšana", "Nodošana ar rēķinu un līgumu"],
+    desc: "Profesionāla mājaslapa bez programmēšanas — Framer vai Webflow, GEO optimizācija, mobilā versija. Klients maksā projektu un ikmēneša atbalstu.",
+    points: ["Framer / Webflow — bez koda", "GEO (Generative Engine Optimization)", "Nodošana ar rēķinu un līgumu"],
   },
   {
     accent: G2, accent2: P,
