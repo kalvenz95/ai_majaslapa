@@ -201,26 +201,6 @@ export function DigitaalaisIntroLessonContent() {
         </div>
       </div>
 
-      {/* ── RĪKI ── */}
-      <div>
-        <div style={{ fontSize: 10, fontWeight: 700, color: G, textTransform: "uppercase", letterSpacing: "0.09em", marginBottom: 14 }}>AI rīki ko tu apgūsi</div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(148px, 1fr))", gap: 9 }}>
-          {tools.map((t) => (
-            <div key={t.name}
-              style={{ padding: "13px 15px", borderRadius: 13, background: "rgba(8,12,10,0.9)", border: `1px solid ${t.color}15`, display: "flex", alignItems: "center", gap: 11, boxShadow: "0 3px 12px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.025)", transition: "transform 0.2s, box-shadow 0.2s" }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.transform = "translateY(-2px)"; (e.currentTarget as HTMLDivElement).style.boxShadow = `0 10px 28px rgba(0,0,0,0.28), 0 0 0 1px ${t.color}28`; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)"; (e.currentTarget as HTMLDivElement).style.boxShadow = "0 3px 12px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.025)"; }}
-            >
-              <div style={{ width: 36, height: 36, borderRadius: 9, background: `${t.color}10`, border: `1px solid ${t.color}22`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 17, flexShrink: 0 }}>{t.icon}</div>
-              <div>
-                <div style={{ fontSize: 12, fontWeight: 700, color: "#ddd" }}>{t.name}</div>
-                <div style={{ fontSize: 10.5, color: "#3a4a3a", marginTop: 2 }}>{t.desc}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
       {/* ── IENĀKUMI ── */}
       <div style={{ position: "relative", padding: "24px 26px", borderRadius: 16, overflow: "hidden", border: "1px solid rgba(0,255,136,0.1)", boxShadow: "0 6px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.025)" }}>
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(5,8,5,1), rgba(5,10,8,1))" }} />

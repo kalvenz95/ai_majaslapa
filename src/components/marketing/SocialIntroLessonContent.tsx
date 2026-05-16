@@ -184,32 +184,6 @@ export function SocialIntroLessonContent() {
         </div>
       </div>
 
-      {/* ─── 4. AI RĪKI ─── */}
-      <div>
-        <SectionTitle>AI rīki ko tu apgūsi</SectionTitle>
-        <p style={{ fontSize: 13, color: "#666", marginBottom: 16, lineHeight: 1.6 }}>
-          Visi šie rīki ir pieejami bezmaksas trial versijā. Maksas plāns ir nepieciešams tikai tad, kad tev ir pirmais klients un tu nopelni savus pirmos ienākumus.
-        </p>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 10 }}>
-          {tools.map((t) => (
-            <div
-              key={t.name}
-              style={{ padding: "14px 16px", borderRadius: 12, background: "#0d0d1a", border: "1px solid rgba(255,255,255,0.05)", display: "flex", alignItems: "center", gap: 12, transition: "border-color 0.2s" }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.borderColor = `${t.color}30`; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,0.05)"; }}
-            >
-              <div style={{ width: 36, height: 36, borderRadius: 9, background: `${t.color}12`, border: `1px solid ${t.color}25`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 17, flexShrink: 0 }}>
-                {t.icon}
-              </div>
-              <div>
-                <div style={{ fontSize: 12.5, fontWeight: 700, color: "#fff" }}>{t.name}</div>
-                <div style={{ fontSize: 11, color: "#555", marginTop: 2 }}>{t.what}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
       {/* ─── 5. IENĀKUMU TRAJEKTORIJA ─── */}
       <div style={{ padding: "24px 28px", borderRadius: 16, background: "#0a0a14", border: "1px solid rgba(0,255,136,0.12)" }}>
         <SectionTitle>Reāla ienākumu trajektorija</SectionTitle>
