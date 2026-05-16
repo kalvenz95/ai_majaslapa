@@ -32,10 +32,10 @@ const services = [
   {
     accent: G2, accent2: P,
     label: "Pakalpojums #2",
-    title: "Web Chatbot",
+    title: "AI Asistenti",
     earn: "€200–€500", per: "uzstādīšana + €100–€200/mēn",
-    desc: "AI chatbot kas atbild klientiem 24/7, vāc kontaktinformāciju un samazina uzņēmuma telefona zvanus par 60%.",
-    points: ["Voiceflow — vizuāls, bez koda", "Lead vākšana automātiski", "1 koda rinda integrācijai mājaslapā"],
+    desc: "AI asistenti mājas lapai, Instagram, Facebook un WhatsApp — atbild 24/7, vāc kontaktus un samazina manuālo darbu par 60%.",
+    points: ["Mājaslapa, Instagram, Facebook & WhatsApp", "Lead vākšana automātiski", "Voiceflow — vizuāls, bez koda"],
   },
   {
     accent: AM, accent2: PK,
@@ -73,7 +73,7 @@ const tools = [
 const modules = [
   { num: "1", color: G,   title: "Ievads & Tirgus",       milestone: "Saproti iespējas, uzstādā rīkus" },
   { num: "2", color: G2,  title: "Mājaslapa",             milestone: "Gatava mājaslapa pirmajam klientam" },
-  { num: "3", color: AM,  title: "Web Chatbot",           milestone: "Chatbot uzstādīts un testēts" },
+  { num: "3", color: AM,  title: "AI Asistenti",          milestone: "Asistenti mājas lapai & soc. tīkliem" },
   { num: "4", color: P,   title: "AI E-pasta Asistents",  milestone: "Automatizēta klientu komunikācija" },
   { num: "5", color: PK,  title: "Bizness & Klienti",     milestone: "90 dienu plāns līdz €1 000/mēn" },
 ];

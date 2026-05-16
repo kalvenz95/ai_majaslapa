@@ -7,7 +7,7 @@ const digitalaisLv: StackPlanModel = {
   earn: "500€–1 800€/mēn",
   color: "#00ff88",
   glow: "0,255,136",
-  courses: ["Mājaslapa", "Web Chatbot", "AI Asistents uz E-pastiem"],
+  courses: ["Mājaslapa", "AI Asistenti", "AI Asistents uz E-pastiem"],
   stats: { lessons: 38, modules: 5, hours: "9h 20 min", students: 89 },
   learn: [
     "Izveidot profesionālu mājaslapa bez programmēšanas",
@@ -64,16 +64,18 @@ const digitalaisLv: StackPlanModel = {
     },
     {
       id: 3,
-      title: "Web Chatbot — 24/7 automātiskais asistents",
-      duration: "2h 10 min",
+      title: "AI Asistenti — mājaslapa & sociālie tīkli",
+      duration: "2h 30 min",
       free: false,
       lessons: [
         { id: "3.1", title: "Voiceflow iestatīšana — pamati 30 minūtēs", type: "video", duration: "22 min", free: false },
         { id: "3.2", title: "Sarunu loģika: jautājumi, atbildes, scenāriji", type: "video", duration: "25 min", free: false },
         { id: "3.3", title: "Mājaslapa integrācija — 1 koda rinda", type: "video", duration: "18 min", free: false },
-        { id: "3.4", title: "Lead vākšana automātiski — veidlapas un e-pasts", type: "video", duration: "20 min", free: false },
-        { id: "3.5", title: "Chatbot testēšana un uzlabošana", type: "video", duration: "15 min", free: false },
-        { id: "3.6", title: "Pārdot chatbot klientam — kā pamatot cenu", type: "text", duration: "10 min", free: false },
+        { id: "3.4", title: "Virtuālais asistents Instagram & Facebook DM", type: "video", duration: "20 min", free: false },
+        { id: "3.5", title: "WhatsApp bots — automātiska klientu apkalpošana", type: "video", duration: "18 min", free: false },
+        { id: "3.6", title: "Lead vākšana automātiski — veidlapas un e-pasts", type: "video", duration: "20 min", free: false },
+        { id: "3.7", title: "Chatbot testēšana un uzlabošana", type: "video", duration: "15 min", free: false },
+        { id: "3.8", title: "Pārdot AI asistentu klientam — kā pamatot cenu", type: "text", duration: "12 min", free: false },
       ],
     },
     {
@@ -117,7 +119,7 @@ const digitalaisLv: StackPlanModel = {
   ],
   includedCourses: [
     { icon: "🌐", name: "Mājaslapa", desc: "AI dizains, SEO, mobilā versija" },
-    { icon: "💬", name: "Web Chatbot", desc: "24/7 automātiskas atbildes, lead ģenerēšana" },
+    { icon: "💬", name: "AI Asistenti", desc: "Chatboti mājas lapai, Instagram, Facebook & WhatsApp" },
     { icon: "🤖", name: "AI Asistents uz E-pastiem", desc: "Automatizēti e-pasti un komunikācija" },
   ],
   ctaPrimary: "Sākt Digitālā Speciālista ceļu →",
@@ -128,7 +130,7 @@ const digitalaisEn: StackPlanModel = {
   name: "Digital Builder",
   tagline: "Ship AI-assisted digital services SMBs renew every month",
   earn: "€500–€1 800/mo",
-  courses: ["Landing sites", "Web chatbots", "AI inbox copilots"],
+  courses: ["Landing sites", "AI assistants", "AI inbox copilots"],
   learn: [
     "Launch credible marketing sites without writing code",
     "Embed multilingual chatbots that qualify leads overnight",
@@ -158,7 +160,7 @@ const digitalaisEn: StackPlanModel = {
   ],
   includedCourses: [
     { icon: "🌐", name: "Landing + site systems", desc: "AI layout, SEO baselines, responsive QA" },
-    { icon: "💬", name: "Website chatbots", desc: "24/7 answers, scripted qualify flows" },
+    { icon: "💬", name: "AI assistants", desc: "Website, Instagram, Facebook & WhatsApp bots" },
     { icon: "🤖", name: "AI inbox assistant", desc: "Automations for sales + ops mailboxes" },
   ],
   ctaPrimary: "Start the Digital Builder path →",
@@ -200,16 +202,18 @@ const digitalaisEn: StackPlanModel = {
     },
     {
       id: 3,
-      title: "Web Chatbot — autonomous front desk",
-      duration: "2h 10 min",
+      title: "AI Assistants — website & social channels",
+      duration: "2h 30 min",
       free: false,
       lessons: [
         { id: "3.1", title: "Voiceflow bootcamp in thirty minutes", type: "video", duration: "22 min", free: false },
         { id: "3.2", title: "Dialogue branching that feels human", type: "video", duration: "25 min", free: false },
         { id: "3.3", title: "One-line embeds for marketing sites", type: "video", duration: "18 min", free: false },
-        { id: "3.4", title: "Capturing CRM-ready leads automatically", type: "video", duration: "20 min", free: false },
-        { id: "3.5", title: "Testing matrix before go-live", type: "video", duration: "15 min", free: false },
-        { id: "3.6", title: "Packaging ROI for chatbot upgrades", type: "text", duration: "10 min", free: false },
+        { id: "3.4", title: "Instagram & Facebook DM virtual assistants", type: "video", duration: "20 min", free: false },
+        { id: "3.5", title: "WhatsApp bots for 24/7 customer service", type: "video", duration: "18 min", free: false },
+        { id: "3.6", title: "Capturing CRM-ready leads automatically", type: "video", duration: "20 min", free: false },
+        { id: "3.7", title: "Testing matrix before go-live", type: "video", duration: "15 min", free: false },
+        { id: "3.8", title: "Packaging ROI for AI assistant upgrades", type: "text", duration: "12 min", free: false },
       ],
     },
     {
