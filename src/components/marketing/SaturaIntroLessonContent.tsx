@@ -28,6 +28,7 @@ const services = [
     earn: "€200–€600", per: "par video pakotni",
     desc: "Video bez kameras — scenārijs ar AI, ģenerēšana Runway/HeyGen, montāža CapCut. Klients saņem gatavu pakotni.",
     points: ["Bez sejas, bez kameras, bez pieredzes", "Runway ML + HeyGen + CapCut workflow", "30 min darbs = pilna video pakotne"],
+    img: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=900&q=85&fit=crop",
   },
   {
     accent: P2, accent2: AM,
@@ -36,6 +37,7 @@ const services = [
     earn: "€300–€800", per: "mēnesī / klients",
     desc: "Ikmēneša satura grafiks, banneri, carousels un captions. Klients apstiprina, tu publicē automātiski ar Buffer.",
     points: ["Canva AI + Midjourney vizuāļi", "Buffer automātiskā publicēšana", "Ikmēneša atskaite un statistika"],
+    img: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=900&q=85&fit=crop",
   },
   {
     accent: G, accent2: C,
@@ -44,6 +46,7 @@ const services = [
     earn: "€300–€1 500", per: "mēnesī (3–4 klienti)",
     desc: "Portfolio no nulles, cold outreach skripti un pirmā tikšanās. No kontakta līdz parakstītam līgumam.",
     points: ["Copy-paste outreach veidnes (e-pasts + DM)", "Reāls piemērs no pirmā zvana", "Kā celt cenu pēc pirmā mēneša"],
+    img: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&q=85&fit=crop",
   },
 ];
 
@@ -78,13 +81,26 @@ const income = [
   { period: "6. mēn.+",   desc: "4–6 klienti, automatizēts darbs",        amount: "€1 500–€3 600", pct: 100 },
 ];
 
+const workflow = [
+  { step: "01", icon: "✍️", label: "Skripts",      tool: "ChatGPT",   color: G },
+  { step: "02", icon: "🎬", label: "Video",        tool: "Runway ML", color: P },
+  { step: "03", icon: "✂️", label: "Montāža",      tool: "CapCut",    color: C },
+  { step: "04", icon: "📱", label: "Publicēšana",  tool: "Buffer",    color: AM },
+];
+
 export function SaturaIntroLessonContent() {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 24, paddingTop: 24 }}>
 
       {/* ── HERO ── */}
       <div style={{ position: "relative", borderRadius: 20, overflow: "hidden", border: "1px solid rgba(168,85,247,0.25)", boxShadow: "0 24px 64px rgba(168,85,247,0.12), 0 4px 16px rgba(0,0,0,0.4)" }}>
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(5,5,8,1) 0%, rgba(9,5,18,1) 100%)" }} />
+        {/* hero background image */}
+        <img
+          src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&q=85&fit=crop"
+          alt=""
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.18, mixBlendMode: "luminosity" }}
+        />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(5,5,8,0.96) 0%, rgba(9,5,18,0.97) 100%)" }} />
         <div style={{ position: "absolute", top: -120, right: -80, width: 500, height: 500, borderRadius: "50%", background: "radial-gradient(circle, rgba(168,85,247,0.22) 0%, transparent 65%)", pointerEvents: "none" }} />
         <div style={{ position: "absolute", bottom: -80, left: -60, width: 350, height: 350, borderRadius: "50%", background: "radial-gradient(circle, rgba(236,72,153,0.14) 0%, transparent 65%)", pointerEvents: "none" }} />
         <GridBg color="rgba(168,85,247,0.04)" size={30} />
@@ -116,16 +132,27 @@ export function SaturaIntroLessonContent() {
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           {services.map((s, i) => (
             <div key={i} style={{ borderRadius: 16, overflow: "hidden", border: `1px solid ${s.accent}22`, boxShadow: "0 6px 24px rgba(0,0,0,0.3)" }}>
-              {/* Gradient header strip */}
-              <div style={{ position: "relative", height: 110, overflow: "hidden" }}>
-                <div style={{ position: "absolute", inset: 0, background: `linear-gradient(135deg, rgba(5,5,8,0.9) 0%, rgba(9,5,18,0.95) 100%)` }} />
-                <div style={{ position: "absolute", top: -60, right: -40, width: 240, height: 240, borderRadius: "50%", background: `radial-gradient(circle, ${s.accent}35 0%, transparent 65%)`, pointerEvents: "none" }} />
-                <div style={{ position: "absolute", bottom: -40, left: -30, width: 180, height: 180, borderRadius: "50%", background: `radial-gradient(circle, ${s.accent2}20 0%, transparent 65%)`, pointerEvents: "none" }} />
-                <GridBg color={`${s.accent}05`} size={22} />
-                <div style={{ position: "absolute", top: 16, left: 18 }}>
-                  <span style={{ fontSize: 9.5, fontWeight: 700, padding: "3px 10px", borderRadius: 20, background: `${s.accent}18`, border: `1px solid ${s.accent}38`, color: s.accent, letterSpacing: "0.07em", textTransform: "uppercase" }}>{s.label}</span>
+              {/* Image header */}
+              <div style={{ position: "relative", height: 130, overflow: "hidden" }}>
+                <img
+                  src={s.img}
+                  alt={s.title}
+                  style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.35 }}
+                />
+                {/* dark gradient overlay */}
+                <div style={{ position: "absolute", inset: 0, background: `linear-gradient(135deg, rgba(3,3,8,0.82) 0%, rgba(9,5,18,0.88) 100%)` }} />
+                {/* color glow orbs */}
+                <div style={{ position: "absolute", top: -60, right: -40, width: 240, height: 240, borderRadius: "50%", background: `radial-gradient(circle, ${s.accent}40 0%, transparent 65%)`, pointerEvents: "none" }} />
+                <div style={{ position: "absolute", bottom: -40, left: -30, width: 180, height: 180, borderRadius: "50%", background: `radial-gradient(circle, ${s.accent2}25 0%, transparent 65%)`, pointerEvents: "none" }} />
+                <GridBg color={`${s.accent}06`} size={22} />
+                {/* earn badge top-right */}
+                <div style={{ position: "absolute", top: 14, right: 16, display: "flex", alignItems: "baseline", gap: 4 }}>
+                  <span style={{ fontSize: 15, fontWeight: 900, color: s.accent, letterSpacing: "-0.02em", textShadow: `0 0 20px ${s.accent}80` }}>{s.earn}</span>
+                  <span style={{ fontSize: 9, color: "rgba(255,255,255,0.45)", fontWeight: 500 }}>{s.per}</span>
                 </div>
-                <div style={{ position: "absolute", bottom: 14, left: 18, right: 18 }}>
+                {/* label + title bottom */}
+                <div style={{ position: "absolute", bottom: 14, left: 18 }}>
+                  <span style={{ display: "inline-block", fontSize: 9.5, fontWeight: 700, padding: "3px 10px", borderRadius: 20, background: `${s.accent}18`, border: `1px solid ${s.accent}38`, color: s.accent, letterSpacing: "0.07em", textTransform: "uppercase", marginBottom: 6 }}>{s.label}</span>
                   <h3 style={{ fontSize: 19, fontWeight: 900, letterSpacing: "-0.02em", color: "#fff", margin: 0 }}>{s.title}</h3>
                 </div>
               </div>
@@ -148,8 +175,67 @@ export function SaturaIntroLessonContent() {
         </div>
       </div>
 
+      {/* ── DARBA PLŪSMA ── */}
+      <div style={{ position: "relative", borderRadius: 16, overflow: "hidden", border: "1px solid rgba(168,85,247,0.12)", boxShadow: "0 6px 24px rgba(0,0,0,0.3)" }}>
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(5,5,8,1), rgba(10,5,20,1))" }} />
+        <GridBg color="rgba(168,85,247,0.03)" size={24} />
+        <div style={{ position: "relative", padding: "22px 22px 18px" }}>
+          <div style={{ fontSize: 10, fontWeight: 700, color: P, textTransform: "uppercase", letterSpacing: "0.09em", marginBottom: 16 }}>No nulles līdz publicētam video — 4 soļi</div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 6 }}>
+            {workflow.map((w, i) => (
+              <div key={i} style={{ position: "relative" }}>
+                {/* connector line */}
+                {i < workflow.length - 1 && (
+                  <div style={{ position: "absolute", top: 22, right: -3, width: 6, height: 1, background: `linear-gradient(90deg, ${w.color}60, transparent)`, zIndex: 2 }} />
+                )}
+                <div style={{ padding: "14px 12px", borderRadius: 12, background: `${w.color}08`, border: `1px solid ${w.color}20`, display: "flex", flexDirection: "column", gap: 8, alignItems: "flex-start" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                    <span style={{ fontSize: 8.5, fontWeight: 800, color: `${w.color}80`, letterSpacing: "0.06em" }}>{w.step}</span>
+                  </div>
+                  <div style={{ fontSize: 22, lineHeight: 1 }}>{w.icon}</div>
+                  <div>
+                    <div style={{ fontSize: 12, fontWeight: 800, color: "#fff", marginBottom: 2 }}>{w.label}</div>
+                    <div style={{ fontSize: 10, color: w.color, fontWeight: 600 }}>{w.tool}</div>
+                  </div>
+                  <div style={{ height: 2, width: "100%", borderRadius: 2, background: `linear-gradient(90deg, ${w.color}60, transparent)` }} />
+                </div>
+              </div>
+            ))}
+          </div>
+          <div style={{ marginTop: 12, padding: "10px 14px", borderRadius: 9, background: "rgba(0,255,136,0.04)", border: "1px solid rgba(0,255,136,0.12)", display: "flex", alignItems: "center", gap: 10 }}>
+            <GlowDot color={G} />
+            <span style={{ fontSize: 11.5, color: "#666" }}>Vidēji <strong style={{ color: "#bbb" }}>30–45 minūtes</strong> no sākuma līdz gatavam video klientam.</span>
+          </div>
+        </div>
+      </div>
+
+      {/* ── AI RĪKU EKOSISTĒMA ── */}
+      <div style={{ position: "relative", borderRadius: 16, overflow: "hidden", border: "1px solid rgba(168,85,247,0.12)", boxShadow: "0 6px 24px rgba(0,0,0,0.3)" }}>
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(5,5,8,1), rgba(8,5,16,1))" }} />
+        <div style={{ position: "absolute", top: -80, right: -60, width: 300, height: 300, borderRadius: "50%", background: "radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 65%)", pointerEvents: "none" }} />
+        <GridBg color="rgba(0,212,255,0.025)" size={22} />
+        <div style={{ position: "relative", padding: "22px 22px 18px" }}>
+          <div style={{ fontSize: 10, fontWeight: 700, color: C, textTransform: "uppercase", letterSpacing: "0.09em", marginBottom: 16 }}>AI rīku ekosistēma — visi bezmaksas sākumā</div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 10 }}>
+            {tools.map((t) => (
+              <div key={t.name} style={{ padding: "14px 14px", borderRadius: 12, background: `${t.color}09`, border: `1px solid ${t.color}22`, display: "flex", flexDirection: "column", gap: 6 }}>
+                <div style={{ fontSize: 22, lineHeight: 1 }}>{t.icon}</div>
+                <div style={{ fontSize: 12.5, fontWeight: 800, color: "#fff" }}>{t.name}</div>
+                <div style={{ fontSize: 10.5, color: "#555", lineHeight: 1.4 }}>{t.desc}</div>
+                <div style={{ height: 2, borderRadius: 2, background: `linear-gradient(90deg, ${t.color}60, transparent)`, marginTop: 2 }} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
       {/* ── STATISTIKA ── */}
       <div style={{ position: "relative", borderRadius: 16, overflow: "hidden", border: "1px solid rgba(168,85,247,0.15)", boxShadow: "0 8px 32px rgba(0,0,0,0.3)" }}>
+        <img
+          src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=85&fit=crop"
+          alt=""
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.07 }}
+        />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(5,5,8,1), rgba(10,5,20,1))" }} />
         <div style={{ position: "absolute", top: -80, right: -60, width: 300, height: 300, borderRadius: "50%", background: "radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 65%)", pointerEvents: "none" }} />
         <GridBg color="rgba(168,85,247,0.03)" size={22} />
