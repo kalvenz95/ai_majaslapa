@@ -26,12 +26,12 @@ export default function RegisterPage() {
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center gap-2.5">
             <div
-              className="w-9 h-9 rounded-xl flex items-center justify-center text-base font-black text-white"
-              style={{ background: "linear-gradient(135deg, #a855f7, #ec4899)" }}
+              className="flex items-center justify-center font-black text-white"
+              style={{ width: 42, height: 42, borderRadius: 12, background: "#a3e635", fontSize: 22, boxShadow: "0 0 18px rgba(163,230,53,0.35)", flexShrink: 0 }}
             >
               C
             </div>
-            <span className="font-black text-white text-xl tracking-tight">Chademy</span>
+            <span className="font-black text-white tracking-tight" style={{ fontSize: 24, letterSpacing: "-0.02em" }}>Chademy</span>
           </Link>
         </div>
 

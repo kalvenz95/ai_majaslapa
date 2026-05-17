@@ -17,21 +17,22 @@ export default function Footer() {
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
               <div
                 style={{
-                  width: 32,
-                  height: 32,
-                  borderRadius: 9,
-                  background: "var(--accent)",
-                  color: "var(--accent-ink)",
+                  width: 38,
+                  height: 38,
+                  borderRadius: 11,
+                  background: "#a3e635",
+                  color: "#fff",
                   display: "grid",
                   placeItems: "center",
-                  fontWeight: 800,
-                  fontSize: 16,
+                  fontWeight: 900,
+                  fontSize: 20,
                   fontFamily: "Inter Tight, sans-serif",
+                  boxShadow: "0 0 14px rgba(163,230,53,0.25)",
                 }}
               >
                 C
               </div>
-              <span className="font-display" style={{ fontSize: 18, color: "var(--ink)" }}>
+              <span className="font-display" style={{ fontSize: 20, color: "var(--ink)", fontWeight: 800, letterSpacing: "-0.02em" }}>
                 Chademy
               </span>
             </div>

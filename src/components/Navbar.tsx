@@ -103,21 +103,23 @@ export default function Navbar() {
         <Link href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
           <div
             style={{
-              width: 32,
-              height: 32,
-              borderRadius: 9,
-              background: "var(--accent)",
-              color: "var(--accent-ink)",
+              width: 40,
+              height: 40,
+              borderRadius: 11,
+              background: "#a3e635",
+              color: "#fff",
               display: "grid",
               placeItems: "center",
-              fontWeight: 800,
-              fontSize: 16,
+              fontWeight: 900,
+              fontSize: 20,
               fontFamily: "Inter Tight, sans-serif",
+              flexShrink: 0,
+              boxShadow: "0 0 18px rgba(163,230,53,0.35)",
             }}
           >
             C
           </div>
-          <span className="font-display" style={{ fontSize: 18, color: "var(--ink)" }}>
+          <span className="font-display" style={{ fontSize: 22, color: "var(--ink)", fontWeight: 800, letterSpacing: "-0.02em" }}>
             Chademy
           </span>
         </Link>
