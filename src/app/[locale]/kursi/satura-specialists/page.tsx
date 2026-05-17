@@ -5,9 +5,20 @@ import { StackPlanMarketingPage } from "@/components/marketing/StackPlanMarketin
 import { saturaStack } from "@/content/marketing/saturaStack";
 import { useLocale } from "next-intl";
 import { SaturaIntroLessonContent } from "@/components/marketing/SaturaIntroLessonContent";
+import { SaturaLesson12Content } from "@/components/marketing/SaturaLesson12Content";
+import { SaturaLesson13Content } from "@/components/marketing/SaturaLesson13Content";
+import { SaturaLesson14Content } from "@/components/marketing/SaturaLesson14Content";
 
 export default function SaturaSpecialistsPage() {
   const locale = useLocale() as AppLocale;
+
+  const lvLessonContent = {
+    "1.1": <SaturaIntroLessonContent />,
+    "1.2": <SaturaLesson12Content />,
+    "1.3": <SaturaLesson13Content />,
+    "1.4": <SaturaLesson14Content />,
+  };
+
   return (
     <StackPlanMarketingPage
       plan={saturaStack[locale]}
@@ -18,7 +29,7 @@ export default function SaturaSpecialistsPage() {
       ctaTextColor="#fff"
       skillsListMode="all"
       heroGlowAlpha={0.08}
-      extraAfterFreeLesson={locale === "lv" ? <SaturaIntroLessonContent /> : undefined}
+      lessonExtraContent={locale === "lv" ? lvLessonContent : undefined}
     />
   );
 }

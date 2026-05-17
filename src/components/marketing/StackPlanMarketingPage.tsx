@@ -21,6 +21,8 @@ export type StackPlanMarketingShellProps = {
   heroGlowAlpha?: number;
   /** Optional content rendered below the free lesson description */
   extraAfterFreeLesson?: React.ReactNode;
+  /** Per-lesson content keyed by lesson id — takes precedence over extraAfterFreeLesson */
+  lessonExtraContent?: Record<string, React.ReactNode>;
 };
 
 export function StackPlanMarketingPage({
@@ -33,6 +35,7 @@ export function StackPlanMarketingPage({
   skillsListMode,
   heroGlowAlpha = 0.08,
   extraAfterFreeLesson,
+  lessonExtraContent,
 }: StackPlanMarketingShellProps) {
   const tc = useTranslations("CourseStackCommon");
   const [openModules, setOpenModules] = useState<number[]>([1]);
@@ -242,7 +245,7 @@ export function StackPlanMarketingPage({
                                 {lesson.description ? (
                                   <p style={{ fontSize: 13, color: "rgba(255,255,255,0.65)", lineHeight: 1.65 }}>{lesson.description}</p>
                                 ) : null}
-                                {extraAfterFreeLesson}
+                                {lessonExtraContent?.[lesson.id] ?? extraAfterFreeLesson}
                               </div>
                             </div>
                           ) : (

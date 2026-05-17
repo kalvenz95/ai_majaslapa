@@ -40,9 +40,9 @@ const saturaLv: StackPlanModel = {
           description:
             "Uzzini, kāpēc uzņēmumi maksā par sociālo mediju saturu, kādas platformas dominē Latvijā un kā AI maina šo nozari. Pārskatīs reālus piemērus ar cenām.",
         },
-        { id: "1.2", title: "Kādus pakalpojumus vari piedāvāt uzreiz", type: "video", duration: "10 min", free: false },
-        { id: "1.3", title: "Rīku komplekts iesācējam (bezmaksas + maksas)", type: "text", duration: "6 min", free: false },
-        { id: "1.4", title: "Pirmais klients — reāls piemērs", type: "video", duration: "14 min", free: false },
+        { id: "1.2", title: "Kādus pakalpojumus vari piedāvāt uzreiz", type: "video", duration: "10 min", free: true },
+        { id: "1.3", title: "Rīku komplekts iesācējam (bezmaksas + maksas)", type: "text", duration: "6 min", free: true },
+        { id: "1.4", title: "Pirmais klients — reāls piemērs", type: "video", duration: "14 min", free: true },
       ],
     },
     {
