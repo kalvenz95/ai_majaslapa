@@ -2,22 +2,9 @@
 
 import { useTranslations } from "next-intl";
 
-const STEP_IMGS = [
-  "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&auto=format&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&auto=format&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&auto=format&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1611605698335-8b1569810432?w=600&auto=format&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&auto=format&fit=crop&q=80",
-];
-
 export default function FastWin() {
   const t = useTranslations("FastWin");
-  const steps = (
-    (t.raw("steps") ?? []) as { num: string; title: string; desc: string }[]
-  ).map((s, i) => ({
-    ...s,
-    img: STEP_IMGS[i] ?? STEP_IMGS[STEP_IMGS.length - 1],
-  }));
+  const steps = (t.raw("steps") ?? []) as { num: string; title: string; desc: string }[];
 
   return (
     <section id="how" className="lp-section" style={{ padding: "120px 0", position: "relative", borderTop: "1px solid var(--line)" }}>
@@ -48,7 +35,7 @@ export default function FastWin() {
 
           <div className="lp-five-steps" style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 24, position: "relative", zIndex: 1 }}>
             {steps.map((s) => (
-              <div key={s.num} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+              <div key={s.num} style={{ display: "flex", flexDirection: "column", gap: 20 }}>
                 <div
                   style={{
                     width: 56,
@@ -68,10 +55,7 @@ export default function FastWin() {
                 >
                   {s.num}
                 </div>
-                <div style={{ aspectRatio: "4/3", borderRadius: 14, overflow: "hidden", background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-                  <img src={s.img} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} loading="lazy" />
-                </div>
-                <h4 style={{ fontSize: 18, fontWeight: 600, margin: "4px 0 0", letterSpacing: "-0.01em" }}>{s.title}</h4>
+                <h4 style={{ fontSize: 18, fontWeight: 600, margin: 0, letterSpacing: "-0.01em" }}>{s.title}</h4>
                 <p style={{ fontSize: 13, color: "var(--ink-2)", lineHeight: 1.5, margin: 0 }}>{s.desc}</p>
               </div>
             ))}

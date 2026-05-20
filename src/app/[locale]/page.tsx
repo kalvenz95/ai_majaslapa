@@ -8,6 +8,7 @@ import Marquee from "@/components/Marquee";
 import Pricing from "@/components/Pricing";
 import SectionReveal from "@/components/SectionReveal";
 import Services from "@/components/Services";
+import Team from "@/components/Team";
 import Testimonials from "@/components/Testimonials";
 import { setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
@@ -82,6 +83,9 @@ export default async function HomePage({
       </SectionReveal>
       <SectionReveal>
         <CTA />
+      </SectionReveal>
+      <SectionReveal>
+        <Team />
       </SectionReveal>
       <SectionReveal>
         <Footer />
