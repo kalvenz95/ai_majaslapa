@@ -11,8 +11,9 @@ export default function Testimonials() {
   const quotes = (t.raw("quotes") ?? []) as Quote[];
 
   return (
-    <section id="results" className="lp-section" style={{ padding: "120px 0", position: "relative", borderTop: "1px solid var(--line)" }}>
-      <div className="lp-container" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px" }}>
+    <section id="results" className="lp-section" style={{ padding: "120px 0", position: "relative", borderTop: "1px solid var(--line)", overflow: "hidden" }}>
+      <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "radial-gradient(ellipse 60% 45% at 50% 0%, color-mix(in oklab, var(--accent) 13%, transparent), transparent 60%), radial-gradient(ellipse 30% 50% at 5% 80%, color-mix(in oklab, var(--accent) 5%, transparent), transparent 55%)" }} />
+      <div className="lp-container" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px", position: "relative", zIndex: 1 }}>
         <div className="lp-header-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "end", marginBottom: 0 }}>
           <div>
             <span style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: "JetBrains Mono, monospace", fontSize: 11, letterSpacing: "0.15em", color: "var(--ink-3)", textTransform: "uppercase" as const }}>

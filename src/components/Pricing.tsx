@@ -21,8 +21,9 @@ export default function Pricing() {
   const plans = (t.raw("plans") ?? []) as PlanJson[];
 
   return (
-    <section id="pricing" className="lp-section" style={{ padding: "120px 0", position: "relative", borderTop: "1px solid var(--line)" }}>
-      <div className="lp-container" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px" }}>
+    <section id="pricing" className="lp-section" style={{ padding: "120px 0", position: "relative", borderTop: "1px solid var(--line)", overflow: "hidden" }}>
+      <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "radial-gradient(ellipse 55% 55% at 20% 100%, color-mix(in oklab, var(--accent) 15%, transparent), transparent 60%), radial-gradient(ellipse 40% 40% at 85% 0%, color-mix(in oklab, var(--accent) 6%, transparent), transparent 55%)" }} />
+      <div className="lp-container" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px", position: "relative", zIndex: 1 }}>
         <div className="lp-header-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "end", marginBottom: 56 }}>
           <div>
             <span style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: "JetBrains Mono, monospace", fontSize: 11, letterSpacing: "0.15em", color: "var(--ink-3)", textTransform: "uppercase" as const }}>

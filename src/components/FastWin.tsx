@@ -7,8 +7,9 @@ export default function FastWin() {
   const steps = (t.raw("steps") ?? []) as { num: string; title: string; desc: string }[];
 
   return (
-    <section id="how" className="lp-section" style={{ padding: "120px 0", position: "relative", borderTop: "1px solid var(--line)" }}>
-      <div className="lp-container" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px" }}>
+    <section id="how" className="lp-section" style={{ padding: "120px 0", position: "relative", borderTop: "1px solid var(--line)", overflow: "hidden" }}>
+      <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "radial-gradient(ellipse 55% 60% at 0% 100%, color-mix(in oklab, var(--accent) 14%, transparent), transparent 65%), radial-gradient(ellipse 40% 40% at 90% 10%, color-mix(in oklab, var(--accent) 5%, transparent), transparent 60%)" }} />
+      <div className="lp-container" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px", position: "relative", zIndex: 1 }}>
         {/* Header */}
         <div className="lp-header-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "end", marginBottom: 72 }}>
           <div>
