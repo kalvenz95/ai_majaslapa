@@ -4,7 +4,6 @@ import E from "@/components/E";
 import { PricingCheckoutButton } from "@/components/PricingCheckoutButton";
 import { useTranslations } from "next-intl";
 
-type PlanCourse = { icon: string; name: string; desc: string };
 type PlanJson = {
   id: string;
   name: string;
@@ -13,8 +12,7 @@ type PlanJson = {
   earn: string;
   highlight: boolean;
   href: string;
-  courses: PlanCourse[];
-  skills: string[];
+  items: string[];
   cta: string;
 };
 
@@ -98,14 +96,14 @@ export default function Pricing() {
 
               <div style={{ padding: 24, display: "flex", flexDirection: "column", gap: 20, flex: 1 }}>
                 <div>
-                  <div style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 12, fontWeight: 700, color: "var(--accent)", marginBottom: 6 }}>
+                  <div style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 13, fontWeight: 700, color: "var(--accent)", marginBottom: 8 }}>
                     €{plan.price}
                     {t("monthly")}
                   </div>
-                  <h3 style={{ fontFamily: "Inter Tight, sans-serif", fontSize: 20, fontWeight: 600, color: "var(--ink)", marginBottom: 4, letterSpacing: "-0.01em" }}>
+                  <h3 style={{ fontFamily: "Inter Tight, sans-serif", fontSize: 26, fontWeight: 700, color: "var(--ink)", marginBottom: 6, letterSpacing: "-0.025em", lineHeight: 1.1 }}>
                     <E id={`plan-${plan.id}-name`}>{plan.name}</E>
                   </h3>
-                  <p style={{ fontSize: 13, color: "var(--ink-3)" }}>
+                  <p style={{ fontSize: 13, color: "var(--ink-3)", lineHeight: 1.4 }}>
                     <E id={`plan-${plan.id}-tagline`}>{plan.tagline}</E>
                   </p>
                 </div>
@@ -117,33 +115,15 @@ export default function Pricing() {
                   </div>
                 </div>
 
-                <div>
-                  <div style={{ fontSize: 11, fontWeight: 700, color: "var(--ink-4)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 10, fontFamily: "JetBrains Mono, monospace" }}>{t("includedCourses")}</div>
-                  <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                    {plan.courses.map((c) => (
-                      <div key={c.name} style={{ display: "flex", alignItems: "center", gap: 10, padding: "8px 12px", borderRadius: 10, background: "var(--bg-2)", border: "1px solid var(--line)" }}>
-                        <span style={{ fontSize: 16, flexShrink: 0 }}>{c.icon}</span>
-                        <div style={{ minWidth: 0 }}>
-                          <div style={{ fontSize: 12, fontWeight: 600, color: "var(--ink)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{c.name}</div>
-                          <div style={{ fontSize: 11, color: "var(--ink-4)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{c.desc}</div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <div style={{ fontSize: 11, fontWeight: 700, color: "var(--ink-4)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 10, fontFamily: "JetBrains Mono, monospace" }}>{t("whatsIncludedLabel")}</div>
-                  <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                    {plan.skills.map((s) => (
-                      <div key={s} style={{ display: "flex", alignItems: "flex-start", gap: 8 }}>
-                        <svg style={{ flexShrink: 0, marginTop: 2 }} width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="3">
-                          <polyline points="20,6 9,17 4,12" />
-                        </svg>
-                        <span style={{ fontSize: 12, color: "var(--ink-2)", lineHeight: 1.5 }}>{s}</span>
-                      </div>
-                    ))}
-                  </div>
+                <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                  {plan.items.map((item) => (
+                    <div key={item} style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
+                      <svg style={{ flexShrink: 0, marginTop: 3 }} width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2.5">
+                        <polyline points="20,6 9,17 4,12" />
+                      </svg>
+                      <span style={{ fontSize: 13, color: "var(--ink-2)", lineHeight: 1.5 }}>{item}</span>
+                    </div>
+                  ))}
                 </div>
 
                 <PricingCheckoutButton

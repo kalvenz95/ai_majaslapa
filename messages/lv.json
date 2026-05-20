@@ -216,8 +216,6 @@
     "popular": "POPULĀRĀKAIS",
     "monthly": "/mēn",
     "earnLabel": "Potenciālie ienākumi",
-    "includedCourses": "Iekļautie kursi",
-    "whatsIncludedLabel": "Ko vēl iegūsti",
     "plans": [
       {
         "id": "pamati",
@@ -227,19 +225,9 @@
         "earn": "300€–1 500€/mēn",
         "highlight": false,
         "href": "/kursi/satura-specialists",
-        "courses": [
-          {
-            "icon": "🎬",
-            "name": "AI Faceless Video",
-            "desc": "Satura veidošana bez kameras"
-          },
-          {
-            "icon": "📱",
-            "name": "Sociālo Tīklu Pārvaldība",
-            "desc": "AI video, banneri, feed dizains"
-          }
-        ],
-        "skills": [
+        "items": [
+          "AI Faceless Video — satura veidošana bez kameras",
+          "Sociālo Tīklu Pārvaldība — AI video, banneri, feed dizains",
           "Kā izveidot portfolio no 0",
           "Kā uzrunāt pirmos klientus",
           "Kā sagatavot cenu piedāvājumu",
@@ -255,29 +243,13 @@
         "earn": "500€–1 800€/mēn",
         "highlight": true,
         "href": "/kursi/digitalais-specialists",
-        "courses": [
-          {
-            "icon": "🌐",
-            "name": "Mājaslapa",
-            "desc": "AI dizains, SEO, mobilā versija"
-          },
-          {
-            "icon": "💬",
-            "name": "Web Chatbot",
-            "desc": "24/7 automātiskas atbildes, lead ģenerēšana"
-          },
-          {
-            "icon": "🤖",
-            "name": "AI Asistents uz E-pastiem",
-            "desc": "Automatizēti e-pasti un komunikācija"
-          }
-        ],
-        "skills": [
-          "Kā izveidot portfolio ar reāliem darbiem",
+        "items": [
+          "Mājaslapa — AI dizains, SEO, mobilā versija",
+          "Web Chatbot — 24/7 automātiskas atbildes",
+          "AI Asistents uz E-pastiem",
           "Kā uzrunāt klientus (aukstie zvani + DM)",
           "Kā sagatavot profesionālu piedāvājumu",
-          "Klientu onboarding process",
-          "Ikmēneša atbalsta paketes"
+          "Klientu onboarding process"
         ],
         "cta": "Sākt →"
       },
@@ -289,27 +261,10 @@
         "earn": "800€–3 500€/mēn",
         "highlight": false,
         "href": "/kursi/ai-agentu-eksperts",
-        "courses": [
-          {
-            "icon": "🎙",
-            "name": "AI Balss Aģenti",
-            "desc": "Automātiski zvani un pierakstu rezervācija"
-          },
-          {
-            "icon": "💬",
-            "name": "WhatsApp Automatizācija",
-            "desc": "Automātiskas atbildes un lead apstrāde"
-          },
-          {
-            "icon": "📱",
-            "name": "Izveido savu Aplikāciju ar AI",
-            "desc": "No idejas līdz darbojošai lietotnei"
-          }
-        ],
-        "skills": [
-          "Kā izveidot portfolio ar demo aģentiem",
-          "Kā uzrunāt augstvērtīgus klientus",
-          "Kā sagatavot premium piedāvājumu",
+        "items": [
+          "AI Balss Aģenti — zvani un rezervācija",
+          "WhatsApp Automatizācija — lead apstrāde",
+          "Izveido savu Aplikāciju ar AI",
           "1:1 mentorings (2× mēnesī)",
           "Privāta kopiena",
           "Aģentūras augšanas ceļvedis"

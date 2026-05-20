@@ -216,8 +216,6 @@
     "popular": "MOST POPULAR",
     "monthly": "/mo",
     "earnLabel": "Potential upside",
-    "includedCourses": "Included courses",
-    "whatsIncludedLabel": "What else you unlock",
     "plans": [
       {
         "id": "pamati",
@@ -227,23 +225,13 @@
         "earn": "€300–€1,500/mo",
         "highlight": false,
         "href": "/kursi/satura-specialists",
-        "courses": [
-          {
-            "icon": "🎬",
-            "name": "AI Faceless Video",
-            "desc": "Produce scroll-stopping reels without filming yourself"
-          },
-          {
-            "icon": "📱",
-            "name": "Social OS playbook",
-            "desc": "Stories, grids, banners, done-for-you rhythms"
-          }
-        ],
-        "skills": [
-          "Portfolio from scratch",
-          "Outbound templates",
-          "Quotable scopes",
-          "Paste-ready messaging"
+        "items": [
+          "AI Faceless Video — content without filming",
+          "Social OS playbook — stories, grids, banners",
+          "Build a portfolio from scratch",
+          "Outreach templates for first clients",
+          "How to price your services",
+          "Paste-ready messaging scripts"
         ],
         "cta": "Start →"
       },
@@ -255,29 +243,13 @@
         "earn": "€500–€1,800/mo",
         "highlight": true,
         "href": "/kursi/digitalais-specialists",
-        "courses": [
-          {
-            "icon": "🌐",
-            "name": "Modern websites",
-            "desc": "AI layout, responsive polish, pragmatic SEO"
-          },
-          {
-            "icon": "💬",
-            "name": "Web Chatbot Studio",
-            "desc": "Answers + lead capture wired to automations"
-          },
-          {
-            "icon": "🤖",
-            "name": "Inbox assistants",
-            "desc": "AI email triage tailored to Latvian SMEs"
-          }
-        ],
-        "skills": [
-          "Credibility via shipped builds",
-          "Hybrid cold outbound",
-          "Professional proposals",
-          "Onboarding rhythms",
-          "Monthly care plans"
+        "items": [
+          "Modern websites — AI layout, SEO, mobile",
+          "Web Chatbot — 24/7 lead capture",
+          "Inbox assistants — AI email workflows",
+          "Cold outreach (DMs + cold calls)",
+          "Professional proposal templates",
+          "Client onboarding process"
         ],
         "cta": "Start →"
       },
@@ -289,30 +261,13 @@
         "earn": "€800–€3,500/mo",
         "highlight": false,
         "href": "/kursi/ai-agentu-eksperts",
-        "courses": [
-          {
-            "icon": "🎙",
-            "name": "AI Voice Operators",
-            "desc": "Outbound/inbound dialing with safeguards"
-          },
-          {
-            "icon": "💬",
-            "name": "WhatsApp concierge flows",
-            "desc": "Sequences that qualify inbound leads"
-          },
-          {
-            "icon": "📱",
-            "name": "Micro apps with AI",
-            "desc": "From concept to clickable prototype"
-          }
-        ],
-        "skills": [
-          "Demo-grade agent portfolio",
-          "Executive outreach",
-          "Premium packaging",
-          "Monthly mentor calls twice",
-          "Private accelerator",
-          "Growing a micro-agency"
+        "items": [
+          "AI Voice Operators — calls & bookings",
+          "WhatsApp automation — lead handling",
+          "Build your own AI app",
+          "1:1 mentoring (2× per month)",
+          "Private accelerator community",
+          "Micro-agency growth guide"
         ],
         "cta": "Start →"
       }
