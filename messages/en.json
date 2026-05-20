@@ -320,10 +320,10 @@
       {
         "title": "Company",
         "links": [
-          "About Chademy",
-          "Mission",
-          "Contact",
-          "Privacy policy"
+          { "name": "About Chademy", "href": "/par-mums" },
+          { "name": "Mission", "href": "/misija" },
+          { "name": "Contact", "href": "/kontakti" },
+          { "name": "Privacy policy", "href": "/privatuma-politika" }
         ]
       }
     ]

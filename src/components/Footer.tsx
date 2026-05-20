@@ -3,7 +3,8 @@
 import E from "@/components/E";
 import { useTranslations } from "next-intl";
 
-type Col = { title: string; links: string[] };
+type ColLink = string | { name: string; href: string };
+type Col = { title: string; links: ColLink[] };
 
 export default function Footer() {
   const t = useTranslations("Footer");
@@ -103,18 +104,22 @@ export default function Footer() {
             <div key={category.title}>
               <h4 style={{ fontWeight: 600, color: "var(--ink)", fontSize: 12, marginBottom: 16, textTransform: "uppercase", letterSpacing: "0.08em", fontFamily: "JetBrains Mono, monospace" }}>{category.title}</h4>
               <ul style={{ display: "flex", flexDirection: "column", gap: 8, listStyle: "none", padding: 0, margin: 0 }}>
-                {category.links.map((link) => (
-                  <li key={link}>
-                    <a
-                      href="#"
-                      style={{ fontSize: 14, color: "var(--ink-3)", textDecoration: "none", transition: "color 0.15s ease" }}
-                      onMouseEnter={(e) => (e.currentTarget.style.color = "var(--ink)")}
-                      onMouseLeave={(e) => (e.currentTarget.style.color = "var(--ink-3)")}
-                    >
-                      {link}
-                    </a>
-                  </li>
-                ))}
+                {category.links.map((link) => {
+                  const name = typeof link === "string" ? link : link.name;
+                  const href = typeof link === "string" ? "#" : link.href;
+                  return (
+                    <li key={name}>
+                      <a
+                        href={href}
+                        style={{ fontSize: 14, color: "var(--ink-3)", textDecoration: "none", transition: "color 0.15s ease" }}
+                        onMouseEnter={(e) => (e.currentTarget.style.color = "var(--ink)")}
+                        onMouseLeave={(e) => (e.currentTarget.style.color = "var(--ink-3)")}
+                      >
+                        {name}
+                      </a>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}

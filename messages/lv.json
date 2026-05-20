@@ -320,10 +320,10 @@
       {
         "title": "Uzņēmums",
         "links": [
-          "Par Chademy",
-          "Misija",
-          "Kontakti",
-          "Privātuma politika"
+          { "name": "Par Chademy", "href": "/par-mums" },
+          { "name": "Misija", "href": "/misija" },
+          { "name": "Kontakti", "href": "/kontakti" },
+          { "name": "Privātuma politika", "href": "/privatuma-politika" }
         ]
       }
     ]
