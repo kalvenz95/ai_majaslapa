@@ -131,6 +131,8 @@
     ]
   },
   "AILaunchpad": {
+    "titleA": "How much can you ",
+    "titleB": "earn?",
     "kicker": "Example monthly upside with ~2–4 active clients",
     "footer": "Results aren’t guaranteed. Outcomes depend on execution and outbound effort.",
     "perMonth": "/ month",

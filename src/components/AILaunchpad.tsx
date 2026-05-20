@@ -20,14 +20,29 @@ export default function AILaunchpad() {
   );
 
   return (
-    <section style={{ padding: "64px 24px", position: "relative", overflow: "hidden", borderTop: "1px solid var(--line)" }}>
-      <div style={{ maxWidth: 900, margin: "0 auto" }}>
-        <div style={{ display: "flex", alignItems: "flex-start", gap: 10, marginBottom: 24 }}>
-          <span style={{ display: "inline-block", width: 24, height: 1, background: "var(--accent)", marginTop: 7, flexShrink: 0 }} />
-          <span style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 16, letterSpacing: "0.06em", color: "var(--ink-2)", lineHeight: 1.6 }}>
-            {t("kicker")}
+    <section style={{ padding: "120px 0 64px", position: "relative", overflow: "hidden", borderTop: "1px solid var(--line)" }}>
+      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px" }}>
+        {/* big heading */}
+        <div style={{ marginBottom: 64 }}>
+          <span style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: "JetBrains Mono, monospace", fontSize: 11, letterSpacing: "0.15em", color: "var(--ink-3)", textTransform: "uppercase" as const }}>
+            <span style={{ display: "inline-block", width: 24, height: 1, background: "var(--accent)" }} />
+            Ienākumi
           </span>
+          <h2 style={{ fontSize: "clamp(40px, 6vw, 84px)", lineHeight: 1.05, letterSpacing: "-0.035em", fontWeight: 600, margin: "16px 0 0", maxWidth: "16ch" }}>
+            {t("titleA")}
+            <span style={{ background: "linear-gradient(120deg, var(--accent), color-mix(in oklab, var(--accent) 70%, white))", WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent", fontStyle: "italic", fontFamily: "Fraunces, Georgia, serif", fontWeight: 500 }}>
+              {t("titleB")}
+            </span>
+          </h2>
         </div>
+
+        <div style={{ maxWidth: 900 }}>
+          <div style={{ display: "flex", alignItems: "flex-start", gap: 10, marginBottom: 24 }}>
+            <span style={{ display: "inline-block", width: 24, height: 1, background: "var(--accent)", marginTop: 7, flexShrink: 0 }} />
+            <span style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 13, letterSpacing: "0.06em", color: "var(--ink-2)", lineHeight: 1.6 }}>
+              {t("kicker")}
+            </span>
+          </div>
 
         <div className="lp-three-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 2 }}>
           {cards.map((item, i) => (
@@ -52,10 +67,11 @@ export default function AILaunchpad() {
           ))}
         </div>
 
-        <div style={{ marginTop: 14 }}>
-          <p style={{ fontSize: 10, color: "var(--ink-3)", fontFamily: "JetBrains Mono, monospace", lineHeight: 1.6 }}>
-            {t("footer")}
-          </p>
+          <div style={{ marginTop: 14 }}>
+            <p style={{ fontSize: 10, color: "var(--ink-3)", fontFamily: "JetBrains Mono, monospace", lineHeight: 1.6 }}>
+              {t("footer")}
+            </p>
+          </div>
         </div>
       </div>
     </section>

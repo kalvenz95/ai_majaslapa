@@ -131,6 +131,8 @@
     ]
   },
   "AILaunchpad": {
+    "titleA": "Cik var ",
+    "titleB": "nopelnīt?",
     "kicker": "Piemērs, kā var izskatīties ienākumi ar 2–4 klientiem mēnesī",
     "footer": "Rezultāti nav garantēti. Atkarīgi no ieguldītā darba un klientu piesaistes.",
     "perMonth": "/ mēnesī",
