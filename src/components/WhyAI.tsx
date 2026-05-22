@@ -2,10 +2,10 @@
 import { TrendingDown, Cpu, Briefcase, Banknote } from "lucide-react";
 
 const points = [
-  { Icon: TrendingDown, text: "Samazini uzņēmumu izmaksas" },
-  { Icon: Cpu, text: "Veido risinājumus bez programmēšanas prasmēm" },
-  { Icon: Briefcase, text: "Piedāvā pakalpojumus, kas uzņēmumiem ir nepieciešams" },
-  { Icon: Banknote, text: "Pārvērt prasmes ikmēneša ienākumos" },
+  { Icon: TrendingDown, text: "Palīdzi uzņēmumiem samazināt izmaksas" },
+  { Icon: Cpu, text: "Strādā efektīvāk ar AI rīkiem" },
+  { Icon: Briefcase, text: "Piedāvā pakalpojumus, ko biznesi jau meklē" },
+  { Icon: Banknote, text: "Attīsti prasmes, ar kurām vari veidot savu ikmēneša ienākumu virzienu" },
 ];
 
 export default function WhyAI() {

@@ -22,12 +22,12 @@
   "Hero": {
     "badgeRegion": "LV",
     "badgeLine": "Latvijas pirmā AI monetizācijas akadēmija",
-    "h1Line1": "Iemācies veidot AI pakalpojumus un ",
-    "h1Gradient": "pelnīt",
-    "h1Line2": " ar tiem.",
-    "sub": "Praktiska apmācība latviešu valodā. Soli pa solim — no pirmās prasmes līdz pirmajam klientam.",
-    "ctaPrimary": "Sākt bez maksas →",
-    "ctaSecondary": "Kā tas strādā",
+    "h1Line1": "Iemācies veidot AI pakalpojumus, kurus ",
+    "h1Gradient": "uzņēmumi jau šobrīd",
+    "h1Line2": " meklē",
+    "sub": "Praktiska apmācība latviešu valodā. Soli pa solim apgūsti AI prasmes un to pielietojumu darbā ar uzņēmumiem.",
+    "ctaPrimary": "Sākt bezmaksas →",
+    "ctaSecondary": "Skatīt kursus",
     "stat1Val": "3",
     "stat1Label": "AI pakalpojumu virzieni",
     "stat2Val": "100",
@@ -41,11 +41,11 @@
     "floatTag2": "Pirmais klients 3 nedēļās"
   },
   "FastWin": {
-    "kicker": "Soli pa solim",
-    "titleA": "No nulles līdz ",
-    "titleB": "pirmajam klientam",
-    "lead1": "Mākslīgais intelekts kļūst par vienu no augstāk novērtētajām un pieprasītākajām prasmēm biznesā — uzņēmumiem ir vajadzīgi cilvēki, kas ar to palīdz samazināt izmaksas, strādāt efektīvāk un iegūt vairāk klientu.",
-    "lead2": "Mēs parādām, kā izveidot augstvērtīgu AI pakalpojumu un produktu, un soli pa solim iemācām, kā to piedāvāt uzņēmumiem un attīstīt kā savu ikmēneša ienākumu avotu.",
+    "kicker": "Ceļš uz klientiem",
+    "titleA": "Skaidrs ceļš no apmācības ",
+    "titleB": "līdz darbam ar klientiem",
+    "lead1": "Iemācies soli pa solim — no pirmās idejas līdz reāliem klientiem. Nav vajadzīga iepriekšēja pieredze.",
+    "lead2": "Katrs solis sagatavojas nākamajam — strukturēti, skaidri, praktiski.",
     "steps": [
       {
         "num": "01",
@@ -54,22 +54,22 @@
       },
       {
         "num": "02",
-        "title": "Apgūsti prasmi",
-        "desc": "Praktiskas nodarbības, video un veidnes latviešu valodā."
+        "title": "Apgūsti struktūru",
+        "desc": "Praktiskas nodarbības ar skaidrām instrukcijām latviešu valodā."
       },
       {
         "num": "03",
-        "title": "Izveido demo",
+        "title": "Izveido piemēru",
         "desc": "Reāls darba piemērs, ko vari rādīt potenciālajiem klientiem."
       },
       {
         "num": "04",
-        "title": "Uzrunā uzņēmumus",
-        "desc": "Gatavas veidnes ziņām, e-pastiem un sarunām."
+        "title": "Sagatavo piedāvājumu",
+        "desc": "Gatavas veidnes ziņām, e-pastiem un cenu piedāvājumiem."
       },
       {
         "num": "05",
-        "title": "Noslēdz darījumu",
+        "title": "Sāc strādāt ar klientiem",
         "desc": "Pirmais klients un pirmais ienākums no AI pakalpojuma."
       }
     ]
@@ -79,62 +79,72 @@
     "titleA": "Izvēlies, ko pārdot ",
     "titleB": "uzņēmumiem",
     "lead": "Katrs virziens — ar pieprasītiem pakalpojumiem, kuriem ir reāls pieprasījums Latvijas un Eiropas tirgū.",
-    "viewCourse": "Skatīt kursu →",
+    "viewCourse": "Uzzināt vairāk →",
     "tracks": [
       {
-        "num": "01 · IESĀCĒJS",
-        "level": "3–5 ned.",
-        "title": "Sociālo tīklu pārvaldība",
-        "desc": "Apgūsti vispārējas SMM prasmes un veido AI video, vizuāļus un reklāmas saturu uzņēmumiem — bez kameras, bez pieredzes.",
+        "num": "01",
+        "level": "Iesācējs",
+        "badge": "Visvieglākais starts",
+        "title": "Satura speciālists",
+        "desc": "Veido AI saturu uzņēmumiem un attīsti savu pirmo pakalpojumu",
         "skills": [
-          "SMM pārvaldība",
-          "Faceless video",
-          "AI bildes",
-          "Postu dizains",
-          "Reklāmas"
+          "AI faceless video uzņēmumiem",
+          "AI attēli, banneri un reklāmu vizuāļi",
+          "Sociālo tīklu satura pakalpojums",
+          "Kā izveidot portfolio no nulles",
+          "Kā atrast pirmos klientus",
+          "Gatavi cenu piedāvājumi un ziņu veidnes"
         ],
-        "earn": "€300–€800",
+        "earn": "300€–1500€",
         "earnSuffix": "/mēn",
+        "cta": "Sākt ar šo virzienu →",
         "link": "/kursi/satura-specialists"
       },
       {
-        "num": "02 · VIDĒJS",
-        "level": "5–8 ned.",
-        "title": "Mājaslapas & chatboti",
-        "desc": "Iemācies veidot mājaslapas ar mākslīgā intelekta palīdzību, pievienot chatbotus, kas atbild klientiem 24/7, automatizēt pieteikumu plūsmu un veidot profesionālas prezentācijas ar MI.",
+        "num": "02",
+        "level": "Vidējs",
+        "badge": "Populāra izvēle",
+        "title": "Mājaslapas & automatizācija",
+        "desc": "Izveido modernus biznesa risinājumus, ko uzņēmumi reāli izmanto",
         "skills": [
-          "Mājaslapa ar MI",
-          "Chatboti",
-          "Klientu piesaiste",
-          "Automatizācija",
-          "Prezentācijas ar MI"
+          "Modernas AI mājaslapas uzņēmumiem",
+          "Pieteikumu un lead forms automatizācija",
+          "AI asistenti e-pastiem un klientu komunikācijai",
+          "WhatsApp automatizācijas pamati",
+          "Kā atrast un uzrunāt klientus",
+          "Profesionāli piedāvājumi un onboarding process"
         ],
-        "earn": "€500–€1 500",
-        "earnSuffix": "+",
+        "earn": "500€–1800€",
+        "earnSuffix": "/mēn",
+        "cta": "Izvēlēties šo ceļu →",
         "link": "/kursi/digitalais-specialists"
       },
       {
-        "num": "03 · PREMIUM",
-        "level": "6–10 ned.",
-        "title": "Balss aģenti & WhatsApp",
-        "desc": "Automatizē klientu zvanus un ziņas — augstvērtīgi pakalpojumi ar lielāko peļņas potenciālu.",
+        "num": "03",
+        "level": "Premium",
+        "badge": "Premium",
+        "title": "AI Aģentu eksperts",
+        "desc": "Augstas vērtības AI pakalpojumi uzņēmumiem",
         "skills": [
-          "Voice agenti",
-          "WhatsApp",
-          "Vapi",
-          "Vonage"
+          "AI balss aģenti zvaniem un rezervācijām",
+          "WhatsApp automatizācija uzņēmumiem",
+          "Kā pārdot augstākas vērtības AI risinājumus",
+          "AI lietotņu veidošanas pamati",
+          "Privāta kopiena",
+          "1:1 mentoring sesijas"
         ],
-        "earn": "€1 000–€3 000",
-        "earnSuffix": "+",
+        "earn": "800€–3500€",
+        "earnSuffix": "/mēn",
+        "cta": "Pievienoties premium →",
         "link": "/kursi/ai-agentu-eksperts"
       }
     ]
   },
   "AILaunchpad": {
-    "titleA": "Cik var ",
-    "titleB": "nopelnīt?",
-    "kicker": "Piemērs, kā var izskatīties ienākumi ar 2–4 klientiem mēnesī",
-    "footer": "Rezultāti nav garantēti. Atkarīgi no ieguldītā darba un klientu piesaistes.",
+    "titleA": "Piemērs: ienākumi ar ",
+    "titleB": "2–4 klientiem mēnesī",
+    "kicker": "Šie ir pakalpojumi, kurus uzņēmumi jau šobrīd izmanto un par kuriem maksā.",
+    "footer": "Ienākumi atkarīgi no izvēlētā virziena, klientiem un ieguldītā darba.",
     "perMonth": "/ mēnesī",
     "cards": [
       {
@@ -155,10 +165,10 @@
     ]
   },
   "Testimonials": {
-    "kicker": "Reāli rezultāti",
-    "titleA": "Mūsu kopienas ",
-    "titleB": "piemēri praksē",
-    "lead": "Pirmie soļi no apmācības līdz darbam ar klientiem.",
+    "kicker": "Studenti praksē",
+    "titleA": "Kā mūsu studenti izmanto ",
+    "titleB": "šīs prasmes praksē",
+    "lead": "Reālas pieredzes no cilvēkiem, kas jau strādā ar AI pakalpojumiem.",
     "bigStats": [
       {
         "v": "3",
@@ -219,57 +229,60 @@
     "plans": [
       {
         "id": "pamati",
+        "badge": "Visvieglākais starts",
         "name": "Satura Speciālists",
-        "tagline": "Sāc pelnīt ar sociālo mediju saturu",
+        "tagline": "Sāc pelnīt ar AI saturu uzņēmumiem",
         "price": "29",
         "earn": "300€–1 500€/mēn",
         "highlight": false,
         "href": "/kursi/satura-specialists",
         "items": [
-          "AI Faceless Video — satura veidošana bez kameras",
-          "Sociālo Tīklu Pārvaldība — AI video, banneri, feed dizains",
-          "Kā izveidot portfolio no 0",
-          "Kā uzrunāt pirmos klientus",
-          "Kā sagatavot cenu piedāvājumu",
+          "AI faceless video uzņēmumiem",
+          "AI attēli un reklāmu vizuāļi",
+          "Kā izveidot portfolio no nulles",
+          "Kā atrast pirmos klientus",
+          "Gatavi cenu piedāvājumi",
           "Copy-paste ziņu veidnes"
         ],
-        "cta": "Sākt →"
+        "cta": "Sākt ar šo virzienu →"
       },
       {
         "id": "izaugsme",
-        "name": "Digitālais Speciālists",
-        "tagline": "Izveido AI risinājumus biznesiem",
+        "badge": "Populāra izvēle",
+        "name": "Mājaslapas & Automatizācija",
+        "tagline": "Moderni AI risinājumi uzņēmumiem",
         "price": "59",
         "earn": "500€–1 800€/mēn",
         "highlight": true,
         "href": "/kursi/digitalais-specialists",
         "items": [
-          "Mājaslapa — AI dizains, SEO, mobilā versija",
-          "Web Chatbot — 24/7 automātiskas atbildes",
-          "AI Asistents uz E-pastiem",
-          "Kā uzrunāt klientus (aukstie zvani + DM)",
-          "Kā sagatavot profesionālu piedāvājumu",
+          "Modernas AI mājaslapas uzņēmumiem",
+          "AI asistenti e-pastiem un klientu komunikācijai",
+          "Lead form automatizācija",
+          "Kā uzrunāt klientus (DM + e-pasti)",
+          "Profesionāli piedāvājumi",
           "Klientu onboarding process"
         ],
-        "cta": "Sākt →"
+        "cta": "Izvēlēties šo ceļu →"
       },
       {
         "id": "meistars",
+        "badge": "Premium",
         "name": "AI Aģentu Eksperts",
-        "tagline": "Augstvērtīgi aģentu risinājumi",
+        "tagline": "Augstas vērtības AI risinājumi",
         "price": "149",
         "earn": "800€–3 500€/mēn",
         "highlight": false,
         "href": "/kursi/ai-agentu-eksperts",
         "items": [
-          "AI Balss Aģenti — zvani un rezervācija",
-          "WhatsApp Automatizācija — lead apstrāde",
-          "Izveido savu Aplikāciju ar AI",
-          "1:1 mentorings (2× mēnesī)",
-          "Privāta kopiena",
-          "Aģentūras augšanas ceļvedis"
+          "AI balss aģenti zvaniem un rezervācijām",
+          "WhatsApp automatizācija uzņēmumiem",
+          "Kā pārdot augstākas vērtības AI risinājumus",
+          "AI lietotnes veidošanas pamati",
+          "1:1 mentoring sesijas",
+          "Privāta kopiena"
         ],
-        "cta": "Sākt →"
+        "cta": "Pievienoties premium →"
       }
     ]
   },

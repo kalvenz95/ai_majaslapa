@@ -22,12 +22,12 @@
   "Hero": {
     "badgeRegion": "LV",
     "badgeLine": "Latvia’s first AI monetization academy",
-    "h1Line1": "Learn to build AI services and ",
-    "h1Gradient": "earn money",
-    "h1Line2": " selling them.",
-    "sub": "Practical learning—step by step from your first skill to your first paying client.",
-    "ctaPrimary": "Start free →",
-    "ctaSecondary": "How it works",
+    "h1Line1": "Learn to build AI services that ",
+    "h1Gradient": "businesses are already",
+    "h1Line2": " looking for",
+    "sub": "Practical training in Latvian. Step by step — learn AI skills and apply them working with real businesses.",
+    "ctaPrimary": "Start for free →",
+    "ctaSecondary": "View courses",
     "stat1Val": "3",
     "stat1Label": "AI service tracks",
     "stat2Val": "100",
@@ -41,11 +41,11 @@
     "floatTag2": "First client in ~3 weeks"
   },
   "FastWin": {
-    "kicker": "Step by step",
-    "titleA": "From zero to ",
-    "titleB": "your first client",
-    "lead1": "Artificial intelligence is becoming one of the most valued and in-demand skills in business — companies need people who can help them cut costs, work more efficiently, and win more clients.",
-    "lead2": "We show you how to build a high-quality AI service or product, and teach you step by step how to offer it to businesses and grow it into a monthly income stream.",
+    "kicker": "The path to clients",
+    "titleA": "A clear path from learning ",
+    "titleB": "to working with clients",
+    "lead1": "Learn step by step — from first idea to real clients. No prior experience needed.",
+    "lead2": "Each step builds on the last — structured, clear, and practical.",
     "steps": [
       {
         "num": "01",
@@ -54,87 +54,97 @@
       },
       {
         "num": "02",
-        "title": "Build skill",
-        "desc": "Practice lessons, recordings, templates, and bilingual support."
+        "title": "Learn the structure",
+        "desc": "Practical lessons with clear step-by-step instructions."
       },
       {
         "num": "03",
-        "title": "Ship a demo",
-        "desc": "A credible sample you can show on a discovery call."
+        "title": "Build a sample",
+        "desc": "A real work example you can show to prospective clients."
       },
       {
         "num": "04",
-        "title": "Reach out",
-        "desc": "Ready outreach templates for DMs and email."
+        "title": "Prepare your offer",
+        "desc": "Ready templates for messages, emails, and pricing proposals."
       },
       {
         "num": "05",
-        "title": "Close the sale",
-        "desc": "Your first euro from an AI-delivered outcome."
+        "title": "Start working with clients",
+        "desc": "First client. First income from an AI service."
       }
     ]
   },
   "Services": {
-    "kicker": "Three lanes",
+    "kicker": "Three tracks",
     "titleA": "Choose what you sell ",
     "titleB": "to businesses",
     "lead": "Each track focuses on demand-driven services buyers already pay for in Latvia and across Europe.",
-    "viewCourse": "View course →",
+    "viewCourse": "Learn more →",
     "tracks": [
       {
-        "num": "01 · STARTER",
-        "level": "3–5 wks",
-        "title": "Social media ops",
-        "desc": "Grow general social skills and produce AI video, visuals, and ad-ready content for businesses.",
+        "num": "01",
+        "level": "Beginner",
+        "badge": "Easiest start",
+        "title": "Content specialist",
+        "desc": "Create AI content for businesses and build your first service",
         "skills": [
-          "SMM management",
-          "Faceless video",
-          "AI visuals",
-          "Post design",
-          "Ads"
+          "AI faceless video for businesses",
+          "AI images, banners, and ad visuals",
+          "Social media content service",
+          "How to build a portfolio from scratch",
+          "How to find your first clients",
+          "Ready pricing proposals and message templates"
         ],
-        "earn": "€300–€800",
+        "earn": "€300–€1500",
         "earnSuffix": "/mo",
+        "cta": "Start with this track →",
         "link": "/kursi/satura-specialists"
       },
       {
-        "num": "02 · GROWTH",
-        "level": "5–8 wks",
-        "title": "Sites & chatbots",
-        "desc": "Ship AI-assisted landing pages and add 24/7 chatbots plus lightweight automation workflows.",
+        "num": "02",
+        "level": "Intermediate",
+        "badge": "Popular choice",
+        "title": "Websites & automation",
+        "desc": "Build modern business solutions that companies actually use",
         "skills": [
-          "Websites w/ AI",
-          "Chatbots",
-          "Lead outreach",
-          "Automation",
-          "AI decks"
+          "Modern AI websites for businesses",
+          "Lead form and inquiry automation",
+          "AI assistants for email and client communication",
+          "WhatsApp automation basics",
+          "How to find and approach clients",
+          "Professional proposals and onboarding process"
         ],
-        "earn": "€500–€1 500",
-        "earnSuffix": "+",
+        "earn": "€500–€1800",
+        "earnSuffix": "/mo",
+        "cta": "Choose this track →",
         "link": "/kursi/digitalais-specialists"
       },
       {
-        "num": "03 · PREMIUM",
-        "level": "6–10 wks",
-        "title": "Voice & WhatsApp AI",
-        "desc": "Automate calls and chats with higher-ticket workflows for demanding teams.",
+        "num": "03",
+        "level": "Premium",
+        "badge": "Premium",
+        "title": "AI Agent expert",
+        "desc": "High-value AI services for businesses",
         "skills": [
-          "Voice agents",
-          "WhatsApp",
-          "Vapi",
-          "Vonage"
+          "AI voice agents for calls and bookings",
+          "WhatsApp automation for businesses",
+          "How to sell higher-value AI solutions",
+          "AI app building basics",
+          "Private community",
+          "1:1 mentoring sessions"
         ],
-        "earn": "€1 000–€3 000",
-        "earnSuffix": "+",
+        "earn": "€800–€3500",
+        "earnSuffix": "/mo",
+        "cta": "Join premium →",
         "link": "/kursi/ai-agentu-eksperts"
       }
     ]
   },
   "AILaunchpad": {
-    "titleA": "How much can you ",
-    "titleB": "earn?",
-    "kicker": "Example monthly upside with ~2–4 active clients",
-    "footer": "Results aren’t guaranteed. Outcomes depend on execution and outbound effort.",
+    "titleA": "Example: income with ",
+    "titleB": "2–4 clients per month",
+    "kicker": "These are services businesses already use and pay for.",
+    "footer": "Income depends on your chosen track, clients, and work invested.",
     "perMonth": "/ month",
     "cards": [
       {
@@ -155,10 +165,10 @@
     ]
   },
   "Testimonials": {
-    "kicker": "Real wins",
-    "titleA": "Community ",
-    "titleB": "case studies",
-    "lead": "From finishing lessons to shipping client work—in their own words.",
+    "kicker": "Students in practice",
+    "titleA": "How our students use ",
+    "titleB": "these skills in practice",
+    "lead": "Real experiences from people already working with AI services.",
     "bigStats": [
       {
         "v": "3",
@@ -219,57 +229,60 @@
     "plans": [
       {
         "id": "pamati",
+        "badge": "Easiest start",
         "name": "Content Specialist",
-        "tagline": "Earn with social-ready AI media",
+        "tagline": "Earn with AI content for businesses",
         "price": "29",
         "earn": "€300–€1,500/mo",
         "highlight": false,
         "href": "/kursi/satura-specialists",
         "items": [
-          "AI Faceless Video — content without filming",
-          "Social OS playbook — stories, grids, banners",
-          "Build a portfolio from scratch",
-          "Outreach templates for first clients",
-          "How to price your services",
-          "Paste-ready messaging scripts"
+          "AI faceless video for businesses",
+          "AI images and ad visuals",
+          "How to build a portfolio from scratch",
+          "How to find your first clients",
+          "Ready pricing proposals",
+          "Copy-paste message templates"
         ],
-        "cta": "Start →"
+        "cta": "Start with this track →"
       },
       {
         "id": "izaugsme",
-        "name": "Digital Builder",
-        "tagline": "Ship landing pages plus AI ops stacks",
+        "badge": "Popular choice",
+        "name": "Websites & Automation",
+        "tagline": "Modern AI solutions for businesses",
         "price": "59",
         "earn": "€500–€1,800/mo",
         "highlight": true,
         "href": "/kursi/digitalais-specialists",
         "items": [
-          "Modern websites — AI layout, SEO, mobile",
-          "Web Chatbot — 24/7 lead capture",
-          "Inbox assistants — AI email workflows",
-          "Cold outreach (DMs + cold calls)",
-          "Professional proposal templates",
+          "Modern AI websites for businesses",
+          "AI assistants for email and client communication",
+          "Lead form automation",
+          "How to approach clients (DM + email)",
+          "Professional proposals",
           "Client onboarding process"
         ],
-        "cta": "Start →"
+        "cta": "Choose this track →"
       },
       {
         "id": "meistars",
-        "name": "AI Agent Specialist",
-        "tagline": "Voice + WhatsApp automations premium buyers want",
+        "badge": "Premium",
+        "name": "AI Agent Expert",
+        "tagline": "High-value AI solutions",
         "price": "149",
         "earn": "€800–€3,500/mo",
         "highlight": false,
         "href": "/kursi/ai-agentu-eksperts",
         "items": [
-          "AI Voice Operators — calls & bookings",
-          "WhatsApp automation — lead handling",
-          "Build your own AI app",
-          "1:1 mentoring (2× per month)",
-          "Private accelerator community",
-          "Micro-agency growth guide"
+          "AI voice agents for calls and bookings",
+          "WhatsApp automation for businesses",
+          "How to sell higher-value AI solutions",
+          "AI app building basics",
+          "1:1 mentoring sessions",
+          "Private community"
         ],
-        "cta": "Start →"
+        "cta": "Join premium →"
       }
     ]
   },

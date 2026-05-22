@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 
 type PlanJson = {
   id: string;
+  badge?: string;
   name: string;
   tagline: string;
   price: string;
@@ -14,6 +15,12 @@ type PlanJson = {
   href: string;
   items: string[];
   cta: string;
+};
+
+const PLAN_IMGS: Record<string, string> = {
+  pamati: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=900&auto=format&fit=crop&q=80",
+  izaugsme: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=900&auto=format&fit=crop&q=80",
+  meistars: "https://images.unsplash.com/photo-1589254065878-42c9da997008?w=900&auto=format&fit=crop&q=80",
 };
 
 export default function Pricing() {
@@ -38,130 +45,161 @@ export default function Pricing() {
             </h2>
           </div>
           <div style={{ paddingBottom: 8 }}>
-            <p style={{ fontSize: 18, color: "var(--ink-2)", maxWidth: 640, lineHeight: 1.5 }}>
+            <p style={{ fontSize: 18, color: "var(--ink-2)", maxWidth: 640, lineHeight: 1.55 }}>
               <E id="pricing-sub">{t("subtitle")}</E>
             </p>
           </div>
         </div>
 
         <div className="lp-pricing-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, alignItems: "stretch" }}>
-          {plans.map((plan) => (
-            <div
-              key={plan.id}
-              style={{
-                border: `1px solid ${plan.highlight ? "var(--accent)" : "var(--line)"}`,
-                borderRadius: 28,
-                background: plan.highlight ? "linear-gradient(180deg, color-mix(in oklab, var(--accent) 8%, var(--bg-1)) 0%, var(--bg-1) 50%)" : "var(--bg-1)",
-                display: "flex",
-                flexDirection: "column",
-                overflow: "hidden",
-                position: "relative",
-                transition: "transform 0.3s, border-color 0.3s",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.transform = "";
-              }}
-            >
-              {plan.highlight && (
-                <span style={{ position: "absolute", top: 24, right: 24, zIndex: 5, padding: "6px 12px", borderRadius: 999, background: "var(--accent)", color: "var(--accent-ink)", fontFamily: "JetBrains Mono, monospace", fontSize: 10, fontWeight: 700, letterSpacing: "0.1em" }}>
-                  {t("popular")}
-                </span>
-              )}
-              <div style={{ aspectRatio: "16/7", position: "relative", overflow: "hidden", background: "var(--bg-3)" }}>
-                <img
-                  src={
-                    plan.highlight
-                      ? "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=900&auto=format&fit=crop&q=80"
-                      : plan.id === "pamati"
-                        ? "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=900&auto=format&fit=crop&q=80"
-                        : "https://images.unsplash.com/photo-1589254065878-42c9da997008?w=900&auto=format&fit=crop&q=80"
+          {plans.map((plan) => {
+            const isPremium = plan.id === "meistars";
+            const isHighlight = plan.highlight;
+            const img = PLAN_IMGS[plan.id];
+
+            return (
+              <div
+                key={plan.id}
+                style={{
+                  border: `1px solid ${isPremium ? "color-mix(in oklab, var(--accent) 30%, transparent)" : isHighlight ? "var(--accent)" : "var(--line)"}`,
+                  borderRadius: 28,
+                  background: isPremium
+                    ? "linear-gradient(180deg, color-mix(in oklab, var(--accent) 7%, var(--bg-1)) 0%, var(--bg-1) 50%)"
+                    : isHighlight
+                      ? "linear-gradient(180deg, color-mix(in oklab, var(--accent) 8%, var(--bg-1)) 0%, var(--bg-1) 50%)"
+                      : "var(--bg-1)",
+                  display: "flex",
+                  flexDirection: "column",
+                  overflow: "hidden",
+                  position: "relative",
+                  transition: "transform 0.25s ease, box-shadow 0.25s ease",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
+                  if (isPremium) {
+                    (e.currentTarget as HTMLElement).style.boxShadow = "0 24px 64px -16px color-mix(in oklab, var(--accent) 20%, transparent)";
                   }
-                  alt=""
-                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                  loading="lazy"
-                />
-                <div
-                  style={{
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.transform = "";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "";
+                }}
+              >
+                {/* Image */}
+                <div style={{ aspectRatio: "16/7", position: "relative", overflow: "hidden", background: "var(--bg-3)" }}>
+                  <img
+                    src={img}
+                    alt=""
+                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                    loading="lazy"
+                  />
+                  <div style={{
                     position: "absolute",
                     inset: 0,
-                    background: plan.highlight
-                      ? "linear-gradient(to top, color-mix(in oklab, var(--accent) 8%, var(--bg-1)) 0%, transparent 60%)"
-                      : "linear-gradient(to top, var(--bg-1) 0%, transparent 60%)",
+                    background: isPremium
+                      ? "linear-gradient(to top, color-mix(in oklab, var(--accent) 8%, var(--bg-1)) 0%, rgba(0,0,0,0.35) 60%, transparent 100%)"
+                      : "linear-gradient(to top, var(--bg-1) 0%, rgba(0,0,0,0.3) 60%, transparent 100%)",
                     pointerEvents: "none",
-                  }}
-                />
-              </div>
-
-              <div style={{ padding: 24, display: "flex", flexDirection: "column", gap: 20, flex: 1 }}>
-                <div>
-                  <div style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 13, fontWeight: 700, color: "var(--accent)", marginBottom: 8 }}>
-                    €{plan.price}
-                    {t("monthly")}
-                  </div>
-                  <h3 style={{ fontFamily: "Inter Tight, sans-serif", fontSize: 26, fontWeight: 700, color: "var(--ink)", marginBottom: 6, letterSpacing: "-0.025em", lineHeight: 1.1 }}>
-                    <E id={`plan-${plan.id}-name`}>{plan.name}</E>
-                  </h3>
-                  <p style={{ fontSize: 13, color: "var(--ink-3)", lineHeight: 1.4 }}>
-                    <E id={`plan-${plan.id}-tagline`}>{plan.tagline}</E>
-                  </p>
+                  }} />
                 </div>
 
-                <div style={{ background: "var(--bg-2)", border: "1px solid var(--line)", borderRadius: 12, padding: "12px 16px" }}>
-                  <div style={{ fontSize: 11, color: "var(--ink-4)", marginBottom: 4, fontFamily: "JetBrains Mono, monospace" }}>{t("earnLabel")}</div>
-                  <div className="metric" style={{ fontSize: 20, color: "var(--accent)" }}>
-                    {plan.earn}
-                  </div>
-                </div>
+                <div style={{ padding: "20px 22px 22px", display: "flex", flexDirection: "column", gap: 0, flex: 1 }}>
+                  {/* Badge */}
+                  {plan.badge && (
+                    <span style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      padding: "4px 10px",
+                      borderRadius: 999,
+                      fontSize: 10,
+                      fontWeight: 700,
+                      letterSpacing: "0.07em",
+                      textTransform: "uppercase" as const,
+                      fontFamily: "JetBrains Mono, monospace",
+                      background: isPremium ? "var(--accent)" : isHighlight ? "var(--accent)" : "color-mix(in oklab, var(--accent) 12%, transparent)",
+                      color: (isPremium || isHighlight) ? "var(--accent-ink)" : "var(--accent)",
+                      border: (isPremium || isHighlight) ? "none" : "1px solid color-mix(in oklab, var(--accent) 25%, transparent)",
+                      alignSelf: "flex-start",
+                      marginBottom: 14,
+                    }}>
+                      {plan.badge}
+                    </span>
+                  )}
 
-                <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                  {plan.items.map((item) => (
-                    <div key={item} style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
-                      <svg style={{ flexShrink: 0, marginTop: 3 }} width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2.5">
-                        <polyline points="20,6 9,17 4,12" />
-                      </svg>
-                      <span style={{ fontSize: 13, color: "var(--ink-2)", lineHeight: 1.5 }}>{item}</span>
+                  {/* Price + name */}
+                  <div style={{ marginBottom: 6 }}>
+                    <div style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 13, fontWeight: 700, color: "var(--accent)", marginBottom: 6 }}>
+                      €{plan.price}{t("monthly")}
                     </div>
-                  ))}
-                </div>
+                    <h3 style={{ fontFamily: "Inter Tight, sans-serif", fontSize: 22, fontWeight: 700, color: "var(--ink)", letterSpacing: "-0.025em", lineHeight: 1.1, margin: "0 0 5px" }}>
+                      <E id={`plan-${plan.id}-name`}>{plan.name}</E>
+                    </h3>
+                    <p style={{ fontSize: 13, color: "var(--ink-3)", lineHeight: 1.4, margin: 0 }}>
+                      <E id={`plan-${plan.id}-tagline`}>{plan.tagline}</E>
+                    </p>
+                  </div>
 
-                <PricingCheckoutButton
-                  plan={plan.id === "pamati" ? "PAMATI" : plan.id === "izaugsme" ? "IZAUGSME" : "MEISTARS"}
-                  href={plan.href}
-                  label={plan.cta}
-                  className="mt-auto w-full py-3 rounded-xl font-bold text-sm text-center block"
-                  style={
-                    plan.highlight
-                      ? { background: "var(--accent)", color: "var(--accent-ink)", borderRadius: 12, padding: "12px 0", fontWeight: 700, fontSize: 14 }
-                      : {
-                          background: "var(--bg-2)",
-                          border: "1px solid var(--line)",
-                          color: "var(--ink-2)",
-                          borderRadius: 12,
-                          padding: "12px 0",
-                          fontWeight: 600,
-                          fontSize: 14,
-                          transition: "border-color 0.15s ease, color 0.15s ease",
-                        }
-                  }
-                  onMouseEnter={(e) => {
-                    if (!plan.highlight) {
-                      (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--line-2)";
-                      (e.currentTarget as HTMLButtonElement).style.color = "var(--ink)";
+                  {/* Earn badge */}
+                  <div style={{ background: "var(--bg-2)", border: `1px solid ${isPremium ? "color-mix(in oklab, var(--accent) 20%, transparent)" : "var(--line)"}`, borderRadius: 10, padding: "10px 14px", margin: "14px 0" }}>
+                    <div style={{ fontSize: 10, color: "var(--ink-4)", marginBottom: 3, fontFamily: "JetBrains Mono, monospace", textTransform: "uppercase" as const, letterSpacing: "0.06em" }}>{t("earnLabel")}</div>
+                    <div className="metric" style={{ fontSize: 18, color: "var(--accent)" }}>{plan.earn}</div>
+                  </div>
+
+                  {/* Items */}
+                  <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 20 }}>
+                    {plan.items.map((item) => (
+                      <div key={item} style={{ display: "flex", alignItems: "flex-start", gap: 9 }}>
+                        <svg style={{ flexShrink: 0, marginTop: 3 }} width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2.8">
+                          <polyline points="20,6 9,17 4,12" />
+                        </svg>
+                        <span style={{ fontSize: 13, color: "var(--ink-2)", lineHeight: 1.45 }}>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <PricingCheckoutButton
+                    plan={plan.id === "pamati" ? "PAMATI" : plan.id === "izaugsme" ? "IZAUGSME" : "MEISTARS"}
+                    href={plan.href}
+                    label={plan.cta}
+                    className="mt-auto w-full rounded-xl font-bold text-sm text-center block"
+                    style={
+                      (isHighlight || isPremium)
+                        ? { background: "var(--accent)", color: "var(--accent-ink)", borderRadius: 12, padding: "13px 0", fontWeight: 700, fontSize: 14, marginTop: "auto" }
+                        : {
+                            background: "var(--bg-2)",
+                            border: "1px solid var(--line-2)",
+                            color: "var(--ink)",
+                            borderRadius: 12,
+                            padding: "13px 0",
+                            fontWeight: 600,
+                            fontSize: 14,
+                            marginTop: "auto",
+                            transition: "border-color 0.15s ease, color 0.15s ease, background 0.15s ease",
+                          }
                     }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!plan.highlight) {
-                      (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--line)";
-                      (e.currentTarget as HTMLButtonElement).style.color = "var(--ink-2)";
-                    }
-                  }}
-                />
+                    onMouseEnter={(e) => {
+                      if (!isHighlight && !isPremium) {
+                        (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--accent)";
+                        (e.currentTarget as HTMLButtonElement).style.color = "var(--accent)";
+                        (e.currentTarget as HTMLButtonElement).style.background = "var(--bg-3)";
+                      } else {
+                        (e.currentTarget as HTMLButtonElement).style.filter = "brightness(1.07)";
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isHighlight && !isPremium) {
+                        (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--line-2)";
+                        (e.currentTarget as HTMLButtonElement).style.color = "var(--ink)";
+                        (e.currentTarget as HTMLButtonElement).style.background = "var(--bg-2)";
+                      } else {
+                        (e.currentTarget as HTMLButtonElement).style.filter = "";
+                      }
+                    }}
+                  />
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
