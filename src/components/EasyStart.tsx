@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 const features = [
   { icon: "✦", title: "Nav nepieciešama programmēšana" },
   { icon: "✦", title: "Soli pa solim struktūra" },
-  { icon: "✦", title: "Praktisks pielietojums" },
+  { icon: "✦", title: "Praktiski piemēri" },
 ];
 
 export default function EasyStart() {
@@ -51,14 +51,13 @@ export default function EasyStart() {
 
         {/* Text block */}
         <div style={{ background: "var(--bg-2)", border: "1px solid var(--line)", borderRadius: 14, padding: "clamp(18px, 3vw, 28px)", marginBottom: 40 }}>
-          <p style={{ color: "var(--ink-2)", fontSize: 15, lineHeight: 1.75, marginBottom: 16 }}>
+          <p style={{ color: "var(--ink-2)", fontSize: 15, lineHeight: 1.75, marginBottom: 14 }}>
             Nav nepieciešamas programmēšanas vai sarežģītas datorprasmes. Apmācība ir veidota{" "}
             <span style={{ color: "var(--accent)", fontWeight: 600 }}>soli pa solim</span>{" "}
             — vari sekot līdzi un uzreiz pielietot.
           </p>
           <p style={{ color: "var(--ink-2)", fontSize: 15, lineHeight: 1.75 }}>
-            Tu apgūsti prasmes, kuras jau šobrīd tiek izmantotas uzņēmumos, un kļūsti par daļu no
-            jomas, kas strauji attīstās.
+            Tu apgūsti prasmes, kuras jau šobrīd tiek izmantotas uzņēmumos.
           </p>
         </div>
 

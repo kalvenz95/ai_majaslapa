@@ -201,6 +201,18 @@ export default function Pricing() {
             );
           })}
         </div>
+
+        {/* Trust micro badges */}
+        <div style={{ display: "flex", justifyContent: "center", gap: 28, flexWrap: "wrap", marginTop: 36 }}>
+          {["Saturs latviešu valodā", "Piekļuve uzreiz", "Kopienas piekļuve", "Praktiski materiāli"].map((badge) => (
+            <span key={badge} style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 13, color: "var(--ink-3)" }}>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2.8">
+                <polyline points="20,6 9,17 4,12" />
+              </svg>
+              {badge}
+            </span>
+          ))}
+        </div>
       </div>
     </section>
   );

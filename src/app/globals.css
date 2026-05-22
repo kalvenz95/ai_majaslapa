@@ -411,6 +411,11 @@ a { color: inherit; text-decoration: none; }
   100% { transform: scale(1.6); opacity: 0; }
 }
 
+/* ── Tools grid — responsive ─────────────────────────────────────── */
+@media (max-width: 768px) {
+  .tools-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
 /* ── Landing page — mobile responsive ──────────────────────────── */
 @media (max-width: 768px) {
   /* Section vertical padding */

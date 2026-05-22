@@ -1,189 +1,146 @@
 "use client";
-import { useState } from "react";
-import {
-  Bot, Zap, Film, Mic2, Megaphone, CreditCard,
-  MessageSquare, Search, PenTool, Edit3,
-  Link2, Plug, Database, FileText,
-  Palette, Video, User, Sparkles, Camera, Image, Flame,
-  Volume2, Mail, Phone, Smartphone,
-  TrendingUp, Calendar, Paintbrush, Target, Scissors,
-  ChevronDown,
-} from "lucide-react";
 
-const categories = [
+import { Bot, Zap, Film, Mic2, MessageSquare, Link2, Palette, Volume2 } from "lucide-react";
+
+const tools = [
   {
-    label: "AI Assistenti",
+    name: "Claude",
+    desc: "AI asistents & skripting",
     Icon: Bot,
-    tools: [
-      { name: "ChatGPT", desc: "Skripting & Sales", Icon: MessageSquare },
-      { name: "Claude", desc: "AI rakstīšana", Icon: Bot },
-      { name: "Perplexity", desc: "AI Meklēšana", Icon: Search },
-      { name: "Jasper", desc: "Mārketinga teksti", Icon: PenTool },
-      { name: "Copy.ai", desc: "AI Teksts", Icon: Edit3 },
-    ],
+    color: "#C6FF3D",
   },
   {
-    label: "Automatizācija",
-    Icon: Zap,
-    tools: [
-      { name: "Make.com", desc: "Visual workflow", Icon: Zap },
-      { name: "n8n", desc: "Workflow Builder", Icon: Link2 },
-      { name: "Zapier", desc: "App integrācijas", Icon: Plug },
-      { name: "Airtable", desc: "Datu bāze", Icon: Database },
-      { name: "Notion AI", desc: "AI Darbvieta", Icon: FileText },
-    ],
+    name: "ChatGPT",
+    desc: "Teksts & satura ģenerēšana",
+    Icon: MessageSquare,
+    color: "#7FF6E0",
   },
   {
-    label: "AI Video & Attēli",
-    Icon: Film,
-    tools: [
-      { name: "Midjourney", desc: "AI Attēli", Icon: Palette },
-      { name: "Runway", desc: "AI Video", Icon: Film },
-      { name: "HeyGen", desc: "Avatar Video", Icon: User },
-      { name: "Pika Labs", desc: "Video ģenerēšana", Icon: Sparkles },
-      { name: "Synthesia", desc: "Video avatāri", Icon: Video },
-      { name: "Sora", desc: "AI Video", Icon: Camera },
-      { name: "Stable Diffusion", desc: "AI Attēli", Icon: Image },
-      { name: "Adobe Firefly", desc: "AI Radošums", Icon: Flame },
-    ],
-  },
-  {
-    label: "AI Balss & Chat",
+    name: "Vapi",
+    desc: "Balss AI aģenti",
     Icon: Mic2,
-    tools: [
-      { name: "Vapi", desc: "Voice Agents", Icon: Mic2 },
-      { name: "ElevenLabs", desc: "AI Balss", Icon: Volume2 },
-      { name: "Manychat", desc: "Chat automācija", Icon: MessageSquare },
-      { name: "Vonage", desc: "LV numuri", Icon: Phone },
-      { name: "Twilio", desc: "SMS & Zvani", Icon: Smartphone },
-    ],
+    color: "#a78bfa",
   },
   {
-    label: "Mārketings & SEO",
-    Icon: Megaphone,
-    tools: [
-      { name: "Buffer", desc: "Sociālie tīkli", Icon: Smartphone },
-      { name: "Surfer SEO", desc: "SEO Optimizācija", Icon: TrendingUp },
-      { name: "ActiveCampaign", desc: "E-pasta mārketings", Icon: Mail },
-      { name: "Typeform", desc: "Viedās formas", Icon: Target },
-    ],
+    name: "Make.com",
+    desc: "Vizuālā automatizācija",
+    Icon: Zap,
+    color: "#C6FF3D",
   },
   {
-    label: "Bizness & Maksājumi",
-    Icon: CreditCard,
-    tools: [
-      { name: "Stripe", desc: "Maksājumi", Icon: CreditCard },
-      { name: "Calendly", desc: "Tikšanās booking", Icon: Calendar },
-      { name: "Canva AI", desc: "AI Dizains", Icon: Paintbrush },
-      { name: "Figma AI", desc: "UI/UX Dizains", Icon: Target },
-      { name: "Descript", desc: "Audio/Video edit", Icon: Scissors },
-    ],
+    name: "n8n",
+    desc: "Workflow Builder",
+    Icon: Link2,
+    color: "#7FF6E0",
+  },
+  {
+    name: "Midjourney",
+    desc: "AI attēlu ģenerēšana",
+    Icon: Palette,
+    color: "#a78bfa",
+  },
+  {
+    name: "ElevenLabs",
+    desc: "AI balss sintēze",
+    Icon: Volume2,
+    color: "#C6FF3D",
+  },
+  {
+    name: "Runway",
+    desc: "AI video ģenerēšana",
+    Icon: Film,
+    color: "#7FF6E0",
   },
 ];
 
-const allTools = categories.flatMap((c) => c.tools);
-const row1 = allTools.slice(0, 16);
-const row2 = allTools.slice(16);
-
 export default function Tools() {
-  const [open, setOpen] = useState<number | null>(null);
-
   return (
-    <section id="tools" style={{ padding: "80px 0", position: "relative", overflow: "hidden" }}>
-      <div style={{ maxWidth: 640, margin: "0 auto", padding: "0 24px" }}>
-        <div style={{ textAlign: "center", marginBottom: 40 }}>
-          <div className="chip chip-dot" style={{ marginBottom: 16 }}>🛠️ Rīki</div>
-          <h2 style={{ fontFamily: "Inter Tight, sans-serif", fontSize: "clamp(28px,4vw,40px)", fontWeight: 600, color: "var(--ink)", letterSpacing: "-0.02em", marginBottom: 12 }}>
+    <section id="tools" style={{ padding: "120px 0", position: "relative", overflow: "hidden", borderTop: "1px solid var(--line)" }}>
+      <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "radial-gradient(ellipse 50% 50% at 50% 50%, color-mix(in oklab, var(--accent) 5%, transparent), transparent 70%)" }} />
+
+      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px", position: "relative", zIndex: 1 }}>
+
+        {/* Header */}
+        <div style={{ textAlign: "center", marginBottom: 56 }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, fontFamily: "JetBrains Mono, monospace", fontSize: 11, letterSpacing: "0.15em", color: "var(--ink-3)", textTransform: "uppercase" as const, marginBottom: 20 }}>
+            <span style={{ display: "inline-block", width: 24, height: 1, background: "var(--accent)" }} />
+            Platformu stack
+            <span style={{ display: "inline-block", width: 24, height: 1, background: "var(--accent)" }} />
+          </div>
+          <h2 style={{ fontFamily: "Inter Tight, sans-serif", fontSize: "clamp(32px, 5vw, 68px)", fontWeight: 600, color: "var(--ink)", letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: 16 }}>
             Rīki, kurus{" "}
-            <span style={{ color: "var(--accent)" }}>izmantosi kursā</span>
+            <span style={{ background: "linear-gradient(120deg, var(--accent), color-mix(in oklab, var(--accent) 70%, white))", WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent", fontStyle: "italic", fontFamily: "Fraunces, Georgia, serif", fontWeight: 500 }}>
+              apgūsi
+            </span>
           </h2>
-          <p style={{ color: "var(--ink-3)", fontSize: 14, lineHeight: 1.6 }}>
-            Praktiski rīki, kas palīdz izveidot AI pakalpojumus, automatizācijas un saturu uzņēmumiem.
+          <p style={{ color: "var(--ink-3)", fontSize: 16, lineHeight: 1.6, maxWidth: 480, margin: "0 auto" }}>
+            Platformas, kuras tiek izmantotas modernu AI pakalpojumu veidošanā
           </p>
         </div>
 
-        {/* Accordion */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-          {categories.map((cat, i) => {
-            const isOpen = open === i;
-            return (
-              <div key={i} className="card" style={{
-                overflow: "hidden",
-                borderColor: isOpen ? "var(--line-2)" : "var(--line)",
-                background: isOpen ? "var(--bg-2)" : "var(--bg-1)",
-                transition: "background 0.2s ease, border-color 0.2s ease",
+        {/* 4×2 tool grid */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(4, 1fr)",
+            gap: 12,
+            maxWidth: 900,
+            margin: "0 auto",
+          }}
+          className="tools-grid"
+        >
+          {tools.map((tool) => (
+            <div
+              key={tool.name}
+              style={{
+                padding: "22px 20px",
+                background: "var(--bg-1)",
+                border: "1px solid var(--line)",
+                borderRadius: 18,
+                display: "flex",
+                flexDirection: "column",
+                gap: 14,
+                transition: "border-color 0.2s ease, transform 0.2s ease, background 0.2s ease",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.borderColor = "color-mix(in oklab, var(--accent) 28%, transparent)";
+                (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)";
+                (e.currentTarget as HTMLElement).style.background = "var(--bg-2)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.borderColor = "var(--line)";
+                (e.currentTarget as HTMLElement).style.transform = "";
+                (e.currentTarget as HTMLElement).style.background = "var(--bg-1)";
+              }}
+            >
+              {/* Icon */}
+              <div style={{
+                width: 40,
+                height: 40,
+                borderRadius: 12,
+                background: `color-mix(in oklab, ${tool.color} 12%, var(--bg-2))`,
+                border: `1px solid color-mix(in oklab, ${tool.color} 20%, transparent)`,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexShrink: 0,
               }}>
-                <button
-                  onClick={() => setOpen(isOpen ? null : i)}
-                  style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 18px", textAlign: "left", background: "none", border: "none", cursor: "pointer" }}
-                >
-                  <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                    <div style={{
-                      width: 28, height: 28, borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
-                      background: isOpen ? "color-mix(in oklab, var(--accent) 12%, transparent)" : "var(--bg-3)",
-                      border: `1px solid ${isOpen ? "color-mix(in oklab, var(--accent) 20%, transparent)" : "var(--line)"}`,
-                      transition: "background 0.2s, border-color 0.2s",
-                    }}>
-                      <cat.Icon size={14} color={isOpen ? "var(--accent)" : "var(--ink-3)"} />
-                    </div>
-                    <span style={{ color: "var(--ink)", fontWeight: 600, fontSize: 14 }}>{cat.label}</span>
-                    <span className="chip" style={{ fontSize: 10, padding: "2px 8px" }}>{cat.tools.length}</span>
-                  </div>
-                  <ChevronDown size={16} color="var(--ink-3)"
-                    style={{ flexShrink: 0, transform: isOpen ? "rotate(180deg)" : "none", transition: "transform 0.3s ease" }} />
-                </button>
-
-                <div style={{ maxHeight: isOpen ? `${cat.tools.length * 52 + 16}px` : "0px", overflow: "hidden", transition: "max-height 0.4s ease" }}>
-                  <div style={{ padding: "0 12px 12px", display: "flex", flexDirection: "column", gap: 4 }}>
-                    {cat.tools.map((tool) => (
-                      <div key={tool.name} style={{ display: "flex", alignItems: "center", gap: 12, padding: "10px 12px", borderRadius: 10, background: "var(--bg-3)" }}>
-                        <div style={{
-                          width: 28, height: 28, borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
-                          background: "var(--bg-2)", border: "1px solid var(--line)",
-                        }}>
-                          <tool.Icon size={14} color="var(--ink-2)" />
-                        </div>
-                        <div style={{ flex: 1 }}>
-                          <div style={{ fontSize: 13, fontWeight: 600, color: "var(--ink)" }}>{tool.name}</div>
-                          <div style={{ fontSize: 11, color: "var(--ink-3)" }}>{tool.desc}</div>
-                        </div>
-                        <div style={{ width: 5, height: 5, borderRadius: 999, background: "var(--accent)", opacity: 0.5, flexShrink: 0 }} />
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                <tool.Icon size={18} color={tool.color} />
               </div>
-            );
-          })}
-        </div>
-      </div>
 
-      {/* Marquee */}
-      <div style={{ position: "relative", marginTop: 64 }}>
-        <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 96, background: "linear-gradient(to right, var(--bg), transparent)", zIndex: 10, pointerEvents: "none" }} />
-        <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: 96, background: "linear-gradient(to left, var(--bg), transparent)", zIndex: 10, pointerEvents: "none" }} />
-
-        <div style={{ overflow: "hidden", marginBottom: 10 }}>
-          <div style={{ display: "flex", gap: 8, whiteSpace: "nowrap", width: "max-content", animation: "marqueeScroll 22s linear infinite" }}>
-            {[...row1, ...row1].map((tool, i) => (
-              <div key={i} style={{ display: "flex", alignItems: "center", gap: 8, padding: "8px 14px", borderRadius: 10, border: "1px solid var(--line)", background: "var(--bg-1)", flexShrink: 0 }}>
-                <tool.Icon size={13} color="var(--ink-3)" />
-                <span style={{ fontSize: 12, fontWeight: 500, color: "var(--ink-2)", fontFamily: "JetBrains Mono, monospace" }}>{tool.name}</span>
+              {/* Text */}
+              <div>
+                <div style={{ fontSize: 14, fontWeight: 700, color: "var(--ink)", marginBottom: 4, letterSpacing: "-0.01em" }}>{tool.name}</div>
+                <div style={{ fontSize: 12, color: "var(--ink-3)", lineHeight: 1.4 }}>{tool.desc}</div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
 
-        <div style={{ overflow: "hidden" }}>
-          <div style={{ display: "flex", gap: 8, whiteSpace: "nowrap", width: "max-content", animation: "marqueeReverse 18s linear infinite" }}>
-            {[...row2, ...row2].map((tool, i) => (
-              <div key={i} style={{ display: "flex", alignItems: "center", gap: 8, padding: "8px 14px", borderRadius: 10, border: "1px solid var(--line)", background: "var(--bg-1)", flexShrink: 0 }}>
-                <tool.Icon size={13} color="var(--ink-3)" />
-                <span style={{ fontSize: 12, fontWeight: 500, color: "var(--ink-2)", fontFamily: "JetBrains Mono, monospace" }}>{tool.name}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* Subtle note */}
+        <p style={{ textAlign: "center", marginTop: 32, fontSize: 12, color: "var(--ink-4)", fontFamily: "JetBrains Mono, monospace" }}>
+          Visi rīki pieejami ar bezmaksas plāniem vai izmēģinājuma periodiem
+        </p>
       </div>
     </section>
   );

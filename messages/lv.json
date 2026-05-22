@@ -43,34 +43,35 @@
   "FastWin": {
     "kicker": "Ceļš uz klientiem",
     "titleA": "Skaidrs ceļš no apmācības ",
-    "titleB": "līdz darbam ar klientiem",
-    "lead1": "Iemācies soli pa solim — no pirmās idejas līdz reāliem klientiem. Nav vajadzīga iepriekšēja pieredze.",
-    "lead2": "Katrs solis sagatavojas nākamajam — strukturēti, skaidri, praktiski.",
+    "titleB": "līdz klientiem",
+    "lead1": "Mākslīgais intelekts kļūst par vienu no pieprasītākajām prasmēm biznesā.",
+    "lead2": "Mēs soli pa solim parādām, kā apgūt pieprasītu AI pakalpojumu un piedāvāt to uzņēmumiem.",
+    "cta": "Izvēlēties savu ceļu →",
     "steps": [
       {
         "num": "01",
         "title": "Izvēlies virzienu",
-        "desc": "Saturs, mājaslapas vai balss aģenti — sāc ar to, kas tev tuvāks."
+        "desc": "Saturs, mājaslapas vai AI aģenti."
       },
       {
         "num": "02",
-        "title": "Apgūsti struktūru",
-        "desc": "Praktiskas nodarbības ar skaidrām instrukcijām latviešu valodā."
+        "title": "Apgūsti prasmi",
+        "desc": "Video nodarbības un praktiski materiāli."
       },
       {
         "num": "03",
-        "title": "Izveido piemēru",
-        "desc": "Reāls darba piemērs, ko vari rādīt potenciālajiem klientiem."
+        "title": "Izveido portfolio",
+        "desc": "Reāls piemērs, ko parādīt klientiem."
       },
       {
         "num": "04",
-        "title": "Sagatavo piedāvājumu",
-        "desc": "Gatavas veidnes ziņām, e-pastiem un cenu piedāvājumiem."
+        "title": "Uzrunā klientus",
+        "desc": "Gatavas ziņas un piedāvājumu veidnes."
       },
       {
         "num": "05",
-        "title": "Sāc strādāt ar klientiem",
-        "desc": "Pirmais klients un pirmais ienākums no AI pakalpojuma."
+        "title": "Sāc strādāt",
+        "desc": "Pielieto apgūto praksē."
       }
     ]
   },
@@ -288,11 +289,11 @@
   },
   "CTA": {
     "kicker": "Sāc šodien",
-    "titleA": "Tavs pirmais klients ",
-    "titleB": "sākas šeit",
-    "lead": "Izvēlies virzienu, apgūsti prasmes un pārvērt tās ienākumos.",
-    "ctaPrimary": "Sākt bez maksas →",
-    "ctaSecondary": "Skatīt visus kursus",
+    "titleA": "Sāc apgūt prasmes, ",
+    "titleB": "ko uzņēmumi jau meklē",
+    "lead": "Praktiska platforma latviešu valodā ar skaidru un saprotamu pieeju.",
+    "ctaPrimary": "Sākt bezmaksas →",
+    "ctaSecondary": "Skatīt kursus",
     "bullets": [
       "Latviešu valodā",
       "Praktiski kursi",

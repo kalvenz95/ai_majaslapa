@@ -43,34 +43,35 @@
   "FastWin": {
     "kicker": "The path to clients",
     "titleA": "A clear path from learning ",
-    "titleB": "to working with clients",
-    "lead1": "Learn step by step — from first idea to real clients. No prior experience needed.",
-    "lead2": "Each step builds on the last — structured, clear, and practical.",
+    "titleB": "to clients",
+    "lead1": "Artificial intelligence is becoming one of the most in-demand skills in business.",
+    "lead2": "We show you step by step how to build an in-demand AI service and offer it to businesses.",
+    "cta": "Choose your path →",
     "steps": [
       {
         "num": "01",
         "title": "Pick a lane",
-        "desc": "Content, websites, or voice agents — start where you’re strongest."
+        "desc": "Content, websites, or AI agents."
       },
       {
         "num": "02",
-        "title": "Learn the structure",
-        "desc": "Practical lessons with clear step-by-step instructions."
+        "title": "Build the skill",
+        "desc": "Video lessons and practical materials."
       },
       {
         "num": "03",
-        "title": "Build a sample",
-        "desc": "A real work example you can show to prospective clients."
+        "title": "Build a portfolio",
+        "desc": "A real example to show clients."
       },
       {
         "num": "04",
-        "title": "Prepare your offer",
-        "desc": "Ready templates for messages, emails, and pricing proposals."
+        "title": "Reach out",
+        "desc": "Ready messages and proposal templates."
       },
       {
         "num": "05",
-        "title": "Start working with clients",
-        "desc": "First client. First income from an AI service."
+        "title": "Start working",
+        "desc": "Apply what you’ve learned in practice."
       }
     ]
   },
@@ -288,16 +289,16 @@
   },
   "CTA": {
     "kicker": "Start today",
-    "titleA": "Your first buyer ",
-    "titleB": "starts here",
-    "lead": "Choose a playbook, practise the drills, invoice with confidence.",
-    "ctaPrimary": "Start free →",
-    "ctaSecondary": "Browse every course",
+    "titleA": "Start building skills ",
+    "titleB": "businesses are looking for",
+    "lead": "A practical platform with a clear and easy-to-follow approach.",
+    "ctaPrimary": "Start for free →",
+    "ctaSecondary": "View courses",
     "bullets": [
-      "Bilingual-ready team",
-      "Practice-first lessons",
-      "Template vault",
-      "Hot community"
+      "In Latvian",
+      "Practical courses",
+      "Ready templates",
+      "Active community"
     ]
   },
   "Footer": {
