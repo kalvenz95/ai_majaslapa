@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import {
   CourseFooterComparePlans,
   CourseTopBarHomeLink,
@@ -23,6 +24,8 @@ export type StackPlanMarketingShellProps = {
   extraAfterFreeLesson?: React.ReactNode;
   /** Per-lesson content keyed by lesson id — takes precedence over extraAfterFreeLesson */
   lessonExtraContent?: Record<string, React.ReactNode>;
+  /** Per-module content rendered below the module accordion card, keyed by module id */
+  moduleExtraContent?: Record<number, React.ReactNode>;
 };
 
 export function StackPlanMarketingPage({
@@ -36,9 +39,10 @@ export function StackPlanMarketingPage({
   heroGlowAlpha = 0.08,
   extraAfterFreeLesson,
   lessonExtraContent,
+  moduleExtraContent,
 }: StackPlanMarketingShellProps) {
   const tc = useTranslations("CourseStackCommon");
-  const [openModules, setOpenModules] = useState<number[]>([1]);
+  const [openModules, setOpenModules] = useState<number[]>([1, 2]);
 
   const toggle = (id: number) =>
     setOpenModules((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
@@ -189,7 +193,8 @@ export function StackPlanMarketingPage({
             {plan.modules.map((mod) => {
               const isOpen = openModules.includes(mod.id);
               return (
-                <div key={mod.id} style={{ background: "rgba(13,13,26,0.9)", border: `1px solid ${isOpen && mod.free ? `rgba(${plan.glow},0.3)` : "rgba(255,255,255,0.07)"}`, borderRadius: 16, overflow: "hidden", transition: "border-color 0.2s" }}>
+                <React.Fragment key={mod.id}>
+                <div style={{ background: "rgba(13,13,26,0.9)", border: `1px solid ${isOpen && mod.free ? `rgba(${plan.glow},0.3)` : "rgba(255,255,255,0.07)"}`, borderRadius: 16, overflow: "hidden", transition: "border-color 0.2s" }}>
                   <button
                     type="button"
                     onClick={() => toggle(mod.id)}
@@ -271,9 +276,15 @@ export function StackPlanMarketingPage({
                           </a>
                         </div>
                       )}
+                      {moduleExtraContent?.[mod.id] && (
+                        <div style={{ padding: "16px 24px", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                          {moduleExtraContent[mod.id]}
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>
+                </React.Fragment>
               );
             })}
           </div>

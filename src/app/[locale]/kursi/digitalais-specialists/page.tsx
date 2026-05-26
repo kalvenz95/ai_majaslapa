@@ -6,6 +6,17 @@ import { digitalaisStack } from "@/content/marketing/digitalaisStack";
 import { useLocale } from "next-intl";
 import { DigitaalaisIntroLessonContent } from "@/components/marketing/DigitaalaisIntroLessonContent";
 
+const MajaslapaModuleVideo = (
+  <div style={{ marginTop: 12, borderRadius: 14, overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)", position: "relative", paddingBottom: "56.25%", height: 0 }}>
+    <iframe
+      src="https://www.loom.com/embed/cdb9df37e08e4ba2828fd514c196b96d"
+      frameBorder={0}
+      allowFullScreen
+      style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
+    />
+  </div>
+);
+
 export default function DigitaalaisSpecialistsPage() {
   const locale = useLocale() as AppLocale;
   return (
@@ -19,6 +30,7 @@ export default function DigitaalaisSpecialistsPage() {
       skillsListMode="all"
       heroGlowAlpha={0.07}
       extraAfterFreeLesson={locale === "lv" ? <DigitaalaisIntroLessonContent /> : undefined}
+      moduleExtraContent={{ 2: MajaslapaModuleVideo }}
     />
   );
 }
