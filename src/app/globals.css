@@ -246,6 +246,137 @@ a { color: inherit; text-decoration: none; }
   to { transform: translateY(100%); }
 }
 
+/* ── Premium glow animations ─────────────────────────────────────── */
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.08); }
+}
+@keyframes orb-drift {
+  0% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(40px, -30px) scale(1.05); }
+  66% { transform: translate(-20px, 20px) scale(0.97); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+@keyframes border-glow {
+  0%, 100% { box-shadow: 0 0 10px color-mix(in oklab, var(--accent) 20%, transparent); }
+  50% { box-shadow: 0 0 28px color-mix(in oklab, var(--accent) 45%, transparent), 0 0 60px color-mix(in oklab, var(--accent) 15%, transparent); }
+}
+@keyframes slide-up-fade {
+  from { opacity: 0; transform: translateY(32px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes beam-sweep {
+  0% { transform: translateX(-100%) skewX(-15deg); opacity: 0; }
+  50% { opacity: 0.6; }
+  100% { transform: translateX(200%) skewX(-15deg); opacity: 0; }
+}
+
+/* ── Glassmorphism utilities ─────────────────────────────────────── */
+.glass-card {
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 24px;
+}
+.glass-card-strong {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 24px;
+}
+.glass-card-accent {
+  background: color-mix(in oklab, var(--accent) 5%, rgba(255,255,255,0.02));
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid color-mix(in oklab, var(--accent) 20%, transparent);
+  border-radius: 24px;
+}
+
+/* ── Glow effects ────────────────────────────────────────────────── */
+.glow-lime {
+  box-shadow: 0 0 20px color-mix(in oklab, var(--accent) 30%, transparent),
+              0 0 60px color-mix(in oklab, var(--accent) 12%, transparent);
+}
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(127,246,224,0.25),
+              0 0 60px rgba(127,246,224,0.10);
+}
+.glow-violet {
+  box-shadow: 0 0 20px rgba(167,139,250,0.25),
+              0 0 60px rgba(167,139,250,0.10);
+}
+.hover-glow-card {
+  transition: transform 0.28s cubic-bezier(0.215,0.61,0.355,1),
+              border-color 0.28s ease,
+              box-shadow 0.28s ease;
+}
+.hover-glow-card:hover {
+  transform: translateY(-6px);
+  border-color: color-mix(in oklab, var(--accent) 35%, transparent) !important;
+  box-shadow: 0 20px 60px -16px color-mix(in oklab, var(--accent) 22%, transparent),
+              0 0 0 1px color-mix(in oklab, var(--accent) 18%, transparent);
+}
+
+/* ── Premium button upgrade ──────────────────────────────────────── */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.18) 50%, transparent 60%);
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+.btn-primary:hover::before {
+  transform: translateX(100%);
+}
+.btn-primary:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 8px 30px -8px color-mix(in oklab, var(--accent) 55%, transparent);
+}
+
+/* ── Animated hero grid background ──────────────────────────────── */
+.hero-grid-bg {
+  background-image:
+    linear-gradient(rgba(198,255,61,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(198,255,61,0.04) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%);
+}
+
+/* ── Stats count-up animation ────────────────────────────────────── */
+.stat-count {
+  animation: count-up 0.6s cubic-bezier(0.215,0.61,0.355,1) both;
+}
+
+/* ── Section fade-in from bottom ─────────────────────────────────── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s cubic-bezier(0.215,0.61,0.355,1),
+              transform 0.65s cubic-bezier(0.215,0.61,0.355,1);
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
 /* ── Progress ring ───────────────────────────────────────────────── */
 .ring-bg { stroke: var(--line-2); }
 .ring-fg { stroke: var(--accent); transition: stroke-dashoffset 0.8s cubic-bezier(0.4,0,0.2,1); }
@@ -419,7 +550,7 @@ a { color: inherit; text-decoration: none; }
 /* ── Landing page — mobile responsive ──────────────────────────── */
 @media (max-width: 768px) {
   /* Section vertical padding */
-  .lp-section { padding-top: 64px !important; padding-bottom: 64px !important; }
+  .lp-section { padding-top: 72px !important; padding-bottom: 72px !important; }
 
   /* Inner container horizontal padding */
   .lp-container { padding-left: 20px !important; padding-right: 20px !important; }
@@ -428,7 +559,7 @@ a { color: inherit; text-decoration: none; }
   .lp-header-grid {
     grid-template-columns: 1fr !important;
     gap: 14px !important;
-    margin-bottom: 28px !important;
+    margin-bottom: 32px !important;
     align-items: start !important;
   }
 
@@ -439,16 +570,23 @@ a { color: inherit; text-decoration: none; }
   /* Pricing 3-col → single column */
   .lp-pricing-grid { grid-template-columns: 1fr !important; }
 
-  /* 4-col stats → 2×2 */
-  .lp-four-stats { grid-template-columns: repeat(2, 1fr) !important; margin-top: 32px !important; }
-  .lp-four-stats > div { border-right: none !important; border-bottom: 1px solid var(--line) !important; }
-  .lp-four-stats > div:nth-child(odd) { border-right: 1px solid var(--line) !important; }
+  /* 4-col stats → 2×2 (WhyAI points) */
+  .lp-four-why { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
+
+  /* 4-col stats → 2×2 (Testimonials) */
+  .lp-four-stats {
+    grid-template-columns: repeat(2, 1fr) !important;
+    margin-top: 32px !important;
+    border-radius: 16px !important;
+  }
+  .lp-four-stats > div { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.06) !important; }
+  .lp-four-stats > div:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.06) !important; }
   .lp-four-stats > div:nth-last-child(-n+2) { border-bottom: none !important; }
-  .lp-four-stats > div { padding: 24px 16px !important; }
-  .lp-four-stats .lp-stat-num { font-size: 44px !important; }
+  .lp-four-stats > div { padding: 24px 18px !important; }
+  .lp-four-stats .lp-stat-num { font-size: 40px !important; }
 
   /* 5-col process steps → 2-col */
-  .lp-five-steps { grid-template-columns: repeat(2, 1fr) !important; gap: 20px !important; }
+  .lp-five-steps { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
   .lp-steps-connector { display: none !important; }
 
   /* Hero layout */
@@ -456,9 +594,15 @@ a { color: inherit; text-decoration: none; }
   .hero-img-col { display: none !important; }
   .hero-stats-grid {
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 12px !important;
-    margin-top: 32px !important;
+    gap: 14px !important;
+    margin-top: 36px !important;
   }
+
+  /* EasyStart two-col → single */
+  .lp-easy-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+
+  /* WhyAI body two-col → single */
+  .lp-why-body { grid-template-columns: 1fr !important; gap: 16px !important; }
 
   /* CTA image row — hide on mobile (decorative only) */
   .cta-img-row { display: none !important; }
