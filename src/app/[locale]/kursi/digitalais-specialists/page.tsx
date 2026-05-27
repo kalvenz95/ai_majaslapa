@@ -9,7 +9,7 @@ import { DigitaalaisIntroLessonContent } from "@/components/marketing/Digitaalai
 const MajaslapaModuleVideo = (
   <div style={{ marginTop: 12, borderRadius: 14, overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)", position: "relative", paddingBottom: "56.25%", height: 0 }}>
     <iframe
-      src="https://www.loom.com/embed/cdb9df37e08e4ba2828fd514c196b96d"
+      src="https://www.loom.com/embed/16119329d7d54cc7be87af6856a6d6b1"
       frameBorder={0}
       allowFullScreen
       style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
