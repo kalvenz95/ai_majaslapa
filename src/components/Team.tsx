@@ -113,11 +113,7 @@ export default function Team() {
               Mūsu{" "}
               <span
                 style={{
-                  background:
-                    "linear-gradient(120deg, var(--accent), color-mix(in oklab, var(--accent) 70%, white))",
-                  WebkitBackgroundClip: "text",
-                  backgroundClip: "text",
-                  color: "transparent",
+                  color: "var(--ink-2)",
                   fontStyle: "italic",
                   fontFamily: "Fraunces, Georgia, serif",
                   fontWeight: 500,

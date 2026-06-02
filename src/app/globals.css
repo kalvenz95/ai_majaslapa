@@ -6,27 +6,28 @@
 
 /* ── Chademy Design System ─────────────────────────────────────── */
 :root {
-  --accent: #C6FF3D;
+  --accent: #A3E635;
   --accent-ink: #0A0A0A;
 
-  --bg: #0A0A0A;
-  --bg-1: #111111;
-  --bg-2: #161616;
-  --bg-3: #1E1E1E;
+  /* Light theme */
+  --bg:   #F7F7F4;
+  --bg-1: #EFEFE9;
+  --bg-2: #E6E6E0;
+  --bg-3: #DDDDD6;
 
-  --line: rgba(255,255,255,0.08);
-  --line-2: rgba(255,255,255,0.14);
+  --line:   rgba(0,0,0,0.08);
+  --line-2: rgba(0,0,0,0.14);
 
-  --ink: #F5F5F5;
-  --ink-2: #B8B8B8;
-  --ink-3: #7A7A7A;
-  --ink-4: #4A4A4A;
+  --ink:   #111111;
+  --ink-2: #444444;
+  --ink-3: #888888;
+  --ink-4: #BBBBBB;
 
   --danger: #FF5757;
   --warn: #FFB547;
   --ok: var(--accent);
 
-  /* Dashboard aliases */
+  /* Dashboard aliases — resolved via data-theme="dark" override */
   --d-bg: var(--bg);
   --d-card: var(--bg-1);
   --d-card-hover: var(--bg-2);
@@ -38,6 +39,20 @@
   --d-accent2: #7FF6E0;
   --d-accent-ink: var(--accent-ink);
   --d-side-w: 220px;
+}
+
+/* ── Dashboard dark theme override ──────────────────────────────── */
+[data-theme="dark"] {
+  --bg:   #0A0A0A;
+  --bg-1: #111111;
+  --bg-2: #161616;
+  --bg-3: #1E1E1E;
+  --line:   rgba(255,255,255,0.08);
+  --line-2: rgba(255,255,255,0.14);
+  --ink:   #F5F5F5;
+  --ink-2: #B8B8B8;
+  --ink-3: #7A7A7A;
+  --ink-4: #4A4A4A;
 }
 
 * {
@@ -52,7 +67,7 @@ html {
 }
 
 body {
-  background: #050505;
+  background: var(--bg);
   color: var(--ink);
   font-family: 'Inter Tight', 'Inter', system-ui, -apple-system, Helvetica, sans-serif;
   font-feature-settings: "ss01", "cv11";
@@ -92,9 +107,12 @@ a { color: inherit; text-decoration: none; }
 }
 
 .card {
-  background: var(--bg-1);
+  background: white;
   border: 1px solid var(--line);
   border-radius: 18px;
+}
+[data-theme="dark"] .card {
+  background: var(--bg-1);
 }
 
 .card-hover {
@@ -129,18 +147,20 @@ a { color: inherit; text-decoration: none; }
 .btn-primary:active { transform: scale(0.98); }
 
 .btn-ghost {
-  background: var(--bg-2);
+  background: white;
   color: var(--ink);
   font-weight: 500;
   padding: 14px 20px;
   border-radius: 14px;
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   font-size: 15px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-2);
   transition: border-color 0.15s ease, background 0.15s ease;
   cursor: pointer;
 }
-.btn-ghost:hover { border-color: var(--line-2); background: var(--bg-3); }
+.btn-ghost:hover { border-color: rgba(0,0,0,0.22); background: var(--bg-1); }
+[data-theme="dark"] .btn-ghost { background: var(--bg-2); border-color: var(--line); }
+[data-theme="dark"] .btn-ghost:hover { border-color: var(--line-2); background: var(--bg-3); }
 
 /* ── Deprecated neon aliases (keeping for gradual migration) ─────── */
 .glass {

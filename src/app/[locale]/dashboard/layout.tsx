@@ -56,7 +56,7 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--bg)" }}>
+    <div className="min-h-screen" data-theme="dark" style={{ background: "var(--bg)" }}>
       <StreakTracker />
       <Sidebar />
       <main style={{ marginLeft: "var(--d-side-w, 220px)", minHeight: "100vh" }}>

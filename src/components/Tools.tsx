@@ -69,7 +69,7 @@ export default function Tools() {
           </div>
           <h2 style={{ fontFamily: "Inter Tight, sans-serif", fontSize: "clamp(32px, 5vw, 68px)", fontWeight: 600, color: "var(--ink)", letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: 16 }}>
             Rīki, kurus{" "}
-            <span style={{ background: "linear-gradient(120deg, var(--accent), color-mix(in oklab, var(--accent) 70%, white))", WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent", fontStyle: "italic", fontFamily: "Fraunces, Georgia, serif", fontWeight: 500 }}>
+            <span style={{ color: "var(--ink-2)", fontStyle: "italic", fontFamily: "Fraunces, Georgia, serif", fontWeight: 500 }}>
               apgūsi
             </span>
           </h2>

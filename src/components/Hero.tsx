@@ -83,7 +83,7 @@ export default function Hero() {
               style={{ fontSize: "clamp(48px, 8.5vw, 124px)", lineHeight: 1.05, letterSpacing: "-0.045em", fontWeight: 600, margin: "0 0 28px", maxWidth: "14ch" }}
             >
               {t("h1Line1")}
-              <span style={{ background: "linear-gradient(120deg, var(--accent), color-mix(in oklab, var(--accent) 70%, white))", WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent", fontStyle: "italic", fontFamily: "Fraunces, Georgia, serif", fontWeight: 500 }}>
+              <span style={{ color: "var(--ink-2)", fontStyle: "italic", fontFamily: "Fraunces, Georgia, serif", fontWeight: 500 }}>
                 {t("h1Gradient")}
               </span>
               {t("h1Line2")}
@@ -145,7 +145,7 @@ export default function Hero() {
               delay={0}
               style={{ left: "5%", top: 0, width: "62%", aspectRatio: "4 / 5", zIndex: 2 }}
             >
-              <div style={{ width: "100%", height: "100%", borderRadius: 24, overflow: "hidden", border: "1px solid var(--line-2)", boxShadow: "0 30px 80px -20px rgba(0,0,0,0.6), 0 8px 24px -8px rgba(0,0,0,0.4)", transform: "rotate(-2.5deg)", background: "var(--bg-2)" }}>
+              <div style={{ width: "100%", height: "100%", borderRadius: 24, overflow: "hidden", border: "1px solid var(--line-2)", boxShadow: "0 16px 48px -12px rgba(0,0,0,0.12), 0 4px 16px -4px rgba(0,0,0,0.07)", transform: "rotate(-2.5deg)", background: "var(--bg-2)" }}>
                 <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=900&auto=format&fit=crop&q=80" alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} loading="lazy" />
               </div>
             </HeroFloatLayer>
@@ -156,7 +156,7 @@ export default function Hero() {
               delay={0.85}
               style={{ right: 0, top: "18%", width: "50%", aspectRatio: "1 / 1", zIndex: 3 }}
             >
-              <div style={{ width: "100%", height: "100%", borderRadius: 24, overflow: "hidden", border: "1px solid var(--line-2)", boxShadow: "0 30px 80px -20px rgba(0,0,0,0.6), 0 8px 24px -8px rgba(0,0,0,0.4)", transform: "rotate(3deg)", background: "var(--bg-2)" }}>
+              <div style={{ width: "100%", height: "100%", borderRadius: 24, overflow: "hidden", border: "1px solid var(--line-2)", boxShadow: "0 16px 48px -12px rgba(0,0,0,0.12), 0 4px 16px -4px rgba(0,0,0,0.07)", transform: "rotate(3deg)", background: "var(--bg-2)" }}>
                 <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=900&auto=format&fit=crop&q=80" alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} loading="lazy" />
               </div>
             </HeroFloatLayer>
@@ -167,20 +167,20 @@ export default function Hero() {
               delay={1.65}
               style={{ left: "18%", bottom: 0, width: "48%", aspectRatio: "4 / 3", zIndex: 4 }}
             >
-              <div style={{ width: "100%", height: "100%", borderRadius: 24, overflow: "hidden", border: "1px solid var(--line-2)", boxShadow: "0 30px 80px -20px rgba(0,0,0,0.6), 0 8px 24px -8px rgba(0,0,0,0.4)", transform: "rotate(-1.5deg)", background: "var(--bg-2)" }}>
+              <div style={{ width: "100%", height: "100%", borderRadius: 24, overflow: "hidden", border: "1px solid var(--line-2)", boxShadow: "0 16px 48px -12px rgba(0,0,0,0.12), 0 4px 16px -4px rgba(0,0,0,0.07)", transform: "rotate(-1.5deg)", background: "var(--bg-2)" }}>
                 <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=900&auto=format&fit=crop&q=80" alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} loading="lazy" />
               </div>
             </HeroFloatLayer>
             {/* Floating tag 1 */}
             <HeroFloatLayer duration={4.8} amplitude={6} delay={0.35} style={{ top: "8%", right: "-2%", zIndex: 10 }}>
-              <div style={{ background: "var(--bg-1)", border: "1px solid var(--line-2)", borderRadius: 14, padding: "10px 14px", fontSize: 12, fontWeight: 500, display: "flex", alignItems: "center", gap: 8, boxShadow: "0 12px 32px -8px rgba(0,0,0,0.5)" }}>
+              <div style={{ background: "white", border: "1px solid var(--line-2)", borderRadius: 14, padding: "10px 14px", fontSize: 12, fontWeight: 500, display: "flex", alignItems: "center", gap: 8, boxShadow: "0 6px 20px -6px rgba(0,0,0,0.10)" }}>
                 <span style={{ width: 8, height: 8, borderRadius: 999, background: "var(--accent)", flexShrink: 0 }} />
                 {t("floatTag1")}
               </div>
             </HeroFloatLayer>
             {/* Floating tag 2 */}
             <HeroFloatLayer duration={5.4} amplitude={7} delay={1.1} style={{ bottom: "12%", left: "-4%", zIndex: 10 }}>
-              <div style={{ background: "var(--bg-1)", border: "1px solid var(--line-2)", borderRadius: 14, padding: "10px 14px", fontSize: 12, fontWeight: 500, display: "flex", alignItems: "center", gap: 8, boxShadow: "0 12px 32px -8px rgba(0,0,0,0.5)" }}>
+              <div style={{ background: "white", border: "1px solid var(--line-2)", borderRadius: 14, padding: "10px 14px", fontSize: 12, fontWeight: 500, display: "flex", alignItems: "center", gap: 8, boxShadow: "0 6px 20px -6px rgba(0,0,0,0.10)" }}>
                 <span style={{ width: 8, height: 8, borderRadius: 999, background: "var(--accent)", flexShrink: 0 }} />
                 {t("floatTag2")}
               </div>
