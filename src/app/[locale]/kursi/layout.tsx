@@ -9,5 +9,5 @@ export default async function KursiSegmentLayout({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return children;
+  return <div data-theme="dark" style={{ minHeight: "100vh" }}>{children}</div>;
 }
