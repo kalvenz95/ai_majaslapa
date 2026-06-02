@@ -101,41 +101,41 @@ export function MarketingCourseCurriculumTab({
             style={{
               borderRadius: 12,
               overflow: "hidden",
-              border: isOpen ? theme.curriculumModuleBorderOpen : "1px solid rgba(255,255,255,0.06)",
-              background: "#0d0d1a",
+              border: isOpen ? theme.curriculumModuleBorderOpen : "1px solid var(--line)",
+              background: "var(--bg-1)",
               transition: "border-color 0.2s",
             }}
           >
-            <button onClick={() => toggle(mod.id)} style={{ width: "100%", padding: "16px 20px", display: "flex", alignItems: "center", gap: 12, background: "transparent", border: "none", cursor: "pointer", color: "#fff" }}>
+            <button onClick={() => toggle(mod.id)} style={{ width: "100%", padding: "16px 20px", display: "flex", alignItems: "center", gap: 12, background: "transparent", border: "none", cursor: "pointer", color: "var(--ink)" }}>
               <div
                 style={{
                   width: 28,
                   height: 28,
                   borderRadius: 8,
                   flexShrink: 0,
-                  background: isOpen ? tintBg : "rgba(255,255,255,0.05)",
-                  border: `1px solid ${isOpen ? tintBorder : "rgba(255,255,255,0.1)"}`,
+                  background: isOpen ? tintBg : "var(--bg-2)",
+                  border: `1px solid ${isOpen ? tintBorder : "var(--line)"}`,
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   fontSize: 12,
                   fontWeight: 800,
-                  color: isOpen ? theme.accentHex : "#555",
+                  color: isOpen ? theme.accentHex : "var(--ink-3)",
                 }}
               >
                 {mod.id}
               </div>
               <div style={{ flex: 1, textAlign: "left" }}>
                 <div style={{ fontSize: 15, fontWeight: 700 }}>{mod.title}</div>
-                <div style={{ fontSize: 12, color: "#555", marginTop: 2 }}>{detail("lessonsDuration", { lessons: mod.lessons.length, duration: mod.duration })}</div>
+                <div style={{ fontSize: 12, color: "var(--ink-3)", marginTop: 2 }}>{detail("lessonsDuration", { lessons: mod.lessons.length, duration: mod.duration })}</div>
               </div>
-              <div style={{ color: "#444" }}>
+              <div style={{ color: "var(--ink-4)" }}>
                 <LessonChevronIcon open={isOpen} />
               </div>
             </button>
 
             {isOpen && (
-              <div style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
+              <div style={{ borderTop: "1px solid var(--line)" }}>
                 {mod.lessons.map((lesson, idx) => (
                   <button
                     key={lesson.id}
@@ -150,7 +150,7 @@ export function MarketingCourseCurriculumTab({
                       border: "none",
                       cursor: "pointer",
                       textAlign: "left",
-                      borderTop: idx > 0 ? "1px solid rgba(255,255,255,0.03)" : "none",
+                      borderTop: idx > 0 ? "1px solid var(--line)" : "none",
                       transition: "background 0.15s",
                     }}
                     onMouseEnter={(e) => (e.currentTarget.style.background = tintBg)}
@@ -162,8 +162,8 @@ export function MarketingCourseCurriculumTab({
                         height: 32,
                         borderRadius: 8,
                         flexShrink: 0,
-                        background: "rgba(255,255,255,0.04)",
-                        border: "1px solid rgba(255,255,255,0.07)",
+                        background: "var(--bg-2)",
+                        border: "1px solid var(--line)",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
@@ -173,8 +173,8 @@ export function MarketingCourseCurriculumTab({
                       {lessonIconInner(lesson.type)}
                     </div>
                     <div style={{ flex: 1 }}>
-                      <div style={{ fontSize: 13, fontWeight: 500, color: "#ddd", marginBottom: 2 }}>{lesson.title}</div>
-                      {lesson.description && <div style={{ fontSize: 11, color: "#555", lineHeight: 1.5 }}>{lesson.description}</div>}
+                      <div style={{ fontSize: 13, fontWeight: 500, color: "var(--ink)", marginBottom: 2 }}>{lesson.title}</div>
+                      {lesson.description && <div style={{ fontSize: 11, color: "var(--ink-3)", lineHeight: 1.5 }}>{lesson.description}</div>}
                     </div>
                     <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
                       {lesson.free && (
@@ -182,9 +182,9 @@ export function MarketingCourseCurriculumTab({
                           {detail("freeLessonBadge")}
                         </span>
                       )}
-                      <span style={{ fontSize: 11, color: "#444" }}>{lesson.duration}</span>
+                      <span style={{ fontSize: 11, color: "var(--ink-4)" }}>{lesson.duration}</span>
                       {!lesson.free && (
-                        <span style={{ color: "#333" }}>
+                        <span style={{ color: "var(--ink-4)" }}>
                           <LessonLockIcon />
                         </span>
                       )}
@@ -242,18 +242,18 @@ export function MarketingCourseToolsTab({
       <h2 style={{ fontSize: 24, fontWeight: 800, marginBottom: 8, letterSpacing: "-0.02em" }}>
         {m("toolsHeadlineCount", { count: course.tools.length })}
       </h2>
-      <p style={{ fontSize: 14, color: "#666", lineHeight: 1.7, marginBottom: 32 }}>{m("toolsIntroDefault")}</p>
+      <p style={{ fontSize: 14, color: "var(--ink-3)", lineHeight: 1.7, marginBottom: 32 }}>{m("toolsIntroDefault")}</p>
       <div className="grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 40 }}>
         {course.tools.map((tool) => (
           <div
             key={tool.name}
-            style={{ padding: "20px", borderRadius: 14, background: "#0d0d1a", border: "1px solid rgba(255,255,255,0.06)", display: "flex", alignItems: "center", gap: 16, transition: "border-color 0.2s, transform 0.2s", cursor: "default" }}
+            style={{ padding: "20px", borderRadius: 14, background: "var(--bg-1)", border: "1px solid var(--line)", display: "flex", alignItems: "center", gap: 16, transition: "border-color 0.2s, transform 0.2s", cursor: "default" }}
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLDivElement).style.borderColor = `${tool.color}33`;
               (e.currentTarget as HTMLDivElement).style.transform = "translateY(-2px)";
             }}
             onMouseLeave={(e) => {
-              (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,0.06)";
+              (e.currentTarget as HTMLDivElement).style.borderColor = "var(--line)";
               (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)";
             }}
           >
@@ -261,8 +261,8 @@ export function MarketingCourseToolsTab({
               {toolEmoji[tool.name] || "🔧"}
             </div>
             <div>
-              <div style={{ fontSize: 14, fontWeight: 700, color: "#fff", marginBottom: 3 }}>{tool.name}</div>
-              <div style={{ fontSize: 12, color: "#555" }}>{tool.desc}</div>
+              <div style={{ fontSize: 14, fontWeight: 700, color: "var(--ink)", marginBottom: 3 }}>{tool.name}</div>
+              <div style={{ fontSize: 12, color: "var(--ink-3)" }}>{tool.desc}</div>
             </div>
             <div style={{ marginLeft: "auto" }}>
               <div style={{ width: 8, height: 8, borderRadius: "50%", background: tool.color, boxShadow: `0 0 8px ${tool.color}` }} />
@@ -277,7 +277,7 @@ export function MarketingCourseToolsTab({
         </div>
         <div className="grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
           {startingReq.map((req) => (
-            <div key={req} style={{ display: "flex", alignItems: "flex-start", gap: 8, fontSize: 12, color: "#888" }}>
+            <div key={req} style={{ display: "flex", alignItems: "flex-start", gap: 8, fontSize: 12, color: "var(--ink-2)" }}>
               <span style={{ color: requirementsCheckColor, flexShrink: 0, marginTop: 1 }}>✓</span>
               {req}
             </div>
@@ -320,9 +320,9 @@ export function MarketingCourseLessonView({
       <button
         type="button"
         onClick={onBack}
-        style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 28, background: "transparent", border: "none", cursor: "pointer", color: "#666", fontSize: 13, fontWeight: 500, padding: "6px 0", transition: "color 0.2s" }}
-        onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
-        onMouseLeave={(e) => (e.currentTarget.style.color = "#666")}
+        style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 28, background: "transparent", border: "none", cursor: "pointer", color: "var(--ink-3)", fontSize: 13, fontWeight: 500, padding: "6px 0", transition: "color 0.2s" }}
+        onMouseEnter={(e) => (e.currentTarget.style.color = "var(--ink)")}
+        onMouseLeave={(e) => (e.currentTarget.style.color = "var(--ink-3)")}
       >
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="15,18 9,12 15,6" /></svg>
         {detail("backToOverview")}
@@ -333,10 +333,10 @@ export function MarketingCourseLessonView({
           {lessonIconInner(lesson.type)}
           {lessonTypeLabel[lesson.type]}
         </span>
-        <span style={{ fontSize: 11, color: "#444" }}>{lesson.duration}</span>
+        <span style={{ fontSize: 11, color: "var(--ink-4)" }}>{lesson.duration}</span>
       </div>
 
-      <h1 style={{ fontSize: 28, fontWeight: 900, letterSpacing: "-0.025em", marginBottom: 24, lineHeight: 1.2 }}>{lesson.title}</h1>
+      <h1 style={{ fontSize: 28, fontWeight: 900, letterSpacing: "-0.025em", marginBottom: 24, lineHeight: 1.2, color: "var(--ink)" }}>{lesson.title}</h1>
 
       {lesson.type === "video" && (
         <div
@@ -368,18 +368,18 @@ export function MarketingCourseLessonView({
             </div>
           </div>
           <div style={{ textAlign: "center", position: "relative" }}>
-            <div style={{ fontSize: 15, fontWeight: 700, color: "#fff", marginBottom: 4 }}>{videoTitle}</div>
-            <div style={{ fontSize: 12, color: "#555" }}>{detail("proOnlyVideo")}</div>
+            <div style={{ fontSize: 15, fontWeight: 700, color: "var(--ink)", marginBottom: 4 }}>{videoTitle}</div>
+            <div style={{ fontSize: 12, color: "var(--ink-3)" }}>{detail("proOnlyVideo")}</div>
           </div>
         </div>
       )}
 
       {lesson.description && (
-        <div style={{ padding: "24px", borderRadius: 12, marginBottom: 24, background: "#0d0d1a", border: "1px solid rgba(255,255,255,0.06)" }}>
+        <div style={{ padding: "24px", borderRadius: 12, marginBottom: 24, background: "var(--bg-1)", border: "1px solid var(--line)" }}>
           <div style={{ fontSize: 12, fontWeight: 700, color: theme.accentHex, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 10 }}>
             {detail("lessonAboutHeading")}
           </div>
-          <p style={{ fontSize: 14, color: "#aaa", lineHeight: 1.8 }}>{lesson.description}</p>
+          <p style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 1.8 }}>{lesson.description}</p>
         </div>
       )}
 
@@ -390,7 +390,7 @@ export function MarketingCourseLessonView({
           <div style={{ fontSize: 12, fontWeight: 700, color: TASK_HEX, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 14 }}>
             🎯 {detail("practiceTaskBadge")}
           </div>
-          <div style={{ fontSize: 13, color: "#888", lineHeight: 1.8 }}>{detail("practiceTaskHelp")}</div>
+          <div style={{ fontSize: 13, color: "var(--ink-2)", lineHeight: 1.8 }}>{detail("practiceTaskHelp")}</div>
           <button
             type="button"
             style={{ marginTop: 16, padding: "10px 24px", borderRadius: 8, cursor: "pointer", background: "rgba(0,255,136,0.15)", border: "1px solid rgba(0,255,136,0.3)", color: TASK_HEX, fontWeight: 700, fontSize: 13, transition: "background 0.2s" }}
@@ -407,7 +407,7 @@ export function MarketingCourseLessonView({
           <div style={{ fontSize: 12, fontWeight: 700, color: accent2, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 14 }}>
             📄 {detail("materialHeading")}
           </div>
-          <div style={{ fontSize: 13, color: "#888", lineHeight: 1.8, marginBottom: 14 }}>{detail("materialIntro")}</div>
+          <div style={{ fontSize: 13, color: "var(--ink-2)", lineHeight: 1.8, marginBottom: 14 }}>{detail("materialIntro")}</div>
           <button
             type="button"
             style={{ padding: "10px 24px", borderRadius: 8, cursor: "pointer", background: "rgba(0,212,255,0.12)", border: `1px solid rgba(0,212,255,0.25)`, color: accent2, fontWeight: 700, fontSize: 13, transition: "background 0.2s" }}
@@ -419,18 +419,18 @@ export function MarketingCourseLessonView({
         </div>
       )}
 
-      <div style={{ display: "flex", justifyContent: "space-between", paddingTop: 24, borderTop: "1px solid rgba(255,255,255,0.06)", marginTop: 8 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", paddingTop: 24, borderTop: "1px solid var(--line)", marginTop: 8 }}>
         <button
           type="button"
           onClick={onBack}
-          style={{ padding: "10px 20px", borderRadius: 8, border: "1px solid rgba(255,255,255,0.08)", background: "transparent", color: "#666", fontSize: 13, cursor: "pointer", fontWeight: 500, transition: "color 0.2s, border-color 0.2s" }}
+          style={{ padding: "10px 20px", borderRadius: 8, border: "1px solid var(--line)", background: "transparent", color: "var(--ink-3)", fontSize: 13, cursor: "pointer", fontWeight: 500, transition: "color 0.2s, border-color 0.2s" }}
           onMouseEnter={(e) => {
-            (e.currentTarget as HTMLButtonElement).style.color = "#fff";
-            (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.2)";
+            (e.currentTarget as HTMLButtonElement).style.color = "var(--ink)";
+            (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--line-2)";
           }}
           onMouseLeave={(e) => {
-            (e.currentTarget as HTMLButtonElement).style.color = "#666";
-            (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.08)";
+            (e.currentTarget as HTMLButtonElement).style.color = "var(--ink-3)";
+            (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--line)";
           }}
         >
           {detail("backChevronLabel")}
