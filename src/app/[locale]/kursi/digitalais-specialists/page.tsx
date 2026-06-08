@@ -5,6 +5,7 @@ import { StackPlanMarketingPage } from "@/components/marketing/StackPlanMarketin
 import { digitalaisStack } from "@/content/marketing/digitalaisStack";
 import { useLocale } from "next-intl";
 import { DigitaalaisIntroLessonContent } from "@/components/marketing/DigitaalaisIntroLessonContent";
+import { MajaslapaFunkcijuPiemeri } from "@/components/marketing/MajaslapaFunkcijuPiemeri";
 
 const MajaslapaModuleVideo = (
   <div style={{ marginTop: 12, borderRadius: 14, overflow: "hidden", border: "1px solid rgba(255,255,255,0.08)", position: "relative", paddingBottom: "56.25%", height: 0 }}>
@@ -30,7 +31,14 @@ export default function DigitaalaisSpecialistsPage() {
       skillsListMode="all"
       heroGlowAlpha={0.07}
       extraAfterFreeLesson={locale === "lv" ? <DigitaalaisIntroLessonContent /> : undefined}
-      moduleExtraContent={{ 2: MajaslapaModuleVideo }}
+      moduleExtraContent={{
+        2: (
+          <>
+            {MajaslapaModuleVideo}
+            {locale === "lv" && <MajaslapaFunkcijuPiemeri />}
+          </>
+        ),
+      }}
     />
   );
 }
