@@ -26,6 +26,8 @@ export type StackPlanMarketingShellProps = {
   lessonExtraContent?: Record<string, React.ReactNode>;
   /** Per-module content rendered below the module accordion card, keyed by module id */
   moduleExtraContent?: Record<number, React.ReactNode>;
+  /** Visual style of the curriculum module list — "showcase" trades the plain accordion for a more illustrated, landing-page-style block design */
+  curriculumVariant?: "standard" | "showcase";
 };
 
 export function StackPlanMarketingPage({
@@ -40,6 +42,7 @@ export function StackPlanMarketingPage({
   extraAfterFreeLesson,
   lessonExtraContent,
   moduleExtraContent,
+  curriculumVariant = "standard",
 }: StackPlanMarketingShellProps) {
   const tc = useTranslations("CourseStackCommon");
   const [openModules, setOpenModules] = useState<number[]>([1, 2]);
@@ -192,6 +195,147 @@ export function StackPlanMarketingPage({
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
             {plan.modules.map((mod) => {
               const isOpen = openModules.includes(mod.id);
+
+              if (curriculumVariant === "showcase") {
+                return (
+                  <div
+                    key={mod.id}
+                    style={{
+                      position: "relative",
+                      background: mod.free
+                        ? `linear-gradient(160deg, rgba(${plan.glow},0.05) 0%, var(--bg-1) 60%)`
+                        : "var(--bg-1)",
+                      border: `1px solid ${isOpen ? `rgba(${plan.glow},0.32)` : "var(--line)"}`,
+                      borderRadius: 22,
+                      overflow: "hidden",
+                      boxShadow: isOpen ? `0 20px 56px -26px rgba(${plan.glow},0.4)` : "none",
+                      transition: "border-color 0.25s ease, box-shadow 0.25s ease",
+                    }}
+                  >
+                    {/* glowing accent line across the top — lights up when expanded */}
+                    <div
+                      aria-hidden
+                      style={{
+                        position: "absolute", top: 0, left: 0, right: 0, height: 2,
+                        background: `linear-gradient(90deg, transparent, ${plan.color}, transparent)`,
+                        opacity: isOpen ? 0.9 : 0,
+                        transition: "opacity 0.3s ease",
+                      }}
+                    />
+
+                    <button
+                      type="button"
+                      onClick={() => toggle(mod.id)}
+                      style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "22px 26px", background: "transparent", border: "none", cursor: "pointer", color: "var(--ink)", gap: 16, textAlign: "left" }}
+                    >
+                      <div style={{ display: "flex", alignItems: "center", gap: 18, minWidth: 0 }}>
+                        <div style={{
+                          width: 50, height: 50, borderRadius: 16, flexShrink: 0,
+                          display: "flex", alignItems: "center", justifyContent: "center",
+                          fontSize: 18, fontWeight: 800, letterSpacing: "-0.02em",
+                          background: mod.free
+                            ? `linear-gradient(135deg, ${plan.color}, color-mix(in oklab, ${plan.color} 45%, white))`
+                            : "var(--bg-2)",
+                          color: mod.free ? ctaTextColor : "var(--ink-3)",
+                          border: mod.free ? "none" : "1px solid var(--line-2)",
+                          boxShadow: mod.free ? `0 10px 28px -8px rgba(${plan.glow},0.55)` : "none",
+                        }}>
+                          {mod.free ? `0${mod.id}`.slice(-2) : "🔒"}
+                        </div>
+                        <div style={{ minWidth: 0 }}>
+                          <div style={{ fontSize: 17, fontWeight: 800, letterSpacing: "-0.02em", color: "var(--ink)", lineHeight: 1.3 }}>
+                            {mod.title}
+                          </div>
+                          <div style={{ marginTop: 8 }}>
+                            <span style={{ display: "inline-flex", alignItems: "center", gap: 5, fontSize: 11, fontWeight: 600, color: "var(--ink-3)", background: "var(--bg-2)", border: "1px solid var(--line)", borderRadius: 999, padding: "4px 10px" }}>
+                              📚 {tc("lessonsMeta", { count: mod.lessons.length, duration: mod.duration })}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <span style={{
+                        width: 32, height: 32, borderRadius: "50%", flexShrink: 0,
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        fontSize: 14, color: isOpen ? plan.color : "var(--ink-4)",
+                        background: isOpen ? `rgba(${plan.glow},0.12)` : "var(--bg-2)",
+                        border: `1px solid ${isOpen ? `rgba(${plan.glow},0.25)` : "var(--line)"}`,
+                        transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+                        transition: "transform 0.25s ease, color 0.2s ease, background 0.2s ease",
+                      }}>▾</span>
+                    </button>
+
+                    {isOpen && (
+                      <div style={{ borderTop: "1px solid var(--line)" }}>
+                        {mod.lessons.map((lesson, li) => (
+                          <div key={lesson.id}>
+                            {lesson.free ? (
+                              <div>
+                                <div style={{ margin: "18px 24px 0", borderRadius: 16, overflow: "hidden", border: `1px solid rgba(${plan.glow},0.2)`, position: "relative", aspectRatio: "16/9", background: "var(--bg-3)" }}>
+                                  <div style={{ position: "absolute", inset: 0, background: `linear-gradient(140deg, rgba(${plan.glow},0.16) 0%, var(--bg-1) 100%)`, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 16 }}>
+                                    <div style={{ width: 64, height: 64, borderRadius: "50%", background: plan.color, display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", boxShadow: `0 12px 40px -8px rgba(${plan.glow},0.6)`, transition: "transform 0.2s" }}
+                                      onMouseEnter={(e) => { e.currentTarget.style.transform = "scale(1.08)"; }}
+                                      onMouseLeave={(e) => { e.currentTarget.style.transform = "scale(1)"; }}>
+                                      <svg width="22" height="22" viewBox="0 0 24 24" fill={playIconFill}><polygon points="5,3 19,12 5,21" /></svg>
+                                    </div>
+                                    <div style={{ textAlign: "center" }}>
+                                      <div style={{ fontSize: 14, fontWeight: 700, color: "var(--ink)" }}>{lesson.title}</div>
+                                      <div style={{ fontSize: 12, color: "var(--ink-3)", marginTop: 4 }}>
+                                        {tc("freePreview", { duration: lesson.duration })}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div style={{ padding: "18px 24px 24px" }}>
+                                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
+                                    <span style={{ fontSize: 11, fontWeight: 700, background: `rgba(${plan.glow},0.12)`, color: plan.color, border: `1px solid rgba(${plan.glow},0.25)`, borderRadius: 999, padding: "3px 10px", textTransform: "uppercase", letterSpacing: "0.06em" }}>{tc("freeBadge")}</span>
+                                    <span style={{ fontSize: 12, color: "var(--ink-3)" }}>
+                                      {tc("videoMeta", { icon: STACK_TYPE_ICONS[lesson.type], duration: lesson.duration })}
+                                    </span>
+                                  </div>
+                                  {lesson.description ? (
+                                    <p style={{ fontSize: 13, color: "var(--ink-2)", lineHeight: 1.65, margin: 0 }}>{lesson.description}</p>
+                                  ) : null}
+                                  {lessonExtraContent?.[lesson.id] ?? extraAfterFreeLesson}
+                                </div>
+                              </div>
+                            ) : (
+                              <div style={{ display: "flex", alignItems: "center", gap: 14, padding: "14px 26px", borderTop: li === 0 ? "none" : "1px solid var(--line)" }}>
+                                <div style={{ width: 34, height: 34, borderRadius: 10, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, background: "var(--bg-2)", border: "1px solid var(--line)", color: "var(--ink-4)" }}>
+                                  {STACK_TYPE_ICONS[lesson.type]}
+                                </div>
+                                <div style={{ flex: 1, minWidth: 0 }}>
+                                  <div style={{ fontSize: 13.5, color: "var(--ink-2)", fontWeight: 600, lineHeight: 1.4 }}>{lesson.title}</div>
+                                </div>
+                                <span style={{ display: "inline-flex", alignItems: "center", gap: 5, fontSize: 11, color: "var(--ink-4)", background: "var(--bg-2)", borderRadius: 999, padding: "4px 9px", flexShrink: 0, whiteSpace: "nowrap" }}>
+                                  🔒 {lesson.duration}
+                                </span>
+                              </div>
+                            )}
+                          </div>
+                        ))}
+                        {!mod.free && (
+                          <div style={{ margin: "8px 24px 22px", padding: "16px 20px", borderRadius: 14, background: `rgba(${plan.glow},0.05)`, border: `1px solid rgba(${plan.glow},0.16)`, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
+                            <span style={{ fontSize: 12.5, color: "var(--ink-2)", fontWeight: 500 }}>
+                              {tc("unlockLessons", { count: mod.lessons.length })}
+                            </span>
+                            <a href="#checkout" style={{ fontSize: 12.5, fontWeight: 700, color: ctaTextColor, textDecoration: "none", background: `linear-gradient(135deg, ${plan.color}, color-mix(in oklab, ${plan.color} 60%, white))`, borderRadius: 10, padding: "9px 18px", whiteSpace: "nowrap", boxShadow: `0 8px 22px -6px rgba(${plan.glow},0.5)`, transition: "transform 0.15s ease" }}
+                              onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px)"; }}
+                              onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)"; }}>
+                              {tc("purchaseCta")}
+                            </a>
+                          </div>
+                        )}
+                        {moduleExtraContent?.[mod.id] && (
+                          <div style={{ padding: "4px 24px 24px" }}>
+                            {moduleExtraContent[mod.id]}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
               return (
                 <React.Fragment key={mod.id}>
                 <div style={{ background: "var(--bg-1)", border: `1px solid ${isOpen && mod.free ? `rgba(${plan.glow},0.28)` : "var(--line)"}`, borderRadius: 16, overflow: "hidden", transition: "border-color 0.2s" }}>

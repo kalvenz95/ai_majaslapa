@@ -30,6 +30,7 @@ export default function DigitaalaisSpecialistsPage() {
       ctaTextColor="#000"
       skillsListMode="all"
       heroGlowAlpha={0.07}
+      curriculumVariant="showcase"
       extraAfterFreeLesson={locale === "lv" ? <DigitaalaisIntroLessonContent /> : undefined}
       moduleExtraContent={{
         2: (
