@@ -17,7 +17,6 @@ function LocaleToggle() {
 
   const baseStyle: React.CSSProperties = {
     fontSize: 12,
-    fontWeight: 600,
     borderRadius: 8,
     padding: "6px 10px",
     textDecoration: "none",
