@@ -56,7 +56,7 @@ export default function AILaunchpad() {
                 borderRight: i < 2 ? "1px solid var(--line)" : "none",
               }}
             >
-              <div style={{ fontFamily: "Inter Tight, sans-serif", fontWeight: 700, fontSize: 11, color: "var(--ink-2)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 12 }}>
+              <div style={{ fontFamily: "Inter Tight, sans-serif", fontWeight: 700, fontSize: 14, color: "var(--ink-2)", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 12 }}>
                 {item.label}
               </div>
               <div style={{ fontSize: "clamp(18px, 4vw, 26px)", fontWeight: 700, letterSpacing: "-0.03em", color: item.color, lineHeight: 1.1, marginBottom: 4 }}>

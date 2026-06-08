@@ -5,7 +5,6 @@ const projects = [
     tag: "Mājaslapa",
     title: "AI mājaslapa uzņēmumam",
     desc: "Moderna lapa ar AI integrācijām — gatava dažu dienu laikā.",
-    price: "no 400€",
     photo: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=900&auto=format&fit=crop&q=80",
     color: "var(--accent)",
   },
@@ -13,7 +12,6 @@ const projects = [
     tag: "Sociālie tīkli",
     title: "Mēneša satura pakete",
     desc: "Vizuāļi, teksti un publicēšanas grafiks, veidots ar AI rīkiem.",
-    price: "no 350€",
     photo: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=900&auto=format&fit=crop&q=80",
     color: "var(--accent-2)",
   },
@@ -21,7 +19,6 @@ const projects = [
     tag: "Automatizācija",
     title: "WhatsApp automatizācija",
     desc: "Automātiskas atbildes un pieteikumu apstrāde uzņēmumam.",
-    price: "no 500€",
     photo: "https://images.unsplash.com/photo-1611606063065-ee7946f0787a?w=900&auto=format&fit=crop&q=80",
     color: "var(--accent-3)",
   },
@@ -29,15 +26,13 @@ const projects = [
     tag: "Balss AI",
     title: "AI balss aģents",
     desc: "Zvanu pieņemšana un rezervācijas — bez cilvēka iesaistes.",
-    price: "no 600€",
-    photo: "https://images.unsplash.com/photo-1581092919535-f0c69ed1ed99?w=900&auto=format&fit=crop&q=80",
+    photo: "https://images.unsplash.com/photo-1554774853-719586f82d77?w=900&auto=format&fit=crop&q=80",
     color: "var(--accent)",
   },
   {
     tag: "Reklāma",
     title: "AI reklāmu vizuāļi",
     desc: "Bildes un video reklāmām, kas piesaista uzmanību un pārdod.",
-    price: "no 300€",
     photo: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=900&auto=format&fit=crop&q=80",
     color: "var(--accent-2)",
   },
@@ -45,7 +40,6 @@ const projects = [
     tag: "Portfolio",
     title: "Tavs personīgais portfolio",
     desc: "Darbu krājums, kas palīdz iegūt pirmos klientus jau kursa laikā.",
-    price: "iekļauts kursā",
     photo: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=900&auto=format&fit=crop&q=80",
     color: "var(--accent-3)",
   },
@@ -97,9 +91,6 @@ export default function ProjectExamples() {
                 <div style={{ position: "absolute", inset: 0, background: `linear-gradient(160deg, color-mix(in oklab, ${p.color} 26%, transparent) 0%, transparent 55%)`, mixBlendMode: "multiply" }} />
                 <span style={{ position: "absolute", top: 14, left: 14, display: "inline-flex", alignItems: "center", fontFamily: "Inter Tight, sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", padding: "5px 11px", borderRadius: 999, background: "rgba(255,255,255,0.92)", color: "var(--ink)" }}>
                   {p.tag}
-                </span>
-                <span style={{ position: "absolute", bottom: 14, right: 14, display: "inline-flex", alignItems: "center", fontFamily: "Inter Tight, sans-serif", fontSize: 12, fontWeight: 700, padding: "6px 12px", borderRadius: 999, background: p.color, color: "white" }}>
-                  {p.price}
                 </span>
               </div>
 

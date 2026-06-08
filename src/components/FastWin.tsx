@@ -33,61 +33,86 @@ export default function FastWin() {
           </div>
         </div>
 
-        {/* Step cards — compact */}
-        <div className="lp-five-steps" style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 12 }}>
+        {/* Step cards — with a literal connecting path through the numbered stations */}
+        <div className="lp-five-steps" style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 12, position: "relative" }}>
+          {/* The "path" — a line running through every station, drawn behind the badges (badge center sits at 24px padding + 22px half-height = 46px) */}
+          <div className="lp-steps-connector" aria-hidden style={{ position: "absolute", top: 45, left: "10%", right: "10%", height: 2, background: "repeating-linear-gradient(90deg, color-mix(in oklab, var(--accent) 38%, var(--line)) 0 10px, transparent 10px 18px)", zIndex: 0 }} />
+
           {steps.map((s, i) => (
             <div
               key={s.num}
               style={{
-                padding: "20px 18px 22px",
+                padding: "24px 20px 26px",
                 background: "var(--bg-1)",
                 border: "1px solid var(--line)",
-                borderRadius: 18,
+                borderRadius: 20,
                 display: "flex",
                 flexDirection: "column",
-                gap: 12,
+                gap: 16,
                 position: "relative",
                 overflow: "hidden",
-                transition: "border-color 0.2s ease, transform 0.2s ease",
+                transition: "border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease",
               }}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLElement).style.borderColor = "color-mix(in oklab, var(--accent) 30%, transparent)";
-                (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)";
+                (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
+                (e.currentTarget as HTMLElement).style.boxShadow = "0 20px 48px -20px color-mix(in oklab, var(--accent) 28%, transparent)";
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLElement).style.borderColor = "var(--line)";
                 (e.currentTarget as HTMLElement).style.transform = "";
+                (e.currentTarget as HTMLElement).style.boxShadow = "none";
               }}
             >
               {/* Connector line — subtle top border accent on first card */}
               {i === 0 && (
-                <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: "linear-gradient(90deg, var(--accent), color-mix(in oklab, var(--accent) 40%, transparent))", borderRadius: "18px 18px 0 0" }} />
+                <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: "linear-gradient(90deg, var(--accent), color-mix(in oklab, var(--accent) 40%, transparent))", borderRadius: "20px 20px 0 0" }} />
               )}
 
-              {/* Step number */}
+              {/* Step number — sits on the connecting path like a station */}
               <div style={{
                 display: "inline-flex",
                 alignItems: "center",
                 justifyContent: "center",
-                width: 32,
-                height: 32,
-                borderRadius: 10,
+                width: 44,
+                height: 44,
+                borderRadius: 13,
                 background: i === 0 ? "var(--accent)" : "var(--bg-2)",
                 border: i === 0 ? "none" : "1px solid var(--line-2)",
                 fontFamily: "Inter Tight, sans-serif",
-                fontSize: 12,
+                fontSize: 16,
                 fontWeight: 700,
-                color: i === 0 ? "var(--accent-ink)" : "var(--ink-3)",
+                letterSpacing: "-0.02em",
+                color: i === 0 ? "var(--accent-ink)" : "var(--ink-2)",
                 flexShrink: 0,
+                position: "relative",
+                zIndex: 1,
+                boxShadow: i === 0 ? "0 8px 24px -8px color-mix(in oklab, var(--accent) 60%, transparent)" : "0 0 0 6px var(--bg-1)",
               }}>
                 {s.num}
               </div>
 
               <div>
-                <h4 style={{ fontSize: 15, fontWeight: 700, margin: "0 0 6px", letterSpacing: "-0.01em", color: "var(--ink)", lineHeight: 1.2 }}>{s.title}</h4>
-                <p style={{ fontSize: 13, color: "var(--ink-3)", lineHeight: 1.5, margin: 0 }}>{s.desc}</p>
+                <h4 style={{ fontSize: 18, fontWeight: 700, margin: "0 0 8px", letterSpacing: "-0.015em", color: "var(--ink)", lineHeight: 1.25 }}>{s.title}</h4>
+                <p style={{ fontSize: 14, color: "var(--ink-3)", lineHeight: 1.55, margin: 0 }}>{s.desc}</p>
               </div>
             </div>
+          ))}
+
+          {/* Arrows between stations — overlaid on the path, centered in the gap between each pair of cards (cards clip overflow, so these live as siblings instead) */}
+          {steps.slice(0, -1).map((_, i) => (
+            <span key={`arrow-${i}`} className="lp-steps-arrow" aria-hidden style={{
+              position: "absolute",
+              top: 46,
+              left: `calc((100% - 48px) / 5 * ${i + 1} + ${i * 12 + 6}px)`,
+              transform: "translate(-50%, -50%)",
+              zIndex: 2,
+              display: "inline-flex", alignItems: "center", justifyContent: "center",
+              width: 26, height: 26, borderRadius: "50%",
+              background: "var(--bg-1)", border: "1px solid var(--line-2)",
+              color: "var(--ink-3)", fontSize: 12,
+              boxShadow: "0 4px 14px -6px rgba(0,0,0,0.18)",
+            }}>→</span>
           ))}
         </div>
 

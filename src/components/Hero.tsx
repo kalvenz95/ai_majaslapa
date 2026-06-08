@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import type { CSSProperties } from "react";
+import { useHasMounted } from "@/hooks/useHasMounted";
 
 const EASE_OUT = [0.215, 0.61, 0.355, 1] as const;
 /** ease-in-out cubic — continuous on-screen motion */
@@ -37,11 +38,13 @@ function HeroFloatLayer({
   duration?: number;
   amplitude?: number;
 }) {
+  const hasMounted = useHasMounted();
   const reduceMotion = useReducedMotion();
+  const skipMotion = hasMounted && reduceMotion;
   return (
     <motion.div
       style={{ position: "absolute", ...style }}
-      animate={reduceMotion ? undefined : { y: [0, -amplitude, 0] }}
+      animate={skipMotion ? undefined : { y: [0, -amplitude, 0] }}
       transition={{
         duration,
         repeat: Infinity,
@@ -55,7 +58,9 @@ function HeroFloatLayer({
 }
 
 export default function Hero() {
+  const hasMounted = useHasMounted();
   const reduceMotion = useReducedMotion();
+  const skipMotion = hasMounted && reduceMotion;
   const t = useTranslations("Hero");
 
   return (
@@ -66,7 +71,7 @@ export default function Hero() {
         <div style={{ display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: 64, alignItems: "center" }} className="hero-grid-responsive">
           {/* Left */}
           <motion.div
-            initial={reduceMotion ? false : "hidden"}
+            initial={skipMotion ? false : "hidden"}
             animate="visible"
             variants={staggerParent}
           >
@@ -132,7 +137,7 @@ export default function Hero() {
 
           {/* Right: image collage */}
           <motion.div
-            initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+            initial={skipMotion ? false : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: EASE_OUT, delay: 0.15 }}
             className="hero-img-col"

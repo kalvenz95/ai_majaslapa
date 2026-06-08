@@ -471,7 +471,11 @@ a { color: inherit; text-decoration: none; }
 
   /* 5-col process steps → 2-col */
   .lp-five-steps { grid-template-columns: repeat(2, 1fr) !important; gap: 20px !important; }
-  .lp-steps-connector { display: none !important; }
+  .lp-steps-connector, .lp-steps-arrow { display: none !important; }
+
+  /* Floating edit button — collapse to icon-only so it stops covering page text */
+  .lp-editbar-toggle { padding: 12px !important; gap: 0 !important; }
+  .lp-editbar-toggle .lp-editbar-label { display: none !important; }
 
   /* Hero layout */
   .hero-grid-responsive { grid-template-columns: 1fr !important; gap: 32px !important; }

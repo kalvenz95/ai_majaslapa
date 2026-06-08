@@ -51,7 +51,11 @@ export default function EditBar() {
         )}
         <button
           onClick={toggleEdit}
+          className="lp-editbar-toggle"
           style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
             padding: '10px 18px',
             borderRadius: '12px',
             border: editMode ? 'none' : '1px solid rgba(255,255,255,0.15)',
@@ -64,7 +68,8 @@ export default function EditBar() {
             boxShadow: editMode ? '0 0 20px rgba(0,255,136,0.3)' : '0 4px 24px rgba(0,0,0,0.4)',
           }}
         >
-          {editMode ? '✓ Pabeigt rediģēšanu' : '✏️ Rediģēt lapu'}
+          <span aria-hidden>{editMode ? '✓' : '✏️'}</span>
+          <span className="lp-editbar-label">{editMode ? 'Pabeigt rediģēšanu' : 'Rediģēt lapu'}</span>
         </button>
       </div>
     </>

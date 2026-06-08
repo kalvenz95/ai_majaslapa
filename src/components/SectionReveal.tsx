@@ -1,13 +1,15 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { useHasMounted } from "@/hooks/useHasMounted";
 
 /** ease-out cubic — entrances (animations.dev pattern) */
 const EASE_OUT = [0.215, 0.61, 0.355, 1] as const;
 
 export default function SectionReveal({ children }: { children: React.ReactNode }) {
+  const hasMounted = useHasMounted();
   const reduceMotion = useReducedMotion();
-  if (reduceMotion) {
+  if (hasMounted && reduceMotion) {
     return <div>{children}</div>;
   }
   return (
