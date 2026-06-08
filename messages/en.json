@@ -104,7 +104,7 @@
       {
         "num": "02",
         "level": "Intermediate",
-        "badge": "Popular choice",
+        "badge": "🔥 Most students start here",
         "title": "Websites & automation",
         "desc": "Build modern business solutions that companies actually use",
         "skills": [
@@ -151,17 +151,20 @@
       {
         "label": "Social feeds",
         "range": "€800–€1,600",
-        "desc": "Creative ops, thumbnails, consistent posting"
+        "desc": "Creative ops, thumbnails, consistent posting",
+        "math": "2 clients × €400 = €800/mo"
       },
       {
         "label": "WhatsApp automation",
         "range": "€1,000–€2,000",
-        "desc": "Instant replies plus lightweight CRM sync"
+        "desc": "Instant replies plus lightweight CRM sync",
+        "math": "2 clients × €500 = €1,000/mo"
       },
       {
         "label": "Voice agents",
         "range": "€1,000–€3,000+",
-        "desc": "Call workflows, reminders, bookings"
+        "desc": "Call workflows, reminders, bookings",
+        "math": "2 clients × €1,000 = €2,000/mo"
       }
     ]
   },
@@ -249,7 +252,7 @@
       },
       {
         "id": "izaugsme",
-        "badge": "Popular choice",
+        "badge": "🏆 Most popular choice",
         "name": "Websites & Automation",
         "tagline": "Modern AI solutions for businesses",
         "price": "59",

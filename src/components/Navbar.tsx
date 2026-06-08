@@ -24,8 +24,9 @@ function LocaleToggle() {
     border: "1px solid var(--line)",
     color: "var(--ink-2)",
     background: "var(--bg-2)",
-    fontFamily: "JetBrains Mono, monospace",
-    letterSpacing: "0.04em",
+    fontFamily: "Inter Tight, sans-serif",
+    fontWeight: 600,
+    letterSpacing: "0.02em",
     cursor: "pointer",
     transition: "background 0.15s ease, color 0.15s ease, border-color 0.15s ease",
   };
@@ -106,15 +107,15 @@ export default function Navbar() {
               width: 40,
               height: 40,
               borderRadius: 11,
-              background: "#a3e635",
-              color: "#fff",
+              background: "var(--accent)",
+              color: "var(--accent-ink)",
               display: "grid",
               placeItems: "center",
               fontWeight: 900,
               fontSize: 20,
               fontFamily: "Inter Tight, sans-serif",
               flexShrink: 0,
-              boxShadow: "0 0 18px rgba(163,230,53,0.35)",
+              boxShadow: "0 0 18px color-mix(in oklab, var(--accent) 35%, transparent)",
             }}
           >
             C

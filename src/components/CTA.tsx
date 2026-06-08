@@ -23,14 +23,14 @@ export default function CTA() {
       </div>
 
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px", position: "relative", zIndex: 2 }}>
-        <span style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: "JetBrains Mono, monospace", fontSize: 11, letterSpacing: "0.15em", color: "var(--ink-3)", textTransform: "uppercase" }}>
+        <span style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: "Inter Tight, sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", color: "var(--ink-3)", textTransform: "uppercase" }}>
           <span style={{ display: "inline-block", width: 24, height: 1, background: "var(--accent)" }} />
           {t("kicker")}
         </span>
 
         <h2 style={{ fontSize: "clamp(56px, 8vw, 112px)", lineHeight: 1.05, letterSpacing: "-0.04em", fontWeight: 600, margin: "16px auto 28px", maxWidth: "14ch" }}>
           {t("titleA")}
-          <span style={{ color: "var(--ink-2)", fontStyle: "italic", fontFamily: "Fraunces, Georgia, serif", fontWeight: 500 }}>
+          <span style={{ color: "var(--accent)", fontFamily: "Inter Tight, sans-serif", fontWeight: 600 }}>
             {t("titleB")}
           </span>
         </h2>

@@ -102,11 +102,11 @@ export function Sidebar() {
       <Link href="/" style={{ display: "flex", alignItems: "center", gap: 9, textDecoration: "none", marginBottom: 28, padding: "0 4px" }}>
         <div style={{
           width: 36, height: 36, borderRadius: 10,
-          background: "#a3e635", color: "#fff",
+          background: "var(--d-accent)", color: "var(--accent-ink)",
           display: "flex", alignItems: "center", justifyContent: "center",
           fontSize: 18, fontWeight: 900, flexShrink: 0,
           fontFamily: "'Inter Tight', sans-serif",
-          boxShadow: "0 0 14px rgba(163,230,53,0.3)",
+          boxShadow: "0 0 14px color-mix(in oklab, var(--d-accent) 30%, transparent)",
         }}>C</div>
         <span style={{ fontFamily: "'Inter Tight', sans-serif", fontWeight: 800, fontSize: 20, letterSpacing: "-0.02em", color: "var(--ink)" }}>
           Chademy

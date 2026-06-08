@@ -7,49 +7,49 @@ const tools = [
     name: "Claude",
     desc: "AI asistents & skripting",
     Icon: Bot,
-    color: "#C6FF3D",
+    color: "var(--accent)",
   },
   {
     name: "ChatGPT",
     desc: "Teksts & satura ģenerēšana",
     Icon: MessageSquare,
-    color: "#7FF6E0",
+    color: "var(--accent-2)",
   },
   {
     name: "Vapi",
     desc: "Balss AI aģenti",
     Icon: Mic2,
-    color: "#a78bfa",
+    color: "var(--accent-3)",
   },
   {
     name: "Make.com",
     desc: "Vizuālā automatizācija",
     Icon: Zap,
-    color: "#C6FF3D",
+    color: "var(--accent)",
   },
   {
     name: "n8n",
     desc: "Workflow Builder",
     Icon: Link2,
-    color: "#7FF6E0",
+    color: "var(--accent-2)",
   },
   {
     name: "Midjourney",
     desc: "AI attēlu ģenerēšana",
     Icon: Palette,
-    color: "#a78bfa",
+    color: "var(--accent-3)",
   },
   {
     name: "ElevenLabs",
     desc: "AI balss sintēze",
     Icon: Volume2,
-    color: "#C6FF3D",
+    color: "var(--accent)",
   },
   {
     name: "Runway",
     desc: "AI video ģenerēšana",
     Icon: Film,
-    color: "#7FF6E0",
+    color: "var(--accent-2)",
   },
 ];
 
@@ -62,14 +62,14 @@ export default function Tools() {
 
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: 56 }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, fontFamily: "JetBrains Mono, monospace", fontSize: 11, letterSpacing: "0.15em", color: "var(--ink-3)", textTransform: "uppercase" as const, marginBottom: 20 }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, fontFamily: "Inter Tight, sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", color: "var(--ink-3)", textTransform: "uppercase" as const, marginBottom: 20 }}>
             <span style={{ display: "inline-block", width: 24, height: 1, background: "var(--accent)" }} />
             Platformu stack
             <span style={{ display: "inline-block", width: 24, height: 1, background: "var(--accent)" }} />
           </div>
           <h2 style={{ fontFamily: "Inter Tight, sans-serif", fontSize: "clamp(32px, 5vw, 68px)", fontWeight: 600, color: "var(--ink)", letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: 16 }}>
             Rīki, kurus{" "}
-            <span style={{ color: "var(--ink-2)", fontStyle: "italic", fontFamily: "Fraunces, Georgia, serif", fontWeight: 500 }}>
+            <span style={{ color: "var(--accent)", fontFamily: "Inter Tight, sans-serif", fontWeight: 600 }}>
               apgūsi
             </span>
           </h2>
@@ -138,7 +138,7 @@ export default function Tools() {
         </div>
 
         {/* Subtle note */}
-        <p style={{ textAlign: "center", marginTop: 32, fontSize: 12, color: "var(--ink-4)", fontFamily: "JetBrains Mono, monospace" }}>
+        <p style={{ textAlign: "center", marginTop: 32, fontSize: 12, color: "var(--ink-4)", fontFamily: "Inter, sans-serif" }}>
           Visi rīki pieejami ar bezmaksas plāniem vai izmēģinājuma periodiem
         </p>
       </div>

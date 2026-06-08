@@ -21,14 +21,14 @@ export default function Footer() {
                   width: 38,
                   height: 38,
                   borderRadius: 11,
-                  background: "#a3e635",
-                  color: "#fff",
+                  background: "var(--accent)",
+                  color: "var(--accent-ink)",
                   display: "grid",
                   placeItems: "center",
                   fontWeight: 900,
                   fontSize: 20,
                   fontFamily: "Inter Tight, sans-serif",
-                  boxShadow: "0 0 14px rgba(163,230,53,0.25)",
+                  boxShadow: "0 0 14px color-mix(in oklab, var(--accent) 25%, transparent)",
                 }}
               >
                 C
@@ -73,7 +73,7 @@ export default function Footer() {
             </div>
 
             <div style={{ marginTop: 24 }}>
-              <p style={{ fontSize: 11, color: "var(--ink-4)", marginBottom: 8, textTransform: "uppercase", letterSpacing: "0.1em", fontFamily: "JetBrains Mono, monospace" }}>
+              <p style={{ fontSize: 11, color: "var(--ink-4)", marginBottom: 8, textTransform: "uppercase", letterSpacing: "0.08em", fontFamily: "Inter Tight, sans-serif", fontWeight: 700 }}>
                 <E id="footer-newsletter-label">{t("newsletterLabel")}</E>
               </p>
               <div style={{ display: "flex", gap: 8 }}>
@@ -102,7 +102,7 @@ export default function Footer() {
 
           {columns.map((category) => (
             <div key={category.title}>
-              <h4 style={{ fontWeight: 600, color: "var(--ink)", fontSize: 12, marginBottom: 16, textTransform: "uppercase", letterSpacing: "0.08em", fontFamily: "JetBrains Mono, monospace" }}>{category.title}</h4>
+              <h4 style={{ fontWeight: 700, color: "var(--ink)", fontSize: 12, marginBottom: 16, textTransform: "uppercase", letterSpacing: "0.08em", fontFamily: "Inter Tight, sans-serif" }}>{category.title}</h4>
               <ul style={{ display: "flex", flexDirection: "column", gap: 8, listStyle: "none", padding: 0, margin: 0 }}>
                 {category.links.map((link) => {
                   const name = typeof link === "string" ? link : link.name;

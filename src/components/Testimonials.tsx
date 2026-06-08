@@ -16,8 +16,8 @@ function getInitials(name: string) {
 
 const AVATAR_COLORS = [
   { bg: "color-mix(in oklab, var(--accent) 18%, var(--bg-2))", color: "var(--accent)" },
-  { bg: "rgba(127,246,224,0.15)", color: "#7FF6E0" },
-  { bg: "rgba(168,139,250,0.15)", color: "#a78bfa" },
+  { bg: "color-mix(in oklab, var(--accent-2) 16%, var(--bg-2))", color: "var(--accent-2)" },
+  { bg: "color-mix(in oklab, var(--accent-3) 20%, var(--bg-2))", color: "var(--accent-3)" },
 ];
 
 export default function Testimonials() {
@@ -34,13 +34,13 @@ export default function Testimonials() {
         {/* Header */}
         <div className="lp-header-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "end", marginBottom: 0 }}>
           <div>
-            <span style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: "JetBrains Mono, monospace", fontSize: 11, letterSpacing: "0.15em", color: "var(--ink-3)", textTransform: "uppercase" as const }}>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: "Inter Tight, sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", color: "var(--ink-3)", textTransform: "uppercase" as const }}>
               <span style={{ display: "inline-block", width: 24, height: 1, background: "var(--accent)" }} />
               {t("kicker")}
             </span>
             <h2 style={{ fontSize: "clamp(36px, 5.5vw, 78px)", lineHeight: 1.08, letterSpacing: "-0.035em", fontWeight: 600, margin: "16px 0 0", maxWidth: "16ch" }}>
               {t("titleA")}
-              <span style={{ color: "var(--ink-2)", fontStyle: "italic", fontFamily: "Fraunces, Georgia, serif", fontWeight: 500 }}>
+              <span style={{ color: "var(--accent)", fontFamily: "Inter Tight, sans-serif", fontWeight: 600 }}>
                 {t("titleB")}
               </span>
             </h2>
@@ -91,7 +91,7 @@ export default function Testimonials() {
                 }}
               >
                 {/* Tag */}
-                <span style={{ display: "inline-flex", alignItems: "center", fontFamily: "JetBrains Mono, monospace", fontSize: 10, padding: "4px 9px", borderRadius: 999, background: "color-mix(in oklab, var(--accent) 12%, transparent)", color: "var(--accent)", border: "1px solid color-mix(in oklab, var(--accent) 25%, transparent)", marginBottom: 20, alignSelf: "flex-start", fontWeight: 700, letterSpacing: "0.07em" }}>
+                <span style={{ display: "inline-flex", alignItems: "center", fontFamily: "Inter Tight, sans-serif", fontSize: 10, padding: "4px 9px", borderRadius: 999, background: "color-mix(in oklab, var(--accent) 12%, transparent)", color: "var(--accent)", border: "1px solid color-mix(in oklab, var(--accent) 25%, transparent)", marginBottom: 20, alignSelf: "flex-start", fontWeight: 700, letterSpacing: "0.07em" }}>
                   {q.tag}
                 </span>
 

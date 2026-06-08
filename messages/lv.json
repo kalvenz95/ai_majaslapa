@@ -104,7 +104,7 @@
       {
         "num": "02",
         "level": "Vidējs",
-        "badge": "Populāra izvēle",
+        "badge": "🔥 Lielākā daļa sāk šeit",
         "title": "Mājaslapas & automatizācija",
         "desc": "Izveido modernus biznesa risinājumus, ko uzņēmumi reāli izmanto",
         "skills": [
@@ -151,17 +151,20 @@
       {
         "label": "Sociālie tīkli",
         "range": "€800–€1 600",
-        "desc": "Saturs, vizuāļi, feed pārvaldība"
+        "desc": "Saturs, vizuāļi, feed pārvaldība",
+        "math": "2 klienti × 400€ = 800€/mēn"
       },
       {
         "label": "WhatsApp automatizācija",
         "range": "€1 000–€2 000",
-        "desc": "Automātiskas atbildes, lead apstrāde"
+        "desc": "Automātiskas atbildes, lead apstrāde",
+        "math": "2 klienti × 500€ = 1000€/mēn"
       },
       {
         "label": "Balss aģenti",
         "range": "€1 000–€3 000+",
-        "desc": "Zvanu automatizācija, rezervācijas"
+        "desc": "Zvanu automatizācija, rezervācijas",
+        "math": "2 klienti × 1000€ = 2000€/mēn"
       }
     ]
   },
@@ -249,7 +252,7 @@
       },
       {
         "id": "izaugsme",
-        "badge": "Populāra izvēle",
+        "badge": "🏆 Vispopulārākā izvēle",
         "name": "Mājaslapas & Automatizācija",
         "tagline": "Moderni AI risinājumi uzņēmumiem",
         "price": "59",

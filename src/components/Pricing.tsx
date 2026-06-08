@@ -33,13 +33,13 @@ export default function Pricing() {
       <div className="lp-container" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px", position: "relative", zIndex: 1 }}>
         <div className="lp-header-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "end", marginBottom: 56 }}>
           <div>
-            <span style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: "JetBrains Mono, monospace", fontSize: 11, letterSpacing: "0.15em", color: "var(--ink-3)", textTransform: "uppercase" as const }}>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: "Inter Tight, sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", color: "var(--ink-3)", textTransform: "uppercase" as const }}>
               <span style={{ display: "inline-block", width: 24, height: 1, background: "var(--accent)" }} />
               {t("label")}
             </span>
             <h2 style={{ fontSize: "clamp(40px, 6vw, 84px)", lineHeight: 1.05, letterSpacing: "-0.035em", fontWeight: 600, margin: "16px 0 0", maxWidth: "14ch" }}>
               {t("titleA")}
-              <span style={{ color: "var(--ink-2)", fontStyle: "italic", fontFamily: "Fraunces, Georgia, serif", fontWeight: 500 }}>
+              <span style={{ color: "var(--accent)", fontFamily: "Inter Tight, sans-serif", fontWeight: 600 }}>
                 {t("titleB")}
               </span>
             </h2>
@@ -61,32 +61,64 @@ export default function Pricing() {
               <div
                 key={plan.id}
                 style={{
-                  border: `1px solid ${isPremium ? "color-mix(in oklab, var(--accent) 30%, transparent)" : isHighlight ? "var(--accent)" : "var(--line)"}`,
+                  border: `${isHighlight ? 2 : 1}px solid ${isPremium ? "color-mix(in oklab, var(--accent) 30%, transparent)" : isHighlight ? "var(--accent)" : "var(--line)"}`,
                   borderRadius: 28,
                   background: isPremium
                     ? "linear-gradient(180deg, color-mix(in oklab, var(--accent) 7%, var(--bg-1)) 0%, var(--bg-1) 50%)"
                     : isHighlight
-                      ? "linear-gradient(180deg, color-mix(in oklab, var(--accent) 8%, var(--bg-1)) 0%, var(--bg-1) 50%)"
+                      ? "linear-gradient(180deg, color-mix(in oklab, var(--accent) 10%, var(--bg-1)) 0%, var(--bg-1) 50%)"
                       : "var(--bg-1)",
                   display: "flex",
                   flexDirection: "column",
-                  overflow: "hidden",
+                  overflow: "visible",
                   position: "relative",
-                  transition: "transform 0.25s ease, box-shadow 0.25s ease",
+                  zIndex: isHighlight ? 2 : 1,
+                  transform: isHighlight ? "scale(1.045)" : "none",
+                  boxShadow: isHighlight ? "0 28px 72px -18px color-mix(in oklab, var(--accent) 32%, transparent)" : "none",
+                  transition: "transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease",
                 }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
+                  const base = isHighlight ? "scale(1.045)" : "";
+                  (e.currentTarget as HTMLElement).style.transform = isHighlight ? "scale(1.045) translateY(-4px)" : "translateY(-4px)";
                   if (isPremium) {
                     (e.currentTarget as HTMLElement).style.boxShadow = "0 24px 64px -16px color-mix(in oklab, var(--accent) 20%, transparent)";
+                  } else if (isHighlight) {
+                    (e.currentTarget as HTMLElement).style.boxShadow = "0 32px 84px -16px color-mix(in oklab, var(--accent) 38%, transparent)";
                   }
                 }}
                 onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.transform = "";
-                  (e.currentTarget as HTMLElement).style.boxShadow = "";
+                  (e.currentTarget as HTMLElement).style.transform = isHighlight ? "scale(1.045)" : "";
+                  (e.currentTarget as HTMLElement).style.boxShadow = isHighlight ? "0 28px 72px -18px color-mix(in oklab, var(--accent) 32%, transparent)" : "";
                 }}
               >
+                {/* Floating ribbon for the highlighted plan */}
+                {isHighlight && plan.badge && (
+                  <span style={{
+                    position: "absolute",
+                    top: -1,
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    zIndex: 3,
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 6,
+                    padding: "8px 18px",
+                    borderRadius: 999,
+                    fontSize: 12,
+                    fontWeight: 700,
+                    letterSpacing: "0.01em",
+                    fontFamily: "Inter Tight, sans-serif",
+                    background: "var(--accent)",
+                    color: "var(--accent-ink)",
+                    boxShadow: "0 10px 28px -8px color-mix(in oklab, var(--accent) 55%, transparent)",
+                    whiteSpace: "nowrap",
+                  }}>
+                    {plan.badge}
+                  </span>
+                )}
+
                 {/* Image */}
-                <div style={{ aspectRatio: "16/7", position: "relative", overflow: "hidden", background: "var(--bg-3)" }}>
+                <div style={{ aspectRatio: "16/7", position: "relative", overflow: "hidden", background: "var(--bg-3)", borderRadius: `${isHighlight ? 26 : 27}px ${isHighlight ? 26 : 27}px 0 0` }}>
                   <img
                     src={img}
                     alt=""
@@ -104,8 +136,8 @@ export default function Pricing() {
                 </div>
 
                 <div style={{ padding: "20px 22px 22px", display: "flex", flexDirection: "column", gap: 0, flex: 1 }}>
-                  {/* Badge */}
-                  {plan.badge && (
+                  {/* Badge (the highlighted plan shows a floating ribbon instead) */}
+                  {plan.badge && !isHighlight && (
                     <span style={{
                       display: "inline-flex",
                       alignItems: "center",
@@ -115,20 +147,21 @@ export default function Pricing() {
                       fontWeight: 700,
                       letterSpacing: "0.07em",
                       textTransform: "uppercase" as const,
-                      fontFamily: "JetBrains Mono, monospace",
-                      background: isPremium ? "var(--accent)" : isHighlight ? "var(--accent)" : "color-mix(in oklab, var(--accent) 12%, transparent)",
-                      color: (isPremium || isHighlight) ? "var(--accent-ink)" : "var(--accent)",
-                      border: (isPremium || isHighlight) ? "none" : "1px solid color-mix(in oklab, var(--accent) 25%, transparent)",
+                      fontFamily: "Inter Tight, sans-serif",
+                      background: isPremium ? "var(--accent)" : "color-mix(in oklab, var(--accent) 12%, transparent)",
+                      color: isPremium ? "var(--accent-ink)" : "var(--accent)",
+                      border: isPremium ? "none" : "1px solid color-mix(in oklab, var(--accent) 25%, transparent)",
                       alignSelf: "flex-start",
                       marginBottom: 14,
                     }}>
                       {plan.badge}
                     </span>
                   )}
+                  {isHighlight && <div style={{ height: 14 }} />}
 
                   {/* Price + name */}
                   <div style={{ marginBottom: 6 }}>
-                    <div style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 13, fontWeight: 700, color: "var(--accent)", marginBottom: 6 }}>
+                    <div style={{ fontFamily: "Inter Tight, sans-serif", fontSize: 13, fontWeight: 700, color: "var(--accent)", marginBottom: 6 }}>
                       €{plan.price}{t("monthly")}
                     </div>
                     <h3 style={{ fontFamily: "Inter Tight, sans-serif", fontSize: 22, fontWeight: 700, color: "var(--ink)", letterSpacing: "-0.025em", lineHeight: 1.1, margin: "0 0 5px" }}>
@@ -141,7 +174,7 @@ export default function Pricing() {
 
                   {/* Earn badge */}
                   <div style={{ background: "var(--bg-2)", border: `1px solid ${isPremium ? "color-mix(in oklab, var(--accent) 20%, transparent)" : "var(--line)"}`, borderRadius: 10, padding: "10px 14px", margin: "14px 0" }}>
-                    <div style={{ fontSize: 10, color: "var(--ink-4)", marginBottom: 3, fontFamily: "JetBrains Mono, monospace", textTransform: "uppercase" as const, letterSpacing: "0.06em" }}>{t("earnLabel")}</div>
+                    <div style={{ fontSize: 10, color: "var(--ink-4)", marginBottom: 3, fontFamily: "Inter Tight, sans-serif", fontWeight: 700, textTransform: "uppercase" as const, letterSpacing: "0.06em" }}>{t("earnLabel")}</div>
                     <div className="metric" style={{ fontSize: 18, color: "var(--accent)" }}>{plan.earn}</div>
                   </div>
 

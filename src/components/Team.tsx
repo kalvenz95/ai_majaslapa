@@ -83,9 +83,10 @@ export default function Team() {
                 display: "inline-flex",
                 alignItems: "center",
                 gap: 10,
-                fontFamily: "JetBrains Mono, monospace",
+                fontFamily: "Inter Tight, sans-serif",
                 fontSize: 11,
-                letterSpacing: "0.15em",
+                fontWeight: 700,
+                letterSpacing: "0.12em",
                 color: "var(--ink-3)",
                 textTransform: "uppercase",
               }}
@@ -113,10 +114,9 @@ export default function Team() {
               Mūsu{" "}
               <span
                 style={{
-                  color: "var(--ink-2)",
-                  fontStyle: "italic",
-                  fontFamily: "Fraunces, Georgia, serif",
-                  fontWeight: 500,
+                  color: "var(--accent)",
+                  fontFamily: "Inter Tight, sans-serif",
+                  fontWeight: 600,
                 }}
               >
                 komanda
@@ -208,7 +208,7 @@ export default function Team() {
                     left: 14,
                     display: "inline-flex",
                     alignItems: "center",
-                    fontFamily: "JetBrains Mono, monospace",
+                    fontFamily: "Inter Tight, sans-serif",
                     fontSize: 10,
                     padding: "4px 10px",
                     borderRadius: 999,
@@ -229,7 +229,7 @@ export default function Team() {
                   <div style={{ fontSize: 15, fontWeight: 700, letterSpacing: "-0.01em", color: "var(--ink)" }}>
                     {m.name}
                   </div>
-                  <div style={{ fontSize: 12, color: "var(--accent)", marginTop: 3, fontFamily: "JetBrains Mono, monospace", letterSpacing: "0.03em" }}>
+                  <div style={{ fontSize: 12, color: "var(--accent)", marginTop: 3, fontFamily: "Inter Tight, sans-serif", fontWeight: 600, letterSpacing: "0.01em" }}>
                     {m.role}
                   </div>
                 </div>

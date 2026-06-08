@@ -1,12 +1,14 @@
 import AILaunchpad from "@/components/AILaunchpad";
 import CTA from "@/components/CTA";
 import EasyStart from "@/components/EasyStart";
+import FAQ from "@/components/FAQ";
 import FastWin from "@/components/FastWin";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
 import Navbar from "@/components/Navbar";
 import Pricing from "@/components/Pricing";
+import ProjectExamples from "@/components/ProjectExamples";
 import SectionReveal from "@/components/SectionReveal";
 import Services from "@/components/Services";
 import Team from "@/components/Team";
@@ -98,6 +100,11 @@ export default async function HomePage({
         <EasyStart />
       </SectionReveal>
 
+      {/* 6.5 Project / Portfolio Examples */}
+      <SectionReveal>
+        <ProjectExamples />
+      </SectionReveal>
+
       {/* 7. Student / Social Proof */}
       <SectionReveal>
         <Testimonials />
@@ -111,6 +118,11 @@ export default async function HomePage({
       {/* 9. Pricing */}
       <SectionReveal>
         <Pricing />
+      </SectionReveal>
+
+      {/* 9.5 FAQ */}
+      <SectionReveal>
+        <FAQ />
       </SectionReveal>
 
       {/* 10. Final CTA */}

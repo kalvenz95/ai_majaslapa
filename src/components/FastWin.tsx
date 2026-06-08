@@ -16,13 +16,13 @@ export default function FastWin() {
         {/* Header */}
         <div className="lp-header-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "end", marginBottom: 64 }}>
           <div>
-            <span style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: "JetBrains Mono, monospace", fontSize: 11, letterSpacing: "0.15em", color: "var(--ink-3)", textTransform: "uppercase" as const }}>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: "Inter Tight, sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", color: "var(--ink-3)", textTransform: "uppercase" as const }}>
               <span style={{ display: "inline-block", width: 24, height: 1, background: "var(--accent)" }} />
               {t("kicker")}
             </span>
             <h2 style={{ fontSize: "clamp(36px, 5.5vw, 78px)", lineHeight: 1.08, letterSpacing: "-0.035em", fontWeight: 600, margin: "16px 0 0", maxWidth: "15ch" }}>
               {t("titleA")}
-              <span style={{ color: "var(--ink-2)", fontStyle: "italic", fontFamily: "Fraunces, Georgia, serif", fontWeight: 500 }}>
+              <span style={{ color: "var(--accent)", fontFamily: "Inter Tight, sans-serif", fontWeight: 600 }}>
                 {t("titleB")}
               </span>
             </h2>
@@ -74,7 +74,7 @@ export default function FastWin() {
                 borderRadius: 10,
                 background: i === 0 ? "var(--accent)" : "var(--bg-2)",
                 border: i === 0 ? "none" : "1px solid var(--line-2)",
-                fontFamily: "JetBrains Mono, monospace",
+                fontFamily: "Inter Tight, sans-serif",
                 fontSize: 12,
                 fontWeight: 700,
                 color: i === 0 ? "var(--accent-ink)" : "var(--ink-3)",

@@ -74,7 +74,7 @@ export default function Hero() {
               variants={fadeUpItem}
               style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "6px 14px 6px 6px", background: "color-mix(in oklab, var(--accent) 12%, transparent)", border: "1px solid color-mix(in oklab, var(--accent) 35%, transparent)", borderRadius: 999, fontSize: 12, color: "var(--ink)", fontWeight: 500, marginBottom: 28 }}
             >
-              <span style={{ background: "var(--accent)", color: "var(--accent-ink)", padding: "3px 9px", borderRadius: 999, fontFamily: "JetBrains Mono, monospace", fontSize: 10, fontWeight: 700, letterSpacing: "0.08em" }}>{t("badgeRegion")}</span>
+              <span style={{ background: "var(--accent)", color: "var(--accent-ink)", padding: "3px 9px", borderRadius: 999, fontFamily: "Inter Tight, sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.08em" }}>{t("badgeRegion")}</span>
               {t("badgeLine")}
             </motion.span>
 
@@ -83,7 +83,7 @@ export default function Hero() {
               style={{ fontSize: "clamp(48px, 8.5vw, 124px)", lineHeight: 1.05, letterSpacing: "-0.045em", fontWeight: 600, margin: "0 0 28px", maxWidth: "14ch" }}
             >
               {t("h1Line1")}
-              <span style={{ color: "var(--ink-2)", fontStyle: "italic", fontFamily: "Fraunces, Georgia, serif", fontWeight: 500 }}>
+              <span style={{ color: "var(--accent)", fontFamily: "Inter Tight, sans-serif", fontWeight: 600 }}>
                 {t("h1Gradient")}
               </span>
               {t("h1Line2")}

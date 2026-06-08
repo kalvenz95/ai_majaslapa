@@ -6,26 +6,28 @@
 
 /* ── Chademy Design System ─────────────────────────────────────── */
 :root {
-  --accent: #A3E635;
-  --accent-ink: #0A0A0A;
+  --accent: #6D5EF3;
+  --accent-ink: #FFFFFF;
+  --accent-2: #00BFA5;
+  --accent-3: #FFB86B;
 
   /* Light theme */
-  --bg:   #F7F7F4;
-  --bg-1: #EFEFE9;
-  --bg-2: #E6E6E0;
-  --bg-3: #DDDDD6;
+  --bg:   #F8F7F4;
+  --bg-1: #F1EEE8;
+  --bg-2: #EAE6DE;
+  --bg-3: #DFDAD0;
 
-  --line:   rgba(0,0,0,0.08);
-  --line-2: rgba(0,0,0,0.14);
+  --line:   rgba(17,17,17,0.08);
+  --line-2: rgba(17,17,17,0.14);
 
   --ink:   #111111;
-  --ink-2: #444444;
-  --ink-3: #888888;
-  --ink-4: #BBBBBB;
+  --ink-2: #4A4A4A;
+  --ink-3: #6B6B6B;
+  --ink-4: #B3B0A9;
 
   --danger: #FF5757;
-  --warn: #FFB547;
-  --ok: var(--accent);
+  --warn: var(--accent-3);
+  --ok: var(--accent-2);
 
   /* Dashboard aliases — resolved via data-theme="dark" override */
   --d-bg: var(--bg);
@@ -36,7 +38,7 @@
   --d-ink2: var(--ink-2);
   --d-ink3: var(--ink-3);
   --d-accent: var(--accent);
-  --d-accent2: #7FF6E0;
+  --d-accent2: var(--accent-2);
   --d-accent-ink: var(--accent-ink);
   --d-side-w: 220px;
 }
@@ -184,19 +186,19 @@ a { color: inherit; text-decoration: none; }
   border: 1px solid var(--line-2);
   color: var(--ink-2);
 }
-.neon-green { color: var(--accent); }
-.neon-cyan { color: #7FF6E0; }
+.neon-green { color: var(--accent-2); }
+.neon-cyan { color: var(--accent-2); }
 .gradient-text-green {
-  color: var(--accent);
-  -webkit-text-fill-color: var(--accent);
+  color: var(--accent-2);
+  -webkit-text-fill-color: var(--accent-2);
 }
 .gradient-text-purple {
   color: var(--accent);
   -webkit-text-fill-color: var(--accent);
 }
 .gradient-text-cyan {
-  color: var(--accent);
-  -webkit-text-fill-color: var(--accent);
+  color: var(--accent-2);
+  -webkit-text-fill-color: var(--accent-2);
 }
 
 /* ── Cover / course card ────────────────────────────────────────── */
