@@ -17,7 +17,7 @@ function Check({ color = G }: { color?: string }) {
 
 /* ── Stilizēti mājaslapas funkciju priekšskatījumi ── */
 
-function BookingPreview({ accent }: { accent: string }) {
+function BookingPreview({ accent }: { accent: string; accent2: string }) {
   const slots = ["09:00", "10:30", "13:00", "15:30"];
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 8, padding: "16px 18px", height: "100%", justifyContent: "center" }}>
@@ -40,7 +40,7 @@ function BookingPreview({ accent }: { accent: string }) {
   );
 }
 
-function PaymentPreview({ accent }: { accent: string }) {
+function PaymentPreview({ accent }: { accent: string; accent2: string }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 10, padding: "16px 18px", height: "100%", justifyContent: "center" }}>
       <div style={{ borderRadius: 10, padding: "12px 14px", background: "linear-gradient(135deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02))", border: "1px solid rgba(255,255,255,0.09)" }}>
