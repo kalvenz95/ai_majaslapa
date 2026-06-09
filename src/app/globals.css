@@ -11,18 +11,18 @@
   --accent-2: #00BFA5;
   --accent-3: #FFB86B;
 
-  /* Light theme */
-  --bg:   #F8F7F4;
-  --bg-1: #F1EEE8;
-  --bg-2: #EAE6DE;
-  --bg-3: #DFDAD0;
+  /* Light theme — clean white/cream */
+  --bg:   #FAFAF8;
+  --bg-1: #FFFFFF;
+  --bg-2: #F5F3F0;
+  --bg-3: #EDEAE4;
 
   --line:   rgba(17,17,17,0.08);
-  --line-2: rgba(17,17,17,0.14);
+  --line-2: rgba(17,17,17,0.12);
 
   --ink:   #111111;
   --ink-2: #4A4A4A;
-  --ink-3: #6B6B6B;
+  --ink-3: #666666;
   --ink-4: #B3B0A9;
 
   --danger: #FF5757;

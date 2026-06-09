@@ -1,198 +1,146 @@
 "use client";
 
 import { Link } from "@/i18n/navigation";
-import { useTranslations } from "next-intl";
 
-type TrackCopy = {
-  num: string;
-  level: string;
-  badge?: string;
-  title: string;
-  desc: string;
-  skills: string[];
-  earn: string;
-  earnSuffix: string;
-  cta?: string;
-  link: string;
-  img?: string;
-};
-
-const DEFAULT_IMGS = [
-  "https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=900&auto=format&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1559028012-481c04fa702d?w=900&auto=format&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=900&auto=format&fit=crop&q=80",
+const curriculum = [
+  {
+    num: "1",
+    title: "AI saturs uzņēmumiem",
+    items: ["Faceless video", "Reklāmu vizuāļi", "Sociālie tīkli", "Portfolio no nulles"],
+    link: "/kursi/satura-specialists",
+  },
+  {
+    num: "2",
+    title: "AI mājaslapas",
+    items: ["Lovable / Claude Code", "Domēni un hosting", "Lead forms", "Publicēšana"],
+    link: "/kursi/digitalais-specialists",
+  },
+  {
+    num: "3",
+    title: "Automatizācija",
+    items: ["WhatsApp automatizācija", "E-pasti un follow-ups", "Lead apstrāde", "Make.com / n8n"],
+    link: "/kursi/digitalais-specialists",
+  },
+  {
+    num: "4",
+    title: "AI balss aģenti",
+    items: ["Vapi iestatīšana", "Zvanu scenāriji", "Rezervācijas sistēmas", "Klientu piesaiste"],
+    link: "/kursi/ai-agentu-eksperts",
+  },
 ];
 
 export default function Services() {
-  const t = useTranslations("Services");
-  const tracksRaw = ((t.raw("tracks") ?? []) as TrackCopy[]).map((tr, idx) => ({
-    ...tr,
-    img: tr.img ?? DEFAULT_IMGS[idx],
-  }));
-
   return (
-    <section id="courses" className="lp-section" style={{ padding: "120px 0", position: "relative", borderTop: "1px solid var(--line)", overflow: "hidden" }}>
-      <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "radial-gradient(ellipse 50% 70% at 100% 50%, color-mix(in oklab, var(--accent) 12%, transparent), transparent 65%), radial-gradient(ellipse 35% 35% at 15% 15%, color-mix(in oklab, var(--accent) 5%, transparent), transparent 55%)" }} />
+    <section id="courses" style={{ padding: "120px 0", background: "var(--bg)", borderTop: "1px solid var(--line)" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 32px" }}>
 
-      <div className="lp-container" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px", position: "relative", zIndex: 1 }}>
-        <div className="lp-header-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "end", marginBottom: 64 }}>
-          <div>
-            <h2 style={{ fontSize: "clamp(40px, 6vw, 84px)", lineHeight: 1.05, letterSpacing: "-0.035em", fontWeight: 600, margin: "16px 0 0", maxWidth: "14ch" }}>
-              {t("titleA")}
-              <span style={{ color: "var(--accent)", fontFamily: "Inter Tight, sans-serif", fontWeight: 600 }}>
-                {t("titleB")}
-              </span>
-            </h2>
-          </div>
-          <div style={{ paddingBottom: 8 }}>
-            <p style={{ fontSize: 18, color: "var(--ink-2)", maxWidth: 640, lineHeight: 1.55 }}>{t("lead")}</p>
-          </div>
+        {/* Header */}
+        <div style={{ textAlign: "center", maxWidth: 640, margin: "0 auto 64px" }}>
+          <h2 style={{
+            fontSize: "clamp(42px, 7vw, 80px)",
+            fontWeight: 900,
+            fontFamily: "Inter Tight, sans-serif",
+            letterSpacing: "-0.04em",
+            lineHeight: 1.06,
+            color: "var(--ink)",
+            margin: "0 0 20px",
+          }}>
+            Ko tu <span style={{ color: "var(--accent)" }}>iemācīsies?</span>
+          </h2>
+          <p style={{ fontSize: 18, color: "var(--ink-3)", lineHeight: 1.65 }}>
+            Četri praktiski virzieni — katrs ar konkrētiem uzdevumiem un veidnēm.
+          </p>
         </div>
 
-        <div className="lp-three-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
-          {tracksRaw.map((tr, idx) => {
-            const isPremium = idx === 2;
-            const isPopular = idx === 1;
-
-            return (
-              <article
-                key={tr.title}
-                style={{
-                  border: `1px solid ${isPremium ? "color-mix(in oklab, var(--accent) 30%, transparent)" : "var(--line)"}`,
-                  borderRadius: 28,
-                  background: isPremium
-                    ? "linear-gradient(180deg, color-mix(in oklab, var(--accent) 7%, var(--bg-1)) 0%, var(--bg-1) 55%)"
-                    : "var(--bg-1)",
-                  overflow: "hidden",
-                  display: "flex",
-                  flexDirection: "column",
-                  position: "relative",
-                  transition: "transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.transform = "translateY(-5px)";
-                  if (isPremium) {
-                    (e.currentTarget as HTMLElement).style.boxShadow = "0 24px 64px -16px color-mix(in oklab, var(--accent) 20%, transparent)";
-                  } else {
-                    (e.currentTarget as HTMLElement).style.borderColor = "var(--line-2)";
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.transform = "";
-                  (e.currentTarget as HTMLElement).style.boxShadow = "";
-                  (e.currentTarget as HTMLElement).style.borderColor = isPremium
-                    ? "color-mix(in oklab, var(--accent) 30%, transparent)"
-                    : "var(--line)";
-                }}
-              >
-                {/* Image header */}
-                <div style={{ aspectRatio: "16/9", position: "relative", overflow: "hidden", background: "var(--bg-3)", flexShrink: 0 }}>
-                  <img
-                    src={tr.img}
-                    alt=""
-                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                    loading="lazy"
-                  />
-                  <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, var(--bg-1) 0%, rgba(0,0,0,0.3) 60%, transparent 100%)", pointerEvents: "none" }} />
-                  {isPremium && (
-                    <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, color-mix(in oklab, var(--accent) 15%, transparent) 0%, transparent 60%)", pointerEvents: "none" }} />
-                  )}
-                  <span style={{ position: "absolute", top: 16, left: 16, zIndex: 2, background: "rgba(0,0,0,0.6)", backdropFilter: "blur(12px)", color: "white", fontFamily: "Inter Tight, sans-serif", fontSize: 11, padding: "5px 10px", borderRadius: 999, letterSpacing: "0.08em", fontWeight: 700 }}>
-                    {tr.num}
-                  </span>
+        {/* Curriculum cards */}
+        <div
+          className="services-grid"
+          style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16 }}
+        >
+          {curriculum.map((c) => (
+            <div
+              key={c.num}
+              style={{
+                background: "#fff",
+                border: "1px solid var(--line)",
+                borderRadius: 24,
+                padding: "36px 32px",
+                display: "flex",
+                flexDirection: "column",
+                gap: 20,
+                transition: "border-color 0.2s ease, box-shadow 0.2s ease",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.borderColor = "color-mix(in oklab, var(--accent) 30%, transparent)";
+                (e.currentTarget as HTMLElement).style.boxShadow = "0 16px 48px -16px rgba(17,17,17,0.08)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.borderColor = "var(--line)";
+                (e.currentTarget as HTMLElement).style.boxShadow = "";
+              }}
+            >
+              {/* Number + title */}
+              <div>
+                <div style={{
+                  fontSize: 14, fontWeight: 800, fontFamily: "Inter Tight, sans-serif",
+                  color: "var(--accent)", marginBottom: 8, letterSpacing: "-0.01em",
+                }}>
+                  {c.num}. temats
                 </div>
+                <h3 style={{
+                  fontSize: "clamp(20px, 2.5vw, 26px)",
+                  fontWeight: 800,
+                  fontFamily: "Inter Tight, sans-serif",
+                  letterSpacing: "-0.025em",
+                  color: "var(--ink)",
+                  margin: 0,
+                }}>
+                  {c.title}
+                </h3>
+              </div>
 
-                {/* Card content */}
-                <div style={{ padding: "22px 24px 26px", flex: 1, display: "flex", flexDirection: "column", gap: 0 }}>
-
-                  {/* Badge */}
-                  {tr.badge && (
-                    <span style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: 5,
-                      padding: "4px 10px",
-                      borderRadius: 999,
-                      fontSize: 10,
-                      fontWeight: 700,
-                      letterSpacing: "0.07em",
-                      textTransform: "uppercase" as const,
-                      fontFamily: "Inter Tight, sans-serif",
-                      background: isPremium ? "var(--accent)" : isPopular ? "color-mix(in oklab, var(--accent) 14%, transparent)" : "color-mix(in oklab, var(--accent) 10%, transparent)",
-                      color: isPremium ? "var(--accent-ink)" : "var(--accent)",
-                      border: isPremium ? "none" : "1px solid color-mix(in oklab, var(--accent) 28%, transparent)",
-                      alignSelf: "flex-start",
-                      marginBottom: 14,
+              {/* Bullet list */}
+              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                {c.items.map((item) => (
+                  <div key={item} style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                    <div style={{
+                      width: 22, height: 22, borderRadius: 999, flexShrink: 0,
+                      background: "color-mix(in oklab, var(--accent) 10%, transparent)",
+                      display: "flex", alignItems: "center", justifyContent: "center",
                     }}>
-                      {tr.badge}
-                    </span>
-                  )}
-
-                  {/* Title */}
-                  <h3 style={{ fontSize: 22, letterSpacing: "-0.025em", fontWeight: 700, margin: "0 0 7px", lineHeight: 1.15, color: "var(--ink)" }}>
-                    {tr.title}
-                  </h3>
-
-                  {/* Subtitle */}
-                  <p style={{ fontSize: 13.5, color: "var(--ink-3)", lineHeight: 1.5, margin: "0 0 18px" }}>
-                    {tr.desc}
-                  </p>
-
-
-                  {/* Benefit bullets */}
-                  <div style={{ display: "flex", flexDirection: "column", gap: 9, marginBottom: 24 }}>
-                    {tr.skills.map((s) => (
-                      <div key={s} style={{ display: "flex", alignItems: "flex-start", gap: 9 }}>
-                        <svg style={{ flexShrink: 0, marginTop: 2 }} width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2.8">
-                          <polyline points="20,6 9,17 4,12" />
-                        </svg>
-                        <span style={{ fontSize: 13, color: "var(--ink-2)", lineHeight: 1.45 }}>{s}</span>
-                      </div>
-                    ))}
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="3">
+                        <polyline points="20,6 9,17 4,12" />
+                      </svg>
+                    </div>
+                    <span style={{ fontSize: 15, color: "var(--ink-2)", fontWeight: 500 }}>{item}</span>
                   </div>
+                ))}
+              </div>
 
-                  {/* CTA */}
-                  <Link
-                    href={tr.link}
-                    style={{
-                      marginTop: "auto",
-                      display: "block",
-                      textAlign: "center",
-                      textDecoration: "none",
-                      padding: "12px 16px",
-                      borderRadius: 13,
-                      fontSize: 13.5,
-                      fontWeight: 600,
-                      letterSpacing: "-0.01em",
-                      background: isPremium ? "var(--accent)" : "var(--bg-2)",
-                      color: isPremium ? "var(--accent-ink)" : "var(--ink)",
-                      border: isPremium ? "none" : "1px solid var(--line-2)",
-                      transition: "filter 0.15s ease, background 0.15s ease, transform 0.15s ease",
-                    }}
-                    onMouseEnter={(e) => {
-                      if (isPremium) {
-                        (e.currentTarget as HTMLAnchorElement).style.filter = "brightness(1.08)";
-                      } else {
-                        (e.currentTarget as HTMLAnchorElement).style.background = "var(--bg-3)";
-                        (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--accent)";
-                        (e.currentTarget as HTMLAnchorElement).style.color = "var(--accent)";
-                      }
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLAnchorElement).style.filter = "";
-                      (e.currentTarget as HTMLAnchorElement).style.background = isPremium ? "var(--accent)" : "var(--bg-2)";
-                      (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--line-2)";
-                      (e.currentTarget as HTMLAnchorElement).style.color = isPremium ? "var(--accent-ink)" : "var(--ink)";
-                    }}
-                  >
-                    {tr.cta ?? t("viewCourse")}
-                  </Link>
-                </div>
-              </article>
-            );
-          })}
+              {/* CTA */}
+              <Link
+                href={c.link}
+                style={{
+                  display: "inline-flex", alignItems: "center", gap: 6,
+                  fontSize: 14, fontWeight: 700, color: "var(--accent)",
+                  textDecoration: "none", marginTop: "auto", paddingTop: 4,
+                  transition: "gap 0.15s ease",
+                }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.gap = "10px"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.gap = "6px"; }}
+              >
+                Uzzināt vairāk →
+              </Link>
+            </div>
+          ))}
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 700px) {
+          .services-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </section>
   );
 }

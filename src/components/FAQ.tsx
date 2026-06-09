@@ -37,12 +37,23 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" style={{ padding: "120px 24px", position: "relative", borderTop: "1px solid var(--line)" }}>
+    <section id="faq" style={{ padding: "120px 24px", background: "var(--bg)", borderTop: "1px solid var(--line)" }}>
       <div style={{ maxWidth: 760, margin: "0 auto" }}>
-        <div style={{ textAlign: "center", marginBottom: 52 }}>
-          <h2 style={{ fontFamily: "Inter Tight, sans-serif", fontWeight: 600, letterSpacing: "-0.035em", lineHeight: 1.1, color: "var(--ink)", fontSize: "clamp(28px, 5vw, 48px)" }}>
-            Jautājumi, kas <span style={{ color: "var(--accent)" }}>rodas bieži</span>
+        <div style={{ textAlign: "center", marginBottom: 56 }}>
+          <h2 style={{
+            fontSize: "clamp(40px, 7vw, 76px)",
+            fontWeight: 900,
+            fontFamily: "Inter Tight, sans-serif",
+            letterSpacing: "-0.04em",
+            lineHeight: 1.06,
+            color: "var(--ink)",
+            margin: "0 0 16px",
+          }}>
+            Biežākie <span style={{ color: "var(--accent)" }}>jautājumi</span>
           </h2>
+          <p style={{ fontSize: 17, color: "var(--ink-3)", lineHeight: 1.6 }}>
+            Atbildes uz visu, kas rodas pirms sākuma.
+          </p>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>

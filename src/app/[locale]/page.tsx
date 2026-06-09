@@ -100,11 +100,6 @@ export default async function HomePage({
         <EasyStart />
       </SectionReveal>
 
-      {/* 6.5 Project / Portfolio Examples */}
-      <SectionReveal>
-        <ProjectExamples />
-      </SectionReveal>
-
       {/* 7. Student / Social Proof */}
       <SectionReveal>
         <Testimonials />
