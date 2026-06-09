@@ -12,7 +12,7 @@ type CardCopy = {
 
 export default function AILaunchpad() {
   const t = useTranslations("AILaunchpad");
-  const cardColors = ["var(--accent)", "var(--ink-2)", "var(--ink-3)"];
+  const cardColors = ["var(--accent)", "var(--accent-2)", "var(--accent-3)"];
   const cards = (
     ((t.raw("cards") ?? []) as CardCopy[]).map((c, i) => ({
       ...c,
@@ -45,28 +45,44 @@ export default function AILaunchpad() {
             </span>
           </div>
 
-        <div className="lp-three-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 2 }}>
+        <div className="lp-three-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}>
           {cards.map((item, i) => (
             <div
               key={`${item.label}-${i}`}
               style={{
-                padding: "24px 20px",
-                background: "var(--bg-1)",
-                borderTop: `2px solid ${item.color}`,
-                borderRight: i < 2 ? "1px solid var(--line)" : "none",
+                padding: "32px 28px",
+                background: "var(--bg-2)",
+                border: `1px solid color-mix(in oklab, ${item.color} 22%, var(--line))`,
+                borderRadius: 22,
+                position: "relative",
+                overflow: "hidden",
+                transition: "transform 0.22s cubic-bezier(0.32,0.72,0,1), box-shadow 0.22s",
+                cursor: "default",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
+                (e.currentTarget as HTMLElement).style.boxShadow = `0 16px 40px -12px color-mix(in oklab, ${item.color} 22%, transparent)`;
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.transform = "";
+                (e.currentTarget as HTMLElement).style.boxShadow = "";
               }}
             >
-              <div style={{ fontFamily: "Inter Tight, sans-serif", fontWeight: 700, fontSize: 14, color: "var(--ink-2)", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 12 }}>
+              {/* Subtle gradient accent in corner */}
+              <div style={{ position: "absolute", top: 0, right: 0, width: 120, height: 120, background: `radial-gradient(circle at top right, color-mix(in oklab, ${item.color} 14%, transparent), transparent 70%)`, pointerEvents: "none" }} />
+
+              <div style={{ fontFamily: "Inter Tight, sans-serif", fontWeight: 700, fontSize: 11, color: "var(--ink-3)", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 20 }}>
                 {item.label}
               </div>
-              <div style={{ fontSize: "clamp(18px, 4vw, 26px)", fontWeight: 700, letterSpacing: "-0.03em", color: item.color, lineHeight: 1.1, marginBottom: 4 }}>
+              <div style={{ fontSize: "clamp(26px, 3.5vw, 38px)", fontWeight: 800, letterSpacing: "-0.04em", color: item.color, lineHeight: 1, marginBottom: 6, fontFamily: "Inter Tight, sans-serif" }}>
                 {item.range}
               </div>
-              <div style={{ fontSize: 12, color: "var(--ink-3)", marginBottom: 10 }}>{t("perMonth")}</div>
-              <div style={{ fontSize: 12, color: "var(--ink-2)", lineHeight: 1.5, marginBottom: 14 }}>{item.desc}</div>
+              <div style={{ fontSize: 12, color: "var(--ink-3)", marginBottom: 16, fontWeight: 500 }}>{t("perMonth")}</div>
+              <div style={{ width: 32, height: 2, background: `color-mix(in oklab, ${item.color} 40%, transparent)`, borderRadius: 999, marginBottom: 16 }} />
+              <div style={{ fontSize: 13.5, color: "var(--ink-2)", lineHeight: 1.6, marginBottom: 20 }}>{item.desc}</div>
               {item.math && (
-                <div style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "7px 12px", borderRadius: 999, background: "color-mix(in oklab, " + item.color + " 12%, transparent)", fontSize: 12, fontWeight: 600, color: item.color, fontFamily: "Inter Tight, sans-serif", letterSpacing: "-0.01em" }}>
-                  🧮 {item.math}
+                <div style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "7px 14px", borderRadius: 999, background: `color-mix(in oklab, ${item.color} 10%, transparent)`, border: `1px solid color-mix(in oklab, ${item.color} 22%, transparent)`, fontSize: 12, fontWeight: 600, color: item.color, fontFamily: "Inter Tight, sans-serif", letterSpacing: "-0.01em" }}>
+                  {item.math}
                 </div>
               )}
             </div>

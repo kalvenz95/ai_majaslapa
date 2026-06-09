@@ -37,8 +37,14 @@
     "stat3Label": "Aktīvi studenti",
     "stat4Val": "€0",
     "stat4Label": "Sākt bez pieredzes",
-    "floatTag1": "Build · Sell · Scale",
-    "floatTag2": "Pirmais klients 3 nedēļās"
+    "feat1Title": "Pieprasīta prasme biznesā",
+    "feat1Desc": "AI zināšanas kļūst par obligātu prasību daudzos amatos un nozarēs.",
+    "feat2Title": "Praktisks pielietojums uzņēmumos",
+    "feat2Desc": "Apgūsti rīkus, ko reāli uzņēmumi lieto jau šodien.",
+    "feat3Title": "Nav nepieciešama programmēšana",
+    "feat3Desc": "Sāc no nulles — bez tehniskas pieredzes vai IT fona.",
+    "feat4Title": "Iespēja veidot pakalpojumus klientiem",
+    "feat4Desc": "Pārvērt AI prasmes papildu ienākumos vai pilna laika darbā."
   },
   "FastWin": {
     "kicker": "Ceļš uz klientiem",

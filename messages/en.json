@@ -37,8 +37,14 @@
     "stat3Label": "Active learners",
     "stat4Val": "€0",
     "stat4Label": "Start without experience",
-    "floatTag1": "Build · Sell · Scale",
-    "floatTag2": "First client in ~3 weeks"
+    "feat1Title": "In-demand business skill",
+    "feat1Desc": "AI knowledge is becoming a required skill across many roles and industries.",
+    "feat2Title": "Practical business application",
+    "feat2Desc": "Learn the tools real companies are already using today.",
+    "feat3Title": "No programming required",
+    "feat3Desc": "Start from zero — no technical background or coding experience needed.",
+    "feat4Title": "Build services for clients",
+    "feat4Desc": "Turn your AI skills into extra income or a full-time career."
   },
   "FastWin": {
     "kicker": "The path to clients",

@@ -2,12 +2,9 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import type { CSSProperties } from "react";
 import { useHasMounted } from "@/hooks/useHasMounted";
 
 const EASE_OUT = [0.215, 0.61, 0.355, 1] as const;
-/** ease-in-out cubic — continuous on-screen motion */
-const EASE_IN_OUT = [0.645, 0.045, 0.355, 1] as const;
 
 const staggerParent = {
   hidden: {},
@@ -25,37 +22,57 @@ const fadeUpItem = {
   },
 };
 
-function HeroFloatLayer({
-  style,
-  children,
-  delay = 0,
-  duration = 5.5,
-  amplitude = 10,
-}: {
-  style: CSSProperties;
-  children: React.ReactNode;
-  delay?: number;
-  duration?: number;
-  amplitude?: number;
-}) {
-  const hasMounted = useHasMounted();
-  const reduceMotion = useReducedMotion();
-  const skipMotion = hasMounted && reduceMotion;
+const featureVariant = {
+  hidden: { opacity: 0, x: 28 },
+  visible: (i: number) => ({
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.48, ease: EASE_OUT, delay: i * 0.1 + 0.2 },
+  }),
+};
+
+function IconBriefcase() {
   return (
-    <motion.div
-      style={{ position: "absolute", ...style }}
-      animate={skipMotion ? undefined : { y: [0, -amplitude, 0] }}
-      transition={{
-        duration,
-        repeat: Infinity,
-        ease: EASE_IN_OUT,
-        delay,
-      }}
-    >
-      {children}
-    </motion.div>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="7" width="20" height="14" rx="2" />
+      <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+      <line x1="12" y1="12" x2="12" y2="12.01" />
+    </svg>
   );
 }
+
+function IconCpu() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="4" y="4" width="16" height="16" rx="2" />
+      <rect x="9" y="9" width="6" height="6" />
+      <line x1="9" y1="2" x2="9" y2="4" /><line x1="15" y1="2" x2="15" y2="4" />
+      <line x1="9" y1="20" x2="9" y2="22" /><line x1="15" y1="20" x2="15" y2="22" />
+      <line x1="2" y1="9" x2="4" y2="9" /><line x1="2" y1="15" x2="4" y2="15" />
+      <line x1="20" y1="9" x2="22" y2="9" /><line x1="20" y1="15" x2="22" y2="15" />
+    </svg>
+  );
+}
+
+function IconShieldOff() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      <line x1="2" y1="2" x2="22" y2="22" />
+    </svg>
+  );
+}
+
+function IconTrendingUp() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+      <polyline points="17 6 23 6 23 12" />
+    </svg>
+  );
+}
+
+const ICONS = [IconBriefcase, IconCpu, IconShieldOff, IconTrendingUp];
 
 export default function Hero() {
   const hasMounted = useHasMounted();
@@ -63,13 +80,21 @@ export default function Hero() {
   const skipMotion = hasMounted && reduceMotion;
   const t = useTranslations("Hero");
 
+  const features = [
+    { num: "01", title: t("feat1Title"), desc: t("feat1Desc") },
+    { num: "02", title: t("feat2Title"), desc: t("feat2Desc") },
+    { num: "03", title: t("feat3Title"), desc: t("feat3Desc") },
+    { num: "04", title: t("feat4Title"), desc: t("feat4Desc") },
+  ];
+
   return (
-    <header style={{ padding: "96px 0 80px", position: "relative", overflow: "hidden" }}>
+    <header style={{ padding: "120px 0 96px", position: "relative", overflow: "hidden" }}>
       <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "radial-gradient(ellipse 60% 50% at 80% 20%, color-mix(in oklab, var(--accent) 18%, transparent), transparent 60%), radial-gradient(ellipse 50% 50% at 10% 80%, color-mix(in oklab, var(--accent) 8%, transparent), transparent 60%)" }} />
 
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px", position: "relative", zIndex: 1 }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: 64, alignItems: "center" }} className="hero-grid-responsive">
-          {/* Left */}
+        <div style={{ display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: 72, alignItems: "center" }} className="hero-grid-responsive">
+
+          {/* Left — text */}
           <motion.div
             initial={skipMotion ? false : "hidden"}
             animate="visible"
@@ -85,10 +110,10 @@ export default function Hero() {
 
             <motion.h1
               variants={fadeUpItem}
-              style={{ fontSize: "clamp(48px, 8.5vw, 124px)", lineHeight: 1.05, letterSpacing: "-0.045em", fontWeight: 600, margin: "0 0 28px", maxWidth: "14ch" }}
+              style={{ fontSize: "clamp(36px, 5.5vw, 72px)", lineHeight: 1.07, letterSpacing: "-0.04em", fontWeight: 700, margin: "0 0 24px", maxWidth: "16ch" }}
             >
               {t("h1Line1")}
-              <span style={{ color: "var(--accent)", fontFamily: "Inter Tight, sans-serif", fontWeight: 600 }}>
+              <span style={{ color: "var(--accent)", fontFamily: "Inter Tight, sans-serif", fontWeight: 700 }}>
                 {t("h1Gradient")}
               </span>
               {t("h1Line2")}
@@ -96,101 +121,82 @@ export default function Hero() {
 
             <motion.p
               variants={fadeUpItem}
-              style={{ fontSize: 19, lineHeight: 1.55, color: "var(--ink-2)", maxWidth: 560 }}
+              style={{ fontSize: 18, lineHeight: 1.6, color: "var(--ink-2)", maxWidth: 520, margin: "0 0 36px" }}
             >
               {t("sub")}
             </motion.p>
 
-            <motion.div variants={fadeUpItem} style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 36 }}>
+            <motion.div variants={fadeUpItem} style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
               <a href="#pricing" className="btn-primary" style={{ textDecoration: "none" }}>{t("ctaPrimary")}</a>
               <a href="#how" className="btn-ghost" style={{ textDecoration: "none" }}>{t("ctaSecondary")}</a>
             </motion.div>
-
-            {/* Stats */}
-            <motion.div
-              variants={fadeUpItem}
-              className="hero-stats-grid"
-              style={{ marginTop: 64, paddingTop: 28, borderTop: "1px solid var(--line)", display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }}
-            >
-              <div>
-                <div style={{ fontSize: 44, fontWeight: 600, letterSpacing: "-0.04em", lineHeight: 1 }}>{t("stat1Val")}</div>
-                <div style={{ fontSize: 13, color: "var(--ink-3)", marginTop: 10, lineHeight: 1.4 }}>{t("stat1Label")}</div>
-              </div>
-              <div>
-                <div style={{ fontSize: 44, fontWeight: 600, letterSpacing: "-0.04em", lineHeight: 1 }}>
-                  <span style={{ color: "var(--accent)" }}>{t("stat2Val")}</span><span style={{ fontSize: 24, color: "var(--ink-3)" }}>{t("stat2Percent")}</span>
-                </div>
-                <div style={{ fontSize: 13, color: "var(--ink-3)", marginTop: 10, lineHeight: 1.4 }}>{t("stat2Label")}</div>
-              </div>
-              <div>
-                <div style={{ fontSize: 44, fontWeight: 600, letterSpacing: "-0.04em", lineHeight: 1 }}>
-                  350<span style={{ fontSize: 24, color: "var(--accent)" }}>+</span>
-                </div>
-                <div style={{ fontSize: 13, color: "var(--ink-3)", marginTop: 10, lineHeight: 1.4 }}>{t("stat3Label")}</div>
-              </div>
-              <div>
-                <div style={{ fontSize: 44, fontWeight: 600, letterSpacing: "-0.04em", lineHeight: 1 }}>{t("stat4Val")}</div>
-                <div style={{ fontSize: 13, color: "var(--ink-3)", marginTop: 10, lineHeight: 1.4 }}>{t("stat4Label")}</div>
-              </div>
-            </motion.div>
           </motion.div>
 
-          {/* Right: image collage */}
-          <motion.div
-            initial={skipMotion ? false : { opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: EASE_OUT, delay: 0.15 }}
-            className="hero-img-col"
-            style={{ position: "relative", aspectRatio: "1/1", marginTop: 48 }}
-          >
-            {/* Card 1 */}
-            <HeroFloatLayer
-              duration={5.8}
-              amplitude={11}
-              delay={0}
-              style={{ left: "5%", top: 0, width: "62%", aspectRatio: "4 / 5", zIndex: 2 }}
-            >
-              <div style={{ width: "100%", height: "100%", borderRadius: 24, overflow: "hidden", border: "1px solid var(--line-2)", boxShadow: "0 16px 48px -12px rgba(0,0,0,0.12), 0 4px 16px -4px rgba(0,0,0,0.07)", transform: "rotate(-2.5deg)", background: "var(--bg-2)" }}>
-                <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=900&auto=format&fit=crop&q=80" alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} loading="lazy" />
-              </div>
-            </HeroFloatLayer>
-            {/* Card 2 */}
-            <HeroFloatLayer
-              duration={6.4}
-              amplitude={14}
-              delay={0.85}
-              style={{ right: 0, top: "18%", width: "50%", aspectRatio: "1 / 1", zIndex: 3 }}
-            >
-              <div style={{ width: "100%", height: "100%", borderRadius: 24, overflow: "hidden", border: "1px solid var(--line-2)", boxShadow: "0 16px 48px -12px rgba(0,0,0,0.12), 0 4px 16px -4px rgba(0,0,0,0.07)", transform: "rotate(3deg)", background: "var(--bg-2)" }}>
-                <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=900&auto=format&fit=crop&q=80" alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} loading="lazy" />
-              </div>
-            </HeroFloatLayer>
-            {/* Card 3 */}
-            <HeroFloatLayer
-              duration={5.2}
-              amplitude={9}
-              delay={1.65}
-              style={{ left: "18%", bottom: 0, width: "48%", aspectRatio: "4 / 3", zIndex: 4 }}
-            >
-              <div style={{ width: "100%", height: "100%", borderRadius: 24, overflow: "hidden", border: "1px solid var(--line-2)", boxShadow: "0 16px 48px -12px rgba(0,0,0,0.12), 0 4px 16px -4px rgba(0,0,0,0.07)", transform: "rotate(-1.5deg)", background: "var(--bg-2)" }}>
-                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=900&auto=format&fit=crop&q=80" alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} loading="lazy" />
-              </div>
-            </HeroFloatLayer>
-            {/* Floating tag 1 */}
-            <HeroFloatLayer duration={4.8} amplitude={6} delay={0.35} style={{ top: "8%", right: "-2%", zIndex: 10 }}>
-              <div style={{ background: "white", border: "1px solid var(--line-2)", borderRadius: 14, padding: "10px 14px", fontSize: 12, fontWeight: 500, display: "flex", alignItems: "center", gap: 8, boxShadow: "0 6px 20px -6px rgba(0,0,0,0.10)" }}>
-                <span style={{ width: 8, height: 8, borderRadius: 999, background: "var(--accent)", flexShrink: 0 }} />
-                {t("floatTag1")}
-              </div>
-            </HeroFloatLayer>
-            {/* Floating tag 2 */}
-            <HeroFloatLayer duration={5.4} amplitude={7} delay={1.1} style={{ bottom: "12%", left: "-4%", zIndex: 10 }}>
-              <div style={{ background: "white", border: "1px solid var(--line-2)", borderRadius: 14, padding: "10px 14px", fontSize: 12, fontWeight: 500, display: "flex", alignItems: "center", gap: 8, boxShadow: "0 6px 20px -6px rgba(0,0,0,0.10)" }}>
-                <span style={{ width: 8, height: 8, borderRadius: 999, background: "var(--accent)", flexShrink: 0 }} />
-                {t("floatTag2")}
-              </div>
-            </HeroFloatLayer>
-          </motion.div>
+          {/* Right — feature bullets */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 14 }} className="hero-features-col">
+            {features.map((f, i) => {
+              const Icon = ICONS[i];
+              return (
+                <motion.div
+                  key={i}
+                  custom={i}
+                  initial={skipMotion ? false : "hidden"}
+                  animate="visible"
+                  variants={featureVariant}
+                  style={{
+                    position: "relative",
+                    display: "flex",
+                    alignItems: "flex-start",
+                    gap: 20,
+                    padding: "22px 24px",
+                    background: "var(--bg-2)",
+                    borderRadius: 18,
+                    border: "1px solid var(--line)",
+                    overflow: "hidden",
+                  }}
+                >
+                  {/* large faded number */}
+                  <span style={{
+                    position: "absolute",
+                    right: 18,
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    fontSize: 64,
+                    fontWeight: 800,
+                    letterSpacing: "-0.06em",
+                    lineHeight: 1,
+                    color: "color-mix(in oklab, var(--accent) 10%, transparent)",
+                    pointerEvents: "none",
+                    userSelect: "none",
+                    fontFamily: "Inter Tight, sans-serif",
+                  }}>{f.num}</span>
+
+                  {/* icon block */}
+                  <div style={{
+                    width: 52,
+                    height: 52,
+                    flexShrink: 0,
+                    borderRadius: 14,
+                    background: "color-mix(in oklab, var(--accent) 14%, transparent)",
+                    border: "1px solid color-mix(in oklab, var(--accent) 30%, transparent)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "var(--accent)",
+                  }}>
+                    <Icon />
+                  </div>
+
+                  {/* text */}
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontSize: 17, fontWeight: 700, marginBottom: 5, letterSpacing: "-0.02em", lineHeight: 1.2 }}>{f.title}</div>
+                    <div style={{ fontSize: 13.5, color: "var(--ink-2)", lineHeight: 1.55 }}>{f.desc}</div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+
         </div>
       </div>
     </header>
