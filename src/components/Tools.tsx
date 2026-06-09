@@ -62,11 +62,6 @@ export default function Tools() {
 
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: 56 }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, fontFamily: "Inter Tight, sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", color: "var(--ink-3)", textTransform: "uppercase" as const, marginBottom: 20 }}>
-            <span style={{ display: "inline-block", width: 24, height: 1, background: "var(--accent)" }} />
-            Platformu stack
-            <span style={{ display: "inline-block", width: 24, height: 1, background: "var(--accent)" }} />
-          </div>
           <h2 style={{ fontFamily: "Inter Tight, sans-serif", fontSize: "clamp(32px, 5vw, 68px)", fontWeight: 600, color: "var(--ink)", letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: 16 }}>
             Rīki, kurus{" "}
             <span style={{ color: "var(--accent)", fontFamily: "Inter Tight, sans-serif", fontWeight: 600 }}>

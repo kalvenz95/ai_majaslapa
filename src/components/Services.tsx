@@ -37,10 +37,6 @@ export default function Services() {
       <div className="lp-container" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px", position: "relative", zIndex: 1 }}>
         <div className="lp-header-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "end", marginBottom: 64 }}>
           <div>
-            <span style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: "Inter Tight, sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", color: "var(--ink-3)", textTransform: "uppercase" as const }}>
-              <span style={{ display: "inline-block", width: 24, height: 1, background: "var(--accent)" }} />
-              {t("kicker")}
-            </span>
             <h2 style={{ fontSize: "clamp(40px, 6vw, 84px)", lineHeight: 1.05, letterSpacing: "-0.035em", fontWeight: 600, margin: "16px 0 0", maxWidth: "14ch" }}>
               {t("titleA")}
               <span style={{ color: "var(--accent)", fontFamily: "Inter Tight, sans-serif", fontWeight: 600 }}>
@@ -142,11 +138,6 @@ export default function Services() {
                     {tr.desc}
                   </p>
 
-                  {/* Income range */}
-                  <div style={{ display: "flex", alignItems: "baseline", gap: 5, marginBottom: 22, padding: "11px 14px", background: "var(--bg-2)", borderRadius: 10, border: `1px solid ${isPremium ? "color-mix(in oklab, var(--accent) 20%, transparent)" : "var(--line)"}` }}>
-                    <span style={{ fontSize: 20, fontWeight: 700, color: "var(--accent)", letterSpacing: "-0.03em" }}>{tr.earn}</span>
-                    <span style={{ fontSize: 12, color: "var(--ink-3)", fontFamily: "Inter, sans-serif" }}>{tr.earnSuffix}</span>
-                  </div>
 
                   {/* Benefit bullets */}
                   <div style={{ display: "flex", flexDirection: "column", gap: 9, marginBottom: 24 }}>

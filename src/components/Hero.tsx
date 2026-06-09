@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import type { CSSProperties } from "react";
+import { useEffect, useState } from "react";
 import { useHasMounted } from "@/hooks/useHasMounted";
 
 const EASE_OUT = [0.215, 0.61, 0.355, 1] as const;
@@ -62,6 +63,13 @@ export default function Hero() {
   const reduceMotion = useReducedMotion();
   const skipMotion = hasMounted && reduceMotion;
   const t = useTranslations("Hero");
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 860);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   return (
     <header style={{ padding: "96px 0 80px", position: "relative", overflow: "hidden" }}>
@@ -135,8 +143,8 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Right: image collage */}
-          <motion.div
+          {/* Right: image collage — not rendered on mobile to save CPU */}
+          {!isMobile && <motion.div
             initial={skipMotion ? false : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: EASE_OUT, delay: 0.15 }}
@@ -190,7 +198,7 @@ export default function Hero() {
                 {t("floatTag2")}
               </div>
             </HeroFloatLayer>
-          </motion.div>
+          </motion.div>}
         </div>
       </div>
     </header>

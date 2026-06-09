@@ -22,10 +22,10 @@
   "Hero": {
     "badgeRegion": "LV",
     "badgeLine": "Latvia’s first AI monetization academy",
-    "h1Line1": "Learn to build AI services that ",
-    "h1Gradient": "businesses are already",
-    "h1Line2": " looking for",
-    "sub": "Practical training in Latvian. Step by step — learn AI skills and apply them working with real businesses.",
+    "h1Line1": "Master the AI skill ",
+    "h1Gradient": "that few know",
+    "h1Line2": " how to use",
+    "sub": "Practical training in Latvian — from zero to your first client. No coding, no IT background required.",
     "ctaPrimary": "Start for free →",
     "ctaSecondary": "View courses",
     "stat1Val": "3",
@@ -337,10 +337,22 @@
       {
         "title": "Company",
         "links": [
-          { "name": "About Chademy", "href": "/par-mums" },
-          { "name": "Mission", "href": "/misija" },
-          { "name": "Contact", "href": "/kontakti" },
-          { "name": "Privacy policy", "href": "/privatuma-politika" }
+          {
+            "name": "About Chademy",
+            "href": "/par-mums"
+          },
+          {
+            "name": "Mission",
+            "href": "/misija"
+          },
+          {
+            "name": "Contact",
+            "href": "/kontakti"
+          },
+          {
+            "name": "Privacy policy",
+            "href": "/privatuma-politika"
+          }
         ]
       }
     ]

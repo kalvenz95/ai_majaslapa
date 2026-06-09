@@ -40,7 +40,6 @@ export default function FAQ() {
     <section id="faq" style={{ padding: "120px 24px", position: "relative", borderTop: "1px solid var(--line)" }}>
       <div style={{ maxWidth: 760, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 52 }}>
-          <div className="chip chip-dot" style={{ marginBottom: 20, display: "inline-flex" }}>Biežāk uzdotie jautājumi</div>
           <h2 style={{ fontFamily: "Inter Tight, sans-serif", fontWeight: 600, letterSpacing: "-0.035em", lineHeight: 1.1, color: "var(--ink)", fontSize: "clamp(28px, 5vw, 48px)" }}>
             Jautājumi, kas <span style={{ color: "var(--accent)" }}>rodas bieži</span>
           </h2>

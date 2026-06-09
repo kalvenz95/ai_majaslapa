@@ -22,10 +22,10 @@
   "Hero": {
     "badgeRegion": "LV",
     "badgeLine": "Latvijas pirmā AI monetizācijas akadēmija",
-    "h1Line1": "Iemācies veidot AI pakalpojumus, kurus ",
-    "h1Gradient": "uzņēmumi jau šobrīd",
-    "h1Line2": " meklē",
-    "sub": "Praktiska apmācība latviešu valodā. Soli pa solim apgūsti AI prasmes un to pielietojumu darbā ar uzņēmumiem.",
+    "h1Line1": "Apgūsti AI prasmi, ",
+    "h1Gradient": "ko retais prot",
+    "h1Line2": " izmantot",
+    "sub": "Praktiska apmācība latviešu valodā — no nulles līdz pirmajam klientam. Bez programmēšanas, bez IT pieredzes.",
     "ctaPrimary": "Sākt bezmaksas →",
     "ctaSecondary": "Skatīt kursus",
     "stat1Val": "3",
@@ -337,10 +337,22 @@
       {
         "title": "Uzņēmums",
         "links": [
-          { "name": "Par Chademy", "href": "/par-mums" },
-          { "name": "Misija", "href": "/misija" },
-          { "name": "Kontakti", "href": "/kontakti" },
-          { "name": "Privātuma politika", "href": "/privatuma-politika" }
+          {
+            "name": "Par Chademy",
+            "href": "/par-mums"
+          },
+          {
+            "name": "Misija",
+            "href": "/misija"
+          },
+          {
+            "name": "Kontakti",
+            "href": "/kontakti"
+          },
+          {
+            "name": "Privātuma politika",
+            "href": "/privatuma-politika"
+          }
         ]
       }
     ]

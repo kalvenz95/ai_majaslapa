@@ -52,7 +52,6 @@ export default function ProjectExamples() {
 
       <div style={{ maxWidth: 1280, margin: "0 auto", position: "relative" }}>
         <div style={{ textAlign: "center", maxWidth: 640, margin: "0 auto 56px" }}>
-          <div className="chip chip-dot" style={{ marginBottom: 20, display: "inline-flex" }}>Portfolio piemēri</div>
           <h2 style={{ fontFamily: "Inter Tight, sans-serif", fontWeight: 600, letterSpacing: "-0.035em", lineHeight: 1.1, color: "var(--ink)", marginBottom: 16, fontSize: "clamp(28px, 5vw, 52px)" }}>
             Ko iespējams <span style={{ color: "var(--accent)" }}>izveidot</span>
           </h2>

@@ -66,8 +66,6 @@ export default function EasyStart() {
 
         {/* Copy */}
         <div>
-          <div className="chip chip-dot" style={{ marginBottom: 22 }}>Sāc bez tehniskām zināšanām</div>
-
           <h2 style={{ fontFamily: "Inter Tight, sans-serif", fontWeight: 600, letterSpacing: "-0.035em", lineHeight: 1.12, color: "var(--ink)", marginBottom: 20, fontSize: "clamp(28px, 4.2vw, 48px)" }}>
             Nav jābūt <span style={{ color: "var(--accent)" }}>tehniskam,</span> lai sāktu
           </h2>

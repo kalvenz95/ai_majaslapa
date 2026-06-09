@@ -16,8 +16,6 @@ export default function WhyAI() {
       <div style={{ maxWidth: 1180, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center", position: "relative" }} className="whyai-grid">
         {/* Left: copy */}
         <div>
-          <div className="chip chip-dot" style={{ marginBottom: 22 }}>AI prasmes biznesam</div>
-
           <h2 style={{ fontFamily: "Inter Tight, sans-serif", fontWeight: 600, letterSpacing: "-0.035em", lineHeight: 1.12, color: "var(--ink)", marginBottom: 20, fontSize: "clamp(28px, 4.2vw, 48px)" }}>
             Uzņēmumiem vajag cilvēkus, kas prot izmantot{" "}
             <span style={{ color: "var(--accent)" }}>AI praksē</span>
