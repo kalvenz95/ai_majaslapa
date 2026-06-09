@@ -53,7 +53,7 @@ export default function Services() {
           </div>
         </div>
 
-        <div className="lp-three-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1.18fr", gap: 20 }}>
+        <div className="lp-three-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
           {tracksRaw.map((tr, idx) => {
             const isPremium = idx === 2;
             const isPopular = idx === 1;
