@@ -380,6 +380,24 @@ summary:focus-visible {
   50% { transform: translateY(-16px); }
 }
 
+@keyframes floatSoft {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+.float-soft { animation: floatSoft 5s ease-in-out infinite; }
+
+/* Slow drifting aurora for hero atmosphere layers */
+@keyframes heroAurora {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  33%  { transform: translate3d(-2.5%, 1.5%, 0) scale(1.07); }
+  66%  { transform: translate3d(2%, -1.5%, 0) scale(1.05); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+.hero-aurora { animation: heroAurora 20s ease-in-out infinite; will-change: transform; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-aurora, .float-soft { animation: none; }
+}
+
 @keyframes scan {
   from { transform: translateY(-100%); }
   to { transform: translateY(100%); }

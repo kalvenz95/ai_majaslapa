@@ -1,5 +1,7 @@
 "use client";
 
+import { AnimatedNumber } from "@/components/AnimatedNumber";
+
 const quotes = [
   {
     initials: "MK",
@@ -74,9 +76,10 @@ export default function Testimonials() {
               padding: "32px 24px", textAlign: "center",
               borderRight: i < 2 ? "1px solid var(--line)" : "none",
             }}>
-              <div style={{ fontSize: 48, fontWeight: 900, fontFamily: "Inter Tight, sans-serif", letterSpacing: "-0.04em", color: i === 1 ? "var(--accent)" : "var(--ink)", lineHeight: 1 }}>
-                {s.val}
-              </div>
+              <AnimatedNumber
+                value={s.val}
+                style={{ display: "block", fontSize: 48, fontWeight: 900, fontFamily: "Inter Tight, sans-serif", letterSpacing: "-0.04em", color: i === 1 ? "var(--accent)" : "var(--ink)", lineHeight: 1 }}
+              />
               <div style={{ fontSize: 13, color: "var(--ink-3)", marginTop: 8 }}>{s.label}</div>
             </div>
           ))}

@@ -4,6 +4,10 @@ import { motion, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { useHasMounted } from "@/hooks/useHasMounted";
+import { AnimatedNumber } from "@/components/AnimatedNumber";
+import { EmojiIcon } from "@/components/EmojiIcon";
+import { Check, Play, Lock } from "lucide-react";
+import { Magnetic } from "@/components/Magnetic";
 
 const EASE_OUT = [0.215, 0.61, 0.355, 1] as const;
 
@@ -32,12 +36,13 @@ export default function Hero() {
 
   return (
     <header style={{ padding: "100px 0 0", position: "relative", overflow: "hidden", background: "var(--bg)" }}>
-      {/* Atmospheric depth — layered accent radial washes + faint dot grid */}
+      {/* Atmospheric depth — animated aurora washes + faint dot grid */}
       <div
         aria-hidden
+        className="hero-aurora"
         style={{
           position: "absolute",
-          inset: 0,
+          inset: "-10%",
           zIndex: 0,
           pointerEvents: "none",
           background:
@@ -118,12 +123,16 @@ export default function Hero() {
 
             {/* CTAs */}
             <motion.div variants={fadeUpItem} style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-              <a href="#pricing" className="btn-primary" style={{ textDecoration: "none", fontSize: 16, padding: "16px 28px", borderRadius: 14 }}>
-                {t("ctaPrimary")}
-              </a>
-              <a href="#courses" className="btn-ghost" style={{ textDecoration: "none", fontSize: 16, padding: "16px 24px", borderRadius: 14 }}>
-                {t("ctaSecondary")}
-              </a>
+              <Magnetic>
+                <a href="#pricing" className="btn-primary" style={{ textDecoration: "none", fontSize: 16, padding: "16px 28px", borderRadius: 14 }}>
+                  {t("ctaPrimary")}
+                </a>
+              </Magnetic>
+              <Magnetic>
+                <a href="#courses" className="btn-ghost" style={{ textDecoration: "none", fontSize: 16, padding: "16px 24px", borderRadius: 14 }}>
+                  {t("ctaSecondary")}
+                </a>
+              </Magnetic>
             </motion.div>
 
             {/* Stats */}
@@ -142,9 +151,10 @@ export default function Hero() {
                 { val: t("stat4Val"), label: t("stat4Label") },
               ].map((s, i) => (
                 <div key={i}>
-                  <div style={{ fontSize: 34, fontWeight: 800, letterSpacing: "-0.04em", lineHeight: 1, fontFamily: "Inter Tight, sans-serif", color: i === 0 ? "var(--accent)" : "var(--ink)" }}>
-                    {s.val}
-                  </div>
+                  <AnimatedNumber
+                    value={s.val}
+                    style={{ display: "block", fontSize: 34, fontWeight: 800, letterSpacing: "-0.04em", lineHeight: 1, fontFamily: "Inter Tight, sans-serif", color: i === 0 ? "var(--accent)" : "var(--ink)" }}
+                  />
                   <div style={{ fontSize: 12, color: "var(--ink-3)", marginTop: 8, lineHeight: 1.4 }}>{s.label}</div>
                 </div>
               ))}
@@ -160,20 +170,64 @@ export default function Hero() {
               className="hero-img-col"
               style={{ position: "relative" }}
             >
-              <div style={{
-                borderRadius: 28,
+              {/* Product preview — stylised course dashboard in a browser frame */}
+              <div className="float-soft" style={{
+                borderRadius: 20,
                 overflow: "hidden",
                 border: "1px solid var(--line-2)",
-                boxShadow: "0 32px 80px -20px rgba(17,17,17,0.14), 0 8px 24px -8px rgba(17,17,17,0.07)",
-                aspectRatio: "4/3",
-                background: "var(--bg-2)",
+                boxShadow: "0 40px 90px -24px rgba(45,35,95,0.30), 0 14px 34px -12px rgba(17,17,17,0.12)",
+                background: "#fff",
               }}>
-                <img
-                  src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=1000&auto=format&fit=crop&q=80"
-                  alt=""
-                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                  loading="eager"
-                />
+                {/* Browser chrome */}
+                <div style={{ display: "flex", alignItems: "center", gap: 7, padding: "12px 16px", borderBottom: "1px solid var(--line)", background: "var(--bg)" }}>
+                  <span style={{ width: 11, height: 11, borderRadius: 999, background: "#FF5F57" }} />
+                  <span style={{ width: 11, height: 11, borderRadius: 999, background: "#FEBC2E" }} />
+                  <span style={{ width: 11, height: 11, borderRadius: 999, background: "#28C840" }} />
+                  <div style={{ marginLeft: 10, flex: 1, maxWidth: 230, display: "flex", alignItems: "center", gap: 6, fontSize: 11, color: "var(--ink-3)", background: "var(--bg-2)", border: "1px solid var(--line)", borderRadius: 8, padding: "5px 12px" }}>
+                    <Lock size={11} strokeWidth={2.2} /> chademy.lv/dashboard
+                  </div>
+                </div>
+
+                {/* App body */}
+                <div style={{ padding: 18, display: "flex", flexDirection: "column", gap: 12 }}>
+                  {/* Progress card */}
+                  <div style={{ borderRadius: 14, padding: "16px 18px", background: "linear-gradient(135deg, color-mix(in oklab, var(--accent) 12%, #fff) 0%, #fff 70%)", border: "1px solid color-mix(in oklab, var(--accent) 18%, var(--line))" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 12 }}>
+                      <span style={{ fontSize: 13, fontWeight: 700, color: "var(--ink)" }}>Tavs progress</span>
+                      <span style={{ fontSize: 15, fontWeight: 900, color: "var(--accent)", fontFamily: "Inter Tight, sans-serif" }}>68%</span>
+                    </div>
+                    <div style={{ height: 8, borderRadius: 999, background: "var(--bg-2)", overflow: "hidden" }}>
+                      <div style={{ height: "100%", width: "68%", borderRadius: 999, background: "linear-gradient(90deg, var(--accent), color-mix(in oklab, var(--accent) 55%, #fff))" }} />
+                    </div>
+                  </div>
+
+                  {/* Lesson rows */}
+                  {[
+                    { t: "AI satura pamati", done: true },
+                    { t: "Pirmais faceless video", done: true },
+                    { t: "Klientu piesaiste", done: false },
+                  ].map((l) => (
+                    <div key={l.t} style={{ display: "flex", alignItems: "center", gap: 12, padding: "11px 14px", borderRadius: 12, background: l.done ? "color-mix(in oklab, var(--accent-2) 7%, #fff)" : "var(--bg)", border: `1px solid ${l.done ? "color-mix(in oklab, var(--accent-2) 22%, transparent)" : "var(--line)"}` }}>
+                      <span style={{ width: 26, height: 26, borderRadius: 8, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", background: l.done ? "var(--accent-2)" : "color-mix(in oklab, var(--accent) 12%, transparent)", color: l.done ? "#fff" : "var(--accent)" }}>
+                        {l.done ? <Check size={14} strokeWidth={3} /> : <Play size={12} strokeWidth={2.5} fill="currentColor" />}
+                      </span>
+                      <span style={{ flex: 1, fontSize: 12.5, fontWeight: 600, color: "var(--ink)" }}>{l.t}</span>
+                      <span style={{ fontSize: 11, color: "var(--ink-4)" }}>{l.done ? "Pabeigts" : "12 min"}</span>
+                    </div>
+                  ))}
+
+                  {/* Mini earnings stats */}
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginTop: 2 }}>
+                    <div style={{ borderRadius: 12, padding: "12px 14px", background: "var(--bg)", border: "1px solid var(--line)" }}>
+                      <div style={{ fontSize: 18, fontWeight: 900, color: "var(--ink)", fontFamily: "Inter Tight, sans-serif", letterSpacing: "-0.03em" }}>€840</div>
+                      <div style={{ fontSize: 10.5, color: "var(--ink-3)" }}>Šomēnes nopelnīts</div>
+                    </div>
+                    <div style={{ borderRadius: 12, padding: "12px 14px", background: "var(--bg)", border: "1px solid var(--line)" }}>
+                      <div style={{ fontSize: 18, fontWeight: 900, color: "var(--accent-2)", fontFamily: "Inter Tight, sans-serif", letterSpacing: "-0.03em" }}>3 klienti</div>
+                      <div style={{ fontSize: 10.5, color: "var(--ink-3)" }}>Aktīvi projekti</div>
+                    </div>
+                  </div>
+                </div>
               </div>
               {/* Single floating tag */}
               <div style={{
@@ -186,8 +240,8 @@ export default function Hero() {
                 <div style={{
                   width: 40, height: 40, borderRadius: 12,
                   background: "color-mix(in oklab, var(--accent) 12%, transparent)",
-                  display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18,
-                }}>🎯</div>
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                }}><EmojiIcon emoji="🎯" size={18} color="var(--accent)" strokeWidth={1.85} /></div>
                 <div>
                   <div style={{ fontSize: 14, fontWeight: 700, color: "var(--ink)", letterSpacing: "-0.01em" }}>
                     {t("floatTag2")}
