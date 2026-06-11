@@ -102,23 +102,16 @@ export default function Team() {
               Chademy
             </span>
             <h2
+              className="h-display"
               style={{
                 fontSize: "clamp(40px, 6vw, 84px)",
-                lineHeight: 1.05,
-                letterSpacing: "-0.035em",
-                fontWeight: 600,
+                lineHeight: 1.06,
                 margin: "16px 0 0",
                 maxWidth: "14ch",
               }}
             >
               Mūsu{" "}
-              <span
-                style={{
-                  color: "var(--accent)",
-                  fontFamily: "Inter Tight, sans-serif",
-                  fontWeight: 600,
-                }}
-              >
+              <span style={{ color: "var(--accent)" }}>
                 komanda
               </span>
             </h2>

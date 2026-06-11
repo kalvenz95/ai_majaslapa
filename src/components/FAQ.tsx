@@ -40,12 +40,9 @@ export default function FAQ() {
     <section id="faq" style={{ padding: "120px 24px", background: "var(--bg)", borderTop: "1px solid var(--line)" }}>
       <div style={{ maxWidth: 760, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 56 }}>
-          <h2 style={{
+          <h2 className="h-display" style={{
             fontSize: "clamp(40px, 7vw, 76px)",
-            fontWeight: 900,
-            fontFamily: "Inter Tight, sans-serif",
-            letterSpacing: "-0.04em",
-            lineHeight: 1.06,
+            lineHeight: 1.08,
             color: "var(--ink)",
             margin: "0 0 16px",
           }}>

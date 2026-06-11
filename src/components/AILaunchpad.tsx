@@ -34,16 +34,13 @@ export default function AILaunchpad() {
 
         {/* Header */}
         <div style={{ textAlign: "center", maxWidth: 680, margin: "0 auto 64px" }}>
-          <h2 style={{
+          <h2 className="h-display" style={{
             fontSize: "clamp(38px, 6.5vw, 76px)",
-            fontWeight: 900,
-            fontFamily: "Inter Tight, sans-serif",
-            letterSpacing: "-0.04em",
-            lineHeight: 1.06,
+            lineHeight: 1.08,
             color: "var(--ink)",
             margin: "0 0 20px",
           }}>
-            Kurus pakalpojumus uzņēmumi <span style={{ color: "var(--accent)" }}>jau pērk?</span>
+            Kurus pakalpojumus uzņēmumi <span style={{ color: "var(--gold-ink)" }}>jau pērk?</span>
           </h2>
           <p style={{ fontSize: 18, color: "var(--ink-3)", lineHeight: 1.65 }}>
             Šie ir pakalpojumi, kurus uzņēmumi jau šobrīd izmanto un par kuriem maksā.
@@ -87,7 +84,7 @@ export default function AILaunchpad() {
                   fontWeight: 900,
                   fontFamily: "Inter Tight, sans-serif",
                   letterSpacing: "-0.03em",
-                  color: "var(--accent)",
+                  color: "var(--gold-ink)",
                   lineHeight: 1.1,
                   marginBottom: 4,
                 }}>

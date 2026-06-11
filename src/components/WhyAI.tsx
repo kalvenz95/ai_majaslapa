@@ -34,12 +34,9 @@ export default function WhyAI() {
 
         {/* Header */}
         <div style={{ textAlign: "center", maxWidth: 700, margin: "0 auto 64px" }}>
-          <h2 style={{
+          <h2 className="h-display" style={{
             fontSize: "clamp(42px, 7vw, 80px)",
-            fontWeight: 900,
-            fontFamily: "Inter Tight, sans-serif",
-            letterSpacing: "-0.04em",
-            lineHeight: 1.06,
+            lineHeight: 1.08,
             color: "var(--ink)",
             margin: "0 0 20px",
           }}>

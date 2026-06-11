@@ -36,16 +36,13 @@ export default function Services() {
 
         {/* Header */}
         <div style={{ textAlign: "center", maxWidth: 640, margin: "0 auto 64px" }}>
-          <h2 style={{
+          <h2 className="h-display" style={{
             fontSize: "clamp(42px, 7vw, 80px)",
-            fontWeight: 900,
-            fontFamily: "Inter Tight, sans-serif",
-            letterSpacing: "-0.04em",
-            lineHeight: 1.06,
+            lineHeight: 1.08,
             color: "var(--ink)",
             margin: "0 0 20px",
           }}>
-            Ko tu <span style={{ color: "var(--accent)" }}>iemācīsies?</span>
+            Ko tu <span style={{ color: "var(--teal-ink)" }}>iemācīsies?</span>
           </h2>
           <p style={{ fontSize: 18, color: "var(--ink-3)", lineHeight: 1.65 }}>
             Četri praktiski virzieni — katrs ar konkrētiem uzdevumiem un veidnēm.

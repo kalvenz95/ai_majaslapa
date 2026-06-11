@@ -94,12 +94,10 @@ export default function Hero() {
             {/* H1 */}
             <motion.h1
               variants={fadeUpItem}
+              className="h-display"
               style={{
-                fontSize: "clamp(48px, 8vw, 96px)",
-                lineHeight: 1.04,
-                letterSpacing: "-0.04em",
-                fontWeight: 900,
-                fontFamily: "Inter Tight, sans-serif",
+                fontSize: "clamp(48px, 8vw, 92px)",
+                lineHeight: 1.02,
                 margin: "0 0 24px",
                 maxWidth: "13ch",
                 color: "var(--ink)",

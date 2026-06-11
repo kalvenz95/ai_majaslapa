@@ -11,6 +11,13 @@
   --accent-2: #00BFA5;
   --accent-3: #FFB86B;
 
+  /* Display serif for section headings — paired with Inter sans body */
+  --font-display: 'Fraunces', 'Georgia', serif;
+
+  /* Readable "gold" ink — amber-3 is too light for text on white */
+  --gold-ink: #C77A1A;
+  --teal-ink: #0E9E88;
+
   /* Light theme — clean white/cream */
   --bg:   #FAFAF8;
   --bg-1: #FFFFFF;
@@ -120,6 +127,16 @@ a { color: inherit; text-decoration: none; }
 /* ── Typography ─────────────────────────────────────────────────── */
 .font-mono { font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; }
 .font-display { font-family: 'Inter Tight', 'Inter', system-ui, sans-serif; font-weight: 600; letter-spacing: -0.02em; }
+
+/* Section heading — editorial display serif. Optical sizing picks the
+   high-contrast display cut at large sizes. Apply via className; keep
+   font-size / line-height / color inline per section. */
+.h-display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-optical-sizing: auto;
+}
 
 /* ── Core atoms ─────────────────────────────────────────────────── */
 .chip {

@@ -19,16 +19,13 @@ export default function Tools() {
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 32px" }}>
 
         <div style={{ textAlign: "center", marginBottom: 48 }}>
-          <h2 style={{
+          <h2 className="h-display" style={{
             fontSize: "clamp(36px, 6vw, 68px)",
-            fontWeight: 900,
-            fontFamily: "Inter Tight, sans-serif",
-            letterSpacing: "-0.04em",
-            lineHeight: 1.06,
+            lineHeight: 1.08,
             color: "var(--ink)",
             margin: "0 0 16px",
           }}>
-            Rīki, kurus <span style={{ color: "var(--accent)" }}>apgūsi</span>
+            Rīki, kurus <span style={{ color: "var(--teal-ink)" }}>apgūsi</span>
           </h2>
           <p style={{ color: "var(--ink-3)", fontSize: 17, lineHeight: 1.6, maxWidth: 440, margin: "0 auto" }}>
             Platformas, ko izmanto modern AI pakalpojumu veidošanā.

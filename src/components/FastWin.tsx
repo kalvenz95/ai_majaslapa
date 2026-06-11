@@ -66,12 +66,9 @@ export default function FastWin() {
             Tev jādara minimums
           </span>
 
-          <h2 style={{
+          <h2 className="h-display" style={{
             fontSize: "clamp(40px, 6.5vw, 76px)",
-            fontWeight: 900,
-            fontFamily: "Inter Tight, sans-serif",
-            letterSpacing: "-0.04em",
-            lineHeight: 1.05,
+            lineHeight: 1.07,
             color: "var(--ink)",
             margin: "0 0 20px",
           }}>

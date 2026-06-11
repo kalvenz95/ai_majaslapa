@@ -12,12 +12,9 @@ export default function CTA() {
           >
             {/* Left */}
             <div>
-              <h2 style={{
+              <h2 className="h-display" style={{
                 fontSize: "clamp(40px, 6.5vw, 76px)",
-                fontWeight: 900,
-                fontFamily: "Inter Tight, sans-serif",
-                letterSpacing: "-0.04em",
-                lineHeight: 1.06,
+                lineHeight: 1.08,
                 color: "var(--ink)",
                 margin: "0 0 20px",
               }}>
@@ -74,12 +71,9 @@ export default function CTA() {
       }}>
         <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "radial-gradient(ellipse 60% 60% at 50% 100%, color-mix(in oklab, var(--accent) 20%, transparent), transparent 65%)" }} />
         <div style={{ maxWidth: 720, margin: "0 auto", padding: "0 32px", position: "relative", zIndex: 1 }}>
-          <h2 style={{
-            fontSize: "clamp(48px, 8vw, 96px)",
-            fontWeight: 900,
-            fontFamily: "Inter Tight, sans-serif",
-            letterSpacing: "-0.04em",
-            lineHeight: 1.06,
+          <h2 className="h-display" style={{
+            fontSize: "clamp(48px, 8vw, 92px)",
+            lineHeight: 1.04,
             color: "#FFFFFF",
             margin: "0 0 20px",
           }}>
