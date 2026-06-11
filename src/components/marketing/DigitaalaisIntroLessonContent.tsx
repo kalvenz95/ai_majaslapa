@@ -1,13 +1,14 @@
 "use client";
 
-const G  = "#00ff88";
-const G2 = "#00d4ff";
-const P  = "#a855f7";
-const AM = "#f59e0b";
-const PK = "#ec4899";
+/* Brand-derived light palette */
+const G  = "#00BFA5";
+const G2 = "#33D4BF";
+const P  = "#6D5EF3";
+const AM = "#FFB86B";
+const PK = "#9B8FF7";
 
-function GlowDot({ color }: { color: string }) {
-  return <div style={{ width: 7, height: 7, borderRadius: "50%", background: color, boxShadow: `0 0 8px ${color}, 0 0 18px ${color}55`, flexShrink: 0 }} />;
+function Dot({ color }: { color: string }) {
+  return <div style={{ width: 7, height: 7, borderRadius: "50%", background: color, flexShrink: 0 }} />;
 }
 function Check({ color = G }: { color?: string }) {
   return (
@@ -16,9 +17,11 @@ function Check({ color = G }: { color?: string }) {
     </svg>
   );
 }
-function GridBg({ color, size = 26 }: { color: string; size?: number }) {
-  return <div style={{ position: "absolute", inset: 0, pointerEvents: "none", backgroundImage: `linear-gradient(${color} 1px, transparent 1px), linear-gradient(90deg, ${color} 1px, transparent 1px)`, backgroundSize: `${size}px ${size}px` }} />;
-}
+
+const cardShadow = "0 12px 36px -20px rgba(17,17,17,0.16)";
+const sectionLabel = (color: string): React.CSSProperties => ({
+  fontSize: 10, fontWeight: 800, color, textTransform: "uppercase", letterSpacing: "0.09em", marginBottom: 14,
+});
 
 const services = [
   {
@@ -30,7 +33,7 @@ const services = [
     points: ["Framer / Webflow — bez koda", "GEO (Generative Engine Optimization)", "Nodošana ar rēķinu un līgumu"],
   },
   {
-    accent: G2, accent2: P,
+    accent: P, accent2: PK,
     label: "Pakalpojums #2",
     title: "AI Asistenti",
     earn: "€200–€500", per: "uzstādīšana + €100–€200/mēn",
@@ -38,7 +41,7 @@ const services = [
     points: ["Mājaslapa, Instagram, Facebook & WhatsApp", "Lead vākšana automātiski", "Voiceflow — vizuāls, bez koda"],
   },
   {
-    accent: AM, accent2: PK,
+    accent: AM, accent2: G2,
     label: "Pakalpojums #3",
     title: "AI E-pasta Asistents",
     earn: "€150–€400", per: "mēnesī / klients",
@@ -67,7 +70,7 @@ const tools = [
   { icon: "✉️", name: "Claude / ChatGPT", desc: "E-pasti un saturs",    color: AM },
   { icon: "💻", name: "Cursor",           desc: "AI koda palīgs",       color: P },
   { icon: "📊", name: "Google Analytics", desc: "Mājaslapa statistika", color: PK },
-  { icon: "📋", name: "Notion",           desc: "Klientu onboarding",   color: "#64748b" },
+  { icon: "📋", name: "Notion",           desc: "Klientu onboarding",   color: "#5B5B5B" },
 ];
 
 const modules = [
@@ -91,27 +94,24 @@ export function DigitaalaisIntroLessonContent() {
     <div style={{ display: "flex", flexDirection: "column", gap: 24, paddingTop: 24 }}>
 
       {/* ── HERO ── */}
-      <div style={{ position: "relative", borderRadius: 20, overflow: "hidden", border: "1px solid rgba(0,255,136,0.22)", boxShadow: "0 24px 64px rgba(0,255,136,0.1), 0 4px 16px rgba(0,0,0,0.4)" }}>
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(5,8,5,1) 0%, rgba(5,8,10,1) 100%)" }} />
-        <div style={{ position: "absolute", top: -120, right: -80, width: 480, height: 480, borderRadius: "50%", background: "radial-gradient(circle, rgba(0,255,136,0.18) 0%, transparent 65%)", pointerEvents: "none" }} />
-        <div style={{ position: "absolute", bottom: -80, left: -60, width: 320, height: 320, borderRadius: "50%", background: "radial-gradient(circle, rgba(0,212,255,0.12) 0%, transparent 65%)", pointerEvents: "none" }} />
-        <GridBg color="rgba(0,255,136,0.035)" size={30} />
+      <div style={{ position: "relative", borderRadius: 20, overflow: "hidden", border: `1px solid ${G}33`, background: "linear-gradient(135deg, rgba(0,191,165,0.10) 0%, rgba(51,212,191,0.05) 55%, #fff 100%)", boxShadow: "0 24px 64px -32px rgba(0,191,165,0.4)" }}>
+        <div style={{ position: "absolute", top: -120, right: -80, width: 460, height: 460, borderRadius: "50%", background: "radial-gradient(circle, rgba(0,191,165,0.12) 0%, transparent 65%)", pointerEvents: "none" }} />
         <div style={{ position: "relative", padding: "40px 36px" }}>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "5px 13px", borderRadius: 20, background: "rgba(0,255,136,0.1)", border: "1px solid rgba(0,255,136,0.28)", marginBottom: 18 }}>
-            <GlowDot color={G} />
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "5px 13px", borderRadius: 20, background: `${G}14`, border: `1px solid ${G}33`, marginBottom: 18 }}>
+            <Dot color={G} />
             <span style={{ fontSize: 10, fontWeight: 700, color: G, letterSpacing: "0.08em", textTransform: "uppercase" }}>Digitālais Speciālists · 5 bloki · 38 nodarbības</span>
           </div>
-          <h2 style={{ fontSize: "clamp(20px,4vw,32px)", fontWeight: 900, letterSpacing: "-0.03em", lineHeight: 1.15, marginBottom: 12, color: "#fff" }}>
+          <h2 style={{ fontSize: "clamp(20px,4vw,32px)", fontWeight: 900, letterSpacing: "-0.03em", lineHeight: 1.15, marginBottom: 12, color: "var(--ink)" }}>
             Kā uzņēmumi maksā<br />
-            <span style={{ background: "linear-gradient(135deg, #00ff88, #00d4ff)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>par tevi katru mēnesi</span>
+            <span style={{ background: "linear-gradient(135deg, #00BFA5, #33D4BF)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>par tevi katru mēnesi</span>
           </h2>
-          <p style={{ fontSize: 13.5, color: "rgba(255,255,255,0.52)", lineHeight: 1.75, maxWidth: 520, marginBottom: 24 }}>
-            Tu apgūsi 3 konkrētus digitālos pakalpojumus — mājaslapa, chatbot, e-pasta automatizācija. Uzņēmumi maksā <strong style={{ color: "#ddd" }}>€500–€7 200 mēnesī</strong>.
+          <p style={{ fontSize: 13.5, color: "var(--ink-3)", lineHeight: 1.75, maxWidth: 520, marginBottom: 24 }}>
+            Tu apgūsi 3 konkrētus digitālos pakalpojumus — mājaslapa, chatbot, e-pasta automatizācija. Uzņēmumi maksā <strong style={{ color: "var(--ink)" }}>€500–€7 200 mēnesī</strong>.
           </p>
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
             {[{ c: G, t: "Bez programmēšanas" }, { c: G2, t: "Klients 4 nedēļās" }, { c: AM, t: "Latvijas reāli piemēri" }].map((b) => (
-              <div key={b.t} style={{ display: "flex", alignItems: "center", gap: 7, padding: "6px 13px", borderRadius: 9, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.09)" }}>
-                <GlowDot color={b.c} /><span style={{ fontSize: 11.5, fontWeight: 600, color: "rgba(255,255,255,0.78)" }}>{b.t}</span>
+              <div key={b.t} style={{ display: "flex", alignItems: "center", gap: 7, padding: "6px 13px", borderRadius: 9, background: "#fff", border: "1px solid var(--line)" }}>
+                <Dot color={b.c} /><span style={{ fontSize: 11.5, fontWeight: 600, color: "var(--ink-2)" }}>{b.t}</span>
               </div>
             ))}
           </div>
@@ -120,31 +120,32 @@ export function DigitaalaisIntroLessonContent() {
 
       {/* ── 3 PAKALPOJUMI ── */}
       <div>
-        <div style={{ fontSize: 10, fontWeight: 700, color: G, textTransform: "uppercase", letterSpacing: "0.09em", marginBottom: 14 }}>3 pakalpojumi ko tu apgūsi un pārdosi</div>
+        <div style={sectionLabel(G)}>3 pakalpojumi ko tu apgūsi un pārdosi</div>
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           {services.map((s, i) => (
-            <div key={i} style={{ borderRadius: 16, overflow: "hidden", border: `1px solid ${s.accent}20`, boxShadow: "0 6px 24px rgba(0,0,0,0.3)" }}>
-              <div style={{ position: "relative", height: 110, overflow: "hidden" }}>
-                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(5,8,5,0.92), rgba(5,8,12,0.96))" }} />
-                <div style={{ position: "absolute", top: -60, right: -40, width: 240, height: 240, borderRadius: "50%", background: `radial-gradient(circle, ${s.accent}32 0%, transparent 65%)`, pointerEvents: "none" }} />
-                <div style={{ position: "absolute", bottom: -40, left: -30, width: 180, height: 180, borderRadius: "50%", background: `radial-gradient(circle, ${s.accent2}1a 0%, transparent 65%)`, pointerEvents: "none" }} />
-                <GridBg color={`${s.accent}04`} size={20} />
+            <div key={i} style={{ borderRadius: 16, overflow: "hidden", border: `1px solid ${s.accent}2e`, background: "#fff", boxShadow: cardShadow }}>
+              <div style={{ position: "relative", height: 96, overflow: "hidden", background: `linear-gradient(135deg, ${s.accent}1f 0%, ${s.accent2}0f 100%)` }}>
+                <div style={{ position: "absolute", top: -60, right: -40, width: 220, height: 220, borderRadius: "50%", background: `radial-gradient(circle, ${s.accent}26 0%, transparent 65%)`, pointerEvents: "none" }} />
                 <div style={{ position: "absolute", top: 16, left: 18 }}>
-                  <span style={{ fontSize: 9.5, fontWeight: 700, padding: "3px 10px", borderRadius: 20, background: `${s.accent}16`, border: `1px solid ${s.accent}36`, color: s.accent, letterSpacing: "0.07em", textTransform: "uppercase" }}>{s.label}</span>
+                  <span style={{ fontSize: 9.5, fontWeight: 700, padding: "3px 10px", borderRadius: 20, background: `${s.accent}1f`, border: `1px solid ${s.accent}40`, color: s.accent, letterSpacing: "0.07em", textTransform: "uppercase" }}>{s.label}</span>
+                </div>
+                <div style={{ position: "absolute", top: 14, right: 18, display: "flex", alignItems: "baseline", gap: 4 }}>
+                  <span style={{ fontSize: 15, fontWeight: 900, color: s.accent, letterSpacing: "-0.02em" }}>{s.earn}</span>
                 </div>
                 <div style={{ position: "absolute", bottom: 14, left: 18, right: 18 }}>
-                  <h3 style={{ fontSize: 19, fontWeight: 900, letterSpacing: "-0.02em", color: "#fff", margin: 0 }}>{s.title}</h3>
+                  <h3 style={{ fontSize: 19, fontWeight: 900, letterSpacing: "-0.02em", color: "var(--ink)", margin: 0 }}>{s.title}</h3>
+                  <div style={{ fontSize: 10.5, color: "var(--ink-3)", marginTop: 2 }}>{s.per}</div>
                 </div>
               </div>
-              <div style={{ padding: "14px 18px 18px", background: "#05080a" }}>
-                <p style={{ fontSize: 12.5, color: "#677", lineHeight: 1.7, marginBottom: 12 }}>{s.desc}</p>
-                <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
+              <div style={{ padding: "16px 18px 18px" }}>
+                <p style={{ fontSize: 12.5, color: "var(--ink-3)", lineHeight: 1.7, marginBottom: 12 }}>{s.desc}</p>
+                <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                   {s.points.map((pt, pi) => (
                     <div key={pi} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                      <div style={{ width: 17, height: 17, borderRadius: 5, background: `${s.accent}10`, border: `1px solid ${s.accent}26`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                      <div style={{ width: 17, height: 17, borderRadius: 5, background: `${s.accent}16`, border: `1px solid ${s.accent}38`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                         <Check color={s.accent} />
                       </div>
-                      <span style={{ fontSize: 12, color: "#8a9a8a" }}>{pt}</span>
+                      <span style={{ fontSize: 12, color: "var(--ink-2)" }}>{pt}</span>
                     </div>
                   ))}
                 </div>
@@ -155,20 +156,17 @@ export function DigitaalaisIntroLessonContent() {
       </div>
 
       {/* ── NIŠAS ── */}
-      <div style={{ position: "relative", borderRadius: 16, overflow: "hidden", border: "1px solid rgba(0,255,136,0.12)", boxShadow: "0 6px 28px rgba(0,0,0,0.3)" }}>
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(5,8,5,1), rgba(5,10,8,1))" }} />
-        <div style={{ position: "absolute", top: -60, right: -40, width: 260, height: 260, borderRadius: "50%", background: "radial-gradient(circle, rgba(0,255,136,0.1) 0%, transparent 65%)", pointerEvents: "none" }} />
-        <GridBg color="rgba(0,255,136,0.025)" size={22} />
+      <div style={{ position: "relative", borderRadius: 16, overflow: "hidden", border: "1px solid var(--line)", background: "#fff", boxShadow: cardShadow }}>
         <div style={{ position: "relative", padding: "24px 26px" }}>
-          <div style={{ fontSize: 10, fontWeight: 700, color: G, textTransform: "uppercase", letterSpacing: "0.09em", marginBottom: 6 }}>Kam pārdot — reālas nišas Latvijā</div>
-          <p style={{ fontSize: 12.5, color: "#566", lineHeight: 1.65, marginBottom: 16 }}>Šie uzņēmumi ir gatavi maksāt — tiem ir budžets, vajadzība un nav laika risināt digitālo pašiem.</p>
+          <div style={sectionLabel(G)}>Kam pārdot — reālas nišas Latvijā</div>
+          <p style={{ fontSize: 12.5, color: "var(--ink-3)", lineHeight: 1.65, marginBottom: 16, marginTop: -8 }}>Šie uzņēmumi ir gatavi maksāt — tiem ir budžets, vajadzība un nav laika risināt digitālo pašiem.</p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(185px, 1fr))", gap: 9 }}>
             {niches.map((n) => (
-              <div key={n.title} style={{ padding: "15px 16px", borderRadius: 12, background: "rgba(10,16,12,0.85)", border: "1px solid rgba(0,255,136,0.1)", boxShadow: "0 3px 12px rgba(0,0,0,0.22), inset 0 1px 0 rgba(0,255,136,0.03)" }}>
+              <div key={n.title} style={{ padding: "15px 16px", borderRadius: 12, background: "var(--bg)", border: "1px solid var(--line)" }}>
                 <div style={{ fontSize: 20, marginBottom: 9 }}>{n.icon}</div>
-                <div style={{ fontSize: 12.5, fontWeight: 700, color: "#ddd", marginBottom: 4 }}>{n.title}</div>
-                <div style={{ fontSize: 11, color: "#455", lineHeight: 1.55, marginBottom: 9 }}>{n.need}</div>
-                <div style={{ display: "flex", alignItems: "center", gap: 6 }}><GlowDot color={G} /><span style={{ fontSize: 12, fontWeight: 700, color: G }}>{n.price}</span></div>
+                <div style={{ fontSize: 12.5, fontWeight: 700, color: "var(--ink)", marginBottom: 4 }}>{n.title}</div>
+                <div style={{ fontSize: 11, color: "var(--ink-3)", lineHeight: 1.55, marginBottom: 9 }}>{n.need}</div>
+                <div style={{ display: "flex", alignItems: "center", gap: 6 }}><Dot color={G} /><span style={{ fontSize: 12, fontWeight: 700, color: G }}>{n.price}</span></div>
               </div>
             ))}
           </div>
@@ -176,44 +174,41 @@ export function DigitaalaisIntroLessonContent() {
       </div>
 
       {/* ── STATISTIKA ── */}
-      <div style={{ position: "relative", padding: "26px 28px", borderRadius: 16, overflow: "hidden", border: "1px solid rgba(0,255,136,0.12)", boxShadow: "0 6px 32px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.03)" }}>
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(5,8,5,1), rgba(5,10,8,1))" }} />
-        <div style={{ position: "absolute", bottom: -70, left: -50, width: 280, height: 280, borderRadius: "50%", background: "radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 65%)", pointerEvents: "none" }} />
+      <div style={{ position: "relative", padding: "26px 28px", borderRadius: 16, overflow: "hidden", border: `1px solid ${G}22`, background: "linear-gradient(135deg, rgba(0,191,165,0.06) 0%, #fff 60%)", boxShadow: cardShadow }}>
+        <div style={{ position: "absolute", bottom: -70, left: -50, width: 280, height: 280, borderRadius: "50%", background: "radial-gradient(circle, rgba(51,212,191,0.10) 0%, transparent 65%)", pointerEvents: "none" }} />
         <div style={{ position: "relative" }}>
-          <div style={{ fontSize: 10, fontWeight: 700, color: G, textTransform: "uppercase", letterSpacing: "0.09em", marginBottom: 20 }}>Latvijas tirgus iespēja</div>
+          <div style={sectionLabel(G)}>Latvijas tirgus iespēja</div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: 16 }}>
             {stats.map((s) => (
               <div key={s.label}>
-                <div style={{ fontSize: 30, fontWeight: 900, letterSpacing: "-0.02em", marginBottom: 6, background: `linear-gradient(135deg, ${s.color}, ${s.color}99)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", filter: `drop-shadow(0 0 10px ${s.color}55)` }}>{s.value}</div>
-                <div style={{ fontSize: 11.5, color: "#455", lineHeight: 1.5 }}>{s.label}</div>
-                <div style={{ height: 2, borderRadius: 2, background: `linear-gradient(90deg, ${s.color}50, transparent)`, marginTop: 9 }} />
+                <div style={{ fontSize: 30, fontWeight: 900, letterSpacing: "-0.02em", marginBottom: 6, color: s.color }}>{s.value}</div>
+                <div style={{ fontSize: 11.5, color: "var(--ink-3)", lineHeight: 1.5 }}>{s.label}</div>
+                <div style={{ height: 2, borderRadius: 2, background: `linear-gradient(90deg, ${s.color}, transparent)`, marginTop: 9 }} />
               </div>
             ))}
           </div>
-          <div style={{ marginTop: 20, padding: "13px 16px", borderRadius: 11, background: "rgba(0,255,136,0.04)", border: "1px solid rgba(0,255,136,0.11)", display: "flex", gap: 10 }}>
+          <div style={{ marginTop: 20, padding: "13px 16px", borderRadius: 11, background: "#fff", border: "1px solid var(--line)", display: "flex", gap: 10 }}>
             <span style={{ fontSize: 16, flexShrink: 0 }}>💡</span>
-            <p style={{ fontSize: 12, color: "#677", lineHeight: 1.7, margin: 0 }}>Lielākā daļa uzņēmumu nekad nav dzirdējuši par <strong style={{ color: "#bbb" }}>Voiceflow, Framer vai Claude</strong>. Tu nāc ar risinājumu, par kuru viņi nezina ka eksistē.</p>
+            <p style={{ fontSize: 12, color: "var(--ink-2)", lineHeight: 1.7, margin: 0 }}>Lielākā daļa uzņēmumu nekad nav dzirdējuši par <strong style={{ color: "var(--ink)" }}>Voiceflow, Framer vai Claude</strong>. Tu nāc ar risinājumu, par kuru viņi nezina ka eksistē.</p>
           </div>
         </div>
       </div>
 
       {/* ── IENĀKUMI ── */}
-      <div style={{ position: "relative", padding: "24px 26px", borderRadius: 16, overflow: "hidden", border: "1px solid rgba(0,255,136,0.1)", boxShadow: "0 6px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.025)" }}>
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(5,8,5,1), rgba(5,10,8,1))" }} />
-        <div style={{ position: "absolute", top: -50, right: -40, width: 220, height: 220, borderRadius: "50%", background: "radial-gradient(circle, rgba(0,255,136,0.08), transparent 65%)", pointerEvents: "none" }} />
+      <div style={{ position: "relative", padding: "24px 26px", borderRadius: 16, overflow: "hidden", border: "1px solid var(--line)", background: "#fff", boxShadow: cardShadow }}>
         <div style={{ position: "relative" }}>
-          <div style={{ fontSize: 10, fontWeight: 700, color: G, textTransform: "uppercase", letterSpacing: "0.09em", marginBottom: 18 }}>Reāla ienākumu trajektorija</div>
+          <div style={sectionLabel(G)}>Reāla ienākumu trajektorija</div>
           <div style={{ display: "flex", flexDirection: "column", gap: 9 }}>
             {income.map((row, i) => (
               <div key={i} style={{ display: "flex", gap: 12, alignItems: "center" }}>
-                <div style={{ width: 72, flexShrink: 0, fontSize: 10, fontWeight: 600, color: "#2a3a2a" }}>{row.period}</div>
-                <div style={{ flex: 1, position: "relative", height: 32, borderRadius: 7, background: "rgba(255,255,255,0.02)", overflow: "hidden", border: "1px solid rgba(255,255,255,0.035)" }}>
-                  <div style={{ position: "absolute", left: 0, top: 0, height: "100%", width: `${row.pct}%`, background: "linear-gradient(90deg, rgba(0,255,136,0.45), rgba(0,212,255,0.28))", borderRadius: 6 }} />
+                <div style={{ width: 72, flexShrink: 0, fontSize: 10, fontWeight: 700, color: "var(--ink-3)" }}>{row.period}</div>
+                <div style={{ flex: 1, position: "relative", height: 32, borderRadius: 7, background: "var(--bg-2)", overflow: "hidden", border: "1px solid var(--line)" }}>
+                  <div style={{ position: "absolute", left: 0, top: 0, height: "100%", width: `${row.pct}%`, background: "linear-gradient(90deg, #00BFA5, #33D4BF)", borderRadius: 6 }} />
                   <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", padding: "0 10px" }}>
-                    <span style={{ fontSize: 10.5, color: row.pct > 20 ? "rgba(200,240,200,0.7)" : "#3a5a3a", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{row.desc}</span>
+                    <span style={{ fontSize: 10.5, color: row.pct > 20 ? "#fff" : "var(--ink-3)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", fontWeight: 500 }}>{row.desc}</span>
                   </div>
                 </div>
-                <div style={{ width: 120, flexShrink: 0, textAlign: "right", fontSize: 12.5, fontWeight: 800, color: row.pct > 30 ? G : "#2a4a2a", letterSpacing: "-0.01em" }}>{row.amount}</div>
+                <div style={{ width: 120, flexShrink: 0, textAlign: "right", fontSize: 12.5, fontWeight: 800, color: row.pct > 30 ? G : "var(--ink-3)", letterSpacing: "-0.01em" }}>{row.amount}</div>
               </div>
             ))}
           </div>
@@ -222,17 +217,16 @@ export function DigitaalaisIntroLessonContent() {
 
       {/* ── MODUĻI ── */}
       <div>
-        <div style={{ fontSize: 10, fontWeight: 700, color: G, textTransform: "uppercase", letterSpacing: "0.09em", marginBottom: 14 }}>Tavs ceļš caur 5 blokiem</div>
+        <div style={sectionLabel(G)}>Tavs ceļš caur 5 blokiem</div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(185px, 1fr))", gap: 9 }}>
           {modules.map((m) => (
-            <div key={m.num} style={{ position: "relative", padding: "16px 18px", borderRadius: 13, background: "rgba(8,12,10,0.9)", border: `1px solid ${m.color}16`, overflow: "hidden", boxShadow: "0 4px 16px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.025)" }}>
-              <div style={{ position: "absolute", top: -35, right: -35, width: 100, height: 100, borderRadius: "50%", background: `radial-gradient(circle, ${m.color}10, transparent 70%)`, pointerEvents: "none" }} />
+            <div key={m.num} style={{ position: "relative", padding: "16px 18px", borderRadius: 13, background: "#fff", border: `1px solid ${m.color}2e`, overflow: "hidden", boxShadow: cardShadow }}>
               <div style={{ display: "flex", alignItems: "center", gap: 9, marginBottom: 10 }}>
-                <div style={{ width: 28, height: 28, borderRadius: 8, background: `${m.color}10`, border: `1px solid ${m.color}2a`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 900, color: m.color, flexShrink: 0, boxShadow: `0 0 10px ${m.color}18` }}>{m.num}</div>
-                <span style={{ fontSize: 12.5, fontWeight: 700, color: "#ddd" }}>{m.title}</span>
+                <div style={{ width: 28, height: 28, borderRadius: 8, background: `${m.color}16`, border: `1px solid ${m.color}3a`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 900, color: m.color, flexShrink: 0 }}>{m.num}</div>
+                <span style={{ fontSize: 12.5, fontWeight: 700, color: "var(--ink)" }}>{m.title}</span>
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
-                <Check color={m.color} /><span style={{ fontSize: 11, color: "#3a5a3a" }}>{m.milestone}</span>
+                <Check color={m.color} /><span style={{ fontSize: 11, color: "var(--ink-3)" }}>{m.milestone}</span>
               </div>
             </div>
           ))}
@@ -240,18 +234,16 @@ export function DigitaalaisIntroLessonContent() {
       </div>
 
       {/* ── CTA ── */}
-      <div style={{ position: "relative", padding: "24px 26px", borderRadius: 16, overflow: "hidden", border: "1px solid rgba(0,255,136,0.18)", boxShadow: "0 12px 40px rgba(0,255,136,0.07)" }}>
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(0,255,136,0.07) 0%, rgba(0,212,255,0.04) 50%, rgba(5,8,5,0.97) 100%)" }} />
-        <GridBg color="rgba(0,255,136,0.02)" size={22} />
-        <div style={{ position: "absolute", top: -50, right: -40, width: 200, height: 200, borderRadius: "50%", background: "radial-gradient(circle, rgba(0,212,255,0.1), transparent 70%)", pointerEvents: "none" }} />
+      <div style={{ position: "relative", padding: "24px 26px", borderRadius: 16, overflow: "hidden", border: `1px solid ${G}33`, background: "linear-gradient(135deg, rgba(0,191,165,0.10) 0%, rgba(51,212,191,0.05) 55%, #fff 100%)", boxShadow: "0 16px 44px -24px rgba(0,191,165,0.4)" }}>
+        <div style={{ position: "absolute", top: -50, right: -40, width: 200, height: 200, borderRadius: "50%", background: "radial-gradient(circle, rgba(0,191,165,0.12), transparent 70%)", pointerEvents: "none" }} />
         <div style={{ position: "relative", display: "flex", alignItems: "flex-start", gap: 16 }}>
-          <div style={{ width: 44, height: 44, borderRadius: 12, background: "linear-gradient(135deg, rgba(0,255,136,0.22), rgba(0,212,255,0.22))", border: "1px solid rgba(0,255,136,0.35)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: 20, boxShadow: "0 6px 20px rgba(0,255,136,0.12)" }}>🎯</div>
+          <div style={{ width: 44, height: 44, borderRadius: 12, background: "linear-gradient(135deg, #00BFA5, #33D4BF)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: 20, boxShadow: "0 8px 22px -8px rgba(0,191,165,0.6)" }}>🎯</div>
           <div>
-            <div style={{ fontSize: 14.5, fontWeight: 800, color: "#ddd", marginBottom: 6, letterSpacing: "-0.01em" }}>Pēc šīs nodarbības tu saproti, kāpēc šis ir vērtīgākais pakalpojums Latvijā</div>
-            <p style={{ fontSize: 12.5, color: "#566", lineHeight: 1.75, margin: "0 0 12px" }}>Nākamajā nodarbībā — <strong style={{ color: "#bbb" }}>3 konkrēti pakalpojumi</strong> ko vari piedāvāt jau šonedēļ un kā noteikt pirmo cenu.</p>
+            <div style={{ fontSize: 14.5, fontWeight: 800, color: "var(--ink)", marginBottom: 6, letterSpacing: "-0.01em" }}>Pēc šīs nodarbības tu saproti, kāpēc šis ir vērtīgākais pakalpojums Latvijā</div>
+            <p style={{ fontSize: 12.5, color: "var(--ink-2)", lineHeight: 1.75, margin: "0 0 12px" }}>Nākamajā nodarbībā — <strong style={{ color: "var(--ink)" }}>3 konkrēti pakalpojumi</strong> ko vari piedāvāt jau šonedēļ un kā noteikt pirmo cenu.</p>
             <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
               {[{ c: G, t: "38 nodarbības" }, { c: G2, t: "Bez programmēšanas" }, { c: AM, t: "Latvijas tirgum" }].map((b) => (
-                <div key={b.t} style={{ display: "flex", alignItems: "center", gap: 6 }}><GlowDot color={b.c} /><span style={{ fontSize: 11.5, color: "#3a5a3a", fontWeight: 500 }}>{b.t}</span></div>
+                <div key={b.t} style={{ display: "flex", alignItems: "center", gap: 6 }}><Dot color={b.c} /><span style={{ fontSize: 11.5, color: "var(--ink-3)", fontWeight: 500 }}>{b.t}</span></div>
               ))}
             </div>
           </div>

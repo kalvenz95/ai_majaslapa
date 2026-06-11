@@ -1,13 +1,14 @@
 "use client";
 
-const P  = "#a855f7";
-const P2 = "#ec4899";
-const G  = "#00ff88";
-const C  = "#00d4ff";
-const AM = "#f59e0b";
+/* Brand-derived light palette (no neon, no default Tailwind hues) */
+const P  = "#6D5EF3"; // accent
+const P2 = "#9B8FF7"; // accent light
+const G  = "#00BFA5"; // accent-2 teal
+const C  = "#33D4BF"; // teal light
+const AM = "#FFB86B"; // accent-3 warm
 
-function GlowDot({ color }: { color: string }) {
-  return <div style={{ width: 7, height: 7, borderRadius: "50%", background: color, boxShadow: `0 0 8px ${color}, 0 0 18px ${color}55`, flexShrink: 0 }} />;
+function Dot({ color }: { color: string }) {
+  return <div style={{ width: 7, height: 7, borderRadius: "50%", background: color, flexShrink: 0 }} />;
 }
 function Check({ color = P }: { color?: string }) {
   return (
@@ -15,9 +16,6 @@ function Check({ color = P }: { color?: string }) {
       <polyline points="20,6 9,17 4,12" />
     </svg>
   );
-}
-function GridBg({ color, size = 28 }: { color: string; size?: number }) {
-  return <div style={{ position: "absolute", inset: 0, pointerEvents: "none", backgroundImage: `linear-gradient(${color} 1px, transparent 1px), linear-gradient(90deg, ${color} 1px, transparent 1px)`, backgroundSize: `${size}px ${size}px` }} />;
 }
 
 const services = [
@@ -31,7 +29,7 @@ const services = [
     img: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=900&q=85&fit=crop",
   },
   {
-    accent: P2, accent2: AM,
+    accent: G, accent2: C,
     label: "Pakalpojums #2",
     title: "Sociālo Tīklu Pārvaldība",
     earn: "€300–€800", per: "mēnesī / klients",
@@ -40,7 +38,7 @@ const services = [
     img: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=900&q=85&fit=crop",
   },
   {
-    accent: G, accent2: C,
+    accent: AM, accent2: P,
     label: "Pakalpojums #3",
     title: "Klientu Atrašana",
     earn: "€300–€1 500", per: "mēnesī (3–4 klienti)",
@@ -52,18 +50,18 @@ const services = [
 
 const stats = [
   { value: "26 000", label: "aktīvu uzņēmumu Latvijā bez regulāra satura", color: P },
-  { value: "€350",   label: "vidējais mēneša budžets satura radīšanai",     color: P2 },
-  { value: "3 ned.", label: "vidēji līdz pirmajam klientam pēc kursa",       color: G },
-  { value: "82%",    label: "studentu iegūst ienākumus 60 dienās",           color: C },
+  { value: "€350",   label: "vidējais mēneša budžets satura radīšanai",     color: G },
+  { value: "3 ned.", label: "vidēji līdz pirmajam klientam pēc kursa",       color: AM },
+  { value: "82%",    label: "studentu iegūst ienākumus 60 dienās",           color: P },
 ];
 
 const tools = [
-  { icon: "✂️", name: "CapCut",      desc: "Auto montāža + subtitri",     color: C },
+  { icon: "✂️", name: "CapCut",      desc: "Auto montāža + subtitri",     color: G },
   { icon: "🎬", name: "Runway ML",   desc: "AI video ģenerēšana",          color: P },
   { icon: "🤖", name: "HeyGen",      desc: "AI avatar prezentācijas",      color: P2 },
   { icon: "🖌️", name: "Canva AI",    desc: "Banneri + feed dizains",       color: AM },
-  { icon: "🎨", name: "Midjourney",  desc: "Profesionāli attēli",          color: "#f97316" },
-  { icon: "📅", name: "Buffer",      desc: "Auto publicēšana",             color: "#8b5cf6" },
+  { icon: "🎨", name: "Midjourney",  desc: "Profesionāli attēli",          color: AM },
+  { icon: "📅", name: "Buffer",      desc: "Auto publicēšana",             color: G },
 ];
 
 const modules = [
@@ -88,38 +86,40 @@ const workflow = [
   { step: "04", icon: "📱", label: "Publicēšana",  tool: "Buffer",    color: AM },
 ];
 
+const cardShadow = "0 12px 36px -20px rgba(17,17,17,0.16)";
+const sectionLabel = (color: string): React.CSSProperties => ({
+  fontSize: 10, fontWeight: 800, color, textTransform: "uppercase", letterSpacing: "0.09em", marginBottom: 14,
+});
+
 export function SaturaIntroLessonContent() {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 24, paddingTop: 24 }}>
 
       {/* ── HERO ── */}
-      <div style={{ position: "relative", borderRadius: 20, overflow: "hidden", border: "1px solid rgba(168,85,247,0.25)", boxShadow: "0 24px 64px rgba(168,85,247,0.12), 0 4px 16px rgba(0,0,0,0.4)" }}>
-        {/* hero background image */}
+      <div style={{ position: "relative", borderRadius: 20, overflow: "hidden", border: `1px solid ${P}26`, boxShadow: "0 24px 64px -32px rgba(109,94,243,0.4)" }}>
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(109,94,243,0.10) 0%, rgba(155,143,247,0.05) 55%, #fff 100%)" }} />
         <img
           src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&q=85&fit=crop"
           alt=""
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.18, mixBlendMode: "luminosity" }}
+          style={{ position: "absolute", top: 0, right: 0, width: "46%", height: "100%", objectFit: "cover", opacity: 0.14, maskImage: "linear-gradient(to left, #000, transparent)", WebkitMaskImage: "linear-gradient(to left, #000, transparent)" }}
         />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(5,5,8,0.96) 0%, rgba(9,5,18,0.97) 100%)" }} />
-        <div style={{ position: "absolute", top: -120, right: -80, width: 500, height: 500, borderRadius: "50%", background: "radial-gradient(circle, rgba(168,85,247,0.22) 0%, transparent 65%)", pointerEvents: "none" }} />
-        <div style={{ position: "absolute", bottom: -80, left: -60, width: 350, height: 350, borderRadius: "50%", background: "radial-gradient(circle, rgba(236,72,153,0.14) 0%, transparent 65%)", pointerEvents: "none" }} />
-        <GridBg color="rgba(168,85,247,0.04)" size={30} />
+        <div style={{ position: "absolute", top: -120, right: -80, width: 460, height: 460, borderRadius: "50%", background: "radial-gradient(circle, rgba(109,94,243,0.14) 0%, transparent 65%)", pointerEvents: "none" }} />
         <div style={{ position: "relative", padding: "40px 36px" }}>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "5px 13px", borderRadius: 20, background: "rgba(168,85,247,0.12)", border: "1px solid rgba(168,85,247,0.3)", marginBottom: 18 }}>
-            <GlowDot color={P} />
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "5px 13px", borderRadius: 20, background: `${P}14`, border: `1px solid ${P}33`, marginBottom: 18 }}>
+            <Dot color={P} />
             <span style={{ fontSize: 10, fontWeight: 700, color: P, letterSpacing: "0.08em", textTransform: "uppercase" }}>Satura Speciālists · 4 bloki · 28 nodarbības</span>
           </div>
-          <h2 style={{ fontSize: "clamp(20px,4vw,32px)", fontWeight: 900, letterSpacing: "-0.03em", lineHeight: 1.15, marginBottom: 12, color: "#fff" }}>
+          <h2 style={{ fontSize: "clamp(20px,4vw,32px)", fontWeight: 900, letterSpacing: "-0.03em", lineHeight: 1.15, marginBottom: 12, color: "var(--ink)" }}>
             Kā AI maina<br />
-            <span style={{ background: "linear-gradient(135deg, #c084fc, #ec4899)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>satura radīšanas industriju</span>
+            <span style={{ background: "linear-gradient(135deg, #6D5EF3, #9B8FF7)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>satura radīšanas industriju</span>
           </h2>
-          <p style={{ fontSize: 13.5, color: "rgba(255,255,255,0.55)", lineHeight: 1.75, maxWidth: 520, marginBottom: 24 }}>
-            Uzņēmumi katru dienu meklē cilvēkus kas palīdz ar saturu. Tu apgūsi 3 pakalpojumus, pelnīsi <strong style={{ color: "#ddd" }}>€300–€1 500 mēnesī</strong> un automatizēsi visu procesu.
+          <p style={{ fontSize: 13.5, color: "var(--ink-3)", lineHeight: 1.75, maxWidth: 520, marginBottom: 24 }}>
+            Uzņēmumi katru dienu meklē cilvēkus kas palīdz ar saturu. Tu apgūsi 3 pakalpojumus, pelnīsi <strong style={{ color: "var(--ink)" }}>€300–€1 500 mēnesī</strong> un automatizēsi visu procesu.
           </p>
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-            {[{ c: P, t: "Bez kameras vai sejas" }, { c: G, t: "Klients 3 nedēļās" }, { c: C, t: "Pilnībā latviski" }].map((b) => (
-              <div key={b.t} style={{ display: "flex", alignItems: "center", gap: 7, padding: "6px 13px", borderRadius: 9, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
-                <GlowDot color={b.c} /><span style={{ fontSize: 11.5, fontWeight: 600, color: "rgba(255,255,255,0.8)" }}>{b.t}</span>
+            {[{ c: P, t: "Bez kameras vai sejas" }, { c: G, t: "Klients 3 nedēļās" }, { c: AM, t: "Pilnībā latviski" }].map((b) => (
+              <div key={b.t} style={{ display: "flex", alignItems: "center", gap: 7, padding: "6px 13px", borderRadius: 9, background: "#fff", border: "1px solid var(--line)" }}>
+                <Dot color={b.c} /><span style={{ fontSize: 11.5, fontWeight: 600, color: "var(--ink-2)" }}>{b.t}</span>
               </div>
             ))}
           </div>
@@ -128,44 +128,40 @@ export function SaturaIntroLessonContent() {
 
       {/* ── 3 PAKALPOJUMI ── */}
       <div>
-        <div style={{ fontSize: 10, fontWeight: 700, color: P, textTransform: "uppercase", letterSpacing: "0.09em", marginBottom: 14 }}>3 pakalpojumi ko tu apgūsi un pārdosi</div>
+        <div style={sectionLabel(P)}>3 pakalpojumi ko tu apgūsi un pārdosi</div>
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           {services.map((s, i) => (
-            <div key={i} style={{ borderRadius: 16, overflow: "hidden", border: `1px solid ${s.accent}22`, boxShadow: "0 6px 24px rgba(0,0,0,0.3)" }}>
+            <div key={i} style={{ borderRadius: 16, overflow: "hidden", border: `1px solid ${s.accent}2e`, background: "#fff", boxShadow: cardShadow }}>
               {/* Image header */}
               <div style={{ position: "relative", height: 130, overflow: "hidden" }}>
                 <img
                   src={s.img}
                   alt={s.title}
-                  style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.35 }}
+                  style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
                 />
-                {/* dark gradient overlay */}
-                <div style={{ position: "absolute", inset: 0, background: `linear-gradient(135deg, rgba(3,3,8,0.82) 0%, rgba(9,5,18,0.88) 100%)` }} />
-                {/* color glow orbs */}
-                <div style={{ position: "absolute", top: -60, right: -40, width: 240, height: 240, borderRadius: "50%", background: `radial-gradient(circle, ${s.accent}40 0%, transparent 65%)`, pointerEvents: "none" }} />
-                <div style={{ position: "absolute", bottom: -40, left: -30, width: 180, height: 180, borderRadius: "50%", background: `radial-gradient(circle, ${s.accent2}25 0%, transparent 65%)`, pointerEvents: "none" }} />
-                <GridBg color={`${s.accent}06`} size={22} />
+                <div style={{ position: "absolute", inset: 0, background: `linear-gradient(to top, rgba(17,17,17,0.78) 0%, rgba(17,17,17,0.25) 55%, rgba(17,17,17,0.05) 100%)` }} />
+                <div style={{ position: "absolute", inset: 0, background: `linear-gradient(120deg, ${s.accent}33 0%, transparent 60%)`, mixBlendMode: "multiply" }} />
                 {/* earn badge top-right */}
-                <div style={{ position: "absolute", top: 14, right: 16, display: "flex", alignItems: "baseline", gap: 4 }}>
-                  <span style={{ fontSize: 15, fontWeight: 900, color: s.accent, letterSpacing: "-0.02em", textShadow: `0 0 20px ${s.accent}80` }}>{s.earn}</span>
-                  <span style={{ fontSize: 9, color: "rgba(255,255,255,0.45)", fontWeight: 500 }}>{s.per}</span>
+                <div style={{ position: "absolute", top: 14, right: 16, display: "flex", alignItems: "baseline", gap: 4, background: "rgba(255,255,255,0.92)", borderRadius: 8, padding: "4px 9px" }}>
+                  <span style={{ fontSize: 14, fontWeight: 900, color: s.accent, letterSpacing: "-0.02em" }}>{s.earn}</span>
+                  <span style={{ fontSize: 9, color: "var(--ink-3)", fontWeight: 500 }}>{s.per}</span>
                 </div>
                 {/* label + title bottom */}
                 <div style={{ position: "absolute", bottom: 14, left: 18 }}>
-                  <span style={{ display: "inline-block", fontSize: 9.5, fontWeight: 700, padding: "3px 10px", borderRadius: 20, background: `${s.accent}18`, border: `1px solid ${s.accent}38`, color: s.accent, letterSpacing: "0.07em", textTransform: "uppercase", marginBottom: 6 }}>{s.label}</span>
+                  <span style={{ display: "inline-block", fontSize: 9.5, fontWeight: 700, padding: "3px 10px", borderRadius: 20, background: "rgba(255,255,255,0.18)", border: "1px solid rgba(255,255,255,0.35)", color: "#fff", letterSpacing: "0.07em", textTransform: "uppercase", marginBottom: 6, backdropFilter: "blur(4px)" }}>{s.label}</span>
                   <h3 style={{ fontSize: 19, fontWeight: 900, letterSpacing: "-0.02em", color: "#fff", margin: 0 }}>{s.title}</h3>
                 </div>
               </div>
               {/* Content */}
-              <div style={{ padding: "14px 18px 18px", background: "#0a0a14" }}>
-                <p style={{ fontSize: 12.5, color: "#777", lineHeight: 1.7, marginBottom: 12 }}>{s.desc}</p>
-                <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
+              <div style={{ padding: "16px 18px 18px" }}>
+                <p style={{ fontSize: 12.5, color: "var(--ink-3)", lineHeight: 1.7, marginBottom: 12 }}>{s.desc}</p>
+                <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                   {s.points.map((pt, pi) => (
                     <div key={pi} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                      <div style={{ width: 17, height: 17, borderRadius: 5, background: `${s.accent}10`, border: `1px solid ${s.accent}28`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                      <div style={{ width: 17, height: 17, borderRadius: 5, background: `${s.accent}16`, border: `1px solid ${s.accent}38`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                         <Check color={s.accent} />
                       </div>
-                      <span style={{ fontSize: 12, color: "#999" }}>{pt}</span>
+                      <span style={{ fontSize: 12, color: "var(--ink-2)" }}>{pt}</span>
                     </div>
                   ))}
                 </div>
@@ -176,53 +172,45 @@ export function SaturaIntroLessonContent() {
       </div>
 
       {/* ── DARBA PLŪSMA ── */}
-      <div style={{ position: "relative", borderRadius: 16, overflow: "hidden", border: "1px solid rgba(168,85,247,0.12)", boxShadow: "0 6px 24px rgba(0,0,0,0.3)" }}>
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(5,5,8,1), rgba(10,5,20,1))" }} />
-        <GridBg color="rgba(168,85,247,0.03)" size={24} />
+      <div style={{ position: "relative", borderRadius: 16, overflow: "hidden", border: "1px solid var(--line)", background: "#fff", boxShadow: cardShadow }}>
         <div style={{ position: "relative", padding: "22px 22px 18px" }}>
-          <div style={{ fontSize: 10, fontWeight: 700, color: P, textTransform: "uppercase", letterSpacing: "0.09em", marginBottom: 16 }}>No nulles līdz publicētam video — 4 soļi</div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 6 }}>
+          <div style={sectionLabel(P)}>No nulles līdz publicētam video — 4 soļi</div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 8 }}>
             {workflow.map((w, i) => (
               <div key={i} style={{ position: "relative" }}>
-                {/* connector line */}
                 {i < workflow.length - 1 && (
-                  <div style={{ position: "absolute", top: 22, right: -3, width: 6, height: 1, background: `linear-gradient(90deg, ${w.color}60, transparent)`, zIndex: 2 }} />
+                  <div style={{ position: "absolute", top: 26, right: -5, width: 8, height: 2, background: `${w.color}66`, zIndex: 2, borderRadius: 2 }} />
                 )}
-                <div style={{ padding: "14px 12px", borderRadius: 12, background: `${w.color}08`, border: `1px solid ${w.color}20`, display: "flex", flexDirection: "column", gap: 8, alignItems: "flex-start" }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                    <span style={{ fontSize: 8.5, fontWeight: 800, color: `${w.color}80`, letterSpacing: "0.06em" }}>{w.step}</span>
-                  </div>
+                <div style={{ padding: "14px 12px", borderRadius: 12, background: `${w.color}0d`, border: `1px solid ${w.color}2e`, display: "flex", flexDirection: "column", gap: 8, alignItems: "flex-start" }}>
+                  <span style={{ fontSize: 8.5, fontWeight: 800, color: w.color, letterSpacing: "0.06em" }}>{w.step}</span>
                   <div style={{ fontSize: 22, lineHeight: 1 }}>{w.icon}</div>
                   <div>
-                    <div style={{ fontSize: 12, fontWeight: 800, color: "#fff", marginBottom: 2 }}>{w.label}</div>
-                    <div style={{ fontSize: 10, color: w.color, fontWeight: 600 }}>{w.tool}</div>
+                    <div style={{ fontSize: 12, fontWeight: 800, color: "var(--ink)", marginBottom: 2 }}>{w.label}</div>
+                    <div style={{ fontSize: 10, color: w.color, fontWeight: 700 }}>{w.tool}</div>
                   </div>
-                  <div style={{ height: 2, width: "100%", borderRadius: 2, background: `linear-gradient(90deg, ${w.color}60, transparent)` }} />
+                  <div style={{ height: 2, width: "100%", borderRadius: 2, background: `linear-gradient(90deg, ${w.color}, transparent)` }} />
                 </div>
               </div>
             ))}
           </div>
-          <div style={{ marginTop: 12, padding: "10px 14px", borderRadius: 9, background: "rgba(0,255,136,0.04)", border: "1px solid rgba(0,255,136,0.12)", display: "flex", alignItems: "center", gap: 10 }}>
-            <GlowDot color={G} />
-            <span style={{ fontSize: 11.5, color: "#666" }}>Vidēji <strong style={{ color: "#bbb" }}>30–45 minūtes</strong> no sākuma līdz gatavam video klientam.</span>
+          <div style={{ marginTop: 12, padding: "10px 14px", borderRadius: 9, background: `${G}10`, border: `1px solid ${G}2e`, display: "flex", alignItems: "center", gap: 10 }}>
+            <Dot color={G} />
+            <span style={{ fontSize: 11.5, color: "var(--ink-2)" }}>Vidēji <strong style={{ color: "var(--ink)" }}>30–45 minūtes</strong> no sākuma līdz gatavam video klientam.</span>
           </div>
         </div>
       </div>
 
       {/* ── AI RĪKU EKOSISTĒMA ── */}
-      <div style={{ position: "relative", borderRadius: 16, overflow: "hidden", border: "1px solid rgba(168,85,247,0.12)", boxShadow: "0 6px 24px rgba(0,0,0,0.3)" }}>
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(5,5,8,1), rgba(8,5,16,1))" }} />
-        <div style={{ position: "absolute", top: -80, right: -60, width: 300, height: 300, borderRadius: "50%", background: "radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 65%)", pointerEvents: "none" }} />
-        <GridBg color="rgba(0,212,255,0.025)" size={22} />
+      <div style={{ position: "relative", borderRadius: 16, overflow: "hidden", border: "1px solid var(--line)", background: "#fff", boxShadow: cardShadow }}>
         <div style={{ position: "relative", padding: "22px 22px 18px" }}>
-          <div style={{ fontSize: 10, fontWeight: 700, color: C, textTransform: "uppercase", letterSpacing: "0.09em", marginBottom: 16 }}>AI rīku ekosistēma — visi bezmaksas sākumā</div>
+          <div style={sectionLabel(G)}>AI rīku ekosistēma — visi bezmaksas sākumā</div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 10 }}>
             {tools.map((t) => (
-              <div key={t.name} style={{ padding: "14px 14px", borderRadius: 12, background: `${t.color}09`, border: `1px solid ${t.color}22`, display: "flex", flexDirection: "column", gap: 6 }}>
+              <div key={t.name} style={{ padding: "14px 14px", borderRadius: 12, background: "var(--bg)", border: "1px solid var(--line)", display: "flex", flexDirection: "column", gap: 6 }}>
                 <div style={{ fontSize: 22, lineHeight: 1 }}>{t.icon}</div>
-                <div style={{ fontSize: 12.5, fontWeight: 800, color: "#fff" }}>{t.name}</div>
-                <div style={{ fontSize: 10.5, color: "#555", lineHeight: 1.4 }}>{t.desc}</div>
-                <div style={{ height: 2, borderRadius: 2, background: `linear-gradient(90deg, ${t.color}60, transparent)`, marginTop: 2 }} />
+                <div style={{ fontSize: 12.5, fontWeight: 800, color: "var(--ink)" }}>{t.name}</div>
+                <div style={{ fontSize: 10.5, color: "var(--ink-3)", lineHeight: 1.4 }}>{t.desc}</div>
+                <div style={{ height: 2, borderRadius: 2, background: `linear-gradient(90deg, ${t.color}, transparent)`, marginTop: 2 }} />
               </div>
             ))}
           </div>
@@ -230,50 +218,41 @@ export function SaturaIntroLessonContent() {
       </div>
 
       {/* ── STATISTIKA ── */}
-      <div style={{ position: "relative", borderRadius: 16, overflow: "hidden", border: "1px solid rgba(168,85,247,0.15)", boxShadow: "0 8px 32px rgba(0,0,0,0.3)" }}>
-        <img
-          src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=85&fit=crop"
-          alt=""
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.07 }}
-        />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(5,5,8,1), rgba(10,5,20,1))" }} />
-        <div style={{ position: "absolute", top: -80, right: -60, width: 300, height: 300, borderRadius: "50%", background: "radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 65%)", pointerEvents: "none" }} />
-        <GridBg color="rgba(168,85,247,0.03)" size={22} />
+      <div style={{ position: "relative", borderRadius: 16, overflow: "hidden", border: `1px solid ${P}22`, background: "linear-gradient(135deg, rgba(109,94,243,0.06) 0%, #fff 60%)", boxShadow: cardShadow }}>
+        <div style={{ position: "absolute", top: -80, right: -60, width: 300, height: 300, borderRadius: "50%", background: "radial-gradient(circle, rgba(109,94,243,0.10) 0%, transparent 65%)", pointerEvents: "none" }} />
         <div style={{ position: "relative", padding: "26px 28px" }}>
-          <div style={{ fontSize: 10, fontWeight: 700, color: P, textTransform: "uppercase", letterSpacing: "0.09em", marginBottom: 20 }}>Latvijas tirgus iespēja</div>
+          <div style={sectionLabel(P)}>Latvijas tirgus iespēja</div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(155px, 1fr))", gap: 18 }}>
             {stats.map((s) => (
               <div key={s.label}>
-                <div style={{ fontSize: 30, fontWeight: 900, letterSpacing: "-0.02em", marginBottom: 6, background: `linear-gradient(135deg, ${s.color} 0%, ${s.color}99 100%)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", filter: `drop-shadow(0 0 10px ${s.color}55)` }}>{s.value}</div>
-                <div style={{ fontSize: 11.5, color: "#555", lineHeight: 1.5 }}>{s.label}</div>
-                <div style={{ height: 2, borderRadius: 2, background: `linear-gradient(90deg, ${s.color}55, transparent)`, marginTop: 9 }} />
+                <div style={{ fontSize: 30, fontWeight: 900, letterSpacing: "-0.02em", marginBottom: 6, color: s.color }}>{s.value}</div>
+                <div style={{ fontSize: 11.5, color: "var(--ink-3)", lineHeight: 1.5 }}>{s.label}</div>
+                <div style={{ height: 2, borderRadius: 2, background: `linear-gradient(90deg, ${s.color}, transparent)`, marginTop: 9 }} />
               </div>
             ))}
           </div>
-          <div style={{ marginTop: 22, padding: "13px 16px", borderRadius: 11, background: "rgba(168,85,247,0.05)", border: "1px solid rgba(168,85,247,0.13)", display: "flex", gap: 10 }}>
+          <div style={{ marginTop: 22, padding: "13px 16px", borderRadius: 11, background: "#fff", border: "1px solid var(--line)", display: "flex", gap: 10 }}>
             <span style={{ fontSize: 16, flexShrink: 0 }}>💡</span>
-            <p style={{ fontSize: 12, color: "#777", lineHeight: 1.7, margin: 0 }}>Latvijā ir ap <strong style={{ color: "#ccc" }}>26 000 aktīvu uzņēmumu</strong>. Lielākā daļa maksā par saturu tikai tad, kad kāds piedāvā. Tu esi tas cilvēks.</p>
+            <p style={{ fontSize: 12, color: "var(--ink-2)", lineHeight: 1.7, margin: 0 }}>Latvijā ir ap <strong style={{ color: "var(--ink)" }}>26 000 aktīvu uzņēmumu</strong>. Lielākā daļa maksā par saturu tikai tad, kad kāds piedāvā. Tu esi tas cilvēks.</p>
           </div>
         </div>
       </div>
 
       {/* ── IENĀKUMI ── */}
-      <div style={{ position: "relative", padding: "24px 26px", borderRadius: 16, overflow: "hidden", border: "1px solid rgba(168,85,247,0.1)", boxShadow: "0 6px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.03)" }}>
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(5,5,8,1), rgba(10,5,20,1))" }} />
-        <div style={{ position: "absolute", bottom: -60, right: -40, width: 250, height: 250, borderRadius: "50%", background: "radial-gradient(circle, rgba(168,85,247,0.1) 0%, transparent 65%)", pointerEvents: "none" }} />
+      <div style={{ position: "relative", padding: "24px 26px", borderRadius: 16, overflow: "hidden", border: "1px solid var(--line)", background: "#fff", boxShadow: cardShadow }}>
         <div style={{ position: "relative" }}>
-          <div style={{ fontSize: 10, fontWeight: 700, color: P, textTransform: "uppercase", letterSpacing: "0.09em", marginBottom: 18 }}>Reāla ienākumu trajektorija</div>
+          <div style={sectionLabel(P)}>Reāla ienākumu trajektorija</div>
           <div style={{ display: "flex", flexDirection: "column", gap: 9 }}>
             {income.map((row, i) => (
               <div key={i} style={{ display: "flex", gap: 12, alignItems: "center" }}>
-                <div style={{ width: 72, flexShrink: 0, fontSize: 10, fontWeight: 600, color: "#3a3a4a" }}>{row.period}</div>
-                <div style={{ flex: 1, position: "relative", height: 32, borderRadius: 7, background: "rgba(255,255,255,0.025)", overflow: "hidden", border: "1px solid rgba(255,255,255,0.04)" }}>
-                  <div style={{ position: "absolute", left: 0, top: 0, height: "100%", width: `${row.pct}%`, background: "linear-gradient(90deg, rgba(168,85,247,0.5), rgba(236,72,153,0.32))", borderRadius: 6 }} />
+                <div style={{ width: 72, flexShrink: 0, fontSize: 10, fontWeight: 700, color: "var(--ink-3)" }}>{row.period}</div>
+                <div style={{ flex: 1, position: "relative", height: 32, borderRadius: 7, background: "var(--bg-2)", overflow: "hidden", border: "1px solid var(--line)" }}>
+                  <div style={{ position: "absolute", left: 0, top: 0, height: "100%", width: `${row.pct}%`, background: "linear-gradient(90deg, #6D5EF3, #9B8FF7)", borderRadius: 6 }} />
                   <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", padding: "0 10px" }}>
-                    <span style={{ fontSize: 10.5, color: row.pct > 20 ? "rgba(255,255,255,0.7)" : "#555", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{row.desc}</span>
+                    <span style={{ fontSize: 10.5, color: row.pct > 20 ? "#fff" : "var(--ink-3)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", fontWeight: 500 }}>{row.desc}</span>
                   </div>
                 </div>
-                <div style={{ width: 110, flexShrink: 0, textAlign: "right", fontSize: 12.5, fontWeight: 800, color: row.pct > 30 ? G : "#444", letterSpacing: "-0.01em" }}>{row.amount}</div>
+                <div style={{ width: 110, flexShrink: 0, textAlign: "right", fontSize: 12.5, fontWeight: 800, color: row.pct > 30 ? G : "var(--ink-3)", letterSpacing: "-0.01em" }}>{row.amount}</div>
               </div>
             ))}
           </div>
@@ -282,17 +261,16 @@ export function SaturaIntroLessonContent() {
 
       {/* ── MODUĻI ── */}
       <div>
-        <div style={{ fontSize: 10, fontWeight: 700, color: P, textTransform: "uppercase", letterSpacing: "0.09em", marginBottom: 14 }}>Tavs ceļš caur 4 blokiem</div>
+        <div style={sectionLabel(P)}>Tavs ceļš caur 4 blokiem</div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 9 }}>
           {modules.map((m) => (
-            <div key={m.num} style={{ position: "relative", padding: "16px 18px", borderRadius: 13, background: "rgba(10,10,20,0.9)", border: `1px solid ${m.color}18`, overflow: "hidden", boxShadow: "0 4px 16px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.03)" }}>
-              <div style={{ position: "absolute", top: -35, right: -35, width: 100, height: 100, borderRadius: "50%", background: `radial-gradient(circle, ${m.color}12, transparent 70%)`, pointerEvents: "none" }} />
+            <div key={m.num} style={{ position: "relative", padding: "16px 18px", borderRadius: 13, background: "#fff", border: `1px solid ${m.color}2e`, overflow: "hidden", boxShadow: cardShadow }}>
               <div style={{ display: "flex", alignItems: "center", gap: 9, marginBottom: 10 }}>
-                <div style={{ width: 28, height: 28, borderRadius: 8, background: `${m.color}12`, border: `1px solid ${m.color}2e`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 900, color: m.color, flexShrink: 0, boxShadow: `0 0 10px ${m.color}20` }}>{m.num}</div>
-                <span style={{ fontSize: 12.5, fontWeight: 700, color: "#fff" }}>{m.title}</span>
+                <div style={{ width: 28, height: 28, borderRadius: 8, background: `${m.color}16`, border: `1px solid ${m.color}3a`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 900, color: m.color, flexShrink: 0 }}>{m.num}</div>
+                <span style={{ fontSize: 12.5, fontWeight: 700, color: "var(--ink)" }}>{m.title}</span>
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
-                <Check color={m.color} /><span style={{ fontSize: 11, color: "#555" }}>{m.milestone}</span>
+                <Check color={m.color} /><span style={{ fontSize: 11, color: "var(--ink-3)" }}>{m.milestone}</span>
               </div>
             </div>
           ))}
@@ -300,18 +278,16 @@ export function SaturaIntroLessonContent() {
       </div>
 
       {/* ── CTA ── */}
-      <div style={{ position: "relative", padding: "24px 26px", borderRadius: 16, overflow: "hidden", border: "1px solid rgba(168,85,247,0.2)", boxShadow: "0 12px 40px rgba(168,85,247,0.08)" }}>
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(168,85,247,0.09) 0%, rgba(236,72,153,0.05) 50%, rgba(5,5,8,0.97) 100%)" }} />
-        <GridBg color="rgba(168,85,247,0.025)" size={22} />
-        <div style={{ position: "absolute", top: -60, right: -50, width: 220, height: 220, borderRadius: "50%", background: "radial-gradient(circle, rgba(236,72,153,0.12), transparent 70%)", pointerEvents: "none" }} />
+      <div style={{ position: "relative", padding: "24px 26px", borderRadius: 16, overflow: "hidden", border: `1px solid ${P}2e`, background: "linear-gradient(135deg, rgba(109,94,243,0.10) 0%, rgba(155,143,247,0.05) 55%, #fff 100%)", boxShadow: "0 16px 44px -24px rgba(109,94,243,0.4)" }}>
+        <div style={{ position: "absolute", top: -60, right: -50, width: 220, height: 220, borderRadius: "50%", background: "radial-gradient(circle, rgba(109,94,243,0.12), transparent 70%)", pointerEvents: "none" }} />
         <div style={{ position: "relative", display: "flex", alignItems: "flex-start", gap: 16 }}>
-          <div style={{ width: 44, height: 44, borderRadius: 12, background: "linear-gradient(135deg, rgba(168,85,247,0.28), rgba(236,72,153,0.28))", border: "1px solid rgba(168,85,247,0.38)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: 20, boxShadow: "0 6px 20px rgba(168,85,247,0.18)" }}>🎯</div>
+          <div style={{ width: 44, height: 44, borderRadius: 12, background: "linear-gradient(135deg, #6D5EF3, #9B8FF7)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: 20, boxShadow: "0 8px 22px -8px rgba(109,94,243,0.6)" }}>🎯</div>
           <div>
-            <div style={{ fontSize: 14.5, fontWeight: 800, color: "#fff", marginBottom: 6, letterSpacing: "-0.01em" }}>Pēc šīs nodarbības tu saproti, kāpēc šis ir tavs labākais sākums</div>
-            <p style={{ fontSize: 12.5, color: "#777", lineHeight: 1.75, margin: "0 0 12px" }}>Nākamajā nodarbībā — <strong style={{ color: "#ccc" }}>kādus pakalpojumus vari piedāvāt uzreiz</strong> un kā noteikt cenu pat bez pieredzes.</p>
+            <div style={{ fontSize: 14.5, fontWeight: 800, color: "var(--ink)", marginBottom: 6, letterSpacing: "-0.01em" }}>Pēc šīs nodarbības tu saproti, kāpēc šis ir tavs labākais sākums</div>
+            <p style={{ fontSize: 12.5, color: "var(--ink-2)", lineHeight: 1.75, margin: "0 0 12px" }}>Nākamajā nodarbībā — <strong style={{ color: "var(--ink)" }}>kādus pakalpojumus vari piedāvāt uzreiz</strong> un kā noteikt cenu pat bez pieredzes.</p>
             <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
-              {[{ c: P, t: "28 nodarbības" }, { c: G, t: "Bez kodēšanas" }, { c: C, t: "Latvijas tirgum" }].map((b) => (
-                <div key={b.t} style={{ display: "flex", alignItems: "center", gap: 6 }}><GlowDot color={b.c} /><span style={{ fontSize: 11.5, color: "#555", fontWeight: 500 }}>{b.t}</span></div>
+              {[{ c: P, t: "28 nodarbības" }, { c: G, t: "Bez kodēšanas" }, { c: AM, t: "Latvijas tirgum" }].map((b) => (
+                <div key={b.t} style={{ display: "flex", alignItems: "center", gap: 6 }}><Dot color={b.c} /><span style={{ fontSize: 11.5, color: "var(--ink-3)", fontWeight: 500 }}>{b.t}</span></div>
               ))}
             </div>
           </div>

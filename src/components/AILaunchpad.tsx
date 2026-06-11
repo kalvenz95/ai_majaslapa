@@ -43,7 +43,7 @@ export default function AILaunchpad() {
             color: "var(--ink)",
             margin: "0 0 20px",
           }}>
-            Kurus pakalpojumus uzņēmumi <span style={{ color: "var(--accent)" }}>jau pirk?</span>
+            Kurus pakalpojumus uzņēmumi <span style={{ color: "var(--accent)" }}>jau pērk?</span>
           </h2>
           <p style={{ fontSize: 18, color: "var(--ink-3)", lineHeight: 1.65 }}>
             Šie ir pakalpojumi, kurus uzņēmumi jau šobrīd izmanto un par kuriem maksā.

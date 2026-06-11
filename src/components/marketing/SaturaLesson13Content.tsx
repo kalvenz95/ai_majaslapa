@@ -1,13 +1,14 @@
 "use client";
 
-const P  = "#a855f7";
-const P2 = "#ec4899";
-const G  = "#00ff88";
-const C  = "#00d4ff";
-const AM = "#f59e0b";
+/* Brand-derived light palette */
+const P  = "#6D5EF3";
+const P2 = "#9B8FF7";
+const G  = "#00BFA5";
+const C  = "#33D4BF";
+const AM = "#FFB86B";
 
-function GlowDot({ color }: { color: string }) {
-  return <div style={{ width: 7, height: 7, borderRadius: "50%", background: color, boxShadow: `0 0 8px ${color}, 0 0 18px ${color}55`, flexShrink: 0 }} />;
+function Dot({ color }: { color: string }) {
+  return <div style={{ width: 7, height: 7, borderRadius: "50%", background: color, flexShrink: 0 }} />;
 }
 function Check({ color = P }: { color?: string }) {
   return (
@@ -16,17 +17,19 @@ function Check({ color = P }: { color?: string }) {
     </svg>
   );
 }
-function GridBg({ color, size = 28 }: { color: string; size?: number }) {
-  return <div style={{ position: "absolute", inset: 0, pointerEvents: "none", backgroundImage: `linear-gradient(${color} 1px, transparent 1px), linear-gradient(90deg, ${color} 1px, transparent 1px)`, backgroundSize: `${size}px ${size}px` }} />;
-}
+
+const cardShadow = "0 12px 36px -20px rgba(17,17,17,0.16)";
+const sectionLabel = (color: string): React.CSSProperties => ({
+  fontSize: 10, fontWeight: 800, color, textTransform: "uppercase", letterSpacing: "0.09em",
+});
 
 const freeTools = [
   { icon: "💬", name: "ChatGPT", plan: "Bezmaksas", color: G,  use: "Skripti, captions, e-pasti",   limit: "40 ziņ / 3 stundas", starter: true },
   { icon: "🎨", name: "Canva",   plan: "Bezmaksas", color: P2, use: "Banneri, posti, carousels",     limit: "Daļa veidņu slēgta", starter: true },
   { icon: "✂️", name: "CapCut",  plan: "Bezmaksas", color: C,  use: "Video montāža + subtitri",      limit: "Neliels ūdenszīmogs", starter: true },
   { icon: "📅", name: "Buffer",  plan: "Bezmaksas", color: AM, use: "Publicēšana 3 kanālos",         limit: "Maks. 10 plānoti posti", starter: true },
-  { icon: "🤖", name: "Gemini",  plan: "Bezmaksas", color: "#4285f4", use: "Teksts, idejas, analīze", limit: "Bezmaksas bez limits", starter: false },
-  { icon: "📝", name: "Notion",  plan: "Bezmaksas", color: "#fff",    use: "Klientu pārvaldība",       limit: "Personīgs plāns bez limits", starter: false },
+  { icon: "🤖", name: "Gemini",  plan: "Bezmaksas", color: P, use: "Teksts, idejas, analīze", limit: "Bezmaksas bez limits", starter: false },
+  { icon: "📝", name: "Notion",  plan: "Bezmaksas", color: "#5B5B5B",    use: "Klientu pārvaldība",       limit: "Personīgs plāns bez limits", starter: false },
 ];
 
 const paidTools = [
@@ -55,21 +58,19 @@ export function SaturaLesson13Content() {
     <div style={{ display: "flex", flexDirection: "column", gap: 22, paddingTop: 22 }}>
 
       {/* ── INTRO ── */}
-      <div style={{ position: "relative", borderRadius: 16, overflow: "hidden", border: "1px solid rgba(0,212,255,0.2)", padding: "24px 26px" }}>
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(5,5,8,1) 0%, rgba(5,12,18,1) 100%)" }} />
-        <div style={{ position: "absolute", top: -70, right: -50, width: 250, height: 250, borderRadius: "50%", background: "radial-gradient(circle, rgba(0,212,255,0.18) 0%, transparent 65%)", pointerEvents: "none" }} />
-        <GridBg color="rgba(0,212,255,0.03)" size={26} />
+      <div style={{ position: "relative", borderRadius: 16, overflow: "hidden", border: `1px solid ${C}33`, padding: "24px 26px", background: "linear-gradient(135deg, rgba(51,212,191,0.10) 0%, rgba(0,191,165,0.05) 55%, #fff 100%)", boxShadow: cardShadow }}>
+        <div style={{ position: "absolute", top: -70, right: -50, width: 250, height: 250, borderRadius: "50%", background: "radial-gradient(circle, rgba(0,191,165,0.10) 0%, transparent 65%)", pointerEvents: "none" }} />
         <div style={{ position: "relative" }}>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "4px 12px", borderRadius: 20, background: "rgba(0,212,255,0.1)", border: "1px solid rgba(0,212,255,0.25)", marginBottom: 14 }}>
-            <GlowDot color={C} />
-            <span style={{ fontSize: 10, fontWeight: 700, color: C, letterSpacing: "0.08em", textTransform: "uppercase" }}>Nodarbība 1.3 · Rīki</span>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "4px 12px", borderRadius: 20, background: `${G}14`, border: `1px solid ${G}33`, marginBottom: 14 }}>
+            <Dot color={G} />
+            <span style={{ fontSize: 10, fontWeight: 700, color: G, letterSpacing: "0.08em", textTransform: "uppercase" }}>Nodarbība 1.3 · Rīki</span>
           </div>
-          <h2 style={{ fontSize: "clamp(18px,3vw,26px)", fontWeight: 900, letterSpacing: "-0.025em", lineHeight: 1.2, marginBottom: 10, color: "#fff" }}>
+          <h2 style={{ fontSize: "clamp(18px,3vw,26px)", fontWeight: 900, letterSpacing: "-0.025em", lineHeight: 1.2, marginBottom: 10, color: "var(--ink)" }}>
             Pilns rīku komplekts —{" "}
-            <span style={{ background: "linear-gradient(135deg, #00d4ff, #a855f7)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>sāc ar €0</span>
+            <span style={{ background: "linear-gradient(135deg, #00BFA5, #6D5EF3)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>sāc ar €0</span>
           </h2>
-          <p style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", lineHeight: 1.75, maxWidth: 540, margin: 0 }}>
-            Pirmajiem 2 mēnešiem vajag tikai <strong style={{ color: "#ddd" }}>4 bezmaksas rīkus</strong>. Maksas rīkus pievieno tikai kad pirmā nauda no klientiem jau ir kontā.
+          <p style={{ fontSize: 13, color: "var(--ink-3)", lineHeight: 1.75, maxWidth: 540, margin: 0 }}>
+            Pirmajiem 2 mēnešiem vajag tikai <strong style={{ color: "var(--ink)" }}>4 bezmaksas rīkus</strong>. Maksas rīkus pievieno tikai kad pirmā nauda no klientiem jau ir kontā.
           </p>
         </div>
       </div>
@@ -77,23 +78,23 @@ export function SaturaLesson13Content() {
       {/* ── BEZMAKSAS RĪKI ── */}
       <div>
         <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
-          <div style={{ fontSize: 10, fontWeight: 700, color: G, textTransform: "uppercase", letterSpacing: "0.09em" }}>Bezmaksas rīki — sāc šodien</div>
-          <div style={{ flex: 1, height: 1, background: "rgba(0,255,136,0.12)" }} />
+          <div style={sectionLabel(G)}>Bezmaksas rīki — sāc šodien</div>
+          <div style={{ flex: 1, height: 1, background: "var(--line)" }} />
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
           {freeTools.map((t) => (
-            <div key={t.name} style={{ padding: "14px 15px", borderRadius: 12, background: `${t.color}08`, border: `1px solid ${t.color}${t.starter ? "28" : "16"}`, position: "relative", overflow: "hidden" }}>
+            <div key={t.name} style={{ padding: "14px 15px", borderRadius: 12, background: "#fff", border: `1px solid ${t.color}${t.starter ? "33" : "22"}`, position: "relative", overflow: "hidden", boxShadow: cardShadow }}>
               {t.starter && (
-                <div style={{ position: "absolute", top: 8, right: 10, fontSize: 8, fontWeight: 800, color: G, background: "rgba(0,255,136,0.1)", border: "1px solid rgba(0,255,136,0.22)", borderRadius: 20, padding: "2px 7px", textTransform: "uppercase", letterSpacing: "0.05em" }}>Starter</div>
+                <div style={{ position: "absolute", top: 8, right: 10, fontSize: 8, fontWeight: 800, color: G, background: `${G}14`, border: `1px solid ${G}33`, borderRadius: 20, padding: "2px 7px", textTransform: "uppercase", letterSpacing: "0.05em" }}>Starter</div>
               )}
               <div style={{ fontSize: 20, marginBottom: 8 }}>{t.icon}</div>
-              <div style={{ fontSize: 13, fontWeight: 800, color: "#fff", marginBottom: 2 }}>{t.name}</div>
-              <div style={{ fontSize: 11, color: "#666", marginBottom: 8, lineHeight: 1.4 }}>{t.use}</div>
-              <div style={{ display: "flex", alignItems: "center", gap: 5, padding: "5px 8px", borderRadius: 7, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
-                <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><circle cx="4.5" cy="4.5" r="4" stroke="#555" strokeWidth="1"/><path d="M4.5 3v2l1 1" stroke="#555" strokeWidth="1" strokeLinecap="round"/></svg>
-                <span style={{ fontSize: 10, color: "#555" }}>{t.limit}</span>
+              <div style={{ fontSize: 13, fontWeight: 800, color: "var(--ink)", marginBottom: 2 }}>{t.name}</div>
+              <div style={{ fontSize: 11, color: "var(--ink-3)", marginBottom: 8, lineHeight: 1.4 }}>{t.use}</div>
+              <div style={{ display: "flex", alignItems: "center", gap: 5, padding: "5px 8px", borderRadius: 7, background: "var(--bg)", border: "1px solid var(--line)" }}>
+                <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><circle cx="4.5" cy="4.5" r="4" stroke="var(--ink-4)" strokeWidth="1"/><path d="M4.5 3v2l1 1" stroke="var(--ink-4)" strokeWidth="1" strokeLinecap="round"/></svg>
+                <span style={{ fontSize: 10, color: "var(--ink-3)" }}>{t.limit}</span>
               </div>
-              <div style={{ height: 2, borderRadius: 2, background: `linear-gradient(90deg, ${t.color}50, transparent)`, marginTop: 10 }} />
+              <div style={{ height: 2, borderRadius: 2, background: `linear-gradient(90deg, ${t.color}, transparent)`, marginTop: 10 }} />
             </div>
           ))}
         </div>
@@ -102,20 +103,20 @@ export function SaturaLesson13Content() {
       {/* ── MAKSAS RĪKI (kad upgrade) ── */}
       <div>
         <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
-          <div style={{ fontSize: 10, fontWeight: 700, color: AM, textTransform: "uppercase", letterSpacing: "0.09em" }}>Maksas rīki — pievienot vēlāk</div>
-          <div style={{ flex: 1, height: 1, background: "rgba(245,158,11,0.12)" }} />
+          <div style={sectionLabel(AM)}>Maksas rīki — pievienot vēlāk</div>
+          <div style={{ flex: 1, height: 1, background: "var(--line)" }} />
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
           {paidTools.map((t) => (
-            <div key={t.name} style={{ display: "flex", alignItems: "center", gap: 12, padding: "13px 15px", borderRadius: 11, background: `${t.color}07`, border: `1px solid ${t.color}18` }}>
+            <div key={t.name} style={{ display: "flex", alignItems: "center", gap: 12, padding: "13px 15px", borderRadius: 11, background: "#fff", border: `1px solid ${t.color}2a`, boxShadow: cardShadow }}>
               <div style={{ fontSize: 20, flexShrink: 0 }}>{t.icon}</div>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 2 }}>
-                  <span style={{ fontSize: 13, fontWeight: 700, color: "#fff" }}>{t.name}</span>
-                  <span style={{ fontSize: 10, fontWeight: 700, color: t.color, background: `${t.color}12`, border: `1px solid ${t.color}25`, borderRadius: 20, padding: "1px 8px" }}>{t.price}</span>
+                  <span style={{ fontSize: 13, fontWeight: 700, color: "var(--ink)" }}>{t.name}</span>
+                  <span style={{ fontSize: 10, fontWeight: 700, color: t.color, background: `${t.color}16`, border: `1px solid ${t.color}33`, borderRadius: 20, padding: "1px 8px" }}>{t.price}</span>
                 </div>
-                <div style={{ fontSize: 11, color: "#555", marginBottom: 3 }}>🕐 {t.when}</div>
-                <div style={{ fontSize: 11, color: "#777" }}>✦ {t.gain}</div>
+                <div style={{ fontSize: 11, color: "var(--ink-3)", marginBottom: 3 }}>🕐 {t.when}</div>
+                <div style={{ fontSize: 11, color: "var(--ink-2)" }}>✦ {t.gain}</div>
               </div>
             </div>
           ))}
@@ -123,39 +124,36 @@ export function SaturaLesson13Content() {
       </div>
 
       {/* ── IKMĒNEŠA IZMAKSAS ── */}
-      <div style={{ position: "relative", borderRadius: 14, overflow: "hidden", border: "1px solid rgba(168,85,247,0.12)", padding: "20px 22px" }}>
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(5,5,8,1), rgba(10,5,20,1))" }} />
+      <div style={{ position: "relative", borderRadius: 14, overflow: "hidden", border: "1px solid var(--line)", padding: "20px 22px", background: "#fff", boxShadow: cardShadow }}>
         <div style={{ position: "relative" }}>
-          <div style={{ fontSize: 10, fontWeight: 700, color: P, textTransform: "uppercase", letterSpacing: "0.09em", marginBottom: 14 }}>Izmaksu augšana pa mēnešiem</div>
+          <div style={{ ...sectionLabel(P), marginBottom: 14 }}>Izmaksu augšana pa mēnešiem</div>
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
             {monthlyCost.map((row, i) => (
               <div key={i} style={{ display: "grid", gridTemplateColumns: "90px 50px 1fr", gap: 10, alignItems: "center" }}>
-                <div style={{ fontSize: 10, fontWeight: 600, color: "#555" }}>{row.phase}</div>
-                <div style={{ fontSize: 14, fontWeight: 900, color: row.color, textAlign: "center", textShadow: `0 0 12px ${row.color}50` }}>{row.cost}</div>
-                <div style={{ fontSize: 11, color: "#555", paddingLeft: 4, borderLeft: `2px solid ${row.color}30` }}>{row.tools}</div>
+                <div style={{ fontSize: 10, fontWeight: 600, color: "var(--ink-3)" }}>{row.phase}</div>
+                <div style={{ fontSize: 14, fontWeight: 900, color: row.color, textAlign: "center" }}>{row.cost}</div>
+                <div style={{ fontSize: 11, color: "var(--ink-2)", paddingLeft: 8, borderLeft: `2px solid ${row.color}55` }}>{row.tools}</div>
               </div>
             ))}
           </div>
-          <div style={{ marginTop: 14, padding: "10px 14px", borderRadius: 9, background: "rgba(0,255,136,0.04)", border: "1px solid rgba(0,255,136,0.12)", display: "flex", gap: 10 }}>
-            <GlowDot color={G} />
-            <span style={{ fontSize: 11.5, color: "#666" }}>Pirmie <strong style={{ color: "#ccc" }}>2 mēneši = €0 izmaksas</strong>. Maksas rīkus pievieno tikai pēc pirmā klienta samaksas.</span>
+          <div style={{ marginTop: 14, padding: "10px 14px", borderRadius: 9, background: `${G}10`, border: `1px solid ${G}2e`, display: "flex", gap: 10 }}>
+            <Dot color={G} />
+            <span style={{ fontSize: 11.5, color: "var(--ink-2)" }}>Pirmie <strong style={{ color: "var(--ink)" }}>2 mēneši = €0 izmaksas</strong>. Maksas rīkus pievieno tikai pēc pirmā klienta samaksas.</span>
           </div>
         </div>
       </div>
 
       {/* ── STARTER STACK ── */}
-      <div style={{ position: "relative", borderRadius: 14, overflow: "hidden", border: "1px solid rgba(0,255,136,0.15)", padding: "20px 22px" }}>
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(5,8,5,1), rgba(5,12,8,1))" }} />
-        <GridBg color="rgba(0,255,136,0.025)" size={22} />
+      <div style={{ position: "relative", borderRadius: 14, overflow: "hidden", border: `1px solid ${G}2a`, padding: "20px 22px", background: "linear-gradient(135deg, rgba(0,191,165,0.06) 0%, #fff 60%)", boxShadow: cardShadow }}>
         <div style={{ position: "relative" }}>
-          <div style={{ fontSize: 10, fontWeight: 700, color: G, textTransform: "uppercase", letterSpacing: "0.09em", marginBottom: 14 }}>Ieteicamais sākuma rīku komplekts</div>
+          <div style={{ ...sectionLabel(G), marginBottom: 14 }}>Ieteicamais sākuma rīku komplekts</div>
           <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
             {starterStack.map((s) => (
-              <div key={s.step} style={{ display: "flex", gap: 12, alignItems: "center", padding: "11px 13px", borderRadius: 9, background: `${s.color}07`, border: `1px solid ${s.color}18` }}>
-                <div style={{ width: 22, height: 22, borderRadius: 7, background: `${s.color}14`, border: `1px solid ${s.color}28`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 900, color: s.color, flexShrink: 0 }}>{s.step}</div>
+              <div key={s.step} style={{ display: "flex", gap: 12, alignItems: "center", padding: "11px 13px", borderRadius: 9, background: "#fff", border: `1px solid ${s.color}2a` }}>
+                <div style={{ width: 22, height: 22, borderRadius: 7, background: `${s.color}18`, border: `1px solid ${s.color}3a`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 900, color: s.color, flexShrink: 0 }}>{s.step}</div>
                 <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: 12.5, fontWeight: 700, color: "#fff" }}>{s.tool}</div>
-                  <div style={{ fontSize: 11, color: "#555", marginTop: 1 }}>{s.task}</div>
+                  <div style={{ fontSize: 12.5, fontWeight: 700, color: "var(--ink)" }}>{s.tool}</div>
+                  <div style={{ fontSize: 11, color: "var(--ink-3)", marginTop: 1 }}>{s.task}</div>
                 </div>
                 <Check color={s.color} />
               </div>
@@ -163,8 +161,8 @@ export function SaturaLesson13Content() {
           </div>
           <div style={{ marginTop: 14, display: "flex", gap: 6, flexWrap: "wrap" }}>
             {[{ c: G, t: "€0 sākumā" }, { c: C, t: "Instalē šodien" }, { c: AM, t: "Viss latviski" }].map(b => (
-              <div key={b.t} style={{ display: "flex", alignItems: "center", gap: 6, padding: "5px 12px", borderRadius: 20, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
-                <GlowDot color={b.c} /><span style={{ fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.7)" }}>{b.t}</span>
+              <div key={b.t} style={{ display: "flex", alignItems: "center", gap: 6, padding: "5px 12px", borderRadius: 20, background: "#fff", border: "1px solid var(--line)" }}>
+                <Dot color={b.c} /><span style={{ fontSize: 11, fontWeight: 600, color: "var(--ink-2)" }}>{b.t}</span>
               </div>
             ))}
           </div>

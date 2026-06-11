@@ -19,13 +19,13 @@ const curriculum = [
     num: "3",
     title: "Automatizācija",
     items: ["WhatsApp automatizācija", "E-pasti un follow-ups", "Lead apstrāde", "Make.com / n8n"],
-    link: "/kursi/digitalais-specialists",
+    link: "/kursi/ai-agentu-eksperts",
   },
   {
     num: "4",
     title: "AI balss aģenti",
     items: ["Vapi iestatīšana", "Zvanu scenāriji", "Rezervācijas sistēmas", "Klientu piesaiste"],
-    link: "/kursi/ai-agentu-eksperts",
+    link: "/kursi/voice-agents",
   },
 ];
 

@@ -1,20 +1,24 @@
 "use client";
 
-const P  = "#a855f7";
-const P2 = "#ec4899";
-const G  = "#00ff88";
-const C  = "#00d4ff";
-const AM = "#f59e0b";
+/* Brand-derived light palette */
+const P  = "#6D5EF3";
+const P2 = "#9B8FF7";
+const G  = "#00BFA5";
+const C  = "#33D4BF";
+const AM = "#FFB86B";
+const MUTED = "#B3B0A9";
 
-function GlowDot({ color }: { color: string }) {
-  return <div style={{ width: 7, height: 7, borderRadius: "50%", background: color, boxShadow: `0 0 8px ${color}, 0 0 18px ${color}55`, flexShrink: 0 }} />;
+function Dot({ color }: { color: string }) {
+  return <div style={{ width: 7, height: 7, borderRadius: "50%", background: color, flexShrink: 0 }} />;
 }
-function GridBg({ color, size = 28 }: { color: string; size?: number }) {
-  return <div style={{ position: "absolute", inset: 0, pointerEvents: "none", backgroundImage: `linear-gradient(${color} 1px, transparent 1px), linear-gradient(90deg, ${color} 1px, transparent 1px)`, backgroundSize: `${size}px ${size}px` }} />;
-}
+
+const cardShadow = "0 12px 36px -20px rgba(17,17,17,0.16)";
+const sectionLabel = (color: string): React.CSSProperties => ({
+  fontSize: 10, fontWeight: 800, color, textTransform: "uppercase", letterSpacing: "0.09em", marginBottom: 14,
+});
 
 const timeline = [
-  { week: "1. ned.", title: "Apgūst rīkus", desc: "ChatGPT, Canva, CapCut uzstādīts. Veido demo video fiktīvam kafejnīcas zīmolam.", income: "€0", color: "#444", done: true },
+  { week: "1. ned.", title: "Apgūst rīkus", desc: "ChatGPT, Canva, CapCut uzstādīts. Veido demo video fiktīvam kafejnīcas zīmolam.", income: "€0", color: MUTED, done: true },
   { week: "2. ned.", title: "Sūta 15 ziņas", desc: "15 DM uz Instagram uzņēmumiem bez aktīva satura. Atbild 4. Tikšanās ar 2.", income: "€0", color: C, done: true },
   { week: "3. ned.", title: "Pirmā tikšanās", desc: "Zoom zvans 30 min ar skaistumkopšanas salonu Rīgā. Parāda demo. Klients ieinteresēts.", income: "€0", color: P, done: true },
   { week: "4. ned.", title: "Piedāvājums nosūtīts", desc: "PDF piedāvājums €300/mēn par 20 postiem + 4 video. Klients paraksta pēc 2 dienām.", income: "€300", color: AM, done: true },
@@ -50,7 +54,7 @@ const proposalBlocks = [
 ];
 
 const results = [
-  { label: "Nosūtītas ziņas", value: "15", color: "#555" },
+  { label: "Nosūtītas ziņas", value: "15", color: MUTED },
   { label: "Atbildes", value: "4", color: C },
   { label: "Tikšanās", value: "2", color: P },
   { label: "Klients 1. mēnesī", value: "1", color: AM },
@@ -62,27 +66,25 @@ export function SaturaLesson14Content() {
     <div style={{ display: "flex", flexDirection: "column", gap: 22, paddingTop: 22 }}>
 
       {/* ── INTRO ── */}
-      <div style={{ position: "relative", borderRadius: 16, overflow: "hidden", border: "1px solid rgba(245,158,11,0.22)", padding: "24px 26px" }}>
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(5,5,8,1) 0%, rgba(12,8,3,1) 100%)" }} />
-        <div style={{ position: "absolute", top: -70, right: -50, width: 250, height: 250, borderRadius: "50%", background: "radial-gradient(circle, rgba(245,158,11,0.18) 0%, transparent 65%)", pointerEvents: "none" }} />
-        <GridBg color="rgba(245,158,11,0.03)" size={26} />
+      <div style={{ position: "relative", borderRadius: 16, overflow: "hidden", border: `1px solid ${AM}40`, padding: "24px 26px", background: "linear-gradient(135deg, rgba(255,184,107,0.12) 0%, rgba(255,184,107,0.05) 55%, #fff 100%)", boxShadow: cardShadow }}>
+        <div style={{ position: "absolute", top: -70, right: -50, width: 250, height: 250, borderRadius: "50%", background: "radial-gradient(circle, rgba(255,184,107,0.16) 0%, transparent 65%)", pointerEvents: "none" }} />
         <div style={{ position: "relative" }}>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "4px 12px", borderRadius: 20, background: "rgba(245,158,11,0.1)", border: "1px solid rgba(245,158,11,0.28)", marginBottom: 14 }}>
-            <GlowDot color={AM} />
-            <span style={{ fontSize: 10, fontWeight: 700, color: AM, letterSpacing: "0.08em", textTransform: "uppercase" }}>Nodarbība 1.4 · Reāls piemērs</span>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "4px 12px", borderRadius: 20, background: `${AM}1f`, border: `1px solid ${AM}4d`, marginBottom: 14 }}>
+            <Dot color={AM} />
+            <span style={{ fontSize: 10, fontWeight: 700, color: "#C77B2B", letterSpacing: "0.08em", textTransform: "uppercase" }}>Nodarbība 1.4 · Reāls piemērs</span>
           </div>
-          <h2 style={{ fontSize: "clamp(18px,3vw,26px)", fontWeight: 900, letterSpacing: "-0.025em", lineHeight: 1.2, marginBottom: 10, color: "#fff" }}>
-            No <span style={{ color: "#555" }}>€0</span> līdz{" "}
-            <span style={{ background: "linear-gradient(135deg, #f59e0b, #00ff88)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>€300 pirmajā mēnesī</span>
+          <h2 style={{ fontSize: "clamp(18px,3vw,26px)", fontWeight: 900, letterSpacing: "-0.025em", lineHeight: 1.2, marginBottom: 10, color: "var(--ink)" }}>
+            No <span style={{ color: "var(--ink-4)" }}>€0</span> līdz{" "}
+            <span style={{ background: "linear-gradient(135deg, #F0A04B, #00BFA5)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>€300 pirmajā mēnesī</span>
           </h2>
-          <p style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", lineHeight: 1.75, maxWidth: 540, margin: "0 0 16px" }}>
-            Šis ir <strong style={{ color: "#ddd" }}>reāls piemērs</strong> no studentes Rīgā — bez iepriekšējas pieredzes, bez portfolio, ar 15 ziņām un 4 nedēļām.
+          <p style={{ fontSize: 13, color: "var(--ink-3)", lineHeight: 1.75, maxWidth: 540, margin: "0 0 16px" }}>
+            Šis ir <strong style={{ color: "var(--ink)" }}>reāls piemērs</strong> no studentes Rīgā — bez iepriekšējas pieredzes, bez portfolio, ar 15 ziņām un 4 nedēļām.
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(5,1fr)", gap: 8 }}>
             {results.map((r) => (
-              <div key={r.label} style={{ textAlign: "center", padding: "10px 8px", borderRadius: 10, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
-                <div style={{ fontSize: 18, fontWeight: 900, color: r.color, letterSpacing: "-0.02em", marginBottom: 3, textShadow: r.color !== "#555" ? `0 0 12px ${r.color}60` : "none" }}>{r.value}</div>
-                <div style={{ fontSize: 9.5, color: "#444", lineHeight: 1.3 }}>{r.label}</div>
+              <div key={r.label} style={{ textAlign: "center", padding: "10px 8px", borderRadius: 10, background: "#fff", border: "1px solid var(--line)" }}>
+                <div style={{ fontSize: 18, fontWeight: 900, color: r.color === MUTED ? "var(--ink-3)" : r.color, letterSpacing: "-0.02em", marginBottom: 3 }}>{r.value}</div>
+                <div style={{ fontSize: 9.5, color: "var(--ink-3)", lineHeight: 1.3 }}>{r.label}</div>
               </div>
             ))}
           </div>
@@ -91,25 +93,25 @@ export function SaturaLesson14Content() {
 
       {/* ── LAIKA LĪNIJA ── */}
       <div>
-        <div style={{ fontSize: 10, fontWeight: 700, color: AM, textTransform: "uppercase", letterSpacing: "0.09em", marginBottom: 14 }}>Nedēļu laika līnija — kas notika</div>
+        <div style={sectionLabel(AM)}>Nedēļu laika līnija — kas notika</div>
         <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
           {timeline.map((t, i) => (
             <div key={i} style={{ display: "flex", gap: 0 }}>
               {/* vertical line + dot */}
               <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: 32, flexShrink: 0 }}>
-                <div style={{ width: 11, height: 11, borderRadius: "50%", background: t.color, boxShadow: t.color !== "#444" ? `0 0 10px ${t.color}70` : "none", border: `2px solid ${t.color === "#444" ? "#2a2a3a" : t.color}`, marginTop: i === 0 ? 16 : 0, flexShrink: 0, zIndex: 1 }} />
-                {i < timeline.length - 1 && <div style={{ flex: 1, width: 1, background: `linear-gradient(${t.color}40, ${timeline[i+1].color}40)`, minHeight: 24 }} />}
+                <div style={{ width: 11, height: 11, borderRadius: "50%", background: t.color === MUTED ? "var(--bg-2)" : t.color, border: `2px solid ${t.color}`, marginTop: i === 0 ? 16 : 0, flexShrink: 0, zIndex: 1 }} />
+                {i < timeline.length - 1 && <div style={{ flex: 1, width: 2, background: `linear-gradient(${t.color}66, ${timeline[i+1].color}66)`, minHeight: 24 }} />}
               </div>
               {/* content */}
               <div style={{ flex: 1, padding: `${i === 0 ? 12 : 0}px 0 20px 14px` }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
-                  <span style={{ fontSize: 10, fontWeight: 800, color: t.color === "#444" ? "#444" : t.color, textTransform: "uppercase", letterSpacing: "0.06em" }}>{t.week}</span>
-                  <span style={{ fontSize: 13, fontWeight: 700, color: t.color === "#444" ? "#666" : "#fff" }}>{t.title}</span>
+                  <span style={{ fontSize: 10, fontWeight: 800, color: t.color === MUTED ? "var(--ink-3)" : t.color, textTransform: "uppercase", letterSpacing: "0.06em" }}>{t.week}</span>
+                  <span style={{ fontSize: 13, fontWeight: 700, color: "var(--ink)" }}>{t.title}</span>
                   {t.income !== "€0" && (
-                    <span style={{ fontSize: 11, fontWeight: 800, color: G, background: "rgba(0,255,136,0.08)", border: "1px solid rgba(0,255,136,0.2)", borderRadius: 20, padding: "1px 9px" }}>+{t.income}</span>
+                    <span style={{ fontSize: 11, fontWeight: 800, color: G, background: `${G}14`, border: `1px solid ${G}33`, borderRadius: 20, padding: "1px 9px" }}>+{t.income}</span>
                   )}
                 </div>
-                <p style={{ fontSize: 12, color: "#555", lineHeight: 1.6, margin: 0 }}>{t.desc}</p>
+                <p style={{ fontSize: 12, color: "var(--ink-3)", lineHeight: 1.6, margin: 0 }}>{t.desc}</p>
               </div>
             </div>
           ))}
@@ -117,12 +119,10 @@ export function SaturaLesson14Content() {
       </div>
 
       {/* ── DM VEIDNE ── */}
-      <div style={{ position: "relative", borderRadius: 14, overflow: "hidden", border: "1px solid rgba(168,85,247,0.2)", padding: "20px 22px" }}>
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(5,5,8,1), rgba(10,5,20,1))" }} />
-        <div style={{ position: "absolute", top: -60, right: -40, width: 200, height: 200, borderRadius: "50%", background: "radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 65%)", pointerEvents: "none" }} />
+      <div style={{ position: "relative", borderRadius: 14, overflow: "hidden", border: `1px solid ${P}26`, padding: "20px 22px", background: "linear-gradient(135deg, rgba(109,94,243,0.06) 0%, #fff 60%)", boxShadow: cardShadow }}>
         <div style={{ position: "relative" }}>
-          <div style={{ fontSize: 10, fontWeight: 700, color: P, textTransform: "uppercase", letterSpacing: "0.09em", marginBottom: 14 }}>Copy-paste uzrunas ziņa (DM / e-pasts)</div>
-          <div style={{ background: "rgba(168,85,247,0.06)", border: "1px solid rgba(168,85,247,0.18)", borderRadius: 11, padding: "16px 18px", fontFamily: "JetBrains Mono, 'Courier New', monospace", fontSize: 12, color: "#888", lineHeight: 1.85, whiteSpace: "pre-wrap" }}>
+          <div style={sectionLabel(P)}>Copy-paste uzrunas ziņa (DM / e-pasts)</div>
+          <div style={{ background: "var(--bg-2)", border: "1px solid var(--line)", borderRadius: 11, padding: "16px 18px", fontFamily: "JetBrains Mono, 'Courier New', monospace", fontSize: 12, color: "var(--ink-2)", lineHeight: 1.85, whiteSpace: "pre-wrap" }}>
             {dmTemplate}
           </div>
           <div style={{ display: "flex", gap: 14, marginTop: 12, flexWrap: "wrap" }}>
@@ -132,7 +132,7 @@ export function SaturaLesson14Content() {
               { c: AM, t: "Demo bez maksas = zems slieksnis" },
             ].map(b => (
               <div key={b.t} style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                <GlowDot color={b.c} /><span style={{ fontSize: 11, color: "#555", fontWeight: 500 }}>{b.t}</span>
+                <Dot color={b.c} /><span style={{ fontSize: 11, color: "var(--ink-3)", fontWeight: 500 }}>{b.t}</span>
               </div>
             ))}
           </div>
@@ -140,77 +140,73 @@ export function SaturaLesson14Content() {
       </div>
 
       {/* ── PIRMĀ TIKŠANĀS ── */}
-      <div style={{ position: "relative", borderRadius: 14, overflow: "hidden", border: "1px solid rgba(0,212,255,0.15)", padding: "20px 22px" }}>
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(5,5,8,1), rgba(5,12,18,1))" }} />
+      <div style={{ position: "relative", borderRadius: 14, overflow: "hidden", border: "1px solid var(--line)", padding: "20px 22px", background: "#fff", boxShadow: cardShadow }}>
         <div style={{ position: "relative" }}>
-          <div style={{ fontSize: 10, fontWeight: 700, color: C, textTransform: "uppercase", letterSpacing: "0.09em", marginBottom: 14 }}>Discovery zvans — 5 jautājumi (30 min)</div>
+          <div style={sectionLabel(G)}>Discovery zvans — 5 jautājumi (30 min)</div>
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
             {callPoints.map((pt, i) => (
-              <div key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start", padding: "12px 14px", borderRadius: 10, background: "rgba(0,212,255,0.04)", border: "1px solid rgba(0,212,255,0.1)" }}>
-                <div style={{ fontSize: 11, fontWeight: 900, color: C, flexShrink: 0, minWidth: 18, marginTop: 1 }}>{i + 1}.</div>
+              <div key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start", padding: "12px 14px", borderRadius: 10, background: "var(--bg)", border: "1px solid var(--line)" }}>
+                <div style={{ fontSize: 11, fontWeight: 900, color: G, flexShrink: 0, minWidth: 18, marginTop: 1 }}>{i + 1}.</div>
                 <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: 13, fontWeight: 600, color: "#ddd", marginBottom: 3 }}>"{pt.q}"</div>
-                  <div style={{ fontSize: 11, color: "#555" }}>→ {pt.why}</div>
+                  <div style={{ fontSize: 13, fontWeight: 600, color: "var(--ink)", marginBottom: 3 }}>&ldquo;{pt.q}&rdquo;</div>
+                  <div style={{ fontSize: 11, color: "var(--ink-3)" }}>→ {pt.why}</div>
                 </div>
               </div>
             ))}
           </div>
-          <div style={{ marginTop: 12, padding: "10px 14px", borderRadius: 9, background: "rgba(0,212,255,0.04)", border: "1px solid rgba(0,212,255,0.12)", display: "flex", gap: 10, alignItems: "center" }}>
-            <GlowDot color={C} />
-            <span style={{ fontSize: 11.5, color: "#666" }}>Zvana beigās saki: <strong style={{ color: "#bbb" }}>"Nosūtīšu jums piedāvājumu šodien vai rīt."</strong></span>
+          <div style={{ marginTop: 12, padding: "10px 14px", borderRadius: 9, background: `${G}10`, border: `1px solid ${G}2e`, display: "flex", gap: 10, alignItems: "center" }}>
+            <Dot color={G} />
+            <span style={{ fontSize: 11.5, color: "var(--ink-2)" }}>Zvana beigās saki: <strong style={{ color: "var(--ink)" }}>&ldquo;Nosūtīšu jums piedāvājumu šodien vai rīt.&rdquo;</strong></span>
           </div>
         </div>
       </div>
 
       {/* ── PIEDĀVĀJUMA STRUKTŪRA ── */}
-      <div style={{ position: "relative", borderRadius: 14, overflow: "hidden", border: "1px solid rgba(0,255,136,0.14)", padding: "20px 22px" }}>
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(5,8,5,1), rgba(5,12,8,1))" }} />
-        <GridBg color="rgba(0,255,136,0.025)" size={22} />
+      <div style={{ position: "relative", borderRadius: 14, overflow: "hidden", border: "1px solid var(--line)", padding: "20px 22px", background: "#fff", boxShadow: cardShadow }}>
         <div style={{ position: "relative" }}>
-          <div style={{ fontSize: 10, fontWeight: 700, color: G, textTransform: "uppercase", letterSpacing: "0.09em", marginBottom: 14 }}>PDF piedāvājuma struktūra (1 lapa)</div>
+          <div style={sectionLabel(G)}>PDF piedāvājuma struktūra (1 lapa)</div>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
             {proposalBlocks.map((b) => (
-              <div key={b.title} style={{ padding: "13px 14px", borderRadius: 10, background: `${b.color}07`, border: `1px solid ${b.color}18` }}>
+              <div key={b.title} style={{ padding: "13px 14px", borderRadius: 10, background: `${b.color}0d`, border: `1px solid ${b.color}2a` }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 6 }}>
                   <span style={{ fontSize: 16 }}>{b.icon}</span>
                   <span style={{ fontSize: 12, fontWeight: 700, color: b.color }}>{b.title}</span>
                 </div>
-                <p style={{ fontSize: 11.5, color: "#666", lineHeight: 1.55, margin: 0 }}>{b.content}</p>
+                <p style={{ fontSize: 11.5, color: "var(--ink-3)", lineHeight: 1.55, margin: 0 }}>{b.content}</p>
               </div>
             ))}
           </div>
-          <div style={{ marginTop: 12, padding: "10px 14px", borderRadius: 9, background: "rgba(0,255,136,0.04)", border: "1px solid rgba(0,255,136,0.12)", display: "flex", gap: 10, alignItems: "center" }}>
-            <GlowDot color={G} />
-            <span style={{ fontSize: 11.5, color: "#666" }}>Piedāvājums max. <strong style={{ color: "#bbb" }}>1 lapa</strong>. Jo garāks, jo mazāk lasa. Skaidrība = uzticība.</span>
+          <div style={{ marginTop: 12, padding: "10px 14px", borderRadius: 9, background: `${G}10`, border: `1px solid ${G}2e`, display: "flex", gap: 10, alignItems: "center" }}>
+            <Dot color={G} />
+            <span style={{ fontSize: 11.5, color: "var(--ink-2)" }}>Piedāvājums max. <strong style={{ color: "var(--ink)" }}>1 lapa</strong>. Jo garāks, jo mazāk lasa. Skaidrība = uzticība.</span>
           </div>
         </div>
       </div>
 
       {/* ── REZULTĀTS ── */}
-      <div style={{ position: "relative", borderRadius: 14, overflow: "hidden", border: "1px solid rgba(0,255,136,0.25)", padding: "22px 24px", boxShadow: "0 0 40px rgba(0,255,136,0.06)" }}>
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(3,8,5,1), rgba(5,14,8,1))" }} />
-        <div style={{ position: "absolute", top: -60, right: -40, width: 200, height: 200, borderRadius: "50%", background: "radial-gradient(circle, rgba(0,255,136,0.18) 0%, transparent 65%)", pointerEvents: "none" }} />
+      <div style={{ position: "relative", borderRadius: 14, overflow: "hidden", border: `1px solid ${G}40`, padding: "22px 24px", background: "linear-gradient(135deg, rgba(0,191,165,0.08) 0%, #fff 60%)", boxShadow: "0 16px 44px -24px rgba(0,191,165,0.4)" }}>
+        <div style={{ position: "absolute", top: -60, right: -40, width: 200, height: 200, borderRadius: "50%", background: "radial-gradient(circle, rgba(0,191,165,0.12) 0%, transparent 65%)", pointerEvents: "none" }} />
         <div style={{ position: "relative" }}>
-          <div style={{ fontSize: 10, fontWeight: 700, color: G, textTransform: "uppercase", letterSpacing: "0.09em", marginBottom: 14 }}>Rezultāts pēc 4 nedēļām</div>
+          <div style={sectionLabel(G)}>Rezultāts pēc 4 nedēļām</div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 10, marginBottom: 14 }}>
             {[
               { val: "€300", lab: "1. mēnesī", c: G },
               { val: "€550", lab: "2. mēnesī", c: AM },
               { val: "€900+", lab: "3. mēnesī", c: P },
             ].map(r => (
-              <div key={r.lab} style={{ textAlign: "center", padding: "14px 10px", borderRadius: 11, background: `${r.c}08`, border: `1px solid ${r.c}20` }}>
-                <div style={{ fontSize: 26, fontWeight: 900, color: r.c, letterSpacing: "-0.03em", textShadow: `0 0 20px ${r.c}60` }}>{r.val}</div>
-                <div style={{ fontSize: 10.5, color: "#555", marginTop: 3 }}>{r.lab}</div>
+              <div key={r.lab} style={{ textAlign: "center", padding: "14px 10px", borderRadius: 11, background: "#fff", border: `1px solid ${r.c}2e` }}>
+                <div style={{ fontSize: 26, fontWeight: 900, color: r.c, letterSpacing: "-0.03em" }}>{r.val}</div>
+                <div style={{ fontSize: 10.5, color: "var(--ink-3)", marginTop: 3 }}>{r.lab}</div>
               </div>
             ))}
           </div>
-          <p style={{ fontSize: 12.5, color: "#666", lineHeight: 1.7, margin: "0 0 12px" }}>
-            Pēc 3 mēnešiem ar 2 klientiem — stabili <strong style={{ color: "#bbb" }}>€500–900/mēnesī</strong>. Ar 3.–4. klientu jau pārsniedzam <strong style={{ color: G }}>€1 000</strong>.
+          <p style={{ fontSize: 12.5, color: "var(--ink-2)", lineHeight: 1.7, margin: "0 0 12px" }}>
+            Pēc 3 mēnešiem ar 2 klientiem — stabili <strong style={{ color: "var(--ink)" }}>€500–900/mēnesī</strong>. Ar 3.–4. klientu jau pārsniedzam <strong style={{ color: G }}>€1 000</strong>.
           </p>
           <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
             {[{ c: G, t: "Bez iepriekšējas pieredzes" }, { c: C, t: "Tikai bezmaksas rīki sākumā" }, { c: AM, t: "4 nedēļas līdz pirmajam klientam" }].map(b => (
               <div key={b.t} style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                <GlowDot color={b.c} /><span style={{ fontSize: 11.5, color: "#555", fontWeight: 500 }}>{b.t}</span>
+                <Dot color={b.c} /><span style={{ fontSize: 11.5, color: "var(--ink-3)", fontWeight: 500 }}>{b.t}</span>
               </div>
             ))}
           </div>

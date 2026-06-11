@@ -3,54 +3,203 @@
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { useAuth } from "@clerk/nextjs";
 import { SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
+import { AnimatePresence, motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
+type LocaleCode = "lv" | "en";
+
+const LOCALES: { code: LocaleCode; native: string }[] = [
+  { code: "lv", native: "Latviešu" },
+  { code: "en", native: "English" },
+];
+
+/** Inline SVG flags — crisp at any size, no external CDN dependency. */
+function Flag({ code }: { code: LocaleCode }) {
+  const common: React.CSSProperties = {
+    width: 22,
+    height: 16,
+    borderRadius: 4,
+    flexShrink: 0,
+    boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.08)",
+    display: "block",
+  };
+
+  if (code === "lv") {
+    return (
+      <svg viewBox="0 0 20 12" style={common} aria-hidden>
+        <rect width="20" height="12" fill="#9D2235" />
+        <rect y="5" width="20" height="2" fill="#fff" />
+      </svg>
+    );
+  }
+  // English → Union Jack
+  return (
+    <svg viewBox="0 0 60 36" style={common} aria-hidden>
+      <clipPath id="ujRound">
+        <rect width="60" height="36" rx="3" />
+      </clipPath>
+      <clipPath id="ujDiag">
+        <path d="M30,18 L60,0 V0 H60 M30,18 L60,36 H60 M30,18 L0,36 H0 M30,18 L0,0 H0 Z" />
+      </clipPath>
+      <g clipPath="url(#ujRound)">
+        <rect width="60" height="36" fill="#012169" />
+        <path d="M0,0 L60,36 M60,0 L0,36" stroke="#fff" strokeWidth="7" />
+        <path d="M0,0 L60,36 M60,0 L0,36" clipPath="url(#ujDiag)" stroke="#C8102E" strokeWidth="4" />
+        <path d="M30,0 V36 M0,18 H60" stroke="#fff" strokeWidth="12" />
+        <path d="M30,0 V36 M0,18 H60" stroke="#C8102E" strokeWidth="7" />
+      </g>
+    </svg>
+  );
+}
 
 function LocaleToggle() {
   const pathname = usePathname();
-  const locale = useLocale();
+  const locale = useLocale() as LocaleCode;
   const router = useRouter();
   const t = useTranslations("Lang");
+  const [open, setOpen] = useState(false);
+  const wrapRef = useRef<HTMLDivElement>(null);
 
   /** next-intl can return '' on `/lv`/`/en`; empty href breaks next/link locale switching */
   const pathWithoutLocale = !pathname || pathname === "" ? "/" : pathname.startsWith("/") ? pathname : `/${pathname}`;
 
-  const baseStyle: React.CSSProperties = {
+  useEffect(() => {
+    if (!open) return;
+    function onClickOutside(e: MouseEvent) {
+      if (wrapRef.current && !wrapRef.current.contains(e.target as Node)) setOpen(false);
+    }
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setOpen(false);
+    }
+    document.addEventListener("mousedown", onClickOutside);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onClickOutside);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  const triggerStyle: React.CSSProperties = {
+    display: "flex",
+    alignItems: "center",
+    gap: 8,
     fontSize: 12,
-    borderRadius: 8,
+    borderRadius: 10,
     padding: "6px 10px",
-    textDecoration: "none",
     border: "1px solid var(--line)",
     color: "var(--ink-2)",
-    background: "var(--bg-2)",
+    background: open ? "var(--bg-1)" : "var(--bg-2)",
     fontFamily: "Inter Tight, sans-serif",
-    fontWeight: 600,
-    letterSpacing: "0.02em",
+    fontWeight: 700,
+    letterSpacing: "0.04em",
     cursor: "pointer",
-    transition: "background 0.15s ease, color 0.15s ease, border-color 0.15s ease",
+    transition: "background 0.18s ease, color 0.18s ease, border-color 0.18s ease",
   };
 
-  const activeStyle: React.CSSProperties = {
-    ...baseStyle,
-    borderColor: "color-mix(in oklab, var(--accent) 45%, transparent)",
-    color: "var(--accent-ink)",
-    background: "var(--accent)",
-  };
-
-  function switchLocale(next: "lv" | "en") {
+  function switchLocale(next: LocaleCode) {
+    setOpen(false);
     if (next === locale) return;
     const hash = typeof window !== "undefined" ? window.location.hash : "";
     router.replace(`${pathWithoutLocale}${hash}`, { locale: next });
   }
 
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-      <button type="button" onClick={() => switchLocale("lv")} aria-pressed={locale === "lv"} style={locale === "lv" ? activeStyle : baseStyle}>
-        {t("lv")}
+    <div ref={wrapRef} style={{ position: "relative" }}>
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+        aria-haspopup="listbox"
+        style={triggerStyle}
+        onMouseEnter={(e) => {
+          (e.currentTarget as HTMLElement).style.borderColor = "color-mix(in oklab, var(--accent) 35%, transparent)";
+        }}
+        onMouseLeave={(e) => {
+          (e.currentTarget as HTMLElement).style.borderColor = "var(--line)";
+        }}
+      >
+        <Flag code={locale} />
+        <span>{t(locale)}</span>
+        <svg
+          width="11" height="11" viewBox="0 0 12 12" fill="none"
+          style={{ transition: "transform 0.2s ease", transform: open ? "rotate(180deg)" : "none", opacity: 0.6 }}
+        >
+          <path d="M2.5 4.5L6 8l3.5-3.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
       </button>
-      <button type="button" onClick={() => switchLocale("en")} aria-pressed={locale === "en"} style={locale === "en" ? activeStyle : baseStyle}>
-        {t("en")}
-      </button>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            role="listbox"
+            initial={{ opacity: 0, y: -6, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -6, scale: 0.97 }}
+            transition={{ duration: 0.16, ease: [0.22, 1, 0.36, 1] }}
+            style={{
+              position: "absolute",
+              top: "calc(100% + 8px)",
+              right: 0,
+              minWidth: 168,
+              transformOrigin: "top right",
+              background: "var(--bg-1)",
+              border: "1px solid var(--line)",
+              borderRadius: 14,
+              padding: 6,
+              boxShadow: "0 20px 44px -16px rgba(17,17,17,0.22), 0 2px 8px -2px rgba(17,17,17,0.06)",
+              zIndex: 60,
+            }}
+          >
+            {LOCALES.map(({ code, native }) => {
+              const active = code === locale;
+              return (
+                <button
+                  key={code}
+                  type="button"
+                  role="option"
+                  aria-selected={active}
+                  onClick={() => switchLocale(code)}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 12,
+                    width: "100%",
+                    textAlign: "left",
+                    fontSize: 13,
+                    borderRadius: 9,
+                    padding: "9px 12px",
+                    border: "none",
+                    color: active ? "var(--ink)" : "var(--ink-2)",
+                    background: active ? "color-mix(in oklab, var(--accent) 12%, transparent)" : "transparent",
+                    fontFamily: "Inter Tight, sans-serif",
+                    fontWeight: active ? 700 : 600,
+                    cursor: "pointer",
+                    transition: "background 0.15s ease, color 0.15s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!active) (e.currentTarget as HTMLElement).style.background = "var(--bg-2)";
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!active) (e.currentTarget as HTMLElement).style.background = "transparent";
+                  }}
+                >
+                  <Flag code={code} />
+                  <span style={{ flex: 1 }}>{native}</span>
+                  <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.04em", color: "var(--ink-3)" }}>
+                    {t(code)}
+                  </span>
+                  {active && (
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style={{ color: "var(--accent)" }}>
+                      <path d="M3 7.5L6 10.5L11 4.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  )}
+                </button>
+              );
+            })}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
