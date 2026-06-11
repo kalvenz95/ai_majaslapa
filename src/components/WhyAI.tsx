@@ -82,7 +82,9 @@ export default function WhyAI() {
             >
               <div style={{
                 width: 60, height: 60, borderRadius: 18,
-                background: "color-mix(in oklab, var(--accent) 10%, transparent)",
+                background: "linear-gradient(150deg, color-mix(in oklab, var(--accent) 18%, #fff) 0%, color-mix(in oklab, var(--accent) 9%, #fff) 100%)",
+                border: "1px solid color-mix(in oklab, var(--accent) 22%, transparent)",
+                boxShadow: "inset 0 1px 0 rgba(255,255,255,0.7), 0 6px 16px -8px color-mix(in oklab, var(--accent) 45%, transparent)",
                 display: "flex", alignItems: "center", justifyContent: "center",
                 fontSize: 28, flexShrink: 0,
               }}>

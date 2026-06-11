@@ -61,8 +61,9 @@ export default function Tools() {
             >
               <div style={{
                 width: 40, height: 40, borderRadius: 12, flexShrink: 0,
-                background: `color-mix(in oklab, ${tool.color} 12%, var(--bg-2))`,
-                border: `1px solid color-mix(in oklab, ${tool.color} 20%, transparent)`,
+                background: `linear-gradient(150deg, color-mix(in oklab, ${tool.color} 20%, #fff) 0%, color-mix(in oklab, ${tool.color} 10%, var(--bg-2)) 100%)`,
+                border: `1px solid color-mix(in oklab, ${tool.color} 24%, transparent)`,
+                boxShadow: `inset 0 1px 0 rgba(255,255,255,0.65), 0 4px 12px -6px color-mix(in oklab, ${tool.color} 45%, transparent)`,
                 display: "flex", alignItems: "center", justifyContent: "center",
               }}>
                 <tool.Icon size={18} color={tool.color} />

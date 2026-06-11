@@ -122,6 +122,8 @@ export default function FastWin() {
                   style={{
                     width: 56, height: 56, borderRadius: 16,
                     background: p.tint,
+                    border: `1px solid color-mix(in oklab, ${p.accent} 22%, transparent)`,
+                    boxShadow: `inset 0 1px 0 rgba(255,255,255,0.6), 0 6px 16px -8px color-mix(in oklab, ${p.accent} 45%, transparent)`,
                     display: "flex", alignItems: "center", justifyContent: "center",
                     fontSize: 28,
                   }}
