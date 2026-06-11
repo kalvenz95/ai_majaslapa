@@ -550,6 +550,8 @@
   },
   "CourseStackCommon": {
     "buyHidden": "Iegādāties →",
+    "showLessonContent": "Skatīt nodarbības saturu",
+    "hideLessonContent": "Aizvērt nodarbības saturu",
     "whatYouLearn": "Ko tu iemācīsies",
     "curriculum": "Kursu saturs",
     "lessonsMeta": "{count} nodarbības · {duration}",

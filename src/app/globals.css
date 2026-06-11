@@ -512,7 +512,10 @@ summary:focus-visible {
 
 /* ── Course pages — responsive overrides ────────────────────────── */
 @media (max-width: 768px) {
-  .course-grid-main { grid-template-columns: 1fr !important; }
+  .course-grid-main { grid-template-columns: minmax(0, 1fr) !important; }
+  /* Let grid items shrink below their min-content so wide inner blocks
+     (dense lesson grids) don't blow out the column on mobile. */
+  .course-grid-main > * { min-width: 0 !important; }
   .course-sidebar { display: none !important; }
   .course-sidebar.open { display: flex !important; position: fixed; inset: 0; z-index: 200; width: 100% !important; height: 100vh; }
   .course-layout { height: auto !important; min-height: calc(100vh - 56px); }

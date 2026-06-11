@@ -550,6 +550,8 @@
   },
   "CourseStackCommon": {
     "buyHidden": "Buy →",
+    "showLessonContent": "View lesson content",
+    "hideLessonContent": "Hide lesson content",
     "whatYouLearn": "What you’ll learn",
     "curriculum": "Curriculum",
     "lessonsMeta": "{count} lessons · {duration}",

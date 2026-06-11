@@ -45,13 +45,57 @@ export function StackPlanMarketingPage({
   curriculumVariant = "standard",
 }: StackPlanMarketingShellProps) {
   const tc = useTranslations("CourseStackCommon");
-  const [openModules, setOpenModules] = useState<number[]>([1, 2]);
+  // Only the first (free) module opens by default — keeps the page scannable;
+  // locked modules expand on demand instead of dumping all content at once.
+  const [openModules, setOpenModules] = useState<number[]>([1]);
 
   const toggle = (id: number) =>
     setOpenModules((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
 
   const skills =
     skillsListMode === "first3" ? plan.skills.slice(0, 3) : plan.skills;
+
+  // Rich per-lesson content is collapsible so the page stays scannable instead
+  // of rendering every free lesson's full block content at once. The first free
+  // lesson opens by default as a preview; the rest collapse behind a toggle.
+  const firstFreeLessonId = plan.modules
+    .flatMap((m) => m.lessons)
+    .find((l) => l.free)?.id;
+  const [openLessons, setOpenLessons] = useState<string[]>(
+    firstFreeLessonId ? [firstFreeLessonId] : [],
+  );
+  const toggleLesson = (id: string) =>
+    setOpenLessons((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
+
+  const getLessonContent = (id: string): React.ReactNode =>
+    lessonExtraContent?.[id] ?? extraAfterFreeLesson;
+
+  const renderLessonExtra = (id: string) => {
+    const content = getLessonContent(id);
+    if (!content) return null;
+    const isOpen = openLessons.includes(id);
+    return (
+      <div style={{ marginTop: 14 }}>
+        <button
+          type="button"
+          onClick={() => toggleLesson(id)}
+          aria-expanded={isOpen}
+          style={{
+            display: "inline-flex", alignItems: "center", gap: 8,
+            padding: "9px 16px", borderRadius: 10, cursor: "pointer",
+            background: isOpen ? "transparent" : `rgba(${plan.glow},0.07)`,
+            border: `1px solid rgba(${plan.glow},${isOpen ? 0.18 : 0.22})`,
+            color: plan.color, fontSize: 12.5, fontWeight: 700,
+            transition: "background 0.18s ease, border-color 0.18s ease",
+          }}
+        >
+          {isOpen ? tc("hideLessonContent") : tc("showLessonContent")}
+          <span style={{ display: "inline-flex", transform: isOpen ? "rotate(180deg)" : "none", transition: "transform 0.2s ease" }}>▾</span>
+        </button>
+        {isOpen && <div style={{ marginTop: 4 }}>{content}</div>}
+      </div>
+    );
+  };
 
   return (
     <div style={{ background: "var(--bg)", minHeight: "100vh", color: "var(--ink)", fontFamily: "Inter, sans-serif" }}>
@@ -295,7 +339,7 @@ export function StackPlanMarketingPage({
                                   {lesson.description ? (
                                     <p style={{ fontSize: 13, color: "var(--ink-2)", lineHeight: 1.65, margin: 0 }}>{lesson.description}</p>
                                   ) : null}
-                                  {lessonExtraContent?.[lesson.id] ?? extraAfterFreeLesson}
+                                  {renderLessonExtra(lesson.id)}
                                 </div>
                               </div>
                             ) : (
@@ -394,7 +438,7 @@ export function StackPlanMarketingPage({
                                 {lesson.description ? (
                                   <p style={{ fontSize: 13, color: "var(--ink-2)", lineHeight: 1.65 }}>{lesson.description}</p>
                                 ) : null}
-                                {lessonExtraContent?.[lesson.id] ?? extraAfterFreeLesson}
+                                {renderLessonExtra(lesson.id)}
                               </div>
                             </div>
                           ) : (
