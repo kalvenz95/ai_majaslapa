@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Link } from "@/i18n/navigation";
 import { VideoPlayer } from "@/components/dashboard/VideoPlayer";
+import { EmojiIcon } from "@/components/EmojiIcon";
 import { progressApi } from "@/lib/api";
 
 interface Lesson {
@@ -77,12 +78,16 @@ export default function LessonPage({
     );
   }
 
+  const totalLessons = course.lessons.length;
+  const durationMin = lesson.duration ? Math.max(1, Math.floor(lesson.duration / 60)) : null;
+  const accent = course.color;
+
   return (
     <div>
-      {/* Back */}
+      {/* Breadcrumb */}
       <Link
         href={`/dashboard/kursi/${params.slug}`}
-        className="inline-flex items-center gap-2 text-sm mb-6 transition-colors"
+        className="inline-flex items-center gap-2 text-sm mb-6 transition-colors hover:text-white"
         style={{ color: "rgba(255,255,255,0.4)" }}
       >
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -92,18 +97,25 @@ export default function LessonPage({
       </Link>
 
       {/* Video */}
-      <div className="mb-6">
+      <div
+        className="mb-6 rounded-2xl overflow-hidden"
+        style={{ boxShadow: `0 24px 60px -28px ${accent}66`, border: `1px solid ${accent}22` }}
+      >
         {lesson.videoUrl ? (
           <VideoPlayer url={lesson.videoUrl} title={lesson.title} />
         ) : (
           <div
-            className="flex flex-col items-center justify-center rounded-2xl py-16"
+            className="flex flex-col items-center justify-center py-20"
             style={{
-              background: "rgba(255,255,255,0.02)",
-              border: "1px solid rgba(255,255,255,0.07)",
+              background: `linear-gradient(140deg, ${accent}14 0%, rgba(255,255,255,0.02) 100%)`,
             }}
           >
-            <div className="text-4xl mb-3">🎬</div>
+            <div
+              className="w-16 h-16 rounded-full flex items-center justify-center mb-3"
+              style={{ background: `${accent}1f`, border: `1px solid ${accent}3a` }}
+            >
+              <EmojiIcon emoji="🎬" size={26} color={accent} strokeWidth={1.75} />
+            </div>
             <div className="text-sm font-semibold text-white mb-1">Video drīzumā</div>
             <div className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
               Saturs tiek sagatavots
@@ -112,17 +124,52 @@ export default function LessonPage({
         )}
       </div>
 
-      {/* Lesson info */}
-      <div className="mb-6">
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <div className="text-xs font-semibold uppercase tracking-wider mb-1"
-              style={{ color: course.color }}>
-              Lekcija {currentIndex + 1}
-            </div>
-            <h1 className="text-2xl font-black text-white mb-2">{lesson.title}</h1>
+      {/* Lesson info card */}
+      <div
+        className="rounded-2xl p-6 md:p-7 mb-6"
+        style={{ background: "rgba(255,255,255,0.025)", border: "1px solid rgba(255,255,255,0.07)" }}
+      >
+        {/* Meta chips */}
+        <div className="flex flex-wrap items-center gap-2 mb-4">
+          <span
+            className="inline-flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full"
+            style={{ background: `${accent}1a`, border: `1px solid ${accent}38`, color: accent }}
+          >
+            Lekcija {currentIndex + 1} / {totalLessons}
+          </span>
+          {durationMin && (
+            <span
+              className="inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full"
+              style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.09)", color: "rgba(255,255,255,0.6)" }}
+            >
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 7v5l3 2" />
+              </svg>
+              {durationMin} min
+            </span>
+          )}
+          {lesson.isFree && (
+            <span
+              className="inline-flex items-center text-xs font-semibold px-2.5 py-1 rounded-full"
+              style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.09)", color: "rgba(255,255,255,0.6)" }}
+            >
+              Bezmaksas
+            </span>
+          )}
+        </div>
+
+        {/* Title + description + complete */}
+        <div className="flex flex-col sm:flex-row items-start justify-between gap-5">
+          <div className="min-w-0">
+            <h1 className="text-2xl md:text-[28px] font-black text-white mb-2 leading-tight tracking-tight">
+              {lesson.title}
+            </h1>
             {lesson.description && (
-              <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
+              <p
+                className="text-sm md:text-[15px] leading-relaxed"
+                style={{ color: "rgba(255,255,255,0.55)", maxWidth: "62ch" }}
+              >
                 {lesson.description}
               </p>
             )}
@@ -132,11 +179,11 @@ export default function LessonPage({
           <button
             onClick={markComplete}
             disabled={completed || marking}
-            className="shrink-0 flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all"
+            className="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold transition-colors"
             style={
               completed
-                ? { background: `${course.color}20`, color: course.color, border: `1px solid ${course.color}40` }
-                : { background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.6)", border: "1px solid rgba(255,255,255,0.1)", cursor: marking ? "wait" : "pointer" }
+                ? { background: `${accent}20`, color: accent, border: `1px solid ${accent}40` }
+                : { background: accent, color: "#000", border: `1px solid ${accent}`, cursor: marking ? "wait" : "pointer" }
             }
           >
             {completed ? (
@@ -147,34 +194,27 @@ export default function LessonPage({
                 Pabeigts
               </>
             ) : (
-              <>
-                {marking ? "Saglabā..." : "Atzīmēt kā pabeigtu"}
-              </>
+              <>{marking ? "Saglabā..." : "Atzīmēt kā pabeigtu"}</>
             )}
           </button>
         </div>
       </div>
 
-      {/* Navigation */}
-      <div
-        className="flex items-center justify-between pt-4"
-        style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}
-      >
+      {/* Prev / Next navigation cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {prevLesson ? (
           <Link
             href={`/dashboard/kursi/${params.slug}/${prevLesson.id}`}
-            className="flex items-center gap-2 text-sm px-4 py-2 rounded-xl transition-all"
-            style={{
-              background: "rgba(255,255,255,0.04)",
-              border: "1px solid rgba(255,255,255,0.08)",
-              color: "rgba(255,255,255,0.6)",
-              textDecoration: "none",
-            }}
+            className="flex items-center gap-3 p-4 rounded-xl transition-colors hover:bg-white/[0.05]"
+            style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)", textDecoration: "none" }}
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg className="shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="2">
               <path d="M19 12H5M12 5l-7 7 7 7" />
             </svg>
-            Iepriekšējā
+            <div className="min-w-0">
+              <div className="text-xs mb-0.5" style={{ color: "rgba(255,255,255,0.35)" }}>Iepriekšējā</div>
+              <div className="text-sm font-semibold text-white truncate">{prevLesson.title}</div>
+            </div>
           </Link>
         ) : (
           <div />
@@ -183,28 +223,22 @@ export default function LessonPage({
         {nextLesson ? (
           <Link
             href={`/dashboard/kursi/${params.slug}/${nextLesson.id}`}
-            className="flex items-center gap-2 text-sm px-4 py-2 rounded-xl font-semibold transition-all"
-            style={{
-              background: `${course.color}15`,
-              border: `1px solid ${course.color}30`,
-              color: course.color,
-              textDecoration: "none",
-            }}
+            className="flex items-center justify-end gap-3 p-4 rounded-xl text-right transition-colors"
+            style={{ background: `${accent}12`, border: `1px solid ${accent}2e`, textDecoration: "none" }}
           >
-            Nākamā lekcija
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <div className="min-w-0">
+              <div className="text-xs mb-0.5" style={{ color: `${accent}cc` }}>Nākamā lekcija</div>
+              <div className="text-sm font-semibold text-white truncate">{nextLesson.title}</div>
+            </div>
+            <svg className="shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={accent} strokeWidth="2">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
           </Link>
         ) : (
           <Link
             href={`/dashboard/kursi/${params.slug}`}
-            className="flex items-center gap-2 text-sm px-4 py-2 rounded-xl font-bold"
-            style={{
-              background: course.color,
-              color: "#000",
-              textDecoration: "none",
-            }}
+            className="flex items-center justify-center gap-2 p-4 rounded-xl text-sm font-bold transition-transform hover:-translate-y-0.5"
+            style={{ background: accent, color: "#000", textDecoration: "none" }}
           >
             🎉 Kurss pabeigts!
           </Link>

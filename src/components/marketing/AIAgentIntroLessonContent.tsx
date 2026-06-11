@@ -1,5 +1,7 @@
 "use client";
 
+import { EmojiIcon } from "@/components/EmojiIcon";
+
 /* Brand-derived light palette (warm "premium" accent) */
 const O  = "#E8924A"; // deep warm (legible on white)
 const O2 = "#FFB86B"; // brand orange light
@@ -169,7 +171,7 @@ export function AIAgentIntroLessonContent() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(185px, 1fr))", gap: 9 }}>
             {niches.map((n) => (
               <div key={n.title} style={{ padding: "15px 16px", borderRadius: 12, background: "var(--bg)", border: "1px solid var(--line)" }}>
-                <div style={{ fontSize: 20, marginBottom: 9 }}>{n.icon}</div>
+                <div style={{ marginBottom: 9 }}><EmojiIcon emoji={n.icon} size={20} color={O} strokeWidth={1.75} /></div>
                 <div style={{ fontSize: 12.5, fontWeight: 700, color: "var(--ink)", marginBottom: 4 }}>{n.title}</div>
                 <div style={{ fontSize: 11, color: "var(--ink-3)", lineHeight: 1.55, marginBottom: 9 }}>{n.need}</div>
                 <div style={{ display: "flex", alignItems: "center", gap: 6 }}><Dot color={O} /><span style={{ fontSize: 12, fontWeight: 700, color: O }}>{n.price}</span></div>
@@ -227,7 +229,7 @@ export function AIAgentIntroLessonContent() {
         <div style={{ display: "flex", flexDirection: "column", gap: 9 }}>
           {bonuses.map((b, i) => (
             <div key={i} style={{ position: "relative", padding: "16px 18px", borderRadius: 13, background: "#fff", border: `1px solid ${O}33`, display: "flex", alignItems: "flex-start", gap: 14, overflow: "hidden", boxShadow: cardShadow }}>
-              <div style={{ width: 38, height: 38, borderRadius: 10, background: `${O}1a`, border: `1px solid ${O}40`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, flexShrink: 0 }}>{b.icon}</div>
+              <div style={{ width: 38, height: 38, borderRadius: 10, background: `${O}1a`, border: `1px solid ${O}40`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}><EmojiIcon emoji={b.icon} size={18} color={O} strokeWidth={1.75} /></div>
               <div>
                 <div style={{ fontSize: 13, fontWeight: 700, color: "var(--ink)", marginBottom: 4 }}>{b.title}</div>
                 <div style={{ fontSize: 12, color: "var(--ink-3)", lineHeight: 1.6 }}>{b.desc}</div>

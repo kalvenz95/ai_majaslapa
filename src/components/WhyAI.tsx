@@ -1,5 +1,7 @@
 "use client";
 
+import { EmojiIcon } from "@/components/EmojiIcon";
+
 const services = [
   {
     emoji: "📱",
@@ -83,9 +85,9 @@ export default function WhyAI() {
                 border: "1px solid color-mix(in oklab, var(--accent) 22%, transparent)",
                 boxShadow: "inset 0 1px 0 rgba(255,255,255,0.7), 0 6px 16px -8px color-mix(in oklab, var(--accent) 45%, transparent)",
                 display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: 28, flexShrink: 0,
+                flexShrink: 0,
               }}>
-                {s.emoji}
+                <EmojiIcon emoji={s.emoji} size={26} color="var(--accent)" strokeWidth={1.75} />
               </div>
               <div>
                 <h3 style={{

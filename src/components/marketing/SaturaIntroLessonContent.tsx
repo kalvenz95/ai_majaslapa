@@ -1,5 +1,7 @@
 "use client";
 
+import { EmojiIcon } from "@/components/EmojiIcon";
+
 /* Brand-derived light palette (no neon, no default Tailwind hues) */
 const P  = "#6D5EF3"; // accent
 const P2 = "#9B8FF7"; // accent light
@@ -183,7 +185,7 @@ export function SaturaIntroLessonContent() {
                 )}
                 <div style={{ padding: "14px 12px", borderRadius: 12, background: `${w.color}0d`, border: `1px solid ${w.color}2e`, display: "flex", flexDirection: "column", gap: 8, alignItems: "flex-start" }}>
                   <span style={{ fontSize: 8.5, fontWeight: 800, color: w.color, letterSpacing: "0.06em" }}>{w.step}</span>
-                  <div style={{ fontSize: 22, lineHeight: 1 }}>{w.icon}</div>
+                  <EmojiIcon emoji={w.icon} size={22} color={w.color} strokeWidth={1.75} />
                   <div>
                     <div style={{ fontSize: 12, fontWeight: 800, color: "var(--ink)", marginBottom: 2 }}>{w.label}</div>
                     <div style={{ fontSize: 10, color: w.color, fontWeight: 700 }}>{w.tool}</div>
@@ -207,7 +209,7 @@ export function SaturaIntroLessonContent() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 10 }}>
             {tools.map((t) => (
               <div key={t.name} style={{ padding: "14px 14px", borderRadius: 12, background: "var(--bg)", border: "1px solid var(--line)", display: "flex", flexDirection: "column", gap: 6 }}>
-                <div style={{ fontSize: 22, lineHeight: 1 }}>{t.icon}</div>
+                <EmojiIcon emoji={t.icon} size={22} color={t.color} strokeWidth={1.75} />
                 <div style={{ fontSize: 12.5, fontWeight: 800, color: "var(--ink)" }}>{t.name}</div>
                 <div style={{ fontSize: 10.5, color: "var(--ink-3)", lineHeight: 1.4 }}>{t.desc}</div>
                 <div style={{ height: 2, borderRadius: 2, background: `linear-gradient(90deg, ${t.color}, transparent)`, marginTop: 2 }} />
@@ -232,7 +234,7 @@ export function SaturaIntroLessonContent() {
             ))}
           </div>
           <div style={{ marginTop: 22, padding: "13px 16px", borderRadius: 11, background: "#fff", border: "1px solid var(--line)", display: "flex", gap: 10 }}>
-            <span style={{ fontSize: 16, flexShrink: 0 }}>💡</span>
+            <EmojiIcon emoji="💡" size={16} color={P} strokeWidth={1.75} className="shrink-0" />
             <p style={{ fontSize: 12, color: "var(--ink-2)", lineHeight: 1.7, margin: 0 }}>Latvijā ir ap <strong style={{ color: "var(--ink)" }}>26 000 aktīvu uzņēmumu</strong>. Lielākā daļa maksā par saturu tikai tad, kad kāds piedāvā. Tu esi tas cilvēks.</p>
           </div>
         </div>
@@ -281,7 +283,7 @@ export function SaturaIntroLessonContent() {
       <div style={{ position: "relative", padding: "24px 26px", borderRadius: 16, overflow: "hidden", border: `1px solid ${P}2e`, background: "linear-gradient(135deg, rgba(109,94,243,0.10) 0%, rgba(155,143,247,0.05) 55%, #fff 100%)", boxShadow: "0 16px 44px -24px rgba(109,94,243,0.4)" }}>
         <div style={{ position: "absolute", top: -60, right: -50, width: 220, height: 220, borderRadius: "50%", background: "radial-gradient(circle, rgba(109,94,243,0.12), transparent 70%)", pointerEvents: "none" }} />
         <div style={{ position: "relative", display: "flex", alignItems: "flex-start", gap: 16 }}>
-          <div style={{ width: 44, height: 44, borderRadius: 12, background: "linear-gradient(135deg, #6D5EF3, #9B8FF7)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: 20, boxShadow: "0 8px 22px -8px rgba(109,94,243,0.6)" }}>🎯</div>
+          <div style={{ width: 44, height: 44, borderRadius: 12, background: "linear-gradient(135deg, #6D5EF3, #9B8FF7)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, boxShadow: "0 8px 22px -8px rgba(109,94,243,0.6)" }}><EmojiIcon emoji="🎯" size={20} color="#fff" strokeWidth={2} /></div>
           <div>
             <div style={{ fontSize: 14.5, fontWeight: 800, color: "var(--ink)", marginBottom: 6, letterSpacing: "-0.01em" }}>Pēc šīs nodarbības tu saproti, kāpēc šis ir tavs labākais sākums</div>
             <p style={{ fontSize: 12.5, color: "var(--ink-2)", lineHeight: 1.75, margin: "0 0 12px" }}>Nākamajā nodarbībā — <strong style={{ color: "var(--ink)" }}>kādus pakalpojumus vari piedāvāt uzreiz</strong> un kā noteikt cenu pat bez pieredzes.</p>

@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import type { DetailMarketingCourse } from "@/content/marketing/marketingDetailCourse.types";
 import { MarketingCourseSectionLabel } from "@/components/marketing/MarketingCourseDetailTabs";
 import { useTranslations } from "next-intl";
+import { EmojiIcon } from "@/components/EmojiIcon";
 
 const P = "#a855f7";
 
@@ -105,7 +106,7 @@ export function SocialCurriculumIntro({ course }: { course: DetailMarketingCours
           { icon: "🇱🇻", text: "Pilnībā latviski, Latvijas tirgum" },
         ].map((b) => (
           <div key={b.text} style={{ display: "flex", alignItems: "center", gap: 7, padding: "8px 14px", borderRadius: 8, background: "rgba(168,85,247,0.05)", border: "1px solid rgba(168,85,247,0.12)" }}>
-            <span style={{ fontSize: 13 }}>{b.icon}</span>
+            <EmojiIcon emoji={b.icon} size={13} color="#a855f7" strokeWidth={2} />
             <span style={{ fontSize: 11.5, color: "#888" }}>{b.text}</span>
           </div>
         ))}
@@ -219,7 +220,7 @@ export function SocialMarketingOverviewPanelLv({ course }: { course: DetailMarke
             { icon: "⚡", text: "Ātrākais veids sākt ar AI" },
           ].map((r) => (
             <div key={r.text} style={{ display: "flex", alignItems: "center", gap: 8, padding: "9px 16px", borderRadius: 10, background: "rgba(168,85,247,0.08)", border: "1px solid rgba(168,85,247,0.18)" }}>
-              <span style={{ fontSize: 15 }}>{r.icon}</span>
+              <EmojiIcon emoji={r.icon} size={15} color="#a855f7" strokeWidth={2} />
               <span style={{ fontSize: 12.5, fontWeight: 600, color: "#ddd" }}>{r.text}</span>
             </div>
           ))}
@@ -395,7 +396,7 @@ export function SocialMarketingOverviewPanelLv({ course }: { course: DetailMarke
                 background: "#0d0d1a", border: "1px solid rgba(255,255,255,0.06)",
               }}
             >
-              <div style={{ fontSize: 28, marginBottom: 10 }}>{item.icon}</div>
+              <div style={{ marginBottom: 10 }}><EmojiIcon emoji={item.icon} size={26} color="#a855f7" strokeWidth={1.75} /></div>
               <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 6 }}>{item.title}</div>
               <div style={{ fontSize: 12, color: "#666", lineHeight: 1.6 }}>{item.desc}</div>
             </div>

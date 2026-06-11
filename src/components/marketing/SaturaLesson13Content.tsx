@@ -1,5 +1,7 @@
 "use client";
 
+import { EmojiIcon } from "@/components/EmojiIcon";
+
 /* Brand-derived light palette */
 const P  = "#6D5EF3";
 const P2 = "#9B8FF7";
@@ -87,7 +89,7 @@ export function SaturaLesson13Content() {
               {t.starter && (
                 <div style={{ position: "absolute", top: 8, right: 10, fontSize: 8, fontWeight: 800, color: G, background: `${G}14`, border: `1px solid ${G}33`, borderRadius: 20, padding: "2px 7px", textTransform: "uppercase", letterSpacing: "0.05em" }}>Starter</div>
               )}
-              <div style={{ fontSize: 20, marginBottom: 8 }}>{t.icon}</div>
+              <div style={{ marginBottom: 8 }}><EmojiIcon emoji={t.icon} size={20} color={t.color} strokeWidth={1.75} /></div>
               <div style={{ fontSize: 13, fontWeight: 800, color: "var(--ink)", marginBottom: 2 }}>{t.name}</div>
               <div style={{ fontSize: 11, color: "var(--ink-3)", marginBottom: 8, lineHeight: 1.4 }}>{t.use}</div>
               <div style={{ display: "flex", alignItems: "center", gap: 5, padding: "5px 8px", borderRadius: 7, background: "var(--bg)", border: "1px solid var(--line)" }}>
@@ -109,7 +111,7 @@ export function SaturaLesson13Content() {
         <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
           {paidTools.map((t) => (
             <div key={t.name} style={{ display: "flex", alignItems: "center", gap: 12, padding: "13px 15px", borderRadius: 11, background: "#fff", border: `1px solid ${t.color}2a`, boxShadow: cardShadow }}>
-              <div style={{ fontSize: 20, flexShrink: 0 }}>{t.icon}</div>
+              <div style={{ flexShrink: 0 }}><EmojiIcon emoji={t.icon} size={20} color={t.color} strokeWidth={1.75} /></div>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 2 }}>
                   <span style={{ fontSize: 13, fontWeight: 700, color: "var(--ink)" }}>{t.name}</span>

@@ -1,5 +1,7 @@
 "use client";
 
+import { EmojiIcon } from "@/components/EmojiIcon";
+
 const services = [
   {
     emoji: "📱",
@@ -74,7 +76,15 @@ export default function AILaunchpad() {
                 (e.currentTarget as HTMLElement).style.transform = "";
               }}
             >
-              <div style={{ fontSize: 32 }}>{s.emoji}</div>
+              <div style={{
+                width: 48, height: 48, borderRadius: 14, flexShrink: 0,
+                background: "linear-gradient(150deg, color-mix(in oklab, var(--accent) 16%, #fff) 0%, color-mix(in oklab, var(--accent) 8%, #fff) 100%)",
+                border: "1px solid color-mix(in oklab, var(--accent) 20%, transparent)",
+                boxShadow: "inset 0 1px 0 rgba(255,255,255,0.6), 0 5px 14px -8px color-mix(in oklab, var(--accent) 45%, transparent)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+              }}>
+                <EmojiIcon emoji={s.emoji} size={22} color="var(--accent)" strokeWidth={1.75} />
+              </div>
               <div>
                 <div style={{ fontSize: 13, fontWeight: 700, color: "var(--ink-3)", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 6, fontFamily: "Inter Tight, sans-serif" }}>
                   {s.label}

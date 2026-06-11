@@ -1,6 +1,7 @@
 "use client";
 
 import { VOICE_MARKET_THEME } from "@/components/marketing/marketingCourseVisualThemes";
+import { EmojiIcon } from "@/components/EmojiIcon";
 
 const A = VOICE_MARKET_THEME.accentHex;
 const AG = VOICE_MARKET_THEME.accentGradientCss;
@@ -47,7 +48,7 @@ function Lesson1Content() {
             { icon: "⚡", color: "#00ff88", title: "Reaģē nekavējoties", desc: "Atbildes tiek ģenerētas 300–600ms laikā — ātrāk nekā cilvēks domā" },
           ].map((p) => (
             <div key={p.title} style={{ padding: "18px 16px", borderRadius: 12, background: "#0d0d1a", border: `1px solid ${p.color}22` }}>
-              <div style={{ fontSize: 22, marginBottom: 10 }}>{p.icon}</div>
+              <div style={{ marginBottom: 10 }}><EmojiIcon emoji={p.icon} size={22} color={p.color} strokeWidth={1.75} /></div>
               <div style={{ fontSize: 13, fontWeight: 700, color: "#fff", marginBottom: 5 }}>{p.title}</div>
               <div style={{ fontSize: 12, color: "#666", lineHeight: 1.6 }}>{p.desc}</div>
             </div>

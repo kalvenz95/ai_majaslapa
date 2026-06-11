@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { EmojiIcon } from "@/components/EmojiIcon";
 
 /** Three "we do it for you" pillars — flips the burden from student to Chademy. */
 const pillars = [
@@ -122,10 +123,9 @@ export default function FastWin() {
                     border: `1px solid color-mix(in oklab, ${p.accent} 22%, transparent)`,
                     boxShadow: `inset 0 1px 0 rgba(255,255,255,0.6), 0 6px 16px -8px color-mix(in oklab, ${p.accent} 45%, transparent)`,
                     display: "flex", alignItems: "center", justifyContent: "center",
-                    fontSize: 28,
                   }}
                 >
-                  {p.icon}
+                  <EmojiIcon emoji={p.icon} size={26} color={p.accent} strokeWidth={1.75} />
                 </div>
                 <span style={{
                   fontSize: 34, fontWeight: 900, fontFamily: "Inter Tight, sans-serif",

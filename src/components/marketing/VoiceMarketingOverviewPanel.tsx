@@ -5,6 +5,7 @@ import type { DetailMarketingCourse } from "@/content/marketing/marketingDetailC
 import { VOICE_MARKET_THEME } from "@/components/marketing/marketingCourseVisualThemes";
 import { MarketingCourseSectionLabel } from "@/components/marketing/MarketingCourseDetailTabs";
 import { useTranslations } from "next-intl";
+import { EmojiIcon } from "@/components/EmojiIcon";
 
 const A = VOICE_MARKET_THEME.accentHex;
 const AG = VOICE_MARKET_THEME.accentGradientCss;
@@ -70,7 +71,7 @@ export function VoiceMarketingOverviewPanelLv({ course }: { course: DetailMarket
               onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.borderColor = `${item.color}55`; (e.currentTarget as HTMLDivElement).style.transform = "translateY(-2px)"; }}
               onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.borderColor = `${item.color}22`; (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)"; }}
             >
-              <div style={{ fontSize: 24, marginBottom: 12 }}>{item.icon}</div>
+              <div style={{ marginBottom: 12 }}><EmojiIcon emoji={item.icon} size={24} color={item.color} strokeWidth={1.75} /></div>
               <div style={{ fontSize: 13, fontWeight: 700, color: "#fff", marginBottom: 6 }}>{item.title}</div>
               <div style={{ fontSize: 12, color: "#666", lineHeight: 1.6 }}>{item.desc}</div>
             </div>
@@ -260,7 +261,7 @@ export function VoiceMarketingOverviewPanelLv({ course }: { course: DetailMarket
             { icon: "🇱🇻", title: "Latvijas tirgum", desc: "Cenas, klientu meklēšanas veidi un skripti ir pielāgoti LV realitātei." },
           ].map((item) => (
             <div key={item.title} style={{ padding: "20px", borderRadius: 12, background: "#0d0d1a", border: "1px solid rgba(255,255,255,0.06)" }}>
-              <div style={{ fontSize: 28, marginBottom: 10 }}>{item.icon}</div>
+              <div style={{ marginBottom: 10 }}><EmojiIcon emoji={item.icon} size={26} color={A} strokeWidth={1.75} /></div>
               <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 6 }}>{item.title}</div>
               <div style={{ fontSize: 12, color: "#666", lineHeight: 1.6 }}>{item.desc}</div>
             </div>

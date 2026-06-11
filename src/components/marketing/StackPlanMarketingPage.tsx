@@ -7,6 +7,7 @@ import {
 } from "@/components/CourseMarketingLinks";
 import type { StackPlanModel } from "@/content/marketing/stackTypes";
 import { STACK_TYPE_ICONS } from "@/content/marketing/stackTypes";
+import { EmojiIcon } from "@/components/EmojiIcon";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 
@@ -284,7 +285,7 @@ export function StackPlanMarketingPage({
                           border: mod.free ? "none" : "1px solid var(--line-2)",
                           boxShadow: mod.free ? `0 10px 28px -8px rgba(${plan.glow},0.55)` : "none",
                         }}>
-                          {mod.free ? `0${mod.id}`.slice(-2) : "🔒"}
+                          {mod.free ? `0${mod.id}`.slice(-2) : <EmojiIcon emoji="🔒" size={18} color="var(--ink-3)" strokeWidth={2} />}
                         </div>
                         <div style={{ minWidth: 0 }}>
                           <div style={{ fontSize: 17, fontWeight: 800, letterSpacing: "-0.02em", color: "var(--ink)", lineHeight: 1.3 }}>
@@ -292,7 +293,7 @@ export function StackPlanMarketingPage({
                           </div>
                           <div style={{ marginTop: 8 }}>
                             <span style={{ display: "inline-flex", alignItems: "center", gap: 5, fontSize: 11, fontWeight: 600, color: "var(--ink-3)", background: "var(--bg-2)", border: "1px solid var(--line)", borderRadius: 999, padding: "4px 10px" }}>
-                              📚 {tc("lessonsMeta", { count: mod.lessons.length, duration: mod.duration })}
+                              <EmojiIcon emoji="📚" size={11} color="var(--ink-3)" strokeWidth={2} /> {tc("lessonsMeta", { count: mod.lessons.length, duration: mod.duration })}
                             </span>
                           </div>
                         </div>
@@ -351,7 +352,7 @@ export function StackPlanMarketingPage({
                                   <div style={{ fontSize: 13.5, color: "var(--ink-2)", fontWeight: 600, lineHeight: 1.4 }}>{lesson.title}</div>
                                 </div>
                                 <span style={{ display: "inline-flex", alignItems: "center", gap: 5, fontSize: 11, color: "var(--ink-4)", background: "var(--bg-2)", borderRadius: 999, padding: "4px 9px", flexShrink: 0, whiteSpace: "nowrap" }}>
-                                  🔒 {lesson.duration}
+                                  <EmojiIcon emoji="🔒" size={11} color="var(--ink-4)" strokeWidth={2} /> {lesson.duration}
                                 </span>
                               </div>
                             )}
@@ -392,7 +393,7 @@ export function StackPlanMarketingPage({
                         background: mod.free ? `rgba(${plan.glow},0.10)` : "var(--bg-2)",
                         color: mod.free ? plan.color : "var(--ink-3)",
                         border: mod.free ? `1px solid rgba(${plan.glow},0.22)` : "1px solid var(--line)" }}>
-                        {mod.free ? mod.id : "🔒"}
+                        {mod.free ? mod.id : <EmojiIcon emoji="🔒" size={14} color="var(--ink-3)" strokeWidth={2} />}
                       </div>
                       <div style={{ textAlign: "left", minWidth: 0 }}>
                         <div style={{ fontSize: 14, fontWeight: 700, color: "var(--ink)" }}>{mod.title}</div>
@@ -443,7 +444,7 @@ export function StackPlanMarketingPage({
                             </div>
                           ) : (
                             <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "14px 24px", borderTop: "1px solid var(--line)", opacity: 0.5 }}>
-                              <span style={{ fontSize: 13, color: "var(--ink-4)", minWidth: 24, textAlign: "center" }}>🔒</span>
+                              <span style={{ display: "inline-flex", justifyContent: "center", color: "var(--ink-4)", minWidth: 24 }}><EmojiIcon emoji="🔒" size={13} color="var(--ink-4)" strokeWidth={2} /></span>
                               <div style={{ flex: 1 }}>
                                 <div style={{ fontSize: 13, color: "var(--ink-2)", fontWeight: 500 }}>{lesson.title}</div>
                               </div>

@@ -1,5 +1,7 @@
 "use client";
 
+import { EmojiIcon } from "@/components/EmojiIcon";
+
 /* Brand-derived light palette */
 const G  = "#00BFA5";
 const G2 = "#33D4BF";
@@ -163,7 +165,7 @@ export function DigitaalaisIntroLessonContent() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(185px, 1fr))", gap: 9 }}>
             {niches.map((n) => (
               <div key={n.title} style={{ padding: "15px 16px", borderRadius: 12, background: "var(--bg)", border: "1px solid var(--line)" }}>
-                <div style={{ fontSize: 20, marginBottom: 9 }}>{n.icon}</div>
+                <div style={{ marginBottom: 9 }}><EmojiIcon emoji={n.icon} size={20} color={G} strokeWidth={1.75} /></div>
                 <div style={{ fontSize: 12.5, fontWeight: 700, color: "var(--ink)", marginBottom: 4 }}>{n.title}</div>
                 <div style={{ fontSize: 11, color: "var(--ink-3)", lineHeight: 1.55, marginBottom: 9 }}>{n.need}</div>
                 <div style={{ display: "flex", alignItems: "center", gap: 6 }}><Dot color={G} /><span style={{ fontSize: 12, fontWeight: 700, color: G }}>{n.price}</span></div>

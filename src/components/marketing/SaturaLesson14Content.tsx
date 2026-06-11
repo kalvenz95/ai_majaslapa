@@ -1,5 +1,7 @@
 "use client";
 
+import { EmojiIcon } from "@/components/EmojiIcon";
+
 /* Brand-derived light palette */
 const P  = "#6D5EF3";
 const P2 = "#9B8FF7";
@@ -169,7 +171,7 @@ export function SaturaLesson14Content() {
             {proposalBlocks.map((b) => (
               <div key={b.title} style={{ padding: "13px 14px", borderRadius: 10, background: `${b.color}0d`, border: `1px solid ${b.color}2a` }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 6 }}>
-                  <span style={{ fontSize: 16 }}>{b.icon}</span>
+                  <EmojiIcon emoji={b.icon} size={15} color={b.color} strokeWidth={1.85} />
                   <span style={{ fontSize: 12, fontWeight: 700, color: b.color }}>{b.title}</span>
                 </div>
                 <p style={{ fontSize: 11.5, color: "var(--ink-3)", lineHeight: 1.55, margin: 0 }}>{b.content}</p>

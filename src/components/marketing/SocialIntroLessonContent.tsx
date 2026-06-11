@@ -1,5 +1,7 @@
 "use client";
 
+import { EmojiIcon } from "@/components/EmojiIcon";
+
 const P = "#a855f7";
 const P2 = "#ec4899";
 const GREEN = "#00ff88";
@@ -260,7 +262,7 @@ export function SocialIntroLessonContent() {
               { icon: "🇱🇻", text: "Latvijas tirgum" },
             ].map((b) => (
               <div key={b.text} style={{ display: "flex", alignItems: "center", gap: 5 }}>
-                <span style={{ fontSize: 13 }}>{b.icon}</span>
+                <EmojiIcon emoji={b.icon} size={13} color="#a855f7" strokeWidth={2} />
                 <span style={{ fontSize: 11.5, color: "#666" }}>{b.text}</span>
               </div>
             ))}
