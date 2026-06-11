@@ -7,6 +7,7 @@ const quotes = [
     initials: "MK",
     name: "Mārtiņš K.",
     role: "Freelancer · Rīga",
+    photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=160&q=85&fit=crop&crop=faces",
     text: "Pēc 3 nedēļām uzrunāju pirmo klientu — restorānu Rīgā. Tagad strādāju ar 4 klientiem paralēli pamata darbam.",
     amt: "€1 400/mēn",
   },
@@ -14,6 +15,7 @@ const quotes = [
     initials: "LB",
     name: "Laura B.",
     role: "Satura veidotāja · Jūrmala",
+    photo: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=160&q=85&fit=crop&crop=faces",
     text: "AI video kurss bija tieši tas, ko meklēju. Tagad vadu sociālo mediju saturu 3 uzņēmumiem un pati plānoju savu laiku.",
     amt: "€900/mēn",
   },
@@ -21,6 +23,7 @@ const quotes = [
     initials: "RD",
     name: "Raivis D.",
     role: "Mārketings · Liepāja",
+    photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=160&q=85&fit=crop&crop=faces",
     text: "Voice aģentu sistēmu zobārstniecībai saliku kopā pēc kursa. Klients ir sajūsmā — automātiski zvanu atgādinājumi strādā bez iejaukšanās.",
     amt: "€800 + €200/mēn",
   },
@@ -117,14 +120,18 @@ export default function Testimonials() {
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "auto", paddingTop: 16, borderTop: "1px solid var(--line)" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                   <div style={{
-                    width: 38, height: 38, borderRadius: 999, flexShrink: 0,
-                    background: "color-mix(in oklab, var(--accent) 14%, transparent)",
-                    border: "1px solid color-mix(in oklab, var(--accent) 20%, transparent)",
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    fontSize: 13, fontWeight: 800, color: "var(--accent)",
-                    fontFamily: "Inter Tight, sans-serif",
+                    width: 42, height: 42, borderRadius: 999, flexShrink: 0,
+                    padding: 2, background: "color-mix(in oklab, var(--accent) 18%, transparent)",
+                    boxShadow: "0 4px 12px -4px color-mix(in oklab, var(--accent) 40%, transparent)",
                   }}>
-                    {q.initials}
+                    <img
+                      src={q.photo}
+                      alt={q.name}
+                      width={38}
+                      height={38}
+                      loading="lazy"
+                      style={{ width: "100%", height: "100%", borderRadius: 999, objectFit: "cover", display: "block", border: "2px solid #fff" }}
+                    />
                   </div>
                   <div>
                     <div style={{ fontSize: 13, fontWeight: 700, color: "var(--ink)" }}>{q.name}</div>
