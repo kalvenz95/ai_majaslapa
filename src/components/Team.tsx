@@ -150,6 +150,7 @@ export default function Team() {
           {members.map((m) => (
             <div
               key={m.name}
+              className="lp-card"
               style={{
                 border: "1px solid var(--line)",
                 borderRadius: 22,
@@ -157,19 +158,14 @@ export default function Team() {
                 overflow: "hidden",
                 display: "flex",
                 flexDirection: "column",
-                transition: "border-color 0.2s, transform 0.2s",
               }}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLDivElement).style.borderColor =
                   "var(--line-2)";
-                (e.currentTarget as HTMLDivElement).style.transform =
-                  "translateY(-4px)";
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLDivElement).style.borderColor =
                   "var(--line)";
-                (e.currentTarget as HTMLDivElement).style.transform =
-                  "translateY(0)";
               }}
             >
               {/* photo */}

@@ -60,6 +60,7 @@ export default function Services() {
           {curriculum.map((c) => (
             <div
               key={c.num}
+              className="lp-card"
               style={{
                 background: "#fff",
                 border: "1px solid var(--line)",
@@ -68,15 +69,12 @@ export default function Services() {
                 display: "flex",
                 flexDirection: "column",
                 gap: 20,
-                transition: "border-color 0.2s ease, box-shadow 0.2s ease",
               }}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLElement).style.borderColor = "color-mix(in oklab, var(--accent) 30%, transparent)";
-                (e.currentTarget as HTMLElement).style.boxShadow = "0 16px 48px -16px rgba(17,17,17,0.08)";
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLElement).style.borderColor = "var(--line)";
-                (e.currentTarget as HTMLElement).style.boxShadow = "";
               }}
             >
               {/* Number + title */}

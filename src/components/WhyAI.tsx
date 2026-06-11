@@ -66,17 +66,18 @@ export default function WhyAI() {
                 display: "flex",
                 flexDirection: "column",
                 gap: 16,
+                boxShadow: "var(--shadow-md)",
                 transition: "border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease",
               }}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLElement).style.borderColor = "color-mix(in oklab, var(--accent) 30%, transparent)";
                 (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
-                (e.currentTarget as HTMLElement).style.boxShadow = "0 20px 48px -16px rgba(17,17,17,0.10)";
+                (e.currentTarget as HTMLElement).style.boxShadow = "var(--shadow-lg)";
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLElement).style.borderColor = "var(--line)";
                 (e.currentTarget as HTMLElement).style.transform = "";
-                (e.currentTarget as HTMLElement).style.boxShadow = "";
+                (e.currentTarget as HTMLElement).style.boxShadow = "var(--shadow-md)";
               }}
             >
               <div style={{

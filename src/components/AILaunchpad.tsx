@@ -58,15 +58,15 @@ export default function AILaunchpad() {
           {services.map((s, i) => (
             <div
               key={s.label}
+              className="lp-card"
               style={{
-                background: "var(--bg)",
+                background: "var(--bg-1)",
                 border: "1px solid var(--line)",
                 borderRadius: 24,
                 padding: "32px 24px",
                 display: "flex",
                 flexDirection: "column",
                 gap: 14,
-                transition: "border-color 0.2s ease, transform 0.2s ease",
               }}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLElement).style.borderColor = "color-mix(in oklab, var(--accent) 35%, transparent)";

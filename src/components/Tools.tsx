@@ -42,6 +42,7 @@ export default function Tools() {
           {tools.map((tool) => (
             <div
               key={tool.name}
+              className="lp-card-sm"
               style={{
                 padding: "22px 20px",
                 background: "#fff",
@@ -50,15 +51,12 @@ export default function Tools() {
                 display: "flex",
                 flexDirection: "column",
                 gap: 12,
-                transition: "border-color 0.2s ease, transform 0.2s ease",
               }}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLElement).style.borderColor = "color-mix(in oklab, var(--accent) 28%, transparent)";
-                (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)";
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLElement).style.borderColor = "var(--line)";
-                (e.currentTarget as HTMLElement).style.transform = "";
               }}
             >
               <div style={{

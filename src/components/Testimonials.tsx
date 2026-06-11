@@ -93,23 +93,21 @@ export default function Testimonials() {
           {quotes.map((q) => (
             <div
               key={q.name}
+              className="lp-card"
               style={{
-                background: "var(--bg)",
+                background: "var(--bg-1)",
                 border: "1px solid var(--line)",
                 borderRadius: 24,
                 padding: "28px 26px",
                 display: "flex",
                 flexDirection: "column",
                 gap: 16,
-                transition: "border-color 0.2s ease, transform 0.2s ease",
               }}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLElement).style.borderColor = "var(--line-2)";
-                (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)";
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLElement).style.borderColor = "var(--line)";
-                (e.currentTarget as HTMLElement).style.transform = "";
               }}
             >
               <Stars />

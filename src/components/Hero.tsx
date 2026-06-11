@@ -32,6 +32,33 @@ export default function Hero() {
 
   return (
     <header style={{ padding: "100px 0 0", position: "relative", overflow: "hidden", background: "var(--bg)" }}>
+      {/* Atmospheric depth — layered accent radial washes + faint dot grid */}
+      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 0,
+          pointerEvents: "none",
+          background:
+            "radial-gradient(46% 48% at 8% -8%, color-mix(in oklab, var(--accent) 16%, transparent), transparent 60%)," +
+            "radial-gradient(40% 42% at 100% 0%, color-mix(in oklab, var(--accent-2) 12%, transparent), transparent 62%)," +
+            "radial-gradient(50% 60% at 78% 110%, color-mix(in oklab, var(--accent-3) 10%, transparent), transparent 65%)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="dot-grid"
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 0,
+          pointerEvents: "none",
+          opacity: 0.4,
+          maskImage: "radial-gradient(70% 60% at 50% 25%, #000 0%, transparent 75%)",
+          WebkitMaskImage: "radial-gradient(70% 60% at 50% 25%, #000 0%, transparent 75%)",
+        }}
+      />
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 32px", position: "relative", zIndex: 1 }}>
         <div
           style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.15fr 0.85fr", gap: 48, alignItems: "center" }}

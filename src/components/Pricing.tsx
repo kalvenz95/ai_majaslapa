@@ -57,7 +57,7 @@ export default function Pricing() {
               <div
                 key={plan.id}
                 style={{
-                  background: isHighlight ? "var(--ink)" : "var(--bg)",
+                  background: isHighlight ? "var(--ink)" : "var(--bg-1)",
                   border: `${isHighlight ? 2 : 1}px solid ${isHighlight ? "var(--accent)" : "var(--line)"}`,
                   borderRadius: 24,
                   padding: "32px 28px",
@@ -66,17 +66,23 @@ export default function Pricing() {
                   gap: 0,
                   position: "relative",
                   transform: isHighlight ? "scale(1.03)" : "none",
-                  boxShadow: isHighlight ? "0 32px 80px -20px rgba(109,94,243,0.28)" : "none",
-                  transition: "transform 0.25s ease, box-shadow 0.25s ease",
+                  boxShadow: isHighlight
+                    ? "0 32px 80px -20px rgba(109,94,243,0.32), 0 8px 24px -8px rgba(109,94,243,0.22)"
+                    : "var(--shadow-md)",
+                  transition: "transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease",
                 }}
                 onMouseEnter={(e) => {
                   if (!isHighlight) {
                     (e.currentTarget as HTMLElement).style.borderColor = "color-mix(in oklab, var(--accent) 28%, transparent)";
+                    (e.currentTarget as HTMLElement).style.boxShadow = "var(--shadow-lg)";
+                    (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
                   }
                 }}
                 onMouseLeave={(e) => {
                   if (!isHighlight) {
                     (e.currentTarget as HTMLElement).style.borderColor = "var(--line)";
+                    (e.currentTarget as HTMLElement).style.boxShadow = "var(--shadow-md)";
+                    (e.currentTarget as HTMLElement).style.transform = "none";
                   }
                 }}
               >

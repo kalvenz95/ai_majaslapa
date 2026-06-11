@@ -67,7 +67,8 @@ export default function FAQ() {
                   borderRadius: 16,
                   background: "var(--bg-1)",
                   overflow: "hidden",
-                  transition: "border-color 0.2s ease",
+                  boxShadow: isOpen ? "var(--shadow-md)" : "var(--shadow-sm)",
+                  transition: "border-color 0.2s ease, box-shadow 0.2s ease",
                 }}
               >
                 <button

@@ -98,6 +98,7 @@ export default function FastWin() {
                 gap: 18,
                 position: "relative",
                 overflow: "hidden",
+                boxShadow: "var(--shadow-md)",
                 transition: "border-color 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease",
               }}
               onMouseEnter={(e) => {
@@ -110,7 +111,7 @@ export default function FastWin() {
                 const el = e.currentTarget as HTMLElement;
                 el.style.borderColor = "var(--line)";
                 el.style.transform = "";
-                el.style.boxShadow = "";
+                el.style.boxShadow = "var(--shadow-md)";
               }}
             >
               {/* top accent bar */}
