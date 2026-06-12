@@ -52,7 +52,7 @@ export default function HowItWorksV2() {
                 >
                   <span aria-hidden style={{
                     position: "absolute", top: -110, left: -16,
-                    fontFamily: "Inter Tight, sans-serif", fontWeight: 900,
+                    fontFamily: "var(--font-sans)", fontWeight: 700,
                     fontSize: 230, lineHeight: 1, letterSpacing: "-0.05em",
                     color: "transparent",
                     WebkitTextStroke: "1.5px color-mix(in oklab, var(--accent) 32%, transparent)",
@@ -61,7 +61,7 @@ export default function HowItWorksV2() {
                     {step?.num}
                   </span>
                   <div style={{ position: "relative", paddingTop: 64 }}>
-                    <h3 style={{ fontSize: "clamp(30px, 3.4vw, 46px)", fontWeight: 850, fontFamily: "Inter Tight, sans-serif", letterSpacing: "-0.035em", color: "var(--ink)", margin: "0 0 14px" }}>
+                    <h3 style={{ fontSize: "clamp(30px, 3.4vw, 46px)", fontWeight: 700, fontFamily: "var(--font-sans)", letterSpacing: "-0.035em", color: "var(--ink)", margin: "0 0 14px" }}>
                       {step?.title}
                     </h3>
                     <p style={{ fontSize: 18, color: "var(--ink-3)", lineHeight: 1.7, maxWidth: 420, margin: 0 }}>
@@ -94,7 +94,7 @@ export default function HowItWorksV2() {
                       }}>
                         {s.num}
                       </span>
-                      <span style={{ fontSize: 15.5, fontWeight: 700, fontFamily: "Inter Tight, sans-serif", letterSpacing: "-0.015em", color: "var(--ink)" }}>
+                      <span style={{ fontSize: 15.5, fontWeight: 700, fontFamily: "var(--font-sans)", letterSpacing: "-0.015em", color: "var(--ink)" }}>
                         {s.title}
                       </span>
                     </div>
@@ -126,7 +126,7 @@ export default function HowItWorksV2() {
                   {s.num}
                 </span>
                 <div>
-                  <h3 style={{ fontSize: 18, fontWeight: 800, fontFamily: "Inter Tight, sans-serif", letterSpacing: "-0.02em", color: "var(--ink)", margin: "0 0 7px" }}>
+                  <h3 style={{ fontSize: 18, fontWeight: 700, fontFamily: "var(--font-sans)", letterSpacing: "-0.02em", color: "var(--ink)", margin: "0 0 7px" }}>
                     {s.title}
                   </h3>
                   <p style={{ fontSize: 14, color: "var(--ink-3)", lineHeight: 1.6, margin: 0 }}>

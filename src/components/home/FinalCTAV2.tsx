@@ -41,7 +41,7 @@ export default function FinalCTAV2() {
             <a
               href="#pricing"
               className="btn-primary"
-              style={{ textDecoration: "none", fontSize: 18, padding: "19px 44px", borderRadius: 16, fontWeight: 800, fontFamily: "Inter Tight, sans-serif" }}
+              style={{ textDecoration: "none", fontSize: 18, padding: "19px 44px", borderRadius: 16, fontWeight: 700, fontFamily: "var(--font-sans)" }}
             >
               Sākt bezmaksas →
             </a>
@@ -62,7 +62,7 @@ export default function FinalCTAV2() {
       {/* Giant brand watermark anchoring the page */}
       <div aria-hidden style={{ position: "relative", marginTop: 70, overflow: "hidden", lineHeight: 0.78 }}>
         <div style={{
-          fontFamily: "Inter Tight, sans-serif", fontWeight: 900,
+          fontFamily: "var(--font-sans)", fontWeight: 700,
           fontSize: "clamp(110px, 19vw, 300px)", letterSpacing: "-0.05em",
           textAlign: "center", whiteSpace: "nowrap", userSelect: "none",
           background: "linear-gradient(180deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.015) 85%)",

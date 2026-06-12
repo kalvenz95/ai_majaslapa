@@ -104,7 +104,7 @@ export default function PricingV2() {
                   {plan.badge && (
                     <span style={{
                       alignSelf: "flex-start",
-                      fontSize: 11, fontWeight: 800, fontFamily: "Inter Tight, sans-serif",
+                      fontSize: 11, fontWeight: 700, fontFamily: "var(--font-sans)",
                       borderRadius: 999, padding: "6px 14px", marginBottom: 20, position: "relative",
                       background: dark ? "linear-gradient(135deg, var(--accent), #8B7BFF)" : `rgba(${th.glow},0.09)`,
                       color: dark ? "#fff" : th.color,
@@ -117,7 +117,7 @@ export default function PricingV2() {
 
                   {/* name + tagline */}
                   <h3 style={{
-                    fontSize: 21, fontWeight: 850, fontFamily: "Inter Tight, sans-serif",
+                    fontSize: 21, fontWeight: 700, fontFamily: "var(--font-sans)",
                     letterSpacing: "-0.025em", color: dark ? "#fff" : "var(--ink)", margin: "0 0 5px", position: "relative",
                   }}>
                     <E id={`plan-${plan.id}-name`}>{plan.name}</E>
@@ -129,7 +129,7 @@ export default function PricingV2() {
                   {/* price */}
                   <div style={{ display: "flex", alignItems: "baseline", gap: 6, marginBottom: 14, position: "relative" }}>
                     <span style={{
-                      fontSize: 56, fontWeight: 900, fontFamily: "Inter Tight, sans-serif",
+                      fontSize: 56, fontWeight: 700, fontFamily: "var(--font-sans)",
                       letterSpacing: "-0.05em", lineHeight: 1,
                       color: dark ? "#fff" : "var(--ink)",
                     }}>
@@ -174,16 +174,16 @@ export default function PricingV2() {
                       dark
                         ? {
                             background: "linear-gradient(180deg, color-mix(in oklab, var(--accent) 88%, #fff) 0%, var(--accent) 45%, color-mix(in oklab, var(--accent) 86%, #000) 100%)",
-                            color: "#fff", borderRadius: 13, padding: "15px 0", fontWeight: 800, fontSize: 14.5,
+                            color: "#fff", borderRadius: 13, padding: "15px 0", fontWeight: 700, fontSize: 14.5,
                             width: "100%", display: "block", textAlign: "center", position: "relative",
-                            fontFamily: "Inter Tight, sans-serif", letterSpacing: "-0.01em",
+                            fontFamily: "var(--font-sans)", letterSpacing: "-0.01em",
                             boxShadow: "0 14px 34px -10px rgba(109,94,243,0.6), inset 0 1px 0 rgba(255,255,255,0.25)",
                           }
                         : {
                             background: "var(--bg-2)", border: "1px solid var(--line-2)", color: "var(--ink)",
                             borderRadius: 13, padding: "15px 0", fontWeight: 700, fontSize: 14.5,
                             width: "100%", display: "block", textAlign: "center",
-                            fontFamily: "Inter Tight, sans-serif", letterSpacing: "-0.01em",
+                            fontFamily: "var(--font-sans)", letterSpacing: "-0.01em",
                           }
                     }
                   />

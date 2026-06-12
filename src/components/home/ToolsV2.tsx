@@ -68,7 +68,7 @@ export default function ToolsV2() {
                   <tool.Icon size={18} color={tool.color} strokeWidth={2} />
                 </span>
                 <span>
-                  <span style={{ display: "block", fontSize: 14.5, fontWeight: 800, color: "var(--ink)", marginBottom: 3, letterSpacing: "-0.015em", fontFamily: "Inter Tight, sans-serif" }}>{tool.name}</span>
+                  <span style={{ display: "block", fontSize: 14.5, fontWeight: 700, color: "var(--ink)", marginBottom: 3, letterSpacing: "-0.015em", fontFamily: "var(--font-sans)" }}>{tool.name}</span>
                   <span style={{ display: "block", fontSize: 12, color: "var(--ink-3)", lineHeight: 1.45 }}>{tool.desc}</span>
                 </span>
               </div>

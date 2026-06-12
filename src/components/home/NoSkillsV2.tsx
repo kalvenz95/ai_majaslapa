@@ -30,7 +30,7 @@ function LessonMock() {
           }}>
             2. nodarbība
           </span>
-          <div style={{ fontSize: "clamp(17px, 2.4vw, 24px)", fontWeight: 850, fontFamily: "Inter Tight, sans-serif", letterSpacing: "-0.03em", color: "#fff", textAlign: "center", padding: "0 24px" }}>
+          <div style={{ fontSize: "clamp(17px, 2.4vw, 24px)", fontWeight: 700, fontFamily: "var(--font-sans)", letterSpacing: "-0.03em", color: "#fff", textAlign: "center", padding: "0 24px" }}>
             Tavs pirmais AI projekts<br />
             <span className="v2-grad">soli pa solim</span>
           </div>
@@ -66,7 +66,7 @@ function LessonMock() {
           { t: "Pielāgo savam klientam", done: false },
         ].map((s, i) => (
           <div key={s.t} style={{ display: "flex", alignItems: "center", gap: 11, padding: "10px 13px", borderRadius: 11, background: s.done ? "rgba(0,191,165,0.06)" : "var(--bg)", border: `1px solid ${s.done ? "rgba(0,191,165,0.2)" : "var(--line)"}` }}>
-            <span style={{ width: 21, height: 21, borderRadius: 999, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", background: s.done ? "var(--accent-2)" : "var(--bg-2)", color: s.done ? "#fff" : "var(--ink-4)", fontSize: 10, fontWeight: 800 }}>
+            <span style={{ width: 21, height: 21, borderRadius: 999, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", background: s.done ? "var(--accent-2)" : "var(--bg-2)", color: s.done ? "#fff" : "var(--ink-4)", fontSize: 10, fontWeight: 700 }}>
               {s.done ? <Check size={11} strokeWidth={3.4} /> : i + 1}
             </span>
             <span style={{ fontSize: 12.5, fontWeight: 600, color: "var(--ink)", letterSpacing: "-0.01em" }}>{s.t}</span>

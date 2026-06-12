@@ -77,7 +77,7 @@ export default function CommunityV2() {
               <div key={i} className="comm-v2-stat" style={{ padding: "36px 24px", textAlign: "center", borderRight: i < 2 ? "1px solid var(--line)" : "none" }}>
                 <AnimatedNumber
                   value={s.val}
-                  style={{ display: "block", fontSize: "clamp(40px, 5vw, 56px)", fontWeight: 900, fontFamily: "Inter Tight, sans-serif", letterSpacing: "-0.05em", color: s.accent ? "var(--accent)" : "var(--ink)", lineHeight: 1 }}
+                  style={{ display: "block", fontSize: "clamp(40px, 5vw, 56px)", fontWeight: 700, fontFamily: "var(--font-sans)", letterSpacing: "-0.05em", color: s.accent ? "var(--accent)" : "var(--ink)", lineHeight: 1 }}
                 />
                 <div style={{ fontSize: 13, color: "var(--ink-3)", marginTop: 10 }}>{s.label}</div>
               </div>
@@ -109,7 +109,7 @@ export default function CommunityV2() {
                       <span style={{ display: "block", fontSize: 11, color: "var(--ink-3)", marginTop: 1 }}>{q.role}</span>
                     </span>
                   </div>
-                  <span style={{ fontSize: 13.5, fontWeight: 800, color: "var(--teal-ink)", letterSpacing: "-0.02em", fontFamily: "Inter Tight, sans-serif" }}>
+                  <span style={{ fontSize: 13.5, fontWeight: 700, color: "var(--teal-ink)", letterSpacing: "-0.02em", fontFamily: "var(--font-sans)" }}>
                     {q.amt}
                   </span>
                 </figcaption>
@@ -159,7 +159,7 @@ export default function CommunityV2() {
                   width: 52, height: 52, borderRadius: 999, marginLeft: -14, position: "relative",
                   background: "linear-gradient(135deg, var(--accent), #8B7BFF)", border: "3px solid #0D0D14",
                   display: "flex", alignItems: "center", justifyContent: "center",
-                  color: "#fff", fontSize: 12, fontWeight: 800, fontFamily: "Inter Tight, sans-serif",
+                  color: "#fff", fontSize: 12, fontWeight: 700, fontFamily: "var(--font-sans)",
                 }}>
                   +347
                 </span>

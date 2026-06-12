@@ -99,7 +99,7 @@ export default function WhyAIV2() {
                   <s.Icon size={22} color={s.color} strokeWidth={1.9} />
                 </div>
                 <div>
-                  <h3 style={{ fontSize: 19, fontWeight: 800, fontFamily: "Inter Tight, sans-serif", letterSpacing: "-0.02em", color: "#fff", margin: "0 0 9px" }}>
+                  <h3 style={{ fontSize: 19, fontWeight: 700, fontFamily: "var(--font-sans)", letterSpacing: "-0.02em", color: "#fff", margin: "0 0 9px" }}>
                     {s.title}
                   </h3>
                   <p style={{ fontSize: 14, color: "rgba(255,255,255,0.5)", lineHeight: 1.65, margin: 0 }}>

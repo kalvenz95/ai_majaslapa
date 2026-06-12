@@ -65,14 +65,14 @@ export default function IncomeV2() {
                       }}>
                         <Icon size={18} color={th.color} strokeWidth={2} />
                       </span>
-                      <span style={{ fontSize: 13.5, fontWeight: 700, color: "rgba(255,255,255,0.85)", fontFamily: "Inter Tight, sans-serif", letterSpacing: "-0.01em" }}>
+                      <span style={{ fontSize: 13.5, fontWeight: 700, color: "rgba(255,255,255,0.85)", fontFamily: "var(--font-sans)", letterSpacing: "-0.01em" }}>
                         {c.label}
                       </span>
                     </div>
 
                     <div>
                       <div style={{ display: "flex", alignItems: "baseline", gap: 6 }}>
-                        <span style={{ fontSize: "clamp(26px, 3vw, 34px)", fontWeight: 900, fontFamily: "Inter Tight, sans-serif", letterSpacing: "-0.04em", color: th.color, lineHeight: 1.05 }}>
+                        <span style={{ fontSize: "clamp(26px, 3vw, 34px)", fontWeight: 700, fontFamily: "var(--font-sans)", letterSpacing: "-0.04em", color: th.color, lineHeight: 1.05 }}>
                           {c.range}
                         </span>
                       </div>

@@ -99,7 +99,7 @@ function AdMock() {
   return (
     <div style={{ width: "70%", borderRadius: 13, overflow: "hidden", border: "1px solid var(--line-2)", boxShadow: "0 18px 40px -16px rgba(17,17,17,0.25)" }}>
       <div style={{ aspectRatio: "16/8", background: "linear-gradient(120deg, #FFB86B 0%, #FF8A5C 55%, #6D5EF3 130%)", position: "relative", display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: 12 }}>
-        <span style={{ position: "absolute", top: 9, left: 10, fontSize: 7.5, fontWeight: 800, letterSpacing: "0.1em", textTransform: "uppercase", background: "rgba(255,255,255,0.9)", borderRadius: 999, padding: "2.5px 8px", color: "#1A1A1A" }}>Reklāma</span>
+        <span style={{ position: "absolute", top: 9, left: 10, fontSize: 7.5, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", background: "rgba(255,255,255,0.9)", borderRadius: 999, padding: "2.5px 8px", color: "#1A1A1A" }}>Reklāma</span>
         <div style={{ height: 8, width: "62%", borderRadius: 4, background: "rgba(255,255,255,0.95)", marginBottom: 5 }} />
         <div style={{ height: 5, width: "42%", borderRadius: 3, background: "rgba(255,255,255,0.6)" }} />
       </div>
@@ -206,7 +206,7 @@ export default function ProjectsV2() {
                   }}>
                     {p.tag}
                   </span>
-                  <h3 style={{ fontSize: 18, fontWeight: 800, fontFamily: "Inter Tight, sans-serif", letterSpacing: "-0.02em", color: "var(--ink)", margin: 0 }}>
+                  <h3 style={{ fontSize: 18, fontWeight: 700, fontFamily: "var(--font-sans)", letterSpacing: "-0.02em", color: "var(--ink)", margin: 0 }}>
                     {p.title}
                   </h3>
                   <p style={{ fontSize: 13.5, color: "var(--ink-3)", lineHeight: 1.6, margin: 0 }}>

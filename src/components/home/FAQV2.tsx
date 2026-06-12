@@ -80,7 +80,7 @@ export default function FAQV2() {
                     >
                       <span style={{
                         fontSize: 16.5, fontWeight: 700, letterSpacing: "-0.015em",
-                        fontFamily: "Inter Tight, sans-serif",
+                        fontFamily: "var(--font-sans)",
                         color: isOpen ? "var(--accent)" : "var(--ink)",
                         transition: "color 0.2s ease",
                       }}>

@@ -109,7 +109,7 @@ export default function DirectionsV2() {
                       {track.level}
                     </span>
                     <span style={{
-                      fontSize: 11, fontWeight: 800, fontFamily: "Inter Tight, sans-serif",
+                      fontSize: 11, fontWeight: 700, fontFamily: "var(--font-sans)",
                       color: dark ? "#0D0D14" : th.color,
                       background: dark ? th.color : `rgba(${th.glow},0.10)`,
                       border: dark ? "none" : `1px solid rgba(${th.glow},0.25)`,
@@ -121,7 +121,7 @@ export default function DirectionsV2() {
 
                   {/* Title + desc */}
                   <h3 style={{
-                    fontSize: 26, fontWeight: 850, fontFamily: "Inter Tight, sans-serif",
+                    fontSize: 26, fontWeight: 700, fontFamily: "var(--font-sans)",
                     letterSpacing: "-0.03em", lineHeight: 1.12,
                     color: dark ? "#fff" : "var(--ink)", margin: "0 0 10px", position: "relative",
                   }}>
@@ -141,7 +141,7 @@ export default function DirectionsV2() {
                       Potenciāls
                     </div>
                     <div style={{ display: "flex", alignItems: "baseline", gap: 5 }}>
-                      <span style={{ fontSize: 28, fontWeight: 900, fontFamily: "Inter Tight, sans-serif", letterSpacing: "-0.04em", color: th.color }}>
+                      <span style={{ fontSize: 28, fontWeight: 700, fontFamily: "var(--font-sans)", letterSpacing: "-0.04em", color: th.color }}>
                         {track.earn}
                       </span>
                       <span style={{ fontSize: 13, color: dark ? "rgba(255,255,255,0.4)" : "var(--ink-3)" }}>{track.earnSuffix}</span>
@@ -172,7 +172,7 @@ export default function DirectionsV2() {
                     style={{
                       display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
                       padding: "15px 0", borderRadius: 13, fontSize: 14.5, fontWeight: 700,
-                      fontFamily: "Inter Tight, sans-serif", letterSpacing: "-0.01em",
+                      fontFamily: "var(--font-sans)", letterSpacing: "-0.01em",
                       textDecoration: "none", position: "relative",
                       background: dark
                         ? `linear-gradient(180deg, ${th.color}, color-mix(in oklab, ${th.color} 80%, #000))`

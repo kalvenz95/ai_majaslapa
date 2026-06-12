@@ -13,7 +13,7 @@ export default function Marquee() {
       <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "radial-gradient(ellipse 30% 120% at 50% 50%, color-mix(in oklab, var(--accent) 6%, transparent), transparent 70%)" }} />
 
       <div style={{ textAlign: "center", marginBottom: 20, position: "relative" }}>
-        <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--ink-4)", fontFamily: "Inter Tight, sans-serif" }}>
+        <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--ink-4)", fontFamily: "var(--font-sans)" }}>
           Rīki, ko apgūsi un izmanto ikdienā
         </span>
       </div>
@@ -34,7 +34,7 @@ export default function Marquee() {
                 display: "inline-flex", alignItems: "center", gap: 10,
                 fontSize: 18, color: "var(--ink-2)", whiteSpace: "nowrap",
                 fontWeight: 600, letterSpacing: "-0.01em",
-                fontFamily: "Inter Tight, sans-serif",
+                fontFamily: "var(--font-sans)",
               }}
             >
               <span style={{ width: 7, height: 7, borderRadius: 999, background: i % 3 === 0 ? "var(--accent)" : i % 3 === 1 ? "var(--accent-2)" : "var(--accent-3)", flexShrink: 0, display: "inline-block" }} />

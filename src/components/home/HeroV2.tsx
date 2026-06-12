@@ -95,7 +95,7 @@ function DashboardMock() {
           <div style={{ borderRadius: 13, padding: "13px 15px", background: "linear-gradient(135deg, rgba(109,94,243,0.22) 0%, rgba(109,94,243,0.05) 100%)", border: "1px solid rgba(109,94,243,0.30)" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 10 }}>
               <span style={{ fontSize: 12, fontWeight: 700, color: "#fff" }}>Tavs progress</span>
-              <span style={{ fontSize: 14, fontWeight: 900, color: "#A89DFF", fontFamily: "Inter Tight, sans-serif" }}>68%</span>
+              <span style={{ fontSize: 14, fontWeight: 700, color: "#A89DFF", fontFamily: "var(--font-sans)" }}>68%</span>
             </div>
             <div style={{ height: 6, borderRadius: 999, background: "rgba(255,255,255,0.10)", overflow: "hidden" }}>
               <div style={{ height: "100%", width: "68%", borderRadius: 999, background: "linear-gradient(90deg, var(--accent), var(--accent-2))" }} />
@@ -133,11 +133,11 @@ function DashboardMock() {
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
             <div style={{ borderRadius: 12, padding: "11px 13px", background: "rgba(255,255,255,0.035)", border: "1px solid rgba(255,255,255,0.07)" }}>
-              <div style={{ fontSize: 17, fontWeight: 900, color: "#fff", fontFamily: "Inter Tight, sans-serif", letterSpacing: "-0.03em" }}>€840</div>
+              <div style={{ fontSize: 17, fontWeight: 700, color: "#fff", fontFamily: "var(--font-sans)", letterSpacing: "-0.03em" }}>€840</div>
               <div style={{ fontSize: 9.5, color: "rgba(255,255,255,0.4)" }}>Šomēnes</div>
             </div>
             <div style={{ borderRadius: 12, padding: "11px 13px", background: "rgba(255,255,255,0.035)", border: "1px solid rgba(255,255,255,0.07)" }}>
-              <div style={{ fontSize: 17, fontWeight: 900, color: "var(--accent-2)", fontFamily: "Inter Tight, sans-serif", letterSpacing: "-0.03em" }}>3</div>
+              <div style={{ fontSize: 17, fontWeight: 700, color: "var(--accent-2)", fontFamily: "var(--font-sans)", letterSpacing: "-0.03em" }}>3</div>
               <div style={{ fontSize: 9.5, color: "rgba(255,255,255,0.4)" }}>Aktīvi klienti</div>
             </div>
           </div>
@@ -161,7 +161,7 @@ function VoiceCard() {
           <Mic size={15} strokeWidth={2.2} />
         </span>
         <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 12.5, fontWeight: 800, color: "var(--ink)", letterSpacing: "-0.01em" }}>AI balss aģents</div>
+          <div style={{ fontSize: 12.5, fontWeight: 700, color: "var(--ink)", letterSpacing: "-0.01em" }}>AI balss aģents</div>
           <div style={{ display: "flex", alignItems: "center", gap: 5, fontSize: 10, color: "var(--ink-3)" }}>
             <span className="v2-pulse" style={{ width: 6, height: 6, borderRadius: 999, background: "#28C840", display: "inline-block" }} />
             Aktīvs zvans · 0:42
@@ -193,7 +193,7 @@ function EarnCard() {
         <TrendingUp size={16} strokeWidth={2.4} />
       </span>
       <div>
-        <div style={{ fontSize: 16, fontWeight: 900, color: "var(--ink)", fontFamily: "Inter Tight, sans-serif", letterSpacing: "-0.03em", lineHeight: 1.1 }}>+€400</div>
+        <div style={{ fontSize: 16, fontWeight: 700, color: "var(--ink)", fontFamily: "var(--font-sans)", letterSpacing: "-0.03em", lineHeight: 1.1 }}>+€400</div>
         <div style={{ fontSize: 10.5, color: "var(--ink-3)", fontWeight: 500 }}>Jauns klients · Mājaslapa</div>
       </div>
     </div>
@@ -285,7 +285,7 @@ export default function HeroV2() {
               <span style={{
                 background: "linear-gradient(135deg, var(--accent), #8B7BFF)", color: "#fff",
                 padding: "3px 10px", borderRadius: 999,
-                fontFamily: "Inter Tight, sans-serif", fontSize: 10, fontWeight: 800, letterSpacing: "0.1em",
+                fontFamily: "var(--font-sans)", fontSize: 10, fontWeight: 700, letterSpacing: "0.1em",
               }}>
                 {t("badgeRegion")}
               </span>
@@ -299,7 +299,6 @@ export default function HeroV2() {
             margin: "0 auto 26px",
             maxWidth: "15ch",
             color: "var(--ink)",
-            fontWeight: 850,
           }}>
             <StaggerTitle
               skipMotion={!!skipMotion}
@@ -372,7 +371,7 @@ export default function HeroV2() {
               <div key={i} style={{ padding: "26px 12px 0", borderRight: i < 3 ? "1px solid var(--line)" : "none" }} className="hero-v2-stat">
                 <AnimatedNumber
                   value={s.val}
-                  style={{ display: "block", fontSize: "clamp(28px, 3.5vw, 38px)", fontWeight: 850, letterSpacing: "-0.045em", lineHeight: 1, fontFamily: "Inter Tight, sans-serif", color: s.accent ? "var(--accent)" : "var(--ink)" }}
+                  style={{ display: "block", fontSize: "clamp(28px, 3.5vw, 38px)", fontWeight: 700, letterSpacing: "-0.045em", lineHeight: 1, fontFamily: "var(--font-sans)", color: s.accent ? "var(--accent)" : "var(--ink)" }}
                 />
                 <div style={{ fontSize: 12, color: "var(--ink-3)", marginTop: 9, lineHeight: 1.4 }}>{s.label}</div>
               </div>
