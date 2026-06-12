@@ -43,7 +43,7 @@ export default function PricingV2() {
           <Reveal><span className="v2-eyebrow">{t("label")}</span></Reveal>
           <Reveal delay={0.08}>
             <h2 className="v2-h2" style={{ fontSize: "clamp(40px, 6.5vw, 80px)", color: "var(--ink)", margin: "18px 0 22px" }}>
-              {t("titleA")}<span className="v2-grad">{t("titleB")}</span>
+              {t("titleA")}<span style={{ color: "var(--accent)" }}>{t("titleB")}</span>
             </h2>
           </Reveal>
           <Reveal delay={0.16}>

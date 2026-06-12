@@ -52,7 +52,7 @@ export default function CommunityV2() {
           <Reveal><span className="v2-eyebrow">Kopiena & rezultāti</span></Reveal>
           <Reveal delay={0.08}>
             <h2 className="v2-h2" style={{ fontSize: "clamp(40px, 6.5vw, 80px)", color: "var(--ink)", margin: "18px 0 22px" }}>
-              Tu nemācies <span className="v2-grad">viens</span>
+              Tu nemācies <span style={{ color: "var(--accent)" }}>viens</span>
             </h2>
           </Reveal>
           <Reveal delay={0.16}>
@@ -134,7 +134,7 @@ export default function CommunityV2() {
             }} />
             <div style={{ position: "relative" }}>
               <h3 className="v2-h2" style={{ fontSize: "clamp(26px, 3.6vw, 40px)", color: "#fff", margin: "0 0 12px" }}>
-                Pievienojies <span className="v2-grad">kopienai</span>
+                Pievienojies <span style={{ color: "#A89DFF" }}>kopienai</span>
               </h3>
               <p style={{ fontSize: 15.5, color: "rgba(255,255,255,0.55)", lineHeight: 1.65, maxWidth: 460, margin: "0 0 22px" }}>
                 Mācies kopā ar citiem, saņem atbildes uz jautājumiem un seko līdzi jaunākajiem AI rīkiem.

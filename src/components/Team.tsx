@@ -89,7 +89,7 @@ export default function Team() {
               }}
             >
               Mūsu{" "}
-              <span className="v2-grad">
+              <span style={{ color: "var(--accent)" }}>
                 komanda
               </span>
             </h2>

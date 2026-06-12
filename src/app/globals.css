@@ -101,7 +101,8 @@ body {
   font-feature-settings: "ss01", "cv11";
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  overflow-x: hidden;
+  /* clip, not hidden — hidden would make body a scroll container and break position:sticky */
+  overflow-x: clip;
 }
 
 /* Filmic grain — fixed overlay above all content for subtle texture/depth.
@@ -646,8 +647,30 @@ summary:focus-visible {
 @keyframes v2Dash { to { stroke-dashoffset: -20; } }
 .v2-flow-line { stroke-dasharray: 4 6; animation: v2Dash 1.4s linear infinite; }
 
+/* Animated gradient-mesh blobs — slow organic drift behind the hero */
+@keyframes v2Mesh1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(6%, 10%) scale(1.15); }
+  66% { transform: translate(-5%, 4%) scale(0.92); }
+}
+@keyframes v2Mesh2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40% { transform: translate(-8%, -6%) scale(1.1); }
+  70% { transform: translate(5%, 8%) scale(0.95); }
+}
+.v2-mesh-blob {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(90px);
+  pointer-events: none;
+  will-change: transform;
+}
+.v2-mesh-1 { animation: v2Mesh1 26s ease-in-out infinite; }
+.v2-mesh-2 { animation: v2Mesh2 32s ease-in-out infinite; }
+
 @media (prefers-reduced-motion: reduce) {
-  .v2-float-a, .v2-float-b, .v2-wave-bar, .v2-pulse, .v2-flow-line { animation: none; }
+  .v2-float-a, .v2-float-b, .v2-wave-bar, .v2-pulse, .v2-flow-line,
+  .v2-mesh-1, .v2-mesh-2 { animation: none; }
 }
 
 /* ── Landing page — mobile responsive ──────────────────────────── */

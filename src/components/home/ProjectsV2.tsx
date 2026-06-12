@@ -148,7 +148,7 @@ export default function ProjectsV2() {
           <Reveal><span className="v2-eyebrow">Reāli projekti</span></Reveal>
           <Reveal delay={0.08}>
             <h2 className="v2-h2" style={{ fontSize: "clamp(40px, 6.5vw, 80px)", color: "var(--ink)", margin: "18px 0 22px" }}>
-              Ko iespējams <span className="v2-grad">izveidot</span>
+              Ko iespējams <span style={{ color: "var(--teal-ink)" }}>izveidot</span>
             </h2>
           </Reveal>
           <Reveal delay={0.16}>

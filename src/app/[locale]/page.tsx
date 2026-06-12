@@ -64,7 +64,8 @@ export default async function HomePage({
       style={{
         background: "var(--bg)",
         color: "var(--ink)",
-        overflowX: "hidden",
+        /* clip (not hidden) — hidden creates a scroll container and breaks position:sticky */
+        overflowX: "clip",
       }}
     >
       <Navbar />

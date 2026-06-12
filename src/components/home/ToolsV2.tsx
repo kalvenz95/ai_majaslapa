@@ -23,7 +23,7 @@ export default function ToolsV2() {
           <Reveal><span className="v2-eyebrow">Tavs AI rīku komplekts</span></Reveal>
           <Reveal delay={0.08}>
             <h2 className="v2-h2" style={{ fontSize: "clamp(38px, 6vw, 72px)", color: "var(--ink)", margin: "18px 0 20px" }}>
-              Rīki, kurus <span className="v2-grad">apgūsi</span>
+              Rīki, kurus <span style={{ color: "var(--teal-ink)" }}>apgūsi</span>
             </h2>
           </Reveal>
           <Reveal delay={0.16}>

@@ -48,7 +48,7 @@ export default function FAQV2() {
             <Reveal><span className="v2-eyebrow">FAQ</span></Reveal>
             <Reveal delay={0.08}>
               <h2 className="v2-h2" style={{ fontSize: "clamp(38px, 5.5vw, 64px)", color: "var(--ink)", margin: "18px 0 18px" }}>
-                Biežākie <span className="v2-grad">jautājumi</span>
+                Biežākie <span style={{ color: "var(--accent)" }}>jautājumi</span>
               </h2>
             </Reveal>
             <Reveal delay={0.14}>

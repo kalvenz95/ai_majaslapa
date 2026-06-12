@@ -32,16 +32,18 @@ export default function DirectionsV2() {
   return (
     <section id="courses" style={{ padding: "150px 0 140px", background: "var(--bg)" }}>
       <div className="lp-container" style={{ maxWidth: 1200, margin: "0 auto", padding: "0 28px" }}>
-        {/* Header */}
-        <div style={{ maxWidth: 760, margin: "0 auto 72px", textAlign: "center" }}>
-          <Reveal><span className="v2-eyebrow">{t("kicker")}</span></Reveal>
-          <Reveal delay={0.08}>
-            <h2 className="v2-h2" style={{ fontSize: "clamp(40px, 6.5vw, 80px)", color: "var(--ink)", margin: "18px 0 22px" }}>
-              {t("titleA")}<span className="v2-grad">{t("titleB")}</span>
-            </h2>
-          </Reveal>
+        {/* Header — editorial split: heading left, lead right */}
+        <div className="dir-v2-head" style={{ display: "grid", gridTemplateColumns: "1.3fr 0.7fr", gap: 48, alignItems: "end", marginBottom: 68 }}>
+          <div>
+            <Reveal><span className="v2-eyebrow">{t("kicker")}</span></Reveal>
+            <Reveal delay={0.08}>
+              <h2 className="v2-h2" style={{ fontSize: "clamp(40px, 6vw, 78px)", color: "var(--ink)", margin: "18px 0 0", maxWidth: "14ch" }}>
+                {t("titleA")}<span style={{ color: "var(--accent)" }}>{t("titleB")}</span>
+              </h2>
+            </Reveal>
+          </div>
           <Reveal delay={0.16}>
-            <p style={{ fontSize: 18, color: "var(--ink-3)", lineHeight: 1.7, maxWidth: 560, margin: "0 auto" }}>
+            <p style={{ fontSize: 17, color: "var(--ink-3)", lineHeight: 1.7, margin: 0, paddingBottom: 10 }}>
               {t("lead")}
             </p>
           </Reveal>
@@ -195,6 +197,7 @@ export default function DirectionsV2() {
       <style>{`
         @media (max-width: 980px) {
           .dir-v2-grid { grid-template-columns: 1fr !important; max-width: 480px; margin: 0 auto; }
+          .dir-v2-head { grid-template-columns: 1fr !important; gap: 16px !important; align-items: start !important; margin-bottom: 44px !important; }
         }
       `}</style>
     </section>

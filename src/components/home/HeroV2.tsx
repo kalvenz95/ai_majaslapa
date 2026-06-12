@@ -1,7 +1,15 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import { useTranslations } from "next-intl";
+import { useRef } from "react";
 import { useHasMounted } from "@/hooks/useHasMounted";
 import { AnimatedNumber } from "@/components/AnimatedNumber";
 import { Magnetic } from "@/components/Magnetic";
@@ -17,6 +25,37 @@ const item = {
   hidden: { opacity: 0, y: 26 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE_OUT } },
 };
+
+/** H1 words cascade in — blur-to-sharp with rising stagger. */
+function StaggerTitle({
+  parts,
+  skipMotion,
+}: {
+  parts: { text: string; grad?: boolean }[];
+  skipMotion: boolean;
+}) {
+  const words: { w: string; grad: boolean }[] = [];
+  parts.forEach((p) =>
+    p.text.split(/\s+/).filter(Boolean).forEach((w) => words.push({ w, grad: !!p.grad })),
+  );
+  return (
+    <>
+      {words.map((word, i) => (
+        <motion.span
+          key={`${word.w}-${i}`}
+          initial={skipMotion ? false : { opacity: 0, y: 34, filter: "blur(10px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 0.65, ease: EASE_OUT, delay: 0.12 + i * 0.07 }}
+          className={word.grad ? "v2-grad" : undefined}
+          style={{ display: "inline-block", whiteSpace: "pre" }}
+        >
+          {word.w}
+          {i < words.length - 1 ? " " : ""}
+        </motion.span>
+      ))}
+    </>
+  );
+}
 
 /** Dark product dashboard — the hero's centrepiece "platform shot". */
 function DashboardMock() {
@@ -185,8 +224,37 @@ export default function HeroV2() {
   const skipMotion = hasMounted && reduceMotion;
   const t = useTranslations("Hero");
 
+  /* 3D tilt — the dashboard plane follows the cursor and springs back */
+  const tiltRef = useRef<HTMLDivElement>(null);
+  const mx = useMotionValue(0);
+  const my = useMotionValue(0);
+  const rotateX = useSpring(useTransform(my, [-0.5, 0.5], [6, -6]), { stiffness: 140, damping: 20 });
+  const rotateY = useSpring(useTransform(mx, [-0.5, 0.5], [-8, 8]), { stiffness: 140, damping: 20 });
+
+  const onTiltMove = (e: React.MouseEvent) => {
+    if (skipMotion || !tiltRef.current) return;
+    const r = tiltRef.current.getBoundingClientRect();
+    mx.set((e.clientX - r.left) / r.width - 0.5);
+    my.set((e.clientY - r.top) / r.height - 0.5);
+  };
+  const onTiltLeave = () => {
+    mx.set(0);
+    my.set(0);
+  };
+
+  /* Scroll parallax — floating cards drift at separate speeds */
+  const { scrollYProgress } = useScroll({ target: tiltRef, offset: ["start end", "end start"] });
+  const floatY1 = useTransform(scrollYProgress, [0, 1], [44, -44]);
+  const floatY2 = useTransform(scrollYProgress, [0, 1], [80, -80]);
+  const floatY3 = useTransform(scrollYProgress, [0, 1], [26, -56]);
+
   return (
     <header style={{ position: "relative", overflow: "hidden", background: "var(--bg)", padding: "150px 0 0" }}>
+      {/* Animated gradient mesh */}
+      <div aria-hidden className="v2-mesh-blob v2-mesh-1" style={{ width: 620, height: 620, top: -200, left: "-10%", background: "radial-gradient(circle, rgba(109,94,243,0.30), transparent 65%)" }} />
+      <div aria-hidden className="v2-mesh-blob v2-mesh-2" style={{ width: 540, height: 540, top: 40, right: "-8%", background: "radial-gradient(circle, rgba(0,191,165,0.22), transparent 65%)" }} />
+      <div aria-hidden className="v2-mesh-blob v2-mesh-1" style={{ width: 420, height: 420, bottom: -80, left: "30%", background: "radial-gradient(circle, rgba(255,184,107,0.18), transparent 65%)", animationDelay: "-12s" }} />
+
       {/* Atmosphere */}
       <div aria-hidden className="hero-aurora" style={{
         position: "absolute", inset: "-12%", zIndex: 0, pointerEvents: "none",
@@ -225,18 +293,23 @@ export default function HeroV2() {
             </span>
           </motion.div>
 
-          {/* H1 — massive */}
-          <motion.h1 variants={item} className="v2-h2" style={{
+          {/* H1 — massive, word-cascade entrance */}
+          <h1 className="v2-h2" style={{
             fontSize: "clamp(46px, 8.5vw, 104px)",
             margin: "0 auto 26px",
             maxWidth: "15ch",
             color: "var(--ink)",
             fontWeight: 850,
           }}>
-            {t("h1Line1")}
-            <span className="v2-grad">{t("h1Gradient")}</span>
-            {t("h1Line2")}
-          </motion.h1>
+            <StaggerTitle
+              skipMotion={!!skipMotion}
+              parts={[
+                { text: t("h1Line1") },
+                { text: t("h1Gradient"), grad: true },
+                { text: t("h1Line2") },
+              ]}
+            />
+          </h1>
 
           {/* Sub */}
           <motion.p variants={item} style={{ fontSize: "clamp(16px, 2.2vw, 19px)", lineHeight: 1.65, color: "var(--ink-3)", maxWidth: 520, margin: "0 auto 38px" }}>
@@ -257,19 +330,24 @@ export default function HeroV2() {
             </Magnetic>
           </motion.div>
 
-          {/* Product composition — dashboard + floating cards */}
+          {/* Product composition — 3D-tilting dashboard + parallax floating cards */}
           <motion.div
             variants={item}
-            style={{ position: "relative", maxWidth: 880, margin: "72px auto 0" }}
+            ref={tiltRef}
+            onMouseMove={onTiltMove}
+            onMouseLeave={onTiltLeave}
+            style={{ position: "relative", maxWidth: 880, margin: "72px auto 0", perspective: 1400 }}
           >
-            <DashboardMock />
+            <motion.div style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}>
+              <DashboardMock />
 
-            {/* Floating cards — desktop only */}
-            <div className="hero-float-cards">
-              <div style={{ position: "absolute", left: -76, top: 64 }}><VoiceCard /></div>
-              <div style={{ position: "absolute", right: -64, bottom: 44 }}><EarnCard /></div>
-              <div style={{ position: "absolute", right: -28, top: -24 }}><FlowChip /></div>
-            </div>
+              {/* Floating cards — desktop only, raised above the tilt plane */}
+              <div className="hero-float-cards">
+                <motion.div style={{ position: "absolute", left: -76, top: 64, y: floatY1, z: 60 }}><VoiceCard /></motion.div>
+                <motion.div style={{ position: "absolute", right: -64, bottom: 44, y: floatY2, z: 80 }}><EarnCard /></motion.div>
+                <motion.div style={{ position: "absolute", right: -28, top: -24, y: floatY3, z: 40 }}><FlowChip /></motion.div>
+              </div>
+            </motion.div>
 
             {/* Glow under the mock */}
             <div aria-hidden style={{

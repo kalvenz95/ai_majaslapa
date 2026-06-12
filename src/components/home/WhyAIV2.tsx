@@ -37,37 +37,48 @@ const services = [
 
 export default function WhyAIV2() {
   return (
-    <section id="about" style={{ position: "relative", overflow: "hidden", background: "#0A0A0E", padding: "140px 0" }}>
-      {/* Glows + grid */}
-      <div aria-hidden style={{
-        position: "absolute", inset: 0, pointerEvents: "none",
-        background:
-          "radial-gradient(42% 50% at 12% 8%, rgba(109,94,243,0.20), transparent 65%)," +
-          "radial-gradient(36% 44% at 92% 88%, rgba(0,191,165,0.13), transparent 62%)",
-      }} />
-      <div aria-hidden style={{
-        position: "absolute", inset: 0, pointerEvents: "none", opacity: 0.5,
-        backgroundImage:
-          "linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px)," +
-          "linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px)",
-        backgroundSize: "56px 56px",
-        maskImage: "radial-gradient(70% 70% at 50% 40%, #000 0%, transparent 80%)",
-        WebkitMaskImage: "radial-gradient(70% 70% at 50% 40%, #000 0%, transparent 80%)",
-      }} />
+    <section id="about" style={{ background: "var(--bg)", padding: "40px 0 70px" }}>
+      <div className="lp-container" style={{ maxWidth: 1240, margin: "0 auto", padding: "0 24px" }}>
+        {/* Dark inset panel — rounded, floats on the light page */}
+        <div style={{
+          position: "relative", overflow: "hidden",
+          borderRadius: 40, background: "#0A0A0E",
+          border: "1px solid rgba(255,255,255,0.08)",
+          padding: "clamp(56px, 7vw, 110px) clamp(24px, 5vw, 80px)",
+          boxShadow: "0 60px 140px -48px rgba(13,13,20,0.55)",
+        }}>
+          {/* Glows + grid */}
+          <div aria-hidden style={{
+            position: "absolute", inset: 0, pointerEvents: "none",
+            background:
+              "radial-gradient(42% 50% at 12% 8%, rgba(109,94,243,0.22), transparent 65%)," +
+              "radial-gradient(36% 44% at 92% 88%, rgba(0,191,165,0.13), transparent 62%)",
+          }} />
+          <div aria-hidden style={{
+            position: "absolute", inset: 0, pointerEvents: "none", opacity: 0.5,
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px)," +
+              "linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px)",
+            backgroundSize: "56px 56px",
+            maskImage: "radial-gradient(70% 70% at 50% 40%, #000 0%, transparent 80%)",
+            WebkitMaskImage: "radial-gradient(70% 70% at 50% 40%, #000 0%, transparent 80%)",
+          }} />
 
-      <div className="lp-container" style={{ maxWidth: 1200, margin: "0 auto", padding: "0 28px", position: "relative", zIndex: 1 }}>
-        {/* Header */}
-        <div style={{ maxWidth: 780, margin: "0 auto 76px", textAlign: "center" }}>
-          <Reveal>
-            <span className="v2-eyebrow v2-eyebrow--light" style={{ marginBottom: 22 }}>Kāpēc AI prasmes</span>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <h2 className="v2-h2" style={{ fontSize: "clamp(40px, 6.5vw, 80px)", color: "#fff", margin: "18px 0 22px" }}>
-              Ko tu iegūsi <span className="v2-grad">Chademy?</span>
-            </h2>
-          </Reveal>
+          <div style={{ position: "relative", zIndex: 1 }}>
+        {/* Header — editorial split: heading left, lead right */}
+        <div className="whyai-v2-head" style={{ display: "grid", gridTemplateColumns: "1.25fr 0.75fr", gap: 48, alignItems: "end", marginBottom: 64 }}>
+          <div>
+            <Reveal>
+              <span className="v2-eyebrow v2-eyebrow--light">Kāpēc AI prasmes</span>
+            </Reveal>
+            <Reveal delay={0.08}>
+              <h2 className="v2-h2" style={{ fontSize: "clamp(38px, 5.8vw, 76px)", color: "#fff", margin: "18px 0 0", maxWidth: "13ch" }}>
+                Ko tu iegūsi <span style={{ color: "#A89DFF" }}>Chademy?</span>
+              </h2>
+            </Reveal>
+          </div>
           <Reveal delay={0.16}>
-            <p style={{ fontSize: 18, color: "rgba(255,255,255,0.55)", lineHeight: 1.7, maxWidth: 540, margin: "0 auto" }}>
+            <p style={{ fontSize: 17, color: "rgba(255,255,255,0.55)", lineHeight: 1.7, margin: 0, paddingBottom: 8 }}>
               Ne tikai teoriju. Tu soli pa solim izveido pakalpojumu, portfolio un iegūsti sistēmu klientu piesaistei.
             </p>
           </Reveal>
@@ -130,11 +141,14 @@ export default function WhyAIV2() {
             </a>
           </div>
         </Reveal>
+          </div>
+        </div>
       </div>
 
       <style>{`
         @media (max-width: 1024px) {
           .whyai-v2-grid { grid-template-columns: repeat(2, 1fr) !important; }
+          .whyai-v2-head { grid-template-columns: 1fr !important; gap: 18px !important; align-items: start !important; margin-bottom: 44px !important; }
         }
         @media (max-width: 560px) {
           .whyai-v2-grid { grid-template-columns: 1fr !important; }

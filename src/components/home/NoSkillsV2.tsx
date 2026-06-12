@@ -87,7 +87,7 @@ export default function NoSkillsV2() {
             <Reveal><span className="v2-eyebrow">Bez priekšzināšanām</span></Reveal>
             <Reveal delay={0.08}>
               <h2 className="v2-h2" style={{ fontSize: "clamp(38px, 5.5vw, 68px)", color: "var(--ink)", margin: "18px 0 20px" }}>
-                Nav jābūt <span className="v2-grad">programmētājam</span>
+                Nav jābūt <span style={{ color: "var(--teal-ink)" }}>programmētājam</span>
               </h2>
             </Reveal>
             <Reveal delay={0.14}>
