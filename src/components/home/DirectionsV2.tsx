@@ -18,12 +18,17 @@ type Track = {
   link: string;
 };
 
-/** Visual identity per track — violet / teal (featured) / amber. */
+/** Visual identity per track — violet / teal (featured) / gold (premium, dark). */
 const themes = [
-  { color: "#6D5EF3", glow: "109,94,243", featured: false },
-  { color: "#00BFA5", glow: "0,191,165", featured: true },
-  { color: "#E8923C", glow: "232,146,60", featured: false },
+  { color: "#6D5EF3", glow: "109,94,243", featured: false, premium: false },
+  { color: "#00BFA5", glow: "0,191,165", featured: true, premium: false },
+  { color: "#E3B95B", glow: "227,185,91", featured: false, premium: true },
 ];
+
+/* Gold gradient tokens for the premium card */
+const GOLD_BORDER = "linear-gradient(140deg, #F5DC92 0%, #D9B45B 35%, #B8860B 70%, #7A5A12 100%)";
+const GOLD_FILL = "linear-gradient(135deg, #F5DC92 0%, #D9B45B 50%, #B8860B 100%)";
+const GOLD_INK = "#1A1407"; // dark brown text on gold fills
 
 export default function DirectionsV2() {
   const t = useTranslations("Services");
@@ -53,7 +58,8 @@ export default function DirectionsV2() {
         <div className="dir-v2-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 18, alignItems: "stretch" }}>
           {tracks.map((track, i) => {
             const th = themes[i] ?? themes[0];
-            const dark = th.featured;
+            const premium = th.premium;
+            const dark = th.featured || premium;
             return (
               <Reveal key={track.num} delay={0.07 * i} style={{ height: "100%" }}>
                 <article
@@ -65,9 +71,15 @@ export default function DirectionsV2() {
                     padding: "34px 30px 30px",
                     position: "relative",
                     overflow: "hidden",
-                    background: dark ? "#0D0D14" : "#fff",
-                    border: dark ? `1px solid rgba(${th.glow},0.45)` : "1px solid var(--line)",
-                    boxShadow: dark
+                    background: premium
+                      ? `linear-gradient(#0B0A07, #0B0A07) padding-box, ${GOLD_BORDER} border-box`
+                      : dark ? "#0D0D14" : "#fff",
+                    border: premium
+                      ? "1.5px solid transparent"
+                      : dark ? `1px solid rgba(${th.glow},0.45)` : "1px solid var(--line)",
+                    boxShadow: premium
+                      ? `0 36px 90px -26px rgba(184,134,11,0.40), 0 12px 30px -12px rgba(11,10,7,0.55)`
+                      : dark
                       ? `0 36px 90px -26px rgba(${th.glow},0.40), 0 12px 30px -12px rgba(13,13,20,0.35)`
                       : "var(--shadow-md)",
                     transition: "transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease, border-color 0.25s ease",
@@ -75,13 +87,17 @@ export default function DirectionsV2() {
                   onMouseEnter={(e) => {
                     const el = e.currentTarget as HTMLElement;
                     el.style.transform = "translateY(-7px)";
-                    el.style.boxShadow = `0 44px 100px -28px rgba(${th.glow},0.5), 0 12px 30px -12px rgba(17,17,17,0.14)`;
+                    el.style.boxShadow = premium
+                      ? `0 48px 110px -28px rgba(184,134,11,0.55), 0 12px 30px -12px rgba(11,10,7,0.5)`
+                      : `0 44px 100px -28px rgba(${th.glow},0.5), 0 12px 30px -12px rgba(17,17,17,0.14)`;
                     if (!dark) el.style.borderColor = `rgba(${th.glow},0.45)`;
                   }}
                   onMouseLeave={(e) => {
                     const el = e.currentTarget as HTMLElement;
                     el.style.transform = "";
-                    el.style.boxShadow = dark
+                    el.style.boxShadow = premium
+                      ? `0 36px 90px -26px rgba(184,134,11,0.40), 0 12px 30px -12px rgba(11,10,7,0.55)`
+                      : dark
                       ? `0 36px 90px -26px rgba(${th.glow},0.40), 0 12px 30px -12px rgba(13,13,20,0.35)`
                       : "var(--shadow-md)";
                     if (!dark) el.style.borderColor = "var(--line)";
@@ -102,18 +118,21 @@ export default function DirectionsV2() {
                     <span style={{
                       fontFamily: "JetBrains Mono, monospace", fontSize: 10.5, fontWeight: 600,
                       letterSpacing: "0.12em", textTransform: "uppercase",
-                      color: dark ? "rgba(255,255,255,0.55)" : "var(--ink-3)",
-                      border: dark ? "1px solid rgba(255,255,255,0.15)" : "1px solid var(--line-2)",
+                      color: premium ? "#E9CE84" : dark ? "rgba(255,255,255,0.55)" : "var(--ink-3)",
+                      border: premium
+                        ? "1px solid rgba(227,185,91,0.45)"
+                        : dark ? "1px solid rgba(255,255,255,0.15)" : "1px solid var(--line-2)",
                       borderRadius: 999, padding: "5px 12px",
                     }}>
                       {track.level}
                     </span>
                     <span style={{
                       fontSize: 11, fontWeight: 700, fontFamily: "var(--font-sans)",
-                      color: dark ? "#0D0D14" : th.color,
-                      background: dark ? th.color : `rgba(${th.glow},0.10)`,
+                      color: premium ? GOLD_INK : dark ? "#0D0D14" : th.color,
+                      background: premium ? GOLD_FILL : dark ? th.color : `rgba(${th.glow},0.10)`,
                       border: dark ? "none" : `1px solid rgba(${th.glow},0.25)`,
                       borderRadius: 999, padding: "5px 12px", whiteSpace: "nowrap",
+                      boxShadow: premium ? "0 6px 18px -6px rgba(184,134,11,0.6)" : "none",
                     }}>
                       {track.badge}
                     </span>
@@ -141,7 +160,11 @@ export default function DirectionsV2() {
                       Potenciāls
                     </div>
                     <div style={{ display: "flex", alignItems: "baseline", gap: 5 }}>
-                      <span style={{ fontSize: 28, fontWeight: 700, fontFamily: "var(--font-sans)", letterSpacing: "-0.04em", color: th.color }}>
+                      <span style={{
+                        fontSize: 28, fontWeight: 700, fontFamily: "var(--font-sans)", letterSpacing: "-0.04em",
+                        color: th.color,
+                        ...(premium ? { background: GOLD_FILL, WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent" } : {}),
+                      }}>
                         {track.earn}
                       </span>
                       <span style={{ fontSize: 13, color: dark ? "rgba(255,255,255,0.4)" : "var(--ink-3)" }}>{track.earnSuffix}</span>
@@ -174,12 +197,16 @@ export default function DirectionsV2() {
                       padding: "15px 0", borderRadius: 13, fontSize: 14.5, fontWeight: 700,
                       fontFamily: "var(--font-sans)", letterSpacing: "-0.01em",
                       textDecoration: "none", position: "relative",
-                      background: dark
+                      background: premium
+                        ? GOLD_FILL
+                        : dark
                         ? `linear-gradient(180deg, ${th.color}, color-mix(in oklab, ${th.color} 80%, #000))`
                         : "var(--bg-2)",
-                      color: dark ? "#04221D" : "var(--ink)",
+                      color: premium ? GOLD_INK : dark ? "#04221D" : "var(--ink)",
                       border: dark ? "none" : "1px solid var(--line-2)",
-                      boxShadow: dark ? `0 12px 30px -10px rgba(${th.glow},0.6), inset 0 1px 0 rgba(255,255,255,0.3)` : "var(--shadow-sm)",
+                      boxShadow: premium
+                        ? `0 14px 34px -10px rgba(184,134,11,0.65), inset 0 1px 0 rgba(255,255,255,0.45)`
+                        : dark ? `0 12px 30px -10px rgba(${th.glow},0.6), inset 0 1px 0 rgba(255,255,255,0.3)` : "var(--shadow-sm)",
                       transition: "transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease",
                     }}
                     onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px)"; }}
