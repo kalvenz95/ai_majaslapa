@@ -1,20 +1,21 @@
-import AILaunchpad from "@/components/AILaunchpad";
-import CTA from "@/components/CTA";
-import EasyStart from "@/components/EasyStart";
-import FAQ from "@/components/FAQ";
-import FastWin from "@/components/FastWin";
 import Footer from "@/components/Footer";
-import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
 import Navbar from "@/components/Navbar";
-import Pricing from "@/components/Pricing";
-import ProjectExamples from "@/components/ProjectExamples";
-import SectionReveal from "@/components/SectionReveal";
-import Services from "@/components/Services";
 import Team from "@/components/Team";
-import Testimonials from "@/components/Testimonials";
-import Tools from "@/components/Tools";
-import WhyAI from "@/components/WhyAI";
+
+import HeroV2 from "@/components/home/HeroV2";
+import WhyAIV2 from "@/components/home/WhyAIV2";
+import DirectionsV2 from "@/components/home/DirectionsV2";
+import HowItWorksV2 from "@/components/home/HowItWorksV2";
+import IncomeV2 from "@/components/home/IncomeV2";
+import NoSkillsV2 from "@/components/home/NoSkillsV2";
+import ProjectsV2 from "@/components/home/ProjectsV2";
+import CommunityV2 from "@/components/home/CommunityV2";
+import ToolsV2 from "@/components/home/ToolsV2";
+import PricingV2 from "@/components/home/PricingV2";
+import FAQV2 from "@/components/home/FAQV2";
+import FinalCTAV2 from "@/components/home/FinalCTAV2";
+
 import { setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
@@ -66,72 +67,51 @@ export default async function HomePage({
         overflowX: "hidden",
       }}
     >
-      {/* 1. Hero */}
       <Navbar />
-      <Hero />
 
-      {/* Marquee — trust signal ticker after hero */}
-      <SectionReveal>
-        <Marquee />
-      </SectionReveal>
+      {/* 1. Hero — what Chademy is, at a glance */}
+      <HeroV2 />
 
-      {/* 2. Why AI / Why Now */}
-      <SectionReveal>
-        <WhyAI />
-      </SectionReveal>
+      {/* Tool ticker — trust signal */}
+      <Marquee />
 
-      {/* 3. Course Paths */}
-      <SectionReveal>
-        <Services />
-      </SectionReveal>
+      {/* 2. Why AI skills matter (dark immersive) */}
+      <WhyAIV2 />
 
-      {/* 4. How It Works / Roadmap */}
-      <SectionReveal>
-        <FastWin />
-      </SectionReveal>
+      {/* 3. Choose your direction */}
+      <DirectionsV2 />
 
-      {/* 5. Potential Income */}
-      <SectionReveal>
-        <AILaunchpad />
-      </SectionReveal>
+      {/* 4. How it works */}
+      <HowItWorksV2 />
 
-      {/* 6. Easy To Start */}
-      <SectionReveal>
-        <EasyStart />
-      </SectionReveal>
+      {/* 5. Income examples (dark panel) */}
+      <IncomeV2 />
 
-      {/* 7. Student / Social Proof */}
-      <SectionReveal>
-        <Testimonials />
-      </SectionReveal>
+      {/* 6. No technical skills needed */}
+      <NoSkillsV2 />
 
-      {/* 8. Tools / Platform Stack */}
-      <SectionReveal>
-        <Tools />
-      </SectionReveal>
+      {/* 7. Real project examples */}
+      <ProjectsV2 />
 
-      {/* 9. Pricing */}
-      <SectionReveal>
-        <Pricing />
-      </SectionReveal>
+      {/* 8. Community + results */}
+      <CommunityV2 />
 
-      {/* 9.5 FAQ */}
-      <SectionReveal>
-        <FAQ />
-      </SectionReveal>
+      {/* People behind the platform */}
+      <Team />
 
-      {/* 10. Final CTA */}
-      <SectionReveal>
-        <CTA />
-      </SectionReveal>
+      {/* 9. Tools you will learn */}
+      <ToolsV2 />
 
-      <SectionReveal>
-        <Team />
-      </SectionReveal>
+      {/* 10. Pricing */}
+      <PricingV2 />
 
-      <SectionReveal>
-        <Footer />
-      </SectionReveal>
+      {/* 11. FAQ */}
+      <FAQV2 />
+
+      {/* 12. Final CTA (dark) */}
+      <FinalCTAV2 />
+
+      <Footer />
     </main>
   );
 }

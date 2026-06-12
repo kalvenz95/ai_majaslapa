@@ -78,40 +78,18 @@ export default function Team() {
           className="team-header-grid"
         >
           <div>
-            <span
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 10,
-                fontFamily: "Inter Tight, sans-serif",
-                fontSize: 11,
-                fontWeight: 700,
-                letterSpacing: "0.12em",
-                color: "var(--ink-3)",
-                textTransform: "uppercase",
-              }}
-            >
-              <span
-                style={{
-                  display: "inline-block",
-                  width: 24,
-                  height: 1,
-                  background: "var(--accent)",
-                }}
-              />
-              Chademy
-            </span>
+            <span className="v2-eyebrow">Chademy</span>
             <h2
-              className="h-display"
+              className="v2-h2"
               style={{
-                fontSize: "clamp(40px, 6vw, 84px)",
-                lineHeight: 1.06,
+                fontSize: "clamp(40px, 6vw, 80px)",
                 margin: "16px 0 0",
                 maxWidth: "14ch",
+                color: "var(--ink)",
               }}
             >
               Mūsu{" "}
-              <span style={{ color: "var(--accent)" }}>
+              <span className="v2-grad">
                 komanda
               </span>
             </h2>
