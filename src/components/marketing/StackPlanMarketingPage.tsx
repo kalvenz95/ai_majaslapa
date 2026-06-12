@@ -8,8 +8,79 @@ import {
 import type { StackPlanModel } from "@/content/marketing/stackTypes";
 import { STACK_TYPE_ICONS } from "@/content/marketing/stackTypes";
 import { EmojiIcon } from "@/components/EmojiIcon";
+import { AnimatedNumber } from "@/components/AnimatedNumber";
+import { Play, Check, Lock } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
+
+/** Themed course-player mockup shown in the marketing hero. */
+function CourseMockup({ color, glow, earn }: { color: string; glow: string; earn: string }) {
+  const rows = [
+    { t: "Ievads & tirgus iespējas", done: true },
+    { t: "Pirmais projekts soli pa solim", done: true },
+    { t: "Klientu piesaiste & cenas", done: false },
+  ];
+  return (
+    <div
+      className="float-soft"
+      style={{
+        width: 360,
+        borderRadius: 18,
+        overflow: "hidden",
+        background: "#fff",
+        border: "1px solid var(--line)",
+        boxShadow: `0 34px 74px -28px rgba(${glow},0.42), 0 12px 28px -12px rgba(17,17,17,0.12)`,
+      }}
+    >
+      {/* Browser chrome */}
+      <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "10px 14px", borderBottom: "1px solid var(--line)", background: "var(--bg)" }}>
+        <span style={{ width: 9, height: 9, borderRadius: 999, background: "#FF5F57" }} />
+        <span style={{ width: 9, height: 9, borderRadius: 999, background: "#FEBC2E" }} />
+        <span style={{ width: 9, height: 9, borderRadius: 999, background: "#28C840" }} />
+        <div style={{ marginLeft: 8, flex: 1, fontSize: 10.5, color: "var(--ink-3)", background: "var(--bg-2)", border: "1px solid var(--line)", borderRadius: 7, padding: "4px 10px" }}>
+          chademy.lv/macibas
+        </div>
+      </div>
+
+      {/* Video player */}
+      <div style={{ position: "relative", aspectRatio: "16/9", background: `linear-gradient(135deg, rgba(${glow},0.30) 0%, #14141c 100%)` }}>
+        <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <div style={{ width: 56, height: 56, borderRadius: 999, background: color, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: `0 12px 34px -8px rgba(${glow},0.7)` }}>
+            <Play size={20} fill="#fff" color="#fff" strokeWidth={0} style={{ marginLeft: 3 }} />
+          </div>
+        </div>
+        <span style={{ position: "absolute", top: 12, left: 12, fontSize: 9, fontWeight: 800, letterSpacing: "0.06em", textTransform: "uppercase", color: "#fff", background: "rgba(255,255,255,0.18)", border: "1px solid rgba(255,255,255,0.3)", borderRadius: 20, padding: "3px 9px", backdropFilter: "blur(4px)" }}>
+          Bezmaksas
+        </span>
+        <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, padding: "20px 14px 12px", background: "linear-gradient(transparent, rgba(0,0,0,0.65))" }}>
+          <div style={{ fontSize: 12.5, fontWeight: 700, color: "#fff", marginBottom: 8 }}>1.1 · Ievads kursā</div>
+          <div style={{ height: 4, borderRadius: 999, background: "rgba(255,255,255,0.25)", position: "relative" }}>
+            <div style={{ position: "absolute", left: 0, top: 0, height: "100%", width: "42%", borderRadius: 999, background: color }} />
+            <div style={{ position: "absolute", left: "42%", top: "50%", transform: "translate(-50%,-50%)", width: 10, height: 10, borderRadius: 999, background: "#fff", boxShadow: "0 1px 4px rgba(0,0,0,0.4)" }} />
+          </div>
+        </div>
+      </div>
+
+      {/* Chapter rows */}
+      <div style={{ padding: 12, display: "flex", flexDirection: "column", gap: 6 }}>
+        {rows.map((r) => (
+          <div key={r.t} style={{ display: "flex", alignItems: "center", gap: 10, padding: "9px 11px", borderRadius: 10, background: r.done ? `rgba(${glow},0.06)` : "var(--bg)", border: `1px solid ${r.done ? `rgba(${glow},0.16)` : "var(--line)"}` }}>
+            <span style={{ width: 22, height: 22, borderRadius: 7, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", background: r.done ? color : "var(--bg-2)", color: r.done ? "#fff" : "var(--ink-4)" }}>
+              {r.done ? <Check size={12} strokeWidth={3} /> : <Lock size={11} strokeWidth={2.4} />}
+            </span>
+            <span style={{ flex: 1, fontSize: 11.5, fontWeight: 600, color: "var(--ink)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.t}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* Earnings footer */}
+      <div style={{ padding: "12px 16px", borderTop: "1px solid var(--line)", background: `rgba(${glow},0.05)`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <span style={{ fontSize: 10.5, color: "var(--ink-3)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em" }}>Potenciāls / mēn</span>
+        <span style={{ fontSize: 17, fontWeight: 900, color, fontFamily: "Inter Tight, sans-serif", letterSpacing: "-0.02em" }}>{earn}</span>
+      </div>
+    </div>
+  );
+}
 
 export type StackPlanMarketingShellProps = {
   plan: StackPlanModel;
@@ -172,20 +243,20 @@ export function StackPlanMarketingPage({
                     { label: tc("statsStudents"), val: plan.stats.students },
                   ].map((s) => (
                     <div key={s.label}>
-                      <div style={{ fontSize: 20, fontWeight: 900, color: "var(--ink)" }}>{s.val}</div>
+                      <div style={{ fontSize: 20, fontWeight: 900, color: "var(--ink)" }}><AnimatedNumber value={String(s.val)} /></div>
                       <div style={{ fontSize: 11, color: "var(--ink-3)", fontWeight: 500 }}>{s.label}</div>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div style={{ background: `rgba(${plan.glow},0.06)`, border: `1px solid rgba(${plan.glow},0.18)`, borderRadius: 20, padding: "20px 28px", textAlign: "center", minWidth: 180, display: "none" }} className="md:block">
-                <div style={{ fontSize: 11, color: "var(--ink-3)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 6 }}>{tc("potentialEarnings")}</div>
-                <div style={{ fontSize: 26, fontWeight: 900, color: plan.color }}>{plan.earn}</div>
+              <div className="course-hero-visual">
+                <CourseMockup color={plan.color} glow={plan.glow} earn={plan.earn} />
               </div>
             </div>
           ) : (
-            <div>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 40, alignItems: "center" }}>
+              <div style={{ maxWidth: 640 }}>
               <h1 style={{ fontSize: "clamp(28px,5vw,48px)", fontWeight: 900, lineHeight: 1.15, marginBottom: 16, letterSpacing: "-0.02em", maxWidth: 700 }}>
                 {plan.heroBefore}
                 <span style={{ color: plan.color }}>{plan.heroHighlight}</span>
@@ -209,10 +280,14 @@ export function StackPlanMarketingPage({
                   { label: tc("statsStudents"), val: plan.stats.students },
                 ].map((s) => (
                   <div key={s.label}>
-                    <div style={{ fontSize: 20, fontWeight: 900, color: "var(--ink)" }}>{s.val}</div>
+                    <div style={{ fontSize: 20, fontWeight: 900, color: "var(--ink)" }}><AnimatedNumber value={String(s.val)} /></div>
                     <div style={{ fontSize: 11, color: "var(--ink-3)", fontWeight: 500 }}>{s.label}</div>
                   </div>
                 ))}
+                </div>
+              </div>
+              <div className="course-hero-visual">
+                <CourseMockup color={plan.color} glow={plan.glow} earn={plan.earn} />
               </div>
             </div>
           )}

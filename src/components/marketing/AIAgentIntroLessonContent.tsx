@@ -1,6 +1,7 @@
 "use client";
 
 import { EmojiIcon } from "@/components/EmojiIcon";
+import { AnimatedNumber } from "@/components/AnimatedNumber";
 
 /* Brand-derived light palette (warm "premium" accent) */
 const O  = "#E8924A"; // deep warm (legible on white)
@@ -189,7 +190,7 @@ export function AIAgentIntroLessonContent() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: 16 }}>
             {stats.map((s) => (
               <div key={s.label}>
-                <div style={{ fontSize: 30, fontWeight: 900, letterSpacing: "-0.02em", marginBottom: 6, color: s.color }}>{s.value}</div>
+                <div style={{ fontSize: 30, fontWeight: 900, letterSpacing: "-0.02em", marginBottom: 6, color: s.color }}><AnimatedNumber value={s.value} /></div>
                 <div style={{ fontSize: 11.5, color: "var(--ink-3)", lineHeight: 1.5 }}>{s.label}</div>
                 <div style={{ height: 2, borderRadius: 2, background: `linear-gradient(90deg, ${s.color}, transparent)`, marginTop: 9 }} />
               </div>
