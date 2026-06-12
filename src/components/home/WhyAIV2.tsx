@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Reveal } from "@/components/home/Reveal";
 import { Clapperboard, Globe, Workflow, Mic2, ArrowRight } from "lucide-react";
 
@@ -11,6 +12,7 @@ const services = [
     desc: "Faceless video, reklāmu vizuāļi un sociālo tīklu saturs uzņēmumiem.",
     color: "#8B7BFF",
     glow: "139,123,255",
+    img: "/ai/content.jpg",
   },
   {
     Icon: Globe,
@@ -18,6 +20,7 @@ const services = [
     desc: "Modernas mājaslapas, kas piesaista klientus — bez koda zināšanām.",
     color: "#34D9C3",
     glow: "52,217,195",
+    img: "/ai/websites.jpg",
   },
   {
     Icon: Workflow,
@@ -25,6 +28,7 @@ const services = [
     desc: "WhatsApp, e-pasti un lead apstrāde — automātiski, bez cilvēka iesaistes.",
     color: "#FFB86B",
     glow: "255,184,107",
+    img: "/ai/automation.jpg",
   },
   {
     Icon: Mic2,
@@ -32,6 +36,7 @@ const services = [
     desc: "Zvanu pieņemšana un rezervācijas 24/7 — ar AI balss tehnoloģiju.",
     color: "#8B7BFF",
     glow: "139,123,255",
+    img: "/ai/voice.jpg",
   },
 ];
 
@@ -88,17 +93,35 @@ export default function WhyAIV2() {
         <div className="whyai-v2-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
           {services.map((s, i) => (
             <Reveal key={s.title} delay={0.06 * i}>
-              <div className="v2-glass" style={{ padding: "30px 26px", height: "100%", display: "flex", flexDirection: "column", gap: 18 }}>
-                <div style={{
-                  width: 52, height: 52, borderRadius: 15,
-                  background: `linear-gradient(150deg, rgba(${s.glow},0.22) 0%, rgba(${s.glow},0.06) 100%)`,
-                  border: `1px solid rgba(${s.glow},0.35)`,
-                  boxShadow: `0 10px 28px -10px rgba(${s.glow},0.55), inset 0 1px 0 rgba(255,255,255,0.15)`,
-                  display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
-                }}>
-                  <s.Icon size={22} color={s.color} strokeWidth={1.9} />
+              <div className="v2-glass whyai-card" style={{ padding: 0, height: "100%", display: "flex", flexDirection: "column", overflow: "hidden" }}>
+                {/* AI image header — gradient overlay + colour tint keep text legible */}
+                <div style={{ position: "relative", height: 152, overflow: "hidden" }}>
+                  <Image
+                    src={s.img}
+                    alt=""
+                    fill
+                    sizes="(max-width: 560px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="whyai-card-img"
+                    style={{ objectFit: "cover" }}
+                  />
+                  {/* colour treatment */}
+                  <div aria-hidden style={{ position: "absolute", inset: 0, mixBlendMode: "soft-light", background: `rgba(${s.glow},0.45)` }} />
+                  {/* dark fade into the card body */}
+                  <div aria-hidden style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(10,10,14,0.15) 0%, rgba(10,10,14,0.55) 55%, #0A0A0E 100%)" }} />
+                  {/* floating icon badge */}
+                  <div style={{
+                    position: "absolute", left: 22, bottom: 16,
+                    width: 48, height: 48, borderRadius: 14,
+                    background: `linear-gradient(150deg, rgba(${s.glow},0.95) 0%, rgba(${s.glow},0.7) 100%)`,
+                    border: "1px solid rgba(255,255,255,0.25)",
+                    boxShadow: `0 12px 30px -8px rgba(${s.glow},0.7), inset 0 1px 0 rgba(255,255,255,0.4)`,
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                  }}>
+                    <s.Icon size={22} color="#0A0A0E" strokeWidth={2} />
+                  </div>
                 </div>
-                <div>
+
+                <div style={{ padding: "20px 24px 28px" }}>
                   <h3 style={{ fontSize: 19, fontWeight: 700, fontFamily: "var(--font-sans)", letterSpacing: "-0.02em", color: "#fff", margin: "0 0 9px" }}>
                     {s.title}
                   </h3>
@@ -146,6 +169,8 @@ export default function WhyAIV2() {
       </div>
 
       <style>{`
+        .whyai-card-img { transition: transform 0.5s cubic-bezier(0.16,1,0.3,1); transform: scale(1.02); }
+        .whyai-card:hover .whyai-card-img { transform: scale(1.08); }
         @media (max-width: 1024px) {
           .whyai-v2-grid { grid-template-columns: repeat(2, 1fr) !important; }
           .whyai-v2-head { grid-template-columns: 1fr !important; gap: 18px !important; align-items: start !important; margin-bottom: 44px !important; }
