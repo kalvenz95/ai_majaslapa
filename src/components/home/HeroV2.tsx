@@ -13,7 +13,7 @@ import { useRef } from "react";
 import { useHasMounted } from "@/hooks/useHasMounted";
 import { AnimatedNumber } from "@/components/AnimatedNumber";
 import { Magnetic } from "@/components/Magnetic";
-import { Check, Play, Lock, Mic, TrendingUp, Zap } from "lucide-react";
+import { Check, Play, Lock, Mic, Rocket, Zap } from "lucide-react";
 
 const EASE_OUT = [0.215, 0.61, 0.355, 1] as const;
 
@@ -57,11 +57,20 @@ function StaggerTitle({
   );
 }
 
-/** Dark product dashboard — the hero's centrepiece "platform shot". */
-function DashboardMock() {
+const MOCK_LESSONS = [
+  { t: "AI satura pamati", done: true },
+  { t: "Pirmais faceless video", done: true },
+  { t: "Klientu piesaiste", done: false },
+];
+const MOCK_BARS = [28, 42, 36, 55, 48, 70, 62, 88];
+
+/** Dark product dashboard — animates to life when it scrolls into view. */
+function DashboardMock({ reduce }: { reduce: boolean }) {
+  const vp = { once: true, margin: "-60px" } as const;
   return (
     <div
       style={{
+        position: "relative",
         borderRadius: 22,
         overflow: "hidden",
         background: "#0D0D14",
@@ -98,51 +107,82 @@ function DashboardMock() {
               <span style={{ fontSize: 14, fontWeight: 700, color: "#A89DFF", fontFamily: "var(--font-sans)" }}>68%</span>
             </div>
             <div style={{ height: 6, borderRadius: 999, background: "rgba(255,255,255,0.10)", overflow: "hidden" }}>
-              <div style={{ height: "100%", width: "68%", borderRadius: 999, background: "linear-gradient(90deg, var(--accent), var(--accent-2))" }} />
+              <motion.div
+                initial={reduce ? false : { width: "0%" }}
+                whileInView={reduce ? undefined : { width: "68%" }}
+                viewport={vp}
+                transition={{ duration: 1.1, ease: EASE_OUT, delay: 0.45 }}
+                style={{ height: "100%", width: "68%", borderRadius: 999, background: "linear-gradient(90deg, var(--accent), var(--accent-2))" }}
+              />
             </div>
           </div>
 
-          {[
-            { t: "AI satura pamati", done: true },
-            { t: "Pirmais faceless video", done: true },
-            { t: "Klientu piesaiste", done: false },
-          ].map((l) => (
-            <div key={l.t} style={{ display: "flex", alignItems: "center", gap: 10, padding: "10px 12px", borderRadius: 11, background: "rgba(255,255,255,0.035)", border: "1px solid rgba(255,255,255,0.07)" }}>
+          {MOCK_LESSONS.map((l, i) => (
+            <motion.div
+              key={l.t}
+              initial={reduce ? false : { opacity: 0, x: -12 }}
+              whileInView={reduce ? undefined : { opacity: 1, x: 0 }}
+              viewport={vp}
+              transition={{ duration: 0.5, ease: EASE_OUT, delay: 0.55 + i * 0.14 }}
+              style={{ display: "flex", alignItems: "center", gap: 10, padding: "10px 12px", borderRadius: 11, background: "rgba(255,255,255,0.035)", border: "1px solid rgba(255,255,255,0.07)" }}
+            >
               <span style={{ width: 23, height: 23, borderRadius: 7, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", background: l.done ? "var(--accent-2)" : "rgba(109,94,243,0.25)", color: l.done ? "#04221D" : "#A89DFF" }}>
                 {l.done ? <Check size={12} strokeWidth={3.2} /> : <Play size={10} strokeWidth={2.5} fill="currentColor" />}
               </span>
               <span style={{ flex: 1, fontSize: 11.5, fontWeight: 600, color: "rgba(255,255,255,0.85)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{l.t}</span>
               <span style={{ fontSize: 10, color: "rgba(255,255,255,0.35)" }}>{l.done ? "✓" : "12 min"}</span>
-            </div>
+            </motion.div>
           ))}
         </div>
 
-        {/* Right column — earnings chart + stats */}
+        {/* Right column — progress chart + learning stats */}
         <div style={{ padding: 18, display: "flex", flexDirection: "column", gap: 11 }} className="hero-mock-right">
           <div style={{ borderRadius: 13, padding: "13px 15px", background: "rgba(255,255,255,0.035)", border: "1px solid rgba(255,255,255,0.07)", flex: 1, display: "flex", flexDirection: "column" }}>
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 10 }}>
-              <span style={{ fontSize: 12, fontWeight: 700, color: "#fff" }}>Ienākumi</span>
+              <span style={{ fontSize: 12, fontWeight: 700, color: "#fff" }}>Tava izaugsme</span>
               <span style={{ fontSize: 10.5, color: "var(--accent-2)", fontWeight: 700, fontFamily: "JetBrains Mono, monospace" }}>+24%</span>
             </div>
-            {/* Bar chart */}
+            {/* Bar chart — bars grow from the baseline on reveal */}
             <div style={{ display: "flex", alignItems: "flex-end", gap: 6, flex: 1, minHeight: 64 }}>
-              {[28, 42, 36, 55, 48, 70, 62, 88].map((h, i) => (
-                <div key={i} style={{ flex: 1, height: `${h}%`, borderRadius: 4, background: i >= 6 ? "linear-gradient(180deg, var(--accent-2), rgba(0,191,165,0.35))" : "linear-gradient(180deg, rgba(109,94,243,0.85), rgba(109,94,243,0.25))" }} />
+              {MOCK_BARS.map((h, i) => (
+                <motion.div
+                  key={i}
+                  initial={reduce ? false : { scaleY: 0 }}
+                  whileInView={reduce ? undefined : { scaleY: 1 }}
+                  viewport={vp}
+                  transition={{ duration: 0.7, ease: EASE_OUT, delay: 0.5 + i * 0.07 }}
+                  style={{ flex: 1, height: `${h}%`, borderRadius: 4, transformOrigin: "bottom", background: i >= 6 ? "linear-gradient(180deg, var(--accent-2), rgba(0,191,165,0.35))" : "linear-gradient(180deg, rgba(109,94,243,0.85), rgba(109,94,243,0.25))" }}
+                />
               ))}
             </div>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
             <div style={{ borderRadius: 12, padding: "11px 13px", background: "rgba(255,255,255,0.035)", border: "1px solid rgba(255,255,255,0.07)" }}>
-              <div style={{ fontSize: 17, fontWeight: 700, color: "#fff", fontFamily: "var(--font-sans)", letterSpacing: "-0.03em" }}>€840</div>
-              <div style={{ fontSize: 9.5, color: "rgba(255,255,255,0.4)" }}>Šomēnes</div>
+              <AnimatedNumber value="8" style={{ display: "block", fontSize: 17, fontWeight: 700, color: "#fff", fontFamily: "var(--font-sans)", letterSpacing: "-0.03em" }} />
+              <div style={{ fontSize: 9.5, color: "rgba(255,255,255,0.4)" }}>Pabeigti moduļi</div>
             </div>
             <div style={{ borderRadius: 12, padding: "11px 13px", background: "rgba(255,255,255,0.035)", border: "1px solid rgba(255,255,255,0.07)" }}>
-              <div style={{ fontSize: 17, fontWeight: 700, color: "var(--accent-2)", fontFamily: "var(--font-sans)", letterSpacing: "-0.03em" }}>3</div>
-              <div style={{ fontSize: 9.5, color: "rgba(255,255,255,0.4)" }}>Aktīvi klienti</div>
+              <AnimatedNumber value="3" style={{ display: "block", fontSize: 17, fontWeight: 700, color: "var(--accent-2)", fontFamily: "var(--font-sans)", letterSpacing: "-0.03em" }} />
+              <div style={{ fontSize: 9.5, color: "rgba(255,255,255,0.4)" }}>Gatavi projekti</div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Light sheen — sweeps across once on reveal */}
+      {!reduce && (
+        <motion.div
+          aria-hidden
+          initial={{ x: "-130%" }}
+          whileInView={{ x: "170%" }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.5, ease: [0.4, 0, 0.2, 1], delay: 0.55 }}
+          style={{
+            position: "absolute", top: 0, bottom: 0, left: 0, width: "55%", pointerEvents: "none",
+            background: "linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.10) 48%, rgba(255,255,255,0.18) 52%, transparent 70%)",
+          }}
+        />
+      )}
     </div>
   );
 }
@@ -180,21 +220,21 @@ function VoiceCard() {
   );
 }
 
-/** Floating earnings notification card. */
+/** Floating "project shipped" notification card. */
 function EarnCard() {
   return (
     <div className="v2-float-b" style={{
       background: "#fff", borderRadius: 18, padding: "15px 18px",
       border: "1px solid var(--line-2)",
       boxShadow: "0 24px 60px -18px rgba(17,17,17,0.18), 0 8px 20px -8px rgba(0,191,165,0.18)",
-      display: "flex", alignItems: "center", gap: 12, width: 225,
+      display: "flex", alignItems: "center", gap: 12, width: 235,
     }}>
       <span style={{ width: 38, height: 38, borderRadius: 12, flexShrink: 0, background: "linear-gradient(135deg, var(--accent-2), #34D9C3)", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", boxShadow: "0 6px 16px -5px rgba(0,191,165,0.5)" }}>
-        <TrendingUp size={16} strokeWidth={2.4} />
+        <Rocket size={16} strokeWidth={2.4} />
       </span>
       <div>
-        <div style={{ fontSize: 16, fontWeight: 700, color: "var(--ink)", fontFamily: "var(--font-sans)", letterSpacing: "-0.03em", lineHeight: 1.1 }}>+€400</div>
-        <div style={{ fontSize: 10.5, color: "var(--ink-3)", fontWeight: 500 }}>Jauns klients · Mājaslapa</div>
+        <div style={{ fontSize: 14, fontWeight: 700, color: "var(--ink)", fontFamily: "var(--font-sans)", letterSpacing: "-0.01em", lineHeight: 1.15 }}>Projekts gatavs</div>
+        <div style={{ fontSize: 10.5, color: "var(--ink-3)", fontWeight: 500 }}>Mājaslapa · publicēts</div>
       </div>
     </div>
   );
@@ -338,7 +378,7 @@ export default function HeroV2() {
             style={{ position: "relative", maxWidth: 880, margin: "72px auto 0", perspective: 1400 }}
           >
             <motion.div style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}>
-              <DashboardMock />
+              <DashboardMock reduce={!!skipMotion} />
 
               {/* Floating cards — desktop only, raised above the tilt plane */}
               <div className="hero-float-cards">
