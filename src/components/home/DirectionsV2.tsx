@@ -59,7 +59,8 @@ export default function DirectionsV2() {
           {tracks.map((track, i) => {
             const th = themes[i] ?? themes[0];
             const premium = th.premium;
-            const dark = th.featured || premium;
+            const featured = th.featured;
+            const dark = premium; // only the premium card is dark now
             return (
               <Reveal key={track.num} delay={0.07 * i} style={{ height: "100%" }}>
                 <article
@@ -73,14 +74,16 @@ export default function DirectionsV2() {
                     overflow: "hidden",
                     background: premium
                       ? `linear-gradient(#0B0A07, #0B0A07) padding-box, ${GOLD_BORDER} border-box`
-                      : dark ? "#0D0D14" : "#fff",
+                      : featured
+                      ? `linear-gradient(180deg, rgba(${th.glow},0.07), #fff 70%)`
+                      : "#fff",
                     border: premium
                       ? "1.5px solid transparent"
-                      : dark ? `1px solid rgba(${th.glow},0.45)` : "1px solid var(--line)",
+                      : featured ? `1.5px solid rgba(${th.glow},0.40)` : "1px solid var(--line)",
                     boxShadow: premium
                       ? `0 36px 90px -26px rgba(184,134,11,0.40), 0 12px 30px -12px rgba(11,10,7,0.55)`
-                      : dark
-                      ? `0 36px 90px -26px rgba(${th.glow},0.40), 0 12px 30px -12px rgba(13,13,20,0.35)`
+                      : featured
+                      ? `0 28px 70px -28px rgba(${th.glow},0.32), var(--shadow-md)`
                       : "var(--shadow-md)",
                     transition: "transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease, border-color 0.25s ease",
                   }}
@@ -97,10 +100,10 @@ export default function DirectionsV2() {
                     el.style.transform = "";
                     el.style.boxShadow = premium
                       ? `0 36px 90px -26px rgba(184,134,11,0.40), 0 12px 30px -12px rgba(11,10,7,0.55)`
-                      : dark
-                      ? `0 36px 90px -26px rgba(${th.glow},0.40), 0 12px 30px -12px rgba(13,13,20,0.35)`
+                      : featured
+                      ? `0 28px 70px -28px rgba(${th.glow},0.32), var(--shadow-md)`
                       : "var(--shadow-md)";
-                    if (!dark) el.style.borderColor = "var(--line)";
+                    if (!dark) el.style.borderColor = featured ? `rgba(${th.glow},0.40)` : "var(--line)";
                   }}
                 >
                   {/* Top glow inside dark card */}
@@ -128,11 +131,13 @@ export default function DirectionsV2() {
                     </span>
                     <span style={{
                       fontSize: 11, fontWeight: 700, fontFamily: "var(--font-sans)",
-                      color: premium ? GOLD_INK : dark ? "#0D0D14" : th.color,
-                      background: premium ? GOLD_FILL : dark ? th.color : `rgba(${th.glow},0.10)`,
-                      border: dark ? "none" : `1px solid rgba(${th.glow},0.25)`,
+                      color: premium ? GOLD_INK : featured ? "#04221D" : th.color,
+                      background: premium ? GOLD_FILL : featured ? th.color : `rgba(${th.glow},0.10)`,
+                      border: premium || featured ? "none" : `1px solid rgba(${th.glow},0.25)`,
                       borderRadius: 999, padding: "5px 12px", whiteSpace: "nowrap",
-                      boxShadow: premium ? "0 6px 18px -6px rgba(184,134,11,0.6)" : "none",
+                      boxShadow: premium
+                        ? "0 6px 18px -6px rgba(184,134,11,0.6)"
+                        : featured ? `0 6px 18px -6px rgba(${th.glow},0.55)` : "none",
                     }}>
                       {track.badge}
                     </span>
@@ -199,14 +204,14 @@ export default function DirectionsV2() {
                       textDecoration: "none", position: "relative",
                       background: premium
                         ? GOLD_FILL
-                        : dark
+                        : featured
                         ? `linear-gradient(180deg, ${th.color}, color-mix(in oklab, ${th.color} 80%, #000))`
                         : "var(--bg-2)",
-                      color: premium ? GOLD_INK : dark ? "#04221D" : "var(--ink)",
-                      border: dark ? "none" : "1px solid var(--line-2)",
+                      color: premium ? GOLD_INK : featured ? "#04221D" : "var(--ink)",
+                      border: premium || featured ? "none" : "1px solid var(--line-2)",
                       boxShadow: premium
                         ? `0 14px 34px -10px rgba(184,134,11,0.65), inset 0 1px 0 rgba(255,255,255,0.45)`
-                        : dark ? `0 12px 30px -10px rgba(${th.glow},0.6), inset 0 1px 0 rgba(255,255,255,0.3)` : "var(--shadow-sm)",
+                        : featured ? `0 12px 30px -10px rgba(${th.glow},0.6), inset 0 1px 0 rgba(255,255,255,0.3)` : "var(--shadow-sm)",
                       transition: "transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease",
                     }}
                     onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px)"; }}
