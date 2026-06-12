@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Reveal } from "@/components/home/Reveal";
 import { Magnetic } from "@/components/Magnetic";
 
@@ -9,6 +10,12 @@ export default function FinalCTAV2() {
       position: "relative", overflow: "hidden", textAlign: "center",
       background: "#0A0A0E", padding: "160px 0 0",
     }}>
+      {/* AI imagery — subtle texture behind the closing CTA */}
+      <div aria-hidden style={{ position: "absolute", inset: 0, pointerEvents: "none", opacity: 0.55 }}>
+        <Image src="/ai/cta-bg.jpg" alt="" fill sizes="100vw" style={{ objectFit: "cover", objectPosition: "center right" }} />
+        <div style={{ position: "absolute", inset: 0, background: "radial-gradient(72% 80% at 50% 38%, rgba(10,10,14,0.45), #0A0A0E 82%)" }} />
+      </div>
+
       {/* Atmosphere */}
       <div aria-hidden style={{
         position: "absolute", inset: 0, pointerEvents: "none",

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Reveal } from "@/components/home/Reveal";
 import { useTranslations } from "next-intl";
 import { Share2, Globe, PhoneCall } from "lucide-react";
@@ -8,9 +9,9 @@ type Card = { label: string; range: string; desc: string; math: string };
 
 const icons = [Share2, Globe, PhoneCall];
 const themes = [
-  { color: "#8B7BFF", glow: "139,123,255" },
-  { color: "#34D9C3", glow: "52,217,195" },
-  { color: "#FFB86B", glow: "255,184,107" },
+  { color: "#8B7BFF", glow: "139,123,255", img: "/ai/income-social.jpg" },
+  { color: "#34D9C3", glow: "52,217,195", img: "/ai/income-web.jpg" },
+  { color: "#FFB86B", glow: "255,184,107", img: "/ai/income-voice.jpg" },
 ];
 
 export default function IncomeV2() {
@@ -54,22 +55,39 @@ export default function IncomeV2() {
                 const th = themes[i] ?? themes[0];
                 const Icon = icons[i] ?? Share2;
                 return (
-                  <div key={c.label} className="v2-glass" style={{ padding: "30px 28px", display: "flex", flexDirection: "column", gap: 16 }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                      <span style={{
-                        width: 42, height: 42, borderRadius: 13, flexShrink: 0,
-                        background: `linear-gradient(150deg, rgba(${th.glow},0.24), rgba(${th.glow},0.07))`,
-                        border: `1px solid rgba(${th.glow},0.35)`,
-                        boxShadow: `0 8px 22px -8px rgba(${th.glow},0.5)`,
-                        display: "flex", alignItems: "center", justifyContent: "center",
+                  <div key={c.label} className="v2-glass income-card" style={{ padding: 0, overflow: "hidden", display: "flex", flexDirection: "column" }}>
+                    {/* AI image header */}
+                    <div style={{ position: "relative", height: 132, overflow: "hidden" }}>
+                      <Image
+                        src={th.img}
+                        alt=""
+                        fill
+                        sizes="(max-width: 920px) 100vw, 33vw"
+                        className="income-card-img"
+                        style={{ objectFit: "cover" }}
+                      />
+                      <div aria-hidden style={{ position: "absolute", inset: 0, mixBlendMode: "soft-light", background: `rgba(${th.glow},0.45)` }} />
+                      <div aria-hidden style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(10,10,14,0.1) 0%, rgba(10,10,14,0.5) 55%, #0C0C12 100%)" }} />
+                      <div style={{
+                        position: "absolute", left: 26, bottom: 14,
+                        display: "flex", alignItems: "center", gap: 12,
                       }}>
-                        <Icon size={18} color={th.color} strokeWidth={2} />
-                      </span>
-                      <span style={{ fontSize: 13.5, fontWeight: 700, color: "rgba(255,255,255,0.85)", fontFamily: "var(--font-sans)", letterSpacing: "-0.01em" }}>
-                        {c.label}
-                      </span>
+                        <span style={{
+                          width: 44, height: 44, borderRadius: 13, flexShrink: 0,
+                          background: `linear-gradient(150deg, rgba(${th.glow},0.95), rgba(${th.glow},0.7))`,
+                          border: "1px solid rgba(255,255,255,0.25)",
+                          boxShadow: `0 12px 28px -8px rgba(${th.glow},0.7), inset 0 1px 0 rgba(255,255,255,0.4)`,
+                          display: "flex", alignItems: "center", justifyContent: "center",
+                        }}>
+                          <Icon size={19} color="#0A0A0E" strokeWidth={2} />
+                        </span>
+                        <span style={{ fontSize: 14, fontWeight: 700, color: "#fff", fontFamily: "var(--font-sans)", letterSpacing: "-0.01em", textShadow: "0 2px 12px rgba(0,0,0,0.6)" }}>
+                          {c.label}
+                        </span>
+                      </div>
                     </div>
 
+                    <div style={{ padding: "24px 28px 30px", display: "flex", flexDirection: "column", gap: 16 }}>
                     <div>
                       <div style={{ display: "flex", alignItems: "baseline", gap: 6 }}>
                         <span style={{ fontSize: "clamp(26px, 3vw, 34px)", fontWeight: 700, fontFamily: "var(--font-sans)", letterSpacing: "-0.04em", color: th.color, lineHeight: 1.05 }}>
@@ -93,6 +111,7 @@ export default function IncomeV2() {
                     }}>
                       {c.math}
                     </div>
+                    </div>
                   </div>
                 );
               })}
@@ -107,6 +126,8 @@ export default function IncomeV2() {
       </div>
 
       <style>{`
+        .income-card-img { transition: transform 0.5s cubic-bezier(0.16,1,0.3,1); transform: scale(1.02); }
+        .income-card:hover .income-card-img { transform: scale(1.08); }
         @media (max-width: 920px) {
           .income-v2-grid { grid-template-columns: 1fr !important; }
         }
