@@ -141,6 +141,18 @@
       }
     ]
   },
+  "DirectionDemos": {
+    "kicker": "Real product",
+    "titleA": "See exactly what ",
+    "titleB": "you'll learn to build",
+    "lead": "The two most in-demand directions in action — how your client sees your work, and how it runs 24/7.",
+    "siteTitle": "Websites & automation",
+    "siteTag": "Business · live",
+    "siteCaption": "A modern site plus automatic lead handling that replies to the client in under a minute.",
+    "voiceTitle": "AI voice agent",
+    "voiceTag": "Calls · 24/7",
+    "voiceCaption": "A voice agent answers calls, takes bookings, and never sleeps."
+  },
   "AILaunchpad": {
     "titleA": "Example: income with ",
     "titleB": "2–4 clients per month",

@@ -6,10 +6,12 @@ import Team from "@/components/Team";
 import HeroV2 from "@/components/home/HeroV2";
 import WhyAIV2 from "@/components/home/WhyAIV2";
 import DirectionsV2 from "@/components/home/DirectionsV2";
+import DirectionDemosV2 from "@/components/home/DirectionDemosV2";
 import HowItWorksV2 from "@/components/home/HowItWorksV2";
 import IncomeV2 from "@/components/home/IncomeV2";
 import NoSkillsV2 from "@/components/home/NoSkillsV2";
 import ProjectsV2 from "@/components/home/ProjectsV2";
+import ShowcaseV2 from "@/components/home/ShowcaseV2";
 import CommunityV2 from "@/components/home/CommunityV2";
 import ToolsV2 from "@/components/home/ToolsV2";
 import PricingV2 from "@/components/home/PricingV2";
@@ -82,6 +84,9 @@ export default async function HomePage({
       {/* 3. Choose your direction */}
       <DirectionsV2 />
 
+      {/* 3b. Direction demos — live product mockups */}
+      <DirectionDemosV2 />
+
       {/* 4. How it works */}
       <HowItWorksV2 />
 
@@ -93,6 +98,9 @@ export default async function HomePage({
 
       {/* 7. Real project examples */}
       <ProjectsV2 />
+
+      {/* 7b. Our work — real website + voice agent samples */}
+      <ShowcaseV2 />
 
       {/* 8. Community + results */}
       <CommunityV2 />

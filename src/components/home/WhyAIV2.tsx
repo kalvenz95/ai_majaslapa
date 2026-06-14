@@ -9,7 +9,7 @@ const services = [
   {
     Icon: Clapperboard,
     title: "AI saturs",
-    desc: "Faceless video, reklāmu vizuāļi un sociālo tīklu saturs uzņēmumiem.",
+    desc: "Veido faceless video, reklāmu vizuāļus un sociālo tīklu saturu un pārdod to uzņēmumiem, kuriem pašiem nav laika to darīt. 1 klients ≈ 300–500 €/mēn.",
     color: "#8B7BFF",
     glow: "139,123,255",
     img: "/ai/content.jpg",
@@ -17,7 +17,7 @@ const services = [
   {
     Icon: Globe,
     title: "AI mājaslapas",
-    desc: "Modernas mājaslapas, kas piesaista klientus — bez koda zināšanām.",
+    desc: "Uzbūvē modernu, klientus piesaistošu mājaslapu dažās dienās — pilnīgi bez koda. Uzņēmumi par to maksā 500–1500 € par projektu.",
     color: "#34D9C3",
     glow: "52,217,195",
     img: "/ai/websites.jpg",
@@ -25,7 +25,7 @@ const services = [
   {
     Icon: Workflow,
     title: "Automatizācija",
-    desc: "WhatsApp, e-pasti un lead apstrāde — automātiski, bez cilvēka iesaistes.",
+    desc: "Iestati WhatsApp, e-pastu un pieteikumu apstrādi, kas strādā uzņēmuma vietā 24/7. Ietaupi klientam stundas — un saņem regulāru ikmēneša maksu.",
     color: "#FFB86B",
     glow: "255,184,107",
     img: "/ai/automation.jpg",
@@ -33,7 +33,7 @@ const services = [
   {
     Icon: Mic2,
     title: "AI balss aģenti",
-    desc: "Zvanu pieņemšana un rezervācijas 24/7 — ar AI balss tehnoloģiju.",
+    desc: "Uzstādi AI balss aģentu, kas atbild uz zvaniem un pieņem rezervācijas 24/7. Augstākās vērtības pakalpojums — 800–3500 €/mēn no viena klienta.",
     color: "#8B7BFF",
     glow: "139,123,255",
     img: "/ai/voice.jpg",
@@ -78,13 +78,13 @@ export default function WhyAIV2() {
             </Reveal>
             <Reveal delay={0.08}>
               <h2 className="v2-h2" style={{ fontSize: "clamp(38px, 5.8vw, 76px)", color: "#fff", margin: "18px 0 0", maxWidth: "13ch" }}>
-                Ko tu iegūsi <span style={{ color: "#A89DFF" }}>Chademy?</span>
+                Ko tu iegūsi no <span style={{ color: "#A89DFF" }}>Chademy?</span>
               </h2>
             </Reveal>
           </div>
           <Reveal delay={0.16}>
-            <p style={{ fontSize: 17, color: "rgba(255,255,255,0.55)", lineHeight: 1.7, margin: 0, paddingBottom: 8 }}>
-              Ne tikai teoriju. Tu soli pa solim izveido pakalpojumu, portfolio un iegūsti sistēmu klientu piesaistei.
+            <p style={{ fontSize: 17, color: "rgba(255,255,255,0.6)", lineHeight: 1.7, margin: 0, paddingBottom: 8 }}>
+              Ne tikai teoriju vai kārtējo sertifikātu. Tu soli pa solim izveido <strong style={{ color: "#fff", fontWeight: 600 }}>reālu pakalpojumu, ko pārdot</strong>, savāc portfolio ar pirmajiem darbiem un iegūsti gatavu sistēmu, kā piesaistīt maksājošus klientus — arī tad, ja sāc no nulles bez IT pieredzes.
             </p>
           </Reveal>
         </div>
