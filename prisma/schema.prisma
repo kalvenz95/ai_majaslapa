@@ -10,22 +10,45 @@ datasource db {
 
 // ── Lietotājs ────────────────────────────────────────────────
 model User {
-  id               String    @id @default(cuid())
-  clerkId          String    @unique
-  email            String    @unique
+  id               String     @id @default(cuid())
+  clerkId          String     @unique
+  email            String     @unique
   name             String?
+  phone            String?
   avatarUrl        String?
-  stripeCustomerId String?   @unique
+  stripeCustomerId String?    @unique
+
+  // Piekļuves kontrole
+  role        Role       @default(USER)
+  status      UserStatus @default(ACTIVE)
+  lastLoginAt DateTime?
+  blockedAt   DateTime?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   subscription Subscription?
+  payments     Payment[]
   progress     LessonProgress[]
   streak       UserStreak?
   posts        Post[]           @relation("PostAuthor")
   postLikes    PostLike[]       @relation("PostLikeUser")
   comments     PostComment[]    @relation("CommentAuthor")
+  notes        AdminNote[]      @relation("NoteSubject")
+  authoredNotes AdminNote[]     @relation("NoteAuthor")
+}
+
+// Lietotāja loma — nosaka piekļuvi admin panelim
+enum Role {
+  OWNER   // pilna piekļuve visam
+  ADMIN   // lietotāji, kursi, maksājumi
+  SUPPORT // skata lietotājus un statusus, nemaina maksājumus
+  USER    // parasts lietotājs — bez admin piekļuves
+}
+
+enum UserStatus {
+  ACTIVE
+  BLOCKED
 }
 
 // ── Abonements ───────────────────────────────────────────────
@@ -59,12 +82,58 @@ enum SubscriptionStatus {
   INCOMPLETE
 }
 
+// ── Maksājumi ────────────────────────────────────────────────
+// Katrs veiksmīgs/neizdevies maksājums tiek ierakstīts šeit
+// (papildus Subscription tabulai) — admin maksājumu vēsturei.
+model Payment {
+  id                String        @id @default(cuid())
+  userId            String
+  user              User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  amount            Int           // summa centos (piem. 2900 = €29.00)
+  currency          String        @default("eur")
+  plan              Plan?
+  status            PaymentStatus @default(PENDING)
+  provider          String        @default("stripe")
+  providerPaymentId String?       @unique // Stripe invoice/payment intent id
+  invoiceUrl        String?
+  paidAt            DateTime?
+
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([status])
+}
+
+enum PaymentStatus {
+  PAID
+  PENDING
+  FAILED
+  REFUNDED
+  CANCELED
+}
+
+// ── Admin piezīmes par lietotāju ─────────────────────────────
+model AdminNote {
+  id      String @id @default(cuid())
+  userId  String
+  user    User   @relation("NoteSubject", fields: [userId], references: [id], onDelete: Cascade)
+  adminId String
+  admin   User   @relation("NoteAuthor", fields: [adminId], references: [id], onDelete: Cascade)
+  note    String
+
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}
+
 // ── Kursi ────────────────────────────────────────────────────
 model Course {
   id           String  @id @default(cuid())
   slug         String  @unique
   title        String
   description  String
+  category     String? // piem. "Saturs", "Automatizācija"
+  level        String? // piem. "Iesācējs", "Vidējais", "Pro"
   icon         String
   color        String  @default("#00ff88")
   planRequired Plan

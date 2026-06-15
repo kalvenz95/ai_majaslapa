@@ -10,8 +10,27 @@ const isProtectedRoute = createRouteMatcher([
   "/en/dashboard(.*)",
 ]);
 
+// Admin panelis dzīvo ārpus [locale] — bez valodas prefiksa.
+const isAdminRoute = createRouteMatcher(["/admin(.*)"]);
+// Publiskās admin lapas (nav jābūt pieteiktam, lai tās redzētu)
+const isAdminPublicRoute = createRouteMatcher([
+  "/admin/login(.*)",
+  "/admin/no-access",
+]);
+
 export default clerkMiddleware(async (auth, req) => {
   if (req.nextUrl.pathname.startsWith("/api/")) {
+    return NextResponse.next();
+  }
+
+  // Admin maršruti: prasa pieteikšanos (lomu pārbaude notiek serverī, lapā),
+  // un NETIEK laisti caur intl middleware (lai /admin nepāradresē uz /lv/admin).
+  if (isAdminRoute(req)) {
+    if (!isAdminPublicRoute(req)) {
+      await auth.protect({
+        unauthenticatedUrl: new URL("/admin/login", req.url).toString(),
+      });
+    }
     return NextResponse.next();
   }
 

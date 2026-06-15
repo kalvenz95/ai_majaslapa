@@ -26,11 +26,12 @@ export async function upsertUser(data: {
 }) {
   return prisma.user.upsert({
     where: { clerkId: data.clerkId },
-    create: data,
+    create: { ...data, lastLoginAt: new Date() },
     update: {
       email: data.email,
       name: data.name,
       avatarUrl: data.avatarUrl,
+      lastLoginAt: new Date(),
     },
     include: { subscription: true },
   });

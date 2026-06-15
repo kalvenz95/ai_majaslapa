@@ -56,6 +56,7 @@ export async function POST(req: NextRequest) {
             data: { status: SubscriptionStatus.PAST_DUE },
           });
         }
+        await recordPayment(invoice, "FAILED");
         break;
       }
     }
@@ -110,7 +111,8 @@ async function handleSubscriptionChange(sub: any) {
 }
 
 async function handlePaymentSucceeded(invoice: any) {
-  if (invoice.billing_reason !== "subscription_create") return;
+  // Ieraksta KATRU veiksmīgu maksājumu (arī atjaunošanas) admin vēsturei
+  await recordPayment(invoice, "PAID");
 
   const customerId = invoice.customer as string;
   const user = await prisma.user.findUnique({
@@ -119,9 +121,7 @@ async function handlePaymentSucceeded(invoice: any) {
   });
   if (!user || !user.email) return;
 
-  const isFirstPayment =
-    invoice.billing_reason === "subscription_create";
-
+  const isFirstPayment = invoice.billing_reason === "subscription_create";
   if (isFirstPayment) {
     await sendWelcomeEmail(user.email, user.name ?? "");
   }
@@ -136,4 +136,58 @@ async function handlePaymentSucceeded(invoice: any) {
       invoice.hosted_invoice_url ?? undefined
     );
   }
+}
+
+/** Saglabā maksājuma ierakstu Payment tabulā (admin maksājumu vēsturei). */
+async function recordPayment(invoice: any, status: "PAID" | "FAILED") {
+  const customerId = invoice.customer as string | undefined;
+  if (!customerId) return;
+
+  const user = await prisma.user.findUnique({
+    where: { stripeCustomerId: customerId },
+    include: { subscription: true },
+  });
+  if (!user) return;
+
+  const priceId = invoice.lines?.data?.[0]?.price?.id as string | undefined;
+  const plan =
+    (priceId ? getPlanFromPriceId(priceId) : null) ?? user.subscription?.plan ?? null;
+  const amount =
+    status === "PAID"
+      ? invoice.amount_paid ?? invoice.amount_due ?? 0
+      : invoice.amount_due ?? 0;
+  const providerPaymentId = (invoice.id as string) ?? null;
+
+  // Idempotents — atkārtoti webhook'i neveido dublikātus
+  if (providerPaymentId) {
+    const existing = await prisma.payment.findUnique({
+      where: { providerPaymentId },
+    });
+    if (existing) {
+      await prisma.payment.update({
+        where: { providerPaymentId },
+        data: {
+          status,
+          amount,
+          paidAt: status === "PAID" ? new Date() : existing.paidAt,
+          invoiceUrl: invoice.hosted_invoice_url ?? existing.invoiceUrl,
+        },
+      });
+      return;
+    }
+  }
+
+  await prisma.payment.create({
+    data: {
+      userId: user.id,
+      amount,
+      currency: invoice.currency ?? "eur",
+      plan,
+      status,
+      provider: "stripe",
+      providerPaymentId,
+      invoiceUrl: invoice.hosted_invoice_url ?? null,
+      paidAt: status === "PAID" ? new Date() : null,
+    },
+  });
 }
