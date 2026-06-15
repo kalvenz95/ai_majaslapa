@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { Reveal } from "@/components/home/Reveal";
-import { ArrowUpRight, Play, Pause, Mic, Phone, Check } from "lucide-react";
+import { ArrowUpRight, Play, Pause, Mic, Phone, Check, Upload } from "lucide-react";
 
 /* ── Website samples — real projects we've built ───────────────────── */
 const SITES = [
@@ -75,10 +75,13 @@ const WAVE = [0.35, 0.6, 0.45, 0.85, 0.55, 0.4, 0.9, 0.65, 1, 0.5, 0.75, 0.45, 0
 
 function VoiceSampleCard({ sample, index }: { sample: (typeof VOICE_SAMPLES)[number]; index: number }) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const fileRef = useRef<HTMLInputElement | null>(null);
   const timerRef = useRef<number | undefined>(undefined);
   const [playing, setPlaying] = useState(false);
   const [cur, setCur] = useState(0);
   const [dur, setDur] = useState(sample.fallback);
+  const [uploadedUrl, setUploadedUrl] = useState<string | null>(null);
+  const [uploadedName, setUploadedName] = useState<string | null>(null);
 
   const stopTimer = () => {
     if (timerRef.current) {
@@ -87,6 +90,26 @@ function VoiceSampleCard({ sample, index }: { sample: (typeof VOICE_SAMPLES)[num
     }
   };
   useEffect(() => () => stopTimer(), []);
+
+  /* Revoke the previous object URL whenever it changes or the card unmounts. */
+  useEffect(() => {
+    return () => { if (uploadedUrl) URL.revokeObjectURL(uploadedUrl); };
+  }, [uploadedUrl]);
+
+  const onFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const f = e.target.files?.[0];
+    if (!f) return;
+    const url = URL.createObjectURL(f);
+    setUploadedUrl(url);
+    setUploadedName(f.name);
+    setCur(0);
+    setDur(sample.fallback);
+    setPlaying(false);
+    stopTimer();
+    // Reload the <audio> element with the new source.
+    requestAnimationFrame(() => audioRef.current?.load());
+    e.target.value = "";
+  };
 
   const tick = () => {
     const a = audioRef.current;
@@ -221,10 +244,10 @@ function VoiceSampleCard({ sample, index }: { sample: (typeof VOICE_SAMPLES)[num
               <span>{fmt(dur)}</span>
             </div>
           </div>
-          {/* hidden native audio — plays real file when present */}
+          {/* hidden native audio — plays uploaded file or the bundled sample */}
           <audio
             ref={audioRef}
-            src={sample.src}
+            src={uploadedUrl ?? sample.src}
             preload="none"
             onEnded={() => { setPlaying(false); setCur(0); stopTimer(); }}
             onLoadedMetadata={(e) => {
@@ -234,8 +257,32 @@ function VoiceSampleCard({ sample, index }: { sample: (typeof VOICE_SAMPLES)[num
           />
         </div>
 
+        {/* upload own recording (plays locally in your browser) */}
+        <div style={{ position: "relative", marginTop: 14 }}>
+          <input ref={fileRef} type="file" accept="audio/*" onChange={onFile} style={{ display: "none" }} />
+          <button
+            type="button"
+            onClick={() => fileRef.current?.click()}
+            style={{
+              width: "100%", display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+              padding: "9px 12px", borderRadius: 11, cursor: "pointer",
+              background: uploadedName ? "rgba(0,191,165,0.10)" : "rgba(255,255,255,0.04)",
+              border: `1px dashed ${uploadedName ? "rgba(0,191,165,0.45)" : "rgba(255,255,255,0.18)"}`,
+              color: uploadedName ? ACCENT_2 : "rgba(255,255,255,0.6)",
+              fontSize: 11.5, fontWeight: 600, transition: "background 0.2s ease, border-color 0.2s ease, color 0.2s ease",
+            }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = uploadedName ? "rgba(0,191,165,0.65)" : "rgba(255,255,255,0.32)"; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = uploadedName ? "rgba(0,191,165,0.45)" : "rgba(255,255,255,0.18)"; }}
+          >
+            {uploadedName ? <Check size={13} strokeWidth={3} /> : <Upload size={13} strokeWidth={2.2} />}
+            <span style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", maxWidth: "100%" }}>
+              {uploadedName ? `${uploadedName} · uzspied ▶` : "Augšupielādēt savu ierakstu"}
+            </span>
+          </button>
+        </div>
+
         {/* outcome */}
-        <div style={{ position: "relative", display: "flex", alignItems: "center", gap: 8, marginTop: 16, paddingTop: 14, borderTop: "1px solid rgba(255,255,255,0.08)", fontSize: 12, fontWeight: 600, color: ACCENT_2 }}>
+        <div style={{ position: "relative", display: "flex", alignItems: "center", gap: 8, marginTop: 14, paddingTop: 14, borderTop: "1px solid rgba(255,255,255,0.08)", fontSize: 12, fontWeight: 600, color: ACCENT_2 }}>
           <span style={{ width: 18, height: 18, borderRadius: 999, flexShrink: 0, background: ACCENT_2, color: "#04221D", display: "flex", alignItems: "center", justifyContent: "center" }}>
             <Check size={11} strokeWidth={3.2} />
           </span>
