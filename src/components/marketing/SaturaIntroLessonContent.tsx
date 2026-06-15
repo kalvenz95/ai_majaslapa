@@ -49,10 +49,10 @@ const services = [
 ];
 
 const stats = [
-  { value: "26 000", label: "aktīvu uzņēmumu Latvijā bez regulāra satura", color: P },
-  { value: "€350",   label: "vidējais mēneša budžets satura radīšanai",     color: G },
-  { value: "3 ned.", label: "vidēji līdz pirmajam klientam pēc kursa",       color: AM },
-  { value: "82%",    label: "studentu iegūst ienākumus 60 dienās",           color: P },
+  { value: "75 000",  label: "aktīvu uzņēmumu Baltijā bez regulāra satura", color: P },
+  { value: "€1 500",  label: "vidējais mēneša budžets satura radīšanai",    color: G },
+  { value: "3 ned.",  label: "vidēji līdz pirmajam klientam pēc kursa",     color: AM },
+  { value: "82%",     label: "studentu iegūst ienākumus 60 dienās",         color: P },
 ];
 
 const tools = [
@@ -145,7 +145,7 @@ export function SaturaIntroLessonContent() {
       <div style={{ position: "relative", borderRadius: 16, overflow: "hidden", border: `1px solid ${P}22`, background: "linear-gradient(135deg, rgba(109,94,243,0.06) 0%, #fff 60%)", boxShadow: cardShadow }}>
         <div style={{ position: "absolute", top: -80, right: -60, width: 300, height: 300, borderRadius: "50%", background: "radial-gradient(circle, rgba(109,94,243,0.10) 0%, transparent 65%)", pointerEvents: "none" }} />
         <div style={{ position: "relative", padding: "26px 28px" }}>
-          <div style={sectionLabel(P)}>Latvijas tirgus iespēja</div>
+          <div style={sectionLabel(P)}>Baltijas tirgus iespēja</div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(155px, 1fr))", gap: 18 }}>
             {stats.map((s) => (
               <div key={s.label}>
@@ -157,7 +157,7 @@ export function SaturaIntroLessonContent() {
           </div>
           <div style={{ marginTop: 22, padding: "13px 16px", borderRadius: 11, background: "#fff", border: "1px solid var(--line)", display: "flex", gap: 10 }}>
             <EmojiIcon emoji="💡" size={16} color={P} strokeWidth={1.75} className="shrink-0" />
-            <p style={{ fontSize: 12, color: "var(--ink-2)", lineHeight: 1.7, margin: 0 }}>Latvijā ir ap <strong style={{ color: "var(--ink)" }}>26 000 aktīvu uzņēmumu</strong>. Lielākā daļa maksā par saturu tikai tad, kad kāds piedāvā. Tu esi tas cilvēks.</p>
+            <p style={{ fontSize: 12, color: "var(--ink-2)", lineHeight: 1.7, margin: 0 }}>Baltijā ir ap <strong style={{ color: "var(--ink)" }}>75 000 aktīvu uzņēmumu</strong>. Lielākā daļa maksā par saturu tikai tad, kad kāds piedāvā. Tu esi tas cilvēks.</p>
           </div>
         </div>
       </div>
