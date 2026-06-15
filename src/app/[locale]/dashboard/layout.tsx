@@ -2,6 +2,7 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "@/i18n/navigation";
 import { Sidebar } from "@/components/dashboard/Sidebar";
 import { StreakTracker } from "@/components/dashboard/StreakTracker";
+import PhonePrompt from "@/components/dashboard/PhonePrompt";
 import { upsertUser } from "@/lib/subscriptions";
 import { setRequestLocale } from "next-intl/server";
 
@@ -41,15 +42,17 @@ export default async function DashboardLayout({
 
   if (!userId) redirect({ href: "/login", locale });
 
+  let needsPhone = false;
   try {
     const clerkUser = await currentUser();
     if (clerkUser) {
-      await upsertUser({
+      const dbUser = await upsertUser({
         clerkId: userId,
         email: clerkUser.emailAddresses[0]?.emailAddress ?? "",
         name: `${clerkUser.firstName ?? ""} ${clerkUser.lastName ?? ""}`.trim() || undefined,
         avatarUrl: clerkUser.imageUrl || undefined,
       }).catch(() => null);
+      needsPhone = !!dbUser && !dbUser.phone;
     }
   } catch {
     // DB nav pieejama
@@ -57,6 +60,7 @@ export default async function DashboardLayout({
 
   return (
     <div className="min-h-screen" data-theme="dark" style={{ background: "var(--bg)" }}>
+      <PhonePrompt needsPhone={needsPhone} />
       <StreakTracker />
       <Sidebar />
       <main style={{ marginLeft: "var(--d-side-w, 220px)", minHeight: "100vh" }}>

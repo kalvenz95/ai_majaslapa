@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { getCourseProgress } from "@/lib/subscriptions";
 import { PLAN_NAMES } from "@/lib/stripe";
 import { Plan } from "@prisma/client";
+import ProfilePhoneCard from "@/components/dashboard/ProfilePhoneCard";
 
 function Avatar({ name, avatarUrl, size = 80 }: { name: string; avatarUrl?: string | null; size?: number }) {
   if (avatarUrl) {
@@ -122,6 +123,9 @@ export default async function ProfilsPage() {
           </div>
         </div>
       </div>
+
+      {/* Kontaktinformācija — telefons */}
+      <ProfilePhoneCard phone={user?.phone ?? null} />
 
       {/* Statistika */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
