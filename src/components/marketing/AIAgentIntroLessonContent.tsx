@@ -54,11 +54,17 @@ const services = [
 ];
 
 const niches = [
-  { icon: "🦷", title: "Zobārsti & Klīnikas",     need: "Balss aģents → pierakstu rezervācija",  price: "€1 500–€3 000" },
-  { icon: "🏠", title: "Nekustamais Īpašums",      need: "Aģents → apskates un jautājumi",        price: "€1 000–€2 500" },
-  { icon: "🏥", title: "Privātās Klīnikas",        need: "WhatsApp + balss → pacientu plūsma",    price: "€1 200–€2 800" },
-  { icon: "🍽️", title: "Restorāni & Viesnīcas",   need: "Rezervācijas + atbildes automātiski",    price: "€800–€1 800" },
+  { icon: "🦷", title: "Zobārsti & Klīnikas", price: "€1 500–€6 000/mēn" },
+  { icon: "🏠", title: "Nekustamais Īpašums", price: "€1 000–€2 500" },
+  { icon: "💊", title: "Privātās Klīnikas", price: "€2 000–€9 000/mēn" },
 ];
+
+/* Dark-premium tokens for the services block */
+const DARK_BG = "#0A0A0B";
+const DARK_CARD = "#111114";
+const DARK_LINE = "#1E1E24";
+const ORANGE = "#F97316";
+const FEAT = "#9CA3AF";
 
 const stats = [
   { value: "€2 400", label: "vidējais projekta honorārs AI aģentam Latvijā",    color: O },
@@ -127,59 +133,93 @@ export function AIAgentIntroLessonContent() {
         </div>
       </div>
 
-      {/* ── 3 PAKALPOJUMI ── */}
-      <div>
-        <div style={sectionLabel(O)}>3 premium pakalpojumi ko tu apgūsi un pārdosi</div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+      {/* ── 3 PREMIUM PAKALPOJUMI (dark premium) ── */}
+      <div
+        className="prem-svc"
+        style={{
+          position: "relative", borderRadius: 22, overflow: "hidden",
+          background: DARK_BG, border: `1px solid ${DARK_LINE}`,
+          padding: "34px 30px 30px",
+          boxShadow: "0 34px 90px -44px rgba(0,0,0,0.85)",
+        }}
+      >
+        {/* top orange glow */}
+        <div aria-hidden style={{ position: "absolute", top: -130, left: "50%", transform: "translateX(-50%)", width: 480, height: 260, background: `radial-gradient(50% 60% at 50% 40%, rgba(249,115,22,0.16), transparent 72%)`, pointerEvents: "none" }} />
+
+        {/* heading — eyebrow + white H2 */}
+        <div style={{ position: "relative", marginBottom: 26 }}>
+          <div style={{ fontSize: 11, fontWeight: 700, color: ORANGE, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: 12 }}>
+            3 Premium Pakalpojumi · Ko Tu Apgūsi Un Pārdosi
+          </div>
+          <h2 style={{ fontSize: "clamp(22px,3.4vw,30px)", fontWeight: 800, letterSpacing: "-0.03em", lineHeight: 1.12, color: "#fff", margin: 0 }}>
+            Augstvērtīgi pakalpojumi,<br />ko klienti pērk uzreiz
+          </h2>
+        </div>
+
+        {/* 3-column grid */}
+        <div className="prem-svc-grid" style={{ position: "relative", display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 14 }}>
           {services.map((s, i) => (
-            <div key={i} style={{ borderRadius: 16, overflow: "hidden", border: `1px solid ${s.accent}2e`, background: "#fff", boxShadow: cardShadow }}>
-              <div style={{ position: "relative", height: 96, overflow: "hidden", background: `linear-gradient(135deg, ${s.accent}1f 0%, ${s.accent2}0f 100%)` }}>
-                <div style={{ position: "absolute", top: -60, right: -40, width: 220, height: 220, borderRadius: "50%", background: `radial-gradient(circle, ${s.accent}26 0%, transparent 65%)`, pointerEvents: "none" }} />
-                <div style={{ position: "absolute", top: 16, left: 18 }}>
-                  <span style={{ fontSize: 9.5, fontWeight: 700, padding: "3px 10px", borderRadius: 20, background: `${s.accent}1f`, border: `1px solid ${s.accent}40`, color: s.accent, letterSpacing: "0.07em", textTransform: "uppercase" }}>{s.label}</span>
-                </div>
-                <div style={{ position: "absolute", top: 14, right: 18, display: "flex", alignItems: "baseline", gap: 4 }}>
-                  <span style={{ fontSize: 15, fontWeight: 900, color: s.accent, letterSpacing: "-0.02em" }}>{s.earn}</span>
-                </div>
-                <div style={{ position: "absolute", bottom: 14, left: 18, right: 18 }}>
-                  <h3 style={{ fontSize: 19, fontWeight: 900, letterSpacing: "-0.02em", color: "var(--ink)", margin: 0 }}>{s.title}</h3>
-                  <div style={{ fontSize: 10.5, color: "var(--ink-3)", marginTop: 2 }}>{s.per}</div>
-                </div>
+            <div
+              key={i}
+              className="prem-svc-card"
+              style={{
+                position: "relative", display: "flex", flexDirection: "column",
+                background: DARK_CARD, border: `1px solid ${DARK_LINE}`, borderRadius: 16,
+                padding: 24,
+                transition: "border-color .25s ease, box-shadow .25s ease, transform .25s ease",
+              }}
+            >
+              <span style={{ alignSelf: "flex-start", fontSize: 9.5, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: ORANGE, background: "rgba(249,115,22,0.10)", border: "1px solid rgba(249,115,22,0.22)", borderRadius: 999, padding: "4px 10px", marginBottom: 16 }}>
+                {s.label}
+              </span>
+              <h3 style={{ fontSize: 17, fontWeight: 700, letterSpacing: "-0.02em", color: "#fff", margin: "0 0 12px", lineHeight: 1.2 }}>{s.title}</h3>
+              <div style={{ marginBottom: 14 }}>
+                <div style={{ fontSize: 27, fontWeight: 800, letterSpacing: "-0.03em", color: "#fff", lineHeight: 1 }}>{s.earn}</div>
+                <div style={{ fontSize: 11, color: "#6B7280", marginTop: 6 }}>{s.per}</div>
               </div>
-              <div style={{ padding: "16px 18px 18px" }}>
-                <p style={{ fontSize: 12.5, color: "var(--ink-3)", lineHeight: 1.7, marginBottom: 12 }}>{s.desc}</p>
-                <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                  {s.points.map((pt, pi) => (
-                    <div key={pi} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                      <div style={{ width: 17, height: 17, borderRadius: 5, background: `${s.accent}16`, border: `1px solid ${s.accent}38`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                        <Check color={s.accent} />
-                      </div>
-                      <span style={{ fontSize: 12, color: "var(--ink-2)" }}>{pt}</span>
-                    </div>
-                  ))}
-                </div>
+              <p style={{ fontSize: 12.5, color: FEAT, lineHeight: 1.6, margin: "0 0 16px" }}>{s.desc}</p>
+              <div style={{ display: "flex", flexDirection: "column", gap: 9, marginTop: "auto" }}>
+                {s.points.map((pt, pi) => (
+                  <div key={pi} style={{ display: "flex", alignItems: "flex-start", gap: 9 }}>
+                    <span style={{ display: "flex", marginTop: 3 }}><Check color={ORANGE} /></span>
+                    <span style={{ fontSize: 12.5, color: FEAT, lineHeight: 1.45 }}>{pt}</span>
+                  </div>
+                ))}
               </div>
             </div>
           ))}
         </div>
-      </div>
 
-      {/* ── NIŠAS ── */}
-      <div style={{ position: "relative", borderRadius: 16, overflow: "hidden", border: "1px solid var(--line)", background: "#fff", boxShadow: cardShadow }}>
-        <div style={{ position: "relative", padding: "24px 26px" }}>
-          <div style={sectionLabel(O)}>Augstvērtīgas nišas Latvijā</div>
-          <p style={{ fontSize: 12.5, color: "var(--ink-3)", lineHeight: 1.65, marginBottom: 16, marginTop: -8 }}>Premium klienti ar lieliem budžetiem — viņi zina, ka AI ietaupa tūkstošus eiro mēnesī.</p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(185px, 1fr))", gap: 9 }}>
-            {niches.map((n) => (
-              <div key={n.title} style={{ padding: "15px 16px", borderRadius: 12, background: "var(--bg)", border: "1px solid var(--line)" }}>
-                <div style={{ marginBottom: 9 }}><EmojiIcon emoji={n.icon} size={20} color={O} strokeWidth={1.75} /></div>
-                <div style={{ fontSize: 12.5, fontWeight: 700, color: "var(--ink)", marginBottom: 4 }}>{n.title}</div>
-                <div style={{ fontSize: 11, color: "var(--ink-3)", lineHeight: 1.55, marginBottom: 9 }}>{n.need}</div>
-                <div style={{ display: "flex", alignItems: "center", gap: 6 }}><Dot color={O} /><span style={{ fontSize: 12, fontWeight: 700, color: O }}>{n.price}</span></div>
-              </div>
-            ))}
-          </div>
+        {/* compact niche pills */}
+        <div className="prem-svc-niches" style={{ position: "relative", display: "flex", gap: 10, marginTop: 16, flexWrap: "wrap" }}>
+          {niches.map((n) => (
+            <div
+              key={n.title}
+              className="prem-niche-pill"
+              style={{
+                flex: "1 1 200px", display: "flex", alignItems: "center", gap: 10,
+                background: DARK_CARD, border: `1px solid ${DARK_LINE}`, borderRadius: 12, padding: "12px 14px",
+                transition: "border-color .25s ease",
+              }}
+            >
+              <span style={{ fontSize: 16, flexShrink: 0, lineHeight: 1 }}>{n.icon}</span>
+              <span style={{ fontSize: 12, fontWeight: 600, color: "#E5E7EB", whiteSpace: "nowrap" }}>{n.title}</span>
+              <span style={{ marginLeft: "auto", fontSize: 12, fontWeight: 700, color: ORANGE, whiteSpace: "nowrap" }}>{n.price}</span>
+            </div>
+          ))}
         </div>
+
+        <style>{`
+          .prem-svc-card:hover {
+            border-color: ${ORANGE} !important;
+            box-shadow: 0 0 0 1px rgba(249,115,22,0.35), 0 20px 44px -22px rgba(249,115,22,0.55);
+            transform: translateY(-3px);
+          }
+          .prem-niche-pill:hover { border-color: rgba(249,115,22,0.6) !important; }
+          @media (max-width: 720px) {
+            .prem-svc-grid { grid-template-columns: 1fr !important; }
+          }
+        `}</style>
       </div>
 
       {/* ── STATISTIKA ── */}
