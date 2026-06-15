@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import EditBar from "@/components/EditBar";
 import { EditProvider } from "@/context/EditContext";
 import { routing } from "@/i18n/routing";
 import { ClerkProvider } from "@clerk/nextjs";
@@ -36,7 +35,6 @@ export default async function RootLayout({
         <ClerkProvider localization={lvLV}>
           <EditProvider>
             {children}
-            <EditBar />
           </EditProvider>
         </ClerkProvider>
       </body>
