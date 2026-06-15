@@ -98,82 +98,6 @@ export function SaturaIntroLessonContent() {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 24, paddingTop: 24 }}>
 
-      {/* ── HERO ── */}
-      <div style={{ position: "relative", borderRadius: 20, overflow: "hidden", border: `1px solid ${P}26`, boxShadow: "0 24px 64px -32px rgba(109,94,243,0.4)" }}>
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(109,94,243,0.10) 0%, rgba(155,143,247,0.05) 55%, #fff 100%)" }} />
-        <img
-          src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&q=85&fit=crop"
-          alt=""
-          style={{ position: "absolute", top: 0, right: 0, width: "46%", height: "100%", objectFit: "cover", opacity: 0.14, maskImage: "linear-gradient(to left, #000, transparent)", WebkitMaskImage: "linear-gradient(to left, #000, transparent)" }}
-        />
-        <div style={{ position: "absolute", top: -120, right: -80, width: 460, height: 460, borderRadius: "50%", background: "radial-gradient(circle, rgba(109,94,243,0.14) 0%, transparent 65%)", pointerEvents: "none" }} />
-        <div style={{ position: "relative", padding: "40px 36px" }}>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "5px 13px", borderRadius: 20, background: `${P}14`, border: `1px solid ${P}33`, marginBottom: 18 }}>
-            <Dot color={P} />
-            <span style={{ fontSize: 10, fontWeight: 700, color: P, letterSpacing: "0.08em", textTransform: "uppercase" }}>Satura Speciālists · 4 bloki · 28 nodarbības</span>
-          </div>
-          <h2 style={{ fontSize: "clamp(20px,4vw,32px)", fontWeight: 900, letterSpacing: "-0.03em", lineHeight: 1.15, marginBottom: 12, color: "var(--ink)" }}>
-            Kā AI maina<br />
-            <span style={{ background: "linear-gradient(135deg, #6D5EF3, #9B8FF7)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>satura radīšanas industriju</span>
-          </h2>
-          <p style={{ fontSize: 13.5, color: "var(--ink-3)", lineHeight: 1.75, maxWidth: 520, marginBottom: 24 }}>
-            Uzņēmumi katru dienu meklē cilvēkus kas palīdz ar saturu. Tu apgūsi 3 pakalpojumus, pelnīsi <strong style={{ color: "var(--ink)" }}>€300–€1 500 mēnesī</strong> un automatizēsi visu procesu.
-          </p>
-          <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-            {[{ c: P, t: "Bez kameras vai sejas" }, { c: G, t: "Klients 3 nedēļās" }, { c: AM, t: "Pilnībā latviski" }].map((b) => (
-              <div key={b.t} style={{ display: "flex", alignItems: "center", gap: 7, padding: "6px 13px", borderRadius: 9, background: "#fff", border: "1px solid var(--line)" }}>
-                <Dot color={b.c} /><span style={{ fontSize: 11.5, fontWeight: 600, color: "var(--ink-2)" }}>{b.t}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* ── 3 PAKALPOJUMI ── */}
-      <div>
-        <div style={sectionLabel(P)}>3 pakalpojumi ko tu apgūsi un pārdosi</div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-          {services.map((s, i) => (
-            <div key={i} style={{ borderRadius: 16, overflow: "hidden", border: `1px solid ${s.accent}2e`, background: "#fff", boxShadow: cardShadow }}>
-              {/* Image header */}
-              <div style={{ position: "relative", height: 130, overflow: "hidden" }}>
-                <img
-                  src={s.img}
-                  alt={s.title}
-                  style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
-                />
-                <div style={{ position: "absolute", inset: 0, background: `linear-gradient(to top, rgba(17,17,17,0.78) 0%, rgba(17,17,17,0.25) 55%, rgba(17,17,17,0.05) 100%)` }} />
-                <div style={{ position: "absolute", inset: 0, background: `linear-gradient(120deg, ${s.accent}33 0%, transparent 60%)`, mixBlendMode: "multiply" }} />
-                {/* earn badge top-right */}
-                <div style={{ position: "absolute", top: 14, right: 16, display: "flex", alignItems: "baseline", gap: 4, background: "rgba(255,255,255,0.92)", borderRadius: 8, padding: "4px 9px" }}>
-                  <span style={{ fontSize: 14, fontWeight: 900, color: s.accent, letterSpacing: "-0.02em" }}>{s.earn}</span>
-                  <span style={{ fontSize: 9, color: "var(--ink-3)", fontWeight: 500 }}>{s.per}</span>
-                </div>
-                {/* label + title bottom */}
-                <div style={{ position: "absolute", bottom: 14, left: 18 }}>
-                  <span style={{ display: "inline-block", fontSize: 9.5, fontWeight: 700, padding: "3px 10px", borderRadius: 20, background: "rgba(255,255,255,0.18)", border: "1px solid rgba(255,255,255,0.35)", color: "#fff", letterSpacing: "0.07em", textTransform: "uppercase", marginBottom: 6, backdropFilter: "blur(4px)" }}>{s.label}</span>
-                  <h3 style={{ fontSize: 19, fontWeight: 900, letterSpacing: "-0.02em", color: "#fff", margin: 0 }}>{s.title}</h3>
-                </div>
-              </div>
-              {/* Content */}
-              <div style={{ padding: "16px 18px 18px" }}>
-                <p style={{ fontSize: 12.5, color: "var(--ink-3)", lineHeight: 1.7, marginBottom: 12 }}>{s.desc}</p>
-                <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                  {s.points.map((pt, pi) => (
-                    <div key={pi} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                      <div style={{ width: 17, height: 17, borderRadius: 5, background: `${s.accent}16`, border: `1px solid ${s.accent}38`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                        <Check color={s.accent} />
-                      </div>
-                      <span style={{ fontSize: 12, color: "var(--ink-2)" }}>{pt}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
       {/* ── DARBA PLŪSMA ── */}
       <div style={{ position: "relative", borderRadius: 16, overflow: "hidden", border: "1px solid var(--line)", background: "#fff", boxShadow: cardShadow }}>
         <div style={{ position: "relative", padding: "22px 22px 18px" }}>
@@ -294,6 +218,82 @@ export function SaturaIntroLessonContent() {
               ))}
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* ── HERO ── */}
+      <div style={{ position: "relative", borderRadius: 20, overflow: "hidden", border: `1px solid ${P}26`, boxShadow: "0 24px 64px -32px rgba(109,94,243,0.4)" }}>
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(109,94,243,0.10) 0%, rgba(155,143,247,0.05) 55%, #fff 100%)" }} />
+        <img
+          src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&q=85&fit=crop"
+          alt=""
+          style={{ position: "absolute", top: 0, right: 0, width: "46%", height: "100%", objectFit: "cover", opacity: 0.14, maskImage: "linear-gradient(to left, #000, transparent)", WebkitMaskImage: "linear-gradient(to left, #000, transparent)" }}
+        />
+        <div style={{ position: "absolute", top: -120, right: -80, width: 460, height: 460, borderRadius: "50%", background: "radial-gradient(circle, rgba(109,94,243,0.14) 0%, transparent 65%)", pointerEvents: "none" }} />
+        <div style={{ position: "relative", padding: "40px 36px" }}>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "5px 13px", borderRadius: 20, background: `${P}14`, border: `1px solid ${P}33`, marginBottom: 18 }}>
+            <Dot color={P} />
+            <span style={{ fontSize: 10, fontWeight: 700, color: P, letterSpacing: "0.08em", textTransform: "uppercase" }}>Satura Speciālists · 4 bloki · 28 nodarbības</span>
+          </div>
+          <h2 style={{ fontSize: "clamp(20px,4vw,32px)", fontWeight: 900, letterSpacing: "-0.03em", lineHeight: 1.15, marginBottom: 12, color: "var(--ink)" }}>
+            Kā AI maina<br />
+            <span style={{ background: "linear-gradient(135deg, #6D5EF3, #9B8FF7)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>satura radīšanas industriju</span>
+          </h2>
+          <p style={{ fontSize: 13.5, color: "var(--ink-3)", lineHeight: 1.75, maxWidth: 520, marginBottom: 24 }}>
+            Uzņēmumi katru dienu meklē cilvēkus kas palīdz ar saturu. Tu apgūsi 3 pakalpojumus, pelnīsi <strong style={{ color: "var(--ink)" }}>€300–€1 500 mēnesī</strong> un automatizēsi visu procesu.
+          </p>
+          <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+            {[{ c: P, t: "Bez kameras vai sejas" }, { c: G, t: "Klients 3 nedēļās" }, { c: AM, t: "Pilnībā latviski" }].map((b) => (
+              <div key={b.t} style={{ display: "flex", alignItems: "center", gap: 7, padding: "6px 13px", borderRadius: 9, background: "#fff", border: "1px solid var(--line)" }}>
+                <Dot color={b.c} /><span style={{ fontSize: 11.5, fontWeight: 600, color: "var(--ink-2)" }}>{b.t}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ── 3 PAKALPOJUMI ── */}
+      <div>
+        <div style={sectionLabel(P)}>3 pakalpojumi ko tu apgūsi un pārdosi</div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+          {services.map((s, i) => (
+            <div key={i} style={{ borderRadius: 16, overflow: "hidden", border: `1px solid ${s.accent}2e`, background: "#fff", boxShadow: cardShadow }}>
+              {/* Image header */}
+              <div style={{ position: "relative", height: 130, overflow: "hidden" }}>
+                <img
+                  src={s.img}
+                  alt={s.title}
+                  style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+                />
+                <div style={{ position: "absolute", inset: 0, background: `linear-gradient(to top, rgba(17,17,17,0.78) 0%, rgba(17,17,17,0.25) 55%, rgba(17,17,17,0.05) 100%)` }} />
+                <div style={{ position: "absolute", inset: 0, background: `linear-gradient(120deg, ${s.accent}33 0%, transparent 60%)`, mixBlendMode: "multiply" }} />
+                {/* earn badge top-right */}
+                <div style={{ position: "absolute", top: 14, right: 16, display: "flex", alignItems: "baseline", gap: 4, background: "rgba(255,255,255,0.92)", borderRadius: 8, padding: "4px 9px" }}>
+                  <span style={{ fontSize: 14, fontWeight: 900, color: s.accent, letterSpacing: "-0.02em" }}>{s.earn}</span>
+                  <span style={{ fontSize: 9, color: "var(--ink-3)", fontWeight: 500 }}>{s.per}</span>
+                </div>
+                {/* label + title bottom */}
+                <div style={{ position: "absolute", bottom: 14, left: 18 }}>
+                  <span style={{ display: "inline-block", fontSize: 9.5, fontWeight: 700, padding: "3px 10px", borderRadius: 20, background: "rgba(255,255,255,0.18)", border: "1px solid rgba(255,255,255,0.35)", color: "#fff", letterSpacing: "0.07em", textTransform: "uppercase", marginBottom: 6, backdropFilter: "blur(4px)" }}>{s.label}</span>
+                  <h3 style={{ fontSize: 19, fontWeight: 900, letterSpacing: "-0.02em", color: "#fff", margin: 0 }}>{s.title}</h3>
+                </div>
+              </div>
+              {/* Content */}
+              <div style={{ padding: "16px 18px 18px" }}>
+                <p style={{ fontSize: 12.5, color: "var(--ink-3)", lineHeight: 1.7, marginBottom: 12 }}>{s.desc}</p>
+                <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                  {s.points.map((pt, pi) => (
+                    <div key={pi} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                      <div style={{ width: 17, height: 17, borderRadius: 5, background: `${s.accent}16`, border: `1px solid ${s.accent}38`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                        <Check color={s.accent} />
+                      </div>
+                      <span style={{ fontSize: 12, color: "var(--ink-2)" }}>{pt}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
