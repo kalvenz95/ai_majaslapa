@@ -42,6 +42,27 @@ export const VOICE_MARKET_THEME: MarketingCourseVisualTheme = {
   requirementsHeadingColor: "#f97316",
 };
 
+/** Content specialist — violet + lilac */
+export const SATURA_MARKET_THEME: MarketingCourseVisualTheme = {
+  accentHex: "#a855f7",
+  accentSecondaryHex: "#c084fc",
+  accentGradientCss: "linear-gradient(135deg, #a855f7, #c084fc)",
+  tintBg: "rgba(168,85,247,0.12)",
+  tintBg2: "rgba(192,132,252,0.08)",
+  tintBorder: "rgba(168,85,247,0.3)",
+  tintBorderSecondary: "rgba(192,132,252,0.22)",
+  orbRgbComma: "168,85,247",
+  accentSecondaryRgbComma: "192,132,252",
+  videoBgGradient: "linear-gradient(135deg, #0d0a1a 0%, #110a1f 100%)",
+  curriculumModuleBorderOpen: "1px solid rgba(168,85,247,0.28)",
+  lessonNextBtnTextColor: "#fff",
+  lessonNextBtnShadowRgb: "168,85,247",
+  requirementsBoxBg: "rgba(168,85,247,0.10)",
+  requirementsBoxBorder: "1px solid rgba(168,85,247,0.2)",
+  requirementsCheckColor: "#a855f7",
+  requirementsHeadingColor: "#a855f7",
+};
+
 /** Social management — violet + pink */
 export const SOCIAL_MARKET_THEME: MarketingCourseVisualTheme = {
   accentHex: "#a855f7",

@@ -1,0 +1,191 @@
+import type { AppLocale } from "@/i18n/routing";
+import type { DetailMarketingCourse } from "@/content/marketing/marketingDetailCourse.types";
+
+const saturaLv: DetailMarketingCourse = {
+  title: "Satura Speciālists",
+  subtitle: "AI video, banneri un sociālo tīklu saturs uzņēmumiem",
+  description:
+    "Iemācies veidot AI saturu — no faceless video līdz reklāmas banneriem — un pārdot to uzņēmumiem. No rīku iestatīšanas līdz pirmajam klientam. Bez kameras, bez programmēšanas. Reāls ceļš uz 300€–1500€ mēnesī.",
+  earn: "300€–1500€/mēn",
+  difficulty: "Iesācējs",
+  tag: "Jauns",
+  totalDuration: "6h 40 min",
+  totalLessons: 21,
+  totalModules: 4,
+  students: 134,
+  rating: 4.9,
+  instructor: {
+    name: "Līga Ozola",
+    role: "AI Satura Stratēģe",
+    avatar: "LO",
+    bio: "6+ gadi sociālo mediju satura veidošanā Latvijas zīmoliem. Pēdējos 2 gadus pilnībā pārgājusi uz AI darbplūsmām — faceless video, AI banneri un automatizēta publicēšana. Personīgi apkalpo 9 klientu sociālos kontus.",
+    students: 380,
+    courses: 3,
+  },
+  tools: [
+    { name: "CapCut", desc: "Video montāža un subtitri", color: "#00d4ff" },
+    { name: "Runway ML", desc: "AI video ģenerēšana", color: "#a855f7" },
+    { name: "Pika", desc: "AI video no teksta", color: "#ec4899" },
+    { name: "ChatGPT", desc: "Skripti un captions", color: "#00ff88" },
+    { name: "Canva AI", desc: "Banneri un feed dizains", color: "#f59e0b" },
+    { name: "Midjourney", desc: "Attēlu ģenerēšana", color: "#8b5cf6" },
+    { name: "Buffer", desc: "Publicēšanas grafiks", color: "#ef4444" },
+  ],
+  learn: [
+    "Izveidot AI video bez kameras — no skripta līdz publicēšanai",
+    "Pārvaldīt sociālos tīklus ar AI rīkiem",
+    "Veidot reklāmas bannerus un feed dizainu",
+    "Uzrunāt pirmos klientus ar gatavām ziņu veidnēm",
+    "Sagatavot profesionālu cenu piedāvājumu",
+    "Izveidot portfolio no 0 — pat bez pieredzes",
+    "Nopelnīt 300€–1500€ mēnesī kā Satura Speciālists",
+  ],
+  modules: [
+    {
+      id: 1,
+      title: "Ievads — Kā nopelnīt ar AI saturu",
+      duration: "38 min",
+      lessons: [
+        { id: "1-1", title: "Kā darbojas sociālo mediju tirgus Latvijā", type: "video", duration: "8 min", free: true, description: "Kāpēc uzņēmumi maksā par sociālo mediju saturu, kādas platformas dominē Latvijā un kā AI maina šo nozari — ar reāliem cenu piemēriem." },
+        { id: "1-2", title: "Kādus pakalpojumus vari piedāvāt uzreiz", type: "video", duration: "10 min", free: true, description: "Konkrēts pakalpojumu saraksts, ko vari sākt pārdot jau šonedēļ — video, banneri, feed pārvaldība." },
+        { id: "1-3", title: "Rīku komplekts iesācējam (bezmaksas + maksas)", type: "text", duration: "6 min", description: "Pilns rīku saraksts ar saitēm — kuras bezmaksas versijas pietiek sākumā un kuras maksas atmaksājas." },
+        { id: "1-4", title: "Pirmais klients — reāls piemērs", type: "video", duration: "14 min", description: "Soli pa solim, kā tika iegūts pirmais klients — no ziņas līdz €400/mēn līgumam." },
+      ],
+    },
+    {
+      id: 2,
+      title: "AI Faceless Video — no nulles līdz publicēšanai",
+      duration: "2h 10 min",
+      lessons: [
+        { id: "2-1", title: "Kontu iestatīšana: CapCut, Canva, ChatGPT", type: "video", duration: "18 min", description: "Uzstādām visus rīkus pareizi no pirmās reizes — konti, iestatījumi un darba mape." },
+        { id: "2-2", title: "Skripta veidošana ar AI — pilns process", type: "video", duration: "22 min", description: "Prompt formulas, kas dod gatavu video skriptu pirmajā reizē — hook, saturs, CTA." },
+        { id: "2-3", title: "Video ģenerēšana: Runway, Pika, Kling", type: "video", duration: "30 min", description: "Praktiska AI video ģenerēšana — stila izvēle, kustība, ilgums un eksportēšana." },
+        { id: "2-4", title: "Subtitri, mūzika un montāža", type: "video", duration: "25 min", description: "Auto subtitri, mūzikas izvēle un montāža CapCut — video gatavs 15 minūtēs." },
+        { id: "2-5", title: "Publicēšana un laiku plānošana", type: "video", duration: "15 min", description: "Kad un kā publicēt, lai saturs sasniedz maksimālo auditoriju." },
+        { id: "2-6", title: "Klientam — ziņojums un nodošana", type: "text", duration: "20 min", description: "Gatavs nodošanas template — kā prezentēt video klientam un saņemt apstiprinājumu." },
+      ],
+    },
+    {
+      id: 3,
+      title: "Sociālo Tīklu Pārvaldība ar AI",
+      duration: "2h 30 min",
+      lessons: [
+        { id: "3-1", title: "Klienta auditorijas analīze ar AI", type: "video", duration: "20 min", description: "AI prompti, kas dažās minūtēs sniedz klienta auditorijas profilu un satura virzienus." },
+        { id: "3-2", title: "Content plāna veidošana (30 dienas)", type: "video", duration: "25 min", description: "30 dienu satura plāns vienā piegājienā — tēmas, formāti un publicēšanas ritms." },
+        { id: "3-3", title: "AI banneru radīšana Canvā", type: "video", duration: "22 min", description: "Magic Design, brand kit un AI fona noņemšana — komerciāli banneri sekundēs." },
+        { id: "3-4", title: "Instagram un TikTok feed dizains", type: "video", duration: "28 min", description: "Kā plānot feed, lai 9 posti izskatās kā viens saskaņots dizains." },
+        { id: "3-5", title: "Copy ar AI — caption, hashtagi, CTA", type: "video", duration: "20 min", description: "Prompt sistēma mēneša captions ģenerēšanai — ar hashtagiem un aicinājumiem uz darbību." },
+        { id: "3-6", title: "Ikmēneša atskaite klientam", type: "text", duration: "15 min", description: "Lejupielādējams atskaites template ar rādītājiem, ko klienti saprot un novērtē." },
+      ],
+    },
+    {
+      id: 4,
+      title: "Portfolio, Klienti un Pirmā Nauda",
+      duration: "1h 22 min",
+      lessons: [
+        { id: "4-1", title: "Portfolio no 0 — bez pieredzes", type: "video", duration: "20 min", description: "Kā izveidot pārliecinošu portfolio, pat ja vēl nav neviena reāla klienta." },
+        { id: "4-2", title: "Klientu uzrunāšana: DM un e-pasta veidnes", type: "text", duration: "15 min", description: "5 copy-paste ziņu veidnes ar reāliem rezultātiem — DM un e-pasts." },
+        { id: "4-3", title: "Cenu piedāvājums — ko iekļaut", type: "video", duration: "18 min", description: "Kā sagatavot piedāvājumu, kas izskatās profesionāli un attaisno cenu." },
+        { id: "4-4", title: "Pirmā tikšanās ar klientu — kā runāt", type: "video", duration: "15 min", description: "Sarunas struktūra pirmajam zvanam — ko teikt un kā noslēgt darījumu." },
+        { id: "4-5", title: "Līgums, rēķins un samaksa", type: "text", duration: "14 min", description: "Vienkāršs līgums un rēķina template latviešu valodā — gatavs lietošanai." },
+      ],
+    },
+  ],
+};
+
+const saturaEn: DetailMarketingCourse = {
+  title: "Content Specialist",
+  subtitle: "AI video, banners, and social content for businesses",
+  description:
+    "Learn to ship AI-powered content—from faceless video to ad banners—and sell it to businesses. From tooling setup through your first paid client. No camera, no engineering. A real path to €300–€1,500/month.",
+  earn: "€300–€1,500/mo",
+  difficulty: "Beginner",
+  tag: "New",
+  totalDuration: "6h 40 min",
+  totalLessons: 21,
+  totalModules: 4,
+  students: 134,
+  rating: 4.9,
+  instructor: {
+    name: "Līga Ozola",
+    role: "AI Content Strategist",
+    avatar: "LO",
+    bio: "Six years building social content for Latvian brands, the last two fully on AI workflows—faceless video, AI banners, and automated publishing. Personally operates social accounts for nine clients.",
+    students: 380,
+    courses: 3,
+  },
+  tools: [
+    { name: "CapCut", desc: "Editing and captions", color: "#00d4ff" },
+    { name: "Runway ML", desc: "Generative AI video", color: "#a855f7" },
+    { name: "Pika", desc: "Text-to-video", color: "#ec4899" },
+    { name: "ChatGPT", desc: "Scripts and captions", color: "#00ff88" },
+    { name: "Canva AI", desc: "Banners and feed design", color: "#f59e0b" },
+    { name: "Midjourney", desc: "Image generation", color: "#8b5cf6" },
+    { name: "Buffer", desc: "Publishing calendar", color: "#ef4444" },
+  ],
+  learn: [
+    "Produce AI-assisted video without going on camera—from script to publish",
+    "Operate social feeds with AI tools",
+    "Design ad creatives and carousel-ready layouts",
+    "Reach first clients with proven DM + email skeletons",
+    "Package pricing proposals that feel premium",
+    "Build a credible portfolio starting from zero",
+    "Earn €300–€1,500/month as a Content Specialist",
+  ],
+  modules: [
+    {
+      id: 1,
+      title: "Intro — Making money with AI content",
+      duration: "38 min",
+      lessons: [
+        { id: "1-1", title: "How the social content market works in Latvia", type: "video", duration: "8 min", free: true, description: "Why SMBs pay for social operations, which platforms matter locally, and how AI compresses production time—with pricing snapshots." },
+        { id: "1-2", title: "Services you can sell immediately", type: "video", duration: "10 min", free: true, description: "A concrete service menu you can start selling this week—video, banners, feed management." },
+        { id: "1-3", title: "Tool stack for beginners (free + paid)", type: "text", duration: "6 min", description: "The full toolkit with links—which free tiers are enough and which paid ones pay off." },
+        { id: "1-4", title: "First client walkthrough (real example)", type: "video", duration: "14 min", description: "Step by step, how the first client was landed—from a single DM to a €400/mo retainer." },
+      ],
+    },
+    {
+      id: 2,
+      title: "AI Faceless Video — zero to published",
+      duration: "2h 10 min",
+      lessons: [
+        { id: "2-1", title: "Account setup: CapCut, Canva, ChatGPT", type: "video", duration: "18 min", description: "Set up every tool right the first time—accounts, settings, and your working folder." },
+        { id: "2-2", title: "Scripting with AI — full workflow", type: "video", duration: "22 min", description: "Prompt formulas that produce a ready video script first try—hook, body, CTA." },
+        { id: "2-3", title: "Video generation labs: Runway, Pika, Kling", type: "video", duration: "30 min", description: "Hands-on AI video generation—style, motion, duration, and exports." },
+        { id: "2-4", title: "Music, captions, and editing polish", type: "video", duration: "25 min", description: "Auto captions, music selection, and editing in CapCut—video ready in 15 minutes." },
+        { id: "2-5", title: "Publishing calendars that clients understand", type: "video", duration: "15 min", description: "When and how to publish so content reaches the widest audience." },
+        { id: "2-6", title: "Client handoff memo + asset package", type: "text", duration: "20 min", description: "A ready handoff template—how to present the video and get sign-off." },
+      ],
+    },
+    {
+      id: 3,
+      title: "Social Media OS with AI",
+      duration: "2h 30 min",
+      lessons: [
+        { id: "3-1", title: "Audience research prompts that save hours", type: "video", duration: "20 min", description: "AI prompts that profile a client's audience and content angles in minutes." },
+        { id: "3-2", title: "30-day content blueprint", type: "video", duration: "25 min", description: "A 30-day content plan in one pass—topics, formats, and publishing rhythm." },
+        { id: "3-3", title: "Canva automation for promo suites", type: "video", duration: "22 min", description: "Magic Design, brand kit, and AI background removal—commercial banners in seconds." },
+        { id: "3-4", title: "Instagram & TikTok feed systems", type: "video", duration: "28 min", description: "How to plan a feed so nine posts read as one cohesive design." },
+        { id: "3-5", title: "AI copy for captions, hooks, CTAs", type: "video", duration: "20 min", description: "A prompt system for monthly captions—with hashtags and calls to action." },
+        { id: "3-6", title: "Monthly client reporting template", type: "text", duration: "15 min", description: "A downloadable reporting template with KPIs clients understand and value." },
+      ],
+    },
+    {
+      id: 4,
+      title: "Portfolio, Outreach, First Revenue",
+      duration: "1h 22 min",
+      lessons: [
+        { id: "4-1", title: "Portfolio from scratch (no fluff)", type: "video", duration: "20 min", description: "How to build a convincing portfolio even before your first real client." },
+        { id: "4-2", title: "DM + email scripts that booked meetings", type: "text", duration: "15 min", description: "Five copy-paste outreach templates with real results—DM and email." },
+        { id: "4-3", title: "Commercial proposals — what buyers expect", type: "video", duration: "18 min", description: "How to package a proposal that looks professional and justifies the price." },
+        { id: "4-4", title: "Discovery call flow for nervous founders", type: "video", duration: "15 min", description: "A first-call structure—what to say and how to close the deal." },
+        { id: "4-5", title: "Contracts, invoices, and getting paid", type: "text", duration: "14 min", description: "A simple contract and invoice template, ready to use." },
+      ],
+    },
+  ],
+};
+
+export const saturaMarketingCourseByLocale: Record<AppLocale, DetailMarketingCourse> = {
+  lv: saturaLv,
+  en: saturaEn,
+};
