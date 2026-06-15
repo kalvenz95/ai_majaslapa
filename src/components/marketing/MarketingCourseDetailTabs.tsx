@@ -9,6 +9,7 @@ import type {
 } from "@/content/marketing/marketingDetailCourse.types";
 import { useMessages, useTranslations } from "next-intl";
 import type { MarketingCourseVisualTheme } from "./marketingCourseDetailTabs.types";
+import { BrandLogo, hasBrandLogo } from "@/components/BrandLogos";
 
 type LessonType = DetailLessonType;
 
@@ -257,8 +258,8 @@ export function MarketingCourseToolsTab({
               (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)";
             }}
           >
-            <div style={{ width: 44, height: 44, borderRadius: 12, flexShrink: 0, background: `${tool.color}18`, border: `1px solid ${tool.color}33`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>
-              {toolEmoji[tool.name] || "🔧"}
+            <div style={{ width: 44, height: 44, borderRadius: 12, flexShrink: 0, background: `${tool.color}18`, border: `1px solid ${tool.color}33`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, color: tool.color }}>
+              {hasBrandLogo(tool.name) ? <BrandLogo name={tool.name} size={20} /> : (toolEmoji[tool.name] || "🔧")}
             </div>
             <div>
               <div style={{ fontSize: 14, fontWeight: 700, color: "var(--ink)", marginBottom: 3 }}>{tool.name}</div>

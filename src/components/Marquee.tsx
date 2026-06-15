@@ -1,5 +1,7 @@
 "use client";
 
+import { BrandLogo, hasBrandLogo } from "@/components/BrandLogos";
+
 const tools = [
   "Claude", "Vapi", "Make.com", "n8n", "ElevenLabs", "Vonage",
   "Midjourney", "Voiceflow", "Runway", "HeyGen", "Manychat",
@@ -27,20 +29,27 @@ export default function Marquee() {
         }}
       >
         <div style={{ display: "flex", gap: 44, animation: "marquee 55s linear infinite", width: "max-content" }}>
-          {doubled.map((t, i) => (
-            <span
-              key={i}
-              style={{
-                display: "inline-flex", alignItems: "center", gap: 10,
-                fontSize: 18, color: "var(--ink-2)", whiteSpace: "nowrap",
-                fontWeight: 600, letterSpacing: "-0.01em",
-                fontFamily: "var(--font-sans)",
-              }}
-            >
-              <span style={{ width: 7, height: 7, borderRadius: 999, background: i % 3 === 0 ? "var(--accent)" : i % 3 === 1 ? "var(--accent-2)" : "var(--accent-3)", flexShrink: 0, display: "inline-block" }} />
-              {t}
-            </span>
-          ))}
+          {doubled.map((t, i) => {
+            const accent = i % 3 === 0 ? "var(--accent)" : i % 3 === 1 ? "var(--accent-2)" : "var(--accent-3)";
+            return (
+              <span
+                key={i}
+                style={{
+                  display: "inline-flex", alignItems: "center", gap: 10,
+                  fontSize: 18, color: "var(--ink-2)", whiteSpace: "nowrap",
+                  fontWeight: 600, letterSpacing: "-0.01em",
+                  fontFamily: "var(--font-sans)",
+                }}
+              >
+                {hasBrandLogo(t) ? (
+                  <span style={{ display: "inline-flex", color: accent, flexShrink: 0 }}><BrandLogo name={t} size={18} /></span>
+                ) : (
+                  <span style={{ width: 7, height: 7, borderRadius: 999, background: accent, flexShrink: 0, display: "inline-block" }} />
+                )}
+                {t}
+              </span>
+            );
+          })}
         </div>
       </div>
     </div>

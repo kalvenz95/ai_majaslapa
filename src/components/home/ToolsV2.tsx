@@ -1,17 +1,17 @@
 "use client";
 
 import { Reveal } from "@/components/home/Reveal";
-import { Bot, Zap, Film, Mic2, MessageSquare, Link2, Palette, Volume2 } from "lucide-react";
+import { BrandLogo } from "@/components/BrandLogos";
 
 const tools = [
-  { name: "Claude", desc: "AI asistents & skripting", Icon: Bot, color: "#A89DFF", glow: "139,123,255" },
-  { name: "ChatGPT", desc: "Teksts & satura ģenerēšana", Icon: MessageSquare, color: "#34D9C3", glow: "52,217,195" },
-  { name: "Vapi", desc: "Balss AI aģenti", Icon: Mic2, color: "#A89DFF", glow: "139,123,255" },
-  { name: "Make.com", desc: "Vizuālā automatizācija", Icon: Zap, color: "#FFB86B", glow: "255,184,107" },
-  { name: "n8n", desc: "Workflow Builder", Icon: Link2, color: "#FFB86B", glow: "255,184,107" },
-  { name: "Midjourney", desc: "AI attēlu ģenerēšana", Icon: Palette, color: "#34D9C3", glow: "52,217,195" },
-  { name: "ElevenLabs", desc: "AI balss sintēze", Icon: Volume2, color: "#A89DFF", glow: "139,123,255" },
-  { name: "Runway", desc: "AI video ģenerēšana", Icon: Film, color: "#34D9C3", glow: "52,217,195" },
+  { name: "Claude", desc: "AI asistents & skripting", glow: "139,123,255" },
+  { name: "ChatGPT", desc: "Teksts & satura ģenerēšana", glow: "52,217,195" },
+  { name: "Vapi", desc: "Balss AI aģenti", glow: "139,123,255" },
+  { name: "Make.com", desc: "Vizuālā automatizācija", glow: "255,184,107" },
+  { name: "n8n", desc: "Workflow Builder", glow: "255,184,107" },
+  { name: "Midjourney", desc: "AI attēlu ģenerēšana", glow: "52,217,195" },
+  { name: "ElevenLabs", desc: "AI balss sintēze", glow: "139,123,255" },
+  { name: "Runway", desc: "AI video ģenerēšana", glow: "52,217,195" },
 ];
 
 export default function ToolsV2() {
@@ -83,8 +83,9 @@ export default function ToolsV2() {
                   border: `1px solid rgba(${tool.glow},0.35)`,
                   boxShadow: `0 8px 22px -8px rgba(${tool.glow},0.5)`,
                   display: "flex", alignItems: "center", justifyContent: "center",
+                  color: "#fff",
                 }}>
-                  <tool.Icon size={18} color={tool.color} strokeWidth={2} />
+                  <BrandLogo name={tool.name} size={20} />
                 </span>
                 <span>
                   <span style={{ display: "block", fontSize: 14.5, fontWeight: 700, color: "#fff", marginBottom: 3, letterSpacing: "-0.015em", fontFamily: "var(--font-sans)" }}>{tool.name}</span>
