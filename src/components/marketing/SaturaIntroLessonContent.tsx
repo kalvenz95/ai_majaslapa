@@ -25,29 +25,26 @@ const services = [
   {
     accent: P, accent2: P2,
     label: "Pakalpojums #1",
-    title: "AI Faceless Video",
-    earn: "€200–€600", per: "par video pakotni",
-    desc: "Video bez kameras — scenārijs ar AI, ģenerēšana Runway/HeyGen, montāža CapCut. Klients saņem gatavu pakotni.",
-    points: ["Bez sejas, bez kameras, bez pieredzes", "Runway ML + HeyGen + CapCut workflow", "30 min darbs = pilna video pakotne"],
-    img: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=900&q=85&fit=crop",
+    title: "Sociālo Tīklu Pārvaldība",
+    desc: "Pārvaldi uzņēmumu sociālos tīklus — satura grafiks, trendu izpēte, banneri un captions. Klients apstiprina, tu publicē automātiski ar Buffer.",
+    points: ["Biznesa kontu vadība un aktuālie trendi", "Canva AI + Midjourney banneri un vizuāļi", "Buffer automātiskā publicēšana un atskaites"],
+    img: "https://images.unsplash.com/photo-1611926653458-09294b3142bf?w=900&q=85&fit=crop",
   },
   {
     accent: G, accent2: C,
     label: "Pakalpojums #2",
-    title: "Sociālo Tīklu Pārvaldība",
-    earn: "€300–€800", per: "mēnesī / klients",
-    desc: "Ikmēneša satura grafiks, banneri, carousels un captions. Klients apstiprina, tu publicē automātiski ar Buffer.",
-    points: ["Canva AI + Midjourney vizuāļi", "Buffer automātiskā publicēšana", "Ikmēneša atskaite un statistika"],
-    img: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=900&q=85&fit=crop",
+    title: "Faceless Video & AI Attēli",
+    desc: "Video bez kameras — scenārijs ar AI, ģenerēšana Runway/HeyGen, montāža CapCut. Plus profesionāli AI attēli ar Midjourney.",
+    points: ["Bez sejas, bez kameras, bez pieredzes", "Runway ML + HeyGen + CapCut workflow", "AI attēlu ģenerēšana ar Midjourney"],
+    img: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=900&q=85&fit=crop",
   },
   {
     accent: AM, accent2: P,
     label: "Pakalpojums #3",
     title: "Klientu Atrašana",
-    earn: "€300–€1 500", per: "mēnesī (3–4 klienti)",
     desc: "Portfolio no nulles, cold outreach skripti un pirmā tikšanās. No kontakta līdz parakstītam līgumam.",
     points: ["Copy-paste outreach veidnes (e-pasts + DM)", "Reāls piemērs no pirmā zvana", "Kā celt cenu pēc pirmā mēneša"],
-    img: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&q=85&fit=crop",
+    img: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=900&q=85&fit=crop",
   },
 ];
 
@@ -267,11 +264,6 @@ export function SaturaIntroLessonContent() {
                 />
                 <div style={{ position: "absolute", inset: 0, background: `linear-gradient(to top, rgba(17,17,17,0.78) 0%, rgba(17,17,17,0.25) 55%, rgba(17,17,17,0.05) 100%)` }} />
                 <div style={{ position: "absolute", inset: 0, background: `linear-gradient(120deg, ${s.accent}33 0%, transparent 60%)`, mixBlendMode: "multiply" }} />
-                {/* earn badge top-right */}
-                <div style={{ position: "absolute", top: 14, right: 16, display: "flex", alignItems: "baseline", gap: 4, background: "rgba(255,255,255,0.92)", borderRadius: 8, padding: "4px 9px" }}>
-                  <span style={{ fontSize: 14, fontWeight: 900, color: s.accent, letterSpacing: "-0.02em" }}>{s.earn}</span>
-                  <span style={{ fontSize: 9, color: "var(--ink-3)", fontWeight: 500 }}>{s.per}</span>
-                </div>
                 {/* label + title bottom */}
                 <div style={{ position: "absolute", bottom: 14, left: 18 }}>
                   <span style={{ display: "inline-block", fontSize: 9.5, fontWeight: 700, padding: "3px 10px", borderRadius: 20, background: "rgba(255,255,255,0.18)", border: "1px solid rgba(255,255,255,0.35)", color: "#fff", letterSpacing: "0.07em", textTransform: "uppercase", marginBottom: 6, backdropFilter: "blur(4px)" }}>{s.label}</span>
