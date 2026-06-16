@@ -152,25 +152,6 @@ export function CourseExperience({
                 </p>
               </Reveal>
 
-              <Reveal delay={0.18}>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 22, margin: "28px 0 0" }}>
-                  {[
-                    { v: course.totalModules, l: "moduļi" },
-                    { v: totalLessons, l: "nodarbības" },
-                    { v: course.totalDuration, l: "satura" },
-                    { v: `${course.students}+`, l: "studenti" },
-                  ].map((s) => (
-                    <div key={s.l} style={{ display: "flex", alignItems: "baseline", gap: 6 }}>
-                      <span className="metric" style={{ fontSize: 22, color: "var(--ink)" }}>{s.v}</span>
-                      <span style={{ fontSize: 13, color: "var(--ink-3)" }}>{s.l}</span>
-                    </div>
-                  ))}
-                  <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                    <Star /><span style={{ fontSize: 15, fontWeight: 700, color: "#C77A1A" }}>{course.rating}</span>
-                  </div>
-                </div>
-              </Reveal>
-
               {/* progress */}
               <Reveal delay={0.24}>
                 <div style={{ margin: "28px 0 0", maxWidth: 440 }}>
@@ -227,7 +208,7 @@ export function CourseExperience({
       {/* ════ 3 · ROADMAP ════ */}
       <section style={{ padding: `${sectionPad} 0` }}>
         <div className="lp-container" style={{ maxWidth: 1180, margin: "0 auto", padding: "0 28px" }}>
-          <SectionHead eyebrow="Tavs ceļš" title={<>No nulles līdz <span className="v2-grad">pirmajai naudai</span></>} />
+          <SectionHead eyebrow="Tavs ceļš" title={<>No nulles līdz <span className="v2-grad">pirmajiem klientiem</span></>} />
           <div className="ce-roadmap" style={{ display: "grid", gridTemplateColumns: `repeat(${course.modules.length}, 1fr)`, gap: 14, marginTop: 48 }}>
             {course.modules.map((mod, i) => (
               <Reveal key={mod.id} delay={0.06 * i} style={{ height: "100%" }}>
