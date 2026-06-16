@@ -64,6 +64,35 @@ const MOCK_LESSONS = [
 ];
 const MOCK_BARS = [28, 42, 36, 55, 48, 70, 62, 88];
 
+/* ── Hero particle field ──────────────────────────────────────────────
+ * Deterministic dot cloud (seeded PRNG → identical SSR/CSR, no hydration
+ * mismatch). Rendered as crisp SVG so it stays razor-sharp at any size.
+ * Concentrated up top behind the headline, fading toward the bottom. */
+function mulberry32(seed: number) {
+  return function () {
+    seed |= 0;
+    seed = (seed + 0x6d2b79f5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+const HERO_VW = 1000;
+const HERO_VH = 600;
+const HERO_PARTICLES = (() => {
+  const rand = mulberry32(20260617);
+  return Array.from({ length: 300 }, () => {
+    const x = rand() * HERO_VW;
+    const y = Math.pow(rand(), 1.25) * HERO_VH; // bias upward
+    const depthFade = Math.pow(1 - y / HERO_VH, 1.35); // brighter near top
+    const r = 1.1 + rand() * 2.4;
+    const teal = rand() > 0.74;
+    const op = +(depthFade * (0.18 + rand() * 0.5)).toFixed(3);
+    return { x: +x.toFixed(1), y: +y.toFixed(1), r: +r.toFixed(2), teal, op };
+  });
+})();
+
 /** Dark product dashboard — animates to life when it scrolls into view. */
 function DashboardMock({ reduce }: { reduce: boolean }) {
   const vp = { once: true, margin: "-60px" } as const;
@@ -303,11 +332,31 @@ export default function HeroV2() {
           "radial-gradient(38% 40% at 88% 8%, color-mix(in oklab, var(--accent-2) 13%, transparent), transparent 60%)," +
           "radial-gradient(46% 50% at 55% 105%, color-mix(in oklab, var(--accent-3) 11%, transparent), transparent 64%)",
       }} />
-      <div aria-hidden className="dot-grid" style={{
-        position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none", opacity: 0.38,
-        maskImage: "radial-gradient(75% 55% at 50% 18%, #000 0%, transparent 78%)",
-        WebkitMaskImage: "radial-gradient(75% 55% at 50% 18%, #000 0%, transparent 78%)",
-      }} />
+      {/* Particle field — crisp SVG dot cloud, sharp at any resolution */}
+      <div aria-hidden style={{
+        position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none",
+        maskImage: "radial-gradient(82% 60% at 50% 6%, #000 0%, transparent 78%)",
+        WebkitMaskImage: "radial-gradient(82% 60% at 50% 6%, #000 0%, transparent 78%)",
+      }}>
+        <svg
+          width="100%"
+          height="100%"
+          viewBox={`0 0 ${HERO_VW} ${HERO_VH}`}
+          preserveAspectRatio="xMidYMin slice"
+          style={{ display: "block" }}
+        >
+          {HERO_PARTICLES.map((p, i) => (
+            <circle
+              key={i}
+              cx={p.x}
+              cy={p.y}
+              r={p.r}
+              fill={p.teal ? "var(--accent-2)" : "var(--accent)"}
+              opacity={p.op}
+            />
+          ))}
+        </svg>
+      </div>
 
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 28px", position: "relative", zIndex: 1, textAlign: "center" }}>
         <motion.div initial={skipMotion ? false : "hidden"} animate="visible" variants={parent}>
