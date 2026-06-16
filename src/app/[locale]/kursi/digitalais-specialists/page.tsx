@@ -9,6 +9,7 @@ import { CourseExperience } from "@/components/course/CourseExperience";
 import { stackToCourse } from "@/components/course/stackToCourse";
 import { DigitaalaisIntroLessonContent } from "@/components/marketing/DigitaalaisIntroLessonContent";
 import { MajaslapaFunkcijuPiemeri } from "@/components/marketing/MajaslapaFunkcijuPiemeri";
+import { MajaslapaIevads } from "@/components/marketing/MajaslapaIevads";
 
 const TOOLS = [
   { name: "Framer", desc: "Mājaslapa bez koda", color: "#6D5EF3" },
@@ -50,6 +51,9 @@ export default function DigitaalaisSpecialistsPage() {
         }
       : undefined;
 
+  const moduleExtras: Record<number, ReactNode> | undefined =
+    locale === "lv" ? { 2: <MajaslapaIevads /> } : undefined;
+
   return (
     <CourseExperience
       course={course}
@@ -59,6 +63,7 @@ export default function DigitaalaisSpecialistsPage() {
       glow="0,191,165"
       lessonTheme={CHATBOT_MARKET_THEME}
       lessonExtras={lessonExtras}
+      moduleExtras={moduleExtras}
       incomeLadder={[
         { clients: "1. klients", price: "€500–€900", note: "Pirmā mājaslapa" },
         { clients: "2–3 klienti", price: "€1 000–€3 600", note: "Stabils ienākums" },

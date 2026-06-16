@@ -34,6 +34,8 @@ export type CourseExperienceProps = {
   lessonTheme: MarketingCourseVisualTheme;
   /** Per-lesson rich content keyed by lesson id (LV only) */
   lessonExtras?: Record<string, ReactNode>;
+  /** Per-module rich content rendered below a module block, keyed by module id (LV only) */
+  moduleExtras?: Record<number, ReactNode>;
   /** Income ladder for the "Real examples" section */
   incomeLadder?: IncomeStep[];
 };
@@ -71,7 +73,7 @@ const typeIcon = (t: DetailLessonType, s = 16) => {
 };
 
 export function CourseExperience({
-  course, accent, accent2, glow, category, lessonTheme, lessonExtras, incomeLadder,
+  course, accent, accent2, glow, category, lessonTheme, lessonExtras, moduleExtras, incomeLadder,
 }: CourseExperienceProps) {
   const [openModules, setOpenModules] = useState<number[]>([course.modules[0]?.id].filter(Boolean) as number[]);
   const [activeLesson, setActiveLesson] = useState<DetailLesson | null>(null);
@@ -247,8 +249,10 @@ export function CourseExperience({
           <div style={{ display: "flex", flexDirection: "column", gap: 16, marginTop: 48 }}>
             {course.modules.map((mod, i) => {
               const open = openModules.includes(mod.id);
+              const extra = moduleExtras?.[mod.id];
               return (
-                <Reveal key={mod.id} delay={0.03 * i}>
+                <div key={mod.id}>
+                <Reveal delay={0.03 * i}>
                   <div style={{ borderRadius: 22, background: "var(--bg-1)", border: `1px solid ${open ? `rgba(${glow},0.4)` : "var(--line)"}`, boxShadow: open ? `0 24px 60px -34px rgba(${glow},0.45)` : "var(--shadow-md)", overflow: "hidden", transition: "border-color 0.25s ease, box-shadow 0.25s ease" }}>
                     <button type="button" onClick={() => toggle(mod.id)} style={{ width: "100%", display: "flex", alignItems: "center", gap: 18, padding: "24px 26px", textAlign: "left", background: "transparent", cursor: "pointer" }}>
                       <span style={{ width: 46, height: 46, borderRadius: 14, flexShrink: 0, background: open ? gradient : `rgba(${glow},0.10)`, border: open ? "none" : `1px solid rgba(${glow},0.25)`, color: open ? "#fff" : accent, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, fontSize: 17 }}>{mod.id}</span>
@@ -307,6 +311,8 @@ export function CourseExperience({
                     )}
                   </div>
                 </Reveal>
+                {extra && <div style={{ marginTop: 16 }}>{extra}</div>}
+                </div>
               );
             })}
           </div>
