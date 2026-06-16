@@ -3,7 +3,6 @@
 import { useState } from "react";
 import type { ReactNode } from "react";
 import { Reveal } from "@/components/home/Reveal";
-import { BrandLogo, hasBrandLogo } from "@/components/BrandLogos";
 import { MarketingCourseLessonView } from "@/components/marketing/MarketingCourseDetailTabs";
 import type { MarketingCourseVisualTheme } from "@/components/marketing/marketingCourseDetailTabs.types";
 import type {
@@ -115,7 +114,6 @@ export function CourseExperience({
   if (activeLesson) {
     return (
       <div style={{ background: "var(--bg)", minHeight: "100vh", color: "var(--ink)" }}>
-        <CourseNav course={course} accent={accent} gradient={gradient} />
         <MarketingCourseLessonView
           lesson={activeLesson}
           lessonTypeLabel={lessonTypeLabel}
@@ -132,8 +130,6 @@ export function CourseExperience({
 
   return (
     <div style={{ background: "var(--bg)", color: "var(--ink)", overflowX: "clip", fontFamily: "var(--font-sans)" }}>
-      <CourseNav course={course} accent={accent} gradient={gradient} />
-
       {/* ════ 1 · HERO ════ */}
       <section style={{ position: "relative", padding: `clamp(56px,8vw,96px) 0 ${sectionPad}`, overflow: "hidden" }}>
         <div aria-hidden className="v2-mesh-blob v2-mesh-1" style={{ width: 520, height: 520, top: -160, right: -120, background: `radial-gradient(circle, rgba(${glow},0.20), transparent 70%)` }} />
@@ -317,30 +313,6 @@ export function CourseExperience({
         </div>
       </section>
 
-      {/* ════ 6 · TOOLS ════ */}
-      {course.tools.length > 0 && (
-      <section style={{ padding: `${sectionPad} 0` }}>
-        <div className="lp-container" style={{ maxWidth: 1180, margin: "0 auto", padding: "0 28px" }}>
-          <SectionHead eyebrow="Rīki" title={<>Platformas, ko <span className="v2-grad">apgūsi</span></>} />
-          <div className="ce-tools" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 14, marginTop: 48 }}>
-            {course.tools.map((tool, i) => (
-              <Reveal key={tool.name} delay={0.03 * (i % 4)}>
-                <div className="lp-card-sm" style={{ display: "flex", flexDirection: "column", gap: 12, padding: "20px", borderRadius: 18, background: "var(--bg-1)", border: "1px solid var(--line)", height: "100%" }}>
-                  <span style={{ width: 40, height: 40, borderRadius: 12, flexShrink: 0, background: `${tool.color}14`, border: `1px solid ${tool.color}30`, display: "flex", alignItems: "center", justifyContent: "center", color: tool.color, fontSize: 18 }}>
-                    {hasBrandLogo(tool.name) ? <BrandLogo name={tool.name} size={19} /> : "🔧"}
-                  </span>
-                  <span>
-                    <span style={{ display: "block", fontSize: 14, fontWeight: 700, color: "var(--ink)", marginBottom: 3 }}>{tool.name}</span>
-                    <span style={{ display: "block", fontSize: 12, color: "var(--ink-3)", lineHeight: 1.45 }}>{tool.desc}</span>
-                  </span>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-      )}
-
       {/* ════ 7 · RESOURCES (dark) ════ */}
       <section style={{ padding: `${sectionPad} 0`, background: "#0A0A0E", position: "relative", overflow: "hidden" }}>
         <div aria-hidden style={{ position: "absolute", inset: 0, pointerEvents: "none", background: `radial-gradient(40% 50% at 85% 0%, rgba(${glow},0.18), transparent 64%), radial-gradient(38% 50% at 6% 100%, rgba(0,191,165,0.12), transparent 62%)` }} />
@@ -443,24 +415,6 @@ export function CourseExperience({
         }
       `}</style>
     </div>
-  );
-}
-
-/* ── Sticky homepage-styled course nav ── */
-function CourseNav({ course, accent, gradient }: { course: DetailMarketingCourse; accent: string; gradient: string }) {
-  return (
-    <nav style={{ position: "sticky", top: 0, zIndex: 60, height: 60, background: "color-mix(in oklab, var(--bg) 80%, transparent)", backdropFilter: "blur(20px)", borderBottom: "1px solid var(--line)", display: "flex", alignItems: "center", padding: "0 clamp(16px,4vw,32px)", gap: 14 }}>
-      <Link href="/" style={{ display: "flex", alignItems: "center", gap: 9, fontWeight: 700, fontSize: 16, letterSpacing: "-0.02em", color: "var(--ink)" }}>
-        <span style={{ width: 26, height: 26, borderRadius: 8, background: gradient, display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontSize: 13, fontWeight: 800 }}>C</span>
-        Chademy
-      </Link>
-      <span style={{ color: "var(--line-2)", fontSize: 13 }}>/</span>
-      <span className="ce-nav-course" style={{ fontSize: 13.5, color: "var(--ink-3)", fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{course.title}</span>
-      <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 10 }}>
-        <span style={{ fontSize: 12, fontWeight: 700, color: "#0E9E88", padding: "5px 11px", borderRadius: 999, background: "rgba(0,191,165,0.08)", border: "1px solid rgba(0,191,165,0.22)" }}>{course.earn}</span>
-        <a href="#programma" className="btn-primary" style={{ padding: "9px 16px", fontSize: 13.5, borderRadius: 11, background: gradient }}>Sākt <ArrowRight s={14} /></a>
-      </div>
-    </nav>
   );
 }
 

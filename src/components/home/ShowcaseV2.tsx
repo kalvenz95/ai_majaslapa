@@ -373,7 +373,7 @@ export default function ShowcaseV2() {
       <div className="lp-container" style={{ maxWidth: 1200, margin: "0 auto", padding: "0 28px" }}>
         {/* Header */}
         <div style={{ maxWidth: 760, margin: "0 auto 72px", textAlign: "center" }}>
-          <Reveal><span className="v2-eyebrow">Mūsu darbi</span></Reveal>
+          <Reveal><span className="v2-eyebrow">Mūsu klienti</span></Reveal>
           <Reveal delay={0.08}>
             <h2 className="v2-h2" style={{ fontSize: "clamp(38px, 6vw, 76px)", color: "var(--ink)", margin: "18px 0 22px" }}>
               Paraugi, ko esam <span className="v2-grad">izveidojuši</span>
