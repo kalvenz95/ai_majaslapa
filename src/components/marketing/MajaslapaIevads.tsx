@@ -165,14 +165,14 @@ export function MajaslapaIevads() {
         <div style={{ position: "relative", maxWidth: 640 }}>
           <div style={{ display: "inline-flex", alignItems: "center", gap: 9, padding: "8px 18px 8px 13px", borderRadius: 30, background: "rgba(255,255,255,0.08)", border: `1px solid ${G}55`, marginBottom: 22, backdropFilter: "blur(8px)" }}>
             <span style={{ width: 7, height: 7, borderRadius: "50%", background: G }} />
-            <span style={{ fontSize: 11.5, fontWeight: 800, color: "#fff", textTransform: "uppercase", letterSpacing: "0.18em" }}>Ievads · 2. bloks</span>
+            <span style={{ fontSize: 11.5, fontWeight: 800, color: "#fff", textTransform: "uppercase", letterSpacing: "0.18em" }}>Būvēšana · 2. bloks</span>
           </div>
           <h3 style={{ fontFamily: DISPLAY, fontSize: "clamp(28px, 5vw, 48px)", fontWeight: 900, letterSpacing: "-0.035em", lineHeight: 1.06, color: "#fff", margin: 0 }}>
             Mājaslapa no nulles —<br />
-            <span style={{ background: `linear-gradient(120deg, ${G}, ${G2})`, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}>ar mākslīgā intelekta palīdzību</span>
+            <span style={{ background: `linear-gradient(120deg, ${G}, ${G2})`, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}>ar Claude Code</span>
           </h3>
           <p style={{ fontSize: 16.5, color: "rgba(255,255,255,0.72)", lineHeight: 1.7, margin: "20px 0 0" }}>
-            Vēl pirms gada profesionālas mājaslapas izveide prasīja nedēļas darba un dārgu dizaineri. Šodien ar pareizajiem AI rīkiem tu vari uzbūvēt un publicēt pilnvērtīgu mājaslapu dažu stundu laikā — pat ja nekad neesi rakstījis nevienu koda rindiņu.
+            Vēl pirms gada profesionālas mājaslapas izveide prasīja nedēļas darba un dārgu izstrādātāju. Šodien ar Claude Code tu vari uzbūvēt un publicēt pilnvērtīgu mājaslapu dažu stundu laikā — vienkārši aprakstot, ko vēlies, pat ja nekad neesi rakstījis nevienu koda rindiņu.
           </p>
         </div>
       </div>
