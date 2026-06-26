@@ -12,6 +12,7 @@ import IncomeV2 from "@/components/home/IncomeV2";
 import NoSkillsV2 from "@/components/home/NoSkillsV2";
 import ProjectsV2 from "@/components/home/ProjectsV2";
 import ShowcaseV2 from "@/components/home/ShowcaseV2";
+import LiveVoiceAgents from "@/components/home/LiveVoiceAgents";
 import CommunityV2 from "@/components/home/CommunityV2";
 import ToolsV2 from "@/components/home/ToolsV2";
 import PricingV2 from "@/components/home/PricingV2";
@@ -101,6 +102,9 @@ export default async function HomePage({
 
       {/* 7b. Our work — real website + voice agent samples */}
       <ShowcaseV2 />
+
+      {/* 7c. Live voice agents — talk to our Vapi agents in the browser */}
+      <LiveVoiceAgents />
 
       {/* 8. Community + results */}
       <CommunityV2 />

@@ -11,9 +11,10 @@ const securityHeaders = [
   // Referrer politika
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   // Permissions Policy
+  // microphone=(self) — atļauts mūsu pašu lapai (Vapi balss aģentu demo); kamera/ģeolokācija bloķēta
   {
     key: "Permissions-Policy",
-    value: "camera=(), microphone=(), geolocation=()",
+    value: "camera=(), microphone=(self), geolocation=()",
   },
   // Strict Transport Security (HTTPS only pēc pirmā apmeklējuma)
   {
