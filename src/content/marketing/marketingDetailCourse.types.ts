@@ -18,6 +18,10 @@ export interface DetailModule {
   title: string;
   duration: string;
   lessons: DetailLesson[];
+  /** Optional cover image (e.g. "/ai/card-social.jpg") — renders a premium module card banner. */
+  cover?: string;
+  /** Optional one-line module summary shown under the title on the module card. */
+  summary?: string;
 }
 
 export type DetailMarketingCourse = {

@@ -8,14 +8,10 @@ import { SATURA_MARKET_THEME } from "@/components/marketing/marketingCourseVisua
 import { CourseExperience } from "@/components/course/CourseExperience";
 import { SaturaIntroLessonContent } from "@/components/marketing/SaturaIntroLessonContent";
 import { SaturaLesson12Content } from "@/components/marketing/SaturaLesson12Content";
-import { SaturaLesson13Content } from "@/components/marketing/SaturaLesson13Content";
-import { SaturaLesson14Content } from "@/components/marketing/SaturaLesson14Content";
 
 const lessonExtras: Record<string, ReactNode> = {
   "1-1": <SaturaIntroLessonContent />,
   "1-2": <SaturaLesson12Content />,
-  "1-3": <SaturaLesson13Content />,
-  "1-4": <SaturaLesson14Content />,
 };
 
 export default function SaturaSpecialistsPage() {

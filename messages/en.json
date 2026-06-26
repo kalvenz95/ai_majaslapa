@@ -442,6 +442,7 @@
     "tabCurriculum": "Syllabus",
     "tabTools": "Tools",
     "progressLabel": "Progress",
+    "moduleLabel": "Module {number}",
     "lessonsDuration": "{lessons} lessons · {duration}",
     "statModules": "Modules",
     "statLessons": "Lessons",

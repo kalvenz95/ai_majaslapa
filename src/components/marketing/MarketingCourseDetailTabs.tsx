@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 import { useState } from "react";
+import Image from "next/image";
 import type {
   DetailLesson,
   DetailLessonType,
@@ -100,37 +101,109 @@ export function MarketingCourseCurriculumTab({
           <div
             key={mod.id}
             style={{
-              borderRadius: 12,
+              borderRadius: mod.cover ? 16 : 12,
               overflow: "hidden",
               border: isOpen ? theme.curriculumModuleBorderOpen : "1px solid var(--line)",
               background: "var(--bg-1)",
-              transition: "border-color 0.2s",
+              transition: "border-color 0.2s, box-shadow 0.2s",
+              boxShadow: mod.cover
+                ? isOpen
+                  ? "0 24px 48px -28px rgba(17,17,17,0.32), 0 2px 8px -4px rgba(17,17,17,0.10)"
+                  : "0 14px 32px -26px rgba(17,17,17,0.22)"
+                : "none",
             }}
           >
-            <button onClick={() => toggle(mod.id)} style={{ width: "100%", padding: "16px 20px", display: "flex", alignItems: "center", gap: 12, background: "transparent", border: "none", cursor: "pointer", color: "var(--ink)" }}>
-              <div
-                style={{
-                  width: 28,
-                  height: 28,
-                  borderRadius: 8,
-                  flexShrink: 0,
-                  background: isOpen ? tintBg : "var(--bg-2)",
-                  border: `1px solid ${isOpen ? tintBorder : "var(--line)"}`,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: 12,
-                  fontWeight: 800,
-                  color: isOpen ? theme.accentHex : "var(--ink-3)",
-                }}
-              >
-                {mod.id}
+            <button
+              onClick={() => toggle(mod.id)}
+              style={{
+                width: "100%",
+                padding: mod.cover ? 14 : "16px 20px",
+                display: "flex",
+                alignItems: "center",
+                gap: mod.cover ? 16 : 12,
+                background: "transparent",
+                border: "none",
+                cursor: "pointer",
+                color: "var(--ink)",
+              }}
+            >
+              {mod.cover ? (
+                <div
+                  style={{
+                    position: "relative",
+                    width: 132,
+                    height: 92,
+                    flexShrink: 0,
+                    borderRadius: 12,
+                    overflow: "hidden",
+                    border: "1px solid var(--line)",
+                  }}
+                >
+                  <Image
+                    src={mod.cover}
+                    alt={mod.title}
+                    fill
+                    sizes="132px"
+                    style={{ objectFit: "cover" }}
+                  />
+                  {/* gradient overlay + accent color treatment for depth */}
+                  <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.18) 45%, rgba(0,0,0,0) 100%)" }} />
+                  <div style={{ position: "absolute", inset: 0, background: `${theme.accentHex}26`, mixBlendMode: "multiply" }} />
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: 8,
+                      left: 8,
+                      minWidth: 22,
+                      height: 22,
+                      padding: "0 6px",
+                      borderRadius: 7,
+                      background: "rgba(255,255,255,0.92)",
+                      color: theme.accentHex,
+                      fontSize: 12,
+                      fontWeight: 800,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      boxShadow: "0 2px 6px -2px rgba(0,0,0,0.35)",
+                    }}
+                  >
+                    {mod.id}
+                  </div>
+                </div>
+              ) : (
+                <div
+                  style={{
+                    width: 28,
+                    height: 28,
+                    borderRadius: 8,
+                    flexShrink: 0,
+                    background: isOpen ? tintBg : "var(--bg-2)",
+                    border: `1px solid ${isOpen ? tintBorder : "var(--line)"}`,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: 12,
+                    fontWeight: 800,
+                    color: isOpen ? theme.accentHex : "var(--ink-3)",
+                  }}
+                >
+                  {mod.id}
+                </div>
+              )}
+              <div style={{ flex: 1, textAlign: "left", minWidth: 0 }}>
+                {mod.cover && (
+                  <div style={{ fontSize: 10.5, fontWeight: 800, letterSpacing: "0.08em", textTransform: "uppercase", color: theme.accentHex, marginBottom: 4 }}>
+                    {detail("moduleLabel", { number: mod.id })}
+                  </div>
+                )}
+                <div style={{ fontSize: mod.cover ? 16.5 : 15, fontWeight: mod.cover ? 800 : 700, letterSpacing: mod.cover ? "-0.01em" : undefined, lineHeight: 1.25 }}>{mod.title}</div>
+                {mod.summary && (
+                  <div style={{ fontSize: 12.5, color: "var(--ink-3)", marginTop: 4, lineHeight: 1.5, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{mod.summary}</div>
+                )}
+                <div style={{ fontSize: 12, color: "var(--ink-4)", marginTop: mod.cover ? 6 : 2 }}>{detail("lessonsDuration", { lessons: mod.lessons.length, duration: mod.duration })}</div>
               </div>
-              <div style={{ flex: 1, textAlign: "left" }}>
-                <div style={{ fontSize: 15, fontWeight: 700 }}>{mod.title}</div>
-                <div style={{ fontSize: 12, color: "var(--ink-3)", marginTop: 2 }}>{detail("lessonsDuration", { lessons: mod.lessons.length, duration: mod.duration })}</div>
-              </div>
-              <div style={{ color: "var(--ink-4)" }}>
+              <div style={{ color: "var(--ink-4)", flexShrink: 0, alignSelf: mod.cover ? "center" : "center" }}>
                 <LessonChevronIcon open={isOpen} />
               </div>
             </button>

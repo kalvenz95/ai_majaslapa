@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { ReactNode } from "react";
+import Image from "next/image";
 import { Reveal } from "@/components/home/Reveal";
 import { MarketingCourseLessonView } from "@/components/marketing/MarketingCourseDetailTabs";
 import type { MarketingCourseVisualTheme } from "@/components/marketing/marketingCourseDetailTabs.types";
@@ -209,13 +210,31 @@ export function CourseExperience({
       <section style={{ padding: `${sectionPad} 0` }}>
         <div className="lp-container" style={{ maxWidth: 1180, margin: "0 auto", padding: "0 28px" }}>
           <SectionHead eyebrow="Tavs ceļš" title={<>No nulles līdz <span className="v2-grad">pirmajiem klientiem</span></>} />
-          <div className="ce-roadmap" style={{ display: "grid", gridTemplateColumns: `repeat(${course.modules.length}, 1fr)`, gap: 14, marginTop: 48 }}>
+          <div className="ce-roadmap" style={{ display: "grid", gridTemplateColumns: `repeat(${course.modules.length}, 1fr)`, gap: 18, marginTop: 48 }}>
             {course.modules.map((mod, i) => (
               <Reveal key={mod.id} delay={0.06 * i} style={{ height: "100%" }}>
-                <div style={{ position: "relative", height: "100%", padding: "26px 22px", borderRadius: 20, background: "var(--bg-1)", border: "1px solid var(--line)", boxShadow: "var(--shadow-sm)" }}>
-                  <div style={{ width: 38, height: 38, borderRadius: 12, background: gradient, display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: 800, fontSize: 16, marginBottom: 16, boxShadow: `0 8px 20px -8px rgba(${glow},0.6)` }}>{i + 1}</div>
-                  <div style={{ fontSize: 15, fontWeight: 700, color: "var(--ink)", lineHeight: 1.3, marginBottom: 8, letterSpacing: "-0.01em" }}>{mod.title}</div>
-                  <div style={{ fontSize: 12.5, color: "var(--ink-3)" }}>{mod.lessons.length} nodarbības · {mod.duration}</div>
+                <div className="ce-modcard" style={{ position: "relative", height: "100%", display: "flex", flexDirection: "column", borderRadius: 22, overflow: "hidden", background: "var(--bg-1)", border: "1px solid var(--line)", boxShadow: "var(--shadow-md)", transition: "transform 0.28s cubic-bezier(0.22,1,0.36,1), box-shadow 0.28s ease, border-color 0.28s ease" }}>
+                  {mod.cover ? (
+                    <div style={{ position: "relative", aspectRatio: "16/9", overflow: "hidden" }}>
+                      <Image src={mod.cover} alt={mod.title} fill sizes="(max-width: 680px) 100vw, (max-width: 980px) 50vw, 380px" style={{ objectFit: "cover" }} />
+                      {/* gradient overlay + accent color treatment for depth */}
+                      <div aria-hidden style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(8,8,12,0.72) 0%, rgba(8,8,12,0.20) 50%, rgba(8,8,12,0) 100%)" }} />
+                      <div aria-hidden style={{ position: "absolute", inset: 0, background: gradient, opacity: 0.18, mixBlendMode: "multiply" }} />
+                      <span style={{ position: "absolute", top: 14, left: 14, width: 40, height: 40, borderRadius: 13, background: gradient, display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: 800, fontSize: 17, boxShadow: `0 10px 24px -8px rgba(${glow},0.7)` }}>{i + 1}</span>
+                    </div>
+                  ) : (
+                    <div style={{ width: 38, height: 38, borderRadius: 12, background: gradient, display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: 800, fontSize: 16, margin: "26px 22px 0", boxShadow: `0 8px 20px -8px rgba(${glow},0.6)` }}>{i + 1}</div>
+                  )}
+                  <div style={{ display: "flex", flexDirection: "column", flex: 1, padding: "20px 22px 22px" }}>
+                    <div style={{ fontSize: 11, fontWeight: 800, letterSpacing: "0.09em", textTransform: "uppercase", color: accent, marginBottom: 9 }}>{i + 1}. solis</div>
+                    <div style={{ fontSize: 17, fontWeight: 800, color: "var(--ink)", lineHeight: 1.25, marginBottom: 9, letterSpacing: "-0.015em" }}>{mod.title}</div>
+                    {mod.summary && <div style={{ fontSize: 13, color: "var(--ink-3)", lineHeight: 1.6, marginBottom: 14 }}>{mod.summary}</div>}
+                    <div style={{ marginTop: "auto", display: "flex", alignItems: "center", gap: 8, fontSize: 12.5, color: "var(--ink-3)", fontWeight: 500 }}>
+                      <span style={{ display: "inline-flex", alignItems: "center", gap: 5, color: accent, fontWeight: 700 }}><Play s={11} /> {mod.lessons.length}</span>
+                      <span style={{ color: "var(--ink-4)" }}>·</span>
+                      <span>{mod.duration}</span>
+                    </div>
+                  </div>
                 </div>
               </Reveal>
             ))}
@@ -235,11 +254,20 @@ export function CourseExperience({
                 <div key={mod.id}>
                 <Reveal delay={0.03 * i}>
                   <div style={{ borderRadius: 22, background: "var(--bg-1)", border: `1px solid ${open ? `rgba(${glow},0.4)` : "var(--line)"}`, boxShadow: open ? `0 24px 60px -34px rgba(${glow},0.45)` : "var(--shadow-md)", overflow: "hidden", transition: "border-color 0.25s ease, box-shadow 0.25s ease" }}>
-                    <button type="button" onClick={() => toggle(mod.id)} style={{ width: "100%", display: "flex", alignItems: "center", gap: 18, padding: "24px 26px", textAlign: "left", background: "transparent", cursor: "pointer" }}>
-                      <span style={{ width: 46, height: 46, borderRadius: 14, flexShrink: 0, background: open ? gradient : `rgba(${glow},0.10)`, border: open ? "none" : `1px solid rgba(${glow},0.25)`, color: open ? "#fff" : accent, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, fontSize: 17 }}>{mod.id}</span>
+                    <button type="button" onClick={() => toggle(mod.id)} style={{ width: "100%", display: "flex", alignItems: "center", gap: 18, padding: mod.cover ? "16px 18px" : "24px 26px", textAlign: "left", background: "transparent", cursor: "pointer" }}>
+                      {mod.cover ? (
+                        <span style={{ position: "relative", width: 116, height: 78, flexShrink: 0, borderRadius: 14, overflow: "hidden", border: "1px solid var(--line)" }}>
+                          <Image src={mod.cover} alt={mod.title} fill sizes="116px" style={{ objectFit: "cover" }} />
+                          <span aria-hidden style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(8,8,12,0.55), rgba(8,8,12,0) 70%)" }} />
+                          <span style={{ position: "absolute", top: 7, left: 7, width: 24, height: 24, borderRadius: 8, background: open ? gradient : "rgba(255,255,255,0.92)", color: open ? "#fff" : accent, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, fontSize: 13 }}>{mod.id}</span>
+                        </span>
+                      ) : (
+                        <span style={{ width: 46, height: 46, borderRadius: 14, flexShrink: 0, background: open ? gradient : `rgba(${glow},0.10)`, border: open ? "none" : `1px solid rgba(${glow},0.25)`, color: open ? "#fff" : accent, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, fontSize: 17 }}>{mod.id}</span>
+                      )}
                       <span style={{ flex: 1, minWidth: 0 }}>
                         <span style={{ display: "block", fontSize: 18, fontWeight: 700, color: "var(--ink)", letterSpacing: "-0.015em", marginBottom: 4 }}>{mod.title}</span>
-                        <span style={{ display: "block", fontSize: 13, color: "var(--ink-3)" }}>{mod.lessons.length} nodarbības · {mod.duration}</span>
+                        {mod.summary && <span style={{ display: "block", fontSize: 13, color: "var(--ink-3)", lineHeight: 1.5, marginBottom: 5 }}>{mod.summary}</span>}
+                        <span style={{ display: "block", fontSize: 13, color: "var(--ink-4)" }}>{mod.lessons.length} nodarbības · {mod.duration}</span>
                       </span>
                       <span style={{ flexShrink: 0, display: "flex", alignItems: "center", gap: 14 }}>
                         <span style={{ width: 90, height: 5, borderRadius: 5, background: "var(--bg-2)", overflow: "hidden", display: "none" }} className="ce-modprog">
@@ -392,6 +420,7 @@ export function CourseExperience({
       </section>
 
       <style>{`
+        .ce-modcard:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: rgba(${glow},0.4); }
         @media (max-width: 980px) {
           .ce-hero-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
           .ce-roadmap { grid-template-columns: repeat(2, 1fr) !important; }

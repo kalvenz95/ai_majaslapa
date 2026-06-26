@@ -442,6 +442,7 @@
     "tabCurriculum": "Programma",
     "tabTools": "Rīki",
     "progressLabel": "Progress",
+    "moduleLabel": "Modulis {number}",
     "lessonsDuration": "{lessons} nodarbības · {duration}",
     "statModules": "Moduļi",
     "statLessons": "Nodarbības",
