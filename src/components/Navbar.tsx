@@ -53,7 +53,7 @@ function Flag({ code }: { code: LocaleCode }) {
   );
 }
 
-function LocaleToggle() {
+function LocaleToggle({ dark = false }: { dark?: boolean }) {
   const pathname = usePathname();
   const locale = useLocale() as LocaleCode;
   const router = useRouter();
@@ -87,9 +87,11 @@ function LocaleToggle() {
     fontSize: 12,
     borderRadius: 10,
     padding: "6px 10px",
-    border: "1px solid var(--line)",
-    color: "var(--ink-2)",
-    background: open ? "var(--bg-1)" : "var(--bg-2)",
+    border: `1px solid ${dark ? "rgba(255,255,255,0.18)" : "var(--line)"}`,
+    color: dark ? "rgba(255,255,255,0.85)" : "var(--ink-2)",
+    background: dark
+      ? (open ? "rgba(255,255,255,0.14)" : "rgba(255,255,255,0.07)")
+      : (open ? "var(--bg-1)" : "var(--bg-2)"),
     fontFamily: "Inter Tight, sans-serif",
     fontWeight: 700,
     letterSpacing: "0.04em",
@@ -116,7 +118,7 @@ function LocaleToggle() {
           (e.currentTarget as HTMLElement).style.borderColor = "color-mix(in oklab, var(--accent) 35%, transparent)";
         }}
         onMouseLeave={(e) => {
-          (e.currentTarget as HTMLElement).style.borderColor = "var(--line)";
+          (e.currentTarget as HTMLElement).style.borderColor = dark ? "rgba(255,255,255,0.18)" : "var(--line)";
         }}
       >
         <Flag code={locale} />
@@ -214,6 +216,7 @@ export default function Navbar() {
   ];
 
   const { isSignedIn, isLoaded } = useAuth();
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -222,6 +225,15 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  /* The homepage opens on a dark hero — use light nav colours while at the top.
+     Once scrolled (glass bg appears) or on other pages, revert to dark text. */
+  const isHome = pathname === "/" || pathname === "";
+  const overDark = isHome && !scrolled && !menuOpen;
+  const logoInk = overDark ? "#fff" : "var(--ink)";
+  const linkInk = overDark ? "rgba(255,255,255,0.72)" : "var(--ink-3)";
+  const linkInkHover = overDark ? "#fff" : "var(--ink)";
+  const barInk = overDark ? "#fff" : "var(--ink)";
 
   return (
     <nav
@@ -268,7 +280,7 @@ export default function Navbar() {
           >
             C
           </div>
-          <span className="font-display" style={{ fontSize: 22, color: "var(--ink)", fontWeight: 800, letterSpacing: "-0.02em" }}>
+          <span className="font-display" style={{ fontSize: 22, color: logoInk, fontWeight: 800, letterSpacing: "-0.02em", transition: "color 0.3s ease" }}>
             Chademy
           </span>
         </Link>
@@ -281,17 +293,17 @@ export default function Navbar() {
               href={link.href}
               style={{
                 fontSize: 14,
-                color: "var(--ink-3)",
+                color: linkInk,
                 transition: "color 0.15s ease",
                 textDecoration: "none",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "var(--ink)")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--ink-3)")}
+              onMouseEnter={(e) => (e.currentTarget.style.color = linkInkHover)}
+              onMouseLeave={(e) => (e.currentTarget.style.color = linkInk)}
             >
               {link.label}
             </a>
           ))}
-          <LocaleToggle />
+          <LocaleToggle dark={overDark} />
         </div>
 
         {/* CTA */}
@@ -304,12 +316,12 @@ export default function Navbar() {
                 href="/dashboard"
                 style={{
                   fontSize: 14,
-                  color: "var(--ink-3)",
+                  color: linkInk,
                   transition: "color 0.15s ease",
                   textDecoration: "none",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--ink)")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--ink-3)")}
+                onMouseEnter={(e) => (e.currentTarget.style.color = linkInkHover)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = linkInk)}
               >
                 {t("myAccount")}
               </Link>
@@ -321,14 +333,14 @@ export default function Navbar() {
                 <button
                   style={{
                     fontSize: 14,
-                    color: "var(--ink-3)",
+                    color: linkInk,
                     transition: "color 0.15s ease",
                     background: "none",
                     border: "none",
                     cursor: "pointer",
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "var(--ink)")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "var(--ink-3)")}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = linkInkHover)}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = linkInk)}
                 >
                   {t("signIn")}
                 </button>
@@ -344,7 +356,7 @@ export default function Navbar() {
 
         {/* Mobile */}
         <div className="md:hidden flex items-center gap-3">
-          <LocaleToggle />
+          <LocaleToggle dark={overDark} />
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             style={{
@@ -365,7 +377,7 @@ export default function Navbar() {
                 display: "block",
                 width: 22,
                 height: 1.5,
-                background: "var(--ink)",
+                background: barInk,
                 transition: "all 0.2s ease",
                 transform: menuOpen ? "rotate(45deg) translate(5px, 5px)" : "none",
               }}
@@ -375,7 +387,7 @@ export default function Navbar() {
                 display: "block",
                 width: 22,
                 height: 1.5,
-                background: "var(--ink)",
+                background: barInk,
                 transition: "all 0.2s ease",
                 opacity: menuOpen ? 0 : 1,
               }}
@@ -385,7 +397,7 @@ export default function Navbar() {
                 display: "block",
                 width: 22,
                 height: 1.5,
-                background: "var(--ink)",
+                background: barInk,
                 transition: "all 0.2s ease",
                 transform: menuOpen ? "rotate(-45deg) translate(5px, -5px)" : "none",
               }}

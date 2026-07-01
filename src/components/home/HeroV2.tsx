@@ -1,19 +1,12 @@
 "use client";
 
-import {
-  motion,
-  useMotionValue,
-  useReducedMotion,
-  useScroll,
-  useSpring,
-  useTransform,
-} from "framer-motion";
+import Image from "next/image";
+import { motion, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { useRef } from "react";
 import { useHasMounted } from "@/hooks/useHasMounted";
 import { AnimatedNumber } from "@/components/AnimatedNumber";
 import { Magnetic } from "@/components/Magnetic";
-import { Check, Play, Lock, Mic, Rocket, Zap } from "lucide-react";
+import { Globe, Mic, Images } from "lucide-react";
 
 const EASE_OUT = [0.215, 0.61, 0.355, 1] as const;
 
@@ -57,206 +50,14 @@ function StaggerTitle({
   );
 }
 
-const MOCK_LESSONS = [
-  { t: "AI satura pamati", done: true },
-  { t: "Pirmais faceless video", done: true },
-  { t: "Klientu piesaiste", done: false },
+/* What you learn — the three service directions, made explicit up front. */
+const DIRECTIONS = [
+  { icon: Images, label: "AI saturs", sub: "Video, attēli, soc. tīkli" },
+  { icon: Globe, label: "Mājaslapas & automatizācija", sub: "Lapas + lead apstrāde" },
+  { icon: Mic, label: "AI balss aģenti", sub: "Zvani un rezervācijas" },
 ];
-const MOCK_BARS = [28, 42, 36, 55, 48, 70, 62, 88];
 
-/** Dark product dashboard — animates to life when it scrolls into view. */
-function DashboardMock({ reduce }: { reduce: boolean }) {
-  const vp = { once: true, margin: "-60px" } as const;
-  return (
-    <div
-      style={{
-        position: "relative",
-        borderRadius: 22,
-        overflow: "hidden",
-        background: "#0D0D14",
-        border: "1px solid rgba(255,255,255,0.10)",
-        boxShadow:
-          "0 60px 140px -40px rgba(45,35,95,0.45), 0 24px 60px -24px rgba(17,17,17,0.30), inset 0 1px 0 rgba(255,255,255,0.08)",
-      }}
-    >
-      {/* Browser chrome */}
-      <div style={{ display: "flex", alignItems: "center", gap: 7, padding: "13px 18px", borderBottom: "1px solid rgba(255,255,255,0.07)", background: "rgba(255,255,255,0.03)" }}>
-        <span style={{ width: 11, height: 11, borderRadius: 999, background: "#FF5F57" }} />
-        <span style={{ width: 11, height: 11, borderRadius: 999, background: "#FEBC2E" }} />
-        <span style={{ width: 11, height: 11, borderRadius: 999, background: "#28C840" }} />
-        <div style={{ marginLeft: 12, display: "flex", alignItems: "center", gap: 7, fontSize: 11.5, color: "rgba(255,255,255,0.45)", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 8, padding: "5px 14px" }}>
-          <Lock size={10} strokeWidth={2.4} /> chademy.lv/dashboard
-        </div>
-      </div>
-
-      {/* App body — sidebar + content */}
-      <div style={{ display: "grid", gridTemplateColumns: "52px 1fr 1fr", gap: 0 }} className="hero-mock-body">
-        {/* Mini sidebar */}
-        <div style={{ borderRight: "1px solid rgba(255,255,255,0.06)", padding: "18px 0", display: "flex", flexDirection: "column", alignItems: "center", gap: 14 }}>
-          <span style={{ width: 26, height: 26, borderRadius: 8, background: "linear-gradient(135deg, var(--accent), #8B7BFF)", boxShadow: "0 4px 14px -3px rgba(109,94,243,0.6)" }} />
-          {[0.5, 0.28, 0.28, 0.28].map((op, i) => (
-            <span key={i} style={{ width: 18, height: 18, borderRadius: 6, background: `rgba(255,255,255,${op * 0.28})`, border: i === 0 ? "1px solid rgba(255,255,255,0.25)" : "1px solid transparent" }} />
-          ))}
-        </div>
-
-        {/* Left column — progress + lessons */}
-        <div style={{ padding: 18, display: "flex", flexDirection: "column", gap: 11, borderRight: "1px solid rgba(255,255,255,0.06)" }}>
-          <div style={{ borderRadius: 13, padding: "13px 15px", background: "linear-gradient(135deg, rgba(109,94,243,0.22) 0%, rgba(109,94,243,0.05) 100%)", border: "1px solid rgba(109,94,243,0.30)" }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 10 }}>
-              <span style={{ fontSize: 12, fontWeight: 700, color: "#fff" }}>Tavs progress</span>
-              <span style={{ fontSize: 14, fontWeight: 700, color: "#A89DFF", fontFamily: "var(--font-sans)" }}>68%</span>
-            </div>
-            <div style={{ height: 6, borderRadius: 999, background: "rgba(255,255,255,0.10)", overflow: "hidden" }}>
-              <motion.div
-                initial={reduce ? false : { width: "0%" }}
-                whileInView={reduce ? undefined : { width: "68%" }}
-                viewport={vp}
-                transition={{ duration: 1.1, ease: EASE_OUT, delay: 0.45 }}
-                style={{ height: "100%", width: "68%", borderRadius: 999, background: "linear-gradient(90deg, var(--accent), var(--accent-2))" }}
-              />
-            </div>
-          </div>
-
-          {MOCK_LESSONS.map((l, i) => (
-            <motion.div
-              key={l.t}
-              initial={reduce ? false : { opacity: 0, x: -12 }}
-              whileInView={reduce ? undefined : { opacity: 1, x: 0 }}
-              viewport={vp}
-              transition={{ duration: 0.5, ease: EASE_OUT, delay: 0.55 + i * 0.14 }}
-              style={{ display: "flex", alignItems: "center", gap: 10, padding: "10px 12px", borderRadius: 11, background: "rgba(255,255,255,0.035)", border: "1px solid rgba(255,255,255,0.07)" }}
-            >
-              <span style={{ width: 23, height: 23, borderRadius: 7, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", background: l.done ? "var(--accent-2)" : "rgba(109,94,243,0.25)", color: l.done ? "#04221D" : "#A89DFF" }}>
-                {l.done ? <Check size={12} strokeWidth={3.2} /> : <Play size={10} strokeWidth={2.5} fill="currentColor" />}
-              </span>
-              <span style={{ flex: 1, fontSize: 11.5, fontWeight: 600, color: "rgba(255,255,255,0.85)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{l.t}</span>
-              <span style={{ fontSize: 10, color: "rgba(255,255,255,0.35)" }}>{l.done ? "✓" : "12 min"}</span>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Right column — progress chart + learning stats */}
-        <div style={{ padding: 18, display: "flex", flexDirection: "column", gap: 11 }} className="hero-mock-right">
-          <div style={{ borderRadius: 13, padding: "13px 15px", background: "rgba(255,255,255,0.035)", border: "1px solid rgba(255,255,255,0.07)", flex: 1, display: "flex", flexDirection: "column" }}>
-            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 10 }}>
-              <span style={{ fontSize: 12, fontWeight: 700, color: "#fff" }}>Tava izaugsme</span>
-              <span style={{ fontSize: 10.5, color: "var(--accent-2)", fontWeight: 700, fontFamily: "JetBrains Mono, monospace" }}>+24%</span>
-            </div>
-            {/* Bar chart — bars grow from the baseline on reveal */}
-            <div style={{ display: "flex", alignItems: "flex-end", gap: 6, flex: 1, minHeight: 64 }}>
-              {MOCK_BARS.map((h, i) => (
-                <motion.div
-                  key={i}
-                  initial={reduce ? false : { scaleY: 0 }}
-                  whileInView={reduce ? undefined : { scaleY: 1 }}
-                  viewport={vp}
-                  transition={{ duration: 0.7, ease: EASE_OUT, delay: 0.5 + i * 0.07 }}
-                  style={{ flex: 1, height: `${h}%`, borderRadius: 4, transformOrigin: "bottom", background: i >= 6 ? "linear-gradient(180deg, var(--accent-2), rgba(0,191,165,0.35))" : "linear-gradient(180deg, rgba(109,94,243,0.85), rgba(109,94,243,0.25))" }}
-                />
-              ))}
-            </div>
-          </div>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
-            <div style={{ borderRadius: 12, padding: "11px 13px", background: "rgba(255,255,255,0.035)", border: "1px solid rgba(255,255,255,0.07)" }}>
-              <AnimatedNumber value="8" style={{ display: "block", fontSize: 17, fontWeight: 700, color: "#fff", fontFamily: "var(--font-sans)", letterSpacing: "-0.03em" }} />
-              <div style={{ fontSize: 9.5, color: "rgba(255,255,255,0.4)" }}>Pabeigti moduļi</div>
-            </div>
-            <div style={{ borderRadius: 12, padding: "11px 13px", background: "rgba(255,255,255,0.035)", border: "1px solid rgba(255,255,255,0.07)" }}>
-              <AnimatedNumber value="3" style={{ display: "block", fontSize: 17, fontWeight: 700, color: "var(--accent-2)", fontFamily: "var(--font-sans)", letterSpacing: "-0.03em" }} />
-              <div style={{ fontSize: 9.5, color: "rgba(255,255,255,0.4)" }}>Gatavi projekti</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Light sheen — sweeps across once on reveal */}
-      {!reduce && (
-        <motion.div
-          aria-hidden
-          initial={{ x: "-130%" }}
-          whileInView={{ x: "170%" }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.5, ease: [0.4, 0, 0.2, 1], delay: 0.55 }}
-          style={{
-            position: "absolute", top: 0, bottom: 0, left: 0, width: "55%", pointerEvents: "none",
-            background: "linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.10) 48%, rgba(255,255,255,0.18) 52%, transparent 70%)",
-          }}
-        />
-      )}
-    </div>
-  );
-}
-
-/** Floating voice-agent card with live waveform. */
-function VoiceCard() {
-  return (
-    <div className="v2-float-a" style={{
-      background: "#fff", borderRadius: 18, padding: "16px 18px",
-      border: "1px solid var(--line-2)",
-      boxShadow: "0 24px 60px -18px rgba(17,17,17,0.18), 0 8px 20px -8px rgba(109,94,243,0.15)",
-      width: 230,
-    }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
-        <span style={{ width: 34, height: 34, borderRadius: 11, background: "linear-gradient(135deg, var(--accent), #8B7BFF)", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", boxShadow: "0 6px 16px -5px rgba(109,94,243,0.55)" }}>
-          <Mic size={15} strokeWidth={2.2} />
-        </span>
-        <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 12.5, fontWeight: 700, color: "var(--ink)", letterSpacing: "-0.01em" }}>AI balss aģents</div>
-          <div style={{ display: "flex", alignItems: "center", gap: 5, fontSize: 10, color: "var(--ink-3)" }}>
-            <span className="v2-pulse" style={{ width: 6, height: 6, borderRadius: 999, background: "#28C840", display: "inline-block" }} />
-            Aktīvs zvans · 0:42
-          </div>
-        </div>
-      </div>
-      <div style={{ display: "flex", alignItems: "center", gap: 3, height: 26, marginBottom: 10 }}>
-        {[0.5, 0.9, 0.6, 1, 0.7, 0.45, 0.85, 0.6, 0.95, 0.5, 0.75, 0.4, 0.9, 0.65, 0.5].map((s, i) => (
-          <span key={i} className="v2-wave-bar" style={{ flex: 1, height: "100%", borderRadius: 2, background: "linear-gradient(180deg, var(--accent), var(--accent-2))", animationDelay: `${i * 0.08}s`, transform: `scaleY(${s})` }} />
-        ))}
-      </div>
-      <div style={{ fontSize: 10.5, fontWeight: 700, color: "var(--teal-ink)", display: "flex", alignItems: "center", gap: 6 }}>
-        <Check size={11} strokeWidth={3} /> Rezervācija apstiprināta
-      </div>
-    </div>
-  );
-}
-
-/** Floating "project shipped" notification card. */
-function EarnCard() {
-  return (
-    <div className="v2-float-b" style={{
-      background: "#fff", borderRadius: 18, padding: "15px 18px",
-      border: "1px solid var(--line-2)",
-      boxShadow: "0 24px 60px -18px rgba(17,17,17,0.18), 0 8px 20px -8px rgba(0,191,165,0.18)",
-      display: "flex", alignItems: "center", gap: 12, width: 235,
-    }}>
-      <span style={{ width: 38, height: 38, borderRadius: 12, flexShrink: 0, background: "linear-gradient(135deg, var(--accent-2), #34D9C3)", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", boxShadow: "0 6px 16px -5px rgba(0,191,165,0.5)" }}>
-        <Rocket size={16} strokeWidth={2.4} />
-      </span>
-      <div>
-        <div style={{ fontSize: 14, fontWeight: 700, color: "var(--ink)", fontFamily: "var(--font-sans)", letterSpacing: "-0.01em", lineHeight: 1.15 }}>Projekts gatavs</div>
-        <div style={{ fontSize: 10.5, color: "var(--ink-3)", fontWeight: 500 }}>Mājaslapa · publicēts</div>
-      </div>
-    </div>
-  );
-}
-
-/** Tiny AI workflow chip. */
-function FlowChip() {
-  return (
-    <div className="v2-float-a" style={{
-      background: "#0D0D14", borderRadius: 14, padding: "11px 16px",
-      border: "1px solid rgba(255,255,255,0.14)",
-      boxShadow: "0 18px 44px -14px rgba(13,13,20,0.5)",
-      display: "flex", alignItems: "center", gap: 9,
-      fontFamily: "JetBrains Mono, monospace", fontSize: 10.5, fontWeight: 600,
-      color: "rgba(255,255,255,0.85)", whiteSpace: "nowrap",
-    }}>
-      <Zap size={12} color="#FFB86B" fill="#FFB86B" />
-      Lead <span style={{ color: "rgba(255,255,255,0.3)" }}>→</span> AI <span style={{ color: "rgba(255,255,255,0.3)" }}>→</span> CRM
-      <span className="v2-pulse" style={{ width: 6, height: 6, borderRadius: 999, background: "var(--accent-2)" }} />
-    </div>
-  );
-}
+const BULLETS = ["Latviešu valodā", "Bez programmēšanas", "Bez pieredzes", "Gatavas veidnes"];
 
 export default function HeroV2() {
   const hasMounted = useHasMounted();
@@ -264,62 +65,40 @@ export default function HeroV2() {
   const skipMotion = hasMounted && reduceMotion;
   const t = useTranslations("Hero");
 
-  /* 3D tilt — the dashboard plane follows the cursor and springs back */
-  const tiltRef = useRef<HTMLDivElement>(null);
-  const mx = useMotionValue(0);
-  const my = useMotionValue(0);
-  const rotateX = useSpring(useTransform(my, [-0.5, 0.5], [6, -6]), { stiffness: 140, damping: 20 });
-  const rotateY = useSpring(useTransform(mx, [-0.5, 0.5], [-8, 8]), { stiffness: 140, damping: 20 });
-
-  const onTiltMove = (e: React.MouseEvent) => {
-    if (skipMotion || !tiltRef.current) return;
-    const r = tiltRef.current.getBoundingClientRect();
-    mx.set((e.clientX - r.left) / r.width - 0.5);
-    my.set((e.clientY - r.top) / r.height - 0.5);
-  };
-  const onTiltLeave = () => {
-    mx.set(0);
-    my.set(0);
-  };
-
-  /* Scroll parallax — floating cards drift at separate speeds */
-  const { scrollYProgress } = useScroll({ target: tiltRef, offset: ["start end", "end start"] });
-  const floatY1 = useTransform(scrollYProgress, [0, 1], [44, -44]);
-  const floatY2 = useTransform(scrollYProgress, [0, 1], [80, -80]);
-  const floatY3 = useTransform(scrollYProgress, [0, 1], [26, -56]);
-
   return (
-    <header style={{ position: "relative", overflow: "hidden", background: "var(--bg)", padding: "150px 0 0" }}>
-      {/* Animated gradient mesh */}
-      <div aria-hidden className="v2-mesh-blob v2-mesh-1" style={{ width: 620, height: 620, top: -200, left: "-10%", background: "radial-gradient(circle, rgba(109,94,243,0.30), transparent 65%)" }} />
-      <div aria-hidden className="v2-mesh-blob v2-mesh-2" style={{ width: 540, height: 540, top: 40, right: "-8%", background: "radial-gradient(circle, rgba(0,191,165,0.22), transparent 65%)" }} />
-      <div aria-hidden className="v2-mesh-blob v2-mesh-1" style={{ width: 420, height: 420, bottom: -80, left: "30%", background: "radial-gradient(circle, rgba(255,184,107,0.18), transparent 65%)", animationDelay: "-12s" }} />
+    <header style={{ position: "relative", overflow: "hidden", background: "#0A0A0E", padding: "150px 0 110px", textAlign: "center" }}>
+      {/* AI imagery — subtle starfield texture */}
+      <div aria-hidden style={{ position: "absolute", inset: 0, pointerEvents: "none", opacity: 0.5 }}>
+        <Image src="/ai/cta-bg.jpg" alt="" fill priority sizes="100vw" style={{ objectFit: "cover", objectPosition: "center top" }} />
+        <div style={{ position: "absolute", inset: 0, background: "radial-gradient(78% 70% at 50% 30%, rgba(10,10,14,0.5), #0A0A0E 86%)" }} />
+      </div>
 
       {/* Atmosphere */}
-      <div aria-hidden className="hero-aurora" style={{
-        position: "absolute", inset: "-12%", zIndex: 0, pointerEvents: "none",
+      <div aria-hidden style={{
+        position: "absolute", inset: 0, pointerEvents: "none",
         background:
-          "radial-gradient(44% 42% at 18% 0%, color-mix(in oklab, var(--accent) 17%, transparent), transparent 62%)," +
-          "radial-gradient(38% 40% at 88% 8%, color-mix(in oklab, var(--accent-2) 13%, transparent), transparent 60%)," +
-          "radial-gradient(46% 50% at 55% 105%, color-mix(in oklab, var(--accent-3) 11%, transparent), transparent 64%)",
+          "radial-gradient(50% 55% at 50% 112%, rgba(109,94,243,0.30), transparent 70%)," +
+          "radial-gradient(38% 42% at 12% 4%, rgba(0,191,165,0.12), transparent 60%)," +
+          "radial-gradient(34% 40% at 88% 2%, rgba(255,184,107,0.08), transparent 62%)",
       }} />
-      <div aria-hidden className="dot-grid" style={{
-        position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none", opacity: 0.38,
-        maskImage: "radial-gradient(75% 55% at 50% 18%, #000 0%, transparent 78%)",
-        WebkitMaskImage: "radial-gradient(75% 55% at 50% 18%, #000 0%, transparent 78%)",
+      <div aria-hidden style={{
+        position: "absolute", inset: 0, pointerEvents: "none", opacity: 0.4,
+        backgroundImage: "radial-gradient(rgba(255,255,255,0.10) 1px, transparent 1px)",
+        backgroundSize: "30px 30px",
+        maskImage: "radial-gradient(68% 60% at 50% 32%, #000 0%, transparent 82%)",
+        WebkitMaskImage: "radial-gradient(68% 60% at 50% 32%, #000 0%, transparent 82%)",
       }} />
 
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 28px", position: "relative", zIndex: 1, textAlign: "center" }}>
+      <div style={{ maxWidth: 940, margin: "0 auto", padding: "0 28px", position: "relative", zIndex: 1 }}>
         <motion.div initial={skipMotion ? false : "hidden"} animate="visible" variants={parent}>
           {/* Badge */}
           <motion.div variants={item}>
             <span style={{
               display: "inline-flex", alignItems: "center", gap: 9,
               padding: "7px 16px 7px 7px",
-              background: "rgba(255,255,255,0.7)", backdropFilter: "blur(8px)",
-              border: "1px solid color-mix(in oklab, var(--accent) 24%, transparent)",
-              borderRadius: 999, fontSize: 12.5, color: "var(--ink-2)", fontWeight: 600,
-              boxShadow: "0 4px 18px -6px rgba(109,94,243,0.25)",
+              background: "rgba(255,255,255,0.06)", backdropFilter: "blur(8px)",
+              border: "1px solid rgba(255,255,255,0.12)",
+              borderRadius: 999, fontSize: 12.5, color: "rgba(255,255,255,0.75)", fontWeight: 600,
               marginBottom: 30,
             }}>
               <span style={{
@@ -335,10 +114,10 @@ export default function HeroV2() {
 
           {/* H1 — massive, word-cascade entrance */}
           <h1 className="v2-h2" style={{
-            fontSize: "clamp(46px, 8.5vw, 104px)",
+            fontSize: "clamp(46px, 8.5vw, 100px)",
             margin: "0 auto 26px",
             maxWidth: "15ch",
-            color: "var(--ink)",
+            color: "#fff",
           }}>
             <StaggerTitle
               skipMotion={!!skipMotion}
@@ -351,7 +130,7 @@ export default function HeroV2() {
           </h1>
 
           {/* Sub */}
-          <motion.p variants={item} style={{ fontSize: "clamp(16px, 2.2vw, 19px)", lineHeight: 1.65, color: "var(--ink-3)", maxWidth: 520, margin: "0 auto 38px" }}>
+          <motion.p variants={item} style={{ fontSize: "clamp(16px, 2.2vw, 19px)", lineHeight: 1.7, color: "rgba(255,255,255,0.62)", maxWidth: 620, margin: "0 auto 36px" }}>
             {t("sub")}
           </motion.p>
 
@@ -363,44 +142,56 @@ export default function HeroV2() {
               </a>
             </Magnetic>
             <Magnetic>
-              <a href="#courses" className="btn-ghost" style={{ textDecoration: "none", fontSize: 16.5, padding: "17px 28px", borderRadius: 15 }}>
+              <a href="#courses" className="btn-ghost btn-ghost--dark" style={{ textDecoration: "none", fontSize: 16.5, padding: "17px 28px", borderRadius: 15 }}>
                 {t("ctaSecondary")}
               </a>
             </Magnetic>
           </motion.div>
 
-          {/* Product composition — 3D-tilting dashboard + parallax floating cards */}
-          <motion.div
-            variants={item}
-            ref={tiltRef}
-            onMouseMove={onTiltMove}
-            onMouseLeave={onTiltLeave}
-            style={{ position: "relative", maxWidth: 880, margin: "72px auto 0", perspective: 1400 }}
-          >
-            <motion.div style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}>
-              <DashboardMock reduce={!!skipMotion} />
+          {/* Feature bullets */}
+          <motion.div variants={item} style={{ display: "flex", justifyContent: "center", gap: 24, flexWrap: "wrap", marginTop: 28, fontSize: 13, color: "rgba(255,255,255,0.5)" }}>
+            {BULLETS.map((b) => (
+              <span key={b} style={{ display: "inline-flex", gap: 8, alignItems: "center" }}>
+                <span style={{ width: 5, height: 5, borderRadius: 999, background: "linear-gradient(135deg, var(--accent), var(--accent-2))", display: "inline-block" }} />
+                {b}
+              </span>
+            ))}
+          </motion.div>
 
-              {/* Floating cards — desktop only, raised above the tilt plane */}
-              <div className="hero-float-cards">
-                <motion.div style={{ position: "absolute", left: -76, top: 64, y: floatY1, z: 60 }}><VoiceCard /></motion.div>
-                <motion.div style={{ position: "absolute", right: -64, bottom: 44, y: floatY2, z: 80 }}><EarnCard /></motion.div>
-                <motion.div style={{ position: "absolute", right: -28, top: -24, y: floatY3, z: 40 }}><FlowChip /></motion.div>
-              </div>
-            </motion.div>
-
-            {/* Glow under the mock */}
-            <div aria-hidden style={{
-              position: "absolute", left: "8%", right: "8%", bottom: -36, height: 80, zIndex: -1,
-              background: "radial-gradient(50% 100% at 50% 0%, color-mix(in oklab, var(--accent) 28%, transparent), transparent 75%)",
-              filter: "blur(22px)",
-            }} />
+          {/* What you learn — three directions, so it's instantly clear */}
+          <motion.div variants={item} className="hero-dir-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 14, maxWidth: 720, margin: "56px auto 0" }}>
+            {DIRECTIONS.map((d) => {
+              const Icon = d.icon;
+              return (
+                <div key={d.label} style={{
+                  display: "flex", alignItems: "center", gap: 13, textAlign: "left",
+                  padding: "16px 18px", borderRadius: 16,
+                  background: "rgba(255,255,255,0.04)",
+                  border: "1px solid rgba(255,255,255,0.09)",
+                  backdropFilter: "blur(8px)",
+                }}>
+                  <span style={{
+                    width: 40, height: 40, borderRadius: 12, flexShrink: 0,
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    background: "linear-gradient(135deg, rgba(109,94,243,0.28), rgba(0,191,165,0.18))",
+                    border: "1px solid rgba(255,255,255,0.12)", color: "#fff",
+                  }}>
+                    <Icon size={18} strokeWidth={2} />
+                  </span>
+                  <div style={{ minWidth: 0 }}>
+                    <div style={{ fontSize: 13.5, fontWeight: 700, color: "#fff", letterSpacing: "-0.01em", lineHeight: 1.2 }}>{d.label}</div>
+                    <div style={{ fontSize: 11.5, color: "rgba(255,255,255,0.5)", marginTop: 2 }}>{d.sub}</div>
+                  </div>
+                </div>
+              );
+            })}
           </motion.div>
 
           {/* Stats strip */}
           <motion.div variants={item} className="hero-v2-stats" style={{
-            maxWidth: 880, margin: "64px auto 0",
+            maxWidth: 720, margin: "48px auto 0",
             display: "grid", gridTemplateColumns: "repeat(4, 1fr)",
-            borderTop: "1px solid var(--line)",
+            borderTop: "1px solid rgba(255,255,255,0.10)",
           }}>
             {[
               { val: t("stat3Val") + "+", label: t("stat3Label"), accent: true },
@@ -408,30 +199,24 @@ export default function HeroV2() {
               { val: "100%", label: t("stat2Label") },
               { val: t("stat4Val"), label: t("stat4Label") },
             ].map((s, i) => (
-              <div key={i} style={{ padding: "26px 12px 0", borderRight: i < 3 ? "1px solid var(--line)" : "none" }} className="hero-v2-stat">
+              <div key={i} style={{ padding: "22px 12px 0", borderRight: i < 3 ? "1px solid rgba(255,255,255,0.10)" : "none" }} className="hero-v2-stat">
                 <AnimatedNumber
                   value={s.val}
-                  style={{ display: "block", fontSize: "clamp(28px, 3.5vw, 38px)", fontWeight: 700, letterSpacing: "-0.045em", lineHeight: 1, fontFamily: "var(--font-sans)", color: s.accent ? "var(--accent)" : "var(--ink)" }}
+                  style={{ display: "block", fontSize: "clamp(24px, 3.2vw, 34px)", fontWeight: 700, letterSpacing: "-0.045em", lineHeight: 1, fontFamily: "var(--font-sans)", color: s.accent ? "var(--accent-2)" : "#fff" }}
                 />
-                <div style={{ fontSize: 12, color: "var(--ink-3)", marginTop: 9, lineHeight: 1.4 }}>{s.label}</div>
+                <div style={{ fontSize: 12, color: "rgba(255,255,255,0.45)", marginTop: 9, lineHeight: 1.4 }}>{s.label}</div>
               </div>
             ))}
           </motion.div>
         </motion.div>
       </div>
 
-      <div style={{ height: 96 }} />
-
       <style>{`
-        @media (max-width: 1080px) {
-          .hero-float-cards { display: none; }
-        }
         @media (max-width: 760px) {
-          .hero-mock-body { grid-template-columns: 44px 1fr !important; }
-          .hero-mock-right { display: none !important; }
-          .hero-v2-stats { grid-template-columns: repeat(2, 1fr) !important; }
-          .hero-v2-stat { border-right: none !important; padding: 22px 8px 0 !important; }
-          .hero-v2-stat:nth-child(odd) { border-right: 1px solid var(--line) !important; }
+          .hero-dir-grid { grid-template-columns: 1fr !important; max-width: 420px; }
+          .hero-v2-stats { grid-template-columns: repeat(2, 1fr) !important; max-width: 420px; }
+          .hero-v2-stat { border-right: none !important; padding: 20px 8px 0 !important; }
+          .hero-v2-stat:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.10) !important; }
         }
       `}</style>
     </header>
