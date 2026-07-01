@@ -1,4 +1,5 @@
 "use client";
+import { useState, useEffect } from "react";
 import { Link } from "@/i18n/navigation";
 import { usePathname } from "next/navigation";
 import { UserButton } from "@clerk/nextjs";
@@ -78,26 +79,88 @@ const SECONDARY = [
 
 export function Sidebar() {
   const pathname = usePathname();
+  const [open, setOpen] = useState(false);
 
   const isActive = (href: string, exact?: boolean) =>
     exact ? pathname === href : pathname.startsWith(href);
 
+  // Close the mobile drawer whenever the route changes
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  // Lock body scroll while the mobile drawer is open
+  useEffect(() => {
+    if (open) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => { document.body.style.overflow = prev; };
+    }
+  }, [open]);
+
   return (
-    <aside
-      style={{
-        position: "fixed",
-        left: 0,
-        top: 0,
-        height: "100%",
-        width: "var(--d-side-w, 220px)",
-        display: "flex",
-        flexDirection: "column",
-        background: "rgba(5,8,15,0.98)",
-        borderRight: "1px solid var(--d-border)",
-        zIndex: 50,
-        padding: "20px 12px",
-      }}
-    >
+    <>
+      {/* Mobile top bar — hamburger + logo (hidden on desktop via CSS) */}
+      <div
+        className="d-mobilebar"
+        style={{
+          position: "fixed", top: 0, left: 0, right: 0, height: 56, zIndex: 40,
+          alignItems: "center", gap: 12, padding: "0 14px",
+          background: "rgba(5,8,15,0.96)", backdropFilter: "blur(10px)",
+          borderBottom: "1px solid var(--d-border)",
+        }}
+      >
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          aria-label="Atvērt izvēlni"
+          style={{
+            width: 40, height: 40, borderRadius: 10, flexShrink: 0,
+            display: "flex", alignItems: "center", justifyContent: "center",
+            background: "transparent", border: "1px solid var(--d-border)",
+            color: "var(--ink)", cursor: "pointer",
+          }}
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" /></svg>
+        </button>
+        <Link href="/dashboard" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
+          <div style={{
+            width: 30, height: 30, borderRadius: 8,
+            background: "var(--d-accent)", color: "var(--accent-ink)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            fontSize: 15, fontWeight: 900, flexShrink: 0, fontFamily: "'Inter Tight', sans-serif",
+          }}>C</div>
+          <span style={{ fontFamily: "'Inter Tight', sans-serif", fontWeight: 800, fontSize: 17, letterSpacing: "-0.02em", color: "var(--ink)" }}>Chademy</span>
+        </Link>
+      </div>
+
+      {/* Overlay behind the mobile drawer */}
+      <div
+        className={`d-overlay${open ? " open" : ""}`}
+        onClick={() => setOpen(false)}
+        aria-hidden
+        style={{
+          position: "fixed", inset: 0, zIndex: 49,
+          background: "rgba(0,0,0,0.55)", backdropFilter: "blur(2px)",
+        }}
+      />
+
+      <aside
+        className={`d-sidebar${open ? " open" : ""}`}
+        style={{
+          position: "fixed",
+          left: 0,
+          top: 0,
+          height: "100%",
+          width: "var(--d-side-w, 220px)",
+          display: "flex",
+          flexDirection: "column",
+          background: "rgba(5,8,15,0.98)",
+          borderRight: "1px solid var(--d-border)",
+          zIndex: 50,
+          padding: "20px 12px",
+        }}
+      >
       {/* Logo */}
       <Link href="/" style={{ display: "flex", alignItems: "center", gap: 9, textDecoration: "none", marginBottom: 28, padding: "0 4px" }}>
         <div style={{
@@ -186,6 +249,24 @@ export function Sidebar() {
           Atpakaļ uz sākumlapu
         </Link>
       </div>
-    </aside>
+
+        {/* Close button — only visible inside the mobile drawer */}
+        <button
+          type="button"
+          onClick={() => setOpen(false)}
+          aria-label="Aizvērt izvēlni"
+          className="d-drawer-close"
+          style={{
+            position: "absolute", top: 14, right: 14,
+            width: 34, height: 34, borderRadius: 9,
+            alignItems: "center", justifyContent: "center",
+            background: "transparent", border: "1px solid var(--d-border)",
+            color: "var(--ink)", cursor: "pointer",
+          }}
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
+        </button>
+      </aside>
+    </>
   );
 }

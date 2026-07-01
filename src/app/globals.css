@@ -521,6 +521,25 @@ summary:focus-visible {
   font-size: 28px; font-weight: 800; letter-spacing: -0.03em; color: var(--ink); margin-bottom: 4px;
 }
 
+/* ── Dashboard responsive shell ──────────────────────────────────── */
+.d-main { margin-left: var(--d-side-w, 220px); min-height: 100vh; }
+.d-sidebar { transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1); }
+.d-mobilebar { display: none; }        /* hidden on desktop */
+.d-overlay { display: none; }          /* hidden until drawer opens */
+.d-drawer-close { display: none; }     /* only inside the mobile drawer */
+
+@media (max-width: 900px) {
+  .d-main { margin-left: 0; padding-top: 56px; }   /* room for the mobile bar */
+  .d-mobilebar { display: flex; }
+  .d-sidebar { transform: translateX(-100%); }
+  .d-sidebar.open {
+    transform: translateX(0);
+    box-shadow: 0 24px 90px rgba(0, 0, 0, 0.6);
+  }
+  .d-overlay.open { display: block; }
+  .d-drawer-close { display: flex; }
+}
+
 .d-accent-glow {
   box-shadow: 0 0 40px color-mix(in oklab, var(--accent) 8%, transparent),
               0 0 1px color-mix(in oklab, var(--accent) 25%, transparent);

@@ -21,8 +21,8 @@ export default async function AdminPanelLayout({
   return (
     <div className="min-h-screen bg-[#08080f] text-white">
       <AdminSidebar role={admin.role} name={admin.name} email={admin.email} />
-      <main className="ml-64 min-h-screen">
-        <div className="mx-auto max-w-7xl px-8 py-8">{children}</div>
+      <main className="min-h-screen pt-14 md:ml-64 md:pt-0">
+        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-8 sm:py-8">{children}</div>
       </main>
     </div>
   );

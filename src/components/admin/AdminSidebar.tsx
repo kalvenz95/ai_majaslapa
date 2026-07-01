@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { UserButton } from "@clerk/nextjs";
@@ -12,6 +13,8 @@ import {
   StickyNote,
   Settings,
   ShieldCheck,
+  Menu,
+  X,
 } from "lucide-react";
 import type { Role } from "@prisma/client";
 import { ROLE_LABELS } from "@/lib/format";
@@ -44,9 +47,57 @@ export default function AdminSidebar({
 }) {
   const pathname = usePathname();
   const items = NAV.filter((i) => i.roles.includes(role));
+  const [open, setOpen] = useState(false);
+
+  // Close the mobile drawer whenever the route changes
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   return (
-    <aside className="fixed inset-y-0 left-0 z-30 flex w-64 flex-col border-r border-white/5 bg-[#0b0b16]">
+    <>
+      {/* Mobile top bar — hidden on desktop */}
+      <div className="fixed inset-x-0 top-0 z-30 flex h-14 items-center gap-3 border-b border-white/5 bg-[#0b0b16]/95 px-4 backdrop-blur md:hidden">
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          aria-label="Atvērt izvēlni"
+          className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-white/80"
+        >
+          <Menu className="h-[18px] w-[18px]" />
+        </button>
+        <div className="flex items-center gap-2">
+          <div className="flex h-7 w-7 items-center justify-center rounded-md bg-neon-green/10 ring-1 ring-neon-green/30">
+            <ShieldCheck className="h-4 w-4 text-neon-green" />
+          </div>
+          <span className="text-sm font-semibold text-white">Chademy</span>
+        </div>
+      </div>
+
+      {/* Overlay behind the mobile drawer */}
+      {open && (
+        <div
+          onClick={() => setOpen(false)}
+          aria-hidden
+          className="fixed inset-0 z-[35] bg-black/55 backdrop-blur-sm md:hidden"
+        />
+      )}
+
+      <aside
+        className={`fixed inset-y-0 left-0 z-40 flex w-64 flex-col border-r border-white/5 bg-[#0b0b16] transition-transform duration-300 md:translate-x-0 ${
+          open ? "translate-x-0 shadow-2xl" : "-translate-x-full"
+        }`}
+      >
+        {/* Close button — only inside the mobile drawer */}
+        <button
+          type="button"
+          onClick={() => setOpen(false)}
+          aria-label="Aizvērt izvēlni"
+          className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 text-white/70 md:hidden"
+        >
+          <X className="h-4 w-4" />
+        </button>
+
       {/* Logo */}
       <div className="flex h-16 items-center gap-2.5 px-5">
         <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-neon-green/10 ring-1 ring-neon-green/30">
@@ -99,6 +150,7 @@ export default function AdminSidebar({
           </div>
         </div>
       </div>
-    </aside>
+      </aside>
+    </>
   );
 }

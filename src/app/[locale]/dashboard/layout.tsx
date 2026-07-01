@@ -63,7 +63,7 @@ export default async function DashboardLayout({
       <PhonePrompt needsPhone={needsPhone} />
       <StreakTracker />
       <Sidebar />
-      <main style={{ marginLeft: "var(--d-side-w, 220px)", minHeight: "100vh" }}>
+      <main className="d-main">
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "32px 28px" }}>{children}</div>
       </main>
     </div>
