@@ -11,7 +11,6 @@ import HowItWorksV2 from "@/components/home/HowItWorksV2";
 import IncomeV2 from "@/components/home/IncomeV2";
 import NoSkillsV2 from "@/components/home/NoSkillsV2";
 import ProjectsV2 from "@/components/home/ProjectsV2";
-import ShowcaseV2 from "@/components/home/ShowcaseV2";
 import LiveVoiceAgents from "@/components/home/LiveVoiceAgents";
 import CommunityV2 from "@/components/home/CommunityV2";
 import ToolsV2 from "@/components/home/ToolsV2";
@@ -99,9 +98,6 @@ export default async function HomePage({
 
       {/* 7. Real project examples */}
       <ProjectsV2 />
-
-      {/* 7b. Our work — real website + voice agent samples */}
-      <ShowcaseV2 />
 
       {/* 7c. Live voice agents — talk to our Vapi agents in the browser */}
       <LiveVoiceAgents />

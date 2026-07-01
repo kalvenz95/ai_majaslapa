@@ -124,19 +124,20 @@
         "num": "03",
         "level": "Premium",
         "badge": "Premium",
-        "title": "AI Agent expert",
-        "desc": "High-value AI services for businesses",
+        "title": "AI Voice Agent Expert",
+        "desc": "Build and sell AI voice agents for businesses.",
         "skills": [
-          "AI voice agents for calls and bookings",
-          "WhatsApp automation for businesses",
-          "How to sell higher-value AI solutions",
-          "AI app building basics",
-          "Private community",
-          "1:1 mentoring sessions"
+          "Building AI voice agents from scratch",
+          "Phone number setup and configuration",
+          "Training the voice agent for business needs",
+          "Booking and call automation",
+          "How to find and reach your first clients",
+          "Ready-made sales and demo templates",
+          "1:1 mentoring and private community"
         ],
         "earn": "€800–€3500",
         "earnSuffix": "/mo",
-        "cta": "Join premium →",
+        "cta": "Join Premium →",
         "link": "/kursi/ai-agentu-eksperts"
       }
     ]

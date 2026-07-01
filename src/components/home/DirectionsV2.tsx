@@ -155,27 +155,6 @@ export default function DirectionsV2() {
                     {track.desc}
                   </p>
 
-                  {/* Earn range — the money shot */}
-                  <div style={{
-                    borderRadius: 16, padding: "16px 18px", marginBottom: 24, position: "relative",
-                    background: dark ? "rgba(255,255,255,0.05)" : `rgba(${th.glow},0.06)`,
-                    border: dark ? "1px solid rgba(255,255,255,0.10)" : `1px solid rgba(${th.glow},0.18)`,
-                  }}>
-                    <div style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: dark ? "rgba(255,255,255,0.45)" : "var(--ink-3)", marginBottom: 5, fontFamily: "JetBrains Mono, monospace" }}>
-                      Potenciāls
-                    </div>
-                    <div style={{ display: "flex", alignItems: "baseline", gap: 5 }}>
-                      <span style={{
-                        fontSize: 28, fontWeight: 700, fontFamily: "var(--font-sans)", letterSpacing: "-0.04em",
-                        color: th.color,
-                        ...(premium ? { background: GOLD_FILL, WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent" } : {}),
-                      }}>
-                        {track.earn}
-                      </span>
-                      <span style={{ fontSize: 13, color: dark ? "rgba(255,255,255,0.4)" : "var(--ink-3)" }}>{track.earnSuffix}</span>
-                    </div>
-                  </div>
-
                   {/* Skills */}
                   <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 28, flex: 1, position: "relative" }}>
                     {track.skills.map((skill) => (

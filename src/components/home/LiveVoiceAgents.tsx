@@ -32,8 +32,26 @@ export default function LiveVoiceAgents() {
     v.on("speech-start", () => setAssistantSpeaking(true));
     v.on("speech-end", () => setAssistantSpeaking(false));
     v.on("volume-level", (vol: number) => setVolume(vol));
-    v.on("error", () => {
-      setError("Neizdevās savienoties. Pārbaudi mikrofona atļauju un mēģini vēlreiz.");
+    v.on("error", (e: unknown) => {
+      // Surface the real reason so we can diagnose (mic / assistant / billing).
+      let detail = "";
+      try {
+        if (typeof e === "string") detail = e;
+        else if (e && typeof e === "object") {
+          const o = e as Record<string, unknown>;
+          const nested = o.error as Record<string, unknown> | undefined;
+          detail =
+            (o.errorMsg as string) ||
+            (o.message as string) ||
+            (nested?.message as string) ||
+            (nested?.msg as string) ||
+            JSON.stringify(o);
+        }
+      } catch {
+        /* ignore */
+      }
+      console.error("[Vapi error]", e);
+      setError("Neizdevās savienoties: " + (detail || "nezināma kļūda"));
       setStatus("idle");
       setActiveId(null);
     });

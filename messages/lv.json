@@ -124,19 +124,20 @@
         "num": "03",
         "level": "Premium",
         "badge": "Premium",
-        "title": "AI Aģentu eksperts",
-        "desc": "Augstas vērtības AI pakalpojumi uzņēmumiem",
+        "title": "AI Voice Agent Eksperts",
+        "desc": "Izveido un pārdod AI balss aģentus uzņēmumiem.",
         "skills": [
-          "AI balss aģenti zvaniem un rezervācijām",
-          "WhatsApp automatizācija uzņēmumiem",
-          "Kā pārdot augstākas vērtības AI risinājumus",
-          "AI lietotņu veidošanas pamati",
-          "Privāta kopiena",
-          "1:1 mentoring sesijas"
+          "AI balss aģentu izveide no nulles",
+          "Telefona numura pieslēgšana un konfigurēšana",
+          "Balss aģenta apmācīšana uzņēmuma vajadzībām",
+          "Rezervāciju un zvanu automatizācija",
+          "Kā atrast un uzrunāt pirmos klientus",
+          "Gatavas pārdošanas un demo veidnes",
+          "1:1 mentorings un privātā kopiena"
         ],
         "earn": "800€–3500€",
         "earnSuffix": "/mēn",
-        "cta": "Pievienoties premium →",
+        "cta": "Pievienoties Premium →",
         "link": "/kursi/ai-agentu-eksperts"
       }
     ]
