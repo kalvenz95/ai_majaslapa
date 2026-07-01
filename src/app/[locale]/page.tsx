@@ -84,8 +84,11 @@ export default async function HomePage({
       {/* 3. Choose your direction */}
       <DirectionsV2 />
 
-      {/* 3b. Direction demos — live product mockups */}
+      {/* 3b. Website samples — real projects we've built */}
       <DirectionDemosV2 />
+
+      {/* 3c. Live voice agents — talk to our Vapi agents in the browser */}
+      <LiveVoiceAgents />
 
       {/* 4. How it works */}
       <HowItWorksV2 />
@@ -98,9 +101,6 @@ export default async function HomePage({
 
       {/* 7. Real project examples */}
       <ProjectsV2 />
-
-      {/* 7c. Live voice agents — talk to our Vapi agents in the browser */}
-      <LiveVoiceAgents />
 
       {/* 8. Community + results */}
       <CommunityV2 />
