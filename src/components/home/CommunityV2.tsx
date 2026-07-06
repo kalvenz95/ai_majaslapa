@@ -3,6 +3,7 @@
 import { Reveal } from "@/components/home/Reveal";
 import { AnimatedNumber } from "@/components/AnimatedNumber";
 import { Magnetic } from "@/components/Magnetic";
+import { Link } from "@/i18n/navigation";
 import { Check } from "lucide-react";
 
 const quotes = [
@@ -165,9 +166,9 @@ export default function CommunityV2() {
                 </span>
               </div>
               <Magnetic>
-                <a href="#pricing" className="btn-primary" style={{ textDecoration: "none", fontSize: 15.5, padding: "15px 30px", borderRadius: 14 }}>
+                <Link href="/register" className="btn-primary" style={{ textDecoration: "none", fontSize: 15.5, padding: "15px 30px", borderRadius: 14 }}>
                   Pievienoties →
-                </a>
+                </Link>
               </Magnetic>
             </div>
           </div>

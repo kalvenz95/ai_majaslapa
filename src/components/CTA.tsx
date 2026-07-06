@@ -95,7 +95,7 @@ export default function CTA() {
             onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.filter = "brightness(1.1)"; }}
             onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.filter = ""; }}
           >
-            Sākt bezmaksas →
+            Sākt tagad →
           </a>
           <div style={{ display: "flex", justifyContent: "center", gap: 24, flexWrap: "wrap", marginTop: 28, fontSize: 13, color: "rgba(255,255,255,0.45)" }}>
             {["Latviešu valodā", "Bez programmēšanas", "Aktīva kopiena", "Gatavas veidnes"].map((item) => (

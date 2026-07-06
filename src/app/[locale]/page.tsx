@@ -14,7 +14,6 @@ import ProjectsV2 from "@/components/home/ProjectsV2";
 import LiveVoiceAgents from "@/components/home/LiveVoiceAgents";
 import CommunityV2 from "@/components/home/CommunityV2";
 import ToolsV2 from "@/components/home/ToolsV2";
-import PricingV2 from "@/components/home/PricingV2";
 import FAQV2 from "@/components/home/FAQV2";
 import FinalCTAV2 from "@/components/home/FinalCTAV2";
 
@@ -111,10 +110,7 @@ export default async function HomePage({
       {/* 9. Tools you will learn */}
       <ToolsV2 />
 
-      {/* 10. Pricing */}
-      <PricingV2 />
-
-      {/* 11. FAQ */}
+      {/* 10. FAQ */}
       <FAQV2 />
 
       {/* 12. Final CTA (dark) */}

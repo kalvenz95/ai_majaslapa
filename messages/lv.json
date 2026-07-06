@@ -13,7 +13,7 @@
     "results": "Rezultāti",
     "myAccount": "Mans konts",
     "signIn": "Pieslēgties",
-    "signUp": "Sākt bezmaksas →"
+    "signUp": "Sākt tagad →"
   },
   "Lang": {
     "lv": "LV",
@@ -26,7 +26,7 @@
     "h1Gradient": "līdz pirmajiem",
     "h1Line2": " klientiem",
     "sub": "Praktiska AI apmācība latviešu valodā. Iemācies veidot mājaslapas, AI saturu un balss aģentus — pakalpojumus, ko uzņēmumi jau pērk — un atrodi savus pirmos klientus.",
-    "ctaPrimary": "Sākt bezmaksas →",
+    "ctaPrimary": "Sākt tagad →",
     "ctaSecondary": "Skatīt kursus",
     "stat1Val": "3",
     "stat1Label": "AI pakalpojumu virzieni",
@@ -308,7 +308,7 @@
     "titleA": "Sāc apgūt prasmes, ",
     "titleB": "ko uzņēmumi jau meklē",
     "lead": "Praktiska platforma latviešu valodā ar skaidru un saprotamu pieeju.",
-    "ctaPrimary": "Sākt bezmaksas →",
+    "ctaPrimary": "Sākt tagad →",
     "ctaSecondary": "Skatīt kursus",
     "bullets": [
       "Latviešu valodā",

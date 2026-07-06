@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { useHasMounted } from "@/hooks/useHasMounted";
 import { AnimatedNumber } from "@/components/AnimatedNumber";
 import { Magnetic } from "@/components/Magnetic";
+import { Link } from "@/i18n/navigation";
 import { Globe, Mic, Images } from "lucide-react";
 
 const EASE_OUT = [0.215, 0.61, 0.355, 1] as const;
@@ -137,9 +138,9 @@ export default function HeroV2() {
           {/* CTAs */}
           <motion.div variants={item} style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
             <Magnetic>
-              <a href="#pricing" className="btn-primary" style={{ textDecoration: "none", fontSize: 16.5, padding: "17px 34px", borderRadius: 15 }}>
+              <Link href="/register" className="btn-primary" style={{ textDecoration: "none", fontSize: 16.5, padding: "17px 34px", borderRadius: 15 }}>
                 {t("ctaPrimary")}
-              </a>
+              </Link>
             </Magnetic>
             <Magnetic>
               <a href="#courses" className="btn-ghost btn-ghost--dark" style={{ textDecoration: "none", fontSize: 16.5, padding: "17px 28px", borderRadius: 15 }}>

@@ -2,6 +2,7 @@
 
 import { Reveal } from "@/components/home/Reveal";
 import { Magnetic } from "@/components/Magnetic";
+import { Link } from "@/i18n/navigation";
 import { Check, Play, Pause, Captions } from "lucide-react";
 
 const checks = [
@@ -116,9 +117,9 @@ export default function NoSkillsV2() {
 
             <Reveal delay={0.4}>
               <Magnetic>
-                <a href="#pricing" className="btn-primary" style={{ textDecoration: "none", fontSize: 16, padding: "16px 30px", borderRadius: 14 }}>
+                <Link href="/register" className="btn-primary" style={{ textDecoration: "none", fontSize: 16, padding: "16px 30px", borderRadius: 14 }}>
                   Pievienoties platformai →
-                </a>
+                </Link>
               </Magnetic>
             </Reveal>
           </div>

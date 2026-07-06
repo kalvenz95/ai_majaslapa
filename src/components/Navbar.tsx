@@ -210,7 +210,6 @@ export default function Navbar() {
   const t = useTranslations("Navbar");
   const navLinks = [
     { label: t("courses"), href: "#courses" as const },
-    { label: t("pricing"), href: "#pricing" as const },
     { label: t("about"), href: "#about" as const },
     { label: t("results"), href: "#results" as const },
   ];

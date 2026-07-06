@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Link } from "@/i18n/navigation";
 import { setRequestLocale } from "next-intl/server";
 
 export default async function MisijaPage({
@@ -75,9 +76,9 @@ export default async function MisijaPage({
           <p style={{ fontSize: 16, color: "var(--ink-2)", lineHeight: 1.65, marginBottom: 32 }}>
             Katrs students, kurš pievienojas Chademy, kļūst par daļu no kustības, kas veido Latvijas digitālo nākotni.
           </p>
-          <a href="/#pricing" style={{ display: "inline-block", background: "var(--accent)", color: "var(--accent-ink)", padding: "14px 32px", borderRadius: 12, fontWeight: 700, fontSize: 15, textDecoration: "none" }}>
-            Sākt bezmaksas →
-          </a>
+          <Link href="/register" style={{ display: "inline-block", background: "var(--accent)", color: "var(--accent-ink)", padding: "14px 32px", borderRadius: 12, fontWeight: 700, fontSize: 15, textDecoration: "none" }}>
+            Sākt tagad →
+          </Link>
         </div>
       </section>
 

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Reveal } from "@/components/home/Reveal";
 import { Magnetic } from "@/components/Magnetic";
+import { Link } from "@/i18n/navigation";
 
 export default function FinalCTAV2() {
   return (
@@ -45,13 +46,13 @@ export default function FinalCTAV2() {
         </Reveal>
         <Reveal delay={0.22}>
           <Magnetic>
-            <a
-              href="#pricing"
+            <Link
+              href="/register"
               className="btn-primary"
               style={{ textDecoration: "none", fontSize: 18, padding: "19px 44px", borderRadius: 16, fontWeight: 700, fontFamily: "var(--font-sans)" }}
             >
-              Sākt bezmaksas →
-            </a>
+              Sākt tagad →
+            </Link>
           </Magnetic>
         </Reveal>
         <Reveal delay={0.3}>
