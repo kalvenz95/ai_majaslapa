@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Vapi from "@vapi-ai/web";
 import { Reveal } from "@/components/home/Reveal";
-import { Mic, Phone, PhoneOff, Loader2, Check, Radio } from "lucide-react";
+import { Mic, Phone, PhoneOff, Loader2, Check, Radio, Globe } from "lucide-react";
 import { VAPI_PUBLIC_KEY, VOICE_AGENTS, type VoiceAgent } from "@/lib/vapiAgents";
 
 type Status = "idle" | "connecting" | "active";
@@ -122,7 +122,7 @@ export default function LiveVoiceAgents() {
           </div>
         )}
 
-        <div className="live-voice-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+        <div className="live-voice-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 20, maxWidth: 760, margin: "0 auto" }}>
           {VOICE_AGENTS.map((agent, i) => (
             <AgentCard
               key={agent.id}
@@ -144,7 +144,6 @@ export default function LiveVoiceAgents() {
         @keyframes lv-ring-pulse { 0% { transform: scale(1); opacity: 0.55; } 70% { transform: scale(1.9); opacity: 0; } 100% { transform: scale(1.9); opacity: 0; } }
         @keyframes lv-spin { to { transform: rotate(360deg); } }
         .lv-spin { animation: lv-spin 1s linear infinite; }
-        @media (max-width: 1024px) { .live-voice-grid { grid-template-columns: repeat(2, 1fr) !important; } }
         @media (max-width: 680px) { .live-voice-grid { grid-template-columns: 1fr !important; } }
       `}</style>
     </section>
@@ -205,6 +204,12 @@ function AgentCard({
             <div style={{ fontSize: 14.5, fontWeight: 700, color: "#fff", letterSpacing: "-0.01em", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{agent.biz}</div>
             <div style={{ fontSize: 11.5, color: "rgba(255,255,255,0.5)" }}>{agent.scenario}</div>
           </div>
+          {agent.lang && (
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 9.5, fontFamily: "JetBrains Mono, monospace", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: "rgba(255,255,255,0.72)", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.16)", borderRadius: 999, padding: "4px 9px", whiteSpace: "nowrap" }}>
+              <Globe size={10} strokeWidth={2.4} />
+              {agent.lang}
+            </span>
+          )}
           <span style={{ fontSize: 9.5, fontFamily: "JetBrains Mono, monospace", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "#A89DFF", background: "rgba(109,94,243,0.14)", border: "1px solid rgba(109,94,243,0.3)", borderRadius: 999, padding: "4px 9px" }}>AI</span>
         </div>
 

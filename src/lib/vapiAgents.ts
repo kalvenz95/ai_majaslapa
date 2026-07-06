@@ -10,8 +10,7 @@
  * .env.local:
  *   NEXT_PUBLIC_VAPI_PUBLIC_KEY=pk_xxx
  *   NEXT_PUBLIC_VAPI_ASSISTANT_CHADEMY=asst_xxx
- *   NEXT_PUBLIC_VAPI_ASSISTANT_SALONS=asst_xxx
- *   NEXT_PUBLIC_VAPI_ASSISTANT_SERVISS=asst_xxx
+ *   NEXT_PUBLIC_VAPI_ASSISTANT_AUTOSALONS=asst_xxx
  */
 
 export const VAPI_PUBLIC_KEY = process.env.NEXT_PUBLIC_VAPI_PUBLIC_KEY ?? "";
@@ -23,6 +22,8 @@ export type VoiceAgent = {
   biz: string;
   /** Īss scenārija apraksts */
   scenario: string;
+  /** Sarunas valoda, ja atšķiras no latviešu (rāda čipu kartiņā), piem. "Angliski" */
+  lang?: string;
   /** Ko agents prot — punkti zem kartiņas */
   skills: string[];
   /** Vapi Assistant ID (no env) */
@@ -38,26 +39,21 @@ export const VOICE_AGENTS: VoiceAgent[] = [
     id: "chademy",
     biz: "Chademy",
     scenario: "AI mācību konsultants",
+    lang: "Latviski",
     skills: ["Pastāsta par kursiem", "Iesaka piemērotu virzienu", "Atbild uz jautājumiem"],
     assistantId: process.env.NEXT_PUBLIC_VAPI_ASSISTANT_CHADEMY ?? "",
     accent: "#6D5EF3",
     glow: "109,94,243",
   },
   {
-    id: "salons",
-    biz: "Salons «Glow»",
-    scenario: "Pieraksts pie meistara",
-    skills: ["Pieraksta uz vizīti", "Iesaka brīvu laiku", "Atgādina pirms vizītes"],
-    assistantId: process.env.NEXT_PUBLIC_VAPI_ASSISTANT_SALONS ?? "",
-    accent: "#00BFA5",
-    glow: "0,191,165",
-  },
-  {
-    id: "serviss",
-    biz: "Auto serviss «Drive»",
-    scenario: "Pieteikums remontam",
-    skills: ["Pieņem pieteikumu", "Noskaidro problēmu", "Savāc kontaktus"],
-    assistantId: process.env.NEXT_PUBLIC_VAPI_ASSISTANT_SERVISS ?? "",
+    id: "autosalons",
+    biz: "Silverline Motors",
+    scenario: "Auto salona konsultants",
+    lang: "Angliski",
+    skills: ["Pastāsta par pieejamiem auto", "Nosaka darba laikus", "Piesaka testa braucienu"],
+    assistantId:
+      process.env.NEXT_PUBLIC_VAPI_ASSISTANT_AUTOSALONS ??
+      "5bd2d9f5-96ce-43dc-8d74-6202041f6b75",
     accent: "#FFB86B",
     glow: "255,184,107",
   },
