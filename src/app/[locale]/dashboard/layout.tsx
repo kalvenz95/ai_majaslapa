@@ -4,7 +4,9 @@ import { Sidebar } from "@/components/dashboard/Sidebar";
 import { StreakTracker } from "@/components/dashboard/StreakTracker";
 import PhonePrompt from "@/components/dashboard/PhonePrompt";
 import { upsertUser } from "@/lib/subscriptions";
+import { claimReferral, REF_COOKIE } from "@/lib/affiliate";
 import { setRequestLocale } from "next-intl/server";
+import { cookies } from "next/headers";
 
 export default async function DashboardLayout({
   children,
@@ -53,6 +55,15 @@ export default async function DashboardLayout({
         avatarUrl: clerkUser.imageUrl || undefined,
       }).catch(() => null);
       needsPhone = !!dbUser && !dbUser.phone;
+
+      // Partneru programma: ja lietotājs atnāca ar partnera kodu (cookie),
+      // piesaista viņu partnerim kā "pievienojies".
+      if (dbUser) {
+        const refCode = (await cookies()).get(REF_COOKIE)?.value;
+        if (refCode) {
+          await claimReferral(dbUser.id, refCode).catch(() => null);
+        }
+      }
     }
   } catch {
     // DB nav pieejama

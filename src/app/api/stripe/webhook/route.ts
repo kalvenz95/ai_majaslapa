@@ -3,6 +3,7 @@ import type Stripe from "stripe";
 import { stripe, PLAN_NAMES, getPlanFromPriceId } from "@/lib/stripe";
 import { prisma } from "@/lib/prisma";
 import { sendWelcomeEmail, sendPaymentConfirmationEmail } from "@/lib/resend";
+import { markReferralPurchased } from "@/lib/affiliate";
 import { SubscriptionStatus, Plan } from "@prisma/client";
 
 // Stripe prasa raw body — NextJS App Router automātiski neparsē
@@ -136,6 +137,14 @@ async function handlePaymentSucceeded(invoice: any) {
       invoice.hosted_invoice_url ?? undefined
     );
   }
+
+  // Partneru atribūcija — ja lietotājs nāca caur partnera kodu, atzīmē
+  // pirkumu un pieskaita summu partnera statistikai.
+  await markReferralPurchased(
+    user.id,
+    invoice.amount_paid ?? 0,
+    plan ?? null
+  ).catch((e) => console.error("[AFFILIATE_PURCHASE]", e));
 }
 
 /** Saglabā maksājuma ierakstu Payment tabulā (admin maksājumu vēsturei). */

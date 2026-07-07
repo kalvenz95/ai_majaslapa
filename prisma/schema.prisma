@@ -36,6 +36,10 @@ model User {
   comments     PostComment[]    @relation("CommentAuthor")
   notes        AdminNote[]      @relation("NoteSubject")
   authoredNotes AdminNote[]     @relation("NoteAuthor")
+
+  // Partneru programma
+  affiliate     Affiliate?       @relation("AffiliateOwner")
+  referredBy    Referral?        @relation("ReferredUser")
 }
 
 // Lietotāja loma — nosaka piekļuvi admin panelim
@@ -257,4 +261,47 @@ enum EventType {
   QA
   WORKSHOP
   OTHER
+}
+
+// ── Partneru programma (affiliate) ───────────────────────────
+// Katram partnerim ir viens unikāls kods. Apmeklētājs, kas ievada
+// kodu, saņem atlaidi; partneris redz cik cilvēku pievienojušies un
+// iegādājušies kursus caur viņa kodu.
+model Affiliate {
+  id          String  @id @default(cuid())
+  userId      String  @unique
+  user        User    @relation("AffiliateOwner", fields: [userId], references: [id], onDelete: Cascade)
+  code        String  @unique // partnera kods, piem. "KALVIS7A2"
+  discountPct Int     @default(15) // atlaide %, ko saņem apmeklētājs
+  active      Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  referrals Referral[]
+}
+
+// Katrs lietotājs var būt piesaistīts tikai vienam partnera kodam.
+// status JOINED  → reģistrējies ar kodu (vēl nav pircis)
+// status PURCHASED → iegādājies kursu caur šo kodu
+model Referral {
+  id             String         @id @default(cuid())
+  affiliateId    String
+  affiliate      Affiliate      @relation(fields: [affiliateId], references: [id], onDelete: Cascade)
+  referredUserId String         @unique
+  referredUser   User           @relation("ReferredUser", fields: [referredUserId], references: [id], onDelete: Cascade)
+  status         ReferralStatus @default(JOINED)
+  plan           Plan?
+  amountCents    Int            @default(0) // kopējais caur šo referral iemaksātais
+
+  joinedAt    DateTime  @default(now())
+  purchasedAt DateTime?
+
+  @@index([affiliateId])
+  @@index([status])
+}
+
+enum ReferralStatus {
+  JOINED
+  PURCHASED
 }

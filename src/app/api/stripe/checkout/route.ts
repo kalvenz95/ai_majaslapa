@@ -4,6 +4,12 @@ import { z } from "zod";
 import { stripe, PLAN_PRICE_MAP } from "@/lib/stripe";
 import { prisma } from "@/lib/prisma";
 import { Plan } from "@prisma/client";
+import {
+  REF_COOKIE,
+  findActiveAffiliateByCode,
+  getOrCreateDiscountCoupon,
+  claimReferral,
+} from "@/lib/affiliate";
 
 const schema = z.object({
   plan: z.enum(["PAMATI", "IZAUGSME", "MEISTARS"]),
@@ -62,6 +68,30 @@ export async function POST(req: NextRequest) {
 
     const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
 
+    // ── Partnera kods: atlaide + atribūcija ──────────────────
+    // Nolasa kodu no cookie; ja derīgs un nav pašpiesaiste — pielieto
+    // Stripe atlaidi un piesaista lietotāju partnerim (JOINED), lai
+    // pēc maksājuma webhook to atzīmētu kā PURCHASED.
+    const refCode = req.cookies.get(REF_COOKIE)?.value;
+    let discountCoupon: string | null = null;
+    let affiliateCode: string | null = null;
+
+    if (refCode) {
+      const affiliate = await findActiveAffiliateByCode(refCode);
+      if (affiliate && affiliate.userId !== dbUser.id) {
+        affiliateCode = affiliate.code;
+        try {
+          discountCoupon = await getOrCreateDiscountCoupon(affiliate.discountPct);
+        } catch (e) {
+          console.error("[AFFILIATE_COUPON]", e);
+        }
+        await claimReferral(dbUser.id, affiliate.code).catch(() => null);
+      }
+    }
+
+    const metadata: Record<string, string> = { clerkId: userId, plan };
+    if (affiliateCode) metadata.affiliateCode = affiliateCode;
+
     const session = await stripe.checkout.sessions.create({
       customer: stripeCustomerId,
       mode: "subscription",
@@ -70,10 +100,13 @@ export async function POST(req: NextRequest) {
       success_url: `${appUrl}/dashboard?success=true&plan=${plan.toLowerCase()}`,
       cancel_url: `${appUrl}/#pricing`,
       subscription_data: {
-        metadata: { clerkId: userId, plan },
+        metadata,
       },
-      metadata: { clerkId: userId, plan },
-      allow_promotion_codes: true,
+      metadata,
+      // Stripe neatļauj vienlaikus atlaides kuponu un promo kodu ievadi
+      ...(discountCoupon
+        ? { discounts: [{ coupon: discountCoupon }] }
+        : { allow_promotion_codes: true }),
       locale: "lv",
     });
 

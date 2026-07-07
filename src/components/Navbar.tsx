@@ -302,6 +302,14 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
+          <Link
+            href="/partneri"
+            style={{ fontSize: 14, color: linkInk, transition: "color 0.15s ease", textDecoration: "none" }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = linkInkHover)}
+            onMouseLeave={(e) => (e.currentTarget.style.color = linkInk)}
+          >
+            {t("partners")}
+          </Link>
           <LocaleToggle dark={overDark} />
         </div>
 
@@ -436,6 +444,13 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
+          <Link
+            href="/partneri"
+            onClick={() => setMenuOpen(false)}
+            style={{ fontSize: 15, color: "var(--ink-2)", padding: "12px 4px", textDecoration: "none", borderBottom: "1px solid var(--line)", display: "block" }}
+          >
+            {t("partners")}
+          </Link>
           <div style={{ paddingTop: 16 }}>
             {isSignedIn ? (
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>

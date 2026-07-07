@@ -72,6 +72,7 @@ const NAV = [
 ];
 
 const SECONDARY = [
+  { href: "/dashboard/partneri", label: "Partneri" },
   { href: "/dashboard/profils", label: "Profils" },
   { href: "/dashboard/abonemets", label: "Abonements" },
   { href: "/dashboard/kalendars", label: "Kalendārs" },
