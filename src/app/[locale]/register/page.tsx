@@ -36,6 +36,7 @@ export default function RegisterPage() {
         </div>
 
         <SignUp
+          routing="hash"
           fallbackRedirectUrl={`/${locale}/dashboard`}
           appearance={{
             elements: {

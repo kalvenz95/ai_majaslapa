@@ -40,6 +40,7 @@ export default function LoginPage() {
 
         {/* Clerk SignIn — pilna auth loģika (Google, Facebook, Microsoft, e-pasts) */}
         <SignIn
+          routing="hash"
           fallbackRedirectUrl={`/${locale}/dashboard`}
           appearance={{
             elements: {
