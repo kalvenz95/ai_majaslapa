@@ -38,7 +38,7 @@ export default function LoginPage() {
           </Link>
         </div>
 
-        {/* Clerk SignIn — pilna auth loģika (Google, Facebook, Microsoft, e-pasts) */}
+        {/* Clerk SignIn — pilna auth loģika (Google + e-pasts; social pogas nāk no Clerk paneļa) */}
         <SignIn
           routing="hash"
           fallbackRedirectUrl={`/${locale}/dashboard`}
