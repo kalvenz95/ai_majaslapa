@@ -5,8 +5,10 @@ import { BrandLogo } from "@/components/BrandLogos";
 
 const tools = [
   { name: "Claude", desc: "AI asistents & skripting", glow: "139,123,255" },
+  { name: "Claude Code", desc: "Koda aģents termināļī", glow: "255,184,107" },
   { name: "ChatGPT", desc: "Teksts & satura ģenerēšana", glow: "52,217,195" },
   { name: "Vapi", desc: "Balss AI aģenti", glow: "139,123,255" },
+  { name: "Retell AI", desc: "Reāllaika balss aģenti", glow: "139,123,255" },
   { name: "Make.com", desc: "Vizuālā automatizācija", glow: "255,184,107" },
   { name: "n8n", desc: "Workflow Builder", glow: "255,184,107" },
   { name: "Midjourney", desc: "AI attēlu ģenerēšana", glow: "52,217,195" },
@@ -51,9 +53,9 @@ export default function ToolsV2() {
         </div>
 
         {/* Tool tiles */}
-        <div className="tools-v2-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 14 }}>
+        <div className="tools-v2-grid" style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 14 }}>
           {tools.map((tool, i) => (
-            <Reveal key={tool.name} delay={0.04 * (i % 4)}>
+            <Reveal key={tool.name} delay={0.04 * (i % 5)}>
               <div
                 style={{
                   padding: "24px 22px", height: "100%",
