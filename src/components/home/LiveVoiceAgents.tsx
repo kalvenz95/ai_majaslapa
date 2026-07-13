@@ -72,7 +72,7 @@ export default function LiveVoiceAgents() {
         return;
       }
       if (!agent.assistantId) {
-        setError("Šim agentam vēl nav pievienots Vapi Assistant ID.");
+        setError("Šim aģentam vēl nav pievienots Vapi Assistant ID.");
         return;
       }
       if (activeId && activeId !== agent.id) v.stop();
@@ -111,7 +111,7 @@ export default function LiveVoiceAgents() {
           </Reveal>
           <Reveal delay={0.16}>
             <p style={{ fontSize: 18, color: "var(--ink-3)", lineHeight: 1.7, maxWidth: 560, margin: "0 auto" }}>
-              Uzspied pogu, atļauj mikrofonu un sarunājies ar AI agentu tieši pārlūkā — tādu pašu mēs uzbūvējam tavam biznesam. Demo zvans, maks. ~2 min.
+              Uzspied pogu, atļauj mikrofonu un sarunājies ar AI aģentu tieši pārlūkā — tādu pašu mēs uzbūvējam tavam biznesam. Demo zvans, maks. ~2 min.
             </p>
           </Reveal>
         </div>
@@ -241,7 +241,7 @@ function AgentCard({
             )}
             {status === "active" && (
               <p style={{ fontSize: 12.5, color: "rgba(255,255,255,0.7)", margin: 0, fontWeight: 600 }}>
-                {speaking ? "Agents runā…" : "Klausās — runā brīvi 🎙️"}
+                {speaking ? "Aģents runā…" : "Klausās — runā brīvi 🎙️"}
               </p>
             )}
           </div>
@@ -288,7 +288,7 @@ function AgentCard({
           onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = ""; }}
         >
           {live ? <PhoneOff size={16} strokeWidth={2.3} /> : <Phone size={16} strokeWidth={2.3} />}
-          {status === "connecting" ? "Savienojas…" : live ? "Beigt zvanu" : "Runāt ar agentu"}
+          {status === "connecting" ? "Savienojas…" : live ? "Beigt zvanu" : "Runāt ar aģentu"}
         </button>
       </article>
     </Reveal>

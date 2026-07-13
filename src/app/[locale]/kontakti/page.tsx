@@ -31,7 +31,7 @@ export default function KontaktiPage() {
             </span>
           </h1>
           <p style={{ fontSize: 20, color: "var(--ink-2)", maxWidth: 520, lineHeight: 1.6, marginTop: 24 }}>
-            Jautājumi par kursiem, sadarbību vai tehniski jautājumi — raksti mums.
+            Jautājumi par kursiem, sadarbību vai tehniskām lietām — raksti mums.
           </p>
         </div>
       </section>

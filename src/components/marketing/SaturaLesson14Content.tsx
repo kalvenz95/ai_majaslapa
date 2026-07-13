@@ -35,7 +35,7 @@ Ievēroju, ka saturs nav ļoti regulārs — tas ir pilnīgi normāli, jo tas ai
 
 Es veidoju AI saturu maziem Latvijas uzņēmumiem — video, banneri, posti — bez lielas pūles no jūsu puses.
 
-Vai drīkstu nosūtīt 3 piemēru darbus bez maksas, lai redzat vai tas noderētu?
+Vai drīkstu nosūtīt 3 piemēru darbus bez maksas, lai redzat, vai tas noderētu?
 
 [Jūsu vārds]`;
 
@@ -52,7 +52,7 @@ const proposalBlocks = [
   { icon: "🎯", title: "Ko piedāvāju", content: "Konkrēts pakalpojums, skaits, frekvence", color: C },
   { icon: "💰", title: "Cena", content: "Viena skaidra cena. Nav variantu.", color: AM },
   { icon: "📅", title: "Kā strādājam", content: "Klients apstiprina, tu publicē. 1 revīzija.", color: P2 },
-  { icon: "✅", title: "Nākamais solis", content: "Paraksta vai raksta ja ir jautājumi", color: G },
+  { icon: "✅", title: "Nākamais solis", content: "Paraksta vai raksta, ja ir jautājumi", color: G },
 ];
 
 const results = [

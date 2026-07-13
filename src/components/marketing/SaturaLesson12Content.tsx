@@ -65,7 +65,7 @@ const pricingLevels = [
 ];
 
 const steps = [
-  { num: "01", color: P,  title: "Izvēlies 1 pakalpojumu", tip: "Sāc ar video — augstākā pieprasījums" },
+  { num: "01", color: P,  title: "Izvēlies 1 pakalpojumu", tip: "Sāc ar video — augstākais pieprasījums" },
   { num: "02", color: C,  title: "Izveido 1 demo darbu", tip: "Izmanto fiktīvu zīmolu kā piemēru" },
   { num: "03", color: AM, title: "Uzstādi rīkus (bezmaksas)", tip: "ChatGPT + Canva + CapCut = €0" },
   { num: "04", color: P2, title: "Atrodi 3 potenciālus klientus", tip: "Instagram, Google Maps, Facebook" },

@@ -396,7 +396,7 @@
     },
     "voiceAgents": {
       "title": "AI Balss Aģenti — Chademy",
-      "description": "Izveido AI balss aģentus un pārdot uzņēmumiem Latvijā."
+      "description": "Izveido AI balss aģentus un pārdod tos uzņēmumiem Latvijā."
     },
     "socialoTikluParvaldiba": {
       "title": "Sociālo tīklu pārvaldība — Chademy",
@@ -406,7 +406,7 @@
   "CoursesChrome": {
     "syllabus": "PROGRAMMA",
     "whatYouLearn": "KO APGŪSI",
-    "toolsHeading": "RĪKI & TEHNOLOGIJA",
+    "toolsHeading": "RĪKI & TEHNOLOĢIJA",
     "includes": "Iekļauts",
     "access24": "Uz mūžu",
     "mentorSupport": "Mentoru atbalsts",
@@ -488,7 +488,7 @@
     "nextLessonCta": "Nākamā nodarbība →",
     "toolsHeadlineCount": "{count} rīki, ko apgūsi kursā",
     "toolsIntroDefault": "Visi nepieciešamie rīki ar bezmaksas plāniem vai izmēģinājuma periodiem. Setup instrukcijas iekļautas kursā.",
-    "startingRequirementsHeading": "Kas nepieciešams lai sāktu",
+    "startingRequirementsHeading": "Kas nepieciešams, lai sāktu",
     "startingRequirements": [
       "Dators vai klēpjdators (Windows/Mac)",
       "Stabils interneta savienojums",
@@ -548,7 +548,7 @@
     "templates": "Šabloni",
     "scripts": "Skripti",
     "calculator": "Kalkulators",
-    "community": "Sabiedrība",
+    "community": "Kopiena",
     "aiTools": "AI Rīki",
     "profile": "Profils",
     "billing": "Abonements",

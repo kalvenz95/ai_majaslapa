@@ -43,7 +43,7 @@ function Lesson1Content() {
         {/* 3 key properties */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 12, marginBottom: 24 }} className="grid-3">
           {[
-            { icon: "🧠", color: "#a855f7", title: "Saprot valodu", desc: "Atpazīst jautājumus, akcents, saīsinājumus un nestandarta frāzes" },
+            { icon: "🧠", color: "#a855f7", title: "Saprot valodu", desc: "Atpazīst jautājumus, akcentus, saīsinājumus un nestandarta frāzes" },
             { icon: "🎙️", color: A, title: "Runā dabīgi", desc: "ElevenLabs balsis ir tik reālistiskas, ka 80% cilvēku neatpazīst AI" },
             { icon: "⚡", color: "#00ff88", title: "Reaģē nekavējoties", desc: "Atbildes tiek ģenerētas 300–600ms laikā — ātrāk nekā cilvēks domā" },
           ].map((p) => (
@@ -59,7 +59,7 @@ function Lesson1Content() {
         <div style={{ borderRadius: 14, border: "1px solid rgba(255,255,255,0.07)", overflow: "hidden" }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", background: "#0d0d1a", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
             <div style={{ padding: "12px 16px", fontSize: 11, fontWeight: 700, color: "#555", textTransform: "uppercase", letterSpacing: "0.06em" }}>Aspekts</div>
-            <div style={{ padding: "12px 16px", fontSize: 11, fontWeight: 700, color: "#555", textTransform: "uppercase", letterSpacing: "0.06em", borderLeft: "1px solid rgba(255,255,255,0.05)" }}>Cilvēks receptors</div>
+            <div style={{ padding: "12px 16px", fontSize: 11, fontWeight: 700, color: "#555", textTransform: "uppercase", letterSpacing: "0.06em", borderLeft: "1px solid rgba(255,255,255,0.05)" }}>Cilvēks (receptore)</div>
             <div style={{ padding: "12px 16px", fontSize: 11, fontWeight: 700, color: A, textTransform: "uppercase", letterSpacing: "0.06em", borderLeft: "1px solid rgba(255,255,255,0.05)" }}>AI balss aģents</div>
           </div>
           {[
@@ -86,7 +86,7 @@ function Lesson1Content() {
         <div style={{ fontSize: 11, fontWeight: 700, color: A, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 10 }}>2. sadaļa</div>
         <h2 style={{ fontSize: 22, fontWeight: 800, letterSpacing: "-0.02em", marginBottom: 8 }}>Kā tas darbojas?</h2>
         <p style={{ fontSize: 14, color: "#888", lineHeight: 1.7, marginBottom: 28 }}>
-          AI balss aģents strādā kā konveijers — katrs zvans iziet cauri 5 posmiem mazāk kā 1 sekundē.
+          AI balss aģents strādā kā konveijers — katrs zvans iziet cauri 5 posmiem mazāk nekā 1 sekundē.
         </p>
 
         {/* Flow diagram */}
@@ -132,7 +132,7 @@ function Lesson1Content() {
             {
               layer: "Kārta 1",
               title: "Balss atpazīšana (STT)",
-              desc: "Kad klients sāk runāt, mikrofons uztver audio un Deepgram vai Whisper pārveido to tekstā reāllaikā. Šis process ir tik ātrs, ka var apstrādāt 3–5 vārdus jau pirms teikums beidzies.",
+              desc: "Kad klients sāk runāt, mikrofons uztver audio un Deepgram vai Whisper pārveido to tekstā reāllaikā. Šis process ir tik ātrs, ka var apstrādāt 3–5 vārdus jau pirms teikums beidzas.",
               tools: ["Deepgram", "Whisper", "AssemblyAI"],
               color: "#00d4ff",
               icon: "🎙️",
@@ -207,7 +207,7 @@ function Lesson2Content() {
       color: "#00ff88",
       earn: "500€–900€",
       volume: "Augsts",
-      why: "Restorāni saņem simtiem zvanu par galda rezervāciju, ēdienkarti un darba laikiem — it īpaši vakarios, kad darbinieki ir aizņemti. AI aģents atbild uz visiem vienlaicīgi.",
+      why: "Restorāni saņem simtiem zvanu par galda rezervāciju, ēdienkarti un darba laikiem — it īpaši vakaros, kad darbinieki ir aizņemti. AI aģents atbild uz visiem vienlaicīgi.",
       useCases: ["Galda rezervācija", "Ēdienkartes informācija", "Darba laiki un adrese", "Pasūtījumu pieņemšana (bāze)"],
       stat: "Vidēji 40–80 zvani/dienā vakara stundās",
     },

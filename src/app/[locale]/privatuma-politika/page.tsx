@@ -25,7 +25,7 @@ export default async function PrivatumaPolitikaPage({
     },
     {
       title: "4. Datu glabāšanas termiņš",
-      content: `Jūsu personas datus glabājam tik ilgi, cik nepieciešams pakalpojumu sniegšanai vai likumā noteikto pienākumu izpildei:\n\n• Konta dati — kamēr konta ir aktīvs vai līdz dzēšanas pieprasījumam.\n• Maksājumu dati — 5 gadus saskaņā ar grāmatvedības normatīvajiem aktiem.\n• Mārketinga piekrišana — līdz atsaukšanai.`,
+      content: `Jūsu personas datus glabājam tik ilgi, cik nepieciešams pakalpojumu sniegšanai vai likumā noteikto pienākumu izpildei:\n\n• Konta dati — kamēr konts ir aktīvs vai līdz dzēšanas pieprasījumam.\n• Maksājumu dati — 5 gadus saskaņā ar grāmatvedības normatīvajiem aktiem.\n• Mārketinga piekrišana — līdz atsaukšanai.`,
     },
     {
       title: "5. Datu nodošana trešajām pusēm",

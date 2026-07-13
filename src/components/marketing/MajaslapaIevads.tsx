@@ -35,7 +35,7 @@ const STEPS = [
     color: G2,
     icon: "M12 2v4|M12 18v4|M2 12h4|M18 12h4|M5 5l2.5 2.5|M16.5 16.5L19 19|M19 5l-2.5 2.5|M7.5 16.5L5 19",
     title: "Ideja un struktūra",
-    desc: "Aprakstit AI, ko vajag — un tas sagatavo lapas struktūru, sadaļas un saturu pareizajā secībā.",
+    desc: "Apraksti AI, ko vajag — un tas sagatavo lapas struktūru, sadaļas un saturu pareizajā secībā.",
   },
   {
     color: G,

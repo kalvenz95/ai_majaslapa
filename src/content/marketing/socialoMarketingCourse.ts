@@ -38,7 +38,7 @@ const socialoLv: DetailMarketingCourse = {
     "Automatizēt publicēšanu ar Buffer/Later",
     "Atrast pirmos klientus un noteikt cenas",
     "Pārvaldīt 5+ klientus vienlaicīgi",
-    "Rakstīt cold outreach skriptus kas strādā",
+    "Rakstīt cold outreach skriptus, kas strādā",
     "Veidot klientu atskaites un noturēt attiecības",
   ],
   modules: [
@@ -50,7 +50,7 @@ const socialoLv: DetailMarketingCourse = {
         { id: "1-1", title: "Kas ir AI sociālo mediju menedžments?", type: "video", duration: "12 min", free: true, description: "Pārskats par pakalpojumu, tirgus iespēju un ko mēs veidosim šajā kursā." },
         { id: "1-2", title: "Rīku saraksts & konta setup", type: "video", duration: "10 min", free: true, description: "Uzstādām visus nepieciešamos rīkus — Runway, HeyGen, Canva Pro, Buffer." },
         { id: "1-3", title: "Klienta onboarding process", type: "text", duration: "8 min", description: "Lejupielādējams onboarding template ar jautājumiem, ko uzdot katram jaunam klientam." },
-        { id: "1-4", title: "Kā noteikt pakalpojumu cenas", type: "video", duration: "15 min", description: "Cenu stratēģija iesācējiem — kāpēc €300/mēn ir saprātīgi sākuma un kā augt uz €800+." },
+        { id: "1-4", title: "Kā noteikt pakalpojumu cenas", type: "video", duration: "15 min", description: "Cenu stratēģija iesācējiem — kāpēc €300/mēn ir saprātīgi sākumā un kā augt uz €800+." },
       ],
     },
     {
@@ -71,8 +71,8 @@ const socialoLv: DetailMarketingCourse = {
       duration: "1h 15 min",
       lessons: [
         { id: "3-1", title: "Canva AI — reklāmu dizains sekundēs", type: "video", duration: "20 min", description: "Magic Design, AI background removal, brand kit setup klienta biznesam." },
-        { id: "3-2", title: "Midjourney prompts biznesam", type: "video", duration: "22 min", description: "Specifiskas prompt formulas kas dod kommercāli izmantojamus attēlus pirmajā reizē." },
-        { id: "3-3", title: "Adobe Firefly — produktu attēli", type: "video", duration: "18 min", description: "Generative fill produktu fotografijās — maini fonu, pievieni props, koriģē apgaismojumu." },
+        { id: "3-2", title: "Midjourney prompts biznesam", type: "video", duration: "22 min", description: "Specifiskas prompt formulas, kas dod komerciāli izmantojamus attēlus pirmajā reizē." },
+        { id: "3-3", title: "Adobe Firefly — produktu attēli", type: "video", duration: "18 min", description: "Generative fill produktu fotogrāfijās — maini fonu, pievieno props, koriģē apgaismojumu." },
         { id: "3-4", title: "Uzdevums: 5 banneru komplekts klientam", type: "task", duration: "15 min", description: "Izveido pilnu banneru setu: Facebook, Instagram, Stories un LinkedIn formātos." },
       ],
     },
@@ -82,7 +82,7 @@ const socialoLv: DetailMarketingCourse = {
       duration: "1h 10 min",
       lessons: [
         { id: "4-1", title: "Instagram & Facebook feed dizains", type: "video", duration: "20 min", description: "Kā plānot feed tā, lai 9 posti izskatītos kā viens, saskaņots dizains." },
-        { id: "4-2", title: "Konsistenta brand identity ar AI", type: "video", duration: "18 min", description: "Krāsu palete, fonti, logo usage — izveido mini brand guide katram klientam." },
+        { id: "4-2", title: "Konsekventa brand identity ar AI", type: "video", duration: "18 min", description: "Krāsu palete, fonti, logo usage — izveido mini brand guide katram klientam." },
         { id: "4-3", title: "Carousels & Stories templates", type: "video", duration: "16 min", description: "Ātri carousel un stories templates ko var pielāgot jebkuram klientam 5 minūtēs." },
         { id: "4-4", title: "AI caption ģenerēšana & publicēšanas grafiks", type: "video", duration: "16 min", description: "ChatGPT/Claude prompt sistēma mēneša captions ģenerēšanai — iknedēļas rutīna." },
       ],
@@ -104,8 +104,8 @@ const socialoLv: DetailMarketingCourse = {
       duration: "55 min",
       lessons: [
         { id: "6-1", title: "Buffer/Later — publicēšanas automatizācija", type: "video", duration: "20 min", description: "Ieplāno mēneša saturu 2 stundās — Buffer setup, apstiprinājumu workflow, analytics." },
-        { id: "6-2", title: "Kā veidot ikmēneša atskaites klientiem", type: "text", duration: "15 min", description: "Lejupielādējams atskaites template ar KPI's ko klienti saprot un novērtē." },
-        { id: "6-3", title: "Pārvaldīt 5+ klientus vienlaicīgi", type: "video", duration: "20 min", description: "Laika pārvaldība, Notion client dashboard, automatizācijas kas ietaupa 10+ stundas nedēļā." },
+        { id: "6-2", title: "Kā veidot ikmēneša atskaites klientiem", type: "text", duration: "15 min", description: "Lejupielādējams atskaites template ar KPI, ko klienti saprot un novērtē." },
+        { id: "6-3", title: "Pārvaldīt 5+ klientus vienlaicīgi", type: "video", duration: "20 min", description: "Laika pārvaldība, Notion client dashboard, automatizācijas, kas ietaupa 10+ stundas nedēļā." },
       ],
     },
   ],

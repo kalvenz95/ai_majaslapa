@@ -4,13 +4,13 @@ import { Reveal } from "@/components/home/Reveal";
 import { BrandLogo } from "@/components/BrandLogos";
 
 const tools = [
-  { name: "Claude", desc: "AI asistents & skripting", glow: "139,123,255" },
-  { name: "Claude Code", desc: "Koda aģents termināļī", glow: "255,184,107" },
+  { name: "Claude", desc: "AI asistents & skriptēšana", glow: "139,123,255" },
+  { name: "Claude Code", desc: "Koda aģents terminālī", glow: "255,184,107" },
   { name: "ChatGPT", desc: "Teksts & satura ģenerēšana", glow: "52,217,195" },
   { name: "Vapi", desc: "Balss AI aģenti", glow: "139,123,255" },
   { name: "Retell AI", desc: "Reāllaika balss aģenti", glow: "139,123,255" },
   { name: "Make.com", desc: "Vizuālā automatizācija", glow: "255,184,107" },
-  { name: "n8n", desc: "Workflow Builder", glow: "255,184,107" },
+  { name: "n8n", desc: "Darbplūsmu automatizācija", glow: "255,184,107" },
   { name: "Midjourney", desc: "AI attēlu ģenerēšana", glow: "52,217,195" },
   { name: "ElevenLabs", desc: "AI balss sintēze", glow: "139,123,255" },
   { name: "Runway", desc: "AI video ģenerēšana", glow: "52,217,195" },

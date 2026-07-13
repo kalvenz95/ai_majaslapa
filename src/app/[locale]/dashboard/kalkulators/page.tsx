@@ -92,7 +92,7 @@ export default function KalkulatorsPage() {
         {/* Right — projection */}
         <div className="d-card d-accent-glow" style={{ padding: 24 }}>
           <div style={{ fontSize: 10, color: "#00ff88", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 14 }}>
-            Tavs 90 dienu prognozējums
+            Tava 90 dienu prognoze
           </div>
           <div className="d-metric" style={{ fontSize: 56, lineHeight: 1, color: "var(--d-ink)", marginBottom: 8 }}>
             €{ninety.toLocaleString("lv-LV")}

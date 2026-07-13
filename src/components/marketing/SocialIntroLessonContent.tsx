@@ -50,7 +50,7 @@ export function SocialIntroLessonContent() {
         </svg>
       ),
       title: "Saturs",
-      desc: "Video, banneri, karouseli, stories — viss ko uzņēmums liek sociālajos tīklos.",
+      desc: "Video, banneri, karuseļi, stories — viss, ko uzņēmums liek sociālajos tīklos.",
       color: P,
     },
     {
@@ -79,7 +79,7 @@ export function SocialIntroLessonContent() {
   const workflow = [
     { step: "1", title: "Pieņem uzdevumu", desc: "Klients sūta informāciju par mēneša akcijām, produktiem vai jaunumiem", time: "~30 min" },
     { step: "2", title: "Ģenerē saturu ar AI", desc: "Runway, HeyGen video + Canva AI banneri + Claude captions — viss automātiski", time: "~2 st." },
-    { step: "3", title: "Nosūti apstiprināšanai", desc: "Klients pārskata un apstiprina, tu veic labojumus ja nepieciešams", time: "~15 min" },
+    { step: "3", title: "Nosūti apstiprināšanai", desc: "Klients pārskata un apstiprina, tu veic labojumus, ja nepieciešams", time: "~15 min" },
     { step: "4", title: "Ieplāno publicēšanu", desc: "Buffer vai Later automātiski publicē katru dienu pareizajā laikā", time: "~20 min" },
     { step: "5", title: "Nosūti atskaiti", desc: "Mēneša beigās — skaitļi, izaugsme, ieteikumi nākamajam mēnesim", time: "~30 min" },
   ];
@@ -87,7 +87,7 @@ export function SocialIntroLessonContent() {
   const marketStats = [
     { label: "Latvijas uzņēmumu nav aktīvi sociālajos tīklos", value: "67%", color: P },
     { label: "Vidējais mēneša budžets sociālajiem tīkliem", value: "€400", color: P2 },
-    { label: "Uzņēmumi kas atkārtoti pieņem darbā menedžerus", value: "89%", color: GREEN },
+    { label: "Uzņēmumi, kas atkārtoti pieņem darbā menedžerus", value: "89%", color: GREEN },
     { label: "Vidēji meklē pirmo klientu pēc kursa", value: "3 ned.", color: CYAN },
   ];
 

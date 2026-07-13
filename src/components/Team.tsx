@@ -13,7 +13,7 @@ const members = [
     name: "Lauma Bērziņa",
     role: "Satura & AI Kursu Speciāliste",
     tag: "Kursi",
-    desc: "Veido AI apmācību saturu, kas ir saprotams ikvienam — no nulles līdz profesionālim. Bijušā žurnāliste.",
+    desc: "Veido AI apmācību saturu, kas ir saprotams ikvienam — no nulles līdz profesionālim. Bijusī žurnāliste.",
     photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=85&fit=crop&crop=face",
     accent: false,
   },

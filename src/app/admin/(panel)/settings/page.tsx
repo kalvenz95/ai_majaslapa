@@ -36,7 +36,7 @@ export default async function SettingsPage() {
             <Info label="Platformas nosaukums" value={platform.name} />
             <Info label="Atbalsta e-pasts" value={platform.supportEmail} />
             <Info label="Noklusējuma valūta" value={platform.currency} />
-            <Info label="Maksājumu provaiders" value={platform.paymentProvider} />
+            <Info label="Maksājumu sistēma" value={platform.paymentProvider} />
             <Info label="Mājaslapas URL" value={platform.appUrl} />
           </dl>
           <p className="mt-4 text-[12px] text-white/35">

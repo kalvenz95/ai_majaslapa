@@ -33,39 +33,39 @@ export const websiteChatbotOverviewByLocale: Record<AppLocale, WebsiteChatOvervi
   {
     lv: {
       heroBadge: "Web chatbots",
-      heroLine1: "Palīdz apmeklētājiem arī tad, kad tu miega režīmā",
+      heroLine1: "Palīdz apmeklētājiem arī tad, kad tu esi miega režīmā",
       heroAccent: "un nosedz neapstrādātus LEAD kontaktus.",
       heroSub:
         "Pamācība ved cauri Voiceflow bez koda, jaudīgam RAG un Claude + n8n stackam tādos projektos, kur klientiem vajag pilnu kontroli.",
       promiseHeading: "Solījums",
       promiseBody:
-        "Izveidosi funkcionējošu līdz galam — dzīvus leadus, strukturētus prompts, saprātīgas atbildes un skaidru komercpaketi, ko pārdot.",
+        "Izveidosi līdz galam funkcionējošu čatbotu — dzīvus leadus, strukturētus promptus, saprātīgas atbildes un skaidru komercpaketi, ko pārdot.",
       diffTitle: "Kas šo nodala no parastā FAQ loga",
       diffCards: [
         {
           icon: "🤖",
-          title: "Īsts valodas models, ne vien klikšķkoristi",
-          desc: "Saprot līdzību, piedāvā alternatīvas un zina, kad novirzīt cilvēkam pie operatora.",
+          title: "Īsts valodas modelis, ne tikai klikšķu pogas",
+          desc: "Saprot sinonīmus, piedāvā alternatīvas un zina, kad novirzīt cilvēku pie operatora.",
         },
         {
           icon: "⚡",
           title: "n8n + Sheets atmiņa",
-          desc: "Logs, kā savienot web žetonu backendu ar CRM, webhookiem un atkārtotiem pieprasījumiem.",
+          desc: "Loģika, kā savienot čatbota backendu ar CRM, webhookiem un atkārtotiem pieprasījumiem.",
         },
         {
           icon: "💰",
-          title: "Komerciālais frame €300–800",
+          title: "Komerciālais ietvars €300–800",
           desc: "Iepriekš strukturētas pakas, SLA un piemēri, kā parādīt ROI uzņēmējam vienā tikšanās laikā.",
         },
       ],
       gainsTitle: "Ko tu iegūsi praksē",
       gainsList: [
-        "Sapratni kā veidot mājaslapas chatbot bez programmētājiem vai ar mini JS widgetiem",
+        "Sapratni, kā veidot mājaslapas chatbotu bez programmētājiem vai ar mini JS widgetiem",
         "Prasmes savienot zināšanu bāzes ar Claude API vai Voiceflow rag blokiem",
         "Skaidrus setup piegādes soļus Framer/WP/stack un mobilajiem edge case",
         "Pārdošanas šablonu un demo playbook pirmā klienta aizvēršanai",
       ],
-      autoTitle: "Automatikas, ko aktivizēsi",
+      autoTitle: "Automatizācijas, ko aktivizēsi",
       autoList: [
         "FAQ + lead capture blokus ar captcha-free pieredzi mobilajā web",
         "Notification un lead routingu Gmail/CRM/Sheet kanālos",
@@ -80,7 +80,7 @@ export const websiteChatbotOverviewByLocale: Record<AppLocale, WebsiteChatOvervi
       audienceTitle: "Šis būs pareizais, ja…",
       audienceBullets: [
         "Ja gribi pārdot augstākas klases digitālo automatizāciju ar skaidru scope",
-        "Ja jau šobrīd pārdoti satura pakalpojumi un vajag add-on piedāvājumu",
+        "Ja jau šobrīd pārdod satura pakalpojumus un vajag add-on piedāvājumu",
         "Ja esi gatavs 5–10 h nedēļā pielabot promptus un rollout",
       ],
       closingMuted: "Uzņēmumi joprojām pazaudē apmeklētājus nakts stundās.",
@@ -94,7 +94,7 @@ export const websiteChatbotOverviewByLocale: Record<AppLocale, WebsiteChatOvervi
         {
           icon: "🎯",
           title: "Projektu bāzēta",
-          desc: "Katram modulim līdzi vai nu deploys, vai pārdošanas artefakts ko ielikt Behance līmenī klientiem.",
+          desc: "Katram modulim līdzi vai nu deploys, vai pārdošanas artefakts, ko rādīt klientiem.",
         },
         {
           icon: "📦",
@@ -104,7 +104,7 @@ export const websiteChatbotOverviewByLocale: Record<AppLocale, WebsiteChatOvervi
         {
           icon: "🇱🇻",
           title: "Uz lokālu kontekstu",
-          desc: "Īsti piemēri no LV maziem ecommerce un pakalpojumiem, pieskaņoti pie ikdienās likuma un etiķetes.",
+          desc: "Īsti piemēri no LV maziem e-veikaliem un pakalpojumiem, pieskaņoti vietējai likumdošanai un etiķetei.",
         },
       ],
     },

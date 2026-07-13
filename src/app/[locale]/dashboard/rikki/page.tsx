@@ -7,7 +7,7 @@ const TOOLS = [
   { name: "n8n", desc: "Open-source automatizācija", tag: "Workflow", price: "self-host: bezmaksas", url: "https://n8n.io", color: "#ec4899" },
   { name: "Voiceflow", desc: "Chatbot vizuālais builder", tag: "Chatbot", price: "no $50/mēn", url: "https://voiceflow.com", color: "#00d4ff" },
   { name: "Midjourney", desc: "AI bildes biznesam", tag: "Image", price: "no $10/mēn", url: "https://midjourney.com", color: "#a855f7" },
-  { name: "Runway", desc: "AI video editēšana", tag: "Video", price: "no $15/mēn", url: "https://runwayml.com", color: "#f59e0b" },
+  { name: "Runway", desc: "AI video rediģēšana", tag: "Video", price: "no $15/mēn", url: "https://runwayml.com", color: "#f59e0b" },
   { name: "CapCut", desc: "Video montāža + subtitri", tag: "Video", price: "bezmaksas / Pro $8/mēn", url: "https://capcut.com", color: "#00ff88" },
   { name: "Canva", desc: "AI dizains un banneri", tag: "Design", price: "bezmaksas / Pro €13/mēn", url: "https://canva.com", color: "#00d4ff" },
   { name: "ChatGPT", desc: "Teksta ģenerēšana, idejas", tag: "LLM", price: "bezmaksas / Plus $20/mēn", url: "https://chatgpt.com", color: "#ec4899" },

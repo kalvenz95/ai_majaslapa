@@ -16,7 +16,7 @@ export default function Marquee() {
 
       <div style={{ textAlign: "center", marginBottom: 20, position: "relative" }}>
         <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--ink-4)", fontFamily: "var(--font-sans)" }}>
-          Rīki, ko apgūsi un izmanto ikdienā
+          Rīki, ko apgūsi un izmantosi ikdienā
         </span>
       </div>
 

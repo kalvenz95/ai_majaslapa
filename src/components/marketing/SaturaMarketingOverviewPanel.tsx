@@ -364,7 +364,7 @@ export function SaturaMarketingOverviewPanelLv({ course }: { course: DetailMarke
           Gatavs sākt nopelnīt {course.earn}?
         </h3>
         <p style={{ fontSize: 14, color: "#777", marginBottom: 24 }}>
-          Pievienojies {course.students} studentiem kas jau apgūst šo kursu.
+          Pievienojies {course.students} studentiem, kas jau apgūst šo kursu.
         </p>
         <button
           style={{ padding: "14px 40px", borderRadius: 12, border: "none", cursor: "pointer", background: GRAD, color: "#fff", fontWeight: 700, fontSize: 15, boxShadow: "0 8px 30px rgba(168,85,247,0.35)", transition: "transform 0.2s, box-shadow 0.2s" }}

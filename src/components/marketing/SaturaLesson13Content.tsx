@@ -30,8 +30,8 @@ const freeTools = [
   { icon: "🎨", name: "Canva",   plan: "Bezmaksas", color: P2, use: "Banneri, posti, carousels",     limit: "Daļa veidņu slēgta", starter: true },
   { icon: "✂️", name: "CapCut",  plan: "Bezmaksas", color: C,  use: "Video montāža + subtitri",      limit: "Neliels ūdenszīmogs", starter: true },
   { icon: "📅", name: "Buffer",  plan: "Bezmaksas", color: AM, use: "Publicēšana 3 kanālos",         limit: "Maks. 10 plānoti posti", starter: true },
-  { icon: "🤖", name: "Gemini",  plan: "Bezmaksas", color: P, use: "Teksts, idejas, analīze", limit: "Bezmaksas bez limits", starter: false },
-  { icon: "📝", name: "Notion",  plan: "Bezmaksas", color: "#5B5B5B",    use: "Klientu pārvaldība",       limit: "Personīgs plāns bez limits", starter: false },
+  { icon: "🤖", name: "Gemini",  plan: "Bezmaksas", color: P, use: "Teksts, idejas, analīze", limit: "Bezmaksas bez limita", starter: false },
+  { icon: "📝", name: "Notion",  plan: "Bezmaksas", color: "#5B5B5B",    use: "Klientu pārvaldība",       limit: "Personīgs plāns bez limita", starter: false },
 ];
 
 const paidTools = [
@@ -72,7 +72,7 @@ export function SaturaLesson13Content() {
             <span style={{ background: "linear-gradient(135deg, #00BFA5, #6D5EF3)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>sāc ar €0</span>
           </h2>
           <p style={{ fontSize: 13, color: "var(--ink-3)", lineHeight: 1.75, maxWidth: 540, margin: 0 }}>
-            Pirmajiem 2 mēnešiem vajag tikai <strong style={{ color: "var(--ink)" }}>4 bezmaksas rīkus</strong>. Maksas rīkus pievieno tikai kad pirmā nauda no klientiem jau ir kontā.
+            Pirmajiem 2 mēnešiem vajag tikai <strong style={{ color: "var(--ink)" }}>4 bezmaksas rīkus</strong>. Maksas rīkus pievieno tikai tad, kad pirmā nauda no klientiem jau ir kontā.
           </p>
         </div>
       </div>

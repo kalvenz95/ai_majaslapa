@@ -44,7 +44,7 @@ export default async function ParMusPage({
                 Chademy dzima no vienkāršas atziņas: AI nav tikai lielo uzņēmumu instruments. Ikviens latvietis var iemācīties to lietot un veidot no tā ienākumus — nepieciešamas tikai pareizās zināšanas un praktisks atbalsts.
               </p>
               <p style={{ fontSize: 16, color: "var(--ink-2)", lineHeight: 1.75, marginBottom: 20 }}>
-                Mēs nevis pastāstām teoriju — mēs parādām, kā korekti izmantot AI rīkus, kā uzrunāt pirmos klientus un kā izveidot stabilus ikmēneša ienākumus sniedzot AI pakalpojumus Latvijas un Eiropas uzņēmumiem.
+                Mēs nevis pastāstām teoriju — mēs parādām, kā korekti izmantot AI rīkus, kā uzrunāt pirmos klientus un kā izveidot stabilus ikmēneša ienākumus, sniedzot AI pakalpojumus Latvijas un Eiropas uzņēmumiem.
               </p>
               <p style={{ fontSize: 16, color: "var(--ink-2)", lineHeight: 1.75 }}>
                 Šodien Chademy ir vairāk nekā 350 aktīvi studenti Latvijā, kuri katru nedēļu apgūst jaunas prasmes un pārvērš tās reālos ienākumos.
@@ -74,7 +74,7 @@ export default async function ParMusPage({
             {[
               { title: "Praktiski kursi", desc: "Katrs kurss ir veidots tā, lai tu pēc pirmās nedēļas jau varētu piedāvāt pakalpojumu reāliem klientiem. Nav liekas teorijas — tikai tas, kas strādā." },
               { title: "Kopiena & atbalsts", desc: "Pievienojies aktīvai kopienai, kurā studenti dalās ar pieredzi, palīdz viens otram un svin pirmos panākumus kopā." },
-              { title: "Gatavs uzņēmējdarbības modelis", desc: "Mēs nevis māca AI — mēs māca, kā ar AI nopelnīt. Katrs kurss ietver cenu stratēģiju, klientu uzrunāšanas veidnes un reālus ienākumu piemērus." },
+              { title: "Gatavs uzņēmējdarbības modelis", desc: "Mēs nevis mācām AI — mēs mācām, kā ar AI nopelnīt. Katrs kurss ietver cenu stratēģiju, klientu uzrunāšanas veidnes un reālus ienākumu piemērus." },
             ].map((c) => (
               <div key={c.title} style={{ padding: "28px 24px", border: "1px solid var(--line)", borderRadius: 20, background: "var(--bg-1)" }}>
                 <div style={{ width: 8, height: 8, borderRadius: 999, background: "var(--accent)", marginBottom: 16 }} />

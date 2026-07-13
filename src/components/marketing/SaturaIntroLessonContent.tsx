@@ -65,7 +65,7 @@ const tools = [
 ];
 
 const modules = [
-  { num: "1", color: P,   title: "Ievads & Tirgus",           milestone: "Saproti iespējas, uzstādā rīkus" },
+  { num: "1", color: P,   title: "Ievads & Tirgus",           milestone: "Saproti iespējas, uzstādi rīkus" },
   { num: "2", color: P2,  title: "AI Faceless Video",         milestone: "Pirmais gatavs video klientam" },
   { num: "3", color: AM,  title: "Sociālo Tīklu Pārvaldība",  milestone: "Mēneša saturs 2 stundās" },
   { num: "4", color: G,   title: "Portfolio & Pirmā Nauda",   milestone: "Pirmais klients un samaksa" },
@@ -237,7 +237,7 @@ export function SaturaIntroLessonContent() {
             <span style={{ background: "linear-gradient(135deg, #6D5EF3, #9B8FF7)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>satura radīšanas industriju</span>
           </h2>
           <p style={{ fontSize: 13.5, color: "var(--ink-3)", lineHeight: 1.75, maxWidth: 520, marginBottom: 24 }}>
-            Uzņēmumi katru dienu meklē cilvēkus kas palīdz ar saturu. Tu apgūsi 3 pakalpojumus, pelnīsi <strong style={{ color: "var(--ink)" }}>€300–€1 500 mēnesī</strong> un automatizēsi visu procesu.
+            Uzņēmumi katru dienu meklē cilvēkus, kas palīdz ar saturu. Tu apgūsi 3 pakalpojumus, pelnīsi <strong style={{ color: "var(--ink)" }}>€300–€1 500 mēnesī</strong> un automatizēsi visu procesu.
           </p>
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
             {[{ c: P, t: "Bez kameras vai sejas" }, { c: G, t: "Klients 3 nedēļās" }, { c: AM, t: "Pilnībā latviski" }].map((b) => (

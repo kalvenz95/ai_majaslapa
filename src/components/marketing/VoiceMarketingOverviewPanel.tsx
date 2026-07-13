@@ -81,14 +81,14 @@ export function VoiceMarketingOverviewPanelLv({ course }: { course: DetailMarket
 
       {/* Step by step — how it works */}
       <div>
-        <SectionLabel>Kā tu uzbuildo pirmo aģentu</SectionLabel>
+        <SectionLabel>Kā tu uzbūvē pirmo aģentu</SectionLabel>
         <h2 style={{ fontSize: 24, fontWeight: 800, marginBottom: 24, letterSpacing: "-0.02em" }}>6 soļi no nulles līdz darbojošam aģentam</h2>
         <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
           {[
             { step: "01", title: "Izvēlies nišu un scenāriju", desc: "Zobārstniecība, restorāns, nekustamais īpašums — izlem, kādam biznesam tu veidosi aģentu. Jo konkrētāk, jo labāk.", icon: "🎯", time: "15 min" },
-            { step: "02", title: "Izveido kontu un pievienosi balsi", desc: "Reģistrējies instrumentos, izvēlies latviskai ausij patīkamu balsi un konfigurē aģenta personību.", icon: "🎙️", time: "20 min" },
+            { step: "02", title: "Izveido kontu un pievieno balsi", desc: "Reģistrējies instrumentos, izvēlies latviskai ausij patīkamu balsi un konfigurē aģenta personību.", icon: "🎙️", time: "20 min" },
             { step: "03", title: "Uzraksti sarunu skriptu", desc: "Kādus jautājumus klients uzdos? Kā aģents atbildēs? Tev palīdzēs gatavi template.", icon: "📝", time: "30 min" },
-            { step: "04", title: "Savienoji ar tālruņa numuru", desc: "Latvijas (+371) numurs ir pieejams. Pēc 10 minūtēm aģentam var piezvanīt no jebkura telefona.", icon: "📞", time: "20 min" },
+            { step: "04", title: "Savieno ar tālruņa numuru", desc: "Latvijas (+371) numurs ir pieejams. Pēc 10 minūtēm aģentam var piezvanīt no jebkura telefona.", icon: "📞", time: "20 min" },
             { step: "05", title: "Integrē Calendar un CRM", desc: "Aģents automātiski rezervē pierakstus Google Calendar un saglabā klientu datus Google Sheets.", icon: "📅", time: "40 min" },
             { step: "06", title: "Pārdod klientam", desc: "Demo zvans, proposal, līgums — visi dokumenti ir gatavi, tu tikai nosūti un sagaidi 'jā'.", icon: "💰", time: "pārdošana" },
           ].map((s, i, arr) => (
@@ -220,7 +220,7 @@ export function VoiceMarketingOverviewPanelLv({ course }: { course: DetailMarket
             )}
           </div>
           <div style={{ marginTop: 20, paddingTop: 20, borderTop: "1px solid rgba(255,255,255,0.05)", textAlign: "center" }}>
-            <p style={{ fontSize: 13, color: "#555", lineHeight: 1.6 }}>Viss notiek automātiski. Tu iestatī sistēmu vienreiz — tā strādā mūžīgi bez tava iesaistīšanās.</p>
+            <p style={{ fontSize: 13, color: "#555", lineHeight: 1.6 }}>Viss notiek automātiski. Tu iestati sistēmu vienreiz — tā strādā mūžīgi bez tava iesaistīšanās.</p>
           </div>
         </div>
       </div>

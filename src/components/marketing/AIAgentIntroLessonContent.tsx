@@ -32,7 +32,7 @@ const services = [
     label: "Pakalpojums #1",
     title: "AI Balss Aģents",
     earn: "€800–€2 500", per: "projekts + €300/mēn uzturēšana",
-    desc: "AI aģents kas pats zvana klientiem, pieraksta vizītes un atbild uz jautājumiem 24/7 — latviešu valodā.",
+    desc: "AI aģents, kas pats zvana klientiem, pieraksta vizītes un atbild uz jautājumiem 24/7 — latviešu valodā.",
     points: ["Retell AI + ElevenLabs latviešu balss", "Latvijas +371 numura integrācija (Vonage)", "Google Calendar automātiskā rezervācija"],
   },
   {
@@ -68,7 +68,7 @@ const FEAT = "#9CA3AF";
 
 const stats = [
   { value: "€2 400", label: "vidējais projekta honorārs AI aģentam Latvijā",    color: O },
-  { value: "94%",    label: "uzņēmumu kas nopērk, turpina ar ikmēneša atbalstu", color: O2 },
+  { value: "94%",    label: "uzņēmumu, kas nopērk, turpina ar ikmēneša atbalstu", color: O2 },
   { value: "12 st.", label: "vidēji aizņem pilna balss aģenta izveide",          color: G },
   { value: "3×",    label: "vairāk maksā augstvērtīgs klients vs. vidusmēra",    color: C },
 ];
@@ -238,7 +238,7 @@ export function AIAgentIntroLessonContent() {
           </div>
           <div style={{ marginTop: 20, padding: "13px 16px", borderRadius: 11, background: "#fff", border: "1px solid var(--line)", display: "flex", gap: 10 }}>
             <span style={{ fontSize: 16, flexShrink: 0 }}>💡</span>
-            <p style={{ fontSize: 12, color: "var(--ink-2)", lineHeight: 1.7, margin: 0 }}>Latvijas uzņēmumi tērē <strong style={{ color: "var(--ink)" }}>tūkstošiem eiro</strong> darbiniekiem kas atbild uz zvaniem un raksta e-pastus. AI aģents to izdarīs labāk un lētāk. Tu to instalē.</p>
+            <p style={{ fontSize: 12, color: "var(--ink-2)", lineHeight: 1.7, margin: 0 }}>Latvijas uzņēmumi tērē <strong style={{ color: "var(--ink)" }}>tūkstošiem eiro</strong> darbiniekiem, kas atbild uz zvaniem un raksta e-pastus. AI aģents to izdarīs labāk un lētāk. Tu to instalē.</p>
           </div>
         </div>
       </div>

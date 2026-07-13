@@ -93,7 +93,7 @@ export default async function PaymentsPage({
                 <th className="px-5 py-3 font-medium">Summa</th>
                 <th className="px-5 py-3 font-medium">Paka</th>
                 <th className="px-5 py-3 font-medium">Statuss</th>
-                <th className="px-5 py-3 font-medium">Provaiders</th>
+                <th className="px-5 py-3 font-medium">Sistēma</th>
                 <th className="px-5 py-3 font-medium">Rēķins</th>
               </tr>
             </thead>

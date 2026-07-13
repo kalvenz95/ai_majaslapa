@@ -58,10 +58,10 @@ export const websiteChatbotMarketingCourseLv: DetailMarketingCourse =
       title: "Voiceflow pamati",
       duration: "1h 25 min",
       lessons: [
-        { id: "2-1", title: "Voiceflow interfeiss un pirmais projekts", type: "video", duration: "18 min", description: "Orientācija Voiceflow kanvassā — Flows, KB, Variables. Izveido projektu un pirmajā Start bloku." },
+        { id: "2-1", title: "Voiceflow interfeiss un pirmais projekts", type: "video", duration: "18 min", description: "Orientācija Voiceflow kanvā — Flows, KB, Variables. Izveido projektu un pirmo Start bloku." },
         { id: "2-2", title: "AI bloks — sistēmas promts un konfigurācija", type: "video", duration: "22 min", description: "AI Response bloka iestatīšana, modeļa izvēle (GPT-4o mini vs Claude Haiku), sistēmas promta veidošana." },
         { id: "2-3", title: "Quick Reply pogas un zarošanās loģika", type: "video", duration: "16 min", description: "Sveiciena ziņa ar ātrās atbildes pogām — Par mums, Cenas, Sazināties. Katra poga ved uz savu celiņu." },
-        { id: "2-4", title: "Testēšana Preview režīmā", type: "video", duration: "12 min", description: "Preview rīks — kā simulēt reālu klientu sarunu. 10 testjautājumi ko vienmēr jāpārbauda." },
+        { id: "2-4", title: "Testēšana Preview režīmā", type: "video", duration: "12 min", description: "Preview rīks — kā simulēt reālu klientu sarunu. 10 testjautājumi, kas vienmēr jāpārbauda." },
         { id: "2-5", title: "Uzdevums: pirmais chatbots no nulles", type: "task", duration: "17 min", description: "Izveido funkcionālu chatbotu kādam vietējam biznesam (restorāns, frizētava u.c.) ar vismaz 3 sarunu celiņiem." },
       ],
     },
@@ -104,7 +104,7 @@ export const websiteChatbotMarketingCourseLv: DetailMarketingCourse =
       title: "Klientu Atrašana & Bizness",
       duration: "55 min",
       lessons: [
-        { id: "6-1", title: "Kur atrast pirmos klientus Latvijā", type: "video", duration: "20 min", description: "Konkrētas vietas: uzņēmumu mājas lapu audits bez chatbota, LinkedIn, Facebook grupas, vietēji pasākumi." },
+        { id: "6-1", title: "Kur atrast pirmos klientus Latvijā", type: "video", duration: "20 min", description: "Konkrētas vietas: uzņēmumu mājas lapu audits bez chatbota, LinkedIn, Facebook grupas, vietējie pasākumi." },
         { id: "6-2", title: "Demo chatbots kā pārdošanas rīks", type: "video", duration: "18 min", description: "Kā izveidot demo chatbotu konkrētam klientam pirms pirmās tikšanās — 'skatieties, tas jau darbojas jūsu lapā'." },
         { id: "6-3", title: "Piedāvājums, līgums un apkopes modelis", type: "text", duration: "17 min", description: "Lejupielādējams PDF piedāvājums ar 3 paketēm (€150/350/700) un vienkāršs apkopes līgums latviešu valodā." },
       ],

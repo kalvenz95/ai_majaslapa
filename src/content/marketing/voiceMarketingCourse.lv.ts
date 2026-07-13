@@ -48,7 +48,7 @@ export const voiceMarketingCourseLv: DetailMarketingCourse = {
       lessons: [
         { id: "1-1", title: "Kas ir AI balss aģents un kā tas darbojas?", type: "video", duration: "14 min", free: true, description: "Salīdzinājums: cilvēks vs AI aģents zvanos. Reāli piemēri — zobārsta kabinets, restorāns, nekustamais īpašums. Kāpēc uzņēmumi maksā par šo." },
         { id: "1-2", title: "Kādiem biznesiem tas ir piemērots Latvijā?", type: "video", duration: "12 min", free: true, description: "Top 10 nišas, kur balss aģenti darbojas vislabāk Latvijā. Tirgus lielums un iespēja." },
-        { id: "1-3", title: "Cenas, bizness modelis un ROI klientam", type: "video", duration: "15 min", description: "Kāpēc 500€+ ir saprātīgi sākumā. Vienreizējā maksa vs ikmēneša atbalsts. Kā aprēķināt ROI klientam." },
+        { id: "1-3", title: "Cenas, biznesa modelis un ROI klientam", type: "video", duration: "15 min", description: "Kāpēc 500€+ ir saprātīgi sākumā. Vienreizējā maksa vs ikmēneša atbalsts. Kā aprēķināt ROI klientam." },
         { id: "1-4", title: "Klienta onboarding dokuments", type: "text", duration: "8 min", description: "Lejupielādējams template — jautājumi par biznesa scenāriju, biežākajiem zvaniem un vēlamo toni." },
         { id: "1-5", title: "Uzdevums: izvēlies savu pirmo nišu", type: "task", duration: "6 min", description: "Izvēlies 1 nišu (restorāns, zobārstniecība, u.c.) un apraksti 3 scenārijus, kad balss aģents var aizstāt cilvēku." },
       ],
@@ -61,7 +61,7 @@ export const voiceMarketingCourseLv: DetailMarketingCourse = {
         { id: "2-1", title: "Rīku saraksts un kontu izveide", type: "video", duration: "16 min", description: "ElevenLabs, Retell AI, n8n un Twilio kontu setup. Bezmaksas plāni un izmēģinājuma periodi." },
         { id: "2-2", title: "Pirmais aģents: sveiciens un pamata atbildes", type: "video", duration: "22 min", description: "Platforma no nulles — pirmais flow, AI modeļa pievienošana, sveiciena ziņa, pamata jautājumu apstrāde." },
         { id: "2-3", title: "Zvanu skripts un sarunu loģika", type: "video", duration: "20 min", description: "Kā rakstīt sarunu skriptus, kas izklausās dabiski. Jautājumu un atbilžu struktūra. Edge case apstrāde." },
-        { id: "2-4", title: "Testēšana ar īstu zvanu", type: "video", duration: "14 min", description: "Kā piezvanīt savam aģentam un novērtēt kvalitāti. 10 testjautājumi ko vienmēr pārbaudīt." },
+        { id: "2-4", title: "Testēšana ar īstu zvanu", type: "video", duration: "14 min", description: "Kā piezvanīt savam aģentam un novērtēt kvalitāti. 10 testjautājumi, ko vienmēr pārbaudīt." },
         { id: "2-5", title: "Uzdevums: pirmais darba aģents", type: "task", duration: "13 min", description: "Izveido darba aģentu izvēlētajai nišai, kurš spēj atbildēt uz vismaz 5 biežiem jautājumiem." },
       ],
     },
@@ -78,7 +78,7 @@ export const voiceMarketingCourseLv: DetailMarketingCourse = {
     },
     {
       id: 4,
-      title: "Integrācijas — Kalendarss, CRM un dati",
+      title: "Integrācijas — Kalendārs, CRM un dati",
       duration: "1h 20 min",
       lessons: [
         { id: "4-1", title: "Google Calendar — automātiska pierakstu rezervācija", type: "video", duration: "24 min", description: "n8n workflow: aģents piedāvā brīvos laikus, klients izvēlas, tikšanās izveidojas automātiski. Pilns setup." },

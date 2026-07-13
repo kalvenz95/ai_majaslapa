@@ -470,7 +470,7 @@ export function SocialMarketingOverviewPanelLv({ course }: { course: DetailMarke
           Gatavs sākt nopelnīt {course.earn}?
         </h3>
         <p style={{ fontSize: 14, color: "#777", marginBottom: 24 }}>
-          Pievienojies {course.students} studentiem kas jau apgūst šo kursu.
+          Pievienojies {course.students} studentiem, kas jau apgūst šo kursu.
         </p>
         <button
           style={{
