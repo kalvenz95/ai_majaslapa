@@ -3,44 +3,25 @@
 import Image from "next/image";
 import { Reveal } from "@/components/home/Reveal";
 import { Clapperboard, Globe, Workflow, Mic2, ArrowRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 
-/** What you can sell — the four AI service directions. */
-const services = [
-  {
-    Icon: Clapperboard,
-    title: "AI saturs",
-    desc: "Veido faceless video, reklāmu vizuāļus un sociālo tīklu saturu un pārdod to uzņēmumiem, kuriem pašiem nav laika to darīt. 1 klients ≈ 300–500 €/mēn.",
-    color: "#8B7BFF",
-    glow: "139,123,255",
-    img: "/ai/content.jpg",
-  },
-  {
-    Icon: Globe,
-    title: "AI mājaslapas",
-    desc: "Uzbūvē modernu, klientus piesaistošu mājaslapu dažās dienās — pilnīgi bez koda. Uzņēmumi par to maksā 500–1500 € par projektu.",
-    color: "#34D9C3",
-    glow: "52,217,195",
-    img: "/ai/websites.jpg",
-  },
-  {
-    Icon: Workflow,
-    title: "Automatizācija",
-    desc: "Iestati WhatsApp, e-pastu un pieteikumu apstrādi, kas strādā uzņēmuma vietā 24/7. Ietaupi klientam stundas — un saņem regulāru ikmēneša maksu.",
-    color: "#FFB86B",
-    glow: "255,184,107",
-    img: "/ai/automation.jpg",
-  },
-  {
-    Icon: Mic2,
-    title: "AI balss aģenti",
-    desc: "Uzstādi AI balss aģentu, kas atbild uz zvaniem un pieņem rezervācijas 24/7. Augstākās vērtības pakalpojums — 800–3500 €/mēn no viena klienta.",
-    color: "#8B7BFF",
-    glow: "139,123,255",
-    img: "/ai/voice.jpg",
-  },
+/** Visuals for the four AI service directions — copy lives in the WhyAI namespace. */
+const serviceVisuals = [
+  { Icon: Clapperboard, color: "#8B7BFF", glow: "139,123,255", img: "/ai/content.jpg" },
+  { Icon: Globe, color: "#34D9C3", glow: "52,217,195", img: "/ai/websites.jpg" },
+  { Icon: Workflow, color: "#FFB86B", glow: "255,184,107", img: "/ai/automation.jpg" },
+  { Icon: Mic2, color: "#8B7BFF", glow: "139,123,255", img: "/ai/voice.jpg" },
 ];
 
+type Service = { title: string; desc: string };
+
 export default function WhyAIV2() {
+  const t = useTranslations("WhyAI");
+  const services = ((t.raw("services") ?? []) as Service[]).map((s, i) => ({
+    ...s,
+    ...serviceVisuals[i],
+  }));
+
   return (
     <section id="about" style={{ background: "var(--bg)", padding: "40px 0 70px" }}>
       <div className="lp-container" style={{ maxWidth: 1240, margin: "0 auto", padding: "0 24px" }}>
@@ -74,17 +55,17 @@ export default function WhyAIV2() {
         <div className="whyai-v2-head" style={{ display: "grid", gridTemplateColumns: "1.25fr 0.75fr", gap: 48, alignItems: "end", marginBottom: 64 }}>
           <div>
             <Reveal>
-              <span className="v2-eyebrow v2-eyebrow--light">Kāpēc AI prasmes</span>
+              <span className="v2-eyebrow v2-eyebrow--light">{t("kicker")}</span>
             </Reveal>
             <Reveal delay={0.08}>
               <h2 className="v2-h2" style={{ fontSize: "clamp(38px, 5.8vw, 76px)", color: "#fff", margin: "18px 0 0", maxWidth: "13ch" }}>
-                Ko tu iegūsi no <span style={{ color: "#A89DFF" }}>Chademy?</span>
+                {t("titleA")}<span style={{ color: "#A89DFF" }}>{t("titleB")}</span>
               </h2>
             </Reveal>
           </div>
           <Reveal delay={0.16}>
             <p style={{ fontSize: 17, color: "rgba(255,255,255,0.6)", lineHeight: 1.7, margin: 0, paddingBottom: 8 }}>
-              Ne tikai teoriju vai kārtējo sertifikātu. Tu soli pa solim izveido <strong style={{ color: "#fff", fontWeight: 600 }}>reālu pakalpojumu, ko pārdot</strong>, savāc portfolio ar pirmajiem darbiem un iegūsti gatavu sistēmu, kā piesaistīt maksājošus klientus — arī tad, ja sāc no nulles bez IT pieredzes.
+              {t("leadA")}<strong style={{ color: "#fff", fontWeight: 600 }}>{t("leadStrong")}</strong>{t("leadB")}
             </p>
           </Reveal>
         </div>
@@ -160,7 +141,7 @@ export default function WhyAIV2() {
                 el.style.transform = "";
               }}
             >
-              Skatīt kursus <ArrowRight size={16} />
+              {t("cta")} <ArrowRight size={16} />
             </a>
           </div>
         </Reveal>

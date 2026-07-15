@@ -7,10 +7,10 @@ import { Reveal } from "@/components/home/Reveal";
 import { ArrowUpRight } from "lucide-react";
 
 /* ── Website samples — real projects we've built ───────────────────── */
+/** Brand names and visuals stay here; the niche line comes from DirectionDemos.sites. */
 const SITES = [
   {
     title: "La Skrundo",
-    niche: "Itāļu kafejnīca un restorāns",
     img: "/portfolio/la-skrundo.png",
     url: "https://la-skrundo.vercel.app",
     accent: "#00BFA5",
@@ -18,7 +18,6 @@ const SITES = [
   },
   {
     title: "Dessert Eagle",
-    niche: "Premium auto detailing studija",
     img: "/portfolio/dessert-deagle.png",
     url: "https://dessert-deagle-site.vercel.app",
     accent: "#6D5EF3",
@@ -26,7 +25,6 @@ const SITES = [
   },
   {
     title: "Pity Store",
-    niche: "Luksusa mājdzīvnieku zīmols",
     img: "/portfolio/pity-store.png",
     url: "https://pity-store.vercel.app/",
     accent: "#FFB86B",
@@ -34,8 +32,11 @@ const SITES = [
   },
 ];
 
-function SiteCard({ site, index }: { site: (typeof SITES)[number]; index: number }) {
+type Site = (typeof SITES)[number] & { niche: string };
+
+function SiteCard({ site, index }: { site: Site; index: number }) {
   const [hover, setHover] = useState(false);
+  const t = useTranslations("DirectionDemos");
   return (
     <Reveal delay={0.05 * index} style={{ height: "100%" }}>
       <a
@@ -89,7 +90,7 @@ function SiteCard({ site, index }: { site: (typeof SITES)[number]; index: number
               opacity: hover ? 1 : 0, transform: hover ? "translateY(0)" : "translateY(-6px)",
               transition: "opacity 0.25s ease, transform 0.25s ease",
             }}>
-              Apskatīt <ArrowUpRight size={13} strokeWidth={2.6} />
+              {t("viewLabel")} <ArrowUpRight size={13} strokeWidth={2.6} />
             </span>
           </div>
         </div>
@@ -111,6 +112,10 @@ function SiteCard({ site, index }: { site: (typeof SITES)[number]; index: number
 /* ── Section ───────────────────────────────────────────────────────── */
 export default function DirectionDemosV2() {
   const t = useTranslations("DirectionDemos");
+  const sites = SITES.map((s, i) => ({
+    ...s,
+    niche: ((t.raw("sites") ?? []) as { niche: string }[])[i]?.niche ?? "",
+  }));
 
   return (
     <section style={{ padding: "20px 0 140px", background: "var(--bg)" }}>
@@ -134,7 +139,7 @@ export default function DirectionDemosV2() {
 
         {/* Website samples grid */}
         <div className="dd-sites-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20, alignItems: "stretch" }}>
-          {SITES.map((s, i) => (
+          {sites.map((s, i) => (
             <SiteCard key={s.title} site={s} index={i} />
           ))}
         </div>

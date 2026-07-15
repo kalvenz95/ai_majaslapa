@@ -1,41 +1,24 @@
 "use client";
 
-const members = [
-  {
-    name: "Kalvis Ēnbergs",
-    role: "Dibinātājs & AI Stratēģis",
-    tag: "Vadītājs",
-    desc: "7+ gadu pieredze digitālajā mārketingā. Palīdz uzņēmumiem integrēt AI ikdienas darbā un palielināt produktivitāti 3×.",
-    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=85&fit=crop&crop=face",
-    accent: true,
-  },
-  {
-    name: "Lauma Bērziņa",
-    role: "Satura & AI Kursu Speciāliste",
-    tag: "Kursi",
-    desc: "Veido AI apmācību saturu, kas ir saprotams ikvienam — no nulles līdz profesionālim. Bijusī žurnāliste.",
-    photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=85&fit=crop&crop=face",
-    accent: false,
-  },
-  {
-    name: "Mārtiņš Ozols",
-    role: "Tehnoloģiju vadītājs",
-    tag: "Tech",
-    desc: "Full-stack izstrādātājs ar aizraušanos ar AI automatizāciju. Izveido rīkus, kas tiešām darbojas uzņēmumu vidē.",
-    photo: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=85&fit=crop&crop=face",
-    accent: false,
-  },
-  {
-    name: "Ilze Kalniņa",
-    role: "Kopienas & Atbalsta vadītāja",
-    tag: "Kopiena",
-    desc: "Nodrošina, ka katrs students saņem atbildes uz saviem jautājumiem. Latvijas lielākās AI kopienas moderatore.",
-    photo: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=85&fit=crop&crop=face",
-    accent: false,
-  },
+import { useTranslations } from "next-intl";
+
+/** Visuals only — copy comes from the Team namespace, zipped by index. */
+const memberVisuals = [
+  { photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=85&fit=crop&crop=face", accent: true },
+  { photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=85&fit=crop&crop=face", accent: false },
+  { photo: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=85&fit=crop&crop=face", accent: false },
+  { photo: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=85&fit=crop&crop=face", accent: false },
 ];
 
+type Member = { name: string; role: string; tag: string; desc: string };
+
 export default function Team() {
+  const t = useTranslations("Team");
+  const members = ((t.raw("members") ?? []) as Member[]).map((m, i) => ({
+    ...m,
+    ...memberVisuals[i],
+  }));
+
   return (
     <section
       id="team"
@@ -78,7 +61,7 @@ export default function Team() {
           className="team-header-grid"
         >
           <div>
-            <span className="v2-eyebrow">Chademy</span>
+            <span className="v2-eyebrow">{t("kicker")}</span>
             <h2
               className="v2-h2"
               style={{
@@ -88,9 +71,9 @@ export default function Team() {
                 color: "var(--ink)",
               }}
             >
-              Mūsu{" "}
+              {t("titleA")}
               <span style={{ color: "var(--accent)" }}>
-                komanda
+                {t("titleB")}
               </span>
             </h2>
           </div>
@@ -103,8 +86,7 @@ export default function Team() {
                 lineHeight: 1.6,
               }}
             >
-              Cilvēki aiz Chademy — praktiķi, kas paši ikdienā strādā ar AI un
-              prot to izskaidrot vienkārši.
+              {t("lead")}
             </p>
           </div>
         </div>

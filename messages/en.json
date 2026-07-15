@@ -39,7 +39,27 @@
     "stat4Val": "€0",
     "stat4Label": "Start without experience",
     "floatTag1": "Build · Sell · Scale",
-    "floatTag2": "First client in ~3 weeks"
+    "floatTag2": "First client in ~3 weeks",
+    "directions": [
+      {
+        "label": "AI content",
+        "sub": "Video, images, social"
+      },
+      {
+        "label": "Websites & automation",
+        "sub": "Sites + lead handling"
+      },
+      {
+        "label": "AI voice agents",
+        "sub": "Calls and bookings"
+      }
+    ],
+    "bullets": [
+      "In Latvian",
+      "No programming",
+      "No experience",
+      "Ready-made templates"
+    ]
   },
   "FastWin": {
     "kicker": "The path to clients",
@@ -153,7 +173,19 @@
     "siteCaption": "A modern site plus automatic lead handling that replies to the client in under a minute.",
     "voiceTitle": "AI voice agent",
     "voiceTag": "Calls · 24/7",
-    "voiceCaption": "A voice agent answers calls, takes bookings, and never sleeps."
+    "voiceCaption": "A voice agent answers calls, takes bookings, and never sleeps.",
+    "viewLabel": "View",
+    "sites": [
+      {
+        "niche": "Italian cafe and restaurant"
+      },
+      {
+        "niche": "Premium car detailing studio"
+      },
+      {
+        "niche": "Luxury pet brand"
+      }
+    ]
   },
   "AILaunchpad": {
     "titleA": "Example: income with ",
@@ -180,7 +212,8 @@
         "desc": "Call workflows, reminders, bookings",
         "math": "2 clients × €1,000 = €2,000/mo"
       }
-    ]
+    ],
+    "eyebrow": "Income examples"
   },
   "Testimonials": {
     "kicker": "Students in practice",
@@ -591,5 +624,289 @@
   "VideoPlayer": {
     "defaultTitle": "Lesson video",
     "unavailable": "Video unavailable"
+  },
+  "WhyAI": {
+    "kicker": "Why AI skills",
+    "titleA": "What you get from ",
+    "titleB": "Chademy?",
+    "leadA": "Not just theory or another certificate. Step by step you build ",
+    "leadStrong": "a real service you can sell",
+    "leadB": ", collect a portfolio of your first work and get a proven system for attracting paying clients — even if you start from zero with no IT background.",
+    "cta": "View courses",
+    "services": [
+      {
+        "title": "AI content",
+        "desc": "Create faceless videos, ad visuals and social media content, and sell it to businesses that have no time to do it themselves. 1 client ≈ €300–500/mo."
+      },
+      {
+        "title": "AI websites",
+        "desc": "Build a modern, client-winning website in a few days — completely without code. Businesses pay €500–1500 per project."
+      },
+      {
+        "title": "Automation",
+        "desc": "Set up WhatsApp, email and lead handling that works for a business 24/7. Save your client hours — and earn a steady monthly fee."
+      },
+      {
+        "title": "AI voice agents",
+        "desc": "Deploy an AI voice agent that answers calls and takes bookings 24/7. The highest-value service — €800–3500/mo from a single client."
+      }
+    ]
+  },
+  "NoSkills": {
+    "kicker": "No experience needed",
+    "titleA": "You don't need to be a ",
+    "titleB": "programmer",
+    "lead": "Most students start with no technical background.",
+    "checks": [
+      "No programming required",
+      "A step-by-step system",
+      "Practical examples and templates",
+      "Everything in Latvian"
+    ],
+    "cta": "Join the platform →",
+    "mockLesson": "Lesson 2",
+    "mockTitleA": "Your first AI project",
+    "mockTitleB": "step by step",
+    "mockSteps": [
+      "Open the tool and create an account",
+      "Repeat the example shown",
+      "Adapt it to your client"
+    ]
+  },
+  "Projects": {
+    "kicker": "Real projects",
+    "titleA": "What you can ",
+    "titleB": "build",
+    "lead": "Real projects you can offer clients within your first months.",
+    "items": [
+      {
+        "tag": "Website",
+        "title": "AI website for a business",
+        "desc": "A modern site with AI integrations — ready within days."
+      },
+      {
+        "tag": "Social media",
+        "title": "Social media content pack",
+        "desc": "Visuals, copy and a publishing schedule, built with AI tools."
+      },
+      {
+        "tag": "Automation",
+        "title": "WhatsApp automation",
+        "desc": "Automated replies and lead handling for a business."
+      },
+      {
+        "tag": "Voice AI",
+        "title": "AI voice agent",
+        "desc": "Call answering and bookings — with no human involved."
+      },
+      {
+        "tag": "Advertising",
+        "title": "AI ad visuals",
+        "desc": "Images and video for ads that grab attention and sell."
+      },
+      {
+        "tag": "Portfolio",
+        "title": "Your personal portfolio",
+        "desc": "A body of work that helps you land your first clients during the course."
+      }
+    ],
+    "reassure": [
+      "Built during the course",
+      "Ready to show clients",
+      "With mentor support"
+    ],
+    "mockIncoming": "Incoming call",
+    "mockAnswering": "AI answering · 0:18"
+  },
+  "Community": {
+    "kicker": "Community & results",
+    "titleA": "You are not learning ",
+    "titleB": "alone",
+    "lead": "Real experiences from people already working with AI services.",
+    "stats": [
+      {
+        "val": "350+",
+        "label": "Active students in Latvia"
+      },
+      {
+        "val": "3 wks",
+        "label": "Average time to first client"
+      },
+      {
+        "val": "94%",
+        "label": "Student satisfaction"
+      }
+    ],
+    "quotes": [
+      {
+        "name": "Mārtiņš K.",
+        "role": "Freelancer · Riga",
+        "text": "Three weeks in I approached my first client — a restaurant in Riga. Now I work with 4 clients alongside my day job.",
+        "amt": "€1 400/mo"
+      },
+      {
+        "name": "Laura B.",
+        "role": "Content creator · Jūrmala",
+        "text": "The AI video course was exactly what I was looking for. Now I run social media content for 3 businesses and set my own schedule.",
+        "amt": "€900/mo"
+      },
+      {
+        "name": "Raivis D.",
+        "role": "Marketing · Liepāja",
+        "text": "I put together a voice agent system for a dental clinic after the course. The client is thrilled — automated call reminders run without any input.",
+        "amt": "€800 + €200/mo"
+      }
+    ],
+    "perks": [
+      "An active student community",
+      "Questions and answers",
+      "New tools and updates",
+      "Mentor support"
+    ],
+    "bandTitleA": "Join the ",
+    "bandTitleB": "community",
+    "bandLead": "Learn alongside others, get answers to your questions and keep up with the latest AI tools.",
+    "bandCta": "Join →"
+  },
+  "Tools": {
+    "kicker": "Your AI toolkit",
+    "titleA": "Tools you will ",
+    "titleB": "learn",
+    "lead": "The platforms used to build modern AI services.",
+    "items": {
+      "claude": "AI assistant & scripting",
+      "claudeCode": "Coding agent in the terminal",
+      "chatgpt": "Text & content generation",
+      "vapi": "Voice AI agents",
+      "retell": "Real-time voice agents",
+      "make": "Visual automation",
+      "n8n": "Workflow automation",
+      "midjourney": "AI image generation",
+      "elevenlabs": "AI voice synthesis",
+      "runway": "AI video generation"
+    }
+  },
+  "FAQ": {
+    "kicker": "FAQ",
+    "titleA": "Frequently asked ",
+    "titleB": "questions",
+    "lead": "Answers to everything that comes up before you start. Didn't find your question?",
+    "leadLink": "Write to us",
+    "items": [
+      {
+        "q": "Do I need technical knowledge?",
+        "a": "No. The courses are built so anyone can start from zero — step by step, with practical examples and no programming."
+      },
+      {
+        "q": "How soon can I expect first results?",
+        "a": "On average students find their first client within 2–4 weeks of starting, if they follow the structure and apply what they learn."
+      },
+      {
+        "q": "How much time per week do the courses take?",
+        "a": "4–6 hours a week is usually enough to see real progress — you can learn at your own pace."
+      },
+      {
+        "q": "How will I find my first clients?",
+        "a": "The course has a dedicated section on finding clients — the steps, message templates and real examples you can use right away."
+      },
+      {
+        "q": "Can I study alongside work or university?",
+        "a": "Yes. The platform is built for a flexible schedule — all materials stay available and you can learn at any time."
+      },
+      {
+        "q": "What happens after I finish the course?",
+        "a": "You stay in the community, keep access to the materials and get support as you keep growing your service."
+      },
+      {
+        "q": "What if something doesn't work out?",
+        "a": "Mentors and the community are with you at every step — ask questions and get concrete help, not generic advice."
+      }
+    ]
+  },
+  "FinalCTA": {
+    "kicker": "Start today",
+    "titleA": "Start ",
+    "titleB": "today",
+    "lead": "Choose the direction that suits you best and take your first step into AI.",
+    "cta": "Start now →",
+    "bullets": [
+      "In Latvian",
+      "No programming",
+      "An active community",
+      "Ready-made templates"
+    ]
+  },
+  "Team": {
+    "kicker": "Chademy",
+    "titleA": "Our ",
+    "titleB": "team",
+    "lead": "The people behind Chademy — practitioners who work with AI every day and can explain it simply.",
+    "members": [
+      {
+        "name": "Kalvis Ēnbergs",
+        "role": "Founder & AI Strategist",
+        "tag": "Lead",
+        "desc": "7+ years in digital marketing. Helps businesses integrate AI into daily work and raise productivity 3×."
+      },
+      {
+        "name": "Lauma Bērziņa",
+        "role": "Content & AI Course Specialist",
+        "tag": "Courses",
+        "desc": "Creates AI training content anyone can follow — from zero to professional. Former journalist."
+      },
+      {
+        "name": "Mārtiņš Ozols",
+        "role": "Head of Technology",
+        "tag": "Tech",
+        "desc": "Full-stack developer with a passion for AI automation. Builds tools that genuinely work in a business setting."
+      },
+      {
+        "name": "Ilze Kalniņa",
+        "role": "Community & Support Lead",
+        "tag": "Community",
+        "desc": "Makes sure every student gets answers to their questions. Moderator of Latvia's largest AI community."
+      }
+    ]
+  },
+  "LiveVoice": {
+    "kicker": "Live demo",
+    "titleA": "Talk to our ",
+    "titleB": "voice agents",
+    "lead": "Press the button, allow your microphone and talk to an AI agent right in your browser — this is exactly the kind of agent you will learn to build for your own business. Demo call, max ~2 min.",
+    "errConnect": "Could not connect: ",
+    "errUnknown": "unknown error",
+    "errNoKey": "The demo is not configured yet — the Vapi public key is missing.",
+    "errNoAssistant": "This agent does not have a Vapi Assistant ID yet.",
+    "errStartFailed": "Could not start the call. Allow microphone access and try again.",
+    "statusIdle": "Ready to talk — press «Talk»",
+    "statusConnecting": "Connecting…",
+    "statusSpeaking": "Agent is speaking…",
+    "statusListening": "Listening — go ahead 🎙️",
+    "btnIdle": "Talk to the agent",
+    "btnConnecting": "Connecting…",
+    "btnEnd": "End call",
+    "agents": {
+      "chademy": {
+        "scenario": "AI learning advisor",
+        "lang": "Latvian",
+        "skills": [
+          "Tells you about the courses",
+          "Recommends a suitable direction",
+          "Answers your questions"
+        ]
+      },
+      "autosalons": {
+        "scenario": "Car dealership advisor",
+        "lang": "English",
+        "skills": [
+          "Tells you about available cars",
+          "Gives the opening hours",
+          "Books a test drive"
+        ]
+      }
+    }
+  },
+  "Marquee": {
+    "title": "Tools you will learn and use every day"
   }
 }

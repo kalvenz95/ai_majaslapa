@@ -4,8 +4,12 @@ import Image from "next/image";
 import { Reveal } from "@/components/home/Reveal";
 import { Magnetic } from "@/components/Magnetic";
 import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 export default function FinalCTAV2() {
+  const t = useTranslations("FinalCTA");
+  const bullets = (t.raw("bullets") ?? []) as string[];
+
   return (
     <section style={{
       position: "relative", overflow: "hidden", textAlign: "center",
@@ -33,15 +37,15 @@ export default function FinalCTAV2() {
       }} />
 
       <div style={{ maxWidth: 780, margin: "0 auto", padding: "0 28px", position: "relative", zIndex: 1 }}>
-        <Reveal><span className="v2-eyebrow v2-eyebrow--light">Sāc šodien</span></Reveal>
+        <Reveal><span className="v2-eyebrow v2-eyebrow--light">{t("kicker")}</span></Reveal>
         <Reveal delay={0.08}>
           <h2 className="v2-h2" style={{ fontSize: "clamp(48px, 9vw, 110px)", color: "#fff", margin: "20px 0 24px" }}>
-            Sāc jau <span className="v2-grad">šodien</span>
+            {t("titleA")}<span className="v2-grad">{t("titleB")}</span>
           </h2>
         </Reveal>
         <Reveal delay={0.16}>
           <p style={{ fontSize: 18, color: "rgba(255,255,255,0.55)", lineHeight: 1.7, margin: "0 auto 44px", maxWidth: 480 }}>
-            Izvēlies sev piemērotāko virzienu un sper pirmo soli AI jomā.
+            {t("lead")}
           </p>
         </Reveal>
         <Reveal delay={0.22}>
@@ -51,13 +55,13 @@ export default function FinalCTAV2() {
               className="btn-primary"
               style={{ textDecoration: "none", fontSize: 18, padding: "19px 44px", borderRadius: 16, fontWeight: 700, fontFamily: "var(--font-sans)" }}
             >
-              Sākt tagad →
+              {t("cta")}
             </Link>
           </Magnetic>
         </Reveal>
         <Reveal delay={0.3}>
           <div style={{ display: "flex", justifyContent: "center", gap: 24, flexWrap: "wrap", marginTop: 30, fontSize: 13, color: "rgba(255,255,255,0.45)" }}>
-            {["Latviešu valodā", "Bez programmēšanas", "Aktīva kopiena", "Gatavas veidnes"].map((item) => (
+            {bullets.map((item) => (
               <span key={item} style={{ display: "inline-flex", gap: 8, alignItems: "center" }}>
                 <span style={{ width: 5, height: 5, borderRadius: 999, background: "linear-gradient(135deg, var(--accent), var(--accent-2))", display: "inline-block" }} />
                 {item}

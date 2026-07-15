@@ -3,10 +3,13 @@
 import Image from "next/image";
 import { Reveal } from "@/components/home/Reveal";
 import { Mic, Check } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 /* ── AI voice agent — crafted mockup kept as-is ─────────────────── */
 
 function VoiceMock() {
+  const t = useTranslations("Projects");
+
   return (
     <div style={{ width: "66%", borderRadius: 16, background: "#0D0D14", border: "1px solid rgba(255,255,255,0.12)", padding: "16px 18px", boxShadow: "0 18px 44px -14px rgba(13,13,20,0.5)" }}>
       <div style={{ display: "flex", alignItems: "center", gap: 9, marginBottom: 12 }}>
@@ -14,10 +17,10 @@ function VoiceMock() {
           <Mic size={13} color="#fff" />
         </span>
         <div>
-          <div style={{ fontSize: 10.5, fontWeight: 700, color: "#fff" }}>Ienākošais zvans</div>
+          <div style={{ fontSize: 10.5, fontWeight: 700, color: "#fff" }}>{t("mockIncoming")}</div>
           <div style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 8.5, color: "rgba(255,255,255,0.45)" }}>
             <span className="v2-pulse" style={{ width: 5, height: 5, borderRadius: 999, background: "#28C840", display: "inline-block" }} />
-            AI atbild · 0:18
+            {t("mockAnswering")}
           </div>
         </div>
       </div>
@@ -32,39 +35,40 @@ function VoiceMock() {
 
 /* ── Projects data — photos themed per card; voice keeps its mockup ─ */
 
-type Project = {
-  tag: string;
-  title: string;
-  desc: string;
-  glow: string;
-  img?: string;
-  Mock?: () => React.ReactElement;
-};
+type ProjectCopy = { tag: string; title: string; desc: string };
 
-const projects: Project[] = [
-  { tag: "Mājaslapa", title: "AI mājaslapa uzņēmumam", desc: "Moderna lapa ar AI integrācijām — gatava dažu dienu laikā.", glow: "109,94,243", img: "/ai/card-web.jpg" },
-  { tag: "Sociālie tīkli", title: "Sociālo tīklu satura paka", desc: "Vizuāļi, teksti un publicēšanas grafiks, veidots ar AI rīkiem.", glow: "0,191,165", img: "/ai/card-social.jpg" },
-  { tag: "Automatizācija", title: "WhatsApp automatizācija", desc: "Automātiskas atbildes un pieteikumu apstrāde uzņēmumam.", glow: "0,191,165", img: "/ai/card-chat.jpg" },
-  { tag: "Balss AI", title: "AI balss aģents", desc: "Zvanu pieņemšana un rezervācijas — bez cilvēka iesaistes.", glow: "109,94,243", Mock: VoiceMock },
-  { tag: "Reklāma", title: "AI reklāmu vizuāļi", desc: "Bildes un video reklāmām, kas piesaista uzmanību un pārdod.", glow: "255,184,107", img: "/ai/card-ad.jpg" },
-  { tag: "Portfolio", title: "Tavs personīgais portfolio", desc: "Darbu krājums, kas palīdz iegūt pirmos klientus jau kursa laikā.", glow: "255,184,107", img: "/ai/card-portfolio.jpg" },
+/** Visuals only — copy comes from the Projects namespace, zipped by index. */
+const projectVisuals: { glow: string; img?: string; Mock?: () => React.ReactElement }[] = [
+  { glow: "109,94,243", img: "/ai/card-web.jpg" },
+  { glow: "0,191,165", img: "/ai/card-social.jpg" },
+  { glow: "0,191,165", img: "/ai/card-chat.jpg" },
+  { glow: "109,94,243", Mock: VoiceMock },
+  { glow: "255,184,107", img: "/ai/card-ad.jpg" },
+  { glow: "255,184,107", img: "/ai/card-portfolio.jpg" },
 ];
 
 export default function ProjectsV2() {
+  const t = useTranslations("Projects");
+  const projects = ((t.raw("items") ?? []) as ProjectCopy[]).map((p, i) => ({
+    ...p,
+    ...projectVisuals[i],
+  }));
+  const reassure = (t.raw("reassure") ?? []) as string[];
+
   return (
     <section id="examples" style={{ padding: "140px 0", background: "#fff", borderTop: "1px solid var(--line)" }}>
       <div className="lp-container" style={{ maxWidth: 1200, margin: "0 auto", padding: "0 28px" }}>
         {/* Header */}
         <div style={{ maxWidth: 720, margin: "0 auto 72px", textAlign: "center" }}>
-          <Reveal><span className="v2-eyebrow">Reāli projekti</span></Reveal>
+          <Reveal><span className="v2-eyebrow">{t("kicker")}</span></Reveal>
           <Reveal delay={0.08}>
             <h2 className="v2-h2" style={{ fontSize: "clamp(40px, 6.5vw, 80px)", color: "var(--ink)", margin: "18px 0 22px" }}>
-              Ko iespējams <span style={{ color: "var(--teal-ink)" }}>izveidot</span>
+              {t("titleA")}<span style={{ color: "var(--teal-ink)" }}>{t("titleB")}</span>
             </h2>
           </Reveal>
           <Reveal delay={0.16}>
             <p style={{ fontSize: 18, color: "var(--ink-3)", lineHeight: 1.7, maxWidth: 520, margin: "0 auto" }}>
-              Reāli projekti, kurus vari piedāvāt klientiem jau pirmajos mēnešos.
+              {t("lead")}
             </p>
           </Reveal>
         </div>
@@ -150,7 +154,7 @@ export default function ProjectsV2() {
         {/* Reassure strip */}
         <Reveal delay={0.15}>
           <div style={{ display: "flex", justifyContent: "center", gap: 26, flexWrap: "wrap", marginTop: 48 }}>
-            {["Veidots kursa laikā", "Gatavs rādīt klientiem", "Ar mentoru atbalstu"].map((r) => (
+            {reassure.map((r) => (
               <span key={r} style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 13.5, color: "var(--ink-3)", fontWeight: 500 }}>
                 <Check size={13} strokeWidth={3} color="var(--accent-2)" /> {r}
               </span>

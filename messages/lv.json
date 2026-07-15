@@ -39,7 +39,27 @@
     "stat4Val": "€0",
     "stat4Label": "Starts bez pieredzes",
     "floatTag1": "Build · Sell · Scale",
-    "floatTag2": "Pirmais klients 3 nedēļās"
+    "floatTag2": "Pirmais klients 3 nedēļās",
+    "directions": [
+      {
+        "label": "AI saturs",
+        "sub": "Video, attēli, soc. tīkli"
+      },
+      {
+        "label": "Mājaslapas & automatizācija",
+        "sub": "Lapas + lead apstrāde"
+      },
+      {
+        "label": "AI balss aģenti",
+        "sub": "Zvani un rezervācijas"
+      }
+    ],
+    "bullets": [
+      "Latviešu valodā",
+      "Bez programmēšanas",
+      "Bez pieredzes",
+      "Gatavas veidnes"
+    ]
   },
   "FastWin": {
     "kicker": "Ceļš uz klientiem",
@@ -153,7 +173,19 @@
     "siteCaption": "Moderna lapa + automātiska lead apstrāde, kas atbild klientam mazāk nekā minūtē.",
     "voiceTitle": "AI balss aģents",
     "voiceTag": "Zvani · 24/7",
-    "voiceCaption": "Balss aģents atbild uz zvaniem, pieņem rezervācijas un nekad neaizmieg."
+    "voiceCaption": "Balss aģents atbild uz zvaniem, pieņem rezervācijas un nekad neaizmieg.",
+    "viewLabel": "Apskatīt",
+    "sites": [
+      {
+        "niche": "Itāļu kafejnīca un restorāns"
+      },
+      {
+        "niche": "Premium auto detailing studija"
+      },
+      {
+        "niche": "Luksusa mājdzīvnieku zīmols"
+      }
+    ]
   },
   "AILaunchpad": {
     "titleA": "Piemērs: ienākumi ar ",
@@ -180,7 +212,8 @@
         "desc": "Zvanu automatizācija, rezervācijas",
         "math": "2 klienti × 1000€ = 2000€/mēn"
       }
-    ]
+    ],
+    "eyebrow": "Ienākumu piemēri"
   },
   "Testimonials": {
     "kicker": "Studenti praksē",
@@ -591,5 +624,289 @@
   "VideoPlayer": {
     "defaultTitle": "Video nodarbība",
     "unavailable": "Video nav pieejams"
+  },
+  "WhyAI": {
+    "kicker": "Kāpēc AI prasmes",
+    "titleA": "Ko tu iegūsi no ",
+    "titleB": "Chademy?",
+    "leadA": "Ne tikai teoriju vai kārtējo sertifikātu. Tu soli pa solim izveido ",
+    "leadStrong": "reālu pakalpojumu, ko pārdot",
+    "leadB": ", savāc portfolio ar pirmajiem darbiem un iegūsti gatavu sistēmu, kā piesaistīt maksājošus klientus — arī tad, ja sāc no nulles bez IT pieredzes.",
+    "cta": "Skatīt kursus",
+    "services": [
+      {
+        "title": "AI saturs",
+        "desc": "Veido faceless video, reklāmu vizuāļus un sociālo tīklu saturu un pārdod to uzņēmumiem, kuriem pašiem nav laika to darīt. 1 klients ≈ 300–500 €/mēn."
+      },
+      {
+        "title": "AI mājaslapas",
+        "desc": "Uzbūvē modernu, klientus piesaistošu mājaslapu dažās dienās — pilnīgi bez koda. Uzņēmumi par to maksā 500–1500 € par projektu."
+      },
+      {
+        "title": "Automatizācija",
+        "desc": "Iestati WhatsApp, e-pastu un pieteikumu apstrādi, kas strādā uzņēmuma vietā 24/7. Ietaupi klientam stundas — un saņem regulāru ikmēneša maksu."
+      },
+      {
+        "title": "AI balss aģenti",
+        "desc": "Uzstādi AI balss aģentu, kas atbild uz zvaniem un pieņem rezervācijas 24/7. Augstākās vērtības pakalpojums — 800–3500 €/mēn no viena klienta."
+      }
+    ]
+  },
+  "NoSkills": {
+    "kicker": "Bez priekšzināšanām",
+    "titleA": "Nav jābūt ",
+    "titleB": "programmētājam",
+    "lead": "Lielākā daļa studentu sāk bez tehniskām zināšanām.",
+    "checks": [
+      "Nav nepieciešama programmēšana",
+      "Soli pa solim sistēma",
+      "Praktiski piemēri un veidnes",
+      "Viss latviešu valodā"
+    ],
+    "cta": "Pievienoties platformai →",
+    "mockLesson": "2. nodarbība",
+    "mockTitleA": "Tavs pirmais AI projekts",
+    "mockTitleB": "soli pa solim",
+    "mockSteps": [
+      "Atver rīku un izveido kontu",
+      "Atkārto redzamo piemēru",
+      "Pielāgo savam klientam"
+    ]
+  },
+  "Projects": {
+    "kicker": "Reāli projekti",
+    "titleA": "Ko iespējams ",
+    "titleB": "izveidot",
+    "lead": "Reāli projekti, kurus vari piedāvāt klientiem jau pirmajos mēnešos.",
+    "items": [
+      {
+        "tag": "Mājaslapa",
+        "title": "AI mājaslapa uzņēmumam",
+        "desc": "Moderna lapa ar AI integrācijām — gatava dažu dienu laikā."
+      },
+      {
+        "tag": "Sociālie tīkli",
+        "title": "Sociālo tīklu satura paka",
+        "desc": "Vizuāļi, teksti un publicēšanas grafiks, veidots ar AI rīkiem."
+      },
+      {
+        "tag": "Automatizācija",
+        "title": "WhatsApp automatizācija",
+        "desc": "Automātiskas atbildes un pieteikumu apstrāde uzņēmumam."
+      },
+      {
+        "tag": "Balss AI",
+        "title": "AI balss aģents",
+        "desc": "Zvanu pieņemšana un rezervācijas — bez cilvēka iesaistes."
+      },
+      {
+        "tag": "Reklāma",
+        "title": "AI reklāmu vizuāļi",
+        "desc": "Bildes un video reklāmām, kas piesaista uzmanību un pārdod."
+      },
+      {
+        "tag": "Portfolio",
+        "title": "Tavs personīgais portfolio",
+        "desc": "Darbu krājums, kas palīdz iegūt pirmos klientus jau kursa laikā."
+      }
+    ],
+    "reassure": [
+      "Veidots kursa laikā",
+      "Gatavs rādīt klientiem",
+      "Ar mentoru atbalstu"
+    ],
+    "mockIncoming": "Ienākošais zvans",
+    "mockAnswering": "AI atbild · 0:18"
+  },
+  "Community": {
+    "kicker": "Kopiena & rezultāti",
+    "titleA": "Tu nemācies ",
+    "titleB": "viens",
+    "lead": "Reālas pieredzes no cilvēkiem, kas jau strādā ar AI pakalpojumiem.",
+    "stats": [
+      {
+        "val": "350+",
+        "label": "Aktīvi studenti Latvijā"
+      },
+      {
+        "val": "3 ned.",
+        "label": "Vidēji līdz pirmajam klientam"
+      },
+      {
+        "val": "94%",
+        "label": "Studentu apmierinātība"
+      }
+    ],
+    "quotes": [
+      {
+        "name": "Mārtiņš K.",
+        "role": "Freelancer · Rīga",
+        "text": "Pēc 3 nedēļām uzrunāju pirmo klientu — restorānu Rīgā. Tagad strādāju ar 4 klientiem paralēli pamata darbam.",
+        "amt": "€1 400/mēn"
+      },
+      {
+        "name": "Laura B.",
+        "role": "Satura veidotāja · Jūrmala",
+        "text": "AI video kurss bija tieši tas, ko meklēju. Tagad vadu sociālo mediju saturu 3 uzņēmumiem un pati plānoju savu laiku.",
+        "amt": "€900/mēn"
+      },
+      {
+        "name": "Raivis D.",
+        "role": "Mārketings · Liepāja",
+        "text": "Voice aģentu sistēmu zobārstniecībai saliku kopā pēc kursa. Klients ir sajūsmā — automātiski zvanu atgādinājumi strādā bez iejaukšanās.",
+        "amt": "€800 + €200/mēn"
+      }
+    ],
+    "perks": [
+      "Aktīva studentu kopiena",
+      "Jautājumi un atbildes",
+      "Jauni rīki un atjauninājumi",
+      "Mentoru atbalsts"
+    ],
+    "bandTitleA": "Pievienojies ",
+    "bandTitleB": "kopienai",
+    "bandLead": "Mācies kopā ar citiem, saņem atbildes uz jautājumiem un seko līdzi jaunākajiem AI rīkiem.",
+    "bandCta": "Pievienoties →"
+  },
+  "Tools": {
+    "kicker": "Tavs AI rīku komplekts",
+    "titleA": "Rīki, kurus ",
+    "titleB": "apgūsi",
+    "lead": "Platformas, ko izmanto modernu AI pakalpojumu veidošanā.",
+    "items": {
+      "claude": "AI asistents & skriptēšana",
+      "claudeCode": "Koda aģents terminālī",
+      "chatgpt": "Teksts & satura ģenerēšana",
+      "vapi": "Balss AI aģenti",
+      "retell": "Reāllaika balss aģenti",
+      "make": "Vizuālā automatizācija",
+      "n8n": "Darbplūsmu automatizācija",
+      "midjourney": "AI attēlu ģenerēšana",
+      "elevenlabs": "AI balss sintēze",
+      "runway": "AI video ģenerēšana"
+    }
+  },
+  "FAQ": {
+    "kicker": "FAQ",
+    "titleA": "Biežākie ",
+    "titleB": "jautājumi",
+    "lead": "Atbildes uz visu, kas rodas pirms sākuma. Neatradi savu jautājumu?",
+    "leadLink": "Uzraksti mums",
+    "items": [
+      {
+        "q": "Vai man jābūt tehniskām zināšanām?",
+        "a": "Nē. Kursi veidoti tā, lai ikviens varētu sākt no nulles — soli pa solim, ar praktiskiem piemēriem un bez programmēšanas."
+      },
+      {
+        "q": "Cik ātri varu sagaidīt pirmos rezultātus?",
+        "a": "Vidēji studenti atrod pirmo klientu 2–4 nedēļu laikā pēc kursa sākšanas, ja seko struktūrai un pielieto iemācīto."
+      },
+      {
+        "q": "Cik daudz laika nedēļā jāvelta mācībām?",
+        "a": "4–6 stundas nedēļā parasti ir pietiekami, lai redzētu reālu progresu — vari mācīties savā tempā."
+      },
+      {
+        "q": "Kā es atradīšu pirmos klientus?",
+        "a": "Kursā ir atsevišķa sadaļa par klientu meklēšanu — soļi, ziņojumu veidnes un reāli piemēri, ko izmantot uzreiz."
+      },
+      {
+        "q": "Vai varu mācīties līdzās darbam vai studijām?",
+        "a": "Jā. Platforma ir veidota elastīgam grafikam — visi materiāli paliek pieejami, un vari mācīties jebkurā laikā."
+      },
+      {
+        "q": "Kas notiek pēc kursa pabeigšanas?",
+        "a": "Paliec kopienā, saglabā piekļuvi materiāliem un saņem atbalstu, turpinot attīstīt savu pakalpojumu virzienu."
+      },
+      {
+        "q": "Ko darīt, ja kaut kas neizdodas?",
+        "a": "Mentori un kopiena ir blakus ikvienā solī — uzdod jautājumus un saņem konkrētu palīdzību, nevis vispārīgus padomus."
+      }
+    ]
+  },
+  "FinalCTA": {
+    "kicker": "Sāc šodien",
+    "titleA": "Sāc jau ",
+    "titleB": "šodien",
+    "lead": "Izvēlies sev piemērotāko virzienu un sper pirmo soli AI jomā.",
+    "cta": "Sākt tagad →",
+    "bullets": [
+      "Latviešu valodā",
+      "Bez programmēšanas",
+      "Aktīva kopiena",
+      "Gatavas veidnes"
+    ]
+  },
+  "Team": {
+    "kicker": "Chademy",
+    "titleA": "Mūsu ",
+    "titleB": "komanda",
+    "lead": "Cilvēki aiz Chademy — praktiķi, kas paši ikdienā strādā ar AI un prot to izskaidrot vienkārši.",
+    "members": [
+      {
+        "name": "Kalvis Ēnbergs",
+        "role": "Dibinātājs & AI Stratēģis",
+        "tag": "Vadītājs",
+        "desc": "7+ gadu pieredze digitālajā mārketingā. Palīdz uzņēmumiem integrēt AI ikdienas darbā un palielināt produktivitāti 3×."
+      },
+      {
+        "name": "Lauma Bērziņa",
+        "role": "Satura & AI Kursu Speciāliste",
+        "tag": "Kursi",
+        "desc": "Veido AI apmācību saturu, kas ir saprotams ikvienam — no nulles līdz profesionālim. Bijusī žurnāliste."
+      },
+      {
+        "name": "Mārtiņš Ozols",
+        "role": "Tehnoloģiju vadītājs",
+        "tag": "Tech",
+        "desc": "Full-stack izstrādātājs ar aizraušanos ar AI automatizāciju. Izveido rīkus, kas tiešām darbojas uzņēmumu vidē."
+      },
+      {
+        "name": "Ilze Kalniņa",
+        "role": "Kopienas & Atbalsta vadītāja",
+        "tag": "Kopiena",
+        "desc": "Nodrošina, ka katrs students saņem atbildes uz saviem jautājumiem. Latvijas lielākās AI kopienas moderatore."
+      }
+    ]
+  },
+  "LiveVoice": {
+    "kicker": "Dzīvs demo",
+    "titleA": "Parunā ar mūsu ",
+    "titleB": "balss aģentiem",
+    "lead": "Uzspied pogu, atļauj mikrofonu un sarunājies ar AI aģentu tieši pārlūkā — tieši šādu aģentu tu iemācīsies uzbūvēt savam biznesam. Demo zvans, maks. ~2 min.",
+    "errConnect": "Neizdevās savienoties: ",
+    "errUnknown": "nezināma kļūda",
+    "errNoKey": "Demo vēl nav konfigurēts — trūkst Vapi publiskās atslēgas.",
+    "errNoAssistant": "Šim aģentam vēl nav pievienots Vapi Assistant ID.",
+    "errStartFailed": "Neizdevās sākt zvanu. Atļauj mikrofonu un mēģini vēlreiz.",
+    "statusIdle": "Gatavs sarunai — uzspied «Runāt»",
+    "statusConnecting": "Savienojas…",
+    "statusSpeaking": "Aģents runā…",
+    "statusListening": "Klausās — runā brīvi 🎙️",
+    "btnIdle": "Runāt ar aģentu",
+    "btnConnecting": "Savienojas…",
+    "btnEnd": "Beigt zvanu",
+    "agents": {
+      "chademy": {
+        "scenario": "AI mācību konsultants",
+        "lang": "Latviski",
+        "skills": [
+          "Pastāsta par kursiem",
+          "Iesaka piemērotu virzienu",
+          "Atbild uz jautājumiem"
+        ]
+      },
+      "autosalons": {
+        "scenario": "Auto salona konsultants",
+        "lang": "Angliski",
+        "skills": [
+          "Pastāsta par pieejamiem auto",
+          "Nosaka darba laikus",
+          "Piesaka testa braucienu"
+        ]
+      }
+    }
+  },
+  "Marquee": {
+    "title": "Rīki, ko apgūsi un izmantosi ikdienā"
   }
 }

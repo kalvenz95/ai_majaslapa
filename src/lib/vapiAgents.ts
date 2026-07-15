@@ -16,16 +16,10 @@
 export const VAPI_PUBLIC_KEY = process.env.NEXT_PUBLIC_VAPI_PUBLIC_KEY ?? "";
 
 export type VoiceAgent = {
-  /** Iekšējais atslēgas nosaukums */
+  /** Iekšējais atslēgas nosaukums — arī tulkojumu atslēga (LiveVoice.agents.<id>) */
   id: string;
-  /** Uzņēmuma/scenārija nosaukums kartiņā */
+  /** Uzņēmuma zīmola nosaukums kartiņā — netulkojas */
   biz: string;
-  /** Īss scenārija apraksts */
-  scenario: string;
-  /** Sarunas valoda, ja atšķiras no latviešu (rāda čipu kartiņā), piem. "Angliski" */
-  lang?: string;
-  /** Ko agents prot — punkti zem kartiņas */
-  skills: string[];
   /** Vapi Assistant ID (no env) */
   assistantId: string;
   /** Akcenta krāsa kartiņai */
@@ -42,9 +36,6 @@ export const VOICE_AGENTS: VoiceAgent[] = [
   {
     id: "chademy",
     biz: "Chademy",
-    scenario: "AI mācību konsultants",
-    lang: "Latviski",
-    skills: ["Pastāsta par kursiem", "Iesaka piemērotu virzienu", "Atbild uz jautājumiem"],
     assistantId: process.env.NEXT_PUBLIC_VAPI_ASSISTANT_CHADEMY ?? "",
     accent: "#6f5cf5",
     accent2: "#9b8cf5",
@@ -54,9 +45,6 @@ export const VOICE_AGENTS: VoiceAgent[] = [
   {
     id: "autosalons",
     biz: "Silverline Motors",
-    scenario: "Auto salona konsultants",
-    lang: "Angliski",
-    skills: ["Pastāsta par pieejamiem auto", "Nosaka darba laikus", "Piesaka testa braucienu"],
     assistantId:
       process.env.NEXT_PUBLIC_VAPI_ASSISTANT_AUTOSALONS ??
       "5bd2d9f5-96ce-43dc-8d74-6202041f6b75",

@@ -4,16 +4,13 @@ import { Reveal } from "@/components/home/Reveal";
 import { Magnetic } from "@/components/Magnetic";
 import { Link } from "@/i18n/navigation";
 import { Check, Play, Pause, Captions } from "lucide-react";
-
-const checks = [
-  "Nav nepieciešama programmēšana",
-  "Soli pa solim sistēma",
-  "Praktiski piemēri un veidnes",
-  "Viss latviešu valodā",
-];
+import { useTranslations } from "next-intl";
 
 /** Crafted lesson-player mockup — replaces a generic stock photo. */
 function LessonMock() {
+  const t = useTranslations("NoSkills");
+  const steps = (t.raw("mockSteps") ?? []) as string[];
+
   return (
     <div className="v2-float-a" style={{
       borderRadius: 24, overflow: "hidden", background: "#fff",
@@ -29,11 +26,11 @@ function LessonMock() {
             textTransform: "uppercase", color: "rgba(255,255,255,0.45)",
             border: "1px solid rgba(255,255,255,0.15)", borderRadius: 999, padding: "5px 13px",
           }}>
-            2. nodarbība
+            {t("mockLesson")}
           </span>
           <div style={{ fontSize: "clamp(17px, 2.4vw, 24px)", fontWeight: 700, fontFamily: "var(--font-sans)", letterSpacing: "-0.03em", color: "#fff", textAlign: "center", padding: "0 24px" }}>
-            Tavs pirmais AI projekts<br />
-            <span className="v2-grad">soli pa solim</span>
+            {t("mockTitleA")}<br />
+            <span className="v2-grad">{t("mockTitleB")}</span>
           </div>
           <span style={{
             width: 58, height: 58, borderRadius: 999, marginTop: 6,
@@ -61,39 +58,41 @@ function LessonMock() {
 
       {/* Below video — step checklist */}
       <div style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 9 }}>
-        {[
-          { t: "Atver rīku un izveido kontu", done: true },
-          { t: "Atkārto redzamo piemēru", done: true },
-          { t: "Pielāgo savam klientam", done: false },
-        ].map((s, i) => (
-          <div key={s.t} style={{ display: "flex", alignItems: "center", gap: 11, padding: "10px 13px", borderRadius: 11, background: s.done ? "rgba(0,191,165,0.06)" : "var(--bg)", border: `1px solid ${s.done ? "rgba(0,191,165,0.2)" : "var(--line)"}` }}>
-            <span style={{ width: 21, height: 21, borderRadius: 999, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", background: s.done ? "var(--accent-2)" : "var(--bg-2)", color: s.done ? "#fff" : "var(--ink-4)", fontSize: 10, fontWeight: 700 }}>
-              {s.done ? <Check size={11} strokeWidth={3.4} /> : i + 1}
-            </span>
-            <span style={{ fontSize: 12.5, fontWeight: 600, color: "var(--ink)", letterSpacing: "-0.01em" }}>{s.t}</span>
-          </div>
-        ))}
+        {steps.map((label, i) => {
+          const done = i < 2;
+          return (
+            <div key={label} style={{ display: "flex", alignItems: "center", gap: 11, padding: "10px 13px", borderRadius: 11, background: done ? "rgba(0,191,165,0.06)" : "var(--bg)", border: `1px solid ${done ? "rgba(0,191,165,0.2)" : "var(--line)"}` }}>
+              <span style={{ width: 21, height: 21, borderRadius: 999, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", background: done ? "var(--accent-2)" : "var(--bg-2)", color: done ? "#fff" : "var(--ink-4)", fontSize: 10, fontWeight: 700 }}>
+                {done ? <Check size={11} strokeWidth={3.4} /> : i + 1}
+              </span>
+              <span style={{ fontSize: 12.5, fontWeight: 600, color: "var(--ink)", letterSpacing: "-0.01em" }}>{label}</span>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
 }
 
 export default function NoSkillsV2() {
+  const t = useTranslations("NoSkills");
+  const checks = (t.raw("checks") ?? []) as string[];
+
   return (
     <section style={{ padding: "140px 0", background: "var(--bg)", borderTop: "1px solid var(--line)", overflow: "hidden" }}>
       <div className="lp-container" style={{ maxWidth: 1160, margin: "0 auto", padding: "0 28px" }}>
         <div className="noskills-v2-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 76, alignItems: "center" }}>
           {/* Copy */}
           <div>
-            <Reveal><span className="v2-eyebrow">Bez priekšzināšanām</span></Reveal>
+            <Reveal><span className="v2-eyebrow">{t("kicker")}</span></Reveal>
             <Reveal delay={0.08}>
               <h2 className="v2-h2" style={{ fontSize: "clamp(38px, 5.5vw, 68px)", color: "var(--ink)", margin: "18px 0 20px" }}>
-                Nav jābūt <span style={{ color: "var(--teal-ink)" }}>programmētājam</span>
+                {t("titleA")}<span style={{ color: "var(--teal-ink)" }}>{t("titleB")}</span>
               </h2>
             </Reveal>
             <Reveal delay={0.14}>
               <p style={{ fontSize: 18, color: "var(--ink-3)", lineHeight: 1.7, maxWidth: 440, marginBottom: 36 }}>
-                Lielākā daļa studentu sāk bez tehniskām zināšanām.
+                {t("lead")}
               </p>
             </Reveal>
 
@@ -118,7 +117,7 @@ export default function NoSkillsV2() {
             <Reveal delay={0.4}>
               <Magnetic>
                 <Link href="/register" className="btn-primary" style={{ textDecoration: "none", fontSize: 16, padding: "16px 30px", borderRadius: 14 }}>
-                  Pievienoties platformai →
+                  {t("cta")}
                 </Link>
               </Magnetic>
             </Reveal>

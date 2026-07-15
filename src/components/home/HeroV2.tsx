@@ -52,19 +52,20 @@ function StaggerTitle({
 }
 
 /* What you learn — the three service directions, made explicit up front. */
-const DIRECTIONS = [
-  { icon: Images, label: "AI saturs", sub: "Video, attēli, soc. tīkli" },
-  { icon: Globe, label: "Mājaslapas & automatizācija", sub: "Lapas + lead apstrāde" },
-  { icon: Mic, label: "AI balss aģenti", sub: "Zvani un rezervācijas" },
-];
+const DIRECTION_ICONS = [Images, Globe, Mic];
 
-const BULLETS = ["Latviešu valodā", "Bez programmēšanas", "Bez pieredzes", "Gatavas veidnes"];
+type Direction = { label: string; sub: string };
 
 export default function HeroV2() {
   const hasMounted = useHasMounted();
   const reduceMotion = useReducedMotion();
   const skipMotion = hasMounted && reduceMotion;
   const t = useTranslations("Hero");
+  const DIRECTIONS = ((t.raw("directions") ?? []) as Direction[]).map((d, i) => ({
+    ...d,
+    icon: DIRECTION_ICONS[i],
+  }));
+  const BULLETS = (t.raw("bullets") ?? []) as string[];
 
   return (
     <header style={{ position: "relative", overflow: "hidden", background: "#0A0A0E", padding: "150px 0 110px", textAlign: "center" }}>

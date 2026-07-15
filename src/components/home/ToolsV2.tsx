@@ -2,21 +2,25 @@
 
 import { Reveal } from "@/components/home/Reveal";
 import { BrandLogo } from "@/components/BrandLogos";
+import { useTranslations } from "next-intl";
 
+/** `name` doubles as the BrandLogo lookup key, so it stays untranslated. */
 const tools = [
-  { name: "Claude", desc: "AI asistents & skriptēšana", glow: "139,123,255" },
-  { name: "Claude Code", desc: "Koda aģents terminālī", glow: "255,184,107" },
-  { name: "ChatGPT", desc: "Teksts & satura ģenerēšana", glow: "52,217,195" },
-  { name: "Vapi", desc: "Balss AI aģenti", glow: "139,123,255" },
-  { name: "Retell AI", desc: "Reāllaika balss aģenti", glow: "139,123,255" },
-  { name: "Make.com", desc: "Vizuālā automatizācija", glow: "255,184,107" },
-  { name: "n8n", desc: "Darbplūsmu automatizācija", glow: "255,184,107" },
-  { name: "Midjourney", desc: "AI attēlu ģenerēšana", glow: "52,217,195" },
-  { name: "ElevenLabs", desc: "AI balss sintēze", glow: "139,123,255" },
-  { name: "Runway", desc: "AI video ģenerēšana", glow: "52,217,195" },
+  { key: "claude", name: "Claude", glow: "139,123,255" },
+  { key: "claudeCode", name: "Claude Code", glow: "255,184,107" },
+  { key: "chatgpt", name: "ChatGPT", glow: "52,217,195" },
+  { key: "vapi", name: "Vapi", glow: "139,123,255" },
+  { key: "retell", name: "Retell AI", glow: "139,123,255" },
+  { key: "make", name: "Make.com", glow: "255,184,107" },
+  { key: "n8n", name: "n8n", glow: "255,184,107" },
+  { key: "midjourney", name: "Midjourney", glow: "52,217,195" },
+  { key: "elevenlabs", name: "ElevenLabs", glow: "139,123,255" },
+  { key: "runway", name: "Runway", glow: "52,217,195" },
 ];
 
 export default function ToolsV2() {
+  const t = useTranslations("Tools");
+
   return (
     <section
       id="tools"
@@ -39,15 +43,15 @@ export default function ToolsV2() {
       <div className="lp-container" style={{ maxWidth: 1100, margin: "0 auto", padding: "0 28px", position: "relative" }}>
         {/* Header */}
         <div style={{ maxWidth: 660, margin: "0 auto 60px", textAlign: "center" }}>
-          <Reveal><span className="v2-eyebrow v2-eyebrow--light">Tavs AI rīku komplekts</span></Reveal>
+          <Reveal><span className="v2-eyebrow v2-eyebrow--light">{t("kicker")}</span></Reveal>
           <Reveal delay={0.08}>
             <h2 className="v2-h2" style={{ fontSize: "clamp(38px, 6vw, 72px)", color: "#fff", margin: "18px 0 20px" }}>
-              Rīki, kurus <span className="v2-grad">apgūsi</span>
+              {t("titleA")}<span className="v2-grad">{t("titleB")}</span>
             </h2>
           </Reveal>
           <Reveal delay={0.16}>
             <p style={{ fontSize: 17, color: "rgba(255,255,255,0.5)", lineHeight: 1.7, maxWidth: 440, margin: "0 auto" }}>
-              Platformas, ko izmanto modernu AI pakalpojumu veidošanā.
+              {t("lead")}
             </p>
           </Reveal>
         </div>
@@ -91,7 +95,7 @@ export default function ToolsV2() {
                 </span>
                 <span>
                   <span style={{ display: "block", fontSize: 14.5, fontWeight: 700, color: "#fff", marginBottom: 3, letterSpacing: "-0.015em", fontFamily: "var(--font-sans)" }}>{tool.name}</span>
-                  <span style={{ display: "block", fontSize: 12, color: "rgba(255,255,255,0.5)", lineHeight: 1.45 }}>{tool.desc}</span>
+                  <span style={{ display: "block", fontSize: 12, color: "rgba(255,255,255,0.5)", lineHeight: 1.45 }}>{t(`items.${tool.key}`)}</span>
                 </span>
               </div>
             </Reveal>

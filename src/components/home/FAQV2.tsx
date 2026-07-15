@@ -4,40 +4,14 @@ import { useState } from "react";
 import { Reveal } from "@/components/home/Reveal";
 import { Link } from "@/i18n/navigation";
 import { Plus } from "lucide-react";
+import { useTranslations } from "next-intl";
 
-const faqs = [
-  {
-    q: "Vai man jābūt tehniskām zināšanām?",
-    a: "Nē. Kursi veidoti tā, lai ikviens varētu sākt no nulles — soli pa solim, ar praktiskiem piemēriem un bez programmēšanas.",
-  },
-  {
-    q: "Cik ātri varu sagaidīt pirmos rezultātus?",
-    a: "Vidēji studenti atrod pirmo klientu 2–4 nedēļu laikā pēc kursa sākšanas, ja seko struktūrai un pielieto iemācīto.",
-  },
-  {
-    q: "Cik daudz laika nedēļā jāvelta mācībām?",
-    a: "4–6 stundas nedēļā parasti ir pietiekami, lai redzētu reālu progresu — vari mācīties savā tempā.",
-  },
-  {
-    q: "Kā es atradīšu pirmos klientus?",
-    a: "Kursā ir atsevišķa sadaļa par klientu meklēšanu — soļi, ziņojumu veidnes un reāli piemēri, ko izmantot uzreiz.",
-  },
-  {
-    q: "Vai varu mācīties līdzās darbam vai studijām?",
-    a: "Jā. Platforma ir veidota elastīgam grafikam — visi materiāli paliek pieejami, un vari mācīties jebkurā laikā.",
-  },
-  {
-    q: "Kas notiek pēc kursa pabeigšanas?",
-    a: "Paliec kopienā, saglabā piekļuvi materiāliem un saņem atbalstu, turpinot attīstīt savu pakalpojumu virzienu.",
-  },
-  {
-    q: "Ko darīt, ja kaut kas neizdodas?",
-    a: "Mentori un kopiena ir blakus ikvienā solī — uzdod jautājumus un saņem konkrētu palīdzību, nevis vispārīgus padomus.",
-  },
-];
+type Faq = { q: string; a: string };
 
 export default function FAQV2() {
   const [open, setOpen] = useState<number | null>(0);
+  const t = useTranslations("FAQ");
+  const faqs = (t.raw("items") ?? []) as Faq[];
 
   return (
     <section id="faq" style={{ padding: "140px 0", background: "#fff", borderTop: "1px solid var(--line)" }}>
@@ -45,17 +19,17 @@ export default function FAQV2() {
         <div className="faq-v2-grid" style={{ display: "grid", gridTemplateColumns: "0.85fr 1.15fr", gap: 72, alignItems: "start" }}>
           {/* Left — sticky heading */}
           <div className="faq-v2-head" style={{ position: "sticky", top: 120 }}>
-            <Reveal><span className="v2-eyebrow">FAQ</span></Reveal>
+            <Reveal><span className="v2-eyebrow">{t("kicker")}</span></Reveal>
             <Reveal delay={0.08}>
               <h2 className="v2-h2" style={{ fontSize: "clamp(38px, 5.5vw, 64px)", color: "var(--ink)", margin: "18px 0 18px" }}>
-                Biežākie <span style={{ color: "var(--accent)" }}>jautājumi</span>
+                {t("titleA")}<span style={{ color: "var(--accent)" }}>{t("titleB")}</span>
               </h2>
             </Reveal>
             <Reveal delay={0.14}>
               <p style={{ fontSize: 16.5, color: "var(--ink-3)", lineHeight: 1.7, maxWidth: 340 }}>
-                Atbildes uz visu, kas rodas pirms sākuma. Neatradi savu jautājumu?{" "}
+                {t("lead")}{" "}
                 <Link href="/kontakti" style={{ color: "var(--accent)", fontWeight: 600, textDecoration: "none", borderBottom: "1px solid color-mix(in oklab, var(--accent) 40%, transparent)" }}>
-                  Uzraksti mums
+                  {t("leadLink")}
                 </Link>
               </p>
             </Reveal>

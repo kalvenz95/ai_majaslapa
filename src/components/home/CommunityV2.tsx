@@ -5,32 +5,20 @@ import { AnimatedNumber } from "@/components/AnimatedNumber";
 import { Magnetic } from "@/components/Magnetic";
 import { Link } from "@/i18n/navigation";
 import { Check } from "lucide-react";
+import { useTranslations } from "next-intl";
 
-const quotes = [
-  {
-    name: "Mārtiņš K.",
-    role: "Freelancer · Rīga",
-    photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=160&q=85&fit=crop&crop=faces",
-    text: "Pēc 3 nedēļām uzrunāju pirmo klientu — restorānu Rīgā. Tagad strādāju ar 4 klientiem paralēli pamata darbam.",
-    amt: "€1 400/mēn",
-  },
-  {
-    name: "Laura B.",
-    role: "Satura veidotāja · Jūrmala",
-    photo: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=160&q=85&fit=crop&crop=faces",
-    text: "AI video kurss bija tieši tas, ko meklēju. Tagad vadu sociālo mediju saturu 3 uzņēmumiem un pati plānoju savu laiku.",
-    amt: "€900/mēn",
-  },
-  {
-    name: "Raivis D.",
-    role: "Mārketings · Liepāja",
-    photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=160&q=85&fit=crop&crop=faces",
-    text: "Voice aģentu sistēmu zobārstniecībai saliku kopā pēc kursa. Klients ir sajūsmā — automātiski zvanu atgādinājumi strādā bez iejaukšanās.",
-    amt: "€800 + €200/mēn",
-  },
+/** Photos only — quote copy comes from the Community namespace, zipped by index. */
+const quotePhotos = [
+  "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=160&q=85&fit=crop&crop=faces",
+  "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=160&q=85&fit=crop&crop=faces",
+  "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=160&q=85&fit=crop&crop=faces",
 ];
 
-const communityPerks = ["Aktīva studentu kopiena", "Jautājumi un atbildes", "Jauni rīki un atjauninājumi", "Mentoru atbalsts"];
+/** Only the middle stat is accented. */
+const statAccent = [false, true, false];
+
+type Quote = { name: string; role: string; text: string; amt: string };
+type Stat = { val: string; label: string };
 
 function Stars() {
   return (
@@ -45,20 +33,31 @@ function Stars() {
 }
 
 export default function CommunityV2() {
+  const t = useTranslations("Community");
+  const quotes = ((t.raw("quotes") ?? []) as Quote[]).map((q, i) => ({
+    ...q,
+    photo: quotePhotos[i],
+  }));
+  const stats = ((t.raw("stats") ?? []) as Stat[]).map((s, i) => ({
+    ...s,
+    accent: statAccent[i],
+  }));
+  const communityPerks = (t.raw("perks") ?? []) as string[];
+
   return (
     <section id="results" style={{ padding: "140px 0", background: "var(--bg)", borderTop: "1px solid var(--line)" }}>
       <div className="lp-container" style={{ maxWidth: 1200, margin: "0 auto", padding: "0 28px" }}>
         {/* Header */}
         <div style={{ maxWidth: 700, margin: "0 auto 64px", textAlign: "center" }}>
-          <Reveal><span className="v2-eyebrow">Kopiena & rezultāti</span></Reveal>
+          <Reveal><span className="v2-eyebrow">{t("kicker")}</span></Reveal>
           <Reveal delay={0.08}>
             <h2 className="v2-h2" style={{ fontSize: "clamp(40px, 6.5vw, 80px)", color: "var(--ink)", margin: "18px 0 22px" }}>
-              Tu nemācies <span style={{ color: "var(--accent)" }}>viens</span>
+              {t("titleA")}<span style={{ color: "var(--accent)" }}>{t("titleB")}</span>
             </h2>
           </Reveal>
           <Reveal delay={0.16}>
             <p style={{ fontSize: 18, color: "var(--ink-3)", lineHeight: 1.7, maxWidth: 520, margin: "0 auto" }}>
-              Reālas pieredzes no cilvēkiem, kas jau strādā ar AI pakalpojumiem.
+              {t("lead")}
             </p>
           </Reveal>
         </div>
@@ -70,11 +69,7 @@ export default function CommunityV2() {
             borderTop: "1px solid var(--line)", borderBottom: "1px solid var(--line)",
             marginBottom: 64,
           }}>
-            {[
-              { val: "350+", label: "Aktīvi studenti Latvijā", accent: false },
-              { val: "3 ned.", label: "Vidēji līdz pirmajam klientam", accent: true },
-              { val: "94%", label: "Studentu apmierinātība", accent: false },
-            ].map((s, i) => (
+            {stats.map((s, i) => (
               <div key={i} className="comm-v2-stat" style={{ padding: "36px 24px", textAlign: "center", borderRight: i < 2 ? "1px solid var(--line)" : "none" }}>
                 <AnimatedNumber
                   value={s.val}
@@ -135,10 +130,10 @@ export default function CommunityV2() {
             }} />
             <div style={{ position: "relative" }}>
               <h3 className="v2-h2" style={{ fontSize: "clamp(26px, 3.6vw, 40px)", color: "#fff", margin: "0 0 12px" }}>
-                Pievienojies <span style={{ color: "#A89DFF" }}>kopienai</span>
+                {t("bandTitleA")}<span style={{ color: "#A89DFF" }}>{t("bandTitleB")}</span>
               </h3>
               <p style={{ fontSize: 15.5, color: "rgba(255,255,255,0.55)", lineHeight: 1.65, maxWidth: 460, margin: "0 0 22px" }}>
-                Mācies kopā ar citiem, saņem atbildes uz jautājumiem un seko līdzi jaunākajiem AI rīkiem.
+                {t("bandLead")}
               </p>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px 22px", maxWidth: 460 }}>
                 {communityPerks.map((p) => (
@@ -167,7 +162,7 @@ export default function CommunityV2() {
               </div>
               <Magnetic>
                 <Link href="/register" className="btn-primary" style={{ textDecoration: "none", fontSize: 15.5, padding: "15px 30px", borderRadius: 14 }}>
-                  Pievienoties →
+                  {t("bandCta")}
                 </Link>
               </Magnetic>
             </div>

@@ -40,7 +40,7 @@ export default function IncomeV2() {
 
             {/* Header */}
             <div style={{ maxWidth: 700, margin: "0 auto 60px", textAlign: "center", position: "relative" }}>
-              <span className="v2-eyebrow v2-eyebrow--light">Ienākumu piemēri</span>
+              <span className="v2-eyebrow v2-eyebrow--light">{t("eyebrow")}</span>
               <h2 className="v2-h2" style={{ fontSize: "clamp(27px, 5.5vw, 64px)", color: "#fff", margin: "18px 0 20px", overflowWrap: "break-word" }}>
                 {t("titleA")}<span className="v2-grad">{t("titleB")}</span>
               </h2>

@@ -1,6 +1,7 @@
 "use client";
 
 import { BrandLogo, hasBrandLogo } from "@/components/BrandLogos";
+import { useTranslations } from "next-intl";
 
 const tools = [
   "Claude", "Vapi", "Make.com", "n8n", "ElevenLabs", "Vonage",
@@ -9,6 +10,7 @@ const tools = [
 ];
 
 export default function Marquee() {
+  const tr = useTranslations("Marquee");
   const doubled = [...tools, ...tools];
   return (
     <div style={{ padding: "30px 0 32px", borderTop: "1px solid var(--line)", borderBottom: "1px solid var(--line)", overflow: "hidden", background: "var(--bg-1)", position: "relative" }}>
@@ -16,7 +18,7 @@ export default function Marquee() {
 
       <div style={{ textAlign: "center", marginBottom: 20, position: "relative" }}>
         <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--ink-4)", fontFamily: "var(--font-sans)" }}>
-          Rīki, ko apgūsi un izmantosi ikdienā
+          {tr("title")}
         </span>
       </div>
 

@@ -5,10 +5,12 @@ import Vapi from "@vapi-ai/web";
 import { Reveal } from "@/components/home/Reveal";
 import { Mic, Phone, Check, Radio, Globe } from "lucide-react";
 import { VAPI_PUBLIC_KEY, VOICE_AGENTS, type VoiceAgent } from "@/lib/vapiAgents";
+import { useTranslations } from "next-intl";
 
 type Status = "idle" | "connecting" | "active";
 
 export default function LiveVoiceAgents() {
+  const t = useTranslations("LiveVoice");
   const vapiRef = useRef<Vapi | null>(null);
   const [activeId, setActiveId] = useState<string | null>(null);
   const [status, setStatus] = useState<Status>("idle");
@@ -51,14 +53,14 @@ export default function LiveVoiceAgents() {
         /* ignore */
       }
       console.error("[Vapi error]", e);
-      setError("Neizdevās savienoties: " + (detail || "nezināma kļūda"));
+      setError(t("errConnect") + (detail || t("errUnknown")));
       setStatus("idle");
       setActiveId(null);
     });
 
     vapiRef.current = v;
     return v;
-  }, []);
+  }, [t]);
 
   /* Stop any live call when the section unmounts. */
   useEffect(() => () => { vapiRef.current?.stop(); }, []);
@@ -68,11 +70,11 @@ export default function LiveVoiceAgents() {
       setError(null);
       const v = getVapi();
       if (!v) {
-        setError("Demo vēl nav konfigurēts — trūkst Vapi publiskās atslēgas.");
+        setError(t("errNoKey"));
         return;
       }
       if (!agent.assistantId) {
-        setError("Šim aģentam vēl nav pievienots Vapi Assistant ID.");
+        setError(t("errNoAssistant"));
         return;
       }
       if (activeId && activeId !== agent.id) v.stop();
@@ -81,12 +83,12 @@ export default function LiveVoiceAgents() {
       try {
         await v.start(agent.assistantId);
       } catch {
-        setError("Neizdevās sākt zvanu. Atļauj mikrofonu un mēģini vēlreiz.");
+        setError(t("errStartFailed"));
         setStatus("idle");
         setActiveId(null);
       }
     },
-    [activeId, getVapi],
+    [activeId, getVapi, t],
   );
 
   const endCall = useCallback(() => {
@@ -101,17 +103,17 @@ export default function LiveVoiceAgents() {
           <Reveal>
             <span className="v2-eyebrow">
               <Radio size={13} strokeWidth={2.4} style={{ marginRight: 7, marginBottom: -2 }} />
-              Dzīvs demo
+              {t("kicker")}
             </span>
           </Reveal>
           <Reveal delay={0.08}>
             <h2 className="v2-h2" style={{ fontSize: "clamp(36px, 5.5vw, 68px)", color: "var(--ink)", margin: "18px 0 22px" }}>
-              Parunā ar mūsu <span className="v2-grad">balss aģentiem</span>
+              {t("titleA")}<span className="v2-grad">{t("titleB")}</span>
             </h2>
           </Reveal>
           <Reveal delay={0.16}>
             <p style={{ fontSize: 18, color: "var(--ink-3)", lineHeight: 1.7, maxWidth: 560, margin: "0 auto" }}>
-              Uzspied pogu, atļauj mikrofonu un sarunājies ar AI aģentu tieši pārlūkā — tieši šādu aģentu tu iemācīsies uzbūvēt savam biznesam. Demo zvans, maks. ~2 min.
+              {t("lead")}
             </p>
           </Reveal>
         </div>
@@ -169,20 +171,25 @@ function AgentCard({
   onStart: () => void;
   onEnd: () => void;
 }) {
+  const t = useTranslations("LiveVoice");
   const live = status === "connecting" || status === "active";
   const isActive = status === "active";
 
+  const scenario = t(`agents.${agent.id}.scenario`);
+  const lang = t(`agents.${agent.id}.lang`);
+  const skills = (t.raw(`agents.${agent.id}.skills`) ?? []) as string[];
+
   const statusText =
     status === "idle"
-      ? "Gatavs sarunai — uzspied «Runāt»"
+      ? t("statusIdle")
       : status === "connecting"
-        ? "Savienojas…"
+        ? t("statusConnecting")
         : speaking
-          ? "Aģents runā…"
-          : "Klausās — runā brīvi 🎙️";
+          ? t("statusSpeaking")
+          : t("statusListening");
 
   const buttonLabel =
-    status === "idle" ? "Runāt ar aģentu" : status === "connecting" ? "Savienojas…" : "Beigt zvanu";
+    status === "idle" ? t("btnIdle") : status === "connecting" ? t("btnConnecting") : t("btnEnd");
 
   const buttonBg = isActive
     ? "linear-gradient(135deg,#e5484d,#c93a3f)"
@@ -243,14 +250,14 @@ function AgentCard({
               </span>
               <div style={{ minWidth: 0 }}>
                 <div style={{ fontSize: 15, fontWeight: 700, color: "#fff", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{agent.biz}</div>
-                <div style={{ fontSize: 11.5, fontWeight: 600, color: "#9299ab", marginTop: 1 }}>{agent.scenario}</div>
+                <div style={{ fontSize: 11.5, fontWeight: 600, color: "#9299ab", marginTop: 1 }}>{scenario}</div>
               </div>
             </div>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 6, flex: "none" }}>
-              {agent.lang && (
+              {lang && (
                 <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontFamily: "JetBrains Mono, monospace", fontSize: 9.5, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: "#c7cbd6", background: "rgba(255,255,255,0.08)", padding: "4px 8px", borderRadius: 20, whiteSpace: "nowrap" }}>
                   <Globe size={9} strokeWidth={2.4} />
-                  {agent.lang}
+                  {lang}
                 </span>
               )}
               <span style={{ fontFamily: "JetBrains Mono, monospace", fontSize: 9.5, fontWeight: 700, letterSpacing: "0.06em", color: "#c7cbd6", background: "rgba(255,255,255,0.08)", padding: "4px 9px", borderRadius: 20 }}>AI</span>
@@ -283,7 +290,7 @@ function AgentCard({
 
           {/* Prasmes */}
           <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 20 }}>
-            {agent.skills.map((s) => (
+            {skills.map((s) => (
               <div key={s} style={{ display: "flex", alignItems: "center", gap: 9 }}>
                 <span style={{ width: 17, height: 17, borderRadius: "50%", flex: "none", background: agent.avatarGrad, display: "flex", alignItems: "center", justifyContent: "center" }}>
                   <Check size={9} strokeWidth={3} color="#fff" />
