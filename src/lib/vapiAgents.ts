@@ -30,6 +30,10 @@ export type VoiceAgent = {
   assistantId: string;
   /** Akcenta krāsa kartiņai */
   accent: string;
+  /** Otrā akcenta krāsa (pogu/avatara gradienta beigas) */
+  accent2: string;
+  /** Avatara ikonas gradients */
+  avatarGrad: string;
   /** RGB akcenta krāsa ēnām/spīdumam ("r,g,b") */
   glow: string;
 };
@@ -42,8 +46,10 @@ export const VOICE_AGENTS: VoiceAgent[] = [
     lang: "Latviski",
     skills: ["Pastāsta par kursiem", "Iesaka piemērotu virzienu", "Atbild uz jautājumiem"],
     assistantId: process.env.NEXT_PUBLIC_VAPI_ASSISTANT_CHADEMY ?? "",
-    accent: "#6D5EF3",
-    glow: "109,94,243",
+    accent: "#6f5cf5",
+    accent2: "#9b8cf5",
+    avatarGrad: "linear-gradient(135deg,#7c6ef0,#5647c9)",
+    glow: "111,92,245",
   },
   {
     id: "autosalons",
@@ -54,7 +60,9 @@ export const VOICE_AGENTS: VoiceAgent[] = [
     assistantId:
       process.env.NEXT_PUBLIC_VAPI_ASSISTANT_AUTOSALONS ??
       "5bd2d9f5-96ce-43dc-8d74-6202041f6b75",
-    accent: "#FFB86B",
-    glow: "255,184,107",
+    accent: "#f0975a",
+    accent2: "#e0679a",
+    avatarGrad: "linear-gradient(135deg,#f0a15e,#e0679a)",
+    glow: "240,151,90",
   },
 ];

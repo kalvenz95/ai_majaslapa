@@ -43,7 +43,7 @@ type Project = {
 
 const projects: Project[] = [
   { tag: "Mājaslapa", title: "AI mājaslapa uzņēmumam", desc: "Moderna lapa ar AI integrācijām — gatava dažu dienu laikā.", glow: "109,94,243", img: "/ai/card-web.jpg" },
-  { tag: "Sociālie tīkli", title: "Mēneša satura pakete", desc: "Vizuāļi, teksti un publicēšanas grafiks, veidots ar AI rīkiem.", glow: "0,191,165", img: "/ai/card-social.jpg" },
+  { tag: "Sociālie tīkli", title: "Sociālo tīklu satura paka", desc: "Vizuāļi, teksti un publicēšanas grafiks, veidots ar AI rīkiem.", glow: "0,191,165", img: "/ai/card-social.jpg" },
   { tag: "Automatizācija", title: "WhatsApp automatizācija", desc: "Automātiskas atbildes un pieteikumu apstrāde uzņēmumam.", glow: "0,191,165", img: "/ai/card-chat.jpg" },
   { tag: "Balss AI", title: "AI balss aģents", desc: "Zvanu pieņemšana un rezervācijas — bez cilvēka iesaistes.", glow: "109,94,243", Mock: VoiceMock },
   { tag: "Reklāma", title: "AI reklāmu vizuāļi", desc: "Bildes un video reklāmām, kas piesaista uzmanību un pārdod.", glow: "255,184,107", img: "/ai/card-ad.jpg" },

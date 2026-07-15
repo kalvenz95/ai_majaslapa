@@ -97,12 +97,6 @@ export default function ToolsV2() {
             </Reveal>
           ))}
         </div>
-
-        <Reveal delay={0.15}>
-          <p style={{ textAlign: "center", marginTop: 32, fontSize: 12.5, color: "rgba(255,255,255,0.32)", fontFamily: "JetBrains Mono, monospace" }}>
-            Visi rīki pieejami ar bezmaksas plāniem vai izmēģinājuma periodiem
-          </p>
-        </Reveal>
       </div>
 
       <style>{`
