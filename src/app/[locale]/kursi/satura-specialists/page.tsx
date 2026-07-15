@@ -1,6 +1,6 @@
 "use client";
 
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import type { AppLocale } from "@/i18n/routing";
 import { saturaMarketingCourseByLocale } from "@/content/marketing/saturaMarketingCourse";
 import { SATURA_MARKET_THEME } from "@/components/marketing/marketingCourseVisualThemes";
@@ -8,22 +8,18 @@ import { CourseExperience } from "@/components/course/CourseExperience";
 
 export default function SaturaSpecialistsPage() {
   const locale = useLocale() as AppLocale;
+  const t = useTranslations("CoursePages.saturaSpecialists");
   const course = saturaMarketingCourseByLocale[locale];
 
   return (
     <CourseExperience
       course={course}
-      category="Satura speciālists"
+      category={t("category")}
       accent="#6D5EF3"
       accent2="#00BFA5"
       glow="109,94,243"
       lessonTheme={SATURA_MARKET_THEME}
-      incomeLadder={[
-        { clients: "1. klients", price: "€300–€500", note: "Iesācēja cena" },
-        { clients: "2 klienti", price: "€600–€1 000", note: "Pēc 1. mēneša" },
-        { clients: "3 klienti", price: "€1 200–€1 800", note: "Paceltas cenas" },
-        { clients: "4+ klienti", price: "€1 800–€3 500", note: "Premium + upsell" },
-      ]}
+      incomeLadder={t.raw("ladder")}
     />
   );
 }

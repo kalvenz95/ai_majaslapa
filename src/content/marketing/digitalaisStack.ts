@@ -135,7 +135,7 @@ const digitalaisEn: StackPlanModel = {
   ...digitalaisLv,
   name: "Digital Builder",
   tagline: "Build a real AI website with Claude Code and sell it to businesses",
-  earn: "€500–€1 800/mo",
+  earn: "€500–€1,800/mo",
   courses: ["AI website", "Claude Code", "AI business features"],
   learn: [
     "Understand why AI completely changed website development",
@@ -145,7 +145,7 @@ const digitalaisEn: StackPlanModel = {
     "Integrate contact forms, emails, and business automations",
     "Build a professional portfolio with real work",
     "Find your first clients and price your service right",
-    "Turn this skill into a real business — €500–€1 800/month",
+    "Turn this skill into a real business — €500–€1,800/month",
   ],
   skills: [
     "Building websites with Claude Code from scratch",
@@ -161,8 +161,8 @@ const digitalaisEn: StackPlanModel = {
   lead: "From understanding the AI revolution to a real website you publish online, enrich with AI features, and sell to businesses. Practical from the very first lesson.",
   topBarPlanLine: "Digital Builder · €59/mo",
   earningRows: [
-    { label: "2–3 clients", amount: "€1 000–€3 600/mo" },
-    { label: "4–6 clients", amount: "€2 000–€7 200/mo" },
+    { label: "2–3 clients", amount: "€1,000–€3,600/mo" },
+    { label: "4–6 clients", amount: "€2,000–€7,200/mo" },
   ],
   includedCourses: [
     { icon: "🌐", name: "AI website", desc: "Built with Claude Code, premium design, publishing" },

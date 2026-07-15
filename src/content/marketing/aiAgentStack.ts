@@ -130,7 +130,7 @@ const aiEn: StackPlanModel = {
   ...aiLv,
   name: "AI Agent Specialist",
   tagline: "Premium conversational + automation retainers enterprises actually fund",
-  earn: "€800–€3 500/mo",
+  earn: "€800–€3,500/mo",
   courses: ["AI voice operators", "WhatsApp automation", "AI-built micro apps"],
   learn: [
     "Ship voice agents that book, qualify, and hand off flawlessly",
@@ -157,8 +157,8 @@ const aiEn: StackPlanModel = {
   lead: "Voice, WhatsApp, and micro-app factories—paired with mentorship and a curated community backing premium pricing.",
   topBarPlanLine: "AI Agent Specialist · €149/mo",
   earningRows: [
-    { label: "2–3 premium clients", amount: "€1 600–€4 500/mo" },
-    { label: "4–6 premium clients", amount: "€3 200–€9 000/mo" },
+    { label: "2–3 premium clients", amount: "€1,600–€4,500/mo" },
+    { label: "4–6 premium clients", amount: "€3,200–€9,000/mo" },
   ],
   includedCourses: [
     { icon: "🎙️", name: "AI voice operators", desc: "Outbound/inbound concierge with guardrails" },

@@ -10,6 +10,7 @@ import {
 const schema = z.object({ code: z.string().min(1).max(24) });
 
 // Publisks — pārbauda partnera kodu un ieliek to cookie ar atlaidi.
+// Kļūdas atgriež kā kodu, nevis tekstu — tulkojumu izvēlas klients pēc lokāles.
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
@@ -18,7 +19,7 @@ export async function POST(req: NextRequest) {
     const affiliate = await findActiveAffiliateByCode(code);
     if (!affiliate) {
       return NextResponse.json(
-        { valid: false, message: "Kods nav derīgs vai vairs nav aktīvs." },
+        { valid: false, error: "INVALID_CODE" },
         { status: 404 }
       );
     }
@@ -40,9 +41,9 @@ export async function POST(req: NextRequest) {
     return res;
   } catch (err) {
     if (err instanceof z.ZodError) {
-      return NextResponse.json({ valid: false, message: "Ievadi kodu" }, { status: 400 });
+      return NextResponse.json({ valid: false, error: "MISSING_CODE" }, { status: 400 });
     }
     console.error("[AFFILIATE_VALIDATE]", err);
-    return NextResponse.json({ valid: false, message: "Servera kļūda" }, { status: 500 });
+    return NextResponse.json({ valid: false, error: "SERVER_ERROR" }, { status: 500 });
   }
 }

@@ -412,27 +412,27 @@
   },
   "CoursesMeta": {
     "saturaSpecialists": {
-      "title": "Satura Speciālists — Chademy",
+      "title": "Satura Speciālists",
       "description": "Iemācies veidot AI saturu un pārdot to uzņēmumiem."
     },
     "digitalaisSpecialists": {
-      "title": "Digitālais Speciālists — Chademy",
+      "title": "Digitālais Speciālists",
       "description": "Izveido AI risinājumus mājaslapām, chatbotiem un komunikācijai."
     },
     "aiAgentuEksperts": {
-      "title": "AI Aģentu Eksperts — Chademy",
+      "title": "AI Aģentu Eksperts",
       "description": "Balss un WhatsApp automatizācija ar AI aģentiem."
     },
     "websiteChatbot": {
-      "title": "Website Chatbot — Chademy",
+      "title": "Website Chatbot",
       "description": "AI chatbots uzņēmumu mājaslapām."
     },
     "voiceAgents": {
-      "title": "AI Balss Aģenti — Chademy",
+      "title": "AI Balss Aģenti",
       "description": "Izveido AI balss aģentus un pārdod tos uzņēmumiem Latvijā."
     },
     "socialoTikluParvaldiba": {
-      "title": "Sociālo tīklu pārvaldība — Chademy",
+      "title": "Sociālo tīklu pārvaldība",
       "description": "Satura un Sociālo mediju vadīšana ar MI."
     }
   },
@@ -908,5 +908,334 @@
   },
   "Marquee": {
     "title": "Rīki, ko apgūsi un izmantosi ikdienā"
+  },
+  "CourseExperience": {
+    "progressLabel": "Tava progresija",
+    "progressValue": "0% · sāc tagad",
+    "startCourse": "Sākt kursu",
+    "viewProgram": "Skatīt programmu",
+    "coverMeta": "{modules} moduļi · {lessons} nodarbības",
+    "ratingLabel": "vērtējums",
+    "potentialLabel": "Potenciāls",
+    "learnEyebrow": "Ko tu apgūsi",
+    "learnTitleA": "Prasmes, par kurām",
+    "learnTitleB": "maksā",
+    "roadmapEyebrow": "Tavs ceļš",
+    "roadmapTitleA": "No nulles līdz",
+    "roadmapTitleB": "pirmajiem klientiem",
+    "stepLabel": "{number}. solis",
+    "programEyebrow": "Programma",
+    "programTitleA": "{modules} moduļi ·",
+    "programTitleB": "{lessons} nodarbības",
+    "moduleMeta": "{lessons} nodarbības · {duration}",
+    "freeBadge": "Bezmaksas",
+    "lessonOpen": "Atvērt",
+    "lessonView": "Skatīt",
+    "lessonTypeVideo": "Video",
+    "lessonTypeText": "Teksts",
+    "lessonTypeTask": "Uzdevums",
+    "lessonTypeQuiz": "Tests",
+    "resourcesEyebrow": "Resursi",
+    "resourcesTitleA": "Viss, kas",
+    "resourcesTitleB": "paātrina darbu",
+    "resources": [
+      {
+        "title": "Skriptu veidnes",
+        "desc": "Gatavi video un saziņas skripti — tikai aizpildi."
+      },
+      {
+        "title": "Čeklisti",
+        "desc": "Soli-pa-solim čeklisti katram darba posmam."
+      },
+      {
+        "title": "Prompt pakas",
+        "desc": "Pārbaudīti AI prompti, kas dod rezultātu pirmajā reizē."
+      },
+      {
+        "title": "Klientu veidnes",
+        "desc": "Piedāvājumi, līgumi un rēķini latviešu valodā."
+      }
+    ],
+    "examplesEyebrow": "Reāli piemēri",
+    "examplesTitleA": "Cik vari",
+    "examplesTitleB": "nopelnīt",
+    "examplesNote": "Lielākajai daļai studentu pirmais klients nāk <b>3 nedēļu laikā</b>. Ar 3–4 klientiem un paceltām cenām reāli sasniedzams <accent>{earn}</accent>.",
+    "communityEyebrow": "Kopiena",
+    "communityTitleA": "Tu",
+    "communityTitleB": "neesi viens",
+    "community": [
+      {
+        "title": "Privātā kopiena",
+        "desc": "Slēgta kopiena, kur dalies ar darbiem un saņem atgriezenisko saiti."
+      },
+      {
+        "title": "1:1 mentorings",
+        "desc": "Personīgas sesijas par taviem projektiem un pirmajiem klientiem."
+      },
+      {
+        "title": "Tiešs atbalsts",
+        "desc": "Iestrēdzi? Saņem atbildi dažu stundu laikā — ne dienās."
+      },
+      {
+        "title": "Networking",
+        "desc": "Iepazīsti citus speciālistus, sadarbojies un dali darījumus."
+      }
+    ],
+    "ctaEyebrow": "Sāc šodien",
+    "ctaTitleA": "Gatavs nopelnīt",
+    "ctaLead": "Pievienojies {students}+ studentiem. Pirmās nodarbības ir bez maksas.",
+    "ctaStartFree": "Sākt bez maksas",
+    "ctaBackHome": "Atpakaļ uz sākumu"
+  },
+  "CoursePages": {
+    "digitalaisSpecialists": {
+      "category": "Mājaslapas & automatizācija",
+      "ladder": [
+        {
+          "clients": "1. klients",
+          "price": "€500–€900",
+          "note": "Pirmā mājaslapa"
+        },
+        {
+          "clients": "2–3 klienti",
+          "price": "€1 000–€3 600",
+          "note": "Stabils ienākums"
+        },
+        {
+          "clients": "4–6 klienti",
+          "price": "€2 000–€7 200",
+          "note": "Pilna slodze"
+        },
+        {
+          "clients": "Uzturēšana",
+          "price": "€150–€400/mēn",
+          "note": "Atkārtots ienākums"
+        }
+      ]
+    },
+    "aiAgentuEksperts": {
+      "category": "AI Aģentu eksperts · Premium",
+      "ladder": [
+        {
+          "clients": "1. klients",
+          "price": "€800–€2 500",
+          "note": "Projekts + uzturēšana"
+        },
+        {
+          "clients": "2 klienti",
+          "price": "€1 600–€3 200",
+          "note": "Pēc 1–2 mēnešiem"
+        },
+        {
+          "clients": "3–4 klienti",
+          "price": "€3 200–€6 000",
+          "note": "Paceltas cenas"
+        },
+        {
+          "clients": "5+ klienti",
+          "price": "€3 200–€9 000",
+          "note": "Aģentūras modelis"
+        }
+      ]
+    },
+    "saturaSpecialists": {
+      "category": "Satura speciālists",
+      "ladder": [
+        {
+          "clients": "1. klients",
+          "price": "€300–€500",
+          "note": "Iesācēja cena"
+        },
+        {
+          "clients": "2 klienti",
+          "price": "€600–€1 000",
+          "note": "Pēc 1. mēneša"
+        },
+        {
+          "clients": "3 klienti",
+          "price": "€1 200–€1 800",
+          "note": "Paceltas cenas"
+        },
+        {
+          "clients": "4+ klienti",
+          "price": "€1 800–€3 500",
+          "note": "Premium + upsell"
+        }
+      ]
+    }
+  },
+  "Misija": {
+    "kicker": "Chademy",
+    "titleA": "Mūsu",
+    "titleB": "misija",
+    "lead": "Mēs ticam, ka AI prasmes nav privilēģija — tās ir iespēja ikvienam latvietim.",
+    "statementLabel": "Misijas paziņojums",
+    "statement": "\"Padarīt AI monetizāciju pieejamu ikvienam latvietim — sniedzot praktiskas zināšanas, reālus rīkus un kopienas atbalstu, lai jebkurš varētu veidot ienākumus ar mākslīgo intelektu.\"",
+    "valuesTitle": "Mūsu vērtības",
+    "values": [
+      {
+        "title": "Praktiskums virs teorijas",
+        "desc": "Katrs kurss, katrs materiāls ir veidots tā, lai to varētu piemērot reālā darbā nākamajā dienā. Mēs nemācam teoriju tās pašas dēļ."
+      },
+      {
+        "title": "Caurspīdīgums",
+        "desc": "Mēs atklāti runājam par to, ko var un ko nevar nopelnīt ar AI. Bez pārspīlētiem solījumiem — tikai reāli piemēri no reāliem studentiem."
+      },
+      {
+        "title": "Kopiena kā pamats",
+        "desc": "Vienatnē mācīties ir grūti. Tāpēc Chademy centrā ir cilvēki — studenti, kuri palīdz viens otram un aug kopā."
+      },
+      {
+        "title": "Latvieši latvietiem",
+        "desc": "Mūsu saturs ir latviešu valodā, ar Latvijas uzņēmumu piemēriem un tirgus realitāti. Mēs saprotam, kāds ir Latvijas uzņēmējs."
+      },
+      {
+        "title": "Nepārtraukta attīstība",
+        "desc": "AI attīstās katru dienu — tāpat arī mūsu kursi. Mēs regulāri atjauninām saturu, lai tu vienmēr strādātu ar jaunākajiem rīkiem."
+      }
+    ],
+    "ctaTitleA": "Pievienojies",
+    "ctaTitleB": "misijai",
+    "ctaLead": "Katrs students, kurš pievienojas Chademy, kļūst par daļu no kustības, kas veido Latvijas digitālo nākotni.",
+    "ctaButton": "Sākt tagad →",
+    "metaTitle": "Mūsu misija",
+    "metaDescription": "Padarīt AI monetizāciju pieejamu ikvienam latvietim — praktiskas zināšanas, reāli rīki un kopienas atbalsts."
+  },
+  "ParMums": {
+    "kicker": "Chademy",
+    "titleA": "Par",
+    "titleB": "Chademy",
+    "lead": "Latvijas pirmā praktiskā AI monetizācijas platforma — izveidota cilvēkiem, kuri vēlas nopelnīt ar mākslīgo intelektu.",
+    "storyTitle": "Mūsu stāsts",
+    "story": [
+      "Chademy dzima no vienkāršas atziņas: AI nav tikai lielo uzņēmumu instruments. Ikviens latvietis var iemācīties to lietot un veidot no tā ienākumus — nepieciešamas tikai pareizās zināšanas un praktisks atbalsts.",
+      "Mēs nevis pastāstām teoriju — mēs parādām, kā korekti izmantot AI rīkus, kā uzrunāt pirmos klientus un kā izveidot stabilus ikmēneša ienākumus, sniedzot AI pakalpojumus Latvijas un Eiropas uzņēmumiem.",
+      "Šodien Chademy ir vairāk nekā 350 aktīvi studenti Latvijā, kuri katru nedēļu apgūst jaunas prasmes un pārvērš tās reālos ienākumos."
+    ],
+    "stats": [
+      {
+        "num": "350+",
+        "label": "Aktīvi studenti Latvijā"
+      },
+      {
+        "num": "94%",
+        "label": "Studentu apmierinātības rādītājs"
+      },
+      {
+        "num": "3 ned.",
+        "label": "Vidējais laiks līdz pirmajam klientam"
+      },
+      {
+        "num": "6+",
+        "label": "Apgūstami AI pakalpojumu veidi"
+      }
+    ],
+    "doTitle": "Ko mēs darām",
+    "doCards": [
+      {
+        "title": "Praktiski kursi",
+        "desc": "Katrs kurss ir veidots tā, lai tu pēc pirmās nedēļas jau varētu piedāvāt pakalpojumu reāliem klientiem. Nav liekas teorijas — tikai tas, kas strādā."
+      },
+      {
+        "title": "Kopiena & atbalsts",
+        "desc": "Pievienojies aktīvai kopienai, kurā studenti dalās ar pieredzi, palīdz viens otram un svin pirmos panākumus kopā."
+      },
+      {
+        "title": "Gatavs uzņēmējdarbības modelis",
+        "desc": "Mēs nevis mācām AI — mēs mācām, kā ar AI nopelnīt. Katrs kurss ietver cenu stratēģiju, klientu uzrunāšanas veidnes un reālus ienākumu piemērus."
+      }
+    ],
+    "metaTitle": "Par mums",
+    "metaDescription": "Latvijas pirmā praktiskā AI monetizācijas platforma — vairāk nekā 350 aktīvi studenti."
+  },
+  "Kontakti": {
+    "kicker": "Sazinies ar mums",
+    "titleA": "Sazinies",
+    "titleB": "ar mums",
+    "lead": "Jautājumi par kursiem, sadarbību vai tehniskām lietām — raksti mums.",
+    "infoTitle": "Kontaktinformācija",
+    "channels": [
+      {
+        "label": "E-pasts"
+      },
+      {
+        "label": "Atbalsts"
+      },
+      {
+        "label": "Sadarbība"
+      }
+    ],
+    "responseTitle": "Atbildes laiks",
+    "responseText": "Uz e-pastiem atbildam 1 darba dienas laikā. Kopienas jautājumiem — parasti dažu stundu laikā.",
+    "hoursTitle": "Darba laiks",
+    "hours": [
+      {
+        "day": "Pirmdiena – Piektdiena",
+        "time": "09:00 – 18:00"
+      },
+      {
+        "day": "Sestdiena – Svētdiena",
+        "time": "Slēgts"
+      }
+    ],
+    "formTitle": "Nosūti ziņu",
+    "sentTitle": "Ziņa nosūtīta!",
+    "sentText": "Mēs sazināsimies ar tevi 1 darba dienas laikā.",
+    "fieldName": "Vārds",
+    "fieldNamePlaceholder": "Tavs vārds",
+    "fieldEmail": "E-pasts",
+    "fieldEmailPlaceholder": "tava@epasts.lv",
+    "fieldMessage": "Ziņa",
+    "fieldMessagePlaceholder": "Kā varam palīdzēt?",
+    "submit": "Nosūtīt ziņu →",
+    "metaTitle": "Kontakti",
+    "metaDescription": "Jautājumi par kursiem, sadarbību vai tehniskām lietām — sazinies ar Chademy komandu.",
+    "sending": "Sūta…",
+    "errors": {
+      "INVALID_INPUT": "Pārbaudi ievadītos datus.",
+      "SERVER_ERROR": "Neizdevās nosūtīt ziņu. Mēģini vēlreiz vai raksti uz info@chademy.lv.",
+      "NETWORK_ERROR": "Neizdevās sazināties ar serveri."
+    }
+  },
+  "Partneri": {
+    "kicker": "Partneru programma",
+    "titleA": "Ievadi partnera kodu un",
+    "titleB": "saņem atlaidi",
+    "lead": "Ja kāds tev iedeva Chademy partnera kodu, ievadi to zemāk. Atlaide tiks automātiski piemērota, kad iegādāsies kursu.",
+    "codeLabel": "Partnera kods",
+    "codePlaceholder": "PIEM. KALVIS7A2",
+    "checking": "Pārbauda…",
+    "activate": "Aktivizēt atlaidi",
+    "successTitle": "Atlaide {pct}% aktivizēta!",
+    "successBody": "Kods <mono>{code}</mono>{partner} ir saglabāts. Atlaide tiks piemērota automātiski maksājuma logā.",
+    "choosePlan": "Izvēlēties plānu →",
+    "errors": {
+      "INVALID_CODE": "Kods nav derīgs vai vairs nav aktīvs.",
+      "MISSING_CODE": "Ievadi kodu",
+      "SERVER_ERROR": "Servera kļūda",
+      "NETWORK_ERROR": "Neizdevās sazināties ar serveri."
+    },
+    "becomeKicker": "Kļūsti par partneri",
+    "becomeTitleA": "Iesaki Chademy un",
+    "becomeTitleB": "seko rezultātiem",
+    "becomeLead": "Ikvienam Chademy lietotājam ir savs unikāls partnera kods. Dalies ar to — cilvēki, kas to izmanto, saņem atlaidi, bet tu savā panelī redzi, cik cilvēku pievienojušies un iegādājušies kursus caur tavu kodu.",
+    "openPanel": "Atvērt manu partnera paneli →",
+    "createAccount": "Izveidot kontu un iegūt kodu →",
+    "steps": [
+      {
+        "t": "Iegūsti savu kodu",
+        "d": "Katram kontam automātiski tiek piešķirts unikāls partnera kods."
+      },
+      {
+        "t": "Dalies ar saiti",
+        "d": "Nosūti savu kodu vai personīgo saiti draugiem un sekotājiem."
+      },
+      {
+        "t": "Seko statistikai",
+        "d": "Redzi reāllaikā, cik cilvēku pievienojušies un iegādājušies."
+      }
+    ],
+    "metaTitle": "Partneru programma",
+    "metaDescription": "Ievadi partnera kodu un saņem atlaidi vai iesaki Chademy un seko saviem rezultātiem."
   }
 }

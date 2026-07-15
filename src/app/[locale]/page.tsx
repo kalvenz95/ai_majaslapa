@@ -33,7 +33,8 @@ export async function generateMetadata({
     process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, "") || "http://localhost:3000";
 
   return {
-    title: t("title"),
+    // absolute — sākumlapa patur zīmolu virsraksta sākumā, bez layout "%s — Chademy" template.
+    title: { absolute: t("title") },
     description: t("description"),
     openGraph: {
       title: t("ogTitle"),

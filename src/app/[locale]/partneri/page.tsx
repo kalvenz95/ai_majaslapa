@@ -5,20 +5,28 @@ import Footer from "@/components/Footer";
 import { Link } from "@/i18n/navigation";
 import { useAuth } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
+
+type ValidError = "INVALID_CODE" | "MISSING_CODE" | "SERVER_ERROR" | "NETWORK_ERROR";
 
 interface ValidResult {
   valid: boolean;
   code?: string;
   discountPct?: number;
   partnerName?: string | null;
-  message?: string;
+  error?: ValidError;
 }
 
+type Step = { t: string; d: string };
+
 export default function PartneriPage() {
+  const t = useTranslations("Partneri");
   const { isSignedIn } = useAuth();
   const [code, setCode] = useState("");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<ValidResult | null>(null);
+
+  const steps = t.raw("steps") as Step[];
 
   // Auto-aizpilda un pārbauda kodu no dalīšanās saites (?ref=KODS)
   useEffect(() => {
@@ -44,7 +52,7 @@ export default function PartneriPage() {
       const data: ValidResult = await res.json();
       setResult(data);
     } catch {
-      setResult({ valid: false, message: "Neizdevās sazināties ar serveri." });
+      setResult({ valid: false, error: "NETWORK_ERROR" });
     } finally {
       setLoading(false);
     }
@@ -79,7 +87,7 @@ export default function PartneriPage() {
             }}
           >
             <span style={{ display: "inline-block", width: 24, height: 1, background: "var(--accent)" }} />
-            Partneru programma
+            {t("kicker")}
           </span>
           <h1
             style={{
@@ -91,14 +99,13 @@ export default function PartneriPage() {
               maxWidth: "16ch",
             }}
           >
-            Ievadi partnera kodu un{" "}
+            {t("titleA")}{" "}
             <span style={{ color: "var(--accent)", fontStyle: "italic", fontFamily: "Fraunces, Georgia, serif", fontWeight: 500 }}>
-              saņem atlaidi
+              {t("titleB")}
             </span>
           </h1>
           <p style={{ fontSize: 19, color: "var(--ink-2)", maxWidth: 560, lineHeight: 1.6, marginTop: 22 }}>
-            Ja kāds tev iedeva Chademy partnera kodu, ievadi to zemāk. Atlaide tiks
-            automātiski piemērota, kad iegādāsies kursu.
+            {t("lead")}
           </p>
         </div>
       </section>
@@ -126,14 +133,14 @@ export default function PartneriPage() {
                 htmlFor="ref-code"
                 style={{ display: "block", fontSize: 13, fontWeight: 600, color: "var(--ink-2)", marginBottom: 10 }}
               >
-                Partnera kods
+                {t("codeLabel")}
               </label>
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
                 <input
                   id="ref-code"
                   value={code}
                   onChange={(e) => setCode(e.target.value.toUpperCase())}
-                  placeholder="PIEM. KALVIS7A2"
+                  placeholder={t("codePlaceholder")}
                   autoComplete="off"
                   style={{
                     flex: "1 1 220px",
@@ -162,7 +169,7 @@ export default function PartneriPage() {
                     cursor: loading || !code.trim() ? "not-allowed" : "pointer",
                   }}
                 >
-                  {loading ? "Pārbauda…" : "Aktivizēt atlaidi"}
+                  {loading ? t("checking") : t("activate")}
                 </button>
               </div>
             </form>
@@ -196,20 +203,22 @@ export default function PartneriPage() {
                     </svg>
                   </span>
                   <strong style={{ fontSize: 16, fontWeight: 700 }}>
-                    Atlaide {result.discountPct}% aktivizēta!
+                    {t("successTitle", { pct: result.discountPct ?? 0 })}
                   </strong>
                 </div>
                 <p style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 1.55, margin: 0 }}>
-                  Kods <strong style={{ fontFamily: "JetBrains Mono, monospace" }}>{result.code}</strong>
-                  {result.partnerName ? ` (${result.partnerName})` : ""} ir saglabāts. Atlaide tiks
-                  piemērota automātiski maksājuma logā.
+                  {t.rich("successBody", {
+                    code: result.code ?? "",
+                    partner: result.partnerName ? ` (${result.partnerName})` : "",
+                    mono: (c) => <strong style={{ fontFamily: "JetBrains Mono, monospace" }}>{c}</strong>,
+                  })}
                 </p>
                 <Link
                   href="/#pricing"
                   className="btn-primary"
                   style={{ marginTop: 16, display: "inline-flex", padding: "11px 20px", borderRadius: 10, fontSize: 14 }}
                 >
-                  Izvēlēties plānu →
+                  {t("choosePlan")}
                 </Link>
               </div>
             )}
@@ -226,7 +235,7 @@ export default function PartneriPage() {
                   color: "rgba(239,68,68,0.95)",
                 }}
               >
-                {result.message || "Kods nav derīgs."}
+                {t(`errors.${result.error ?? "INVALID_CODE"}`)}
               </div>
             )}
           </div>
@@ -247,18 +256,16 @@ export default function PartneriPage() {
                   textTransform: "uppercase",
                 }}
               >
-                Kļūsti par partneri
+                {t("becomeKicker")}
               </span>
               <h2 style={{ fontSize: "clamp(28px, 3.6vw, 44px)", fontWeight: 700, letterSpacing: "-0.03em", margin: "14px 0 16px", maxWidth: "18ch" }}>
-                Iesaki Chademy un{" "}
+                {t("becomeTitleA")}{" "}
                 <span style={{ fontStyle: "italic", fontFamily: "Fraunces, Georgia, serif", fontWeight: 500, color: "var(--ink-2)" }}>
-                  seko rezultātiem
+                  {t("becomeTitleB")}
                 </span>
               </h2>
               <p style={{ fontSize: 17, color: "var(--ink-2)", lineHeight: 1.65, maxWidth: 520, marginBottom: 28 }}>
-                Ikvienam Chademy lietotājam ir savs unikāls partnera kods. Dalies ar to —
-                cilvēki, kas to izmanto, saņem atlaidi, bet tu savā panelī redzi, cik cilvēku
-                pievienojušies un iegādājušies kursus caur tavu kodu.
+                {t("becomeLead")}
               </p>
               {isSignedIn ? (
                 <Link
@@ -266,7 +273,7 @@ export default function PartneriPage() {
                   className="btn-primary"
                   style={{ display: "inline-flex", padding: "13px 24px", borderRadius: 12, fontSize: 15 }}
                 >
-                  Atvērt manu partnera paneli →
+                  {t("openPanel")}
                 </Link>
               ) : (
                 <Link
@@ -274,20 +281,16 @@ export default function PartneriPage() {
                   className="btn-primary"
                   style={{ display: "inline-flex", padding: "13px 24px", borderRadius: 12, fontSize: 15 }}
                 >
-                  Izveidot kontu un iegūt kodu →
+                  {t("createAccount")}
                 </Link>
               )}
             </div>
 
             {/* Soļi */}
             <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-              {[
-                { n: "01", t: "Iegūsti savu kodu", d: "Katram kontam automātiski tiek piešķirts unikāls partnera kods." },
-                { n: "02", t: "Dalies ar saiti", d: "Nosūti savu kodu vai personīgo saiti draugiem un sekotājiem." },
-                { n: "03", t: "Seko statistikai", d: "Redzi reāllaikā, cik cilvēku pievienojušies un iegādājušies." },
-              ].map((s) => (
+              {steps.map((s, i) => (
                 <div
-                  key={s.n}
+                  key={s.t}
                   style={{
                     display: "flex",
                     gap: 16,
@@ -306,7 +309,7 @@ export default function PartneriPage() {
                       flexShrink: 0,
                     }}
                   >
-                    {s.n}
+                    {String(i + 1).padStart(2, "0")}
                   </span>
                   <div>
                     <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 4 }}>{s.t}</div>
