@@ -442,8 +442,9 @@ export function MarketingCourseLessonView({
             </div>
           </div>
           <div style={{ textAlign: "center", position: "relative" }}>
-            <div style={{ fontSize: 15, fontWeight: 700, color: "var(--ink)", marginBottom: 4 }}>{videoTitle}</div>
-            <div style={{ fontSize: 12, color: "var(--ink-3)" }}>{detail("proOnlyVideo")}</div>
+            {/* videoBgGradient is always a dark surface, so this text stays light in every theme */}
+            <div style={{ fontSize: 15, fontWeight: 700, color: "rgba(255,255,255,0.92)", marginBottom: 4 }}>{videoTitle}</div>
+            <div style={{ fontSize: 12, color: "rgba(255,255,255,0.55)" }}>{detail("proOnlyVideo")}</div>
           </div>
         </div>
       )}

@@ -30,6 +30,8 @@ export type CourseExperienceProps = {
   accent2: string;
   /** Accent rgb triplet for glows, e.g. "109,94,243" */
   glow: string;
+  /** Secondary-accent rgb triplet for the second mesh blob — defaults to the teal used by the other tracks */
+  glow2?: string;
   /** Eyebrow category label (localised by the page) */
   category: string;
   /** Existing per-course theme — reused only for the focused lesson reader */
@@ -40,6 +42,11 @@ export type CourseExperienceProps = {
   moduleExtras?: Record<number, ReactNode>;
   /** Income ladder for the "Real examples" section (localised by the page) */
   incomeLadder: IncomeStep[];
+  /** Design-system token scope, e.g. "theme-claude" — re-skins the page without changing its structure */
+  themeClass?: string;
+  /** Colours for the task/quiz lesson chips — override when the default teal clashes with the track's palette */
+  taskColor?: string;
+  quizColor?: string;
 };
 
 /* ── Inline icons (match homepage stroke style) ── */
@@ -83,7 +90,7 @@ const RESOURCE_ICONS: ReactNode[] = [
 ];
 
 export function CourseExperience({
-  course, accent, accent2, glow, category, lessonTheme, lessonExtras, moduleExtras, incomeLadder,
+  course, accent, accent2, glow, glow2 = "0,191,165", category, lessonTheme, lessonExtras, moduleExtras, incomeLadder, themeClass, taskColor = "#00BFA5", quizColor = "#FFB86B",
 }: CourseExperienceProps) {
   const t = useTranslations("CourseExperience");
   const [openModules, setOpenModules] = useState<number[]>([course.modules[0]?.id].filter(Boolean) as number[]);
@@ -99,7 +106,7 @@ export function CourseExperience({
     video: t("lessonTypeVideo"), text: t("lessonTypeText"), task: t("lessonTypeTask"), quiz: t("lessonTypeQuiz"),
   };
   const lessonTypeColor: Record<DetailLessonType, string> = {
-    video: accent, text: accent2, task: "#00BFA5", quiz: "#FFB86B",
+    video: accent, text: accent2, task: taskColor, quiz: quizColor,
   };
 
   const resources = (t.raw("resources") as TextItem[]).map((r, i) => ({ ...r, icon: RESOURCE_ICONS[i] }));
@@ -109,7 +116,7 @@ export function CourseExperience({
   /* ── Focused lesson reader (reuses existing rich content) ── */
   if (activeLesson) {
     return (
-      <div style={{ background: "var(--bg)", minHeight: "100vh", color: "var(--ink)" }}>
+      <div className={themeClass} style={{ background: "var(--bg)", minHeight: "100vh", color: "var(--ink)" }}>
         <MarketingCourseLessonView
           lesson={activeLesson}
           lessonTypeLabel={lessonTypeLabel}
@@ -125,11 +132,11 @@ export function CourseExperience({
   const sectionPad = "clamp(72px, 11vw, 130px)";
 
   return (
-    <div style={{ background: "var(--bg)", color: "var(--ink)", overflowX: "clip", fontFamily: "var(--font-sans)" }}>
+    <div className={themeClass} style={{ background: "var(--bg)", color: "var(--ink)", overflowX: "clip", fontFamily: "var(--font-sans)" }}>
       {/* ════ 1 · HERO ════ */}
       <section style={{ position: "relative", padding: `clamp(56px,8vw,96px) 0 ${sectionPad}`, overflow: "hidden" }}>
         <div aria-hidden className="v2-mesh-blob v2-mesh-1" style={{ width: 520, height: 520, top: -160, right: -120, background: `radial-gradient(circle, rgba(${glow},0.20), transparent 70%)` }} />
-        <div aria-hidden className="v2-mesh-blob v2-mesh-2" style={{ width: 440, height: 440, bottom: -180, left: -140, background: "radial-gradient(circle, rgba(0,191,165,0.14), transparent 70%)" }} />
+        <div aria-hidden className="v2-mesh-blob v2-mesh-2" style={{ width: 440, height: 440, bottom: -180, left: -140, background: `radial-gradient(circle, rgba(${glow2},0.14), transparent 70%)` }} />
 
         <div className="lp-container" style={{ maxWidth: 1180, margin: "0 auto", padding: "0 28px", position: "relative" }}>
           <div className="ce-hero-grid" style={{ display: "grid", gridTemplateColumns: "1.05fr 0.95fr", gap: 56, alignItems: "center" }}>
@@ -165,7 +172,7 @@ export function CourseExperience({
                     {t("startCourse")} <ArrowRight />
                   </button>
                   <a href="#programma" className="btn-ghost">{t("viewProgram")}</a>
-                  <span style={{ fontSize: 13, fontWeight: 700, color: "#0E9E88", padding: "6px 12px", borderRadius: 999, background: "rgba(0,191,165,0.08)", border: "1px solid rgba(0,191,165,0.22)" }}>
+                  <span style={{ fontSize: 13, fontWeight: 700, color: "var(--teal-ink)", padding: "6px 12px", borderRadius: 999, background: "color-mix(in oklab, var(--accent-2) 10%, transparent)", border: "1px solid color-mix(in oklab, var(--accent-2) 26%, transparent)" }}>
                     {course.earn}
                   </span>
                 </div>
@@ -284,7 +291,7 @@ export function CourseExperience({
                                 style={{ textAlign: "left", display: "flex", flexDirection: "column", borderRadius: 16, overflow: "hidden", background: "var(--bg)", border: "1px solid var(--line)", cursor: "pointer" }}
                               >
                                 {/* thumbnail */}
-                                <div style={{ position: "relative", aspectRatio: "16/8", background: `linear-gradient(135deg, rgba(${glow},0.18), rgba(0,191,165,0.10))`, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
+                                <div style={{ position: "relative", aspectRatio: "16/8", background: `linear-gradient(135deg, rgba(${glow},0.18), rgba(${glow2},0.10))`, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
                                   <div aria-hidden style={{ position: "absolute", inset: 0, backgroundImage: `linear-gradient(rgba(${glow},0.10) 1px, transparent 1px), linear-gradient(90deg, rgba(${glow},0.10) 1px, transparent 1px)`, backgroundSize: "26px 26px" }} />
                                   <span style={{ width: 46, height: 46, borderRadius: "50%", background: "rgba(255,255,255,0.9)", color: accent, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: `0 8px 20px -6px rgba(${glow},0.5)`, position: "relative" }}>
                                     {typeIcon(lesson.type, 18)}
@@ -323,7 +330,7 @@ export function CourseExperience({
 
       {/* ════ 7 · RESOURCES (dark) ════ */}
       <section style={{ padding: `${sectionPad} 0`, background: "#0A0A0E", position: "relative", overflow: "hidden" }}>
-        <div aria-hidden style={{ position: "absolute", inset: 0, pointerEvents: "none", background: `radial-gradient(40% 50% at 85% 0%, rgba(${glow},0.18), transparent 64%), radial-gradient(38% 50% at 6% 100%, rgba(0,191,165,0.12), transparent 62%)` }} />
+        <div aria-hidden style={{ position: "absolute", inset: 0, pointerEvents: "none", background: `radial-gradient(40% 50% at 85% 0%, rgba(${glow},0.18), transparent 64%), radial-gradient(38% 50% at 6% 100%, rgba(${glow2},0.12), transparent 62%)` }} />
         <div className="lp-container" style={{ maxWidth: 1180, margin: "0 auto", padding: "0 28px", position: "relative" }}>
           <SectionHead dark eyebrow={t("resourcesEyebrow")} title={<>{t("resourcesTitleA")} <span className="v2-grad">{t("resourcesTitleB")}</span></>} />
           <div className="ce-grid-4" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 14, marginTop: 48 }}>

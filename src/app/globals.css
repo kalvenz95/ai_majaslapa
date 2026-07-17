@@ -655,6 +655,72 @@ summary:focus-visible {
   -webkit-text-fill-color: transparent;
 }
 
+/* ── Package 2 · Claude-inspired warm identity ───────────────────
+   Scoped token override: anything inside .theme-claude keeps the whole
+   Chademy design system (same components, scale, shadows) but resolves
+   to cream / yellow / terracotta instead of violet-teal. */
+.theme-claude {
+  --accent: #D97757;          /* Claude terracotta */
+  --accent-ink: #FFFFFF;
+  --accent-2: #E9A23B;        /* warm amber */
+  --accent-3: #F3DCA0;        /* light yellow */
+
+  --claude-deep: #BD5D3A;     /* burnt orange */
+  --claude-glow: 217,119,87;
+  --claude-glow-2: 233,162,59;
+  --claude-yellow: 243,220,160;
+
+  --bg:   #FAF7F1;            /* warm cream */
+  --bg-1: #FFFDF9;
+  --bg-2: #F4ECE0;
+  --bg-3: #EBE0CE;
+
+  --line:   rgba(74,48,32,0.10);
+  --line-2: rgba(74,48,32,0.16);
+
+  --ink:   #2B1B12;           /* dark brown */
+  --ink-2: #55423A;
+  --ink-3: #7C6558;
+  --ink-4: #B6A08D;
+
+  --gold-ink: #B5642F;
+  --teal-ink: #B5642F;
+
+  --shadow-sm:
+    0 1px 2px rgba(74,40,24,0.05),
+    0 2px 5px -1px rgba(74,40,24,0.06);
+  --shadow-md:
+    inset 0 1px 0 rgba(255,255,255,0.75),
+    0 1px 2px rgba(74,40,24,0.05),
+    0 6px 16px -4px rgba(120,64,36,0.09),
+    0 12px 28px -10px rgba(160,84,44,0.12);
+  --shadow-lg:
+    inset 0 1px 0 rgba(255,255,255,0.75),
+    0 2px 4px rgba(74,40,24,0.06),
+    0 12px 28px -8px rgba(120,64,36,0.12),
+    0 24px 50px -16px rgba(180,96,52,0.18);
+}
+
+/* Claude gradient text — terracotta → amber. Stops stay dark enough to read on cream. */
+.theme-claude .v2-grad,
+.claude-grad {
+  background: linear-gradient(100deg, #BD5D3A 6%, #D97757 48%, #DE8C3C 82%, #CE8A2A 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Soft warm halo that breathes around the Package 2 card */
+@keyframes claudeHalo {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50%      { opacity: 0.85; transform: scale(1.04); }
+}
+.claude-halo { animation: claudeHalo 7s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .claude-halo { animation: none; }
+}
+
 /* Dark glass card — for immersive sections */
 .v2-glass {
   background: rgba(255,255,255,0.04);

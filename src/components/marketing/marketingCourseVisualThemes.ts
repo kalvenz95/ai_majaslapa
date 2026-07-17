@@ -21,6 +21,27 @@ export const CHATBOT_MARKET_THEME: MarketingCourseVisualTheme = {
   requirementsHeadingColor: "#00ff88",
 };
 
+/** AI Business Automation (Package 2) — Claude-inspired terracotta / amber on cream */
+export const CLAUDE_MARKET_THEME: MarketingCourseVisualTheme = {
+  accentHex: "#D97757",
+  accentSecondaryHex: "#E9A23B",
+  accentGradientCss: "linear-gradient(135deg, #BD5D3A, #D97757 55%, #E9A23B)",
+  tintBg: "rgba(217,119,87,0.10)",
+  tintBg2: "rgba(243,220,160,0.16)",
+  tintBorder: "rgba(217,119,87,0.28)",
+  tintBorderSecondary: "rgba(233,162,59,0.24)",
+  orbRgbComma: "217,119,87",
+  accentSecondaryRgbComma: "233,162,59",
+  videoBgGradient: "linear-gradient(135deg, #1A0F08 0%, #241408 100%)",
+  curriculumModuleBorderOpen: "1px solid rgba(217,119,87,0.28)",
+  lessonNextBtnTextColor: "#FFF8F0",
+  lessonNextBtnShadowRgb: "217,119,87",
+  requirementsBoxBg: "rgba(243,220,160,0.18)",
+  requirementsBoxBorder: "1px solid rgba(217,119,87,0.20)",
+  requirementsCheckColor: "#D97757",
+  requirementsHeadingColor: "#B5642F",
+};
+
 /** Voice agents — amber / orange */
 export const VOICE_MARKET_THEME: MarketingCourseVisualTheme = {
   accentHex: "#f97316",

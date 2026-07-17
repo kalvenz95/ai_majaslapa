@@ -15,14 +15,17 @@ import {
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 
+/* Package 2 lives in the Claude-inspired warm register — cream, light yellow, terracotta. */
+const CLAUDE_FILL = "linear-gradient(140deg, #E9A23B 0%, #D97757 55%, #BD5D3A 100%)";
+
 /** Visuals for the six assistant capabilities — copy lives in the AIAssistants namespace. */
 const capabilityVisuals = [
-  { Icon: MessageSquareText, glow: "139,123,255" },
-  { Icon: FileSearch, glow: "52,217,195" },
-  { Icon: Repeat, glow: "255,184,107" },
-  { Icon: Gauge, glow: "139,123,255" },
-  { Icon: Mail, glow: "52,217,195" },
-  { Icon: Clock, glow: "255,184,107" },
+  { Icon: MessageSquareText, glow: "217,119,87" },
+  { Icon: FileSearch, glow: "233,162,59" },
+  { Icon: Repeat, glow: "230,201,122" },
+  { Icon: Gauge, glow: "217,119,87" },
+  { Icon: Mail, glow: "233,162,59" },
+  { Icon: Clock, glow: "230,201,122" },
 ];
 
 type Capability = { title: string; desc: string };
@@ -38,9 +41,9 @@ function AssistantMock() {
       style={{
         borderRadius: 24,
         overflow: "hidden",
-        background: "#0E0E14",
-        border: "1px solid rgba(255,255,255,0.12)",
-        boxShadow: "0 48px 110px -32px rgba(45,35,95,0.55), 0 16px 40px -16px rgba(10,10,14,0.6)",
+        background: "linear-gradient(170deg, #FFFDF9 0%, #FBF3E6 100%)",
+        border: "1px solid rgba(217,119,87,0.22)",
+        boxShadow: "0 48px 110px -32px rgba(189,93,58,0.45), 0 16px 40px -16px rgba(233,162,59,0.30), inset 0 1px 0 rgba(255,255,255,0.9)",
       }}
     >
       {/* Assistant header bar */}
@@ -50,8 +53,8 @@ function AssistantMock() {
           alignItems: "center",
           gap: 11,
           padding: "15px 18px",
-          borderBottom: "1px solid rgba(255,255,255,0.08)",
-          background: "rgba(255,255,255,0.03)",
+          borderBottom: "1px solid rgba(217,119,87,0.14)",
+          background: "rgba(255,255,255,0.6)",
         }}
       >
         <span
@@ -60,28 +63,28 @@ function AssistantMock() {
             height: 32,
             borderRadius: 10,
             flexShrink: 0,
-            background: "linear-gradient(150deg, var(--accent), #8B7BFF)",
+            background: CLAUDE_FILL,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            boxShadow: "0 10px 24px -8px rgba(109,94,243,0.7), inset 0 1px 0 rgba(255,255,255,0.35)",
+            boxShadow: "0 10px 24px -8px rgba(189,93,58,0.7), inset 0 1px 0 rgba(255,255,255,0.4)",
           }}
         >
-          <Sparkles size={15} color="#fff" strokeWidth={2.2} />
+          <Sparkles size={15} color="#FFF8F0" strokeWidth={2.2} />
         </span>
         <div style={{ minWidth: 0 }}>
           <div
             style={{
               fontSize: 13,
               fontWeight: 700,
-              color: "#fff",
+              color: "#2B1B12",
               letterSpacing: "-0.01em",
               fontFamily: "var(--font-sans)",
             }}
           >
             {t("mockName")}
           </div>
-          <div style={{ fontSize: 10.5, color: "rgba(255,255,255,0.45)" }}>{t("mockRole")}</div>
+          <div style={{ fontSize: 10.5, color: "#8A7365" }}>{t("mockRole")}</div>
         </div>
         <span
           style={{
@@ -93,9 +96,9 @@ function AssistantMock() {
             fontSize: 9.5,
             fontWeight: 600,
             letterSpacing: "0.08em",
-            color: "#34D9C3",
-            border: "1px solid rgba(52,217,195,0.3)",
-            background: "rgba(52,217,195,0.08)",
+            color: "#B5642F",
+            border: "1px solid rgba(217,119,87,0.3)",
+            background: "rgba(243,220,160,0.35)",
             borderRadius: 999,
             padding: "4px 9px",
             whiteSpace: "nowrap",
@@ -106,8 +109,8 @@ function AssistantMock() {
               width: 5,
               height: 5,
               borderRadius: 999,
-              background: "#34D9C3",
-              boxShadow: "0 0 8px #34D9C3",
+              background: "#D97757",
+              boxShadow: "0 0 8px rgba(217,119,87,0.9)",
             }}
           />
           {t("mockStatus")}
@@ -123,11 +126,12 @@ function AssistantMock() {
               maxWidth: "82%",
               fontSize: 13,
               lineHeight: 1.6,
-              color: "#fff",
-              background: "linear-gradient(150deg, rgba(109,94,243,0.9), rgba(109,94,243,0.7))",
-              border: "1px solid rgba(255,255,255,0.14)",
+              color: "#FFF8F0",
+              background: CLAUDE_FILL,
+              border: "1px solid rgba(255,255,255,0.25)",
               borderRadius: "14px 14px 4px 14px",
               padding: "11px 14px",
+              boxShadow: "0 10px 22px -10px rgba(189,93,58,0.6)",
             }}
           >
             {t("mockQuestion")}
@@ -141,11 +145,12 @@ function AssistantMock() {
               maxWidth: "88%",
               fontSize: 13,
               lineHeight: 1.65,
-              color: "rgba(255,255,255,0.82)",
-              background: "rgba(255,255,255,0.05)",
-              border: "1px solid rgba(255,255,255,0.1)",
+              color: "#55423A",
+              background: "rgba(255,255,255,0.85)",
+              border: "1px solid rgba(217,119,87,0.18)",
               borderRadius: "14px 14px 14px 4px",
               padding: "12px 14px",
+              boxShadow: "0 8px 20px -14px rgba(189,93,58,0.5)",
             }}
           >
             {t("mockAnswer")}
@@ -160,9 +165,9 @@ function AssistantMock() {
                     gap: 5,
                     fontFamily: "JetBrains Mono, monospace",
                     fontSize: 9.5,
-                    color: "rgba(255,255,255,0.6)",
-                    background: "rgba(255,255,255,0.06)",
-                    border: "1px solid rgba(255,255,255,0.1)",
+                    color: "#8A5638",
+                    background: "rgba(243,220,160,0.30)",
+                    border: "1px solid rgba(217,119,87,0.20)",
                     borderRadius: 6,
                     padding: "4px 8px",
                   }}
@@ -184,12 +189,12 @@ function AssistantMock() {
             alignItems: "center",
             gap: 10,
             borderRadius: 12,
-            border: "1px solid rgba(255,255,255,0.1)",
-            background: "rgba(255,255,255,0.04)",
+            border: "1px solid rgba(217,119,87,0.18)",
+            background: "rgba(255,255,255,0.75)",
             padding: "11px 13px",
           }}
         >
-          <span style={{ fontSize: 12, color: "rgba(255,255,255,0.35)" }}>{t("mockPlaceholder")}</span>
+          <span style={{ fontSize: 12, color: "#A08B7C" }}>{t("mockPlaceholder")}</span>
           <span
             style={{
               marginLeft: "auto",
@@ -197,13 +202,14 @@ function AssistantMock() {
               height: 26,
               borderRadius: 8,
               flexShrink: 0,
-              background: "linear-gradient(150deg, var(--accent), #8B7BFF)",
+              background: CLAUDE_FILL,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              boxShadow: "0 8px 18px -8px rgba(189,93,58,0.7)",
             }}
           >
-            <ArrowRight size={13} color="#fff" strokeWidth={2.5} />
+            <ArrowRight size={13} color="#FFF8F0" strokeWidth={2.5} />
           </span>
         </div>
       </div>
@@ -219,21 +225,21 @@ export default function AIAssistantsV2() {
   }));
 
   return (
-    <section id="ai-asistenti" style={{ background: "var(--bg)", padding: "40px 0 70px" }}>
+    <section id="ai-asistenti" className="theme-claude" style={{ background: "var(--bg)", padding: "40px 0 70px" }}>
       <div className="lp-container" style={{ maxWidth: 1240, margin: "0 auto", padding: "0 24px" }}>
-        {/* Dark inset panel — same premium treatment as the "why AI" panel */}
+        {/* Warm cream inset panel — Package 2's Claude-inspired identity */}
         <div
           style={{
             position: "relative",
             overflow: "hidden",
             borderRadius: 40,
-            background: "#0A0A0E",
-            border: "1px solid rgba(255,255,255,0.08)",
+            background: "linear-gradient(168deg, #FFFDF9 0%, #FDF5E9 48%, #FAEBD6 100%)",
+            border: "1px solid rgba(217,119,87,0.22)",
             padding: "clamp(56px, 7vw, 110px) clamp(24px, 5vw, 80px)",
-            boxShadow: "0 60px 140px -48px rgba(13,13,20,0.55)",
+            boxShadow: "0 60px 140px -48px rgba(189,93,58,0.35), 0 20px 50px -24px rgba(233,162,59,0.22), inset 0 1px 0 rgba(255,255,255,0.9)",
           }}
         >
-          {/* Glows + grid */}
+          {/* Soft warm gradients + grid */}
           <div
             aria-hidden
             style={{
@@ -241,8 +247,8 @@ export default function AIAssistantsV2() {
               inset: 0,
               pointerEvents: "none",
               background:
-                "radial-gradient(40% 48% at 88% 10%, rgba(109,94,243,0.22), transparent 65%)," +
-                "radial-gradient(38% 46% at 8% 90%, rgba(0,191,165,0.14), transparent 62%)",
+                "radial-gradient(44% 52% at 88% 8%, rgba(243,220,160,0.75), transparent 66%)," +
+                "radial-gradient(40% 48% at 6% 92%, rgba(217,119,87,0.16), transparent 64%)",
             }}
           />
           <div
@@ -251,10 +257,10 @@ export default function AIAssistantsV2() {
               position: "absolute",
               inset: 0,
               pointerEvents: "none",
-              opacity: 0.5,
+              opacity: 0.55,
               backgroundImage:
-                "linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px)," +
-                "linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px)",
+                "linear-gradient(rgba(189,93,58,0.05) 1px, transparent 1px)," +
+                "linear-gradient(90deg, rgba(189,93,58,0.05) 1px, transparent 1px)",
               backgroundSize: "56px 56px",
               maskImage: "radial-gradient(70% 70% at 50% 40%, #000 0%, transparent 80%)",
               WebkitMaskImage: "radial-gradient(70% 70% at 50% 40%, #000 0%, transparent 80%)",
@@ -275,20 +281,20 @@ export default function AIAssistantsV2() {
             >
               <div>
                 <Reveal>
-                  <span className="v2-eyebrow v2-eyebrow--light">{t("kicker")}</span>
+                  <span className="v2-eyebrow">{t("kicker")}</span>
                 </Reveal>
                 <Reveal delay={0.08}>
                   <h2
                     className="v2-h2"
                     style={{
                       fontSize: "clamp(38px, 5.8vw, 76px)",
-                      color: "#fff",
+                      color: "var(--ink)",
                       margin: "18px 0 0",
                       maxWidth: "14ch",
                     }}
                   >
                     {t("titleA")}
-                    <span style={{ color: "#A89DFF" }}>{t("titleB")}</span>
+                    <span className="claude-grad">{t("titleB")}</span>
                   </h2>
                 </Reveal>
               </div>
@@ -296,14 +302,14 @@ export default function AIAssistantsV2() {
                 <p
                   style={{
                     fontSize: 17,
-                    color: "rgba(255,255,255,0.6)",
+                    color: "var(--ink-3)",
                     lineHeight: 1.7,
                     margin: 0,
                     paddingBottom: 8,
                   }}
                 >
                   {t("leadA")}
-                  <strong style={{ color: "#fff", fontWeight: 600 }}>{t("leadStrong")}</strong>
+                  <strong style={{ color: "var(--ink)", fontWeight: 600 }}>{t("leadStrong")}</strong>
                   {t("leadB")}
                 </p>
               </Reveal>
@@ -322,13 +328,18 @@ export default function AIAssistantsV2() {
                 {capabilities.map((c, i) => (
                   <Reveal key={c.title} delay={0.06 * i}>
                     <div
-                      className="v2-glass aia-card"
+                      className="aia-card claude-cap"
                       style={{
                         height: "100%",
                         padding: "22px 20px",
+                        borderRadius: 22,
                         display: "flex",
                         flexDirection: "column",
                         gap: 11,
+                        background: "linear-gradient(150deg, rgba(255,255,255,0.95), rgba(253,244,231,0.85))",
+                        border: "1px solid rgba(217,119,87,0.18)",
+                        boxShadow: "0 14px 34px -20px rgba(189,93,58,0.5), inset 0 1px 0 rgba(255,255,255,0.9)",
+                        transition: "transform 0.3s cubic-bezier(0.16,1,0.3,1), border-color 0.25s ease, box-shadow 0.25s ease",
                       }}
                     >
                       <span
@@ -337,15 +348,15 @@ export default function AIAssistantsV2() {
                           height: 38,
                           borderRadius: 11,
                           flexShrink: 0,
-                          background: `linear-gradient(150deg, rgba(${c.glow},0.95) 0%, rgba(${c.glow},0.65) 100%)`,
-                          border: "1px solid rgba(255,255,255,0.25)",
-                          boxShadow: `0 10px 26px -8px rgba(${c.glow},0.7), inset 0 1px 0 rgba(255,255,255,0.4)`,
+                          background: `linear-gradient(150deg, rgba(${c.glow},1) 0%, rgba(${c.glow},0.72) 100%)`,
+                          border: "1px solid rgba(255,255,255,0.5)",
+                          boxShadow: `0 10px 26px -8px rgba(${c.glow},0.75), inset 0 1px 0 rgba(255,255,255,0.55)`,
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "center",
                         }}
                       >
-                        <c.Icon size={18} color="#0A0A0E" strokeWidth={2} />
+                        <c.Icon size={18} color="#3A2312" strokeWidth={2.1} />
                       </span>
                       <h3
                         style={{
@@ -353,13 +364,13 @@ export default function AIAssistantsV2() {
                           fontWeight: 700,
                           fontFamily: "var(--font-sans)",
                           letterSpacing: "-0.02em",
-                          color: "#fff",
+                          color: "var(--ink)",
                           margin: 0,
                         }}
                       >
                         {c.title}
                       </h3>
-                      <p style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", lineHeight: 1.6, margin: 0 }}>
+                      <p style={{ fontSize: 13, color: "var(--ink-3)", lineHeight: 1.6, margin: 0 }}>
                         {c.desc}
                       </p>
                     </div>
@@ -379,25 +390,23 @@ export default function AIAssistantsV2() {
                     gap: 10,
                     fontSize: 15.5,
                     fontWeight: 700,
-                    color: "#fff",
+                    color: "#FFF8F0",
                     padding: "15px 28px",
                     borderRadius: 14,
-                    background: "rgba(255,255,255,0.06)",
-                    border: "1px solid rgba(255,255,255,0.16)",
-                    backdropFilter: "blur(8px)",
+                    background: CLAUDE_FILL,
+                    border: "1px solid rgba(255,255,255,0.25)",
                     textDecoration: "none",
-                    transition: "background 0.2s ease, border-color 0.2s ease, transform 0.2s ease",
+                    boxShadow: "0 16px 38px -12px rgba(189,93,58,0.6), inset 0 1px 0 rgba(255,255,255,0.35)",
+                    transition: "box-shadow 0.2s ease, transform 0.2s ease",
                   }}
                   onMouseEnter={(e) => {
                     const el = e.currentTarget as HTMLAnchorElement;
-                    el.style.background = "rgba(255,255,255,0.11)";
-                    el.style.borderColor = "rgba(255,255,255,0.3)";
+                    el.style.boxShadow = "0 22px 48px -12px rgba(189,93,58,0.72), inset 0 1px 0 rgba(255,255,255,0.35)";
                     el.style.transform = "translateY(-2px)";
                   }}
                   onMouseLeave={(e) => {
                     const el = e.currentTarget as HTMLAnchorElement;
-                    el.style.background = "rgba(255,255,255,0.06)";
-                    el.style.borderColor = "rgba(255,255,255,0.16)";
+                    el.style.boxShadow = "0 16px 38px -12px rgba(189,93,58,0.6), inset 0 1px 0 rgba(255,255,255,0.35)";
                     el.style.transform = "";
                   }}
                 >
@@ -410,6 +419,14 @@ export default function AIAssistantsV2() {
       </div>
 
       <style>{`
+        .claude-cap:hover {
+          transform: translateY(-5px);
+          border-color: rgba(217,119,87,0.34);
+          box-shadow: 0 26px 54px -22px rgba(189,93,58,0.55), inset 0 1px 0 rgba(255,255,255,0.9);
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .claude-cap:hover { transform: none; }
+        }
         @media (max-width: 1024px) {
           .aia-grid { grid-template-columns: 1fr !important; gap: 44px !important; }
           .aia-visual { max-width: 520px; margin: 0 auto; width: 100%; }

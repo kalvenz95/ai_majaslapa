@@ -22,12 +22,12 @@
   },
   "Hero": {
     "badgeRegion": "LV",
-    "badgeLine": "Latvia’s first practical AI training platform",
-    "h1Line1": "From zero — ",
-    "h1Gradient": "to your first",
-    "h1Line2": " clients",
-    "sub": "Practical AI training in Latvian. Learn to build websites, AI content and voice agents — services businesses already pay for — and land your first clients.",
-    "ctaPrimary": "Start for free →",
+    "badgeLine": "AI skills you can earn with",
+    "h1Line1": "Learn the",
+    "h1Gradient": "AI skills",
+    "h1Line2": "businesses are looking for",
+    "sub": "Learn to create AI content, modern websites, personal AI assistants and voice agents. Pick your direction, master it step by step and find out how to offer these services to businesses.",
+    "ctaPrimary": "Choose your direction →",
     "ctaSecondary": "View courses",
     "stat1Val": "3",
     "stat1Label": "AI service tracks",
@@ -57,14 +57,14 @@
     "bullets": [
       "In Latvian",
       "No programming",
-      "No experience",
+      "Hands-on training",
       "Ready-made templates"
     ]
   },
   "FastWin": {
     "kicker": "The path to clients",
-    "titleA": "A clear path from learning ",
-    "titleB": "to clients",
+    "titleA": "From zero to ",
+    "titleB": "your first clients",
     "lead1": "Artificial intelligence is becoming one of the most in-demand skills in business.",
     "lead2": "We show you step by step how to build an in-demand AI service and offer it to businesses.",
     "cta": "Choose your path →",
@@ -102,6 +102,20 @@
     "titleB": "to businesses",
     "lead": "Each track focuses on demand-driven services buyers already pay for in Latvia and across Europe.",
     "viewCourse": "Learn more →",
+    "claudeTagline": "Build with AI.",
+    "claudeSkillsLabel": "Two core skills",
+    "claudeSkills": [
+      {
+        "title": "AI website creation",
+        "desc": "With Claude Code — from a blank page to a published site",
+        "tag": "Claude Code"
+      },
+      {
+        "title": "AI personal assistants",
+        "desc": "With Claude — assistants that work for you and for businesses",
+        "tag": "Claude"
+      }
+    ],
     "tracks": [
       {
         "num": "01",

@@ -22,12 +22,12 @@
   },
   "Hero": {
     "badgeRegion": "LV",
-    "badgeLine": "Latvijas pirmā AI apmācības platforma",
-    "h1Line1": "No nulles — ",
-    "h1Gradient": "līdz pirmajiem",
-    "h1Line2": " klientiem",
-    "sub": "Praktiska AI apmācība latviešu valodā. Iemācies veidot mājaslapas, AI saturu un balss aģentus — pakalpojumus, ko uzņēmumi jau pērk — un atrodi savus pirmos klientus.",
-    "ctaPrimary": "Sākt tagad →",
+    "badgeLine": "AI prasmes, ar kurām var pelnīt",
+    "h1Line1": "Apgūsti",
+    "h1Gradient": "AI prasmes,",
+    "h1Line2": "ko uzņēmumi meklē",
+    "sub": "Iemācies veidot AI saturu, modernas mājaslapas, personīgos AI asistentus un balss aģentus. Izvēlies savu virzienu, apgūsti to soli pa solim un uzzini, kā piedāvāt šos pakalpojumus uzņēmumiem.",
+    "ctaPrimary": "Izvēlēties virzienu →",
     "ctaSecondary": "Skatīt kursus",
     "stat1Val": "3",
     "stat1Label": "AI pakalpojumu virzieni",
@@ -57,14 +57,14 @@
     "bullets": [
       "Latviešu valodā",
       "Bez programmēšanas",
-      "Bez pieredzes",
+      "Praktiskas apmācības",
       "Gatavas veidnes"
     ]
   },
   "FastWin": {
     "kicker": "Ceļš uz klientiem",
-    "titleA": "Skaidrs ceļš no apmācības ",
-    "titleB": "līdz klientiem",
+    "titleA": "No nulles līdz ",
+    "titleB": "pirmajiem klientiem",
     "lead1": "Mākslīgais intelekts kļūst par vienu no pieprasītākajām prasmēm biznesā.",
     "lead2": "Mēs soli pa solim parādām, kā apgūt pieprasītu AI pakalpojumu un piedāvāt to uzņēmumiem.",
     "cta": "Izvēlēties savu ceļu →",
@@ -102,6 +102,20 @@
     "titleB": "uzņēmumiem",
     "lead": "Katrs virziens — ar pieprasītiem pakalpojumiem, kuriem ir reāls pieprasījums Latvijas un Eiropas tirgū.",
     "viewCourse": "Uzzināt vairāk →",
+    "claudeTagline": "Būvē ar AI.",
+    "claudeSkillsLabel": "Divas galvenās prasmes",
+    "claudeSkills": [
+      {
+        "title": "AI mājaslapu izveide",
+        "desc": "Ar Claude Code — no tukšas lapas līdz publicētai mājaslapai",
+        "tag": "Claude Code"
+      },
+      {
+        "title": "AI personīgie asistenti",
+        "desc": "Ar Claude — asistenti, kas strādā tavā un biznesa vietā",
+        "tag": "Claude"
+      }
+    ],
     "tracks": [
       {
         "num": "01",

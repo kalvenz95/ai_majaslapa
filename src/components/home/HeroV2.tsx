@@ -100,7 +100,8 @@ export default function HeroV2() {
               padding: "7px 16px 7px 7px",
               background: "rgba(255,255,255,0.06)", backdropFilter: "blur(8px)",
               border: "1px solid rgba(255,255,255,0.12)",
-              borderRadius: 999, fontSize: 12.5, color: "rgba(255,255,255,0.75)", fontWeight: 600,
+              borderRadius: 999, fontSize: 11.5, color: "rgba(255,255,255,0.78)", fontWeight: 700,
+              letterSpacing: "0.09em", textTransform: "uppercase",
               marginBottom: 30,
             }}>
               <span style={{
@@ -116,9 +117,9 @@ export default function HeroV2() {
 
           {/* H1 — massive, word-cascade entrance */}
           <h1 className="v2-h2" style={{
-            fontSize: "clamp(46px, 8.5vw, 100px)",
+            fontSize: "clamp(40px, 7.4vw, 88px)",
             margin: "0 auto 26px",
-            maxWidth: "15ch",
+            maxWidth: "16ch",
             color: "#fff",
           }}>
             <StaggerTitle
@@ -132,7 +133,7 @@ export default function HeroV2() {
           </h1>
 
           {/* Sub */}
-          <motion.p variants={item} style={{ fontSize: "clamp(16px, 2.2vw, 19px)", lineHeight: 1.7, color: "rgba(255,255,255,0.62)", maxWidth: 620, margin: "0 auto 36px" }}>
+          <motion.p variants={item} style={{ fontSize: "clamp(16px, 2.2vw, 19px)", lineHeight: 1.7, color: "rgba(255,255,255,0.62)", maxWidth: 660, margin: "0 auto 36px" }}>
             {t("sub")}
           </motion.p>
 
