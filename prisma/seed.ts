@@ -52,8 +52,35 @@ const izaugsmeCourses = digitalaisStack.lv.modules.map((module) => {
   };
 });
 
+/**
+ * Bez argumentiem seed publicē VISU trīs plānu saturu. PAMATI un MEISTARS saturs
+ * te vēl ir vecs melnraksts, tāpēc ar `--plan=IZAUGSME` var publicēt tikai vienu
+ * plānu un pārējos neaiztikt. `--dry-run` parāda, kas tiktu rakstīts, un neraksta
+ * neko (DB savienojums netiek atvērts):
+ *   npm run db:seed -- --plan=IZAUGSME --dry-run
+ *   npm run db:seed -- --plan=IZAUGSME
+ *
+ * UZMANĪBU: .env.local DATABASE_URL rāda uz PRODUKCIJAS Supabase — lokālas DB nav.
+ */
+const PLANS = ["PAMATI", "IZAUGSME", "MEISTARS"] as const;
+type PlanName = (typeof PLANS)[number];
+
+function planFilter(): PlanName | null {
+  const arg = process.argv.find((a) => a.startsWith("--plan="));
+  if (!arg) return null;
+
+  const value = arg.slice("--plan=".length).toUpperCase();
+  if (!PLANS.includes(value as PlanName)) {
+    throw new Error(`Nezinams plans "${value}". Atlautie: ${PLANS.join(", ")}`);
+  }
+  return value as PlanName;
+}
+
 async function main() {
-  console.log("🌱 Seeding kursu dati...");
+  const onlyPlan = planFilter();
+  console.log(
+    onlyPlan ? `🌱 Seeding kursu dati — TIKAI ${onlyPlan}...` : "🌱 Seeding kursu dati — visi plani..."
+  );
 
   const courses = [
     // ── PAMATI plāns ─────────────────────��────────────────
@@ -218,7 +245,20 @@ async function main() {
     },
   ];
 
-  for (const course of courses) {
+  const selected = onlyPlan ? courses.filter((c) => c.planRequired === onlyPlan) : courses;
+  if (selected.length === 0) throw new Error(`Planam ${onlyPlan} nav neviena kursa`);
+
+  if (process.argv.includes("--dry-run")) {
+    const lessonCount = selected.reduce((a, c) => a + c.lessons.length, 0);
+    console.log(`\n🔍 DRY RUN — netiek rakstits nekas. Tiktu upsertoti ${selected.length} kursi, ${lessonCount} nodarbibas:\n`);
+    for (const c of selected) {
+      const free = c.lessons.filter((l) => l.isFree).length;
+      console.log(`  [${c.planRequired}] ${c.slug.padEnd(34)} "${c.title}" — ${c.lessons.length} nod. (bezmaksas: ${free})`);
+    }
+    return;
+  }
+
+  for (const course of selected) {
     const { lessons, ...courseData } = course;
     const created = await prisma.course.upsert({
       where: { slug: course.slug },

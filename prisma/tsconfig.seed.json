@@ -1,0 +1,10 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "noEmit": false,
+    "isolatedModules": false
+  },
+  "include": ["seed.ts", "../src/content/marketing/**/*.ts", "../src/i18n/**/*.ts"]
+}
