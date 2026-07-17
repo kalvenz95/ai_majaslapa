@@ -11,9 +11,33 @@ function getResend() {
 
 const FROM = process.env.RESEND_FROM_EMAIL || "noreply@chademy.lv";
 
+/**
+ * Nosūta vēstuli un nologo kļūdu, nemetot izņēmumu. Šo lieto tikai Stripe webhook'a
+ * ceļš — tur `throw` atgrieztu 500, Stripe pieprasījumu atkārtotu, un
+ * `markReferralPurchased` partnera summu pieskaitītu otrreiz (nav idempotents).
+ * Atgriež `true`, ja vēstule aizgāja.
+ */
+async function sendOrLog(
+  label: string,
+  payload: Parameters<Resend["emails"]["send"]>[0]
+): Promise<boolean> {
+  try {
+    // Resend neizmet izņēmumu — kļūdu atgriež laukā.
+    const { error } = await getResend().emails.send(payload);
+    if (error) {
+      console.error(`[${label}]`, `${error.name} — ${error.message}`);
+      return false;
+    }
+    return true;
+  } catch (err) {
+    // Tīkla/SDK līmeņa kļūme — arī to norijam, lai webhook neatkārtojas.
+    console.error(`[${label}]`, err);
+    return false;
+  }
+}
+
 export async function sendWelcomeEmail(to: string, name: string) {
-  const resend = getResend();
-  return resend.emails.send({
+  return sendOrLog("EMAIL_WELCOME", {
     from: FROM,
     to,
     subject: "Laipni lūgts Chademy! 🎉",
@@ -62,8 +86,7 @@ export async function sendPaymentConfirmationEmail(
   amount: number,
   invoiceUrl?: string
 ) {
-  const resend = getResend();
-  return resend.emails.send({
+  return sendOrLog("EMAIL_PAYMENT", {
     from: FROM,
     to,
     subject: `Maksājums apstiprināts — ${planName}`,
