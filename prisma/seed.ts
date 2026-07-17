@@ -1,6 +1,56 @@
 import { PrismaClient } from "@prisma/client";
+import { digitalaisStack } from "../src/content/marketing/digitalaisStack";
 
 const prisma = new PrismaClient();
+
+/** "22 min" / "2h 40 min" / "2h" → sekundes (Lesson.duration glabā sekundes). */
+function toSeconds(duration: string): number {
+  const h = /(\d+)\s*h/.exec(duration);
+  const m = /(\d+)\s*min/.exec(duration);
+  return (h ? Number(h[1]) * 3600 : 0) + (m ? Number(m[1]) * 60 : 0);
+}
+
+/**
+ * IZAUGSME ("AI Biznesa Automatizācija") kursi nāk no mārketinga programmas, nevis
+ * tiek pārrakstīti šeit ar roku — citādi pārdotā programma un platformas saturs
+ * aizietu šķirtos ceļos. Mārketinga MODULIS = DB KURSS (DB nav atsevišķa moduļa
+ * līmeņa: Course → Lesson).
+ *
+ * Slug un ikona katram modulim ir šeit, jo tie ir platformas lietas (URL un
+ * vizuālis), ne mārketinga teksts. Kārtība sakrīt ar moduļa `id`.
+ */
+const IZAUGSME_MODULE_META: Record<number, { slug: string; icon: string }> = {
+  1: { slug: "ai-revolucija-majaslapu-izstrade", icon: "🚀" },
+  2: { slug: "majaslapa-ar-claude-code", icon: "🌐" },
+  3: { slug: "dizains-un-publicesana", icon: "🎨" },
+  4: { slug: "ai-funkcijas-biznesiem", icon: "🤖" },
+  5: { slug: "ai-personigie-asistenti", icon: "🧠" },
+  6: { slug: "portfolio-klienti-pardosana", icon: "💼" },
+};
+
+const izaugsmeCourses = digitalaisStack.lv.modules.map((module) => {
+  const meta = IZAUGSME_MODULE_META[module.id];
+  if (!meta) throw new Error(`IZAUGSME modulim ${module.id} nav slug/ikonas — papildini IZAUGSME_MODULE_META`);
+
+  return {
+    slug: meta.slug,
+    title: module.title,
+    description: `${module.lessons.length} nodarbības · ${module.duration}`,
+    icon: meta.icon,
+    color: "#00BFA5",
+    planRequired: "IZAUGSME" as const,
+    order: module.id,
+    published: true,
+    lessons: module.lessons.map((lesson, i) => ({
+      title: lesson.title,
+      description: lesson.description ?? null,
+      order: i + 1,
+      isFree: lesson.free ?? false,
+      duration: toSeconds(lesson.duration),
+      videoUrl: null,
+    })),
+  };
+});
 
 async function main() {
   console.log("🌱 Seeding kursu dati...");
@@ -89,79 +139,9 @@ async function main() {
       ],
     },
 
-    // ── IZAUGSME plāns ──────────────────────────────────
-    {
-      slug: "majaslapa",
-      title: "Mājaslapa",
-      description: "AI dizains, SEO, mobilā versija — mājaslapa uzņēmumiem bez programmēšanas.",
-      icon: "🌐",
-      color: "#00ff88",
-      planRequired: "IZAUGSME" as const,
-      order: 1,
-      published: true,
-      lessons: [
-        {
-          title: "Ievads: kāpēc uzņēmumi maksā par mājaslapa",
-          description: "Tirgus izpēte, pieprasījums Latvijā, cenu piemēri.",
-          order: 1,
-          isFree: true,
-          duration: 480,
-          videoUrl: null,
-        },
-        {
-          title: "Framer / Webflow ar AI — pirmā mājaslapa",
-          description: "No tukša lapas līdz publicētai mājaslapa 2 stundās.",
-          order: 2,
-          isFree: false,
-          duration: 1500,
-          videoUrl: null,
-        },
-        {
-          title: "SEO pamati ar AI rīkiem",
-          description: "Google meklēšana, atslēgvārdi, meta tagi — bez aģentūras.",
-          order: 3,
-          isFree: false,
-          duration: 720,
-          videoUrl: null,
-        },
-      ],
-    },
-    {
-      slug: "website-chatbot",
-      title: "Web Chatbot",
-      description: "Pievieno AI chatbot jebkurai mājaslapa — atbild klientiem 24/7.",
-      icon: "💬",
-      color: "#00ff88",
-      planRequired: "IZAUGSME" as const,
-      order: 2,
-      published: true,
-      lessons: [
-        {
-          title: "Chatbot tirgus Latvijā — ko uzņēmumi vēlas",
-          description: "Nišas, klientu typi, cenu stratēģija.",
-          order: 1,
-          isFree: true,
-          duration: 420,
-          videoUrl: null,
-        },
-        {
-          title: "Voiceflow chatbot no 0",
-          description: "Kā izveidot, testēt un pievienot mājaslapa.",
-          order: 2,
-          isFree: false,
-          duration: 1200,
-          videoUrl: null,
-        },
-        {
-          title: "Lead ģenerēšana ar chatbot",
-          description: "Kā chatbot savāc kontaktus un nosūta tev paziņojumus.",
-          order: 3,
-          isFree: false,
-          duration: 900,
-          videoUrl: null,
-        },
-      ],
-    },
+    // ── IZAUGSME plāns ("AI Biznesa Automatizācija") ────
+    // Saturs ģenerēts no mārketinga programmas — skat. izaugsmeCourses augšā.
+    ...izaugsmeCourses,
 
     // ── MEISTARS plāns ──────────────────────────────────
     {
