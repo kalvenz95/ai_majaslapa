@@ -46,8 +46,8 @@
         "sub": "Video, attēli, soc. tīkli"
       },
       {
-        "label": "Mājaslapas & automatizācija",
-        "sub": "Lapas + lead apstrāde"
+        "label": "AI Biznesa Automatizācija",
+        "sub": "Mājaslapas + AI asistenti"
       },
       {
         "label": "AI balss aģenti",
@@ -126,13 +126,16 @@
         "num": "02",
         "level": "Vidējs",
         "badge": "🔥 Lielākā daļa sāk šeit",
-        "title": "Mājaslapas & automatizācija",
-        "desc": "Uzbūvē īstu mājaslapu ar Claude Code un pārdod to biznesiem",
+        "title": "AI Biznesa Automatizācija",
+        "subtitle": "Claude Code • AI Asistenti • Mājaslapas",
+        "desc": "Uzbūvē AI mājaslapas ar Claude Code un AI asistentus, kas strādā biznesa vietā",
         "skills": [
           "Mājaslapas būvēšana ar Claude Code no nulles",
+          "AI personīgie asistenti ar Claude — sev un biznesiem",
+          "Asistents, kas atbild uz jautājumiem no uzņēmuma zināšanām",
+          "Failu, PDF un dokumentu analīze ar AI",
+          "Ikdienas atkārtoto darbu automatizācija",
           "Premium dizains, animācijas un publicēšana tiešsaistē",
-          "AI čatbots un mājaslapas asistents biznesiem",
-          "Kontaktformas, e-pasti un biznesa automatizācijas",
           "Profesionāls portfolio ar reāliem darbiem",
           "Klientu atrašana, cenas un projektu nodošana"
         ],
@@ -375,7 +378,7 @@
         "title": "Kursi",
         "links": [
           "Sociālo tīklu pārvaldība",
-          "Mājaslapas & automatizācija",
+          "AI Biznesa Automatizācija",
           "WhatsApp automatizācija",
           "Balss aģenti",
           "AI rīki"
@@ -416,8 +419,8 @@
       "description": "Iemācies veidot AI saturu un pārdot to uzņēmumiem."
     },
     "digitalaisSpecialists": {
-      "title": "Digitālais Speciālists",
-      "description": "Izveido AI risinājumus mājaslapām, chatbotiem un komunikācijai."
+      "title": "AI Biznesa Automatizācija",
+      "description": "Uzbūvē AI mājaslapas ar Claude Code un AI asistentus, kas automatizē biznesa ikdienas darbu."
     },
     "aiAgentuEksperts": {
       "title": "AI Aģentu Eksperts",
@@ -550,7 +553,7 @@
   },
   "Plans": {
     "PAMATI": "Satura Speciālists",
-    "IZAUGSME": "Digitālais Speciālists",
+    "IZAUGSME": "AI Biznesa Automatizācija",
     "MEISTARS": "AI Aģentu Eksperts"
   },
   "Dashboard": {
@@ -624,6 +627,48 @@
   "VideoPlayer": {
     "defaultTitle": "Video nodarbība",
     "unavailable": "Video nav pieejams"
+  },
+  "AIAssistants": {
+    "kicker": "AI asistenti",
+    "titleA": "Uzbūvē AI asistentu, kas ",
+    "titleB": "strādā biznesa vietā",
+    "leadA": "AI Biznesa Automatizācijas pakā tu iemācies ne tikai būvēt mājaslapas, bet arī veidot ",
+    "leadStrong": "AI asistentus sev un uzņēmumiem",
+    "leadB": " — ar Claude. Iedod asistentam uzņēmuma zināšanas, instrukcijas un failus, un tas kļūst par digitālu darbinieku, kas strādā visu diennakti. Tieši par šo biznesi šodien maksā visvairāk.",
+    "cta": "Skatīt visu programmu",
+    "mockName": "Uzņēmuma AI asistents",
+    "mockRole": "Apmācīts ar uzņēmuma dokumentiem",
+    "mockStatus": "24/7",
+    "mockQuestion": "Kāda ir mūsu garantija remontam un ko rakstīt klientam, kuram bojājums parādījās pēc 8 mēnešiem?",
+    "mockAnswer": "Garantija remontam ir 12 mēneši, tātad šis gadījums tajā iekļaujas. Sagatavoju atbildi klientam: apstiprinām bezmaksas remontu, piedāvājam divus laikus nākamnedēļ un lūdzam pievienot pirkuma čeka numuru.",
+    "mockSources": ["garantija.pdf", "atbilžu_veidnes.docx"],
+    "mockPlaceholder": "Pajautā asistentam...",
+    "capabilities": [
+      {
+        "title": "Atbild no uzņēmuma zināšanām",
+        "desc": "Asistents zina uzņēmuma pakalpojumus, cenas un noteikumus — un atbild pēc tiem, nevis izdomā."
+      },
+      {
+        "title": "Analizē failus un dokumentus",
+        "desc": "Iemet PDF, Word vai Excel — asistents izlasa, atrod būtisko un atbild pēc satura."
+      },
+      {
+        "title": "Automatizē atkārtoto darbu",
+        "desc": "Ikdienas darbi, kas aizņem stundas — atbildes, apkopojumi, datu kārtošana — notiek minūtēs."
+      },
+      {
+        "title": "Palīdz pieņemt ātrākus lēmumus",
+        "desc": "Darbinieks jautā cilvēka valodā un uzreiz saņem atbildi, nemeklējot to pa mapēm un e-pastiem."
+      },
+      {
+        "title": "Ģenerē e-pastus, dokumentus un atskaites",
+        "desc": "Piedāvājumi, klientu vēstules un atskaites — sagatavotas uzņēmuma stilā un tonī."
+      },
+      {
+        "title": "Kļūst par 24/7 AI darbinieku",
+        "desc": "Strādā naktīs, brīvdienās un svētkos — neaizmirst, neaizmieg un neprasa algu."
+      }
+    ]
   },
   "WhyAI": {
     "kicker": "Kāpēc AI prasmes",
@@ -989,7 +1034,7 @@
   },
   "CoursePages": {
     "digitalaisSpecialists": {
-      "category": "Mājaslapas & automatizācija",
+      "category": "AI Biznesa Automatizācija",
       "ladder": [
         {
           "clients": "1. klients",

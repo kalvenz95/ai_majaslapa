@@ -22,7 +22,7 @@ interface AffiliateData {
 
 const PLAN_NAMES: Record<string, string> = {
   PAMATI: "Satura Speciālists",
-  IZAUGSME: "Digitālais Speciālists",
+  IZAUGSME: "AI Biznesa Automatizācija",
   MEISTARS: "AI Aģentu Eksperts",
 };
 

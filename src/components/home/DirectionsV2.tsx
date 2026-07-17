@@ -10,6 +10,8 @@ type Track = {
   level: string;
   badge: string;
   title: string;
+  /** Neobligāts — rāda tikai paka, kurai ir vairāki virzieni zem viena nosaukuma. */
+  subtitle?: string;
   desc: string;
   skills: string[];
   earn: string;
@@ -151,6 +153,16 @@ export default function DirectionsV2() {
                   }}>
                     {track.title}
                   </h3>
+                  {track.subtitle && (
+                    <p style={{
+                      fontFamily: "JetBrains Mono, monospace", fontSize: 11, fontWeight: 600,
+                      letterSpacing: "0.06em", lineHeight: 1.5,
+                      color: dark ? `rgba(${th.glow},0.85)` : th.color,
+                      margin: "0 0 10px", position: "relative",
+                    }}>
+                      {track.subtitle}
+                    </p>
+                  )}
                   <p style={{ fontSize: 14.5, color: dark ? "rgba(255,255,255,0.55)" : "var(--ink-3)", lineHeight: 1.6, margin: "0 0 24px", position: "relative" }}>
                     {track.desc}
                   </p>

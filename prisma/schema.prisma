@@ -74,7 +74,7 @@ model Subscription {
 
 enum Plan {
   PAMATI    // €29/mēn — Satura Speciālists
-  IZAUGSME  // €59/mēn — Digitālais Speciālists
+  IZAUGSME  // €59/mēn — AI Biznesa Automatizācija (agrāk "Digitālais Speciālists")
   MEISTARS  // €149/mēn — AI Aģentu Eksperts
 }
 

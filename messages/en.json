@@ -46,8 +46,8 @@
         "sub": "Video, images, social"
       },
       {
-        "label": "Websites & automation",
-        "sub": "Sites + lead handling"
+        "label": "AI Business Automation",
+        "sub": "Websites + AI assistants"
       },
       {
         "label": "AI voice agents",
@@ -126,13 +126,16 @@
         "num": "02",
         "level": "Intermediate",
         "badge": "🔥 Most students start here",
-        "title": "Websites & automation",
-        "desc": "Build a real website with Claude Code and sell it to businesses",
+        "title": "AI Business Automation",
+        "subtitle": "Claude Code • AI Assistants • Websites",
+        "desc": "Build AI websites with Claude Code and AI assistants that work in a business's place",
         "skills": [
           "Building websites with Claude Code from scratch",
+          "AI personal assistants with Claude — for you and for businesses",
+          "An assistant that answers questions from company knowledge",
+          "Analysing files, PDFs, and documents with AI",
+          "Automating repetitive daily work",
           "Premium design, animations, and publishing online",
-          "AI chatbot and on-site assistant for businesses",
-          "Contact forms, emails, and business automations",
           "A professional portfolio with real work",
           "Finding clients, pricing, and project handoff"
         ],
@@ -375,7 +378,7 @@
         "title": "Tracks",
         "links": [
           "Social mastery",
-          "Sites & automation",
+          "AI Business Automation",
           "WhatsApp concierge",
           "Voice agents",
           "Toolkit"
@@ -416,8 +419,8 @@
       "description": "Learn AI content systems you can invoice this quarter."
     },
     "digitalaisSpecialists": {
-      "title": "Digital Builder",
-      "description": "Landing pages, chatbots, and operational automations for SMBs."
+      "title": "AI Business Automation",
+      "description": "Build AI websites with Claude Code and AI assistants that automate a business's daily work."
     },
     "aiAgentuEksperts": {
       "title": "Agent Expert",
@@ -550,7 +553,7 @@
   },
   "Plans": {
     "PAMATI": "Content Specialist",
-    "IZAUGSME": "Digital Builder",
+    "IZAUGSME": "AI Business Automation",
     "MEISTARS": "AI Agent Specialist"
   },
   "Dashboard": {
@@ -624,6 +627,48 @@
   "VideoPlayer": {
     "defaultTitle": "Lesson video",
     "unavailable": "Video unavailable"
+  },
+  "AIAssistants": {
+    "kicker": "AI assistants",
+    "titleA": "Build an AI assistant that ",
+    "titleB": "works in a business's place",
+    "leadA": "The AI Business Automation package teaches you not only how to build websites, but also how to build ",
+    "leadStrong": "AI assistants for yourself and for businesses",
+    "leadB": " — with Claude. Give the assistant company knowledge, instructions, and files, and it becomes a digital employee that works around the clock. This is exactly what businesses pay the most for today.",
+    "cta": "See the full curriculum",
+    "mockName": "Company AI assistant",
+    "mockRole": "Trained on the company's documents",
+    "mockStatus": "24/7",
+    "mockQuestion": "What's our repair warranty, and what should I write to a customer whose fault appeared after 8 months?",
+    "mockAnswer": "The repair warranty is 12 months, so this case is covered. Here's a draft reply: confirm the free repair, offer two slots next week, and ask them to include their receipt number.",
+    "mockSources": ["warranty.pdf", "reply_templates.docx"],
+    "mockPlaceholder": "Ask the assistant...",
+    "capabilities": [
+      {
+        "title": "Answers from company knowledge",
+        "desc": "The assistant knows your services, prices, and terms — and answers from them instead of making things up."
+      },
+      {
+        "title": "Analyses files and documents",
+        "desc": "Drop in a PDF, Word, or Excel file — the assistant reads it, finds what matters, and answers from the content."
+      },
+      {
+        "title": "Automates repetitive work",
+        "desc": "Daily work that takes hours — replies, summaries, sorting data — gets done in minutes."
+      },
+      {
+        "title": "Helps people decide faster",
+        "desc": "An employee asks in plain language and gets an answer straight away, without digging through folders and inboxes."
+      },
+      {
+        "title": "Generates emails, documents, and reports",
+        "desc": "Proposals, customer emails, and reports — drafted in the company's own style and tone."
+      },
+      {
+        "title": "Becomes a 24/7 AI employee",
+        "desc": "Works nights, weekends, and holidays — never forgets, never sleeps, never asks for a salary."
+      }
+    ]
   },
   "WhyAI": {
     "kicker": "Why AI skills",
@@ -989,7 +1034,7 @@
   },
   "CoursePages": {
     "digitalaisSpecialists": {
-      "category": "Websites & automation",
+      "category": "AI Business Automation",
       "ladder": [
         {
           "clients": "1st client",

@@ -37,7 +37,7 @@ export function WelcomeEmail({ name = "draugs" }: WelcomeEmailProps) {
             <Section style={step}>
               <Text style={stepNumber}>01</Text>
               <Text style={stepText}>
-                <strong>Izvēlies savu plānu</strong> — Satura Speciālists, Digitālais Speciālists vai AI Aģentu Eksperts.
+                <strong>Izvēlies savu plānu</strong> — Satura Speciālists, AI Biznesa Automatizācija vai AI Aģentu Eksperts.
               </Text>
             </Section>
 

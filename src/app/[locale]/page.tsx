@@ -7,6 +7,7 @@ import HeroV2 from "@/components/home/HeroV2";
 import WhyAIV2 from "@/components/home/WhyAIV2";
 import DirectionsV2 from "@/components/home/DirectionsV2";
 import DirectionDemosV2 from "@/components/home/DirectionDemosV2";
+import AIAssistantsV2 from "@/components/home/AIAssistantsV2";
 import HowItWorksV2 from "@/components/home/HowItWorksV2";
 import IncomeV2 from "@/components/home/IncomeV2";
 import NoSkillsV2 from "@/components/home/NoSkillsV2";
@@ -87,7 +88,10 @@ export default async function HomePage({
       {/* 3b. Website samples — real projects we've built */}
       <DirectionDemosV2 />
 
-      {/* 3c. Live voice agents — talk to our Vapi agents in the browser */}
+      {/* 3c. AI assistants — the second half of the AI Business Automation package */}
+      <AIAssistantsV2 />
+
+      {/* 3d. Live voice agents — talk to our Vapi agents in the browser */}
       <LiveVoiceAgents />
 
       {/* 4. How it works */}

@@ -29,7 +29,7 @@ export const PLAN_PRICE_MAP: Record<Plan, string> = {
 // Plāna nosaukumi latviski
 export const PLAN_NAMES: Record<Plan, string> = {
   PAMATI: "Satura Speciālists",
-  IZAUGSME: "Digitālais Speciālists",
+  IZAUGSME: "AI Biznesa Automatizācija",
   MEISTARS: "AI Aģentu Eksperts",
 };
 
