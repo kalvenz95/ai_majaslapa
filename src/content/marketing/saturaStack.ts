@@ -4,7 +4,7 @@ const saturaLv: StackPlanModel = {
   name: "Satura Speciālists",
   price: "29",
   tagline: "Iemācies veidot AI saturu un pārdot to uzņēmumiem",
-  earn: "300€–1 500€/mēn",
+  earn: "",
   color: "#a855f7",
   glow: "168,85,247",
   courses: ["AI Faceless Video", "Sociālo Tīklu Pārvaldība"],
@@ -16,7 +16,7 @@ const saturaLv: StackPlanModel = {
     "Uzrunāt pirmos klientus ar gatavām ziņu veidnēm",
     "Sagatavot profesionālu cenu piedāvājumu",
     "Izveidot portfolio no 0 — pat bez pieredzes",
-    "Nopelnīt 300€–1500€ mēnesī kā Satura Speciālists",
+    "Piesaistīt pirmos maksājošos klientus kā Satura Speciālists",
   ],
   skills: [
     "Kā izveidot portfolio no 0",
@@ -27,7 +27,7 @@ const saturaLv: StackPlanModel = {
   modules: [
     {
       id: 1,
-      title: "Ievads — Kā nopelnīt ar AI saturu",
+      title: "Ievads — Kā strādāt ar AI saturu",
       duration: "38 min",
       free: true,
       lessons: [
@@ -75,7 +75,7 @@ const saturaLv: StackPlanModel = {
     },
     {
       id: 4,
-      title: "Portfolio, Klienti un Pirmā Nauda",
+      title: "Portfolio, Klienti un Pirmie Projekti",
       duration: "1h 22 min",
       free: false,
       lessons: [
@@ -107,7 +107,7 @@ const saturaLv: StackPlanModel = {
 const saturaEn: StackPlanModel = {
   ...saturaLv,
   name: "Content Specialist",
-  earn: "€300–€1 500/mo",
+  earn: "",
   courses: ["AI Faceless Video", "Social Media OS"],
   tagline: "Learn to ship AI-powered content—and sell it to businesses",
   learn: [
@@ -117,7 +117,7 @@ const saturaEn: StackPlanModel = {
     "Reach first clients with proven DM + email skeletons",
     "Package pricing proposals that feel premium",
     "Build a credible portfolio starting from zero",
-    "Earn €300–€1 500/month as a Content Specialist",
+    "Land your first paying clients as a Content Specialist",
   ],
   skills: [
     "How to assemble a portfolio with zero prior clients",
@@ -191,7 +191,7 @@ const saturaEn: StackPlanModel = {
     },
     {
       id: 4,
-      title: "Portfolio, Outreach, First Revenue",
+      title: "Portfolio, Outreach, First Clients",
       duration: "1h 22 min",
       free: false,
       lessons: [

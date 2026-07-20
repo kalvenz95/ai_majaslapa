@@ -4,7 +4,7 @@ const digitalaisLv: StackPlanModel = {
   name: "AI Biznesa Automatizācija",
   price: "59",
   tagline: "Uzbūvē AI mājaslapas ar Claude Code un AI asistentus, kas strādā biznesa vietā",
-  earn: "500€–1 800€/mēn",
+  earn: "",
   color: "#00ff88",
   glow: "0,255,136",
   courses: ["AI Mājaslapa", "Claude Code", "AI asistenti", "AI biznesa funkcijas"],
@@ -20,7 +20,7 @@ const digitalaisLv: StackPlanModel = {
     "Integrēt kontaktformas, e-pastus un biznesa automatizācijas",
     "Izveidot profesionālu portfolio ar reāliem darbiem",
     "Pārdot AI asistentus biznesiem kā augstas vērtības pakalpojumu",
-    "Pārvērst šo prasmi reālā biznesā — 500€–1800€ mēnesī",
+    "Pārvērst šo prasmi reālā biznesā ar maksājošiem klientiem",
   ],
   skills: [
     "Mājaslapas būvēšana ar Claude Code no nulles",
@@ -169,7 +169,7 @@ const digitalaisEn: StackPlanModel = {
   ...digitalaisLv,
   name: "AI Business Automation",
   tagline: "Build AI websites with Claude Code and AI assistants that work in a business's place",
-  earn: "€500–€1,800/mo",
+  earn: "",
   courses: ["AI website", "Claude Code", "AI assistants", "AI business features"],
   learn: [
     "Understand why AI completely changed website development",
@@ -182,7 +182,7 @@ const digitalaisEn: StackPlanModel = {
     "Integrate contact forms, emails, and business automations",
     "Build a professional portfolio with real work",
     "Sell AI assistants to businesses as a high-value service",
-    "Turn this skill into a real business — €500–€1,800/month",
+    "Turn this skill into a real business with paying clients",
   ],
   skills: [
     "Building websites with Claude Code from scratch",

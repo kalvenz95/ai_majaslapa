@@ -18,8 +18,6 @@ export default function SaturaSpecialistsPage() {
       accent="#6D5EF3"
       accent2="#00BFA5"
       glow="109,94,243"
-      lessonTheme={SATURA_MARKET_THEME}
-      incomeLadder={t.raw("ladder")}
-    />
+      lessonTheme={SATURA_MARKET_THEME}    />
   );
 }

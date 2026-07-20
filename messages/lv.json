@@ -1041,7 +1041,8 @@
       }
     ],
     "ctaEyebrow": "Sāc šodien",
-    "ctaTitleA": "Gatavs nopelnīt",
+    "ctaTitleA": "Gatavs sākt",
+    "ctaTitleB": "jau šodien?",
     "ctaLead": "Pievienojies {students}+ studentiem. Pirmās nodarbības ir bez maksas.",
     "ctaStartFree": "Sākt bez maksas",
     "ctaBackHome": "Atpakaļ uz sākumu"

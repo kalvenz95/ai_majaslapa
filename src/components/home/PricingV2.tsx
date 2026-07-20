@@ -138,18 +138,6 @@ export default function PricingV2() {
                     <span style={{ fontSize: 15, color: dark ? "rgba(255,255,255,0.45)" : "var(--ink-3)" }}>{t("monthly")}</span>
                   </div>
 
-                  {/* earn chip */}
-                  <div style={{
-                    display: "inline-flex", alignItems: "center", gap: 8, alignSelf: "flex-start",
-                    fontFamily: "JetBrains Mono, monospace", fontSize: 11.5, fontWeight: 600,
-                    borderRadius: 9, padding: "8px 12px", marginBottom: 26, position: "relative",
-                    color: dark ? "#34D9C3" : "var(--teal-ink)",
-                    background: dark ? "rgba(0,191,165,0.10)" : "rgba(0,191,165,0.07)",
-                    border: dark ? "1px solid rgba(0,191,165,0.28)" : "1px solid rgba(0,191,165,0.2)",
-                  }}>
-                    {t("earnLabel")}: {plan.earn}
-                  </div>
-
                   {/* items */}
                   <div style={{ display: "flex", flexDirection: "column", gap: 11, marginBottom: 30, flex: 1, position: "relative" }}>
                     {plan.items.map((item) => (

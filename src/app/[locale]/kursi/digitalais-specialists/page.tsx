@@ -23,8 +23,6 @@ export default function DigitaalaisSpecialistsPage() {
       themeClass="theme-claude"
       taskColor="#BD5D3A"
       quizColor="#C99A2E"
-      lessonTheme={CLAUDE_MARKET_THEME}
-      incomeLadder={t.raw("ladder")}
-    />
+      lessonTheme={CLAUDE_MARKET_THEME}    />
   );
 }

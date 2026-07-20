@@ -19,8 +19,6 @@ export default function AIAgentuEkspertsPage() {
       accent="#E8924A"
       accent2="#FFB86B"
       glow="232,146,74"
-      lessonTheme={VOICE_MARKET_THEME}
-      incomeLadder={t.raw("ladder")}
-    />
+      lessonTheme={VOICE_MARKET_THEME}    />
   );
 }

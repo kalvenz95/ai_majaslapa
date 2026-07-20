@@ -1041,7 +1041,8 @@
       }
     ],
     "ctaEyebrow": "Start today",
-    "ctaTitleA": "Ready to earn",
+    "ctaTitleA": "Ready to start",
+    "ctaTitleB": "today?",
     "ctaLead": "Join {students}+ students. The first lessons are free.",
     "ctaStartFree": "Start for free",
     "ctaBackHome": "Back to home"

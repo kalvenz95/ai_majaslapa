@@ -19,7 +19,6 @@ import { Link } from "@/i18n/navigation";
    of the homepage. Same palette, type scale, cards, hovers, animations.
    ────────────────────────────────────────────────────────────────── */
 
-type IncomeStep = { clients: string; price: string; note?: string };
 type TextItem = { title: string; desc: string };
 
 export type CourseExperienceProps = {
@@ -40,8 +39,6 @@ export type CourseExperienceProps = {
   lessonExtras?: Record<string, ReactNode>;
   /** Per-module rich content rendered below a module block, keyed by module id (LV only) */
   moduleExtras?: Record<number, ReactNode>;
-  /** Income ladder for the "Real examples" section (localised by the page) */
-  incomeLadder: IncomeStep[];
   /** Design-system token scope, e.g. "theme-claude" — re-skins the page without changing its structure */
   themeClass?: string;
   /** Colours for the task/quiz lesson chips — override when the default teal clashes with the track's palette */
@@ -90,7 +87,7 @@ const RESOURCE_ICONS: ReactNode[] = [
 ];
 
 export function CourseExperience({
-  course, accent, accent2, glow, glow2 = "0,191,165", category, lessonTheme, lessonExtras, moduleExtras, incomeLadder, themeClass, taskColor = "#00BFA5", quizColor = "#FFB86B",
+  course, accent, accent2, glow, glow2 = "0,191,165", category, lessonTheme, lessonExtras, moduleExtras, themeClass, taskColor = "#00BFA5", quizColor = "#FFB86B",
 }: CourseExperienceProps) {
   const t = useTranslations("CourseExperience");
   const [openModules, setOpenModules] = useState<number[]>([course.modules[0]?.id].filter(Boolean) as number[]);
@@ -111,7 +108,6 @@ export function CourseExperience({
 
   const resources = (t.raw("resources") as TextItem[]).map((r, i) => ({ ...r, icon: RESOURCE_ICONS[i] }));
   const community = t.raw("community") as TextItem[];
-  const ladder = incomeLadder;
 
   /* ── Focused lesson reader (reuses existing rich content) ── */
   if (activeLesson) {
@@ -172,9 +168,6 @@ export function CourseExperience({
                     {t("startCourse")} <ArrowRight />
                   </button>
                   <a href="#programma" className="btn-ghost">{t("viewProgram")}</a>
-                  <span style={{ fontSize: 13, fontWeight: 700, color: "var(--teal-ink)", padding: "6px 12px", borderRadius: 999, background: "color-mix(in oklab, var(--accent-2) 10%, transparent)", border: "1px solid color-mix(in oklab, var(--accent-2) 26%, transparent)" }}>
-                    {course.earn}
-                  </span>
                 </div>
               </Reveal>
             </div>
@@ -347,36 +340,6 @@ export function CourseExperience({
         </div>
       </section>
 
-      {/* ════ 8 · REAL BUSINESS EXAMPLES ════ */}
-      <section style={{ padding: `${sectionPad} 0` }}>
-        <div className="lp-container" style={{ maxWidth: 1180, margin: "0 auto", padding: "0 28px" }}>
-          <SectionHead eyebrow={t("examplesEyebrow")} title={<>{t("examplesTitleA")} <span className="v2-grad">{t("examplesTitleB")}</span></>} />
-          <div className="ce-grid-4" style={{ display: "grid", gridTemplateColumns: `repeat(${ladder.length}, 1fr)`, gap: 14, marginTop: 48 }}>
-            {ladder.map((step, i) => {
-              const top = i === ladder.length - 1;
-              return (
-                <Reveal key={i} delay={0.05 * i}>
-                  <div style={{ position: "relative", height: "100%", padding: "26px 22px", borderRadius: 20, background: top ? gradient : "var(--bg-1)", border: top ? "none" : "1px solid var(--line)", boxShadow: top ? `0 24px 60px -28px rgba(${glow},0.5)` : "var(--shadow-sm)", color: top ? "#fff" : "var(--ink)" }}>
-                    <div style={{ fontSize: 12, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em", color: top ? "rgba(255,255,255,0.8)" : "var(--ink-3)", marginBottom: 10 }}>{step.clients}</div>
-                    <div className="metric" style={{ fontSize: 28, color: top ? "#fff" : accent, marginBottom: 6 }}>{step.price}</div>
-                    {step.note && <div style={{ fontSize: 12.5, color: top ? "rgba(255,255,255,0.85)" : "var(--ink-3)" }}>{step.note}</div>}
-                  </div>
-                </Reveal>
-              );
-            })}
-          </div>
-          <Reveal delay={0.1}>
-            <p style={{ marginTop: 22, fontSize: 14, color: "var(--ink-3)", lineHeight: 1.7, maxWidth: 620 }}>
-              {t.rich("examplesNote", {
-                earn: course.earn,
-                b: (c) => <strong style={{ color: "var(--ink)" }}>{c}</strong>,
-                accent: (c) => <strong style={{ color: accent }}>{c}</strong>,
-              })}
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
       {/* ════ 9 · COMMUNITY ════ */}
       <section style={{ padding: `${sectionPad} 0`, background: "var(--bg-1)", borderTop: "1px solid var(--line)" }}>
         <div className="lp-container" style={{ maxWidth: 1180, margin: "0 auto", padding: "0 28px" }}>
@@ -404,7 +367,7 @@ export function CourseExperience({
           <Reveal><span className="v2-eyebrow v2-eyebrow--light" style={{ justifyContent: "center" }}>{t("ctaEyebrow")}</span></Reveal>
           <Reveal delay={0.08}>
             <h2 className="v2-h2" style={{ fontSize: "clamp(34px, 5vw, 60px)", color: "#fff", margin: "18px 0 0" }}>
-              {t("ctaTitleA")} <span className="v2-grad">{course.earn}</span>?
+              {t("ctaTitleA")} <span className="v2-grad">{t("ctaTitleB")}</span>
             </h2>
           </Reveal>
           <Reveal delay={0.14}>
@@ -473,10 +436,6 @@ function CourseCover({ course, accent, accent2, glow, gradient, totalLessons }: 
       <div className="v2-float-a" style={{ position: "absolute", top: 18, right: -14, padding: "10px 14px", borderRadius: 14, background: "var(--bg-1)", border: "1px solid var(--line)", boxShadow: "var(--shadow-md)", display: "flex", alignItems: "center", gap: 8 }}>
         <Star /><span style={{ fontSize: 13, fontWeight: 700, color: "var(--ink)" }}>{course.rating}</span>
         <span style={{ fontSize: 12, color: "var(--ink-3)" }}>{t("ratingLabel")}</span>
-      </div>
-      <div className="v2-float-b" style={{ position: "absolute", bottom: -16, left: -14, padding: "12px 16px", borderRadius: 14, background: "var(--bg-1)", border: "1px solid var(--line)", boxShadow: "var(--shadow-md)" }}>
-        <div style={{ fontSize: 11, color: "var(--ink-3)", marginBottom: 2 }}>{t("potentialLabel")}</div>
-        <div className="metric" style={{ fontSize: 18, color: accent }}>{course.earn}</div>
       </div>
     </div>
   );
