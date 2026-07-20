@@ -2,8 +2,7 @@ import { auth } from "@clerk/nextjs/server";
 import { notFound, redirect } from "next/navigation";
 import { Link } from "@/i18n/navigation";
 import { prisma } from "@/lib/prisma";
-import { getUserPlan } from "@/lib/subscriptions";
-import { hasAccessToPlan } from "@/lib/stripe";
+import { getViewerAccess, canAccessPlan } from "@/lib/subscriptions";
 
 export default async function CoursePage({
   params,
@@ -20,8 +19,13 @@ export default async function CoursePage({
 
   if (!course) notFound();
 
-  const userPlan = await getUserPlan(userId);
-  const hasAccess = userPlan ? hasAccessToPlan(userPlan, course.planRequired) : false;
+  const viewer = await getViewerAccess(userId);
+  const hasAccess = canAccessPlan(viewer, course.planRequired);
+
+  // Paka ir redzama (arī bez piekļuves) — saturs aizslēgts, bet ievadvideo
+  // (lekcija ar isFree) paliek atslēgts kā priekšskatījums. Nepublicētus
+  // melnrakstus redz tikai personāls (owner/admin).
+  if (!course.published && !viewer.isStaff) notFound();
 
   // Ielādē progresu
   const user = await prisma.user.findUnique({ where: { clerkId: userId } });
@@ -103,7 +107,23 @@ export default async function CoursePage({
         )}
       </div>
 
-      {/* Nav access */}
+      {/* Administratora skats — nepublicēta kursa brīdinājums */}
+      {viewer.isStaff && !course.published && (
+        <div
+          className="rounded-xl px-4 py-3 mb-6 text-sm flex items-center gap-2"
+          style={{
+            background: "rgba(255,255,255,0.04)",
+            border: "1px solid rgba(255,255,255,0.1)",
+            color: "rgba(255,255,255,0.6)",
+          }}
+        >
+          <span>👁️</span>
+          Administratora skats — šis kurss ir <strong className="text-white mx-1">melnraksts</strong>{" "}
+          un lietotājiem nav redzams.
+        </div>
+      )}
+
+      {/* Nav piekļuves — saturs aizslēgts, bet ievadvideo var apskatīt */}
       {!hasAccess && (
         <div
           className="rounded-2xl p-6 mb-8 text-center"
@@ -113,9 +133,11 @@ export default async function CoursePage({
           }}
         >
           <div className="text-3xl mb-2">🔒</div>
-          <div className="font-bold text-white mb-1">Kursam nav piekļuves</div>
+          <div className="font-bold text-white mb-1">Kursa saturs ir aizslēgts</div>
           <p className="text-sm mb-4" style={{ color: "rgba(255,255,255,0.4)" }}>
-            Jaunini abonementu, lai piekļūtu šim kursam.
+            {course.lessons.some((l) => l.isFree)
+              ? "Apskati bezmaksas ievadvideo zemāk, bet pilnajam saturam jaunini abonementu."
+              : "Jaunini abonementu, lai piekļūtu šim kursam."}
           </p>
           <Link
             href="/#pricing"
@@ -131,6 +153,7 @@ export default async function CoursePage({
       <div className="space-y-2">
         {course.lessons.map((lesson, i) => {
           const isCompleted = completedIds.has(lesson.id);
+          // Aizslēgts saturs paliek aizslēgts; ievadvideo (isFree) — atslēgts
           const isAccessible = hasAccess || lesson.isFree;
 
           return (

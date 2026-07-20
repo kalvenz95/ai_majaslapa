@@ -1,8 +1,7 @@
 import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { getUserPlan } from "@/lib/subscriptions";
-import { hasAccessToPlan } from "@/lib/stripe";
+import { getViewerAccess, canAccessPlan } from "@/lib/subscriptions";
 
 export async function GET() {
   try {
@@ -11,10 +10,11 @@ export async function GET() {
       return NextResponse.json({ message: "Nav autorizēts" }, { status: 401 });
     }
 
-    const userPlan = await getUserPlan(userId);
+    const viewer = await getViewerAccess(userId);
 
     const courses = await prisma.course.findMany({
-      where: { published: true },
+      // Personāls redz visu (arī nepublicēto); lietotājs — tikai publicēto
+      where: viewer.isStaff ? undefined : { published: true },
       orderBy: [{ planRequired: "asc" }, { order: "asc" }],
       include: {
         lessons: {
@@ -30,10 +30,10 @@ export async function GET() {
       },
     });
 
-    // Pievieno piekļuves informāciju katram kursam
+    // Visas pakas redzamas; hasAccess norāda, vai saturs ir atslēgts
     const coursesWithAccess = courses.map((course) => ({
       ...course,
-      hasAccess: userPlan ? hasAccessToPlan(userPlan, course.planRequired) : false,
+      hasAccess: canAccessPlan(viewer, course.planRequired),
     }));
 
     return NextResponse.json({ courses: coursesWithAccess });

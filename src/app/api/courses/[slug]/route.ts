@@ -1,8 +1,7 @@
 import { auth } from "@clerk/nextjs/server";
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { getUserPlan } from "@/lib/subscriptions";
-import { hasAccessToPlan } from "@/lib/stripe";
+import { getViewerAccess, canAccessPlan } from "@/lib/subscriptions";
 
 export async function GET(
   req: NextRequest,
@@ -29,10 +28,16 @@ export async function GET(
       return NextResponse.json({ message: "Kurss nav atrasts" }, { status: 404 });
     }
 
-    const userPlan = await getUserPlan(userId);
-    const hasAccess = userPlan ? hasAccessToPlan(userPlan, course.planRequired) : false;
+    const viewer = await getViewerAccess(userId);
+    const hasAccess = canAccessPlan(viewer, course.planRequired);
 
-    // Slēpj videoUrl ja nav piekļuves (drošība)
+    // Nepublicētus melnrakstus redz tikai personāls
+    if (!course.published && !viewer.isStaff) {
+      return NextResponse.json({ message: "Kurss nav atrasts" }, { status: 404 });
+    }
+
+    // Paka redzama, bet saturs aizslēgts: videoUrl tikai ar piekļuvi vai
+    // ja lekcija ir ievadvideo (isFree). Pārējiem — null (drošība serverī).
     const courseWithAccess = {
       ...course,
       hasAccess,

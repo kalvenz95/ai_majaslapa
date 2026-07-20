@@ -1,5 +1,58 @@
 import { prisma } from "@/lib/prisma";
-import { Plan, SubscriptionStatus } from "@prisma/client";
+import { Plan, SubscriptionStatus, Role } from "@prisma/client";
+import { hasAccessToPlan } from "@/lib/stripe";
+
+// Personāls (owner/admin) redz un pārvalda VISU saturu neatkarīgi no abonementa.
+const STAFF_ROLES: Role[] = [Role.OWNER, Role.ADMIN];
+
+export type ViewerAccess = {
+  role: Role | null;
+  plan: Plan | null;
+  isStaff: boolean;
+};
+
+/**
+ * Vienota piekļuves konteksta ielāde satura pakām.
+ * Atgriež skatītāja lomu, aktīvā abonementa plānu un vai tas ir personāls.
+ * OWNER_EMAIL sakritība tiek uzskatīta par personālu arī tad, ja DB loma
+ * vēl nav bootstrapēta (drošības tīkls īpašniekam).
+ */
+export async function getViewerAccess(clerkId: string): Promise<ViewerAccess> {
+  const user = await prisma.user
+    .findUnique({
+      where: { clerkId },
+      select: {
+        email: true,
+        role: true,
+        subscription: { select: { plan: true, status: true } },
+      },
+    })
+    .catch(() => null);
+
+  const sub = user?.subscription;
+  const activePlan =
+    sub && (sub.status === SubscriptionStatus.ACTIVE || sub.status === SubscriptionStatus.TRIALING)
+      ? sub.plan
+      : null;
+
+  const ownerEmails = (process.env.OWNER_EMAIL ?? "")
+    .split(",")
+    .map((e) => e.trim().toLowerCase())
+    .filter(Boolean);
+  const isOwnerByEmail = user?.email
+    ? ownerEmails.includes(user.email.toLowerCase())
+    : false;
+
+  const isStaff = (user ? STAFF_ROLES.includes(user.role) : false) || isOwnerByEmail;
+
+  return { role: user?.role ?? null, plan: activePlan, isStaff };
+}
+
+/** Vai skatītājs drīkst piekļūt konkrēta plāna saturam. Personāls — vienmēr. */
+export function canAccessPlan(viewer: ViewerAccess, requiredPlan: Plan): boolean {
+  if (viewer.isStaff) return true;
+  return viewer.plan ? hasAccessToPlan(viewer.plan, requiredPlan) : false;
+}
 
 export async function getUserSubscription(userId: string) {
   return prisma.subscription.findFirst({
