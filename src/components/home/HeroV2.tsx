@@ -140,7 +140,7 @@ export default function HeroV2() {
           {/* CTAs */}
           <motion.div variants={item} style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
             <Magnetic>
-              <Link href="/register" className="btn-primary" style={{ textDecoration: "none", fontSize: 16.5, padding: "17px 34px", borderRadius: 15 }}>
+              <Link href="/register" className="btn-primary btn-glow" style={{ textDecoration: "none", fontSize: 16.5, padding: "17px 34px", borderRadius: 15 }}>
                 {t("ctaPrimary")}
               </Link>
             </Magnetic>

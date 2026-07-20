@@ -253,6 +253,36 @@ a { color: inherit; text-decoration: none; }
     0 0 0 5px color-mix(in oklab, var(--accent) 55%, transparent);
 }
 
+/* Glowing halo — pulsējošs izpludināts oreols aiz pogas.
+   Animē tikai opacity/transform (nevis box-shadow). */
+.btn-glow { position: relative; isolation: isolate; }
+.btn-glow::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: inherit;
+  background: linear-gradient(135deg,
+    color-mix(in oklab, var(--accent) 85%, #fff) 0%,
+    var(--accent) 45%,
+    color-mix(in oklab, var(--accent) 62%, var(--accent-2)) 100%);
+  filter: blur(18px);
+  opacity: 0.55;
+  z-index: -1;
+  transform: scale(0.97);
+  animation: btnGlowPulse 2.8s ease-in-out infinite;
+  transition: opacity 0.25s ease;
+  will-change: opacity, transform;
+  pointer-events: none;
+}
+.btn-glow:hover::before { opacity: 0.9; }
+@keyframes btnGlowPulse {
+  0%, 100% { opacity: 0.42; transform: scale(0.95); }
+  50%      { opacity: 0.78; transform: scale(1.05); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-glow::before { animation: none; opacity: 0.55; transform: scale(1); }
+}
+
 .btn-ghost {
   background: white;
   color: var(--ink);
