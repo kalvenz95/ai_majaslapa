@@ -20,15 +20,20 @@ const MAX_IMAGE_BYTES = 8 * 1024 * 1024; // 8 MB
 const MAX_VIDEO_BYTES = 50 * 1024 * 1024; // 50 MB
 
 export async function POST(req: NextRequest) {
-  const body = (await req.json()) as HandleUploadBody;
-
   try {
+    // ── Vārti PIRMS visa pārējā ──
+    // `handleUpload` vispirms validē Blob marķieri un tikai tad izsauc
+    // `onBeforeGenerateToken`, tāpēc bez šīs pārbaudes nepieteicies
+    // lietotājs saņemtu iekšēju konfigurācijas kļūdu 401 vietā.
+    await requireCommunityWriter();
+
+    const body = (await req.json()) as HandleUploadBody;
+
     const result = await handleUpload({
       body,
       request: req,
       onBeforeGenerateToken: async (_pathname, clientPayload) => {
-        // ── Piekļuves pārbaude PIRMS marķiera izsniegšanas ──
-        // Bez apmaksas marķieris netiek izsniegts vispār.
+        // Atkārtota pārbaude — marķieris netiek izsniegts bez apmaksas
         const viewer = await requireCommunityWriter();
 
         const kind = clientPayload === "video" ? "video" : "image";
@@ -52,8 +57,12 @@ export async function POST(req: NextRequest) {
     if (err instanceof CommunityError) {
       return NextResponse.json({ error: err.message }, { status: err.status });
     }
-    const message = err instanceof Error ? err.message : "Augšupielāde neizdevās";
+    // Iekšējie kļūdu teksti (piem. trūkstošs Blob marķieris) paliek žurnālā,
+    // nevis atbildē — tie atklāj konfigurāciju.
     console.error("[COMMUNITY_UPLOAD]", err);
-    return NextResponse.json({ error: message }, { status: 400 });
+    return NextResponse.json(
+      { error: "Augšupielāde neizdevās. Mēģini vēlreiz." },
+      { status: 400 }
+    );
   }
 }
