@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { digitalaisStack } from "../src/content/marketing/digitalaisStack";
+import { DEFAULT_CATEGORIES } from "../src/lib/community-categories";
 
 const prisma = new PrismaClient();
 
@@ -76,11 +77,42 @@ function planFilter(): PlanName | null {
   return value as PlanName;
 }
 
+/**
+ * Kopienas kategorijas. Upsert pēc `slug`, lai atkārtots seed
+ * nepārrakstītu admina veiktās izmaiņas nosaukumos/krāsās — tikai
+ * pievieno trūkstošās.
+ */
+async function seedCommunityCategories() {
+  let created = 0;
+  for (const c of DEFAULT_CATEGORIES) {
+    const existing = await prisma.communityCategory.findUnique({ where: { slug: c.slug } });
+    if (existing) continue;
+    await prisma.communityCategory.create({
+      data: {
+        slug: c.slug,
+        label: c.label,
+        emoji: c.emoji,
+        color: c.color,
+        order: c.order,
+        adminOnly: c.adminOnly,
+      },
+    });
+    created++;
+  }
+  console.log(
+    created > 0
+      ? `✓ Kopienas kategorijas: pievienotas ${created}`
+      : "✓ Kopienas kategorijas jau eksistē"
+  );
+}
+
 async function main() {
   const onlyPlan = planFilter();
   console.log(
     onlyPlan ? `🌱 Seeding kursu dati — TIKAI ${onlyPlan}...` : "🌱 Seeding kursu dati — visi plani..."
   );
+
+  await seedCommunityCategories();
 
   const courses = [
     // ── PAMATI plāns ─────────────────────��────────────────

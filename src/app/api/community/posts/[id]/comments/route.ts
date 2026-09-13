@@ -1,40 +1,100 @@
-import { auth } from "@clerk/nextjs/server";
 import { NextRequest, NextResponse } from "next/server";
+import { z } from "zod";
 import { prisma } from "@/lib/prisma";
+import {
+  requireCommunityWriter,
+  communityApiError,
+  CommunityError,
+} from "@/lib/community";
+import { notifyCommentReply, notifyPostComment } from "@/lib/community-data";
 
+const schema = z.object({
+  body: z.string().trim().min(1, "Teksts ir tukšs").max(2000),
+  /** Atbilde uz citu komentāru */
+  parentId: z.string().cuid().nullish(),
+});
+
+/** POST — komentē ierakstu vai atbild uz komentāru. */
 export async function POST(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
-  const { userId } = await auth();
-  if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  try {
+    const viewer = await requireCommunityWriter();
+    const { id } = await params;
 
-  const user = await prisma.user.findUnique({ where: { clerkId: userId } });
-  if (!user) return NextResponse.json({ error: "User not found" }, { status: 404 });
+    const parsed = schema.safeParse(await req.json());
+    if (!parsed.success) {
+      return NextResponse.json(
+        { error: parsed.error.issues[0]?.message ?? "Nederīgi dati" },
+        { status: 400 }
+      );
+    }
+    const { body, parentId } = parsed.data;
 
-  const { body } = await req.json();
-  if (!body?.trim()) return NextResponse.json({ error: "Teksts ir tukšs" }, { status: 400 });
+    const post = await prisma.post.findUnique({
+      where: { id },
+      select: { id: true, authorId: true },
+    });
+    if (!post) return NextResponse.json({ error: "Nav atrasts" }, { status: 404 });
 
-  const { id } = await params;
+    // Atbilde: vecākam jābūt tajā pašā ierakstā; dziļums — viens līmenis
+    let parent: { id: string; authorId: string; parentId: string | null } | null = null;
+    if (parentId) {
+      parent = await prisma.postComment.findUnique({
+        where: { id: parentId },
+        select: { id: true, authorId: true, parentId: true, postId: true },
+      });
+      if (!parent || (parent as any).postId !== id) {
+        throw new CommunityError("Nederīgs komentārs, uz ko atbildēt", 400);
+      }
+    }
 
-  const comment = await prisma.postComment.create({
-    data: { postId: id, authorId: user.id, body: body.trim() },
-    include: { author: { select: { id: true, name: true, avatarUrl: true } } },
-  });
+    const comment = await prisma.postComment.create({
+      data: {
+        postId: id,
+        authorId: viewer.id,
+        body,
+        // Atbilde uz atbildi tiek pielīdzināta pirmā līmeņa atbildei
+        parentId: parent ? parent.parentId ?? parent.id : null,
+      },
+      include: {
+        author: { select: { id: true, name: true, avatarUrl: true, role: true } },
+      },
+    });
 
-  return NextResponse.json(comment, { status: 201 });
-}
+    // Paziņojumi
+    if (parent) {
+      await notifyCommentReply({
+        postId: id,
+        parentAuthorId: parent.authorId,
+        commentId: comment.id,
+        actorId: viewer.id,
+      });
+    } else {
+      await notifyPostComment({
+        postId: id,
+        postAuthorId: post.authorId,
+        commentId: comment.id,
+        actorId: viewer.id,
+      });
+    }
 
-export async function DELETE(req: NextRequest, _ctx: { params: Promise<{ id: string }> }) {
-  const { userId } = await auth();
-  if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-
-  const user = await prisma.user.findUnique({ where: { clerkId: userId } });
-  if (!user) return NextResponse.json({ error: "User not found" }, { status: 404 });
-
-  const { commentId } = await req.json();
-  const comment = await prisma.postComment.findUnique({ where: { id: commentId } });
-  if (!comment || comment.authorId !== user.id) {
-    return NextResponse.json({ error: "Aizliegts" }, { status: 403 });
+    return NextResponse.json(
+      {
+        id: comment.id,
+        body: comment.body,
+        parentId: comment.parentId,
+        createdAt: comment.createdAt,
+        editedAt: comment.editedAt,
+        author: {
+          id: comment.author.id,
+          name: comment.author.name,
+          avatarUrl: comment.author.avatarUrl,
+          isStaff:
+            comment.author.role === "OWNER" || comment.author.role === "ADMIN",
+        },
+      },
+      { status: 201 }
+    );
+  } catch (err) {
+    return communityApiError(err);
   }
-
-  await prisma.postComment.delete({ where: { id: commentId } });
-  return NextResponse.json({ success: true });
 }

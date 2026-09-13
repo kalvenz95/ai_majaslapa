@@ -11,6 +11,7 @@ import {
   Repeat,
   BookOpen,
   StickyNote,
+  MessagesSquare,
   Settings,
   ShieldCheck,
   Menu,
@@ -32,6 +33,7 @@ const NAV: NavItem[] = [
   { href: "/admin/payments", label: "Maksājumi", icon: CreditCard, roles: ["OWNER", "ADMIN", "SUPPORT"] },
   { href: "/admin/subscriptions", label: "Abonementi", icon: Repeat, roles: ["OWNER", "ADMIN", "SUPPORT"] },
   { href: "/admin/courses", label: "Kursi", icon: BookOpen, roles: ["OWNER", "ADMIN", "SUPPORT"] },
+  { href: "/admin/community", label: "Kopiena", icon: MessagesSquare, roles: ["OWNER", "ADMIN"] },
   { href: "/admin/notes", label: "Piezīmes", icon: StickyNote, roles: ["OWNER", "ADMIN", "SUPPORT"] },
   { href: "/admin/settings", label: "Iestatījumi", icon: Settings, roles: ["OWNER"] },
 ];

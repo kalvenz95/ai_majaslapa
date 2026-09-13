@@ -1,50 +1,72 @@
-import { auth, currentUser } from "@clerk/nextjs/server";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
+import { getCommunityAccess } from "@/lib/community";
+import { getCategories, postInclude, serializePost } from "@/lib/community-data";
+import { CommunityLocked } from "@/components/community/CommunityLocked";
 import PostClient from "./PostClient";
+import type { CommunityMe } from "@/components/community/types";
 
-export default async function PostPage({ params }: { params: { id: string } }) {
-  const { userId } = await auth();
-  const clerkUser = await currentUser();
+export const dynamic = "force-dynamic";
 
-  const post = await prisma.post.findUnique({
-    where: { id: params.id },
-    include: {
-      author: { select: { id: true, name: true, avatarUrl: true } },
-      _count: { select: { likes: true, comments: true } },
-      comments: {
-        orderBy: { createdAt: "asc" },
-        include: { author: { select: { id: true, name: true, avatarUrl: true } } },
+export default async function PostPage({ params }: { params: Promise<{ id: string }> }) {
+  // ── Vārti ──────────────────────────────────────────────────
+  // Tiešs ieraksta URL bez apmaksas rāda aizslēgto stāvokli;
+  // ieraksts netiek ielādēts vispār.
+  const access = await getCommunityAccess();
+  if (!access.ok) return <CommunityLocked reason={access.reason} />;
+
+  const viewer = access.viewer;
+  const { id } = await params;
+
+  const post = await prisma.post
+    .findUnique({
+      where: { id },
+      include: {
+        ...postInclude(viewer.id),
+        comments: {
+          orderBy: { createdAt: "asc" },
+          include: {
+            author: { select: { id: true, name: true, avatarUrl: true, role: true } },
+          },
+        },
       },
-    },
-  });
+    })
+    .catch(() => null);
 
   if (!post) notFound();
 
-  const user = userId ? await prisma.user.findUnique({ where: { clerkId: userId } }) : null;
+  const categories = await getCategories();
 
-  let liked = false;
-  if (user) {
-    const like = await prisma.postLike.findUnique({
-      where: { postId_userId: { postId: post.id, userId: user.id } },
-    });
-    liked = !!like;
-  }
+  const me: CommunityMe = {
+    id: viewer.id,
+    name: viewer.name ?? "Dalībnieks",
+    avatarUrl: viewer.avatarUrl,
+    isStaff: viewer.isStaff,
+    canPost: viewer.canPost,
+    restrictedReason: viewer.restrictedReason,
+    plan: viewer.plan,
+  };
 
-  const currentUserData = user
-    ? {
-        id: user.id,
-        name: clerkUser?.firstName
-          ? `${clerkUser.firstName} ${clerkUser.lastName ?? ""}`.trim()
-          : user.name ?? "Lietotājs",
-        avatarUrl: clerkUser?.imageUrl ?? user.avatarUrl,
-      }
-    : null;
+  const comments = post.comments.map((c) => ({
+    id: c.id,
+    body: c.body,
+    parentId: c.parentId,
+    createdAt: c.createdAt,
+    editedAt: c.editedAt,
+    author: {
+      id: c.author.id,
+      name: c.author.name,
+      avatarUrl: c.author.avatarUrl,
+      isStaff: c.author.role === "OWNER" || c.author.role === "ADMIN",
+    },
+  }));
 
   return (
     <PostClient
-      post={{ ...post, liked }}
-      currentUser={currentUserData}
+      post={JSON.parse(JSON.stringify(serializePost(post)))}
+      initialComments={JSON.parse(JSON.stringify(comments))}
+      categories={categories}
+      me={me}
     />
   );
 }

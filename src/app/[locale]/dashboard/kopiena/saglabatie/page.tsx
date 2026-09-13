@@ -5,28 +5,28 @@ import { CommunityLocked } from "@/components/community/CommunityLocked";
 import { CommunityFeed } from "@/components/community/CommunityFeed";
 import type { CommunityMe } from "@/components/community/types";
 
-// Piekļuve atkarīga no lietotāja — nekad nekešo lapu
 export const dynamic = "force-dynamic";
 
 const PAGE_SIZE = 20;
 
-export default async function KopienasPage() {
-  // ── Vārti ──────────────────────────────────────────────────
-  // Bez apmaksātas piekļuves NEVIENS ieraksts netiek ielādēts.
+/** Saglabātie ieraksti — tikai paša lietotāja grāmatzīmes. */
+export default async function SaglabatiePage() {
   const access = await getCommunityAccess();
   if (!access.ok) return <CommunityLocked reason={access.reason} />;
 
   const viewer = access.viewer;
+  const where = { saves: { some: { userId: viewer.id } } };
 
   const [posts, total, categories] = await Promise.all([
     prisma.post
       .findMany({
-        orderBy: [{ pinned: "desc" }, { createdAt: "desc" }],
+        where,
+        orderBy: { createdAt: "desc" },
         take: PAGE_SIZE,
         include: postInclude(viewer.id),
       })
       .catch(() => []),
-    prisma.post.count().catch(() => 0),
+    prisma.post.count({ where }).catch(() => 0),
     getCategories(),
   ]);
 
@@ -47,6 +47,7 @@ export default async function KopienasPage() {
       initialPages={Math.max(1, Math.ceil(total / PAGE_SIZE))}
       categories={categories}
       me={me}
+      savedOnly
     />
   );
 }

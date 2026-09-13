@@ -34,6 +34,8 @@ export const PERMISSIONS = {
   "payments.edit": [Role.OWNER, Role.ADMIN],
   // Kursu pārvaldība
   "courses.edit": [Role.OWNER, Role.ADMIN],
+  // Kopienas moderācija — kategorijas, piespraušana, dalībnieku tiesības
+  "community.moderate": [Role.OWNER, Role.ADMIN],
   // Tikai īpašnieks
   "settings.manage": [Role.OWNER],
   "admins.manage": [Role.OWNER],

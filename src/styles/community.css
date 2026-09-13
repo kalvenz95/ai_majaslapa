@@ -1,0 +1,473 @@
+/* ══════════════════════════════════════════════════════════════
+   CHADEMY COMMUNITY
+   Privātā dalībnieku zona. Balstās uz esošajiem dizaina tokeniem
+   no globals.css (--accent, --bg-1, --line, --ink*) — nekas jauns
+   netiek izdomāts. Prefikss `.c-`, lai nekonfliktētu ar `.d-`
+   (dashboard) un `.lp-` (landing page).
+
+   Apzināti lietoti BĀZES tokeni (--bg-1, --line), nevis `--d-card`
+   / `--d-border` aizstājvārdi: tie ir deklarēti tikai `:root` kā
+   `var(--bg-1)`, tāpēc sarēķinās gaišajā tēmā un manto baltu vērtību
+   arī `[data-theme="dark"]` iekšienē, kur pārrakstīti tiek tikai
+   bāzes tokeni.
+   Importēts tikai kopienas maršrutā, tāpēc pārējo lapu nesatur.
+   ══════════════════════════════════════════════════════════════ */
+
+.c-scope {
+  /* Slāņošana: pamats → pacelts → peldošs */
+  --c-surface: var(--bg-1);
+  --c-raised: color-mix(in oklab, var(--bg-1) 92%, var(--ink) 8%);
+  --c-radius: 18px;
+  --c-radius-sm: 12px;
+  /* Vienota telpas skala — nekādi nejauši soļi */
+  --c-gap-1: 8px;
+  --c-gap-2: 14px;
+  --c-gap-3: 22px;
+  --c-gap-4: 34px;
+  /* Atsperes līkne visām kustībām */
+  --c-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --c-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.28),
+    0 8px 22px -10px rgba(0, 0, 0, 0.45),
+    0 20px 46px -22px color-mix(in oklab, var(--accent) 26%, transparent);
+  --c-shadow-float:
+    0 2px 5px rgba(0, 0, 0, 0.32),
+    0 16px 36px -12px rgba(0, 0, 0, 0.5),
+    0 32px 68px -28px color-mix(in oklab, var(--accent) 34%, transparent);
+}
+
+/* ── Karte ─────────────────────────────────────────────────── */
+.c-card {
+  position: relative;
+  background: var(--c-surface);
+  border: 1px solid var(--line);
+  border-radius: var(--c-radius);
+  box-shadow: var(--c-shadow);
+  transition:
+    transform 0.28s var(--c-ease),
+    box-shadow 0.28s var(--c-ease),
+    border-color 0.2s var(--c-ease);
+}
+.c-card--interactive:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--c-shadow-float);
+  border-color: color-mix(in oklab, var(--accent) 26%, var(--line));
+}
+/* Piespraustais / paziņojums — smalka akcenta mala augšā */
+.c-card--pinned {
+  border-color: color-mix(in oklab, #ffb86b 32%, var(--line));
+}
+.c-card--pinned::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  border-radius: var(--c-radius) var(--c-radius) 0 0;
+  background: linear-gradient(90deg, color-mix(in oklab, #ffb86b 80%, transparent), transparent 70%);
+}
+
+/* ── Lapas galvene ─────────────────────────────────────────── */
+.c-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: var(--c-gap-3);
+}
+.c-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.c-title-page {
+  font-size: 25px;
+  margin-bottom: 5px;
+}
+
+/* ── Teksts ────────────────────────────────────────────────── */
+.c-title {
+  font-family: "Inter Tight", "Inter", sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  line-height: 1.15;
+  margin: 0;
+}
+.c-body {
+  color: var(--ink-2);
+  line-height: 1.7;
+  font-size: 14px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  margin: 0;
+}
+.c-meta {
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+/* ── Kategoriju un filtru čipi ─────────────────────────────── */
+.c-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.c-filters-row {
+  display: flex;
+  gap: var(--c-gap-1);
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+}
+.c-filters-row::-webkit-scrollbar {
+  display: none;
+}
+
+.c-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 650;
+  color: var(--ink-3);
+  background: transparent;
+  border: 1px solid var(--line);
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition:
+    color 0.18s var(--c-ease),
+    background 0.18s var(--c-ease),
+    border-color 0.18s var(--c-ease),
+    transform 0.18s var(--c-ease);
+}
+.c-filter:hover {
+  color: var(--ink);
+  background: var(--c-raised);
+  transform: translateY(-1px);
+}
+.c-filter:active {
+  transform: translateY(0) scale(0.97);
+}
+.c-filter:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--accent) 70%, transparent);
+  outline-offset: 2px;
+}
+.c-filter[aria-pressed="true"] {
+  color: var(--accent);
+  background: color-mix(in oklab, var(--accent) 13%, transparent);
+  border-color: color-mix(in oklab, var(--accent) 38%, transparent);
+}
+
+/* ── Darbību pogas (patīk, komentēt, saglabāt) ─────────────── */
+.c-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 11px;
+  border-radius: var(--c-radius-sm);
+  font-size: 12.5px;
+  font-weight: 650;
+  color: var(--ink-3);
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    color 0.18s var(--c-ease),
+    background 0.18s var(--c-ease),
+    transform 0.18s var(--c-ease);
+}
+.c-action:hover {
+  color: var(--ink);
+  background: var(--c-raised);
+}
+.c-action:active {
+  transform: scale(0.94);
+}
+.c-action:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--accent) 70%, transparent);
+  outline-offset: 2px;
+}
+.c-action--on {
+  color: var(--accent);
+}
+.c-action--like-on {
+  color: #f0648c;
+}
+/* Sirds "pop" pēc nospiešanas */
+.c-action--like-on svg {
+  animation: c-pop 0.34s var(--c-ease);
+}
+@keyframes c-pop {
+  0% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.32);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ── Pogas ─────────────────────────────────────────────────── */
+.c-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 10px 18px;
+  border-radius: var(--c-radius-sm);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: inherit;
+  transition:
+    transform 0.2s var(--c-ease),
+    box-shadow 0.2s var(--c-ease),
+    background 0.2s var(--c-ease),
+    opacity 0.2s var(--c-ease);
+}
+.c-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.c-btn:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--accent) 70%, transparent);
+  outline-offset: 2px;
+}
+.c-btn-primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+  box-shadow: 0 6px 18px -8px color-mix(in oklab, var(--accent) 65%, transparent);
+}
+.c-btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px -10px color-mix(in oklab, var(--accent) 75%, transparent);
+}
+.c-btn-primary:active:not(:disabled) {
+  transform: translateY(0) scale(0.985);
+}
+.c-btn-ghost {
+  background: transparent;
+  color: var(--ink-2);
+  border-color: var(--line);
+}
+.c-btn-ghost:hover:not(:disabled) {
+  background: var(--c-raised);
+  color: var(--ink);
+  transform: translateY(-1px);
+}
+.c-btn-ghost:active:not(:disabled) {
+  transform: translateY(0) scale(0.985);
+}
+.c-btn-sm {
+  padding: 7px 12px;
+  font-size: 12px;
+}
+
+/* ── Ievadlauki ────────────────────────────────────────────── */
+.c-input {
+  width: 100%;
+  background: var(--c-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--c-radius-sm);
+  padding: 11px 14px;
+  color: var(--ink);
+  font-size: 14px;
+  font-family: inherit;
+  line-height: 1.6;
+  outline: none;
+  transition:
+    border-color 0.2s var(--c-ease),
+    box-shadow 0.2s var(--c-ease);
+}
+.c-input::placeholder {
+  color: var(--ink-4);
+}
+.c-input:focus {
+  border-color: color-mix(in oklab, var(--accent) 55%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 16%, transparent);
+}
+textarea.c-input {
+  resize: vertical;
+  min-height: 96px;
+}
+select.c-input {
+  cursor: pointer;
+  appearance: none;
+  padding-right: 34px;
+}
+
+/* ── Avatars ───────────────────────────────────────────────── */
+.c-avatar {
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid var(--line);
+  background: var(--c-raised);
+}
+.c-avatar-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--accent-ink);
+  background: linear-gradient(135deg, var(--accent), color-mix(in oklab, var(--accent) 55%, #00bfa5));
+}
+
+/* ── Multivide ─────────────────────────────────────────────── */
+.c-media-grid {
+  display: grid;
+  gap: 6px;
+}
+.c-media-grid[data-count="1"] {
+  grid-template-columns: 1fr;
+}
+.c-media-grid[data-count="2"],
+.c-media-grid[data-count="3"],
+.c-media-grid[data-count="4"] {
+  grid-template-columns: 1fr 1fr;
+}
+.c-media-item {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--c-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--c-radius-sm);
+}
+.c-media-item img,
+.c-media-item video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* Gradients, lai attēli nesaplūst ar tumšo fonu */
+.c-media-item--image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.42), transparent 55%);
+  pointer-events: none;
+}
+
+.c-link-preview {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--c-radius-sm);
+  background: var(--c-raised);
+  text-decoration: none;
+  transition:
+    border-color 0.2s var(--c-ease),
+    transform 0.2s var(--c-ease);
+}
+.c-link-preview:hover {
+  border-color: color-mix(in oklab, var(--accent) 40%, transparent);
+  transform: translateY(-1px);
+}
+.c-link-preview:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--accent) 70%, transparent);
+  outline-offset: 2px;
+}
+
+/* ── Ienākšanas animācija ──────────────────────────────────── */
+@keyframes c-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.c-rise {
+  animation: c-rise 0.42s var(--c-ease) both;
+}
+
+/* ── Aizslēgtais stāvoklis ─────────────────────────────────── */
+.c-lock-glow {
+  position: absolute;
+  inset: -40% 10% auto 10%;
+  height: 320px;
+  pointer-events: none;
+  background:
+    radial-gradient(50% 50% at 30% 40%, color-mix(in oklab, var(--accent) 24%, transparent), transparent 70%),
+    radial-gradient(45% 45% at 72% 30%, color-mix(in oklab, #00bfa5 16%, transparent), transparent 70%);
+  filter: blur(18px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .c-rise,
+  .c-action--like-on svg {
+    animation: none;
+  }
+  .c-card,
+  .c-btn,
+  .c-filter,
+  .c-action,
+  .c-link-preview {
+    transition: none;
+  }
+}
+
+/* ── Mobilais ──────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .c-scope {
+    --c-gap-3: 16px;
+    --c-gap-4: 24px;
+  }
+  .c-card {
+    border-radius: 14px;
+  }
+  .c-filters-row {
+    margin-inline: -16px;
+    padding-inline: 16px;
+  }
+  /* Galvene sakrīt vienā kolonnā — citādi virsraksts aizlien zem ikonām */
+  .c-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .c-header-actions {
+    justify-content: flex-end;
+  }
+  .c-title-page {
+    font-size: 21px;
+  }
+  /* Pielikumu režģis mobilajā — viena kolonna, lai attēli nav sīki */
+  .c-media-grid[data-count="2"],
+  .c-media-grid[data-count="3"],
+  .c-media-grid[data-count="4"] {
+    grid-template-columns: 1fr;
+  }
+  .c-media-grid .c-media-item {
+    grid-column: auto !important;
+  }
+}

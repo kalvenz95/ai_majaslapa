@@ -1,69 +1,141 @@
-import { auth } from "@clerk/nextjs/server";
 import { NextRequest, NextResponse } from "next/server";
+import { z } from "zod";
 import { prisma } from "@/lib/prisma";
+import { MediaType, Prisma } from "@prisma/client";
+import {
+  requireCommunityAccess,
+  requireCommunityWriter,
+  communityApiError,
+} from "@/lib/community";
+import {
+  getCategories,
+  notifyAnnouncement,
+  postInclude,
+  resolvePostCategory,
+  serializePost,
+} from "@/lib/community-data";
+import { ANNOUNCEMENT_CATEGORY_SLUG } from "@/lib/community-categories";
 
+const PAGE_SIZE = 20;
+
+/**
+ * GET — kopienas plūsma.
+ * Aizsargāts: bez apmaksātas piekļuves NEATGRIEŽ nevienu ierakstu.
+ */
 export async function GET(req: NextRequest) {
-  const { searchParams } = new URL(req.url);
-  const category = searchParams.get("category");
-  const page = parseInt(searchParams.get("page") ?? "1");
-  const limit = 20;
+  try {
+    const viewer = await requireCommunityAccess();
 
-  const where = category && category !== "Visi" ? { category } : {};
+    const { searchParams } = new URL(req.url);
+    const category = searchParams.get("category");
+    const sort = searchParams.get("sort") === "popularakie" ? "popularakie" : "jaunakie";
+    const savedOnly = searchParams.get("saved") === "1";
+    const page = Math.max(1, parseInt(searchParams.get("page") ?? "1", 10) || 1);
 
-  const [posts, total] = await Promise.all([
-    prisma.post.findMany({
-      where,
-      orderBy: [{ pinned: "desc" }, { createdAt: "desc" }],
-      skip: (page - 1) * limit,
-      take: limit,
-      include: {
-        author: { select: { id: true, name: true, avatarUrl: true } },
-        _count: { select: { likes: true, comments: true } },
-      },
-    }),
-    prisma.post.count({ where }),
-  ]);
+    const where: Prisma.PostWhereInput = {};
+    if (category && category !== "visi") where.category = category;
+    if (savedOnly) where.saves = { some: { userId: viewer.id } };
 
-  // Pievienojam current user likes
-  const { userId } = await auth();
-  let likedPostIds: string[] = [];
-  if (userId) {
-    const user = await prisma.user.findUnique({ where: { clerkId: userId } });
-    if (user) {
-      const likes = await prisma.postLike.findMany({
-        where: { userId: user.id, postId: { in: posts.map((p) => p.id) } },
-        select: { postId: true },
-      });
-      likedPostIds = likes.map((l) => l.postId);
-    }
+    // Populārākie = pēc patikšanām, tad komentāriem; piespraustie vienmēr augšā
+    const orderBy: Prisma.PostOrderByWithRelationInput[] =
+      sort === "popularakie"
+        ? [
+            { pinned: "desc" },
+            { likes: { _count: "desc" } },
+            { comments: { _count: "desc" } },
+            { createdAt: "desc" },
+          ]
+        : [{ pinned: "desc" }, { createdAt: "desc" }];
+
+    const [posts, total, categories] = await Promise.all([
+      prisma.post.findMany({
+        where,
+        orderBy,
+        skip: (page - 1) * PAGE_SIZE,
+        take: PAGE_SIZE,
+        include: postInclude(viewer.id),
+      }),
+      prisma.post.count({ where }),
+      getCategories(),
+    ]);
+
+    return NextResponse.json({
+      posts: posts.map(serializePost),
+      total,
+      page,
+      pages: Math.max(1, Math.ceil(total / PAGE_SIZE)),
+      categories,
+    });
+  } catch (err) {
+    return communityApiError(err);
   }
-
-  return NextResponse.json({
-    posts: posts.map((p) => ({ ...p, liked: likedPostIds.includes(p.id) })),
-    total,
-    pages: Math.ceil(total / limit),
-  });
 }
 
+const mediaSchema = z.object({
+  type: z.enum(["IMAGE", "VIDEO", "LINK"]),
+  url: z.string().url("Nederīga saite").max(2048),
+  thumbnailUrl: z.string().url().max(2048).nullish(),
+  title: z.string().max(200).nullish(),
+  description: z.string().max(500).nullish(),
+});
+
+const createSchema = z.object({
+  title: z.string().trim().min(3, "Virsraksts par īsu").max(140),
+  body: z.string().trim().min(1, "Teksts ir tukšs").max(5000),
+  category: z.string().trim().max(60).optional(),
+  media: z.array(mediaSchema).max(6, "Maksimums 6 pielikumi").optional(),
+});
+
+/** POST — izveido ierakstu. Prasa apmaksu UN neierobežotu rakstīšanu. */
 export async function POST(req: NextRequest) {
-  const { userId } = await auth();
-  if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  try {
+    const viewer = await requireCommunityWriter();
 
-  const user = await prisma.user.findUnique({ where: { clerkId: userId } });
-  if (!user) return NextResponse.json({ error: "User not found" }, { status: 404 });
+    const parsed = createSchema.safeParse(await req.json());
+    if (!parsed.success) {
+      return NextResponse.json(
+        { error: parsed.error.issues[0]?.message ?? "Nederīgi dati" },
+        { status: 400 }
+      );
+    }
+    const { title, body, media } = parsed.data;
 
-  const { title, body, category } = await req.json();
-  if (!title?.trim() || !body?.trim()) {
-    return NextResponse.json({ error: "Virsraksts un teksts ir obligāti" }, { status: 400 });
+    // Validē kategoriju — bloķē admin kategoriju parastam dalībniekam
+    const category = await resolvePostCategory(viewer, parsed.data.category);
+    const isAnnouncement =
+      category.slug === ANNOUNCEMENT_CATEGORY_SLUG && viewer.isStaff;
+
+    const post = await prisma.post.create({
+      data: {
+        authorId: viewer.id,
+        title,
+        body,
+        category: category.slug,
+        isAnnouncement,
+        // Paziņojumi automātiski nonāk plūsmas augšā
+        pinned: isAnnouncement,
+        media: media?.length
+          ? {
+              create: media.map((m, i) => ({
+                type: m.type as MediaType,
+                url: m.url,
+                thumbnailUrl: m.thumbnailUrl ?? null,
+                title: m.title ?? null,
+                description: m.description ?? null,
+                order: i,
+              })),
+            }
+          : undefined,
+      },
+      include: postInclude(viewer.id),
+    });
+
+    if (isAnnouncement) {
+      await notifyAnnouncement({ postId: post.id, actorId: viewer.id });
+    }
+
+    return NextResponse.json(serializePost(post), { status: 201 });
+  } catch (err) {
+    return communityApiError(err);
   }
-
-  const post = await prisma.post.create({
-    data: { authorId: user.id, title: title.trim(), body: body.trim(), category: category ?? "Vispārīgi" },
-    include: {
-      author: { select: { id: true, name: true, avatarUrl: true } },
-      _count: { select: { likes: true, comments: true } },
-    },
-  });
-
-  return NextResponse.json({ ...post, liked: false }, { status: 201 });
 }
