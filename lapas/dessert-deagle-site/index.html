@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dessert Eagle — Premium Auto Detailing Riga</title>
+  <meta name="description" content="Dessert Eagle offers premium auto detailing, paint correction, ceramic coating and interior cleaning in Riga, Latvia. Industrial precision. Uncompromising results.">
+  <meta name="keywords" content="auto detailing, car detailing, ceramic coating, paint correction, interior cleaning, Riga, Latvia, Dessert Eagle">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'de-black':  '#0B0B0B',
+            'de-dark':   '#1A1A1A',
+            'de-steel':  '#2D2D2D',
+            'de-metal':  '#717171',
+            'de-gold':   '#C89B5A',
+            'de-sand':   '#E6D3B1',
+          },
+          fontFamily: {
+            display: ['"Bebas Neue"', 'sans-serif'],
+            body:    ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: #0B0B0B;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #0B0B0B; }
+    ::-webkit-scrollbar-thumb { background: #C89B5A; border-radius: 2px; }
+
+    /* Grain overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9000;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* Gold gradient text */
+    .gold-text {
+      background: linear-gradient(135deg, #C89B5A 0%, #E6D3B1 55%, #C89B5A 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Buttons */
+    .btn-gold {
+      background: linear-gradient(135deg, #C89B5A 0%, #E6D3B1 50%, #C89B5A 100%);
+      background-size: 200% auto;
+      color: #0B0B0B;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      transition: background-position 0.35s ease, transform 0.2s cubic-bezier(.34,1.56,.64,1), box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .btn-gold:hover {
+      background-position: right center;
+      transform: translateY(-2px);
+      box-shadow: 0 0 40px rgba(200,155,90,0.5), 0 8px 24px rgba(0,0,0,0.5);
+    }
+    .btn-gold:active { transform: translateY(0); }
+    .btn-gold:focus-visible { outline: 2px solid #C89B5A; outline-offset: 3px; }
+
+    .btn-outline {
+      border: 1px solid rgba(200,155,90,0.6);
+      color: #C89B5A;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      transition: background 0.3s ease, border-color 0.3s ease, transform 0.2s cubic-bezier(.34,1.56,.64,1), box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .btn-outline:hover {
+      background: rgba(200,155,90,0.08);
+      border-color: #C89B5A;
+      transform: translateY(-2px);
+      box-shadow: 0 0 25px rgba(200,155,90,0.25);
+    }
+    .btn-outline:focus-visible { outline: 2px solid #C89B5A; outline-offset: 3px; }
+
+    /* ─── NAV ─────────────────────────────────────── */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 8000;
+      padding: 22px 0;
+      transition: background 0.4s ease, padding 0.4s ease, border-bottom 0.4s ease;
+    }
+    #nav.scrolled {
+      background: rgba(11,11,11,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(200,155,90,0.12);
+    }
+
+    /* ─── TICKER ──────────────────────────────────── */
+    .ticker-wrap {
+      overflow: hidden;
+      background: #C89B5A;
+      padding: 10px 0;
+    }
+    .ticker-inner {
+      display: flex;
+      white-space: nowrap;
+      animation: ticker 28s linear infinite;
+    }
+    .ticker-inner span {
+      display: inline-block;
+      padding: 0 40px;
+      color: #0B0B0B;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    @keyframes ticker {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ─── HERO ────────────────────────────────────── */
+    .hero-bg {
+      position: relative;
+      height: 100vh;
+      min-height: 700px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .hero-bg-img {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop');
+      background-size: cover;
+      background-position: center 30%;
+      transform: scale(1.05);
+      animation: hero-zoom 14s ease-out forwards;
+    }
+    @keyframes hero-zoom {
+      from { transform: scale(1.08); }
+      to   { transform: scale(1.0); }
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(11,11,11,0.88) 40%, rgba(11,11,11,0.45) 80%, rgba(11,11,11,0.15) 100%);
+    }
+    .hero-overlay2 {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(11,11,11,0.7) 0%, transparent 50%);
+    }
+
+    /* ─── REVEAL ANIMATIONS ───────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s cubic-bezier(.22,1,.36,1), transform 0.7s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.8s cubic-bezier(.22,1,.36,1), transform 0.8s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.8s cubic-bezier(.22,1,.36,1), transform 0.8s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .img-reveal {
+      clip-path: inset(100% 0 0 0);
+      transition: clip-path 1s cubic-bezier(.22,1,.36,1);
+    }
+    .img-reveal.visible {
+      clip-path: inset(0% 0 0 0);
+    }
+
+    /* ─── SERVICE CARDS ───────────────────────────── */
+    .service-card {
+      background: #1A1A1A;
+      border: 1px solid rgba(200,155,90,0.15);
+      transition: border-color 0.3s ease, transform 0.3s cubic-bezier(.34,1.56,.64,1), box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #C89B5A, transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .service-card:hover {
+      border-color: rgba(200,155,90,0.45);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(200,155,90,0.08);
+    }
+    .service-card:hover::before { opacity: 1; }
+
+    .service-price {
+      font-family: '"Bebas Neue"', sans-serif;
+      font-size: 2.2rem;
+      line-height: 1;
+      background: linear-gradient(135deg, #C89B5A, #E6D3B1, #C89B5A);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Check mark */
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: #a0a0a0;
+      line-height: 1.5;
+    }
+    .check-item::before {
+      content: '';
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+      margin-top: 2px;
+      background: rgba(200,155,90,0.15);
+      border: 1px solid rgba(200,155,90,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6l3 3 5-5' stroke='%23C89B5A' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-size: 10px 10px;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    /* ─── PRICING ──────────────────────────────────── */
+    .pkg-card {
+      background: #1A1A1A;
+      border: 1px solid rgba(200,155,90,0.12);
+      transition: border-color 0.3s ease, transform 0.3s cubic-bezier(.34,1.56,.64,1), box-shadow 0.3s ease;
+      position: relative;
+    }
+    .pkg-card:hover {
+      border-color: rgba(200,155,90,0.35);
+      transform: translateY(-4px);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+    }
+    .pkg-card.featured {
+      background: #1A1A1A;
+      border: 1px solid rgba(200,155,90,0.5);
+      box-shadow: 0 0 60px rgba(200,155,90,0.1);
+    }
+    .pkg-card.featured:hover {
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6), 0 0 60px rgba(200,155,90,0.2);
+    }
+
+    .pkg-price {
+      font-family: '"Bebas Neue"', sans-serif;
+      font-size: 3.5rem;
+      line-height: 1;
+      background: linear-gradient(135deg, #C89B5A 0%, #E6D3B1 55%, #C89B5A 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ─── STATS BAR ───────────────────────────────── */
+    .stat-item {
+      text-align: center;
+      padding: 0 32px;
+      border-right: 1px solid rgba(200,155,90,0.15);
+    }
+    .stat-item:last-child { border-right: none; }
+
+    /* ─── FULL-BLEED IMAGE SECTION ─────────────────── */
+    .img-break {
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ─── PROCESS STEPS ───────────────────────────── */
+    .process-step {
+      position: relative;
+      padding-left: 48px;
+    }
+    .step-num {
+      position: absolute;
+      left: 0; top: 0;
+      font-family: '"Bebas Neue"', sans-serif;
+      font-size: 1.1rem;
+      color: #C89B5A;
+      letter-spacing: 0.1em;
+    }
+    .step-line {
+      position: absolute;
+      left: 9px;
+      top: 26px;
+      bottom: -32px;
+      width: 1px;
+      background: linear-gradient(to bottom, rgba(200,155,90,0.4), transparent);
+    }
+
+    /* ─── VISUAL SHOWCASE ─────────────────────────── */
+    .showcase-img {
+      overflow: hidden;
+      position: relative;
+    }
+    .showcase-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s cubic-bezier(.22,1,.36,1);
+    }
+    .showcase-img:hover img { transform: scale(1.04); }
+    .showcase-img .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(11,11,11,0.5) 0%, transparent 60%);
+    }
+
+    /* ─── REVIEWS ─────────────────────────────────── */
+    .review-card {
+      background: #1A1A1A;
+      border: 1px solid rgba(200,155,90,0.12);
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+    .review-card:hover {
+      border-color: rgba(200,155,90,0.3);
+      transform: translateY(-3px);
+    }
+
+    /* ─── BOOKING FORM ────────────────────────────── */
+    .form-input {
+      background: #1A1A1A;
+      border: 1px solid rgba(200,155,90,0.2);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      outline: none;
+      width: 100%;
+      padding: 14px 16px;
+      font-size: 0.9rem;
+    }
+    .form-input::placeholder { color: #555; }
+    .form-input:focus {
+      border-color: rgba(200,155,90,0.6);
+      box-shadow: 0 0 0 3px rgba(200,155,90,0.08);
+    }
+    .form-input option { background: #1A1A1A; }
+
+    /* ─── HORIZONTAL RULE / GOLD LINE ─────────────── */
+    .gold-rule {
+      width: 48px;
+      height: 2px;
+      background: linear-gradient(90deg, #C89B5A, transparent);
+    }
+
+    /* ─── MOBILE MENU ─────────────────────────────── */
+    #mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(11,11,11,0.97);
+      z-index: 7000;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+    }
+    #mobile-menu.open { display: flex; }
+    #mobile-menu a {
+      font-family: '"Bebas Neue"', sans-serif;
+      font-size: 2.5rem;
+      letter-spacing: 0.05em;
+      color: #fff;
+      transition: color 0.2s ease;
+    }
+    #mobile-menu a:hover { color: #C89B5A; }
+
+    /* Bebas Neue via CSS font-family fallback for inline */
+    .bebas { font-family: 'Bebas Neue', sans-serif; }
+
+    /* ─── MOBILE RESPONSIVE FIXES ─────────────────── */
+    @media (max-width: 768px) {
+      /* Kill any horizontal scroll / cut-off edges */
+      html, body { overflow-x: hidden; }
+
+      /* Tighter section rhythm on small screens */
+      .py-28 { padding-top: 4.5rem !important; padding-bottom: 4.5rem !important; }
+      .py-24 { padding-top: 4rem !important; padding-bottom: 4rem !important; }
+
+      /* Hero stats bar — fit all three items without clipping */
+      .stat-item { padding: 0 10px; }
+      .stat-item .bebas { font-size: 1.5rem; }
+      .stat-item .text-xs {
+        font-size: 0.58rem;
+        letter-spacing: 0.04em;
+        line-height: 1.2;
+      }
+      /* Room above the pinned stats bar for hero buttons */
+      .hero-bg > .max-w-7xl { padding-bottom: 120px; }
+      .hero-bg .max-w-2xl h1 { font-size: 3.6rem; }
+
+      /* About floating badge — keep inside the viewport */
+      .about-badge { right: 0 !important; bottom: -16px !important; }
+
+      /* Visual showcase — stack the asymmetric grid into a clean column */
+      #showcase-grid {
+        display: flex !important;
+        flex-direction: column;
+        height: auto !important;
+      }
+      #showcase-grid > div { height: 210px !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     NAV
+════════════════════════════════════════════════ -->
+<nav id="nav">
+  <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+    <a href="#" class="bebas text-2xl tracking-widest gold-text">Dessert Eagle</a>
+
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#services" class="text-sm font-medium text-gray-400 hover:text-white transition-colors duration-200 tracking-wide uppercase" style="font-size:0.75rem;letter-spacing:0.1em">Services</a>
+      <a href="#process" class="text-sm font-medium text-gray-400 hover:text-white transition-colors duration-200 tracking-wide uppercase" style="font-size:0.75rem;letter-spacing:0.1em">Process</a>
+      <a href="#pricing" class="text-sm font-medium text-gray-400 hover:text-white transition-colors duration-200 tracking-wide uppercase" style="font-size:0.75rem;letter-spacing:0.1em">Pricing</a>
+      <a href="#contact" class="text-sm font-medium text-gray-400 hover:text-white transition-colors duration-200 tracking-wide uppercase" style="font-size:0.75rem;letter-spacing:0.1em">Contact</a>
+      <a href="#booking" class="btn-gold px-5 py-2.5 text-xs font-bold tracking-widest uppercase">Book Now</a>
+    </div>
+
+    <button id="burger" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Menu">
+      <span class="block w-6 h-0.5 bg-white transition-transform duration-300" id="b1"></span>
+      <span class="block w-6 h-0.5 bg-white transition-opacity duration-300" id="b2"></span>
+      <span class="block w-6 h-0.5 bg-white transition-transform duration-300" id="b3"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu">
+  <a href="#services" onclick="closeMobile()">Services</a>
+  <a href="#process" onclick="closeMobile()">Process</a>
+  <a href="#pricing" onclick="closeMobile()">Pricing</a>
+  <a href="#reviews" onclick="closeMobile()">Reviews</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+  <a href="#booking" onclick="closeMobile()" class="btn-gold px-8 py-3 text-sm">Book Now</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════ -->
+<section class="hero-bg" id="home">
+  <div class="hero-bg-img" data-replace="hero-car-photo"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-overlay2"></div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10 pt-24">
+    <div class="max-w-2xl">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="gold-rule"></div>
+        <span class="text-xs font-semibold tracking-widest uppercase text-de-gold">Premium Auto Detailing — Riga</span>
+      </div>
+
+      <h1 class="bebas text-7xl md:text-9xl leading-none tracking-wide mb-6">
+        Built<br>
+        for <span class="gold-text">Perfection.</span>
+      </h1>
+
+      <p class="text-gray-300 text-lg leading-relaxed mb-10 max-w-lg" style="font-weight:300">
+        Industrial precision. Uncompromising results. Every detail of your vehicle treated with the same obsession that built it.
+      </p>
+
+      <div class="flex flex-wrap gap-4">
+        <a href="#booking" class="btn-gold px-8 py-4 text-sm">Book a Session</a>
+        <a href="#services" class="btn-outline px-8 py-4 text-sm">Our Services</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats bar pinned to bottom -->
+  <div class="absolute bottom-0 left-0 right-0 bg-de-dark border-t border-de-steel/40 z-10">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex justify-around py-5">
+        <div class="stat-item">
+          <div class="bebas text-3xl gold-text">500+</div>
+          <div class="text-xs text-gray-500 uppercase tracking-widest mt-0.5">Cars Detailed</div>
+        </div>
+        <div class="stat-item">
+          <div class="bebas text-3xl gold-text">5.0 ★</div>
+          <div class="text-xs text-gray-500 uppercase tracking-widest mt-0.5">Average Rating</div>
+        </div>
+        <div class="stat-item">
+          <div class="bebas text-3xl gold-text">6+</div>
+          <div class="text-xs text-gray-500 uppercase tracking-widest mt-0.5">Years Experience</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     TICKER
+════════════════════════════════════════════════ -->
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <!-- Duplicated for seamless loop -->
+    <span>Interior Detailing</span><span>·</span>
+    <span>Exterior Wash</span><span>·</span>
+    <span>Paint Correction</span><span>·</span>
+    <span>Ceramic Coating</span><span>·</span>
+    <span>Engine Bay Cleaning</span><span>·</span>
+    <span>Full Detail Package</span><span>·</span>
+    <span>Dessert Eagle Riga</span><span>·</span>
+    <span>Interior Detailing</span><span>·</span>
+    <span>Exterior Wash</span><span>·</span>
+    <span>Paint Correction</span><span>·</span>
+    <span>Ceramic Coating</span><span>·</span>
+    <span>Engine Bay Cleaning</span><span>·</span>
+    <span>Full Detail Package</span><span>·</span>
+    <span>Dessert Eagle Riga</span><span>·</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     ABOUT
+════════════════════════════════════════════════ -->
+<section id="about" class="py-28 bg-de-black">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+
+      <div class="reveal-left">
+        <div class="relative">
+          <div class="showcase-img" style="height:520px">
+            <img src="https://images.pexels.com/photos/7748997/pexels-photo-7748997.jpeg?auto=compress&cs=tinysrgb&w=800&h=640&fit=crop" alt="Our studio" data-replace="studio-photo" class="img-reveal" style="height:520px">
+            <div class="overlay"></div>
+          </div>
+          <!-- Floating badge -->
+          <div class="about-badge absolute -bottom-5 -right-5 bg-de-dark border border-de-gold/30 px-6 py-4">
+            <div class="bebas text-4xl gold-text">6+</div>
+            <div class="text-xs text-gray-500 uppercase tracking-widest">Years in Business</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal-right">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="gold-rule"></div>
+          <span class="text-xs font-semibold tracking-widest uppercase text-de-gold">Who We Are</span>
+        </div>
+        <h2 class="bebas text-5xl md:text-6xl leading-none mb-6">
+          The Detail<br>
+          <span class="gold-text">Obsessives</span>
+        </h2>
+        <p class="text-gray-400 leading-relaxed mb-5" style="font-weight:300">
+          Dessert Eagle was built for drivers who see their vehicle as more than transportation. We operate out of a precision studio in Riga, where every service is treated like a craft — not a car wash.
+        </p>
+        <p class="text-gray-400 leading-relaxed mb-8" style="font-weight:300">
+          Our team combines industrial-grade equipment with the patience of a craftsman, delivering results that last years, not weeks.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <div class="bg-de-steel/40 border border-de-gold/15 px-5 py-3">
+            <div class="bebas text-xl text-white">BMW · Audi · Mercedes</div>
+            <div class="text-xs text-gray-500 mt-1">Premium marques preferred</div>
+          </div>
+          <div class="bg-de-steel/40 border border-de-gold/15 px-5 py-3">
+            <div class="bebas text-xl text-white">Riga, Latvia</div>
+            <div class="text-xs text-gray-500 mt-1">18 Auto Street</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     SERVICES
+════════════════════════════════════════════════ -->
+<section id="services" class="py-28" style="background:#111111">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <div class="flex items-center justify-center gap-3 mb-5">
+        <div class="gold-rule" style="transform:scaleX(-1)"></div>
+        <span class="text-xs font-semibold tracking-widest uppercase text-de-gold">What We Do</span>
+        <div class="gold-rule"></div>
+      </div>
+      <h2 class="bebas text-5xl md:text-7xl leading-none">Our <span class="gold-text">Services</span></h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+      <!-- Interior -->
+      <div class="service-card p-7 reveal">
+        <div class="flex items-start justify-between mb-4">
+          <div>
+            <div class="text-xs uppercase tracking-widest text-de-metal mb-2">01</div>
+            <h3 class="bebas text-2xl tracking-wide">Interior Detailing</h3>
+          </div>
+          <div class="service-price">€89</div>
+        </div>
+        <p class="text-gray-500 text-sm leading-relaxed mb-5">Deep clean of every interior surface — seats, carpets, dashboard, door panels, and headliner.</p>
+        <div class="space-y-2.5">
+          <div class="check-item">Vacuum &amp; steam clean all surfaces</div>
+          <div class="check-item">Leather conditioning &amp; treatment</div>
+          <div class="check-item">Odour elimination</div>
+          <div class="check-item">Dashboard &amp; plastics dressed</div>
+        </div>
+      </div>
+
+      <!-- Exterior -->
+      <div class="service-card p-7 reveal" style="transition-delay:0.08s">
+        <div class="flex items-start justify-between mb-4">
+          <div>
+            <div class="text-xs uppercase tracking-widest text-de-metal mb-2">02</div>
+            <h3 class="bebas text-2xl tracking-wide">Exterior Wash</h3>
+          </div>
+          <div class="service-price">€99</div>
+        </div>
+        <p class="text-gray-500 text-sm leading-relaxed mb-5">Full exterior treatment using pH-neutral products and a two-bucket method for a scratch-free result.</p>
+        <div class="space-y-2.5">
+          <div class="check-item">Hand wash &amp; clay bar decontam</div>
+          <div class="check-item">Tyre dressing &amp; rim polish</div>
+          <div class="check-item">Glass water-repellent coating</div>
+          <div class="check-item">Final wax protection layer</div>
+        </div>
+      </div>
+
+      <!-- Full Detail -->
+      <div class="service-card p-7 reveal" style="transition-delay:0.16s">
+        <div class="flex items-start justify-between mb-4">
+          <div>
+            <div class="text-xs uppercase tracking-widest text-de-metal mb-2">03</div>
+            <h3 class="bebas text-2xl tracking-wide">Full Detail</h3>
+          </div>
+          <div class="service-price">€179</div>
+        </div>
+        <p class="text-gray-500 text-sm leading-relaxed mb-5">Complete interior + exterior package. The most thorough single-day treatment we offer.</p>
+        <div class="space-y-2.5">
+          <div class="check-item">Everything in Interior &amp; Exterior</div>
+          <div class="check-item">Engine bay light clean</div>
+          <div class="check-item">Trim restoration</div>
+          <div class="check-item">Final inspection &amp; report</div>
+        </div>
+      </div>
+
+      <!-- Paint Correction -->
+      <div class="service-card p-7 reveal" style="transition-delay:0.04s">
+        <div class="flex items-start justify-between mb-4">
+          <div>
+            <div class="text-xs uppercase tracking-widest text-de-metal mb-2">04</div>
+            <h3 class="bebas text-2xl tracking-wide">Paint Correction</h3>
+          </div>
+          <div class="service-price">€249</div>
+        </div>
+        <p class="text-gray-500 text-sm leading-relaxed mb-5">Multi-stage machine polishing to eliminate swirl marks, scratches, and oxidation from the clear coat.</p>
+        <div class="space-y-2.5">
+          <div class="check-item">Paint depth measurement</div>
+          <div class="check-item">Multi-stage machine polish</div>
+          <div class="check-item">Swirl &amp; scratch removal</div>
+          <div class="check-item">Sealant finish applied</div>
+        </div>
+      </div>
+
+      <!-- Ceramic Coating -->
+      <div class="service-card p-7 reveal" style="transition-delay:0.12s">
+        <div class="flex items-start justify-between mb-4">
+          <div>
+            <div class="text-xs uppercase tracking-widest text-de-metal mb-2">05</div>
+            <h3 class="bebas text-2xl tracking-wide">Ceramic Coating</h3>
+          </div>
+          <div class="service-price">€399</div>
+        </div>
+        <p class="text-gray-500 text-sm leading-relaxed mb-5">Professional-grade nano-ceramic protection that bonds to your paint and lasts 2–5 years.</p>
+        <div class="space-y-2.5">
+          <div class="check-item">Paint correction prep included</div>
+          <div class="check-item">9H hardness ceramic layer</div>
+          <div class="check-item">UV, chemical &amp; scratch resist</div>
+          <div class="check-item">2–5 year protection warranty</div>
+        </div>
+      </div>
+
+      <!-- Engine Bay -->
+      <div class="service-card p-7 reveal" style="transition-delay:0.2s">
+        <div class="flex items-start justify-between mb-4">
+          <div>
+            <div class="text-xs uppercase tracking-widest text-de-metal mb-2">06</div>
+            <h3 class="bebas text-2xl tracking-wide">Engine Bay</h3>
+          </div>
+          <div class="service-price">€69</div>
+        </div>
+        <p class="text-gray-500 text-sm leading-relaxed mb-5">Safe, thorough engine bay degreasing and detailing — so the heart looks as good as the body.</p>
+        <div class="space-y-2.5">
+          <div class="check-item">Degreaser application</div>
+          <div class="check-item">Pressure rinse &amp; hand dry</div>
+          <div class="check-item">Plastic &amp; rubber dressing</div>
+          <div class="check-item">Before &amp; after photos</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     BUILT FOR PEOPLE SECTION
+════════════════════════════════════════════════ -->
+<section class="img-break relative" style="height:85vh; min-height:560px;">
+  <img
+    src="https://images.pexels.com/photos/5693651/pexels-photo-5693651.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
+    alt="Precision detailing"
+    data-replace="built-for-people-photo"
+    class="absolute inset-0 w-full h-full object-cover object-center"
+  >
+  <div class="absolute inset-0" style="background:linear-gradient(to right, rgba(11,11,11,0.85) 50%, rgba(11,11,11,0.3) 100%)"></div>
+
+  <div class="relative z-10 h-full flex items-center">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="max-w-xl reveal">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="gold-rule"></div>
+          <span class="text-xs font-semibold tracking-widest uppercase text-de-gold">Our Philosophy</span>
+        </div>
+        <h2 class="bebas leading-none mb-6" style="font-size:clamp(2.8rem,6vw,5.5rem)">
+          Built for People<br>
+          Who Care About<br>
+          <span class="gold-text">Every Detail.</span>
+        </h2>
+        <p class="text-gray-300 leading-relaxed" style="font-weight:300;max-width:420px">
+          We don't cut corners because you don't either. Whether it's a daily driver or a weekend exotic — if it matters to you, it matters to us.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     VISUAL SHOWCASE
+════════════════════════════════════════════════ -->
+<section id="gallery" class="py-28 bg-de-black">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex items-center justify-between mb-12">
+      <div class="reveal">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="gold-rule"></div>
+          <span class="text-xs font-semibold tracking-widest uppercase text-de-gold">Our Work</span>
+        </div>
+        <h2 class="bebas text-4xl md:text-6xl">Visual <span class="gold-text">Showcase</span></h2>
+      </div>
+    </div>
+
+    <!-- Asymmetric grid -->
+    <div id="showcase-grid" class="grid grid-cols-12 grid-rows-2 gap-3 reveal" style="height:520px">
+      <!-- Large left image -->
+      <div class="col-span-7 row-span-2 showcase-img rounded-none">
+        <img src="https://images.pexels.com/photos/3729464/pexels-photo-3729464.jpeg?auto=compress&cs=tinysrgb&w=900&h=700&fit=crop" alt="Detailing showcase 1" data-replace="showcase-1" style="height:100%">
+        <div class="overlay"></div>
+        <div class="absolute bottom-5 left-5">
+          <div class="text-xs uppercase tracking-widest text-de-gold font-semibold">Paint Correction</div>
+        </div>
+      </div>
+      <!-- Top right -->
+      <div class="col-span-5 row-span-1 showcase-img">
+        <img src="https://images.pexels.com/photos/1637859/pexels-photo-1637859.jpeg?auto=compress&cs=tinysrgb&w=700&h=350&fit=crop" alt="Detailing showcase 2" data-replace="showcase-2" style="height:100%">
+        <div class="overlay"></div>
+        <div class="absolute bottom-4 left-4">
+          <div class="text-xs uppercase tracking-widest text-de-gold font-semibold">Ceramic Coat</div>
+        </div>
+      </div>
+      <!-- Bottom right -->
+      <div class="col-span-5 row-span-1 showcase-img">
+        <img src="https://images.pexels.com/photos/1213294/pexels-photo-1213294.jpeg?auto=compress&cs=tinysrgb&w=700&h=350&fit=crop" alt="Detailing showcase 3" data-replace="showcase-3" style="height:100%">
+        <div class="overlay"></div>
+        <div class="absolute bottom-4 left-4">
+          <div class="text-xs uppercase tracking-widest text-de-gold font-semibold">Interior Detail</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     PROCESS
+════════════════════════════════════════════════ -->
+<section id="process" class="py-28" style="background:#111111">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-16 items-start">
+
+      <div class="reveal-left">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="gold-rule"></div>
+          <span class="text-xs font-semibold tracking-widest uppercase text-de-gold">How It Works</span>
+        </div>
+        <h2 class="bebas text-5xl md:text-6xl leading-none mb-4">
+          The <span class="gold-text">Process</span>
+        </h2>
+        <p class="text-gray-500 leading-relaxed mb-8" style="font-weight:300">
+          Every vehicle goes through the same structured workflow — nothing is rushed, nothing is skipped.
+        </p>
+
+        <!-- Image break -->
+        <div class="showcase-img" style="height:300px">
+          <img src="https://images.pexels.com/photos/1592384/pexels-photo-1592384.jpeg?auto=compress&cs=tinysrgb&w=700&h=400&fit=crop" alt="Our process" data-replace="process-photo" style="height:300px" class="img-reveal">
+          <div class="overlay"></div>
+        </div>
+      </div>
+
+      <div class="space-y-10 reveal-right">
+
+        <div class="process-step">
+          <div class="step-num">01</div>
+          <div class="step-line"></div>
+          <h3 class="bebas text-xl tracking-wide mb-2 pl-2">Booking &amp; Consultation</h3>
+          <p class="text-gray-500 text-sm leading-relaxed pl-2">Submit your booking online or call us. We confirm the date and discuss your vehicle's specific needs.</p>
+        </div>
+
+        <div class="process-step">
+          <div class="step-num">02</div>
+          <div class="step-line"></div>
+          <h3 class="bebas text-xl tracking-wide mb-2 pl-2">Vehicle Inspection</h3>
+          <p class="text-gray-500 text-sm leading-relaxed pl-2">Full inspection before we start — paint depth, existing damage, and condition assessment documented.</p>
+        </div>
+
+        <div class="process-step">
+          <div class="step-num">03</div>
+          <div class="step-line"></div>
+          <h3 class="bebas text-xl tracking-wide mb-2 pl-2">Detailing Work</h3>
+          <p class="text-gray-500 text-sm leading-relaxed pl-2">Your selected service is performed with professional-grade products and no shortcuts. Takes 2–8 hours depending on service.</p>
+        </div>
+
+        <div class="process-step">
+          <div class="step-num">04</div>
+          <div class="step-line"></div>
+          <h3 class="bebas text-xl tracking-wide mb-2 pl-2">Quality Control</h3>
+          <p class="text-gray-500 text-sm leading-relaxed pl-2">We inspect the completed work under LED lighting to ensure zero defects before you collect.</p>
+        </div>
+
+        <div class="process-step">
+          <div class="step-num">05</div>
+          <h3 class="bebas text-xl tracking-wide mb-2 pl-2">Collection &amp; Aftercare Guide</h3>
+          <p class="text-gray-500 text-sm leading-relaxed pl-2">Pick up your vehicle and receive personalised aftercare instructions to maintain the results long-term.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     PRICING
+════════════════════════════════════════════════ -->
+<section id="pricing" class="py-28 bg-de-black">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <div class="flex items-center justify-center gap-3 mb-5">
+        <div class="gold-rule" style="transform:scaleX(-1)"></div>
+        <span class="text-xs font-semibold tracking-widest uppercase text-de-gold">Packages</span>
+        <div class="gold-rule"></div>
+      </div>
+      <h2 class="bebas text-5xl md:text-7xl leading-none">Choose Your <span class="gold-text">Package</span></h2>
+      <p class="text-gray-500 mt-4 max-w-lg mx-auto text-sm leading-relaxed">Bundled packages offer the best value. All prices include professional-grade products.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-4 max-w-5xl mx-auto">
+
+      <!-- Essential -->
+      <div class="pkg-card p-8 reveal">
+        <div class="text-xs uppercase tracking-widest text-de-metal mb-4">Essential</div>
+        <div class="pkg-price mb-1">€89</div>
+        <div class="text-xs text-gray-600 mb-6">per session</div>
+        <div class="border-t border-de-steel/50 pt-6 space-y-3">
+          <div class="check-item">Interior vacuum &amp; wipe down</div>
+          <div class="check-item">Exterior hand wash</div>
+          <div class="check-item">Tyre shine</div>
+          <div class="check-item">Window clean</div>
+          <div class="check-item">Air freshener</div>
+        </div>
+        <a href="#booking" class="btn-outline block text-center py-3.5 mt-8 text-xs">Book Essential</a>
+      </div>
+
+      <!-- Premium — Featured -->
+      <div class="pkg-card featured p-8 reveal" style="transition-delay:0.1s">
+        <div class="flex items-center justify-between mb-4">
+          <div class="text-xs uppercase tracking-widest text-de-gold">Premium</div>
+          <div class="bg-de-gold text-de-black text-xs font-bold uppercase tracking-widest px-2.5 py-1">Most Popular</div>
+        </div>
+        <div class="pkg-price mb-1">€179</div>
+        <div class="text-xs text-gray-600 mb-6">per session</div>
+        <div class="border-t border-de-gold/20 pt-6 space-y-3">
+          <div class="check-item">Everything in Essential</div>
+          <div class="check-item">Machine polish &amp; wax</div>
+          <div class="check-item">Leather conditioning</div>
+          <div class="check-item">Engine bay light clean</div>
+          <div class="check-item">Trim restoration</div>
+          <div class="check-item">Before &amp; after photos</div>
+        </div>
+        <a href="#booking" class="btn-gold block text-center py-3.5 mt-8 text-xs">Book Premium</a>
+      </div>
+
+      <!-- Signature -->
+      <div class="pkg-card p-8 reveal" style="transition-delay:0.2s">
+        <div class="text-xs uppercase tracking-widest text-de-metal mb-4">Signature</div>
+        <div class="pkg-price mb-1">€399</div>
+        <div class="text-xs text-gray-600 mb-6">per session</div>
+        <div class="border-t border-de-steel/50 pt-6 space-y-3">
+          <div class="check-item">Everything in Premium</div>
+          <div class="check-item">Full paint correction</div>
+          <div class="check-item">9H ceramic coat applied</div>
+          <div class="check-item">2–5 year protection</div>
+          <div class="check-item">Ceramic maintenance kit</div>
+          <div class="check-item">Priority booking access</div>
+        </div>
+        <a href="#booking" class="btn-outline block text-center py-3.5 mt-8 text-xs">Book Signature</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     IMAGE BREAK (before contact)
+════════════════════════════════════════════════ -->
+<div class="img-break" style="height:400px">
+  <img
+    src="https://images.pexels.com/photos/1004409/pexels-photo-1004409.jpeg?auto=compress&cs=tinysrgb&w=1920&h=800&fit=crop"
+    alt="Industrial garage"
+    data-replace="garage-photo"
+    class="absolute inset-0 w-full h-full object-cover"
+    style="object-position:center 40%"
+  >
+  <div class="absolute inset-0" style="background:linear-gradient(to bottom, rgba(11,11,11,0.4), rgba(11,11,11,0.7))"></div>
+  <div class="relative z-10 h-full flex items-center justify-center text-center">
+    <div class="reveal">
+      <div class="bebas text-5xl md:text-7xl leading-none text-white mb-4">Your Car Deserves Better.</div>
+      <a href="#booking" class="btn-gold inline-block px-10 py-4 text-sm">Schedule a Detail</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     REVIEWS
+════════════════════════════════════════════════ -->
+<section id="reviews" class="py-28" style="background:#111111">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <div class="flex items-center justify-center gap-3 mb-5">
+        <div class="gold-rule" style="transform:scaleX(-1)"></div>
+        <span class="text-xs font-semibold tracking-widest uppercase text-de-gold">Client Reviews</span>
+        <div class="gold-rule"></div>
+      </div>
+      <h2 class="bebas text-5xl md:text-6xl leading-none">What They <span class="gold-text">Say</span></h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-4">
+
+      <div class="review-card p-7 reveal">
+        <div class="flex gap-0.5 mb-4">
+          <span class="text-de-gold">★★★★★</span>
+        </div>
+        <p class="text-gray-300 leading-relaxed mb-6 text-sm">"Brought my BMW M3 in for the Signature package. Car looks better than when I bought it. The paint correction completely removed years of swirls. Genuinely impressed."</p>
+        <div class="border-t border-de-steel/40 pt-4 flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-de-steel flex items-center justify-center bebas text-de-gold">M</div>
+          <div>
+            <div class="text-sm font-semibold">Mark</div>
+            <div class="text-xs text-gray-600">BMW M3 Owner</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card p-7 reveal" style="transition-delay:0.1s">
+        <div class="flex gap-0.5 mb-4">
+          <span class="text-de-gold">★★★★★</span>
+        </div>
+        <p class="text-gray-300 leading-relaxed mb-6 text-sm">"Interior cleaning was perfect. Every crevice spotless, no chemical smell, leather looks and feels brand new. Booked the Premium package and will be coming back quarterly."</p>
+        <div class="border-t border-de-steel/40 pt-4 flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-de-steel flex items-center justify-center bebas text-de-gold">A</div>
+          <div>
+            <div class="text-sm font-semibold">Anna</div>
+            <div class="text-xs text-gray-600">Audi A6 Owner</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card p-7 reveal" style="transition-delay:0.2s">
+        <div class="flex gap-0.5 mb-4">
+          <span class="text-de-gold">★★★★★</span>
+        </div>
+        <p class="text-gray-300 leading-relaxed mb-6 text-sm">"The ceramic coating finish is amazing. Six months later and the car still beads water like day one. Worth every cent — don't go anywhere else for this in Riga."</p>
+        <div class="border-t border-de-steel/40 pt-4 flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-de-steel flex items-center justify-center bebas text-de-gold">D</div>
+          <div>
+            <div class="text-sm font-semibold">David</div>
+            <div class="text-xs text-gray-600">Mercedes E-Class Owner</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     BOOKING FORM
+════════════════════════════════════════════════ -->
+<section id="booking" class="py-28 bg-de-black">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-center mb-12 reveal">
+      <div class="flex items-center justify-center gap-3 mb-5">
+        <div class="gold-rule" style="transform:scaleX(-1)"></div>
+        <span class="text-xs font-semibold tracking-widest uppercase text-de-gold">Book a Session</span>
+        <div class="gold-rule"></div>
+      </div>
+      <h2 class="bebas text-5xl md:text-6xl leading-none">Reserve Your <span class="gold-text">Slot</span></h2>
+      <p class="text-gray-500 mt-4 text-sm">We'll confirm your booking within 24 hours. Slots fill fast on weekends.</p>
+    </div>
+
+    <div class="bg-de-dark border border-de-gold/15 p-8 md:p-12 reveal">
+      <form onsubmit="return handleBooking(event)" novalidate>
+        <div class="grid md:grid-cols-2 gap-4 mb-4">
+          <div>
+            <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Full Name</label>
+            <input type="text" class="form-input" placeholder="John Smith" required>
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Phone Number</label>
+            <input type="tel" class="form-input" placeholder="+371 2000 0000" required>
+          </div>
+        </div>
+        <div class="grid md:grid-cols-2 gap-4 mb-4">
+          <div>
+            <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Email</label>
+            <input type="email" class="form-input" placeholder="you@email.com" required>
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Car Model</label>
+            <input type="text" class="form-input" placeholder="e.g. BMW M3 2021" required>
+          </div>
+        </div>
+        <div class="grid md:grid-cols-2 gap-4 mb-4">
+          <div>
+            <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Service Package</label>
+            <select class="form-input" required>
+              <option value="">Select a package…</option>
+              <option>Interior Detailing — €89</option>
+              <option>Exterior Wash — €99</option>
+              <option>Full Detail — €179</option>
+              <option>Paint Correction — €249</option>
+              <option>Ceramic Coating — €399</option>
+              <option>Engine Bay — €69</option>
+              <option>Essential Package — €89</option>
+              <option>Premium Package — €179</option>
+              <option>Signature Package — €399</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Preferred Date</label>
+            <input type="date" class="form-input" required style="color-scheme:dark">
+          </div>
+        </div>
+        <div class="mb-6">
+          <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Additional Notes</label>
+          <textarea class="form-input" rows="4" placeholder="Any specific concerns or requests…" style="resize:vertical"></textarea>
+        </div>
+        <button type="submit" class="btn-gold w-full py-4 text-sm font-bold tracking-widest uppercase">Send Booking Request</button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     CONTACT
+════════════════════════════════════════════════ -->
+<section id="contact" class="py-24" style="background:#111111">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <div class="reveal">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="gold-rule"></div>
+          <span class="text-xs font-semibold tracking-widest uppercase text-de-gold">Contact</span>
+        </div>
+        <h2 class="bebas text-4xl md:text-5xl leading-none mb-6">Find <span class="gold-text">Us</span></h2>
+        <p class="text-gray-500 text-sm leading-relaxed">We're open six days a week. Walk-ins welcome, but we recommend booking for guaranteed availability.</p>
+      </div>
+
+      <div class="reveal" style="transition-delay:0.08s">
+        <div class="space-y-6">
+          <div>
+            <div class="text-xs uppercase tracking-widest text-de-metal mb-1">Address</div>
+            <div class="text-white text-sm">18 Auto Street<br>Riga, Latvia</div>
+          </div>
+          <div>
+            <div class="text-xs uppercase tracking-widest text-de-metal mb-1">Phone</div>
+            <a href="tel:+37120000000" class="text-white text-sm hover:text-de-gold transition-colors">+371 2000 0000</a>
+          </div>
+          <div>
+            <div class="text-xs uppercase tracking-widest text-de-metal mb-1">Email</div>
+            <a href="mailto:hello@deserteagle.com" class="text-white text-sm hover:text-de-gold transition-colors">hello@deserteagle.com</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal" style="transition-delay:0.16s">
+        <div class="text-xs uppercase tracking-widest text-de-metal mb-4">Working Hours</div>
+        <div class="space-y-3">
+          <div class="flex justify-between text-sm border-b border-de-steel/30 pb-2">
+            <span class="text-gray-400">Monday — Friday</span>
+            <span class="text-white">09:00 – 19:00</span>
+          </div>
+          <div class="flex justify-between text-sm border-b border-de-steel/30 pb-2">
+            <span class="text-gray-400">Saturday</span>
+            <span class="text-white">10:00 – 17:00</span>
+          </div>
+          <div class="flex justify-between text-sm">
+            <span class="text-gray-400">Sunday</span>
+            <span class="text-de-metal">Closed</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════ -->
+<footer class="bg-de-black border-t border-de-steel/30 py-10">
+  <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="bebas text-2xl tracking-widest gold-text">Dessert Eagle</div>
+    <nav class="flex gap-6 flex-wrap justify-center">
+      <a href="#services" class="text-xs uppercase tracking-widest text-gray-600 hover:text-de-gold transition-colors">Services</a>
+      <a href="#pricing" class="text-xs uppercase tracking-widest text-gray-600 hover:text-de-gold transition-colors">Pricing</a>
+      <a href="#gallery" class="text-xs uppercase tracking-widest text-gray-600 hover:text-de-gold transition-colors">Gallery</a>
+      <a href="#booking" class="text-xs uppercase tracking-widest text-gray-600 hover:text-de-gold transition-colors">Book</a>
+      <a href="#contact" class="text-xs uppercase tracking-widest text-gray-600 hover:text-de-gold transition-colors">Contact</a>
+    </nav>
+    <div class="text-xs text-gray-700 uppercase tracking-widest">© 2025 Dessert Eagle. All rights reserved.</div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════════ -->
+<script>
+  // ── NAV scroll ────────────────────────────────
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // ── Burger menu ───────────────────────────────
+  const burger = document.getElementById('burger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const b1 = document.getElementById('b1');
+  const b2 = document.getElementById('b2');
+  const b3 = document.getElementById('b3');
+  let menuOpen = false;
+
+  burger.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    mobileMenu.classList.toggle('open', menuOpen);
+    b1.style.transform = menuOpen ? 'translateY(7px) rotate(45deg)' : '';
+    b2.style.opacity   = menuOpen ? '0' : '1';
+    b3.style.transform = menuOpen ? 'translateY(-7px) rotate(-45deg)' : '';
+  });
+
+  function closeMobile() {
+    menuOpen = false;
+    mobileMenu.classList.remove('open');
+    b1.style.transform = b3.style.transform = '';
+    b2.style.opacity = '1';
+  }
+
+  // ── Scroll reveal ─────────────────────────────
+  const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .img-reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  revealEls.forEach(el => observer.observe(el));
+
+  // ── Booking form ──────────────────────────────
+  function handleBooking(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    const orig = btn.textContent;
+    btn.textContent = 'Request Sent!';
+    btn.disabled = true;
+    btn.style.opacity = '0.7';
+    setTimeout(() => {
+      btn.textContent = orig;
+      btn.disabled = false;
+      btn.style.opacity = '1';
+      e.target.reset();
+    }, 3500);
+    return false;
+  }
+</script>
+
+</body>
+</html>

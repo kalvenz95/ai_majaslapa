@@ -1,0 +1,16 @@
+import { createRequire } from 'module';
+import { readdirSync } from 'fs';
+const require = createRequire(import.meta.url);
+const puppeteer = require('puppeteer');
+const dir = 'd:/Documents/Desktop/AI_APP/temporary screenshots';
+let n = readdirSync(dir).filter(f => f.endsWith('.png')).length;
+const b = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox','--disable-setuid-sandbox'] });
+const p = await b.newPage();
+await p.setViewport({ width: 390, height: 844, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
+await p.goto('http://localhost:3000/lv', { waitUntil: 'networkidle0', timeout: 60000 });
+const y = await p.evaluate(() => { const el = document.evaluate("//*[contains(text(),'AI Aģentu eksperts')]", document, null, 9, null).singleNodeValue; return el ? el.getBoundingClientRect().top + window.scrollY : 0; });
+await p.evaluate(yy => window.scrollTo({ top: yy-40, behavior: 'instant' }), y);
+await new Promise(r => setTimeout(r, 1200));
+n++; const f = dir + '/screenshot-' + n + '-premium-mob.png';
+await p.screenshot({ path: f }); console.log(f);
+await b.close();

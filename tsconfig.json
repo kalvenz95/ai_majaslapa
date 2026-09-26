@@ -37,6 +37,11 @@
   ],
   "exclude": [
     "node_modules",
-    "__ctest__"
+    "__ctest__",
+    "Chademy",
+    "lapas",
+    "satura-deploy",
+    "prototypes",
+    "scripts"
   ]
 }

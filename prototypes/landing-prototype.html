@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chademy — Apgūsti AI. Veido biznesu.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Fraunces:opsz,ital,wght@9..144,1,400;9..144,1,500;9..144,0,400;9..144,0,500&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+/* ── Reset ──────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+/* ── Chademy Design Tokens — Light Theme ────────────────────────── */
+:root {
+  --accent:     #A3E635;
+  --accent-ink: #0A0A0A;
+
+  --bg:   #F7F7F4;
+  --bg-1: #EFEFE9;
+  --bg-2: #E6E6E0;
+  --bg-3: #DDDDD6;
+
+  --line:   rgba(0,0,0,0.08);
+  --line-2: rgba(0,0,0,0.14);
+
+  --ink:   #111111;
+  --ink-2: #444444;
+  --ink-3: #888888;
+  --ink-4: #BBBBBB;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter Tight', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  padding-bottom: 80px;
+}
+
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+/* ── Container ──────────────────────────────────────────────────── */
+.container {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ── Section spacing ────────────────────────────────────────────── */
+.section { padding: 48px 0; }
+.section + .section { border-top: 1px solid var(--line); }
+
+/* ── Divider ────────────────────────────────────────────────────── */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line-2) 30%, var(--line-2) 70%, transparent);
+  margin: 36px 0;
+}
+
+/* ── Reveal animation ───────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.55s cubic-bezier(0.22,1,0.36,1) both; }
+.delay-1 { animation-delay: 0.08s; }
+.delay-2 { animation-delay: 0.16s; }
+.delay-3 { animation-delay: 0.24s; }
+.delay-4 { animation-delay: 0.32s; }
+
+/* ─────────────────────────────────────────────────────────────────
+   BONUSES SECTION
+───────────────────────────────────────────────────────────────── */
+.bonuses-card {
+  background: var(--bg-1);
+  border: 1px solid var(--line-2);
+  border-radius: 28px;
+  padding: 32px 24px 28px;
+  position: relative;
+  overflow: hidden;
+}
+.bonuses-card::after {
+  content: "";
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 60% 45% at 85% 105%, color-mix(in oklab, var(--accent) 12%, transparent), transparent 55%);
+}
+
+.bonus-plus-icon {
+  width: 52px; height: 52px; border-radius: 999px;
+  background: var(--bg-3);
+  border: 1px solid var(--line-2);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 22px;
+}
+.bonus-plus-icon svg { width: 22px; height: 22px; color: var(--ink-3); }
+
+.bonuses-title {
+  font-size: clamp(26px, 7vw, 34px);
+  font-weight: 700; line-height: 1.15; letter-spacing: -0.03em;
+  text-align: center; color: var(--ink);
+  margin-bottom: 28px;
+}
+.bonuses-title em {
+  font-style: italic; font-family: 'Fraunces', Georgia, serif; font-weight: 500;
+  color: var(--ink-2);
+}
+
+.bonus-list { display: flex; flex-direction: column; gap: 10px; }
+
+.bonus-item { display: flex; align-items: flex-start; gap: 12px; }
+.bonus-item-icon {
+  width: 32px; height: 32px; border-radius: 9px; flex-shrink: 0;
+  background: var(--bg-2); border: 1px solid var(--line-2);
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 2px;
+}
+.bonus-item-icon svg { width: 14px; height: 14px; color: var(--ink-3); }
+.bonus-item-text { font-size: 15px; color: var(--ink-2); line-height: 1.45; padding-top: 5px; }
+
+/* funnel mini diagram */
+.funnel-card {
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  border-radius: 18px;
+  overflow: hidden;
+  margin-top: 24px;
+  padding: 14px 16px;
+}
+.funnel-label-top {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink-3); text-align: center; margin-bottom: 14px;
+}
+.funnel-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.funnel-bar {
+  flex: 1; height: 28px; border-radius: 10px;
+  background: var(--bg-3); border: 1px solid var(--line-2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.07em;
+  font-family: 'JetBrains Mono', monospace; color: var(--ink-2);
+}
+.funnel-right { width: 110px; flex-shrink: 0; }
+.funnel-right strong { font-size: 11px; font-weight: 600; color: var(--ink-2); display: block; }
+.funnel-right span { font-size: 10px; color: var(--ink-3); }
+.funnel-sep { width: 1px; height: 6px; background: var(--line-2); margin: 0 auto 6px; }
+
+.preview-note {
+  font-size: 12px; color: var(--ink-3); text-align: center;
+  margin-top: 18px; line-height: 1.5;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   HOW IT WORKS SECTION
+───────────────────────────────────────────────────────────────── */
+.how-title {
+  font-size: clamp(28px, 8vw, 38px);
+  font-weight: 700; letter-spacing: -0.035em; line-height: 1.1;
+  text-align: center; margin-bottom: 36px;
+}
+
+.step-badge {
+  display: inline-flex; align-items: center;
+  padding: 5px 12px; border-radius: 999px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  background: var(--bg-2); border: 1px solid var(--line-2);
+  color: var(--ink-3); margin-bottom: 14px;
+}
+.step-heading {
+  font-size: clamp(22px, 6vw, 28px);
+  font-weight: 700; letter-spacing: -0.03em; line-height: 1.2;
+  margin-bottom: 8px;
+}
+.step-heading em {
+  font-style: italic; font-family: 'Fraunces', serif; font-weight: 500; color: var(--ink-2);
+}
+.step-sub { font-size: 15px; color: var(--ink-3); line-height: 1.55; margin-bottom: 20px; }
+
+/* step image wrapper */
+.step-img-wrap {
+  border-radius: 24px; overflow: hidden; position: relative;
+  background: var(--bg-2); border: 1px solid var(--line-2);
+}
+.step-img-wrap img {
+  width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;
+}
+.step-img-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 55%);
+}
+
+/* AI bubbles */
+.ai-bubbles {
+  position: absolute; bottom: 16px; left: 12px; right: 12px;
+  display: flex; flex-direction: column; gap: 7px; align-items: flex-start;
+}
+.ai-bubble {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 7px 12px; border-radius: 999px;
+  background: rgba(247,247,244,0.88); border: 1px solid var(--line-2);
+  backdrop-filter: blur(8px);
+  font-size: 12px; color: var(--ink-2); font-weight: 500;
+}
+.ai-bubble svg { width: 13px; height: 13px; color: var(--accent-dot, #A3E635); flex-shrink: 0; }
+
+/* phone mockup */
+.phone-frame {
+  background: white; border: 1px solid var(--line-2);
+  border-radius: 32px; overflow: hidden;
+  box-shadow: 0 20px 60px -12px rgba(0,0,0,0.15), 0 4px 16px -4px rgba(0,0,0,0.08);
+  max-width: 220px; margin: 0 auto;
+}
+.phone-notch {
+  height: 26px; background: var(--bg-1); border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 14px;
+  font-size: 9px; color: var(--ink-3); font-family: 'JetBrains Mono', monospace;
+}
+.phone-screen { padding: 12px; background: var(--bg); }
+.phone-course-label { font-size: 12px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+.phone-lesson-img {
+  border-radius: 12px; overflow: hidden; position: relative;
+  background: var(--bg-3); aspect-ratio: 16/9; margin-bottom: 8px;
+}
+.phone-lesson-img img { width: 100%; height: 100%; object-fit: cover; }
+.phone-duration {
+  position: absolute; bottom: 6px; right: 6px;
+  background: rgba(0,0,0,0.65); border-radius: 5px; padding: 2px 6px;
+  font-family: 'JetBrains Mono', monospace; font-size: 8px; color: #fff;
+}
+.phone-lesson-name { font-size: 11px; font-weight: 700; color: var(--ink); margin-bottom: 3px; }
+.phone-lesson-sub { font-size: 9px; color: var(--ink-3); line-height: 1.4; margin-bottom: 10px; }
+.phone-start-btn {
+  width: 100%; padding: 8px 0; border-radius: 10px;
+  background: var(--bg-1); border: 1px solid var(--line-2);
+  font-size: 11px; font-weight: 600; color: var(--ink-2); text-align: center;
+}
+
+/* step 3 stat cards */
+.stat-row { display: flex; gap: 10px; }
+.stat-card {
+  flex: 1; padding: 12px 14px; border-radius: 16px;
+  background: var(--bg-1); border: 1px solid var(--line-2);
+}
+.stat-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-3); margin-bottom: 4px;
+}
+.stat-value {
+  font-size: 22px; font-weight: 700; letter-spacing: -0.04em; color: var(--ink);
+}
+.stat-value.accent { color: var(--accent-ink); background: var(--accent); display: inline-block; padding: 0 6px; border-radius: 6px; }
+
+/* ─────────────────────────────────────────────────────────────────
+   STICKY BOTTOM CTA
+───────────────────────────────────────────────────────────────── */
+.sticky-cta {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+  background: white;
+  border-top: 1px solid var(--line-2);
+  padding: 12px 20px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  box-shadow: 0 -4px 24px -8px rgba(0,0,0,0.1);
+}
+.sticky-timer { display: flex; align-items: flex-end; gap: 4px; }
+.timer-block { text-align: center; line-height: 1; }
+.timer-num {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 26px; font-weight: 700; letter-spacing: -0.04em;
+  color: var(--ink); display: block;
+}
+.timer-unit {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink-3); display: block; margin-top: 2px;
+}
+.timer-colon {
+  font-size: 22px; font-weight: 700; color: var(--ink-3);
+  padding-bottom: 10px; line-height: 1;
+}
+.cta-btn {
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 14px; font-weight: 700; letter-spacing: 0.02em;
+  padding: 13px 22px; border-radius: 999px;
+  white-space: nowrap;
+  transition: transform 0.15s cubic-bezier(0.22,1,0.36,1), filter 0.15s ease;
+  flex-shrink: 0;
+}
+.cta-btn:hover { filter: brightness(1.07); transform: translateY(-1px); }
+.cta-btn:active { transform: scale(0.97); }
+</style>
+</head>
+<body>
+
+<!-- ────────────────────────────────────────────────────────────────
+     BONUSES BLOCK
+──────────────────────────────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="bonuses-card fade-up">
+
+      <div class="bonus-plus-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+          <path d="M12 5v14M5 12h14"/>
+        </svg>
+      </div>
+
+      <h2 class="bonuses-title">
+        Saņem <em>12+ ekskluzīvus</em> bonusus
+      </h2>
+
+      <div class="bonus-list">
+        <div class="bonus-item">
+          <div class="bonus-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 8h8M8 12h8M8 16h5"/>
+            </svg>
+          </div>
+          <div class="bonus-item-text">Kā radīt un pārdot digitālos produktus — kurss</div>
+        </div>
+        <div class="bonus-item">
+          <div class="bonus-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 8h8M8 12h8M8 16h5"/>
+            </svg>
+          </div>
+          <div class="bonus-item-text">Tavs nišas darbgrāmata — atrodi savu mērķi</div>
+        </div>
+        <div class="bonus-item">
+          <div class="bonus-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 8h8M8 12h8M8 16h5"/>
+            </svg>
+          </div>
+          <div class="bonus-item-text">Kā lietot AI satura veidošanai — praktiska rokasgrāmata</div>
+        </div>
+        <div class="bonus-item">
+          <div class="bonus-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 8h8M8 12h8M8 16h5"/>
+            </svg>
+          </div>
+          <div class="bonus-item-text">Personīgā zīmola darba lapa</div>
+        </div>
+        <div class="bonus-item">
+          <div class="bonus-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 8h8M8 12h8M8 16h5"/>
+            </svg>
+          </div>
+          <div class="bonus-item-text">Praktiskie ceļveži auditorijas piesaistei un reklāmām</div>
+        </div>
+        <div class="bonus-item">
+          <div class="bonus-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 8h8M8 12h8M8 16h5"/>
+            </svg>
+          </div>
+          <div class="bonus-item-text">100+ praktiski padomi, kā pelnīt tiešsaistē</div>
+        </div>
+        <div class="bonus-item">
+          <div class="bonus-item-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 8h8M8 12h8M8 16h5"/>
+            </svg>
+          </div>
+          <div class="bonus-item-text">... un vēl daudz vairāk!</div>
+        </div>
+      </div>
+
+      <!-- Funnel mini card -->
+      <div class="funnel-card">
+        <div class="funnel-label-top">Mārketinga piltuve</div>
+        <div class="funnel-row">
+          <div class="funnel-bar">TOFU</div>
+          <div class="funnel-right"><strong>Piltuves augša</strong><span>Informētība</span></div>
+        </div>
+        <div class="funnel-sep"></div>
+        <div class="funnel-row">
+          <div class="funnel-bar">MOFU</div>
+          <div class="funnel-right"><strong>Piltuves vidus</strong><span>Apsvēršana</span></div>
+        </div>
+        <div class="funnel-sep"></div>
+        <div class="funnel-row">
+          <div class="funnel-bar">BOFU</div>
+          <div class="funnel-right"><strong>Piltuves apakša</strong><span>Lēmums + Rīcība</span></div>
+        </div>
+      </div>
+
+      <p class="preview-note">*Visi materiāli pieejami platformā pēc reģistrācijas</p>
+
+    </div>
+  </div>
+</section>
+
+<!-- ────────────────────────────────────────────────────────────────
+     HOW IT WORKS
+──────────────────────────────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+
+    <h2 class="how-title fade-up">Kā tas strādā</h2>
+
+    <!-- STEP 1 -->
+    <div class="fade-up delay-1">
+      <div class="step-badge">Solis 1</div>
+      <h3 class="step-heading">Pastāsti AI savu <em>ideju</em></h3>
+      <p class="step-sub">Ģenerē virsrakstus, plānus un saturu — bez tehniskām zināšanām.</p>
+      <div class="step-img-wrap">
+        <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=900&q=85&fit=crop" alt="" loading="lazy" />
+        <div class="step-img-overlay"></div>
+        <div class="ai-bubbles">
+          <div class="ai-bubble" style="align-self:flex-end;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2" stroke-linecap="round"><path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/></svg>
+            Uzlabo tekstu...
+          </div>
+          <div class="ai-bubble">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><path d="M13 17h8M17 13v8"/></svg>
+            Veido kursa plānu...
+          </div>
+          <div class="ai-bubble" style="align-self:flex-start;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4"/></svg>
+            Piedāvā idejas...
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- STEP 2 -->
+    <div class="fade-up delay-2">
+      <div class="step-badge">Solis 2</div>
+      <h3 class="step-heading">Saņem <em>gatavu produktu</em></h3>
+      <p class="step-sub">Pielāgo ar bildēm, video un testiem — viss vienā vietā.</p>
+
+      <!-- floating photos + phone mockup -->
+      <div style="position:relative; min-height:300px; display:flex; align-items:center; justify-content:center; padding:16px 0;">
+
+        <div style="position:absolute;top:0;left:0;width:95px;height:95px;border-radius:18px;overflow:hidden;border:2px solid var(--bg-2);box-shadow:0 8px 24px -8px rgba(0,0,0,0.12);transform:rotate(-5deg);">
+          <img src="https://images.unsplash.com/photo-1532622785990-d2c36a76f5a6?w=400&q=80&fit=crop" alt="" style="width:100%;height:100%;object-fit:cover;" loading="lazy"/>
+        </div>
+
+        <div style="position:absolute;top:10px;right:0;width:85px;height:85px;border-radius:16px;overflow:hidden;border:2px solid var(--bg-2);box-shadow:0 8px 24px -8px rgba(0,0,0,0.12);transform:rotate(4deg);">
+          <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&q=80&fit=crop" alt="" style="width:100%;height:100%;object-fit:cover;" loading="lazy"/>
+        </div>
+
+        <div style="position:absolute;bottom:0;left:4px;width:80px;height:80px;border-radius:16px;overflow:hidden;border:2px solid var(--bg-2);box-shadow:0 8px 24px -8px rgba(0,0,0,0.12);transform:rotate(3deg);">
+          <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=400&q=80&fit=crop" alt="" style="width:100%;height:100%;object-fit:cover;" loading="lazy"/>
+        </div>
+
+        <div style="position:absolute;bottom:4px;right:2px;width:88px;height:70px;border-radius:14px;overflow:hidden;border:2px solid var(--bg-2);box-shadow:0 8px 24px -8px rgba(0,0,0,0.12);transform:rotate(-4deg);">
+          <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=400&q=80&fit=crop" alt="" style="width:100%;height:100%;object-fit:cover;" loading="lazy"/>
+        </div>
+
+        <!-- Phone frame -->
+        <div style="position:relative; z-index:10; max-width:210px; width:100%;">
+          <div class="phone-frame">
+            <div class="phone-notch">
+              <span>9:41</span>
+              <span style="display:flex;gap:3px;align-items:center;color:var(--ink-3);">
+                <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M1 8l11-7 11 7v13H1z"/></svg>
+                <svg width="10" height="7" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C7 3 2.7 5.7 0 9.8L2.5 12C4.8 8.8 8.1 7 12 7s7.2 1.8 9.5 5L24 9.8C21.3 5.7 17 3 12 3z"/></svg>
+              </span>
+            </div>
+            <div class="phone-screen">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                <div class="phone-course-label" style="margin:0;">AI Mārketings</div>
+                <div style="font-size:9px;color:var(--ink-3);font-family:'JetBrains Mono',monospace;">Viss ▾</div>
+              </div>
+              <div class="phone-lesson-img">
+                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80&fit=crop" alt="" loading="lazy"/>
+                <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.4),transparent);"></div>
+                <div class="phone-duration">12 min</div>
+              </div>
+              <div class="phone-lesson-name">Mārketinga piltuves pamati</div>
+              <div class="phone-lesson-sub">Iemāca, kā piesaistīt klientus no nulles</div>
+              <div class="phone-start-btn">Sākt lekciju</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- STEP 3 -->
+    <div class="fade-up delay-3">
+      <div class="step-badge">Solis 3</div>
+      <h3 class="step-heading">Palaid un <em>pelni</em></h3>
+      <p class="step-sub">Piesaisti klientus, veic pārdošanu un aug ar mūsu ceļvežu palīdzību.</p>
+
+      <div class="step-img-wrap" style="margin-bottom:14px;">
+        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=900&q=85&fit=crop" alt="" loading="lazy"/>
+        <div class="step-img-overlay"></div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-label">Šī nedēļa</div>
+          <div class="stat-value" style="color:var(--ink);">+<span style="color:color-mix(in oklab,#A3E635 80%,#000);">€340</span></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Klienti</div>
+          <div class="stat-value">47</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Mēneša pelņa</div>
+          <div class="stat-value" style="font-size:18px;">€1 820</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ────────────────────────────────────────────────────────────────
+     STICKY CTA
+──────────────────────────────────────────────────────────────── -->
+<div class="sticky-cta">
+  <div class="sticky-timer">
+    <div class="timer-block">
+      <span class="timer-num" id="min">09</span>
+      <span class="timer-unit">minūtes</span>
+    </div>
+    <div class="timer-colon">:</div>
+    <div class="timer-block">
+      <span class="timer-num" id="sec">30</span>
+      <span class="timer-unit">sekundes</span>
+    </div>
+  </div>
+  <button class="cta-btn">SĀKT TAGAD</button>
+</div>
+
+<script>
+  let total = 9 * 60 + 30;
+  const minEl = document.getElementById('min');
+  const secEl = document.getElementById('sec');
+  function tick() {
+    if (total < 0) return;
+    const m = Math.floor(total / 60);
+    const s = total % 60;
+    minEl.textContent = String(m).padStart(2, '0');
+    secEl.textContent = String(s).padStart(2, '0');
+    total--;
+    setTimeout(tick, 1000);
+  }
+  tick();
+</script>
+
+</body>
+</html>

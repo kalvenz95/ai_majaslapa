@@ -1,0 +1,12 @@
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const puppeteer = require('puppeteer');
+const url = process.argv[2], tag = process.argv[3];
+const dir = 'd:/Documents/Desktop/AI_APP/temporary screenshots';
+const b = await puppeteer.launch({ headless:'new', args:['--no-sandbox','--disable-setuid-sandbox'] });
+const p = await b.newPage();
+await p.setViewport({ width:1280, height:760, deviceScaleFactor:1.5 });
+await p.goto(url, { waitUntil:'networkidle0', timeout:30000 });
+await new Promise(r=>setTimeout(r,1800));
+await p.screenshot({ path:`${dir}/ch-${tag}.png` });
+await b.close(); console.log('ch-'+tag);
