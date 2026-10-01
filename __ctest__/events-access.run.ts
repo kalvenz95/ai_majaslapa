@@ -53,6 +53,12 @@ async function main() {
   check("Blocked user GET omits meetUrl", blockedGet.body?.[0]?.meetUrl === undefined, JSON.stringify(blockedGet.body?.[0]));
   check("Blocked user GET omits description", blockedGet.body?.[0]?.description === undefined, JSON.stringify(blockedGet.body?.[0]));
 
+  __setUser("clerk_lookup_fail");
+  const lookupFailGet = await json(await eventsRoute.GET());
+  check("Lookup failure GET /api/events -> 200", lookupFailGet.status === 200, `received ${lookupFailGet.status}`);
+  check("Lookup failure GET omits meetUrl", lookupFailGet.body?.[0]?.meetUrl === undefined, JSON.stringify(lookupFailGet.body?.[0]));
+  check("Lookup failure GET omits description", lookupFailGet.body?.[0]?.description === undefined, JSON.stringify(lookupFailGet.body?.[0]));
+
   __setUser(null);
   const anonPost = await json(
     await eventsRoute.POST(
@@ -88,6 +94,24 @@ async function main() {
     )
   );
   check("Blocked user POST /api/events -> 403", blockedPost.status === 403, `received ${blockedPost.status}`);
+
+  __setUser("clerk_lookup_fail");
+  const lookupFailPost = await json(
+    await eventsRoute.POST(
+      req("/api/events", {
+        method: "POST",
+        body: {
+          title: "Lookup fail event",
+          description: "Should not be created",
+          startAt: "2026-10-22T10:00:00.000Z",
+          endAt: "2026-10-22T11:00:00.000Z",
+          meetUrl: "https://meet.example.com/lookup-fail",
+          type: "WEBINAR",
+        },
+      })
+    )
+  );
+  check("Lookup failure POST /api/events -> 503", lookupFailPost.status === 503, `received ${lookupFailPost.status}`);
 
   __setUser("clerk_member");
   const activePost = await json(

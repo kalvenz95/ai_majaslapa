@@ -45,6 +45,10 @@ function project<T extends Record<string, unknown>>(row: T, select?: Record<stri
 export const prisma = {
   user: {
     findUnique: async ({ where, select }: { where: { clerkId: string }; select?: Record<string, boolean> }) => {
+      if (where.clerkId === "clerk_lookup_fail") {
+        throw new Error("lookup failed");
+      }
+
       const user = users.find((item) => item.clerkId === where.clerkId) ?? null;
       if (!user || !select) return user;
       return project(user, select);

@@ -1,24 +1,27 @@
 import { auth } from "@clerk/nextjs/server";
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { assertNotBlocked, BlockedUserError } from "@/lib/user-access";
 
-async function isBlockedUser(clerkId: string) {
-  const user = await prisma.user.findUnique({
-    where: { clerkId },
-    select: { status: true },
-  });
+async function canViewPrivateEventFields(clerkId: string | null) {
+  if (!clerkId) return false;
 
-  return user?.status === "BLOCKED";
+  try {
+    await assertNotBlocked(clerkId);
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 export async function GET() {
   const { userId } = await auth();
-  const blocked = userId ? await isBlockedUser(userId) : false;
+  const canViewPrivate = await canViewPrivateEventFields(userId);
 
   const events = await prisma.liveEvent.findMany({
     where: { startAt: { gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) } },
     orderBy: { startAt: "asc" },
-    select: userId && !blocked
+    select: canViewPrivate
       ? {
           id: true,
           title: true,
@@ -42,7 +45,16 @@ export async function GET() {
 export async function POST(req: NextRequest) {
   const { userId } = await auth();
   if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  if (await isBlockedUser(userId)) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+
+  try {
+    await assertNotBlocked(userId);
+  } catch (error) {
+    if (error instanceof BlockedUserError) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
+
+    return NextResponse.json({ error: "User access check failed" }, { status: 503 });
+  }
 
   const { title, description, startAt, endAt, meetUrl, type } = await req.json();
   if (!title?.trim() || !startAt) {
