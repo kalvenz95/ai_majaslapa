@@ -1,4 +1,4 @@
-import { auth } from "@clerk/nextjs/server";
+﻿import { auth } from "@clerk/nextjs/server";
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { assertNotBlocked, BlockedUserError } from "@/lib/user-access";
@@ -14,11 +14,11 @@ export async function GET() {
       canViewPrivate = true;
     } catch (error) {
       if (error instanceof BlockedUserError) {
-        return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+        canViewPrivate = false;
+      } else {
+        console.error("[EVENTS_GET_BLOCK_CHECK]", error);
+        return NextResponse.json({ error: "Server error" }, { status: 500 });
       }
-
-      console.error("[EVENTS_GET_BLOCK_CHECK]", error);
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
   }
 

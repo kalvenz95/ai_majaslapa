@@ -1,4 +1,4 @@
-import { NextRequest } from "next/server";
+﻿import { NextRequest } from "next/server";
 import { __setUser } from "./clerk-stub";
 import { __getEventsCount, __resetEvents, __setCreateFailure } from "./events-access-prisma-stub";
 import * as eventsRoute from "@/app/api/events/route";
@@ -60,11 +60,13 @@ async function main() {
 
   __setUser("clerk_owner_blocked");
   const blockedGet = await json(await eventsRoute.GET());
-  check("Blocked user GET /api/events -> 403", blockedGet.status === 403, `received ${blockedGet.status}`);
+  check("Blocked user GET /api/events -> 200", blockedGet.status === 200, `received ${blockedGet.status}`);
+  check("Blocked user GET omits meetUrl", blockedGet.body?.[0]?.meetUrl === undefined, JSON.stringify(blockedGet.body?.[0]));
+  check("Blocked user GET omits description", blockedGet.body?.[0]?.description === undefined, JSON.stringify(blockedGet.body?.[0]));
 
   __setUser("clerk_lookup_fail");
   const lookupFailGet = await json(await eventsRoute.GET());
-  check("Lookup failure GET /api/events -> 403", lookupFailGet.status === 403, `received ${lookupFailGet.status}`);
+  check("Lookup failure GET /api/events -> 500", lookupFailGet.status === 500, `received ${lookupFailGet.status}`);
 
   __setUser(null);
   const countBeforeAnonPost = __getEventsCount();
