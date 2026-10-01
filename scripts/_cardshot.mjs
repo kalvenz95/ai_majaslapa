@@ -1,0 +1,17 @@
+import { createRequire } from 'module';
+import { readdirSync } from 'fs';
+const require = createRequire(import.meta.url);
+const puppeteer = require('puppeteer');
+const dir = 'd:/Documents/Desktop/AI_APP/temporary screenshots';
+let n = readdirSync(dir).filter(f => f.endsWith('.png')).length;
+const b = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox','--disable-setuid-sandbox'] });
+const p = await b.newPage();
+await p.setViewport({ width: 1440, height: 900, deviceScaleFactor: 2 });
+await p.goto('http://localhost:3000/lv', { waitUntil: 'networkidle0', timeout: 60000 });
+await p.evaluate(() => { const e = document.querySelector('.whyai-v2-grid'); const r = e.getBoundingClientRect(); window.scrollTo({ top: r.top + window.scrollY - 120, behavior: 'instant' }); });
+await new Promise(r => setTimeout(r, 1500));
+const el = await p.$('.whyai-v2-grid');
+n++; const f = dir + '/screenshot-' + n + '-whyai-cards.png';
+await el.screenshot({ path: f });
+console.log(f);
+await b.close();

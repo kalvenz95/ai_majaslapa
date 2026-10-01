@@ -45,3 +45,13 @@ next-env.d.ts
 /.clerk/
 
 .vercel
+
+# ---- ligzdotie projekti (Chademy Expo, lapas/) ----
+# /node_modules augstak ir saknes-enkurots, tapec Chademy/node_modules vajag so:
+node_modules/
+.expo/
+web-build/
+.metro-health-check*
+
+# ---- darba faili ----
+temporary screenshots/

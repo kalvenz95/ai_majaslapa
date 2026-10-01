@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chademy — Dark Premium Preview</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─────────── TOKENS ─────────── */
+    :root {
+      --bg:       #080a10;
+      --bg2:      #0d1018;
+      --surf:     rgba(255,255,255,0.04);
+      --surf2:    rgba(255,255,255,0.07);
+      --border:   rgba(255,255,255,0.08);
+      --borderB:  rgba(255,255,255,0.16);
+      --lime:     #a3e635;
+      --lime-d:   rgba(163,230,53,0.14);
+      --lime-g:   rgba(163,230,53,0.06);
+      --cyan:     #22d3ee;
+      --cyan-d:   rgba(34,211,238,0.12);
+      --teal:     #2dd4bf;
+      --teal-d:   rgba(45,212,191,0.10);
+      --t1:       #f1f5f9;
+      --t2:       #94a3b8;
+      --t3:       #475569;
+      --r-xl:     20px;
+      --r-2xl:    28px;
+      --r-3xl:    40px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      background: var(--bg);
+      color: var(--t1);
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* noise grain */
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999;
+    }
+
+    /* ─────────── TYPOGRAPHY ─────────── */
+    .f-display {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      line-height: 1.04;
+      letter-spacing: -0.035em;
+    }
+    .f-heading {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+    }
+    .grad-lime {
+      background: linear-gradient(135deg, var(--lime) 10%, #d9f99d 90%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .grad-cyan {
+      background: linear-gradient(135deg, var(--cyan) 10%, var(--teal) 90%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .grad-both {
+      background: linear-gradient(135deg, var(--lime) 0%, var(--cyan) 70%, var(--teal) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ─────────── GLASS CARD ─────────── */
+    .card {
+      background: var(--surf);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-radius: var(--r-2xl);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06);
+      transition: transform 0.35s cubic-bezier(.34,1.56,.64,1),
+                  box-shadow 0.35s ease,
+                  border-color 0.25s ease;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: var(--borderB);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 0 48px rgba(163,230,53,0.07), inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+
+    /* ─────────── BADGE ─────────── */
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 13px;
+      border-radius: 100px;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.07em; text-transform: uppercase;
+    }
+    .badge-lime  { background: var(--lime-d); border: 1px solid rgba(163,230,53,0.3); color: var(--lime); }
+    .badge-cyan  { background: var(--cyan-d); border: 1px solid rgba(34,211,238,0.3);  color: var(--cyan); }
+    .badge-teal  { background: var(--teal-d); border: 1px solid rgba(45,212,191,0.3);  color: var(--teal); }
+    .badge-grad  {
+      background: linear-gradient(135deg, rgba(163,230,53,0.12), rgba(34,211,238,0.08));
+      border: 1px solid rgba(163,230,53,0.35);
+      color: var(--lime);
+    }
+
+    /* ─────────── BUTTONS ─────────── */
+    .btn-lime {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 15px 28px;
+      background: var(--lime);
+      color: #050f00;
+      font-weight: 700; font-size: 14px;
+      border-radius: 100px; border: none; cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.25s cubic-bezier(.34,1.56,.64,1), box-shadow 0.3s ease;
+    }
+    .btn-lime:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 0 48px rgba(163,230,53,0.4), 0 8px 24px rgba(0,0,0,0.3);
+    }
+    .btn-lime:active { transform: scale(0.97); }
+
+    .btn-cyan {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 15px 28px;
+      background: linear-gradient(135deg, var(--cyan), var(--teal));
+      color: #021018;
+      font-weight: 700; font-size: 14px;
+      border-radius: 100px; border: none; cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.25s cubic-bezier(.34,1.56,.64,1), box-shadow 0.3s ease;
+    }
+    .btn-cyan:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 0 48px rgba(34,211,238,0.35), 0 8px 24px rgba(0,0,0,0.3);
+    }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 14px 26px;
+      background: transparent;
+      color: var(--lime);
+      font-weight: 600; font-size: 14px;
+      border-radius: 100px;
+      border: 1px solid rgba(163,230,53,0.3);
+      cursor: pointer; text-decoration: none;
+      transition: transform 0.25s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.3s ease;
+    }
+    .btn-ghost:hover {
+      transform: translateY(-2px);
+      background: rgba(163,230,53,0.06);
+      border-color: rgba(163,230,53,0.5);
+      box-shadow: 0 0 32px rgba(163,230,53,0.15);
+    }
+
+    /* ─────────── ANIMATIONS ─────────── */
+    @keyframes float-a { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+    @keyframes float-b { 0%,100%{transform:translateY(0) rotate(-2deg)} 50%{transform:translateY(-14px) rotate(-2deg)} }
+    @keyframes float-c { 0%,100%{transform:translateY(0) rotate(2deg)} 50%{transform:translateY(-8px) rotate(2deg)} }
+    @keyframes glow-pulse { 0%,100%{opacity:.35} 50%{opacity:.75} }
+    @keyframes spin-s { from{transform:rotate(0)} to{transform:rotate(360deg)} }
+    @keyframes bg-drift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .fa { animation: float-a 4s ease-in-out infinite; }
+    .fb { animation: float-b 5.5s ease-in-out infinite .4s; }
+    .fc { animation: float-c 4.8s ease-in-out infinite .8s; }
+    .fd { animation: float-a 6s ease-in-out infinite 1.2s; }
+
+    /* scroll reveal */
+    .rev {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity .75s ease, transform .75s cubic-bezier(.16,1,.3,1);
+    }
+    .rev.on { opacity: 1; transform: translateY(0); }
+    .rev-d1 { transition-delay: .10s; }
+    .rev-d2 { transition-delay: .20s; }
+    .rev-d3 { transition-delay: .30s; }
+    .rev-d4 { transition-delay: .40s; }
+    .rev-d5 { transition-delay: .50s; }
+    .rev-d6 { transition-delay: .60s; }
+
+    /* ─────────── LAYOUT HELPERS ─────────── */
+    .section { padding: 96px 24px; max-width: 1240px; margin: 0 auto; }
+    .section-divider {
+      width: calc(100% - 48px); max-width: 1240px; margin: 0 auto;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06) 30%, rgba(255,255,255,0.06) 70%, transparent);
+    }
+
+    .section-label {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--t3);
+    }
+    .section-label::before {
+      content: ''; display: block;
+      width: 28px; height: 1px;
+      background: var(--t3);
+    }
+
+    /* ─────────── UI BUBBLE ─────────── */
+    .bubble {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 9px 15px;
+      background: rgba(15,18,28,0.85);
+      border: 1px solid var(--borderB);
+      backdrop-filter: blur(16px);
+      border-radius: 100px;
+      font-size: 12px; font-weight: 500;
+      white-space: nowrap;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      color: var(--t1);
+    }
+    .bubble .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .bubble-card {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 11px 16px;
+      background: rgba(12,15,24,0.9);
+      border: 1px solid var(--borderB);
+      backdrop-filter: blur(20px);
+      border-radius: 14px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      font-size: 12px; font-weight: 500;
+    }
+
+    /* ─────────── ORB BACKGROUNDS ─────────── */
+    .orb {
+      position: absolute; border-radius: 50%;
+      filter: blur(70px); pointer-events: none;
+    }
+
+    /* ─────────── INCOME BLOCK ─────────── */
+    .income-block {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 18px;
+      background: rgba(163,230,53,0.07);
+      border: 1px solid rgba(163,230,53,0.18);
+      border-radius: 14px;
+    }
+    .income-block.cyan-v {
+      background: rgba(34,211,238,0.07);
+      border-color: rgba(34,211,238,0.18);
+    }
+    .income-block.grad-v {
+      background: linear-gradient(135deg, rgba(163,230,53,0.07), rgba(34,211,238,0.05));
+      border-color: rgba(163,230,53,0.22);
+    }
+
+    /* ─────────── CHECK ITEM ─────────── */
+    .check-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 7px 0;
+      font-size: 13px; color: var(--t2); line-height: 1.5;
+    }
+    .check-icon {
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .check-icon.lime { background: rgba(163,230,53,0.12); border: 1px solid rgba(163,230,53,0.3); }
+    .check-icon.cyan-i { background: rgba(34,211,238,0.10); border: 1px solid rgba(34,211,238,0.28); }
+
+    /* ─────────── STEP NUMBER ─────────── */
+    .step-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 72px; font-weight: 800;
+      line-height: 1;
+    }
+
+    /* ─────────── PHONE MOCKUP ─────────── */
+    .phone {
+      width: 188px; height: 360px;
+      background: linear-gradient(160deg, #141828, #0c1020);
+      border: 2px solid rgba(255,255,255,0.13);
+      border-radius: 34px;
+      position: relative; overflow: hidden;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.04),
+        0 32px 64px rgba(0,0,0,0.6),
+        0 0 80px rgba(163,230,53,0.06);
+    }
+    .phone::before {
+      content: '';
+      position: absolute; top: 14px; left: 50%;
+      transform: translateX(-50%);
+      width: 52px; height: 5px;
+      background: rgba(255,255,255,0.12);
+      border-radius: 3px;
+    }
+    .phone-screen {
+      position: absolute; inset: 0;
+      padding: 32px 12px 12px;
+      display: flex; flex-direction: column; gap: 7px;
+    }
+
+    /* ─────────── DASHBOARD CARD (mini) ─────────── */
+    .mini-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 9px 10px;
+    }
+    .mini-bar {
+      height: 4px; border-radius: 2px;
+      background: rgba(255,255,255,0.08);
+      overflow: hidden;
+    }
+    .mini-bar-fill {
+      height: 100%; border-radius: 2px;
+    }
+
+    /* ─────────── COURSE CARD TOP ─────────── */
+    .card-top {
+      height: 210px;
+      position: relative; overflow: hidden;
+      border-radius: 20px 20px 0 0;
+      padding: 24px;
+    }
+    .card-top-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    /* ─────────── STICKY MOBILE CTA ─────────── */
+    .sticky-cta {
+      display: none;
+      position: fixed; bottom: 0; left: 0; right: 0;
+      z-index: 500;
+      padding: 16px 20px calc(16px + env(safe-area-inset-bottom, 0px));
+      background: linear-gradient(to top, rgba(8,10,16,0.97) 60%, transparent);
+      backdrop-filter: blur(12px);
+    }
+
+    /* ─────────── RESPONSIVE ─────────── */
+    @media (max-width: 767px) {
+      .section { padding: 72px 20px; }
+      .bonus-grid { grid-template-columns: 1fr !important; }
+      .bonus-items { grid-template-columns: 1fr 1fr !important; }
+      .steps-grid { grid-template-columns: 1fr !important; }
+      .course-grid { grid-template-columns: 1fr !important; }
+      .sticky-cta { display: block; }
+      .phone-wrap { display: none; } /* Hides phone on mobile for cleaner layout */
+    }
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .steps-grid { grid-template-columns: 1fr 1fr !important; }
+      .course-grid { grid-template-columns: 1fr 1fr !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     AMBIENT ATMOSPHERE
+═══════════════════════════════════════════ -->
+<div aria-hidden="true" style="position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;">
+  <div class="orb" style="width:600px;height:600px;top:-120px;right:-100px;background:radial-gradient(circle,rgba(163,230,53,0.09),transparent 65%);animation:glow-pulse 7s ease-in-out infinite;"></div>
+  <div class="orb" style="width:480px;height:480px;bottom:15%;left:-150px;background:radial-gradient(circle,rgba(34,211,238,0.08),transparent 65%);animation:glow-pulse 9s ease-in-out infinite 2s;"></div>
+  <div class="orb" style="width:360px;height:360px;top:50%;right:15%;background:radial-gradient(circle,rgba(45,212,191,0.06),transparent 65%);animation:glow-pulse 8s ease-in-out infinite 4s;"></div>
+</div>
+
+<main style="position:relative;z-index:1;">
+
+<!-- ═══════════════════════════════════════════
+     SECTION 1 — BONUS: KO STUDENTS SAŅEM
+═══════════════════════════════════════════ -->
+<section class="section">
+
+  <!-- Heading -->
+  <div class="rev" style="text-align:center;margin-bottom:64px;">
+    <div class="section-label" style="margin-bottom:18px;justify-content:center;">Ko tu saņem</div>
+    <h2 class="f-display" style="font-size:clamp(40px,6vw,76px);margin-bottom:18px;">
+      Iekšā viss,<br>
+      <span class="grad-lime">kas vajadzīgs startam</span>
+    </h2>
+    <p style="color:var(--t2);font-size:18px;max-width:500px;margin:0 auto;line-height:1.75;">
+      Viss vienā vietā — no pirmajām video nodarbībām līdz gataviem dokumentiem, veidnēm un klientu skriptiem.
+    </p>
+  </div>
+
+  <!-- Two-col grid: bonus items left, phone right -->
+  <div class="bonus-grid rev" style="display:grid;grid-template-columns:1fr 420px;gap:56px;align-items:center;">
+
+    <!-- LEFT: 2×3 bonus items grid -->
+    <div class="bonus-items" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+
+      <!-- Item 1 -->
+      <div class="card rev rev-d1" style="padding:24px 22px;display:flex;flex-direction:column;gap:14px;">
+        <div style="width:42px;height:42px;background:var(--lime-d);border:1px solid rgba(163,230,53,0.25);border-radius:12px;display:flex;align-items:center;justify-content:center;">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#a3e635" stroke-width="2" stroke-linecap="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+        </div>
+        <div>
+          <div style="font-weight:600;font-size:14px;margin-bottom:4px;">Video nodarbības</div>
+          <div style="color:var(--t3);font-size:12px;line-height:1.55;">Soli pa solim, praktiski un skaidri</div>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="card rev rev-d2" style="padding:24px 22px;display:flex;flex-direction:column;gap:14px;">
+        <div style="width:42px;height:42px;background:var(--cyan-d);border:1px solid rgba(34,211,238,0.22);border-radius:12px;display:flex;align-items:center;justify-content:center;">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <div>
+          <div style="font-weight:600;font-size:14px;margin-bottom:4px;">Gatavas ziņu veidnes</div>
+          <div style="color:var(--t3);font-size:12px;line-height:1.55;">Uzrunāt klientus no pirmās dienas</div>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="card rev rev-d3" style="padding:24px 22px;display:flex;flex-direction:column;gap:14px;">
+        <div style="width:42px;height:42px;background:var(--teal-d);border:1px solid rgba(45,212,191,0.22);border-radius:12px;display:flex;align-items:center;justify-content:center;">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#2dd4bf" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <div>
+          <div style="font-weight:600;font-size:14px;margin-bottom:4px;">Piedāvājumu templates</div>
+          <div style="color:var(--t3);font-size:12px;line-height:1.55;">Profesionāli piedāvājumi jau gatavi</div>
+        </div>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="card rev rev-d4" style="padding:24px 22px;display:flex;flex-direction:column;gap:14px;">
+        <div style="width:42px;height:42px;background:var(--lime-d);border:1px solid rgba(163,230,53,0.25);border-radius:12px;display:flex;align-items:center;justify-content:center;">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#a3e635" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div>
+          <div style="font-weight:600;font-size:14px;margin-bottom:4px;">Kopienas piekļuve</div>
+          <div style="color:var(--t3);font-size:12px;line-height:1.55;">Citi kursanti, jautājumi, atbildes</div>
+        </div>
+      </div>
+
+      <!-- Item 5 -->
+      <div class="card rev rev-d5" style="padding:24px 22px;display:flex;flex-direction:column;gap:14px;">
+        <div style="width:42px;height:42px;background:var(--cyan-d);border:1px solid rgba(34,211,238,0.22);border-radius:12px;display:flex;align-items:center;justify-content:center;">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div>
+          <div style="font-weight:600;font-size:14px;margin-bottom:4px;">Praktiski uzdevumi</div>
+          <div style="color:var(--t3);font-size:12px;line-height:1.55;">Reāli darbi, ko rādīt klientiem</div>
+        </div>
+      </div>
+
+      <!-- Item 6 -->
+      <div class="card rev rev-d6" style="padding:24px 22px;display:flex;flex-direction:column;gap:14px;">
+        <div style="width:42px;height:42px;background:var(--teal-d);border:1px solid rgba(45,212,191,0.22);border-radius:12px;display:flex;align-items:center;justify-content:center;">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#2dd4bf" stroke-width="2" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+        </div>
+        <div>
+          <div style="font-weight:600;font-size:14px;margin-bottom:4px;">Portfolio piemēri</div>
+          <div style="color:var(--t3);font-size:12px;line-height:1.55;">Gatavi paraugi, ko iekopēt savā CV</div>
+        </div>
+      </div>
+
+      <!-- Item 7 — "un vēl" card -->
+      <div style="grid-column: 1 / -1;">
+        <div class="card" style="padding:18px 22px;display:flex;align-items:center;justify-content:space-between;border-style:dashed;">
+          <div style="display:flex;align-items:center;gap:14px;">
+            <div style="width:42px;height:42px;background:var(--lime-d);border:1px solid rgba(163,230,53,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#a3e635" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            </div>
+            <div>
+              <div style="font-weight:600;font-size:14px;">Klientu uzrunāšanas skripti, cenu struktūras</div>
+              <div style="color:var(--t3);font-size:12px;">Un daudz kas vairāk…</div>
+            </div>
+          </div>
+          <div class="badge badge-lime">Iekļauts</div>
+        </div>
+      </div>
+
+    </div><!-- /bonus-items -->
+
+    <!-- RIGHT: Phone mockup with floating bubbles -->
+    <div class="phone-wrap" style="position:relative;display:flex;align-items:center;justify-content:center;min-height:480px;">
+
+      <!-- Glow behind phone -->
+      <div style="position:absolute;width:300px;height:300px;background:radial-gradient(circle,rgba(163,230,53,0.12),transparent 65%);border-radius:50%;left:50%;transform:translateX(-50%);"></div>
+
+      <!-- Phone -->
+      <div class="phone fa" style="position:relative;z-index:2;">
+        <div class="phone-screen">
+          <!-- App header -->
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+            <div style="width:26px;height:26px;background:linear-gradient(135deg,#a3e635,#22d3ee);border-radius:7px;flex-shrink:0;"></div>
+            <span style="font-size:12px;font-weight:700;">Chademy</span>
+            <div style="margin-left:auto;width:22px;height:22px;background:var(--surf2);border-radius:50%;display:flex;align-items:center;justify-content:center;">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            </div>
+          </div>
+
+          <!-- Progress card -->
+          <div class="mini-card" style="background:rgba(163,230,53,0.08);border-color:rgba(163,230,53,0.18);">
+            <div style="font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;">Tavs progress</div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+              <div style="font-size:17px;font-weight:700;color:var(--lime);">68%</div>
+              <div style="font-size:8px;color:var(--t3);">Turpini tā!</div>
+            </div>
+            <div class="mini-bar">
+              <div class="mini-bar-fill" style="width:68%;background:linear-gradient(90deg,#a3e635,#22d3ee);"></div>
+            </div>
+          </div>
+
+          <!-- Course rows -->
+          <div class="mini-card" style="display:flex;align-items:center;gap:8px;">
+            <div style="width:22px;height:22px;background:rgba(163,230,53,0.18);border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="#a3e635"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+            <div style="flex:1;min-width:0;">
+              <div style="font-size:9px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Satura speciālists</div>
+              <div class="mini-bar" style="margin-top:3px;">
+                <div class="mini-bar-fill" style="width:55%;background:linear-gradient(90deg,#a3e635,#d9f99d);"></div>
+              </div>
+            </div>
+            <span style="font-size:8px;color:var(--t3);">55%</span>
+          </div>
+
+          <div class="mini-card" style="display:flex;align-items:center;gap:8px;">
+            <div style="width:22px;height:22px;background:rgba(34,211,238,0.18);border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="#22d3ee"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+            <div style="flex:1;min-width:0;">
+              <div style="font-size:9px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Mājaslapas & auto</div>
+              <div class="mini-bar" style="margin-top:3px;">
+                <div class="mini-bar-fill" style="width:20%;background:linear-gradient(90deg,#22d3ee,#2dd4bf);"></div>
+              </div>
+            </div>
+            <span style="font-size:8px;color:var(--t3);">20%</span>
+          </div>
+
+          <!-- Template vault -->
+          <div class="mini-card">
+            <div style="font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px;">Template Vault</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;">
+              <div style="height:28px;background:rgba(163,230,53,0.14);border-radius:6px;"></div>
+              <div style="height:28px;background:rgba(34,211,238,0.12);border-radius:6px;"></div>
+              <div style="height:28px;background:rgba(45,212,191,0.10);border-radius:6px;"></div>
+              <div style="height:28px;background:rgba(255,255,255,0.05);border-radius:6px;"></div>
+              <div style="height:28px;background:rgba(255,255,255,0.05);border-radius:6px;"></div>
+              <div style="height:28px;background:rgba(163,230,53,0.06);border-radius:6px;display:flex;align-items:center;justify-content:center;">
+                <span style="font-size:8px;color:var(--t3);">+24</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom nav dots -->
+          <div style="display:flex;justify-content:center;gap:6px;margin-top:auto;padding-top:4px;">
+            <div style="width:5px;height:5px;border-radius:50%;background:var(--lime);"></div>
+            <div style="width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.15);"></div>
+            <div style="width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.15);"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating UI bubbles around phone -->
+      <div class="bubble fb" style="position:absolute;top:52px;right:-16px;z-index:3;">
+        <span class="dot" style="background:#a3e635;"></span>
+        Klientu skripti
+      </div>
+      <div class="bubble fc" style="position:absolute;bottom:108px;left:-28px;z-index:3;">
+        <span class="dot" style="background:#22d3ee;"></span>
+        28 templates
+      </div>
+      <div class="bubble fd" style="position:absolute;bottom:48px;right:-10px;z-index:3;">
+        <span class="dot" style="background:#2dd4bf;"></span>
+        Kopiena aktīva
+      </div>
+      <div class="bubble fa" style="position:absolute;top:160px;left:-40px;z-index:3;font-size:11px;">
+        <span class="dot" style="background:#d9f99d;"></span>
+        Uzdevumi gatavi
+      </div>
+
+    </div><!-- /phone-wrap -->
+
+  </div><!-- /bonus-grid -->
+
+  <!-- Caption -->
+  <div class="rev" style="text-align:center;margin-top:44px;">
+    <p style="color:var(--t3);font-size:13px;display:inline-flex;align-items:center;gap:8px;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      Visi materiāli pieejami platformā pēc piekļuves aktivizēšanas
+    </p>
+  </div>
+
+</section><!-- /section 1 -->
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 2 — KĀ TAS STRĀDĀ
+═══════════════════════════════════════════ -->
+<section class="section">
+
+  <div class="rev" style="text-align:center;margin-bottom:64px;">
+    <div class="section-label" style="margin-bottom:18px;justify-content:center;">Process</div>
+    <h2 class="f-display" style="font-size:clamp(40px,6vw,76px);margin-bottom:18px;">
+      Kā tas<br>
+      <span class="grad-cyan">strādā</span>
+    </h2>
+    <p style="color:var(--t2);font-size:18px;max-width:460px;margin:0 auto;line-height:1.75;">
+      Trīs soļi no nulles līdz pirmajiem klientiem un pirmajiem ienākumiem.
+    </p>
+  </div>
+
+  <!-- 3 step cards -->
+  <div class="steps-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+
+    <!-- STEP 1 -->
+    <div class="card rev rev-d1" style="padding:32px 28px;position:relative;overflow:hidden;">
+      <div class="orb" style="width:240px;height:240px;top:-80px;left:-80px;background:radial-gradient(circle,rgba(163,230,53,0.09),transparent 65%);filter:blur(50px);"></div>
+      <div style="position:relative;z-index:1;">
+        <div class="step-num grad-lime" style="margin-bottom:20px;">01</div>
+        <div class="badge badge-lime" style="margin-bottom:16px;">Izvēle</div>
+        <h3 class="f-heading" style="font-size:22px;margin-bottom:12px;">Izvēlies savu virzienu</h3>
+        <p style="color:var(--t2);font-size:13px;line-height:1.7;margin-bottom:24px;">
+          Sāc ar sev tuvāko AI pakalpojumu — saturu, mājaslapām vai AI aģentiem. Nav nepareizas izvēles.
+        </p>
+
+        <!-- Visual: direction selector -->
+        <div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:center;gap:10px;padding:4px 0;">
+            <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,rgba(163,230,53,0.2),rgba(34,211,238,0.15));display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#a3e635" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <span style="font-size:12px;font-weight:500;">Tu pie laptopa</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div class="bubble" style="width:100%;justify-content:flex-start;background:rgba(163,230,53,0.08);border-color:rgba(163,230,53,0.3);">
+              <span class="dot" style="background:#a3e635;"></span>
+              <span style="color:var(--lime);font-size:12px;">Satura virziens</span>
+              <svg style="margin-left:auto;" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#a3e635" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="bubble" style="width:100%;justify-content:flex-start;font-size:12px;">
+              <span class="dot" style="background:#22d3ee;"></span>
+              Mājaslapas
+            </div>
+            <div class="bubble" style="width:100%;justify-content:flex-start;font-size:12px;">
+              <span class="dot" style="background:#2dd4bf;"></span>
+              AI aģenti
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="card rev rev-d2" style="padding:32px 28px;position:relative;overflow:hidden;">
+      <div class="orb" style="width:240px;height:240px;top:-80px;left:-80px;background:radial-gradient(circle,rgba(34,211,238,0.09),transparent 65%);filter:blur(50px);"></div>
+      <div style="position:relative;z-index:1;">
+        <div class="step-num grad-cyan" style="margin-bottom:20px;">02</div>
+        <div class="badge badge-cyan" style="margin-bottom:16px;">Apmācība</div>
+        <h3 class="f-heading" style="font-size:22px;margin-bottom:12px;">Apgūsti praktisku sistēmu</h3>
+        <p style="color:var(--t2);font-size:13px;line-height:1.7;margin-bottom:24px;">
+          Skaties nodarbības, izmanto veidnes un izveido pirmo piemēru, ko vari parādīt uzņēmumiem.
+        </p>
+
+        <!-- Visual: course progress -->
+        <div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px;">
+          <!-- Progress row -->
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:32px;height:32px;background:rgba(34,211,238,0.15);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#22d3ee"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+            <div style="flex:1;">
+              <div style="font-size:10px;font-weight:600;margin-bottom:4px;">Moduļa 1 pārskats</div>
+              <div class="mini-bar">
+                <div class="mini-bar-fill" style="width:45%;background:linear-gradient(90deg,#22d3ee,#2dd4bf);"></div>
+              </div>
+            </div>
+            <span style="font-size:9px;color:var(--t3);">45%</span>
+          </div>
+          <!-- Template cards -->
+          <div style="display:flex;flex-direction:column;gap:5px;">
+            <div style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:8px;padding:7px 9px;">
+              <div style="width:18px;height:18px;background:rgba(34,211,238,0.18);border-radius:4px;flex-shrink:0;"></div>
+              <span style="font-size:10px;color:var(--t2);flex:1;">Ziņu veidne klientam</span>
+              <div style="background:rgba(163,230,53,0.14);border-radius:4px;padding:2px 6px;font-size:9px;color:var(--lime);">Gatavs</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:8px;padding:7px 9px;">
+              <div style="width:18px;height:18px;background:rgba(45,212,191,0.15);border-radius:4px;flex-shrink:0;"></div>
+              <span style="font-size:10px;color:var(--t2);flex:1;">Portfolio veidne</span>
+              <div style="background:rgba(255,255,255,0.06);border-radius:4px;padding:2px 6px;font-size:9px;color:var(--t3);">Jauns</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="card rev rev-d3" style="padding:32px 28px;position:relative;overflow:hidden;">
+      <div class="orb" style="width:240px;height:240px;top:-80px;left:-80px;background:radial-gradient(circle,rgba(45,212,191,0.09),transparent 65%);filter:blur(50px);"></div>
+      <div style="position:relative;z-index:1;">
+        <div class="step-num" style="margin-bottom:20px;background:linear-gradient(135deg,#2dd4bf,#a3e635);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">03</div>
+        <div class="badge badge-teal" style="margin-bottom:16px;">Klienti</div>
+        <h3 class="f-heading" style="font-size:22px;margin-bottom:12px;">Piedāvā to uzņēmumiem</h3>
+        <p style="color:var(--t2);font-size:13px;line-height:1.7;margin-bottom:24px;">
+          Saņem gatavus tekstus, cenu struktūras un piedāvājumu piemērus, lai uzrunātu klientus.
+        </p>
+
+        <!-- Visual: client flow -->
+        <div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:0;">
+          <div style="display:flex;align-items:center;gap:10px;padding:8px 0;">
+            <div style="width:32px;height:32px;background:rgba(163,230,53,0.12);border:1px solid rgba(163,230,53,0.25);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#a3e635" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.65 3.41 2 2 0 0 1 3.62 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16a2 2 0 0 1 .27.93z"/></svg>
+            </div>
+            <div>
+              <div style="font-size:11px;font-weight:600;color:var(--lime);">Piedāvājums nosūtīts</div>
+              <div style="font-size:9px;color:var(--t3);">Gatavs teksts, cena, pakalpojums</div>
+            </div>
+          </div>
+          <div style="width:1px;height:14px;background:var(--border);margin-left:15px;"></div>
+          <div style="display:flex;align-items:center;gap:10px;padding:8px 0;">
+            <div style="width:32px;height:32px;background:rgba(34,211,238,0.12);border:1px solid rgba(34,211,238,0.22);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <div>
+              <div style="font-size:11px;font-weight:600;color:var(--cyan);">Klients atbild</div>
+              <div style="font-size:9px;color:var(--t3);">Interese, jautājumi, vienošanās</div>
+            </div>
+          </div>
+          <div style="width:1px;height:14px;background:var(--border);margin-left:15px;"></div>
+          <div style="display:flex;align-items:center;gap:10px;padding:8px 0;">
+            <div style="width:32px;height:32px;background:rgba(45,212,191,0.12);border:1px solid rgba(45,212,191,0.25);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2dd4bf" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div>
+              <div style="font-size:11px;font-weight:600;color:var(--teal);">Pirmie ienākumi</div>
+              <div style="font-size:9px;color:var(--t3);">300€–1500€+ no pirmā mēneša</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /steps-grid -->
+
+</section><!-- /section 2 -->
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 3 — COURSE PATH CARDS
+═══════════════════════════════════════════ -->
+<section class="section">
+
+  <div class="rev" style="text-align:center;margin-bottom:64px;">
+    <div class="section-label" style="margin-bottom:18px;justify-content:center;">Izvēlies savu ceļu</div>
+    <h2 class="f-display" style="font-size:clamp(40px,6vw,76px);margin-bottom:18px;">
+      Trīs ceļi,<br>
+      <span class="grad-both">viens mērķis</span>
+    </h2>
+    <p style="color:var(--t2);font-size:18px;max-width:480px;margin:0 auto;line-height:1.75;">
+      Izvēlies virzienu, kas atbilst tavam stilam, un sāc nopelnīt ar AI.
+    </p>
+  </div>
+
+  <!-- Course cards grid -->
+  <div class="course-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:start;">
+
+    <!-- ── CARD 1: Satura speciālists ── -->
+    <div class="rev rev-d1" style="border-radius:var(--r-2xl);overflow:hidden;border:1px solid var(--border);background:var(--surf);box-shadow:0 8px 32px rgba(0,0,0,0.35);display:flex;flex-direction:column;transition:transform 0.35s cubic-bezier(.34,1.56,.64,1),box-shadow 0.35s ease,border-color 0.25s ease;" onmouseenter="this.style.transform='translateY(-6px)';this.style.borderColor='rgba(163,230,53,0.3)';this.style.boxShadow='0 24px 64px rgba(0,0,0,0.5),0 0 48px rgba(163,230,53,0.08)'" onmouseleave="this.style.transform='';this.style.borderColor='';this.style.boxShadow=''">
+
+      <!-- Card top visual -->
+      <div class="card-top" style="background:linear-gradient(160deg,#0b1a06,#112206,#0b1606);">
+        <div class="card-top-grid" style="background-image:linear-gradient(rgba(163,230,53,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(163,230,53,0.05) 1px,transparent 1px);"></div>
+        <!-- Glow -->
+        <div style="position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(163,230,53,0.2),transparent 65%);filter:blur(40px);"></div>
+        <!-- Content -->
+        <div style="position:relative;z-index:1;display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <div class="fa" style="background:rgba(163,230,53,0.14);border:1px solid rgba(163,230,53,0.3);border-radius:8px;padding:7px 12px;font-size:11px;font-weight:600;color:var(--lime);">AI Video ✓</div>
+            <div class="fb" style="background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:8px;padding:7px 12px;font-size:11px;">AI Bildes</div>
+            <div class="fc" style="background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:8px;padding:7px 12px;font-size:11px;">Saturs</div>
+          </div>
+          <!-- Mini dashboard -->
+          <div style="background:rgba(0,0,0,0.4);border:1px solid rgba(163,230,53,0.15);border-radius:10px;padding:12px;">
+            <div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Satura panelis</div>
+            <div style="display:flex;gap:5px;">
+              <div style="flex:1;height:36px;background:rgba(163,230,53,0.12);border-radius:6px;"></div>
+              <div style="flex:1;height:36px;background:rgba(163,230,53,0.07);border-radius:6px;"></div>
+              <div style="flex:1;height:36px;background:rgba(163,230,53,0.04);border-radius:6px;"></div>
+              <div style="flex:1;height:36px;background:rgba(255,255,255,0.03);border-radius:6px;display:flex;align-items:center;justify-content:center;"><span style="font-size:8px;color:var(--t3);">+5</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card body -->
+      <div style="padding:28px 26px;display:flex;flex-direction:column;gap:18px;flex:1;">
+        <div>
+          <div class="badge badge-lime" style="margin-bottom:12px;">Visvieglākais starts</div>
+          <h3 class="f-heading" style="font-size:24px;margin-bottom:8px;">Satura speciālists</h3>
+          <p style="color:var(--t2);font-size:13px;line-height:1.65;">Veido AI saturu uzņēmumiem un attīsti savu pirmo pakalpojumu</p>
+        </div>
+
+        <div class="income-block">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#a3e635" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <div>
+            <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">Potenciālie ienākumi</div>
+            <div style="font-size:17px;font-weight:700;color:var(--lime);">300€ – 1500€ <span style="font-size:11px;font-weight:400;color:var(--t2);">/mēn</span></div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;border-top:1px solid var(--border);padding-top:16px;">
+          <div class="check-item"><div class="check-icon lime"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#a3e635" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>AI faceless video uzņēmumiem</div>
+          <div class="check-item"><div class="check-icon lime"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#a3e635" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>AI attēli, banneri un reklāmu vizuāļi</div>
+          <div class="check-item"><div class="check-icon lime"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#a3e635" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Sociālo tīklu satura pakalpojums</div>
+          <div class="check-item"><div class="check-icon lime"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#a3e635" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Kā izveidot portfolio no nulles</div>
+          <div class="check-item"><div class="check-icon lime"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#a3e635" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Kā atrast pirmos klientus</div>
+          <div class="check-item"><div class="check-icon lime"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#a3e635" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Gatavi cenu piedāvājumi un ziņu veidnes</div>
+        </div>
+
+        <a href="#" class="btn-lime" style="width:100%;">
+          Sākt ar šo virzienu
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+    </div><!-- /card 1 -->
+
+    <!-- ── CARD 2: Mājaslapas & automatizācija (FEATURED) ── -->
+    <div class="rev rev-d2" style="border-radius:var(--r-2xl);overflow:hidden;border:1px solid rgba(34,211,238,0.28);background:var(--surf);box-shadow:0 8px 32px rgba(0,0,0,0.4),0 0 60px rgba(34,211,238,0.07);display:flex;flex-direction:column;transition:transform 0.35s cubic-bezier(.34,1.56,.64,1),box-shadow 0.35s ease;" onmouseenter="this.style.transform='translateY(-6px)';this.style.boxShadow='0 24px 64px rgba(0,0,0,0.5),0 0 60px rgba(34,211,238,0.14)'" onmouseleave="this.style.transform='';this.style.boxShadow=''">
+
+      <!-- Popular tag -->
+      <div style="background:linear-gradient(90deg,rgba(34,211,238,0.12),rgba(45,212,191,0.08));border-bottom:1px solid rgba(34,211,238,0.2);padding:10px 24px;display:flex;align-items:center;gap:8px;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="#22d3ee"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span style="font-size:11px;font-weight:700;color:var(--cyan);letter-spacing:0.07em;text-transform:uppercase;">Populārākā izvēle</span>
+      </div>
+
+      <!-- Card top visual -->
+      <div class="card-top" style="background:linear-gradient(160deg,#061620,#0a2233,#061a20);">
+        <div class="card-top-grid" style="background-image:linear-gradient(rgba(34,211,238,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(34,211,238,0.04) 1px,transparent 1px);"></div>
+        <div style="position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(34,211,238,0.18),transparent 65%);filter:blur(40px);"></div>
+        <div style="position:relative;z-index:1;display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <div class="fb" style="background:rgba(34,211,238,0.14);border:1px solid rgba(34,211,238,0.3);border-radius:8px;padding:7px 12px;font-size:11px;font-weight:600;color:var(--cyan);">Mājaslapa ✓</div>
+            <div class="fc" style="background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:8px;padding:7px 12px;font-size:11px;">AI asistents</div>
+            <div class="fa" style="background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:8px;padding:7px 12px;font-size:11px;">WhatsApp</div>
+          </div>
+          <div style="background:rgba(0,0,0,0.4);border:1px solid rgba(34,211,238,0.15);border-radius:10px;padding:12px;">
+            <div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Projektu panelis</div>
+            <div style="display:flex;flex-direction:column;gap:5px;">
+              <div style="display:flex;align-items:center;gap:6px;">
+                <div style="width:7px;height:7px;border-radius:50%;background:#22d3ee;flex-shrink:0;"></div>
+                <div style="flex:1;height:5px;background:rgba(255,255,255,0.07);border-radius:2px;overflow:hidden;">
+                  <div style="width:75%;height:100%;background:linear-gradient(90deg,#22d3ee,#2dd4bf);border-radius:2px;"></div>
+                </div>
+                <span style="font-size:8px;color:var(--t3);">75%</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:6px;">
+                <div style="width:7px;height:7px;border-radius:50%;background:#2dd4bf;flex-shrink:0;"></div>
+                <div style="flex:1;height:5px;background:rgba(255,255,255,0.07);border-radius:2px;overflow:hidden;">
+                  <div style="width:40%;height:100%;background:linear-gradient(90deg,#2dd4bf,#22d3ee);border-radius:2px;"></div>
+                </div>
+                <span style="font-size:8px;color:var(--t3);">40%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card body -->
+      <div style="padding:28px 26px;display:flex;flex-direction:column;gap:18px;flex:1;">
+        <div>
+          <div class="badge badge-cyan" style="margin-bottom:12px;">Populāra izvēle</div>
+          <h3 class="f-heading" style="font-size:24px;margin-bottom:8px;">Mājaslapas &amp; automatizācija</h3>
+          <p style="color:var(--t2);font-size:13px;line-height:1.65;">Izveido modernus biznesa risinājumus, ko uzņēmumi reāli izmanto</p>
+        </div>
+
+        <div class="income-block cyan-v">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <div>
+            <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">Potenciālie ienākumi</div>
+            <div style="font-size:17px;font-weight:700;color:var(--cyan);">500€ – 1800€ <span style="font-size:11px;font-weight:400;color:var(--t2);">/mēn</span></div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;border-top:1px solid var(--border);padding-top:16px;">
+          <div class="check-item"><div class="check-icon cyan-i"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Modernas AI mājaslapas uzņēmumiem</div>
+          <div class="check-item"><div class="check-icon cyan-i"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Pieteikumu un lead formas</div>
+          <div class="check-item"><div class="check-icon cyan-i"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>AI asistenti e-pastiem un klientu komunikācijai</div>
+          <div class="check-item"><div class="check-icon cyan-i"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>WhatsApp automatizācijas pamati</div>
+          <div class="check-item"><div class="check-icon cyan-i"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Kā atrast un uzrunāt klientus</div>
+          <div class="check-item"><div class="check-icon cyan-i"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Profesionāli piedāvājumi un onboarding</div>
+        </div>
+
+        <a href="#" class="btn-cyan" style="width:100%;">
+          Izvēlēties šo ceļu
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+    </div><!-- /card 2 -->
+
+    <!-- ── CARD 3: AI aģentu eksperts ── -->
+    <div class="rev rev-d3" style="border-radius:var(--r-2xl);overflow:hidden;border:1px solid var(--border);background:var(--surf);box-shadow:0 8px 32px rgba(0,0,0,0.35);display:flex;flex-direction:column;transition:transform 0.35s cubic-bezier(.34,1.56,.64,1),box-shadow 0.35s ease,border-color 0.25s ease;" onmouseenter="this.style.transform='translateY(-6px)';this.style.borderColor='rgba(163,230,53,0.3)';this.style.boxShadow='0 24px 64px rgba(0,0,0,0.5),0 0 48px rgba(163,230,53,0.08)'" onmouseleave="this.style.transform='';this.style.borderColor='';this.style.boxShadow=''">
+
+      <!-- Card top visual -->
+      <div class="card-top" style="background:linear-gradient(160deg,#121206,#1e1c06,#101008);">
+        <div class="card-top-grid" style="background-image:linear-gradient(rgba(163,230,53,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(34,211,238,0.03) 1px,transparent 1px);"></div>
+        <div style="position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(163,230,53,0.14),rgba(34,211,238,0.08),transparent 65%);filter:blur(40px);"></div>
+        <div style="position:relative;z-index:1;display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <div class="fc" style="background:linear-gradient(135deg,rgba(163,230,53,0.12),rgba(34,211,238,0.08));border:1px solid rgba(163,230,53,0.3);border-radius:8px;padding:7px 12px;font-size:11px;font-weight:600;color:var(--lime);">AI Aģents ✓</div>
+            <div class="fa" style="background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:8px;padding:7px 12px;font-size:11px;">Balss AI</div>
+            <div class="fb" style="background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:8px;padding:7px 12px;font-size:11px;">Mentoring</div>
+          </div>
+          <div style="background:rgba(0,0,0,0.4);border:1px solid rgba(163,230,53,0.15);border-radius:10px;padding:12px;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+              <div>
+                <div style="font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;">Šī mēneša ienākumi</div>
+                <div style="font-size:22px;font-weight:800;font-family:'Syne',sans-serif;background:linear-gradient(135deg,#a3e635,#22d3ee);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">2 840€</div>
+              </div>
+              <div style="background:rgba(163,230,53,0.14);border:1px solid rgba(163,230,53,0.25);border-radius:6px;padding:4px 9px;font-size:10px;font-weight:600;color:var(--lime);">↑ +18%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card body -->
+      <div style="padding:28px 26px;display:flex;flex-direction:column;gap:18px;flex:1;">
+        <div>
+          <div class="badge badge-grad" style="margin-bottom:12px;">Premium</div>
+          <h3 class="f-heading" style="font-size:24px;margin-bottom:8px;">AI aģentu eksperts</h3>
+          <p style="color:var(--t2);font-size:13px;line-height:1.65;">Augstas vērtības AI pakalpojumi uzņēmumiem</p>
+        </div>
+
+        <div class="income-block grad-v">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#a3e635" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <div>
+            <div style="font-size:10px;color:var(--t3);margin-bottom:2px;">Potenciālie ienākumi</div>
+            <div style="font-size:17px;font-weight:700;background:linear-gradient(135deg,#a3e635,#22d3ee);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">800€ – 3500€ <span style="font-size:11px;font-weight:400;-webkit-text-fill-color:var(--t2);color:var(--t2);">/mēn</span></div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;border-top:1px solid var(--border);padding-top:16px;">
+          <div class="check-item"><div class="check-icon lime"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#a3e635" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>AI balss aģenti zvaniem un rezervācijām</div>
+          <div class="check-item"><div class="check-icon lime"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#a3e635" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>WhatsApp automatizācijas uzņēmumiem</div>
+          <div class="check-item"><div class="check-icon lime"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#a3e635" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Kā pārdot augstas vērtības AI risinājumus</div>
+          <div class="check-item"><div class="check-icon lime"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#a3e635" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>AI lietotņu veidošanas pamati</div>
+          <div class="check-item"><div class="check-icon lime"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#a3e635" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Privāta kopiena</div>
+          <div class="check-item"><div class="check-icon lime"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#a3e635" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>1:1 mentoringa sesijas</div>
+        </div>
+
+        <a href="#" class="btn-ghost" style="width:100%;">
+          Pievienoties premium
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+    </div><!-- /card 3 -->
+
+  </div><!-- /course-grid -->
+
+  <!-- Bottom CTA -->
+  <div class="rev" style="text-align:center;margin-top:56px;">
+    <p style="color:var(--t3);font-size:13px;margin-bottom:20px;">Nav skaidrs, no kā sākt? Sazinies ar mums.</p>
+    <a href="#" class="btn-lime" style="padding:18px 48px;font-size:16px;">
+      Sākt bez maksas →
+    </a>
+  </div>
+
+</section><!-- /section 3 -->
+
+</main><!-- /main -->
+
+<!-- Sticky mobile CTA -->
+<div class="sticky-cta">
+  <a href="#" class="btn-lime" style="width:100%;font-size:15px;padding:18px;">
+    Sākt bez maksas →
+  </a>
+</div>
+
+<script>
+  // ── Scroll reveal
+  const observer = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); }),
+    { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+  );
+  document.querySelectorAll('.rev').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

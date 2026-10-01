@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Satura Speciālists — Iemācies veidot AI saturu | Chademy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple:       #8b5cf6;
+      --purple-b:     #a855f7;
+      --purple-dim:   rgba(139,92,246,.12);
+      --purple-glow:  rgba(139,92,246,.35);
+      --cyan:         #22d3ee;
+      --cyan-dim:     rgba(34,211,238,.1);
+      --bg:           #03030a;
+      --bg2:          #06061a;
+      --t1:           #f8fafc;
+      --t2:           #94a3b8;
+      --t3:           #64748b;
+      --border:       rgba(139,92,246,.12);
+      --border-b:     rgba(139,92,246,.3);
+      --card:         rgba(8,8,24,.65);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--t1);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
+
+    /* ── GRADIENT TEXT ── */
+    .g-purple { background: linear-gradient(130deg,#c084fc,#a855f7); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .g-main   { background: linear-gradient(130deg,#a855f7 0%,#22d3ee 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+    /* ── KEYFRAMES ── */
+    @keyframes meshDrift {
+      0%   { transform: translateX(0)    translateY(0)    rotate(0deg); }
+      33%  { transform: translateX(2%)   translateY(-3%)  rotate(.4deg); }
+      66%  { transform: translateX(-2%)  translateY(2%)   rotate(-.3deg); }
+      100% { transform: translateX(3%)   translateY(-2%)  rotate(.6deg); }
+    }
+    @keyframes gridFade  { 0%,100%{opacity:.55} 50%{opacity:1} }
+    @keyframes glowBeat  { 0%,100%{transform:scale(1); opacity:.7} 50%{transform:scale(1.12); opacity:1} }
+    @keyframes pDot      { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.7)} }
+    @keyframes particleUp{
+      0%   { transform:translateY(100vh); opacity:0; }
+      5%   { opacity:1; }
+      95%  { opacity:.5; }
+      100% { transform:translateY(-60px); opacity:0; }
+    }
+    @keyframes borderSpin{
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes fadeUp   { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes slideR   { from{opacity:0;transform:translateX(-20px)} to{opacity:1;transform:translateX(0)} }
+    @keyframes scaleIn  { from{opacity:0;transform:scale(.94)} to{opacity:1;transform:scale(1)} }
+
+    /* ── NOISE LAYER ── */
+    .noise {
+      position:absolute; inset:0; pointer-events:none; z-index:1;
+      opacity:.03;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 180px;
+    }
+
+    /* ── PARTICLES ── */
+    .particles { position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:0; }
+    .particle  { position:absolute; border-radius:50%; animation:particleUp linear infinite; }
+
+    /* ── GLASS CARD ── */
+    .glass {
+      background: rgba(10,8,28,.7);
+      border: 1px solid rgba(139,92,246,.18);
+      border-radius: 16px;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      transition: border-color .25s, transform .25s, box-shadow .25s;
+      box-shadow: 0 4px 24px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.03);
+    }
+    .glass:hover {
+      border-color: rgba(139,92,246,.38);
+      transform: translateY(-3px);
+      box-shadow: 0 20px 56px rgba(139,92,246,.12), 0 4px 24px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.04);
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed; top:0; left:0; right:0; z-index:100;
+      display: flex; align-items:center; justify-content:space-between;
+      padding: 14px 32px;
+      background: rgba(3,3,10,.55);
+      border-bottom: 1px solid rgba(139,92,246,.08);
+      backdrop-filter: blur(20px);
+    }
+    .nav-logo { font-family:'Syne',sans-serif; font-size:20px; font-weight:800; letter-spacing:-.02em; }
+    .nav-pill {
+      display:inline-flex; align-items:center; gap:7px;
+      padding:5px 14px; border-radius:100px;
+      background:rgba(139,92,246,.1); border:1px solid rgba(139,92,246,.22);
+      font-size:11px; font-weight:600; color:#c4b5fd;
+      letter-spacing:.07em; text-transform:uppercase;
+    }
+    .nav-pill-dot { width:5px; height:5px; border-radius:50%; background:var(--purple-b); animation:pDot 2s ease-in-out infinite; }
+    .nav-btn {
+      padding:9px 20px; background:var(--purple); border-radius:8px;
+      font-size:13px; font-weight:600; color:#fff;
+      text-decoration:none; border:none; cursor:pointer;
+      transition:opacity .2s, transform .2s;
+    }
+    .nav-btn:hover { opacity:.88; transform:translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      position:relative; min-height:100vh;
+      display:flex; align-items:center;
+      padding: 120px 32px 80px; overflow:hidden;
+    }
+    .hero-bg {
+      position:absolute; inset:0; overflow:hidden; z-index:0;
+    }
+    .hero-bg::before {
+      content:''; position:absolute; inset:-50%;
+      background:
+        radial-gradient(ellipse 65% 55% at 22% 28%, rgba(139,92,246,.28) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 60% at 78% 18%, rgba(34,211,238,.11) 0%, transparent 52%),
+        radial-gradient(ellipse 75% 45% at 48% 82%, rgba(168,85,247,.17) 0%, transparent 55%);
+      animation: meshDrift 18s ease-in-out infinite alternate;
+    }
+    .hero-bg::after {
+      content:''; position:absolute; inset:0;
+      background-image: radial-gradient(circle, rgba(139,92,246,.14) 1px, transparent 1px);
+      background-size: 38px 38px;
+      animation: gridFade 5s ease-in-out infinite;
+    }
+    .glow-orb {
+      position:absolute; border-radius:50%; pointer-events:none;
+      filter:blur(72px); z-index:1;
+    }
+    .hero-inner {
+      position:relative; z-index:10;
+      max-width:1220px; margin:0 auto; width:100%;
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:64px; align-items:center;
+    }
+    .eyebrow {
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 15px; border-radius:100px;
+      background:rgba(139,92,246,.1); border:1px solid rgba(139,92,246,.22);
+      font-size:11px; font-weight:600; color:#c4b5fd;
+      letter-spacing:.08em; text-transform:uppercase; margin-bottom:26px;
+    }
+    .eyebrow-dot { width:6px; height:6px; border-radius:50%; background:var(--purple-b); animation:pDot 2s ease-in-out infinite; }
+    .hero h1 {
+      font-size:clamp(38px,4.8vw,66px); font-weight:800;
+      letter-spacing:-.03em; line-height:1.07; margin-bottom:22px;
+    }
+    .hero-sub { font-size:17px; line-height:1.75; color:var(--t2); margin-bottom:34px; max-width:480px; }
+    .tag-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:36px; }
+    .tag {
+      padding:5px 14px; border-radius:100px;
+      background:rgba(34,211,238,.08); border:1px solid rgba(34,211,238,.2);
+      font-size:12px; font-weight:500; color:var(--cyan);
+    }
+    .btn-row { display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
+    .btn-primary {
+      display:inline-flex; align-items:center; gap:9px;
+      padding:15px 30px; border-radius:12px;
+      background:linear-gradient(135deg,#8b5cf6,#a855f7);
+      font-family:'Syne',sans-serif; font-size:15px; font-weight:700;
+      color:#fff; text-decoration:none; border:none; cursor:pointer;
+      box-shadow:0 0 32px rgba(139,92,246,.42),0 8px 28px rgba(139,92,246,.28);
+      position:relative; overflow:hidden;
+      transition:transform .2s cubic-bezier(.34,1.56,.64,1), box-shadow .2s;
+    }
+    .btn-primary:hover {
+      transform:translateY(-2px) scale(1.02);
+      box-shadow:0 0 48px rgba(139,92,246,.55),0 12px 36px rgba(139,92,246,.38);
+    }
+    .btn-primary:active { transform:translateY(0) scale(.98); }
+    .btn-ghost {
+      display:inline-flex; align-items:center; gap:7px;
+      padding:15px 22px; border-radius:12px; border:1px solid rgba(139,92,246,.28);
+      font-size:14px; font-weight:500; color:var(--t2);
+      text-decoration:none; cursor:pointer; background:transparent;
+      transition:border-color .2s,color .2s;
+    }
+    .btn-ghost:hover { border-color:rgba(139,92,246,.5); color:#fff; }
+    .stats-row { display:flex; gap:28px; margin-top:44px; flex-wrap:wrap; }
+    .stat { display:flex; flex-direction:column; gap:3px; }
+    .stat-n { font-family:'Syne',sans-serif; font-size:30px; font-weight:800; letter-spacing:-.025em; line-height:1; }
+    .stat-l { font-size:11px; color:var(--t3); text-transform:uppercase; letter-spacing:.05em; }
+    .stat-div { width:1px; background:rgba(139,92,246,.18); align-self:stretch; margin:4px 0; }
+
+    /* ── NEURAL SVG ── */
+    .neural-wrap {
+      position:relative; display:flex; align-items:center; justify-content:center;
+    }
+    .neural-glow-ring {
+      position:absolute; width:380px; height:380px; border-radius:50%;
+      background:radial-gradient(circle, rgba(139,92,246,.14) 0%, transparent 68%);
+      animation:glowBeat 3.5s ease-in-out infinite;
+    }
+    .neural-svg { position:relative; z-index:10; width:100%; max-width:520px; }
+
+    /* ── SECTION SHELL ── */
+    section { padding:100px 32px; }
+    .container { max-width:1220px; margin:0 auto; }
+    .sec-eye {
+      display:inline-flex; align-items:center; gap:6px;
+      font-size:11px; font-weight:600; letter-spacing:.1em;
+      text-transform:uppercase; color:var(--purple-b); margin-bottom:14px;
+    }
+    .sec-eye::before { content:''; width:20px; height:1px; background:var(--purple-b); }
+    .sec-title {
+      font-size:clamp(28px,3.5vw,46px); font-weight:800;
+      letter-spacing:-.03em; line-height:1.08; margin-bottom:14px;
+    }
+    .sec-sub { font-size:17px; line-height:1.65; color:var(--t2); max-width:540px; margin-bottom:60px; }
+
+    /* ── BENEFITS ── */
+    .benefits-bg { background:linear-gradient(180deg,var(--bg) 0%,#060614 50%,var(--bg) 100%); }
+    .benefits-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .benefit-card { padding:28px 26px; position:relative; overflow:hidden; }
+    .benefit-card::after {
+      content:''; position:absolute; top:0; left:0; right:0; height:1px;
+      background:linear-gradient(90deg,transparent,var(--purple),transparent);
+      opacity:0; transition:opacity .3s;
+    }
+    .benefit-card:hover::after { opacity:1; }
+    .b-icon {
+      width:46px; height:46px; border-radius:12px;
+      display:flex; align-items:center; justify-content:center; margin-bottom:18px;
+    }
+    .b-icon.pu { background:rgba(139,92,246,.15); }
+    .b-icon.cy { background:rgba(34,211,238,.1); }
+    .b-title { font-family:'Syne',sans-serif; font-size:16px; font-weight:700; margin-bottom:7px; }
+    .b-text  { font-size:14px; color:var(--t2); line-height:1.6; }
+
+    /* ── INCOME ── */
+    .income-bg {
+      background:linear-gradient(180deg,var(--bg) 0%,#07051a 50%,var(--bg) 100%);
+      position:relative; overflow:hidden;
+    }
+    .income-bg::before {
+      content:''; position:absolute; top:50%; left:50%;
+      transform:translate(-50%,-50%); width:900px; height:500px;
+      background:radial-gradient(ellipse,rgba(139,92,246,.1) 0%,transparent 65%);
+      pointer-events:none;
+    }
+    .income-grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-bottom:22px; }
+    .income-card {
+      padding:40px 36px; border-radius:20px;
+      background:rgba(8,5,28,.75); border:1px solid rgba(139,92,246,.16);
+      position:relative; overflow:hidden;
+    }
+    .income-card::before {
+      content:''; position:absolute; inset:0;
+      background:linear-gradient(135deg,rgba(139,92,246,.07) 0%,transparent 55%);
+      pointer-events:none;
+    }
+    .i-clients {
+      display:inline-flex; align-items:center; gap:6px;
+      padding:4px 12px; border-radius:100px;
+      background:rgba(139,92,246,.12); border:1px solid rgba(139,92,246,.22);
+      font-size:12px; font-weight:600; color:#c4b5fd; margin-bottom:18px;
+    }
+    .i-amount {
+      font-family:'Syne',sans-serif; font-size:clamp(36px,4.5vw,56px);
+      font-weight:800; letter-spacing:-.04em; line-height:1;
+      background:linear-gradient(130deg,#c084fc,#22d3ee);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+      margin-bottom:6px;
+    }
+    .i-sub { font-size:14px; color:var(--t2); }
+
+    /* ── CURRICULUM ── */
+    .curriculum-bg { background:var(--bg); }
+    .curriculum-cols { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start; }
+    .module-list { display:flex; flex-direction:column; gap:10px; }
+    .module { border-radius:14px; overflow:hidden; cursor:pointer; }
+    .module-hdr {
+      display:flex; align-items:center; gap:14px;
+      padding:18px 20px; transition:background .2s;
+    }
+    .module-hdr:hover { background:rgba(139,92,246,.05); }
+    .module-num {
+      width:34px; height:34px; border-radius:9px; flex-shrink:0;
+      background:rgba(139,92,246,.15); border:1px solid rgba(139,92,246,.25);
+      display:flex; align-items:center; justify-content:center;
+      font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:#c4b5fd;
+    }
+    .module-info { flex:1; min-width:0; }
+    .module-title { font-family:'Syne',sans-serif; font-size:15px; font-weight:700; margin-bottom:1px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .module-meta { font-size:12px; color:var(--t3); }
+    .module-chev { color:var(--t3); flex-shrink:0; transition:transform .25s ease; }
+    .module.open .module-chev { transform:rotate(180deg); }
+    .module-body { display:none; padding:0 20px 16px 68px; flex-direction:column; gap:6px; }
+    .module.open .module-body { display:flex; }
+    .lesson {
+      display:flex; align-items:center; gap:10px;
+      padding:10px 14px; border-radius:9px;
+      background:rgba(139,92,246,.04); border:1px solid rgba(139,92,246,.06);
+      transition:background .2s;
+    }
+    .lesson:hover { background:rgba(139,92,246,.08); }
+    .lesson-play {
+      width:26px; height:26px; border-radius:50%; flex-shrink:0;
+      background:rgba(139,92,246,.18); display:flex; align-items:center; justify-content:center;
+    }
+    .lesson-title { font-size:13px; font-weight:500; flex:1; }
+    .lesson-dur { font-size:11px; color:var(--t3); flex-shrink:0; }
+    .lesson-free {
+      padding:2px 8px; border-radius:100px; font-size:9px; font-weight:700;
+      background:rgba(34,211,238,.1); border:1px solid rgba(34,211,238,.22);
+      color:var(--cyan); text-transform:uppercase; letter-spacing:.04em; flex-shrink:0;
+    }
+
+    /* side panel in curriculum */
+    .curr-panel {
+      position:sticky; top:110px;
+      padding:36px 32px;
+    }
+    .curr-panel-title { font-family:'Syne',sans-serif; font-size:22px; font-weight:800; letter-spacing:-.025em; margin-bottom:22px; }
+    .curr-check-list { display:flex; flex-direction:column; gap:13px; margin-bottom:30px; }
+    .curr-check { display:flex; align-items:center; gap:11px; font-size:14px; }
+    .curr-check-icon {
+      width:22px; height:22px; border-radius:50%; flex-shrink:0;
+      background:rgba(139,92,246,.2); border:1px solid rgba(139,92,246,.35);
+      display:flex; align-items:center; justify-content:center;
+    }
+    .curr-cta { display:block; width:100%; padding:14px; border-radius:10px; text-align:center; }
+
+    /* ── TESTIMONIALS ── */
+    .test-bg { background:linear-gradient(180deg,var(--bg) 0%,#060614 100%); }
+    .test-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .test-card { padding:28px; }
+    .stars { display:flex; gap:3px; margin-bottom:14px; }
+    .star { color:#fbbf24; font-size:15px; }
+    .test-text { font-size:14px; line-height:1.72; color:#c8d4e2; font-style:italic; margin-bottom:20px; }
+    .test-author { display:flex; align-items:center; gap:11px; }
+    .av {
+      width:38px; height:38px; border-radius:50%; flex-shrink:0;
+      background:linear-gradient(135deg,var(--purple),var(--cyan));
+      display:flex; align-items:center; justify-content:center;
+      font-family:'Syne',sans-serif; font-size:14px; font-weight:700; color:#fff;
+    }
+    .av-name { font-family:'Syne',sans-serif; font-size:13px; font-weight:700; }
+    .av-role { font-size:11px; color:var(--t3); }
+
+    /* ── PRICING ── */
+    .pricing-bg { background:var(--bg); position:relative; overflow:hidden; }
+    .pricing-bg::before {
+      content:''; position:absolute; top:50%; left:50%;
+      transform:translate(-50%,-50%); width:700px; height:700px;
+      background:radial-gradient(circle,rgba(139,92,246,.09) 0%,transparent 65%);
+      pointer-events:none;
+    }
+    .pricing-wrap {
+      padding:2px; border-radius:26px;
+      background:linear-gradient(135deg,#a855f7 0%,#22d3ee 35%,#8b5cf6 65%,#a855f7 100%);
+      background-size:300% 300%;
+      animation:borderSpin 5s ease-in-out infinite;
+      max-width:580px; margin:0 auto;
+      box-shadow:
+        0 0 0 1px rgba(168,85,247,.2),
+        0 0 60px rgba(139,92,246,.4),
+        0 0 120px rgba(139,92,246,.2),
+        0 40px 80px rgba(0,0,0,.55);
+    }
+    .pricing-card {
+      padding:48px 44px; border-radius:25px;
+      background:rgba(7,5,22,.92);
+      position:relative; overflow:hidden;
+    }
+    .pricing-card::before {
+      content:''; position:absolute; inset:0;
+      background:linear-gradient(135deg,rgba(139,92,246,.08) 0%,transparent 50%);
+      pointer-events:none;
+    }
+    .p-badge {
+      display:inline-flex; align-items:center; gap:6px;
+      padding:5px 13px; border-radius:100px; margin-bottom:26px;
+      background:rgba(139,92,246,.14); border:1px solid rgba(139,92,246,.28);
+      font-size:11px; font-weight:600; color:#c4b5fd;
+      text-transform:uppercase; letter-spacing:.07em;
+    }
+    .p-price-row { display:flex; align-items:flex-end; gap:4px; margin-bottom:6px; }
+    .p-cur { font-family:'Syne',sans-serif; font-size:38px; font-weight:800; color:var(--purple-b); line-height:1; align-self:flex-start; margin-top:10px; }
+    .p-amount { font-family:'Syne',sans-serif; font-size:80px; font-weight:800; letter-spacing:-.04em; line-height:1; }
+    .p-period { font-size:16px; color:var(--t2); margin-bottom:4px; align-self:flex-end; padding-bottom:10px; }
+    .p-cancel { font-size:13px; color:var(--t3); margin-bottom:34px; }
+    .p-feats { display:flex; flex-direction:column; gap:13px; margin-bottom:34px; padding-bottom:30px; border-bottom:1px solid rgba(139,92,246,.1); }
+    .p-feat { display:flex; align-items:center; gap:11px; font-size:15px; }
+    .p-check {
+      width:20px; height:20px; border-radius:50%; flex-shrink:0;
+      background:rgba(139,92,246,.18); border:1px solid rgba(139,92,246,.38);
+      display:flex; align-items:center; justify-content:center; color:#a855f7; font-size:10px;
+    }
+    .p-incl-title { font-size:11px; font-weight:600; color:var(--t3); text-transform:uppercase; letter-spacing:.08em; margin-bottom:14px; }
+    .p-course-list { display:flex; flex-direction:column; gap:10px; margin-bottom:32px; }
+    .p-course {
+      display:flex; align-items:center; gap:12px;
+      padding:11px 15px; border-radius:10px;
+      background:rgba(139,92,246,.06); border:1px solid rgba(139,92,246,.1);
+    }
+    .p-course-ico {
+      width:30px; height:30px; border-radius:8px; flex-shrink:0;
+      background:rgba(139,92,246,.18); display:flex; align-items:center; justify-content:center; font-size:15px;
+    }
+    .p-course-name { font-size:14px; font-weight:600; }
+    .p-course-desc { font-size:12px; color:var(--t3); }
+    .p-cta {
+      display:flex; align-items:center; justify-content:center; gap:9px;
+      width:100%; padding:17px; border-radius:13px;
+      background:linear-gradient(135deg,#8b5cf6,#a855f7);
+      font-family:'Syne',sans-serif; font-size:16px; font-weight:700;
+      color:#fff; text-decoration:none; border:none; cursor:pointer;
+      box-shadow:0 0 36px rgba(139,92,246,.45),0 8px 28px rgba(139,92,246,.3);
+      transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s;
+    }
+    .p-cta:hover { transform:translateY(-2px) scale(1.01); box-shadow:0 0 52px rgba(139,92,246,.55),0 12px 36px rgba(139,92,246,.38); }
+    .p-guarantee { display:flex; align-items:center; justify-content:center; gap:7px; margin-top:18px; font-size:12px; color:var(--t3); }
+
+    /* ── FOOTER ── */
+    footer { padding:48px 32px; border-top:1px solid rgba(139,92,246,.08); text-align:center; }
+    .footer-logo { font-family:'Syne',sans-serif; font-size:18px; font-weight:800; letter-spacing:-.02em; margin-bottom:10px; }
+    .footer-sub { font-size:13px; color:var(--t3); }
+
+    /* ── SCROLL ANIM ── */
+    .fade-up   { opacity:0; transform:translateY(26px); transition:opacity .65s ease, transform .65s ease; }
+    .fade-r    { opacity:0; transform:translateX(-18px); transition:opacity .65s ease, transform .65s ease; }
+    .scale-in  { opacity:0; transform:scale(.94);         transition:opacity .65s ease, transform .65s ease; }
+    .visible   { opacity:1 !important; transform:none !important; }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:900px){
+      .hero-inner      { grid-template-columns:1fr; gap:48px; }
+      .neural-wrap     { order:-1; max-width:420px; margin:0 auto; }
+      .benefits-grid   { grid-template-columns:1fr 1fr; }
+      .income-grid     { grid-template-columns:1fr; }
+      .curriculum-cols { grid-template-columns:1fr; }
+      .test-grid       { grid-template-columns:1fr; }
+      .curr-panel      { position:static; }
+    }
+    @media(max-width:600px){
+      nav { padding:12px 16px; }
+      section { padding:72px 20px; }
+      .benefits-grid { grid-template-columns:1fr; }
+      .hero h1 { font-size:34px; }
+      .pricing-card { padding:32px 24px; }
+      .stats-row { gap:16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <div class="nav-logo g-purple">Chademy</div>
+  <div class="nav-pill">
+    <span class="nav-pill-dot"></span>
+    Satura Speciālists
+  </div>
+  <a href="#pricing" class="nav-btn">Sākt ceļu →</a>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="noise"></div>
+  <div class="particles" id="particles"></div>
+  <div class="glow-orb" style="width:560px;height:560px;top:-200px;left:-140px;background:radial-gradient(circle,rgba(139,92,246,.18),transparent 60%);animation:glowBeat 4s ease-in-out infinite;"></div>
+  <div class="glow-orb" style="width:420px;height:420px;top:10%;right:-120px;background:radial-gradient(circle,rgba(34,211,238,.09),transparent 60%);animation:glowBeat 5s ease-in-out infinite 1s;"></div>
+
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow"><span class="eyebrow-dot"></span>Satura Speciālists Programma</div>
+      <h1>Iemācies veidot <span class="g-main">AI saturu</span> un pārdot to uzņēmumiem</h1>
+      <p class="hero-sub">Praktiska platforma — no rīku iestatīšanas līdz pirmajam klientam. Bez programmēšanas. Bez kameras.</p>
+      <div class="tag-row">
+        <span class="tag">AI Faceless Video</span>
+        <span class="tag">Sociālo Tīklu Pārvaldība</span>
+      </div>
+      <div class="btn-row">
+        <a href="#pricing" class="btn-primary">
+          Sākt Satura Speciālista ceļu
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M3 7.5h9M8 3l4.5 4.5L8 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#kurss" class="btn-ghost">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M5 2.5l5 4-5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          Skatīt kursu
+        </a>
+      </div>
+      <div class="stats-row">
+        <div class="stat">
+          <span class="stat-n g-purple">28</span>
+          <span class="stat-l">Nodarbības</span>
+        </div>
+        <div class="stat-div"></div>
+        <div class="stat">
+          <span class="stat-n g-purple">4</span>
+          <span class="stat-l">Moduļi</span>
+        </div>
+        <div class="stat-div"></div>
+        <div class="stat">
+          <span class="stat-n g-purple">6h 40</span>
+          <span class="stat-l">Kopā laiks</span>
+        </div>
+        <div class="stat-div"></div>
+        <div class="stat">
+          <span class="stat-n g-purple">134</span>
+          <span class="stat-l">Studenti</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="neural-wrap">
+      <div class="neural-glow-ring"></div>
+      <!-- NEURAL NETWORK SVG -->
+      <svg class="neural-svg" viewBox="0 0 520 440" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="3.5" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="glow-sm" x="-80%" y="-80%" width="260%" height="260%">
+            <feGaussianBlur stdDeviation="5" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <radialGradient id="nodeG1" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#a855f7" stop-opacity="1"/>
+            <stop offset="100%" stop-color="#7c3aed" stop-opacity=".6"/>
+          </radialGradient>
+          <radialGradient id="nodeG2" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#22d3ee" stop-opacity="1"/>
+            <stop offset="100%" stop-color="#0891b2" stop-opacity=".6"/>
+          </radialGradient>
+          <linearGradient id="lineG" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#8b5cf6" stop-opacity=".5"/>
+            <stop offset="100%" stop-color="#22d3ee" stop-opacity=".2"/>
+          </linearGradient>
+          <!-- paths for data flow animations -->
+          <path id="dp1" d="M75,145 C135,155 165,175 195,185 C255,200 295,205 325,210 C385,225 415,237 445,250"/>
+          <path id="dp2" d="M75,215 C135,200 165,180 195,160 C255,140 295,128 325,118 C385,128 415,138 445,150"/>
+          <path id="dp3" d="M75,285 C135,280 165,275 195,265 C255,275 295,288 325,298 C385,312 415,325 445,340"/>
+          <path id="dp4" d="M75,145 C135,170 165,215 195,240 C255,260 295,268 325,270 C385,272 415,260 445,250"/>
+          <path id="dp5" d="M75,285 C135,310 165,335 195,345 C255,352 295,358 325,372 C385,360 415,350 445,340"/>
+        </defs>
+
+        <!-- ── CONNECTION LINES ── -->
+        <g stroke="url(#lineG)" stroke-width="1" opacity=".35">
+          <!-- L1→L2 -->
+          <line x1="75" y1="145" x2="195" y2="100"><animate attributeName="opacity" values=".2;.6;.2" dur="3.2s" begin="0s" repeatCount="indefinite"/></line>
+          <line x1="75" y1="145" x2="195" y2="185"><animate attributeName="opacity" values=".4;.8;.4" dur="2.8s" begin=".3s" repeatCount="indefinite"/></line>
+          <line x1="75" y1="215" x2="195" y2="100"><animate attributeName="opacity" values=".3;.6;.3" dur="3.5s" begin=".1s" repeatCount="indefinite"/></line>
+          <line x1="75" y1="215" x2="195" y2="185"><animate attributeName="opacity" values=".5;.9;.5" dur="2.4s" begin=".5s" repeatCount="indefinite"/></line>
+          <line x1="75" y1="215" x2="195" y2="265"><animate attributeName="opacity" values=".3;.7;.3" dur="3.1s" begin=".2s" repeatCount="indefinite"/></line>
+          <line x1="75" y1="285" x2="195" y2="185"><animate attributeName="opacity" values=".2;.5;.2" dur="2.9s" begin=".4s" repeatCount="indefinite"/></line>
+          <line x1="75" y1="285" x2="195" y2="265"><animate attributeName="opacity" values=".4;.8;.4" dur="3.4s" begin=".1s" repeatCount="indefinite"/></line>
+          <line x1="75" y1="285" x2="195" y2="345"><animate attributeName="opacity" values=".3;.6;.3" dur="2.7s" begin=".6s" repeatCount="indefinite"/></line>
+          <!-- L2→L3 -->
+          <line x1="195" y1="100" x2="325" y2="118"><animate attributeName="opacity" values=".3;.7;.3" dur="3.0s" begin=".2s" repeatCount="indefinite"/></line>
+          <line x1="195" y1="100" x2="325" y2="210"><animate attributeName="opacity" values=".2;.5;.2" dur="3.3s" begin=".5s" repeatCount="indefinite"/></line>
+          <line x1="195" y1="185" x2="325" y2="118"><animate attributeName="opacity" values=".4;.8;.4" dur="2.6s" begin=".1s" repeatCount="indefinite"/></line>
+          <line x1="195" y1="185" x2="325" y2="210"><animate attributeName="opacity" values=".5;.9;.5" dur="2.9s" begin=".4s" repeatCount="indefinite"/></line>
+          <line x1="195" y1="185" x2="325" y2="298"><animate attributeName="opacity" values=".3;.6;.3" dur="3.2s" begin=".2s" repeatCount="indefinite"/></line>
+          <line x1="195" y1="265" x2="325" y2="210"><animate attributeName="opacity" values=".4;.7;.4" dur="2.8s" begin=".3s" repeatCount="indefinite"/></line>
+          <line x1="195" y1="265" x2="325" y2="298"><animate attributeName="opacity" values=".5;.8;.5" dur="3.1s" begin=".1s" repeatCount="indefinite"/></line>
+          <line x1="195" y1="265" x2="325" y2="372"><animate attributeName="opacity" values=".3;.6;.3" dur="2.5s" begin=".6s" repeatCount="indefinite"/></line>
+          <line x1="195" y1="345" x2="325" y2="298"><animate attributeName="opacity" values=".2;.5;.2" dur="3.4s" begin=".2s" repeatCount="indefinite"/></line>
+          <line x1="195" y1="345" x2="325" y2="372"><animate attributeName="opacity" values=".4;.7;.4" dur="2.7s" begin=".4s" repeatCount="indefinite"/></line>
+          <!-- L3→L4 -->
+          <line x1="325" y1="118" x2="445" y2="150"><animate attributeName="opacity" values=".3;.7;.3" dur="3.0s" begin=".3s" repeatCount="indefinite"/></line>
+          <line x1="325" y1="118" x2="445" y2="250"><animate attributeName="opacity" values=".2;.5;.2" dur="2.8s" begin=".1s" repeatCount="indefinite"/></line>
+          <line x1="325" y1="210" x2="445" y2="150"><animate attributeName="opacity" values=".4;.8;.4" dur="3.3s" begin=".5s" repeatCount="indefinite"/></line>
+          <line x1="325" y1="210" x2="445" y2="250"><animate attributeName="opacity" values=".5;.9;.5" dur="2.6s" begin=".2s" repeatCount="indefinite"/></line>
+          <line x1="325" y1="298" x2="445" y2="250"><animate attributeName="opacity" values=".4;.7;.4" dur="3.1s" begin=".4s" repeatCount="indefinite"/></line>
+          <line x1="325" y1="298" x2="445" y2="340"><animate attributeName="opacity" values=".3;.6;.3" dur="2.9s" begin=".1s" repeatCount="indefinite"/></line>
+          <line x1="325" y1="372" x2="445" y2="250"><animate attributeName="opacity" values=".2;.5;.2" dur="3.2s" begin=".3s" repeatCount="indefinite"/></line>
+          <line x1="325" y1="372" x2="445" y2="340"><animate attributeName="opacity" values=".4;.8;.4" dur="2.7s" begin=".5s" repeatCount="indefinite"/></line>
+        </g>
+
+        <!-- ── ANIMATED DATA PACKETS ── -->
+        <circle r="3.5" fill="#a855f7" filter="url(#glow-sm)">
+          <animateMotion dur="2.6s" repeatCount="indefinite" begin="0s"><mpath href="#dp1"/></animateMotion>
+          <animate attributeName="opacity" values="0;1;1;0" dur="2.6s" repeatCount="indefinite"/>
+        </circle>
+        <circle r="3.5" fill="#22d3ee" filter="url(#glow-sm)">
+          <animateMotion dur="3.0s" repeatCount="indefinite" begin=".9s"><mpath href="#dp2"/></animateMotion>
+          <animate attributeName="opacity" values="0;1;1;0" dur="3.0s" repeatCount="indefinite" begin=".9s"/>
+        </circle>
+        <circle r="3.5" fill="#a855f7" filter="url(#glow-sm)">
+          <animateMotion dur="2.8s" repeatCount="indefinite" begin="1.8s"><mpath href="#dp3"/></animateMotion>
+          <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite" begin="1.8s"/>
+        </circle>
+        <circle r="3" fill="#fff" filter="url(#glow-sm)">
+          <animateMotion dur="3.4s" repeatCount="indefinite" begin=".4s"><mpath href="#dp4"/></animateMotion>
+          <animate attributeName="opacity" values="0;.8;.8;0" dur="3.4s" repeatCount="indefinite" begin=".4s"/>
+        </circle>
+        <circle r="3.5" fill="#22d3ee" filter="url(#glow-sm)">
+          <animateMotion dur="2.5s" repeatCount="indefinite" begin="2.2s"><mpath href="#dp5"/></animateMotion>
+          <animate attributeName="opacity" values="0;1;1;0" dur="2.5s" repeatCount="indefinite" begin="2.2s"/>
+        </circle>
+
+        <!-- ── NODES LAYER 1 (input) ── -->
+        <g filter="url(#glow)">
+          <circle cx="75" cy="145" r="7" fill="url(#nodeG1)"><animate attributeName="r" values="6;8;6" dur="2.5s" repeatCount="indefinite"/></circle>
+          <circle cx="75" cy="215" r="8" fill="url(#nodeG1)"><animate attributeName="r" values="7;9.5;7" dur="2.2s" repeatCount="indefinite" begin=".4s"/></circle>
+          <circle cx="75" cy="285" r="7" fill="url(#nodeG1)"><animate attributeName="r" values="6;8;6" dur="2.8s" repeatCount="indefinite" begin=".8s"/></circle>
+        </g>
+
+        <!-- ── NODES LAYER 2 ── -->
+        <g filter="url(#glow)">
+          <circle cx="195" cy="100" r="6" fill="url(#nodeG2)"><animate attributeName="r" values="5;7;5" dur="3.0s" repeatCount="indefinite" begin=".2s"/></circle>
+          <circle cx="195" cy="185" r="7.5" fill="url(#nodeG1)"><animate attributeName="r" values="6;9;6" dur="2.3s" repeatCount="indefinite" begin=".6s"/></circle>
+          <circle cx="195" cy="265" r="7" fill="url(#nodeG2)"><animate attributeName="r" values="5.5;8;5.5" dur="2.7s" repeatCount="indefinite" begin="1.0s"/></circle>
+          <circle cx="195" cy="345" r="6" fill="url(#nodeG1)"><animate attributeName="r" values="5;7;5" dur="2.9s" repeatCount="indefinite" begin=".3s"/></circle>
+        </g>
+
+        <!-- ── NODES LAYER 3 ── -->
+        <g filter="url(#glow)">
+          <circle cx="325" cy="118" r="6.5" fill="url(#nodeG2)"><animate attributeName="r" values="5.5;8;5.5" dur="2.6s" repeatCount="indefinite" begin=".5s"/></circle>
+          <circle cx="325" cy="210" r="10" fill="url(#nodeG1)">
+            <animate attributeName="r" values="9;12;9" dur="2.0s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values=".8;1;.8" dur="2.0s" repeatCount="indefinite"/>
+          </circle>
+          <!-- outer pulse ring on main node -->
+          <circle cx="325" cy="210" r="18" fill="none" stroke="#a855f7" stroke-width="1.2" opacity=".3">
+            <animate attributeName="r" values="14;24;14" dur="2.0s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values=".4;0;.4" dur="2.0s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="325" cy="298" r="7" fill="url(#nodeG2)"><animate attributeName="r" values="5.5;8;5.5" dur="2.9s" repeatCount="indefinite" begin=".7s"/></circle>
+          <circle cx="325" cy="372" r="6" fill="url(#nodeG1)"><animate attributeName="r" values="5;7;5" dur="2.4s" repeatCount="indefinite" begin="1.1s"/></circle>
+        </g>
+
+        <!-- ── NODES LAYER 4 (output) ── -->
+        <g filter="url(#glow)">
+          <circle cx="445" cy="150" r="7" fill="url(#nodeG2)"><animate attributeName="r" values="6;8.5;6" dur="2.7s" repeatCount="indefinite" begin=".3s"/></circle>
+          <circle cx="445" cy="250" r="8.5" fill="url(#nodeG1)"><animate attributeName="r" values="7;10;7" dur="2.1s" repeatCount="indefinite" begin=".6s"/></circle>
+          <circle cx="445" cy="340" r="7" fill="url(#nodeG2)"><animate attributeName="r" values="6;8;6" dur="2.9s" repeatCount="indefinite" begin="1.0s"/></circle>
+        </g>
+
+        <!-- ── LABELS ── -->
+        <g fill="rgba(148,163,184,.5)" font-family="Inter,sans-serif" font-size="10">
+          <text x="30" y="218" text-anchor="middle">Ievade</text>
+          <text x="450" y="420" text-anchor="middle" fill="rgba(168,85,247,.6)" font-size="10">Rezultāts</text>
+          <text x="325" y="238" text-anchor="middle" fill="rgba(168,85,247,.75)" font-weight="600" font-size="9">AI</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BENEFITS ═══ -->
+<section class="benefits-bg">
+  <div class="container">
+    <div class="sec-eye">Ko tu iemācīsies</div>
+    <h2 class="sec-title fade-up">Praktiski prasmes, kas <span class="g-main">nes naudu</span></h2>
+    <p class="sec-sub fade-up">Katrs modulis ir vērsts uz vienu konkrētu rezultātu — ne tikai zināšanām, bet reālu darbu ar klientiem.</p>
+    <div class="benefits-grid">
+      <div class="glass benefit-card fade-up">
+        <div class="b-icon pu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M15 10l4.553-2.07a1 1 0 000-1.86L12 3 4.447 6.07a1 1 0 000 1.86L9 10M15 10l-3 1.38L9 10M15 10v7l-3 1.5-3-1.5v-7" stroke="#a855f7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="b-title">AI video bez kameras</div>
+        <div class="b-text">No skripta ģenerēšanas līdz publicēšanai — pilns process bez ierakstīšanas.</div>
+      </div>
+      <div class="glass benefit-card fade-up">
+        <div class="b-icon cy">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="#22d3ee" stroke-width="1.6"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="#22d3ee" stroke-width="1.6"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="#22d3ee" stroke-width="1.6"/><rect x="14" y="14" width="7" height="7" rx="1.5" stroke="#22d3ee" stroke-width="1.6"/></svg>
+        </div>
+        <div class="b-title">Banneri un feed dizains</div>
+        <div class="b-text">Veidot profesionālus reklāmas materiālus ar AI rīkiem — ātri un bez dizainera.</div>
+      </div>
+      <div class="glass benefit-card fade-up">
+        <div class="b-icon pu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2M9 12h6M9 16h4" stroke="#a855f7" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <div class="b-title">Cenu piedāvājumi</div>
+        <div class="b-text">Sagatavot profesionālus piedāvājumus, ko uzņēmumi akceptē — ar gatavām veidnēm.</div>
+      </div>
+      <div class="glass benefit-card fade-up">
+        <div class="b-icon cy">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#22d3ee" stroke-width="1.6"/><path d="M12 8v4l3 3" stroke="#22d3ee" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <div class="b-title">300€–1500€/mēnesī</div>
+        <div class="b-text">Nopelnīt stabilu blakus ienākumu kā Satura Speciālists — jau pirmajā mēnesī.</div>
+      </div>
+      <div class="glass benefit-card fade-up">
+        <div class="b-icon pu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" stroke="#a855f7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="b-title">Sociālie tīkli ar AI</div>
+        <div class="b-text">Pārvaldīt klientu sociālos tīklus ar AI rīkiem — ātrāk un efektīvāk nekā manuāli.</div>
+      </div>
+      <div class="glass benefit-card fade-up">
+        <div class="b-icon cy">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="#22d3ee" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <div class="b-title">Portfolio no nulles</div>
+        <div class="b-text">Izveidot portfolio bez pieredzes un uzrunāt pirmos klientus ar gatavām ziņu veidnēm.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ INCOME ═══ -->
+<section class="income-bg">
+  <div class="container">
+    <div class="sec-eye">Potenciālie ienākumi</div>
+    <h2 class="sec-title fade-up">Reāli skaitļi. <span class="g-main">Reāli klienti.</span></h2>
+    <p class="sec-sub fade-up">Satura Speciālistu vidējie ienākumi pēc pirmajiem 1–3 mēnešiem platformā.</p>
+    <div class="income-grid">
+      <div class="income-card scale-in">
+        <div class="i-clients">👤 2–3 klienti</div>
+        <div class="i-amount">€600–€1800</div>
+        <div class="i-sub">mēnesī · sākuma posms</div>
+      </div>
+      <div class="income-card scale-in">
+        <div class="i-clients">👥 4–6 klienti</div>
+        <div class="i-amount">€1200–€3600</div>
+        <div class="i-sub">mēnesī · augšanas posms</div>
+      </div>
+    </div>
+    <div class="glass" style="padding:20px 28px;display:flex;align-items:center;gap:14px;max-width:600px;">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#22d3ee" stroke-width="1.5"/><path d="M10 6v5l3 2" stroke="#22d3ee" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <p style="font-size:13px;color:var(--t2);line-height:1.55;">Vidēji studenti uzrunā pirmo klientu <strong style="color:var(--t1);">2–3 nedēļu</strong> laikā pēc kursa sākuma — ar gatavām ziņu veidnēm.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CURRICULUM ═══ -->
+<section class="curriculum-bg" id="kurss">
+  <div class="container">
+    <div class="sec-eye">Kursu saturs</div>
+    <h2 class="sec-title fade-up">4 moduļi, kas ved no <span class="g-main">0 līdz klientam</span></h2>
+    <div class="curriculum-cols">
+      <div class="module-list">
+        <div class="glass module open" onclick="toggleModule(this)">
+          <div class="module-hdr">
+            <div class="module-num">1</div>
+            <div class="module-info">
+              <div class="module-title">Ievads — Kā nopelnīt ar AI saturu</div>
+              <div class="module-meta">4 nodarbības · 38 min</div>
+            </div>
+            <svg class="module-chev" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="module-body">
+            <div class="lesson">
+              <div class="lesson-play"><svg width="10" height="10" viewBox="0 0 10 10" fill="#a855f7"><path d="M2 1.5l7 3.5-7 3.5V1.5z"/></svg></div>
+              <span class="lesson-title">Kā darbojas sociālo mediju tirgus Latvijā</span>
+              <span class="lesson-dur">8 min</span>
+              <span class="lesson-free">Bezmaksas</span>
+            </div>
+            <div class="lesson">
+              <div class="lesson-play"><svg width="10" height="10" viewBox="0 0 10 10" fill="#a855f7"><path d="M2 1.5l7 3.5-7 3.5V1.5z"/></svg></div>
+              <span class="lesson-title">Kāds saturs pārdod — reāli piemēri</span>
+              <span class="lesson-dur">11 min</span>
+            </div>
+            <div class="lesson">
+              <div class="lesson-play"><svg width="10" height="10" viewBox="0 0 10 10" fill="#a855f7"><path d="M2 1.5l7 3.5-7 3.5V1.5z"/></svg></div>
+              <span class="lesson-title">Rīku komplekts — ko izmantosim</span>
+              <span class="lesson-dur">10 min</span>
+            </div>
+            <div class="lesson">
+              <div class="lesson-play"><svg width="10" height="10" viewBox="0 0 10 10" fill="#a855f7"><path d="M2 1.5l7 3.5-7 3.5V1.5z"/></svg></div>
+              <span class="lesson-title">Pirmie soļi: konta iestatīšana</span>
+              <span class="lesson-dur">9 min</span>
+            </div>
+          </div>
+        </div>
+        <div class="glass module" onclick="toggleModule(this)">
+          <div class="module-hdr">
+            <div class="module-num">2</div>
+            <div class="module-info">
+              <div class="module-title">AI Video Bez Kameras</div>
+              <div class="module-meta">8 nodarbības · 1h 52min</div>
+            </div>
+            <svg class="module-chev" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="module-body">
+            <div class="lesson"><div class="lesson-play"><svg width="10" height="10" viewBox="0 0 10 10" fill="#a855f7"><path d="M2 1.5l7 3.5-7 3.5V1.5z"/></svg></div><span class="lesson-title">Skripta ģenerēšana ar ChatGPT</span><span class="lesson-dur">14 min</span></div>
+            <div class="lesson"><div class="lesson-play"><svg width="10" height="10" viewBox="0 0 10 10" fill="#a855f7"><path d="M2 1.5l7 3.5-7 3.5V1.5z"/></svg></div><span class="lesson-title">Balss ģenerēšana ar ElevenLabs</span><span class="lesson-dur">12 min</span></div>
+            <div class="lesson"><div class="lesson-play"><svg width="10" height="10" viewBox="0 0 10 10" fill="#a855f7"><path d="M2 1.5l7 3.5-7 3.5V1.5z"/></svg></div><span class="lesson-title">Video vizuāļi ar AI attēliem</span><span class="lesson-dur">15 min</span></div>
+            <div class="lesson"><div class="lesson-play"><svg width="10" height="10" viewBox="0 0 10 10" fill="#a855f7"><path d="M2 1.5l7 3.5-7 3.5V1.5z"/></svg></div><span class="lesson-title">Montāža CapCut / Opus Clip</span><span class="lesson-dur">18 min</span></div>
+          </div>
+        </div>
+        <div class="glass module" onclick="toggleModule(this)">
+          <div class="module-hdr">
+            <div class="module-num">3</div>
+            <div class="module-info">
+              <div class="module-title">Sociālie Tīkli, Banneri, Feed</div>
+              <div class="module-meta">9 nodarbības · 2h 18min</div>
+            </div>
+            <svg class="module-chev" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="module-body">
+            <div class="lesson"><div class="lesson-play"><svg width="10" height="10" viewBox="0 0 10 10" fill="#a855f7"><path d="M2 1.5l7 3.5-7 3.5V1.5z"/></svg></div><span class="lesson-title">Instagram feed stratēģija</span><span class="lesson-dur">16 min</span></div>
+            <div class="lesson"><div class="lesson-play"><svg width="10" height="10" viewBox="0 0 10 10" fill="#a855f7"><path d="M2 1.5l7 3.5-7 3.5V1.5z"/></svg></div><span class="lesson-title">Banneru veidošana ar Canva + AI</span><span class="lesson-dur">14 min</span></div>
+            <div class="lesson"><div class="lesson-play"><svg width="10" height="10" viewBox="0 0 10 10" fill="#a855f7"><path d="M2 1.5l7 3.5-7 3.5V1.5z"/></svg></div><span class="lesson-title">Copy rakstīšana latviski ar AI</span><span class="lesson-dur">12 min</span></div>
+          </div>
+        </div>
+        <div class="glass module" onclick="toggleModule(this)">
+          <div class="module-hdr">
+            <div class="module-num">4</div>
+            <div class="module-info">
+              <div class="module-title">Klienti, Piedāvājumi un Nauda</div>
+              <div class="module-meta">7 nodarbības · 1h 12min</div>
+            </div>
+            <svg class="module-chev" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="module-body">
+            <div class="lesson"><div class="lesson-play"><svg width="10" height="10" viewBox="0 0 10 10" fill="#a855f7"><path d="M2 1.5l7 3.5-7 3.5V1.5z"/></svg></div><span class="lesson-title">Kur atrast pirmos klientus</span><span class="lesson-dur">11 min</span></div>
+            <div class="lesson"><div class="lesson-play"><svg width="10" height="10" viewBox="0 0 10 10" fill="#a855f7"><path d="M2 1.5l7 3.5-7 3.5V1.5z"/></svg></div><span class="lesson-title">Copy-paste uzrunas ziņas</span><span class="lesson-dur">10 min</span></div>
+            <div class="lesson"><div class="lesson-play"><svg width="10" height="10" viewBox="0 0 10 10" fill="#a855f7"><path d="M2 1.5l7 3.5-7 3.5V1.5z"/></svg></div><span class="lesson-title">Cenu piedāvājums + līgums</span><span class="lesson-dur">14 min</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass curr-panel scale-in">
+        <div class="curr-panel-title">Ko vēl iegūsi</div>
+        <div class="curr-check-list">
+          <div class="curr-check"><div class="curr-check-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#a855f7" stroke-width="1.4" stroke-linecap="round"/></svg></div>Kā izveidot portfolio no 0</div>
+          <div class="curr-check"><div class="curr-check-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#a855f7" stroke-width="1.4" stroke-linecap="round"/></svg></div>Kā uzrunāt pirmos klientus</div>
+          <div class="curr-check"><div class="curr-check-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#a855f7" stroke-width="1.4" stroke-linecap="round"/></svg></div>Kā sagatavot cenu piedāvājumu</div>
+          <div class="curr-check"><div class="curr-check-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#a855f7" stroke-width="1.4" stroke-linecap="round"/></svg></div>Copy-paste ziņu veidnes</div>
+          <div class="curr-check"><div class="curr-check-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#a855f7" stroke-width="1.4" stroke-linecap="round"/></svg></div>Privātā kopiena ar feedbeku</div>
+          <div class="curr-check"><div class="curr-check-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#a855f7" stroke-width="1.4" stroke-linecap="round"/></svg></div>Jauni moduļi katru mēnesi</div>
+        </div>
+        <div style="height:1px;background:rgba(139,92,246,.1);margin-bottom:24px;"></div>
+        <div style="font-size:11px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;">Iekļautie kursi</div>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px;">
+          <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:10px;background:rgba(139,92,246,.06);border:1px solid rgba(139,92,246,.1);">
+            <span style="font-size:18px;">🎬</span>
+            <div><div style="font-size:13px;font-weight:600;">AI Faceless Video</div><div style="font-size:11px;color:var(--t3);">Satura veidošana bez kameras</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:10px;background:rgba(34,211,238,.05);border:1px solid rgba(34,211,238,.1);">
+            <span style="font-size:18px;">📱</span>
+            <div><div style="font-size:13px;font-weight:600;">Sociālo Tīklu Pārvaldība</div><div style="font-size:11px;color:var(--t3);">AI video, banneri, feed dizains</div></div>
+          </div>
+        </div>
+        <a href="#pricing" class="btn-primary curr-cta">Pievienoties →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section class="test-bg">
+  <div class="container">
+    <div class="sec-eye">Atsauksmes</div>
+    <h2 class="sec-title fade-up">Ko saka <span class="g-main">studenti</span></h2>
+    <div class="test-grid">
+      <div class="glass test-card scale-in">
+        <div class="stars">★★★★★</div>
+        <p class="test-text">"Pirmajos 6 nedēļās uzrunāju 8 uzņēmumus un noslēdzu 2 kontraktus. Tagad nopelnu 900€ mēnesī papildus — ar AI rīkiem, ko iemācījos šeit."</p>
+        <div class="test-author">
+          <div class="av">LM</div>
+          <div><div class="av-name">Laila M.</div><div class="av-role">Rīga · 28 gadi</div></div>
+        </div>
+      </div>
+      <div class="glass test-card scale-in">
+        <div class="stars">★★★★★</div>
+        <p class="test-text">"Nekad nebiju strādājis ar video rediģēšanu. Tagad piegādāju saturu 3 klientiem katru mēnesi — pilnībā ar AI. Vienkāršs process, ko ikviens var apgūt."</p>
+        <div class="test-author">
+          <div class="av" style="background:linear-gradient(135deg,#06b6d4,#8b5cf6)">JK</div>
+          <div><div class="av-name">Jānis K.</div><div class="av-role">Jelgava · 34 gadi</div></div>
+        </div>
+      </div>
+      <div class="glass test-card scale-in">
+        <div class="stars">★★★★★</div>
+        <p class="test-text">"Vienīgais kurss Latvijā ar reāliem piemēriem, gatavām veidnēm un kopienu, kur vari jautāt. Sāku bez jebkādas pieredzes — tagad man ir 4 klienti."</p>
+        <div class="test-author">
+          <div class="av" style="background:linear-gradient(135deg,#a855f7,#22d3ee)">KA</div>
+          <div><div class="av-name">Kristīne A.</div><div class="av-role">Ventspils · 22 gadi</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- trust strip -->
+    <div style="display:flex;align-items:center;justify-content:center;gap:48px;margin-top:56px;flex-wrap:wrap;">
+      <div style="text-align:center;">
+        <div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;letter-spacing:-.03em;" class="g-purple">134+</div>
+        <div style="font-size:12px;color:var(--t3);text-transform:uppercase;letter-spacing:.05em;">Aktīvi studenti</div>
+      </div>
+      <div style="width:1px;height:40px;background:rgba(139,92,246,.15);"></div>
+      <div style="text-align:center;">
+        <div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;letter-spacing:-.03em;" class="g-main">4.9 ★</div>
+        <div style="font-size:12px;color:var(--t3);text-transform:uppercase;letter-spacing:.05em;">Vidējais vērtējums</div>
+      </div>
+      <div style="width:1px;height:40px;background:rgba(139,92,246,.15);"></div>
+      <div style="text-align:center;">
+        <div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;letter-spacing:-.03em;" class="g-purple">30 d.</div>
+        <div style="font-size:12px;color:var(--t3);text-transform:uppercase;letter-spacing:.05em;">Naudas garantija</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRICING ═══ -->
+<section class="pricing-bg" id="pricing">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:52px;">
+      <div class="sec-eye" style="justify-content:center;">Cena</div>
+      <h2 class="sec-title fade-up">Viena abonēšana. <span class="g-main">Viss iekļauts.</span></h2>
+      <p style="font-size:17px;color:var(--t2);max-width:440px;margin:0 auto;">Bez slēptām maksām. Bez ilgtermiņa saistībām. Atcel jebkurā laikā.</p>
+    </div>
+
+    <div class="pricing-wrap scale-in">
+      <div class="pricing-card">
+        <div class="p-badge">🔮 Satura Speciālists</div>
+        <div class="p-price-row">
+          <span class="p-cur">€</span>
+          <span class="p-amount">29</span>
+          <span class="p-period">/mēnesī</span>
+        </div>
+        <div class="p-cancel">Atcel jebkurā laikā</div>
+
+        <div class="p-feats">
+          <div class="p-feat"><div class="p-check">✓</div>28 nodarbības + 4 moduļi</div>
+          <div class="p-feat"><div class="p-check">✓</div>AI Faceless Video kurss</div>
+          <div class="p-feat"><div class="p-check">✓</div>Sociālo Tīklu Pārvaldība kurss</div>
+          <div class="p-feat"><div class="p-check">✓</div>Copy-paste klientu ziņu veidnes</div>
+          <div class="p-feat"><div class="p-check">✓</div>Cenu piedāvājumu veidne</div>
+          <div class="p-feat"><div class="p-check">✓</div>Privātā kopiena + jautājumi</div>
+          <div class="p-feat"><div class="p-check">✓</div>Jauns saturs katru mēnesi</div>
+        </div>
+
+        <div class="p-incl-title">Iekļautie kursi</div>
+        <div class="p-course-list">
+          <div class="p-course">
+            <div class="p-course-ico">🎬</div>
+            <div><div class="p-course-name">AI Faceless Video</div><div class="p-course-desc">Satura veidošana bez kameras</div></div>
+          </div>
+          <div class="p-course">
+            <div class="p-course-ico">📱</div>
+            <div><div class="p-course-name">Sociālo Tīklu Pārvaldība</div><div class="p-course-desc">AI video, banneri, feed dizains</div></div>
+          </div>
+        </div>
+
+        <a href="#" class="p-cta">
+          Sākt Satura Speciālista ceļu
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <div class="p-guarantee">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.5 3.5L7 9.5 4 11l.5-3.5L2 5l3.5-.5L7 1z" stroke="#64748b" stroke-width="1.2" stroke-linecap="round"/></svg>
+          30 dienu naudas atdošanas garantija
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-logo g-purple">Chademy</div>
+  <div class="footer-sub">© 2025 Chademy · Satura Speciālists · Visas tiesības aizsargātas</div>
+</footer>
+
+<script>
+  // ── PARTICLES
+  (function(){
+    const c = document.getElementById('particles');
+    const cols = ['#a855f7','#8b5cf6','#22d3ee','#c084fc','#ffffff'];
+    for(let i=0;i<42;i++){
+      const p = document.createElement('div');
+      const sz = 1+Math.random()*2.5;
+      p.className='particle';
+      p.style.cssText=[
+        `left:${Math.random()*100}%`,
+        `width:${sz}px`,
+        `height:${sz}px`,
+        `background:${cols[Math.floor(Math.random()*cols.length)]}`,
+        `animation-duration:${7+Math.random()*11}s`,
+        `animation-delay:${-Math.random()*14}s`,
+        `opacity:${.3+Math.random()*.5}`,
+        'border-radius:50%'
+      ].join(';');
+      c.appendChild(p);
+    }
+  })();
+
+  // ── SCROLL ANIMATIONS
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach((e,i)=>{
+      if(e.isIntersecting){
+        setTimeout(()=>e.target.classList.add('visible'), i*80);
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:.12});
+  document.querySelectorAll('.fade-up,.fade-r,.scale-in').forEach(el=>io.observe(el));
+
+  // ── ACCORDION
+  function toggleModule(el){
+    const isOpen = el.classList.contains('open');
+    document.querySelectorAll('.module.open').forEach(m=>{
+      if(m!==el) m.classList.remove('open');
+    });
+    el.classList.toggle('open',!isOpen);
+  }
+</script>
+</body>
+</html>

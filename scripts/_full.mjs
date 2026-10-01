@@ -1,0 +1,17 @@
+import { createRequire } from 'module';
+import { readdirSync } from 'fs';
+const require = createRequire(import.meta.url);
+const puppeteer = require('puppeteer');
+const dir = 'd:/Documents/Desktop/AI_APP/temporary screenshots';
+let n = readdirSync(dir).filter(f => f.endsWith('.png')).length;
+const b = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox','--disable-setuid-sandbox'] });
+const p = await b.newPage();
+await p.setViewport({ width: 1440, height: 900, deviceScaleFactor: 1 });
+await p.goto('http://localhost:3000/lv', { waitUntil: 'networkidle0', timeout: 60000 });
+await new Promise(r => setTimeout(r, 1500));
+await p.evaluate(async () => { await new Promise(res => { let y=0; const t=setInterval(()=>{ window.scrollBy(0,400); y+=400; if(y>document.body.scrollHeight){clearInterval(t);res();} },80); }); });
+await p.evaluate(() => window.scrollTo(0,0));
+await new Promise(r => setTimeout(r, 800));
+n++; const f = dir + '/screenshot-' + n + '-fullpage.png';
+await p.screenshot({ path: f, fullPage: true }); console.log(f);
+await b.close();

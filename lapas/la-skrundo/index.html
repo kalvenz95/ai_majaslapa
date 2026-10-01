@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Skrundo — Italian Style Café & Restaurant</title>
+  <meta name="description" content="La Skrundo is an Italian inspired café and restaurant offering fresh coffee, pasta, desserts and a warm dining atmosphere.">
+  <meta name="keywords" content="Italian café, restaurant, coffee, pasta, tiramisu, New York">
+  <meta property="og:title" content="La Skrundo — Italian Style Café & Restaurant">
+  <meta property="og:description" content="La Skrundo is an Italian inspired café and restaurant offering fresh coffee, pasta, desserts and a warm dining atmosphere.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sand: '#E8D6BC',
+            cream: '#FFF7EA',
+            coffee: '#4A2F22',
+            caramel: '#B9804A',
+            espresso: '#241711',
+            olive: '#6F7A4D',
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'Georgia', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --sand: #E8D6BC;
+      --cream: #FFF7EA;
+      --coffee: #4A2F22;
+      --caramel: #B9804A;
+      --espresso: #241711;
+      --olive: #6F7A4D;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--coffee); overflow-x: hidden; }
+
+    /* REVEAL ANIMATIONS */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1), transform 0.75s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.32s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(32px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; } to { opacity: 1; }
+    }
+
+    /* HEADER */
+    #site-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.5rem 0;
+      transition: background 0.4s, box-shadow 0.4s, padding 0.3s;
+    }
+    #site-header.scrolled {
+      background: rgba(36,23,17,0.97);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 2px 28px rgba(36,23,17,0.25);
+      padding: 1rem 0;
+    }
+    .nav-link {
+      font-size: 0.875rem; font-weight: 500;
+      color: rgba(255,247,234,0.72); text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--cream); }
+
+    /* BUTTONS */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.8rem 1.9rem;
+      background: var(--caramel); color: var(--cream);
+      font-weight: 600; font-size: 0.875rem; letter-spacing: 0.04em;
+      border-radius: 9999px; text-decoration: none; border: none; cursor: pointer;
+      box-shadow: 0 4px 20px rgba(185,128,74,0.35);
+      transition: background 0.22s, box-shadow 0.22s, transform 0.18s;
+    }
+    .btn-primary:hover { background: #c98f57; box-shadow: 0 8px 30px rgba(185,128,74,0.5); transform: translateY(-2px); }
+    .btn-primary:active { transform: translateY(0); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.8rem 1.9rem;
+      background: transparent; color: var(--cream);
+      font-weight: 500; font-size: 0.875rem; letter-spacing: 0.04em;
+      border-radius: 9999px; text-decoration: none;
+      border: 1.5px solid rgba(255,247,234,0.45);
+      transition: background 0.22s, border-color 0.22s, transform 0.18s;
+    }
+    .btn-outline:hover { background: rgba(255,247,234,0.1); border-color: rgba(255,247,234,0.9); transform: translateY(-2px); }
+    .btn-outline:active { transform: translateY(0); }
+
+    /* HERO */
+    .hero-wrap { position: relative; height: 100vh; min-height: 620px; overflow: hidden; }
+    .hero-bg {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      transform: scale(1.06);
+      transition: transform 9s ease-out;
+    }
+    .hero-bg.loaded { transform: scale(1); }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(175deg, rgba(36,23,17,0.28) 0%, rgba(36,23,17,0.62) 55%, rgba(36,23,17,0.88) 100%);
+    }
+    .hero-grain {
+      position: absolute; inset: 0; opacity: 0.035; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 300px 300px;
+    }
+    .hero-content > * { animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) both; }
+    .hero-content > *:nth-child(1) { animation-delay: 0.35s; }
+    .hero-content > *:nth-child(2) { animation-delay: 0.55s; }
+    .hero-content > *:nth-child(3) { animation-delay: 0.72s; }
+    .hero-content > *:nth-child(4) { animation-delay: 0.88s; }
+
+    /* ORNAMENT */
+    .ornament { display: flex; align-items: center; justify-content: center; gap: 0.7rem; margin: 0.75rem auto 1.75rem; }
+    .ornament::before, .ornament::after { content: ''; height: 1px; width: 44px; background: var(--caramel); opacity: 0.45; }
+    .ornament-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--caramel); }
+    .section-label {
+      display: inline-block; font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.16em; text-transform: uppercase; color: var(--caramel); margin-bottom: 0.6rem;
+    }
+
+    /* MENU TABS */
+    .tab-btn {
+      padding: 0.55rem 1.3rem; border-radius: 9999px; font-size: 0.825rem; font-weight: 500;
+      cursor: pointer; border: 1.5px solid rgba(74,47,34,0.2); background: transparent;
+      color: var(--coffee); white-space: nowrap; transition: all 0.22s;
+    }
+    .tab-btn:hover { border-color: var(--caramel); color: var(--caramel); }
+    .tab-btn.active { background: var(--caramel); color: var(--cream); border-color: var(--caramel); box-shadow: 0 4px 16px rgba(185,128,74,0.3); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; animation: fadeUp 0.4s cubic-bezier(0.16,1,0.3,1); }
+
+    /* MENU ITEM */
+    .menu-item {
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 1.25rem;
+      padding: 0.95rem 0; border-bottom: 1px solid rgba(185,128,74,0.18);
+      transition: padding-left 0.2s;
+    }
+    .menu-item:last-child { border-bottom: none; }
+    .menu-item:hover { padding-left: 0.5rem; }
+    .item-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 500; color: var(--coffee); }
+    .item-desc { font-size: 0.775rem; color: rgba(74,47,34,0.55); margin-top: 0.15rem; line-height: 1.4; }
+    .item-price { font-weight: 700; font-size: 1rem; color: var(--caramel); white-space: nowrap; padding-top: 1px; }
+
+    /* DISH CARDS */
+    .dish-card {
+      border-radius: 1.4rem; overflow: hidden; background: #fff;
+      box-shadow: 0 6px 28px rgba(74,47,34,0.08), 0 2px 6px rgba(74,47,34,0.05);
+      transition: transform 0.32s cubic-bezier(0.16,1,0.3,1), box-shadow 0.32s;
+    }
+    .dish-card:hover { transform: translateY(-7px); box-shadow: 0 20px 44px rgba(74,47,34,0.15), 0 4px 10px rgba(74,47,34,0.08); }
+    .dish-card img { transition: transform 0.5s cubic-bezier(0.16,1,0.3,1); }
+    .dish-card:hover img { transform: scale(1.05); }
+
+    /* GALLERY */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 260px 260px;
+      gap: 0.875rem;
+    }
+    .g-item { border-radius: 1.1rem; overflow: hidden; position: relative; }
+    .g-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.55s cubic-bezier(0.16,1,0.3,1); }
+    .g-item:hover img { transform: scale(1.07); }
+    .g-item::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(36,23,17,0.55) 0%, transparent 55%);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .g-item:hover::after { opacity: 1; }
+    .g-tall { grid-row: span 2; }
+    .g-wide { grid-column: span 2; }
+
+    /* FORM */
+    .f-input {
+      width: 100%; padding: 0.8rem 1.1rem;
+      background: rgba(255,247,234,0.65); border: 1.5px solid rgba(185,128,74,0.22);
+      border-radius: 0.7rem; font-family: 'Inter', sans-serif; font-size: 0.875rem;
+      color: var(--espresso); outline: none;
+      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+    }
+    .f-input::placeholder { color: rgba(74,47,34,0.38); }
+    .f-input:focus { border-color: var(--caramel); background: rgba(255,247,234,1); box-shadow: 0 0 0 3px rgba(185,128,74,0.1); }
+    .f-label { display: block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--coffee); margin-bottom: 0.35rem; }
+
+    @media (min-width: 768px) { #mob-open { display: none !important; } }
+
+    /* MOBILE MENU */
+    #mobile-overlay {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: var(--espresso); flex-direction: column;
+      align-items: center; justify-content: center; gap: 2rem;
+    }
+    #mobile-overlay.open { display: flex; }
+    .mob-link { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--cream); text-decoration: none; transition: color 0.2s; }
+    .mob-link:hover { color: var(--caramel); }
+
+    /* RESPONSIVE GALLERY */
+    @media (max-width: 767px) {
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .g-tall { grid-row: span 1; height: 200px; }
+      .g-wide { grid-column: span 1; }
+      .g-item { height: 200px; }
+    }
+    @media (max-width: 480px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+      .g-wide { grid-column: span 1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- MOBILE OVERLAY -->
+<div id="mobile-overlay">
+  <button id="mob-close" aria-label="Close" style="position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;cursor:pointer;color:var(--cream);">
+    <ion-icon name="close-outline" style="font-size:2.2rem;"></ion-icon>
+  </button>
+  <a href="#home"        class="mob-link" onclick="closeMob()">Home</a>
+  <a href="#menu"        class="mob-link" onclick="closeMob()">Menu</a>
+  <a href="#about"       class="mob-link" onclick="closeMob()">About</a>
+  <a href="#gallery"     class="mob-link" onclick="closeMob()">Gallery</a>
+  <a href="#contact"     class="mob-link" onclick="closeMob()">Contact</a>
+  <a href="#reservation" class="btn-primary" style="margin-top:0.5rem;" onclick="closeMob()">Reserve a Table</a>
+</div>
+
+<!-- HEADER -->
+<header id="site-header">
+  <div style="max-width:1280px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;">
+    <a href="#home" style="text-decoration:none;line-height:1;">
+      <span style="font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:700;color:var(--cream);display:block;letter-spacing:-0.01em;">La Skrundo</span>
+      <span style="font-size:0.6rem;letter-spacing:0.17em;text-transform:uppercase;color:rgba(185,128,74,0.85);">Italian Café &amp; Restaurant</span>
+    </a>
+    <nav style="display:flex;gap:2rem;" class="hidden md:flex">
+      <a href="#home"    class="nav-link">Home</a>
+      <a href="#menu"    class="nav-link">Menu</a>
+      <a href="#about"   class="nav-link">About</a>
+      <a href="#gallery" class="nav-link">Gallery</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <a href="#reservation" class="btn-primary hidden md:inline-flex" id="header-cta">Reserve a Table</a>
+      <button id="mob-open" aria-label="Menu" style="background:none;border:none;cursor:pointer;color:var(--cream);align-items:center;display:flex;">
+        <ion-icon name="menu-outline" style="font-size:1.85rem;"></ion-icon>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="home" class="hero-wrap">
+  <!-- REPLACE: hero background image -->
+  <img class="hero-bg" id="hero-img"
+    src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=1600&q=85&fit=crop"
+    alt="La Skrundo café ambience"
+    onerror="this.src='https://placehold.co/1600x900/4A2F22/E8D6BC?text=La+Skrundo'">
+  <div class="hero-overlay"></div>
+  <div class="hero-grain"></div>
+
+  <div class="hero-content" style="position:relative;z-index:10;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 1.5rem 4rem;">
+    <span class="section-label" style="color:rgba(185,128,74,0.95);font-size:0.75rem;">Welcome to</span>
+    <h1 style="font-family:'Playfair Display',serif;font-size:clamp(3.8rem,11vw,7.5rem);font-weight:700;color:var(--cream);line-height:1.02;letter-spacing:-0.02em;margin-bottom:0.9rem;">
+      La Skrundo
+    </h1>
+    <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1rem,2.5vw,1.4rem);color:rgba(255,247,234,0.82);margin-bottom:0.9rem;letter-spacing:0.01em;">
+      Italian inspired coffee, food and warm moments.
+    </p>
+    <p style="font-size:0.925rem;color:rgba(255,247,234,0.6);max-width:440px;line-height:1.75;margin-bottom:2.5rem;">
+      A cozy Italian-style café experience with rich coffee,<br>fresh food and a relaxed atmosphere.
+    </p>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;">
+      <a href="#menu"        class="btn-primary">View Menu</a>
+      <a href="#reservation" class="btn-outline">Reserve a Table</a>
+    </div>
+  </div>
+
+  <div style="position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.4rem;z-index:10;animation:fadeIn 1.8s 1.4s both;">
+    <span style="font-size:0.65rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,247,234,0.4);">Scroll</span>
+    <div style="width:1.5px;height:38px;background:linear-gradient(to bottom,rgba(185,128,74,0.7),transparent);"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="background:var(--cream);padding:6rem 0;">
+  <div style="max-width:1280px;margin:0 auto;padding:0 1.5rem;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4.5rem;align-items:center;" class="md:grid-cols-2 grid-cols-1">
+
+      <!-- Text -->
+      <div class="reveal">
+        <span class="section-label">Our Story</span>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,4.5vw,3.1rem);font-weight:700;color:var(--espresso);line-height:1.15;letter-spacing:-0.02em;margin-bottom:1.25rem;">
+          A Taste of Italy,<br><em style="color:var(--caramel);">Served with Warmth</em>
+        </h2>
+        <p style="font-size:0.975rem;line-height:1.78;color:rgba(74,47,34,0.72);margin-bottom:2rem;">
+          La Skrundo brings together the charm of Italian cafés, freshly prepared food and carefully brewed coffee. A place to slow down, enjoy good flavors and spend time with people you love.
+        </p>
+        <div style="display:flex;flex-direction:column;gap:1.1rem;">
+          <div style="display:flex;align-items:flex-start;gap:1rem;">
+            <div style="width:2.4rem;height:2.4rem;border-radius:50%;background:rgba(185,128,74,0.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
+              <ion-icon name="leaf-outline" style="color:var(--olive);font-size:1.05rem;"></ion-icon>
+            </div>
+            <div>
+              <div style="font-weight:600;color:var(--coffee);margin-bottom:0.2rem;">Fresh ingredients</div>
+              <div style="font-size:0.85rem;color:rgba(74,47,34,0.58);line-height:1.6;">We source the finest local and imported produce each morning.</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:1rem;">
+            <div style="width:2.4rem;height:2.4rem;border-radius:50%;background:rgba(185,128,74,0.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
+              <ion-icon name="restaurant-outline" style="color:var(--olive);font-size:1.05rem;"></ion-icon>
+            </div>
+            <div>
+              <div style="font-weight:600;color:var(--coffee);margin-bottom:0.2rem;">Italian inspired recipes</div>
+              <div style="font-size:0.85rem;color:rgba(74,47,34,0.58);line-height:1.6;">Traditional Italian flavors crafted with passion and precision.</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:1rem;">
+            <div style="width:2.4rem;height:2.4rem;border-radius:50%;background:rgba(185,128,74,0.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
+              <ion-icon name="cafe-outline" style="color:var(--olive);font-size:1.05rem;"></ion-icon>
+            </div>
+            <div>
+              <div style="font-weight:600;color:var(--coffee);margin-bottom:0.2rem;">Cozy café atmosphere</div>
+              <div style="font-size:0.85rem;color:rgba(74,47,34,0.58);line-height:1.6;">A warm, inviting space where every visit feels like coming home.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image -->
+      <div class="reveal reveal-d2" style="position:relative;">
+        <div style="border-radius:2rem;overflow:hidden;aspect-ratio:4/5;position:relative;">
+          <!-- REPLACE: about section image -->
+          <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=900&q=85&fit=crop"
+            alt="La Skrundo café interior"
+            onerror="this.src='https://placehold.co/800x1000/4A2F22/E8D6BC?text=Our+Café'"
+            style="width:100%;height:100%;object-fit:cover;">
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(36,23,17,0.38) 0%,transparent 55%);pointer-events:none;"></div>
+        </div>
+        <div style="position:absolute;bottom:2rem;left:-1.5rem;background:var(--cream);border-radius:1.1rem;padding:1.2rem 1.4rem;box-shadow:0 16px 40px rgba(74,47,34,0.14);max-width:180px;">
+          <div style="font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:700;color:var(--caramel);line-height:1;">10+</div>
+          <div style="font-size:0.78rem;color:rgba(74,47,34,0.68);line-height:1.45;margin-top:0.2rem;">Years of Italian café tradition</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu" style="background:var(--sand);padding:6rem 0;">
+  <div style="max-width:1280px;margin:0 auto;padding:0 1.5rem;">
+
+    <div class="reveal" style="text-align:center;margin-bottom:2.5rem;">
+      <span class="section-label">Explore</span>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2.5rem,6vw,4rem);font-weight:700;color:var(--espresso);letter-spacing:-0.02em;">Our Menu</h2>
+      <div class="ornament"><div class="ornament-dot"></div></div>
+      <p style="color:rgba(74,47,34,0.62);font-size:0.975rem;max-width:360px;margin:0 auto;">Simple, fresh and full of flavor.</p>
+    </div>
+
+    <!-- TABS -->
+    <div class="reveal reveal-d1" style="display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:center;margin-bottom:2rem;">
+      <button class="tab-btn active" onclick="openTab(event,'coffee')"><ion-icon name="cafe-outline" style="vertical-align:middle;margin-right:3px;"></ion-icon>Coffee</button>
+      <button class="tab-btn" onclick="openTab(event,'breakfast')"><ion-icon name="sunny-outline" style="vertical-align:middle;margin-right:3px;"></ion-icon>Breakfast</button>
+      <button class="tab-btn" onclick="openTab(event,'pasta')"><ion-icon name="restaurant-outline" style="vertical-align:middle;margin-right:3px;"></ion-icon>Pasta</button>
+      <button class="tab-btn" onclick="openTab(event,'pizza')"><ion-icon name="pizza-outline" style="vertical-align:middle;margin-right:3px;"></ion-icon>Pizza &amp; Flatbread</button>
+      <button class="tab-btn" onclick="openTab(event,'desserts')"><ion-icon name="ice-cream-outline" style="vertical-align:middle;margin-right:3px;"></ion-icon>Desserts</button>
+      <button class="tab-btn" onclick="openTab(event,'drinks')"><ion-icon name="water-outline" style="vertical-align:middle;margin-right:3px;"></ion-icon>Drinks</button>
+    </div>
+
+    <!-- PANELS -->
+    <div style="max-width:780px;margin:0 auto;">
+
+      <!-- COFFEE -->
+      <div id="panel-coffee" class="tab-panel active">
+        <div style="background:var(--cream);border-radius:1.4rem;padding:2rem;box-shadow:0 8px 30px rgba(74,47,34,0.08);">
+          <div style="display:flex;align-items:center;gap:1rem;padding-bottom:1.4rem;margin-bottom:0.5rem;border-bottom:1px solid rgba(185,128,74,0.2);">
+            <!-- REPLACE: coffee category image -->
+            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&q=85&fit=crop" alt="Coffee" onerror="this.src='https://placehold.co/200x120/4A2F22/FFF7EA?text=Coffee'" style="width:110px;height:74px;object-fit:cover;border-radius:0.65rem;flex-shrink:0;">
+            <div><h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--espresso);">Coffee</h3><p style="font-size:0.8rem;color:rgba(74,47,34,0.55);margin-top:0.1rem;">Italian espresso traditions, lovingly crafted</p></div>
+          </div>
+          <div class="menu-item"><div><div class="item-name">Espresso</div><div class="item-desc">Pure, bold Italian shot</div></div><div class="item-price">$3.50</div></div>
+          <div class="menu-item"><div><div class="item-name">Americano</div><div class="item-desc">Espresso with hot water, smooth and light</div></div><div class="item-price">$4.00</div></div>
+          <div class="menu-item"><div><div class="item-name">Cappuccino</div><div class="item-desc">Espresso with steamed and foamed milk</div></div><div class="item-price">$4.80</div></div>
+          <div class="menu-item"><div><div class="item-name">Latte</div><div class="item-desc">Espresso with silky steamed milk</div></div><div class="item-price">$5.20</div></div>
+          <div class="menu-item"><div><div class="item-name">Flat White</div><div class="item-desc">Double espresso with velvety microfoam</div></div><div class="item-price">$5.50</div></div>
+          <div class="menu-item"><div><div class="item-name">Iced Coffee</div><div class="item-desc">Cold brew over ice, refreshing and bold</div></div><div class="item-price">$5.80</div></div>
+        </div>
+      </div>
+
+      <!-- BREAKFAST -->
+      <div id="panel-breakfast" class="tab-panel">
+        <div style="background:var(--cream);border-radius:1.4rem;padding:2rem;box-shadow:0 8px 30px rgba(74,47,34,0.08);">
+          <div style="display:flex;align-items:center;gap:1rem;padding-bottom:1.4rem;margin-bottom:0.5rem;border-bottom:1px solid rgba(185,128,74,0.2);">
+            <!-- REPLACE: breakfast category image -->
+            <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=400&q=85&fit=crop" alt="Breakfast" onerror="this.src='https://placehold.co/200x120/4A2F22/FFF7EA?text=Breakfast'" style="width:110px;height:74px;object-fit:cover;border-radius:0.65rem;flex-shrink:0;">
+            <div><h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--espresso);">Breakfast</h3><p style="font-size:0.8rem;color:rgba(74,47,34,0.55);margin-top:0.1rem;">Start your morning the Italian way</p></div>
+          </div>
+          <div class="menu-item"><div><div class="item-name">Italian Croissant</div><div class="item-desc">Buttery, flaky and perfectly golden</div></div><div class="item-price">$4.50</div></div>
+          <div class="menu-item"><div><div class="item-name">Avocado Toast</div><div class="item-desc">Sourdough, avocado, lemon, chilli flakes</div></div><div class="item-price">$9.50</div></div>
+          <div class="menu-item"><div><div class="item-name">Breakfast Bruschetta</div><div class="item-desc">Toasted bread, fresh tomato, basil, olive oil</div></div><div class="item-price">$8.90</div></div>
+          <div class="menu-item"><div><div class="item-name">Yogurt Bowl with Berries</div><div class="item-desc">Greek yogurt, seasonal berries, honey, granola</div></div><div class="item-price">$7.80</div></div>
+          <div class="menu-item"><div><div class="item-name">Scrambled Eggs on Toast</div><div class="item-desc">Creamy free-range eggs, sourdough toast</div></div><div class="item-price">$10.50</div></div>
+        </div>
+      </div>
+
+      <!-- PASTA -->
+      <div id="panel-pasta" class="tab-panel">
+        <div style="background:var(--cream);border-radius:1.4rem;padding:2rem;box-shadow:0 8px 30px rgba(74,47,34,0.08);">
+          <div style="display:flex;align-items:center;gap:1rem;padding-bottom:1.4rem;margin-bottom:0.5rem;border-bottom:1px solid rgba(185,128,74,0.2);">
+            <!-- REPLACE: pasta category image -->
+            <img src="https://images.unsplash.com/photo-1551183053-bf91798d047b?w=400&q=85&fit=crop" alt="Pasta" onerror="this.src='https://placehold.co/200x120/4A2F22/FFF7EA?text=Pasta'" style="width:110px;height:74px;object-fit:cover;border-radius:0.65rem;flex-shrink:0;">
+            <div><h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--espresso);">Pasta</h3><p style="font-size:0.8rem;color:rgba(74,47,34,0.55);margin-top:0.1rem;">Handmade pasta, classic Italian sauces</p></div>
+          </div>
+          <div class="menu-item"><div><div class="item-name">Spaghetti Pomodoro</div><div class="item-desc">San Marzano tomatoes, basil, extra virgin olive oil</div></div><div class="item-price">$13.90</div></div>
+          <div class="menu-item"><div><div class="item-name">Penne Arrabbiata</div><div class="item-desc">Spicy tomato sauce, garlic, fresh red chilli</div></div><div class="item-price">$14.50</div></div>
+          <div class="menu-item"><div><div class="item-name">Tagliatelle Alfredo</div><div class="item-desc">Rich cream sauce, aged parmesan, black pepper</div></div><div class="item-price">$15.90</div></div>
+          <div class="menu-item"><div><div class="item-name">Pesto Pasta</div><div class="item-desc">Basil pesto, pine nuts, parmesan, cherry tomatoes</div></div><div class="item-price">$14.90</div></div>
+          <div class="menu-item"><div><div class="item-name">Truffle Mushroom Pasta</div><div class="item-desc">Wild mushrooms, truffle oil, parmesan cream</div></div><div class="item-price">$18.50</div></div>
+        </div>
+      </div>
+
+      <!-- PIZZA -->
+      <div id="panel-pizza" class="tab-panel">
+        <div style="background:var(--cream);border-radius:1.4rem;padding:2rem;box-shadow:0 8px 30px rgba(74,47,34,0.08);">
+          <div style="display:flex;align-items:center;gap:1rem;padding-bottom:1.4rem;margin-bottom:0.5rem;border-bottom:1px solid rgba(185,128,74,0.2);">
+            <!-- REPLACE: pizza category image -->
+            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&q=85&fit=crop" alt="Pizza &amp; Flatbread" onerror="this.src='https://placehold.co/200x120/4A2F22/FFF7EA?text=Pizza'" style="width:110px;height:74px;object-fit:cover;border-radius:0.65rem;flex-shrink:0;">
+            <div><h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--espresso);">Pizza &amp; Flatbread</h3><p style="font-size:0.8rem;color:rgba(74,47,34,0.55);margin-top:0.1rem;">Stone-baked, crispy and perfectly topped</p></div>
+          </div>
+          <div class="menu-item"><div><div class="item-name">Margherita Flatbread</div><div class="item-desc">San Marzano tomato, fresh mozzarella, basil</div></div><div class="item-price">$12.90</div></div>
+          <div class="menu-item"><div><div class="item-name">Prosciutto &amp; Rucola</div><div class="item-desc">Cured prosciutto, rocket leaves, parmesan shavings</div></div><div class="item-price">$16.50</div></div>
+          <div class="menu-item"><div><div class="item-name">Four Cheese Flatbread</div><div class="item-desc">Mozzarella, gorgonzola, parmesan, fontina</div></div><div class="item-price">$15.50</div></div>
+          <div class="menu-item"><div><div class="item-name">Tomato Mozzarella Focaccia</div><div class="item-desc">Rosemary focaccia, cherry tomatoes, fresh mozzarella</div></div><div class="item-price">$10.90</div></div>
+        </div>
+      </div>
+
+      <!-- DESSERTS -->
+      <div id="panel-desserts" class="tab-panel">
+        <div style="background:var(--cream);border-radius:1.4rem;padding:2rem;box-shadow:0 8px 30px rgba(74,47,34,0.08);">
+          <div style="display:flex;align-items:center;gap:1rem;padding-bottom:1.4rem;margin-bottom:0.5rem;border-bottom:1px solid rgba(185,128,74,0.2);">
+            <!-- REPLACE: desserts category image -->
+            <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400&q=85&fit=crop" alt="Desserts" onerror="this.src='https://placehold.co/200x120/4A2F22/FFF7EA?text=Desserts'" style="width:110px;height:74px;object-fit:cover;border-radius:0.65rem;flex-shrink:0;">
+            <div><h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--espresso);">Desserts</h3><p style="font-size:0.8rem;color:rgba(74,47,34,0.55);margin-top:0.1rem;">A sweet Italian finale to every meal</p></div>
+          </div>
+          <div class="menu-item"><div><div class="item-name">Tiramisu</div><div class="item-desc">Espresso, mascarpone, ladyfingers, fine cocoa</div></div><div class="item-price">$7.50</div></div>
+          <div class="menu-item"><div><div class="item-name">Cannoli</div><div class="item-desc">Crispy shell, sweet ricotta, candied orange peel</div></div><div class="item-price">$6.80</div></div>
+          <div class="menu-item"><div><div class="item-name">Panna Cotta</div><div class="item-desc">Vanilla cream, fresh berry coulis</div></div><div class="item-price">$7.20</div></div>
+          <div class="menu-item"><div><div class="item-name">Chocolate Fondant</div><div class="item-desc">Warm dark chocolate, molten center, vanilla gelato</div></div><div class="item-price">$8.50</div></div>
+          <div class="menu-item"><div><div class="item-name">Lemon Cake</div><div class="item-desc">Light sponge, lemon curd, cream cheese frosting</div></div><div class="item-price">$6.90</div></div>
+        </div>
+      </div>
+
+      <!-- DRINKS -->
+      <div id="panel-drinks" class="tab-panel">
+        <div style="background:var(--cream);border-radius:1.4rem;padding:2rem;box-shadow:0 8px 30px rgba(74,47,34,0.08);">
+          <div style="display:flex;align-items:center;gap:1rem;padding-bottom:1.4rem;margin-bottom:0.5rem;border-bottom:1px solid rgba(185,128,74,0.2);">
+            <!-- REPLACE: drinks category image -->
+            <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&q=85&fit=crop" alt="Drinks" onerror="this.src='https://placehold.co/200x120/4A2F22/FFF7EA?text=Drinks'" style="width:110px;height:74px;object-fit:cover;border-radius:0.65rem;flex-shrink:0;">
+            <div><h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--espresso);">Drinks</h3><p style="font-size:0.8rem;color:rgba(74,47,34,0.55);margin-top:0.1rem;">Refreshing beverages, Italian style</p></div>
+          </div>
+          <div class="menu-item"><div><div class="item-name">San Pellegrino</div><div class="item-desc">Sparkling Italian mineral water</div></div><div class="item-price">$4.50</div></div>
+          <div class="menu-item"><div><div class="item-name">Fresh Orange Juice</div><div class="item-desc">Freshly squeezed Valencia oranges</div></div><div class="item-price">$5.90</div></div>
+          <div class="menu-item"><div><div class="item-name">Homemade Lemonade</div><div class="item-desc">Fresh lemons, herbs, sparkling water</div></div><div class="item-price">$5.50</div></div>
+          <div class="menu-item"><div><div class="item-name">Italian Soda</div><div class="item-desc">Flavored syrups with sparkling water</div></div><div class="item-price">$5.20</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED DISHES -->
+<section style="background:var(--cream);padding:6rem 0;">
+  <div style="max-width:1280px;margin:0 auto;padding:0 1.5rem;">
+
+    <div class="reveal" style="text-align:center;margin-bottom:3rem;">
+      <span class="section-label">Most Loved</span>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2.5rem,6vw,4rem);font-weight:700;color:var(--espresso);letter-spacing:-0.02em;">Customer Favorites</h2>
+      <div class="ornament"><div class="ornament-dot"></div></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;" class="md:grid-cols-3 grid-cols-1">
+
+      <!-- Card 1 -->
+      <div class="dish-card reveal reveal-d1">
+        <div style="position:relative;aspect-ratio:4/3;overflow:hidden;">
+          <!-- REPLACE: Cappuccino & Croissant image -->
+          <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&q=85&fit=crop"
+            alt="Cappuccino &amp; Croissant"
+            onerror="this.src='https://placehold.co/800x600/4A2F22/FFF7EA?text=Cappuccino'"
+            style="width:100%;height:100%;object-fit:cover;">
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(36,23,17,0.52) 0%,transparent 58%);pointer-events:none;"></div>
+          <div style="position:absolute;top:1rem;right:1rem;background:var(--caramel);color:var(--cream);font-size:0.7rem;font-weight:700;padding:0.22rem 0.7rem;border-radius:9999px;letter-spacing:0.06em;">POPULAR</div>
+        </div>
+        <div style="padding:1.4rem 1.5rem 1.5rem;">
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--espresso);margin-bottom:0.45rem;">Cappuccino &amp; Croissant</h3>
+          <p style="font-size:0.835rem;color:rgba(74,47,34,0.62);line-height:1.65;margin-bottom:1rem;">The perfect Italian morning — velvety cappuccino paired with a buttery golden croissant.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;color:var(--caramel);">$8.50</span>
+            <a href="#reservation" style="font-size:0.78rem;font-weight:600;color:var(--caramel);text-decoration:none;display:flex;align-items:center;gap:0.3rem;opacity:0.8;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">Order Now <ion-icon name="arrow-forward-outline" style="font-size:0.85rem;"></ion-icon></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="dish-card reveal reveal-d2">
+        <div style="position:relative;aspect-ratio:4/3;overflow:hidden;">
+          <!-- REPLACE: Truffle Mushroom Pasta image -->
+          <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=800&q=85&fit=crop"
+            alt="Truffle Mushroom Pasta"
+            onerror="this.src='https://placehold.co/800x600/4A2F22/FFF7EA?text=Truffle+Pasta'"
+            style="width:100%;height:100%;object-fit:cover;">
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(36,23,17,0.52) 0%,transparent 58%);pointer-events:none;"></div>
+          <div style="position:absolute;top:1rem;right:1rem;background:var(--olive);color:var(--cream);font-size:0.7rem;font-weight:700;padding:0.22rem 0.7rem;border-radius:9999px;letter-spacing:0.06em;">CHEF'S PICK</div>
+        </div>
+        <div style="padding:1.4rem 1.5rem 1.5rem;">
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--espresso);margin-bottom:0.45rem;">Truffle Mushroom Pasta</h3>
+          <p style="font-size:0.835rem;color:rgba(74,47,34,0.62);line-height:1.65;margin-bottom:1rem;">Wild mushrooms, truffle oil and parmesan cream — a rich, indulgent Italian bowl.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;color:var(--caramel);">$18.50</span>
+            <a href="#reservation" style="font-size:0.78rem;font-weight:600;color:var(--caramel);text-decoration:none;display:flex;align-items:center;gap:0.3rem;opacity:0.8;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">Order Now <ion-icon name="arrow-forward-outline" style="font-size:0.85rem;"></ion-icon></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="dish-card reveal reveal-d3">
+        <div style="position:relative;aspect-ratio:4/3;overflow:hidden;">
+          <!-- REPLACE: Tiramisu image -->
+          <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=800&q=85&fit=crop"
+            alt="Tiramisu"
+            onerror="this.src='https://placehold.co/800x600/4A2F22/FFF7EA?text=Tiramisu'"
+            style="width:100%;height:100%;object-fit:cover;">
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(36,23,17,0.52) 0%,transparent 58%);pointer-events:none;"></div>
+          <div style="position:absolute;top:1rem;right:1rem;background:rgba(36,23,17,0.82);color:var(--cream);font-size:0.7rem;font-weight:700;padding:0.22rem 0.7rem;border-radius:9999px;letter-spacing:0.06em;">CLASSIC</div>
+        </div>
+        <div style="padding:1.4rem 1.5rem 1.5rem;">
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--espresso);margin-bottom:0.45rem;">Tiramisu</h3>
+          <p style="font-size:0.835rem;color:rgba(74,47,34,0.62);line-height:1.65;margin-bottom:1rem;">Espresso-soaked ladyfingers, mascarpone cream and a dusting of fine cocoa.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;color:var(--caramel);">$7.50</span>
+            <a href="#reservation" style="font-size:0.78rem;font-weight:600;color:var(--caramel);text-decoration:none;display:flex;align-items:center;gap:0.3rem;opacity:0.8;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">Order Now <ion-icon name="arrow-forward-outline" style="font-size:0.85rem;"></ion-icon></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" style="background:var(--espresso);padding:6rem 0;">
+  <div style="max-width:1280px;margin:0 auto;padding:0 1.5rem;">
+
+    <div class="reveal" style="text-align:center;margin-bottom:3rem;">
+      <span class="section-label" style="color:rgba(185,128,74,0.9);">Visuals</span>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2.5rem,6vw,4rem);font-weight:700;color:var(--cream);letter-spacing:-0.02em;">Moments at La Skrundo</h2>
+      <div class="ornament"><div class="ornament-dot"></div></div>
+    </div>
+
+    <div class="gallery-grid reveal">
+      <!-- REPLACE: gallery images below -->
+      <!-- 1: Coffee (tall left) -->
+      <div class="g-item g-tall">
+        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=85&fit=crop" alt="Artisan coffee">
+      </div>
+      <!-- 2: Pasta (top middle) -->
+      <div class="g-item">
+        <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=800&q=85&fit=crop" alt="Fresh pasta">
+      </div>
+      <!-- 3: Desserts (top right) -->
+      <div class="g-item">
+        <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=800&q=85&fit=crop" alt="Italian desserts">
+      </div>
+      <!-- 4: Café interior (bottom middle) -->
+      <div class="g-item">
+        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800&q=85&fit=crop" alt="Cozy café interior">
+      </div>
+      <!-- 5: People dining (bottom right) -->
+      <div class="g-item">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=85&fit=crop" alt="Dining moments">
+      </div>
+    </div>
+
+    <!-- 6th: wide Italian ambience -->
+    <div class="reveal" style="margin-top:0.875rem;">
+      <div class="g-item" style="height:240px;border-radius:1.1rem;">
+        <!-- REPLACE: wide ambience image -->
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=85&fit=crop" alt="Italian café atmosphere" style="width:100%;height:100%;object-fit:cover;">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(36,23,17,0.5) 0%,transparent 55%);pointer-events:none;"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- RESERVATION -->
+<section id="reservation" style="background:var(--sand);padding:6rem 0;">
+  <div style="max-width:1100px;margin:0 auto;padding:0 1.5rem;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4.5rem;align-items:start;">
+
+      <!-- Left CTA -->
+      <div class="reveal" style="padding-top:1rem;">
+        <span class="section-label">Reservations</span>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,4.5vw,3rem);font-weight:700;color:var(--espresso);line-height:1.15;letter-spacing:-0.02em;margin-bottom:1.1rem;">
+          Reserve Your<br><em style="color:var(--caramel);">Table</em>
+        </h2>
+        <p style="font-size:0.975rem;line-height:1.75;color:rgba(74,47,34,0.7);margin-bottom:2rem;">
+          Enjoy coffee, food and an Italian-inspired atmosphere at La Skrundo. Reserve your table for a memorable experience.
+        </p>
+        <div style="display:flex;flex-direction:column;gap:0.9rem;">
+          <div style="display:flex;align-items:center;gap:0.75rem;">
+            <ion-icon name="time-outline" style="color:var(--caramel);font-size:1.1rem;flex-shrink:0;"></ion-icon>
+            <span style="font-size:0.875rem;color:rgba(74,47,34,0.72);">Mon – Fri: 8:00 AM – 9:00 PM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.75rem;">
+            <ion-icon name="time-outline" style="color:var(--caramel);font-size:1.1rem;flex-shrink:0;"></ion-icon>
+            <span style="font-size:0.875rem;color:rgba(74,47,34,0.72);">Sat – Sun: 9:00 AM – 10:00 PM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.75rem;">
+            <ion-icon name="call-outline" style="color:var(--caramel);font-size:1.1rem;flex-shrink:0;"></ion-icon>
+            <span style="font-size:0.875rem;color:rgba(74,47,34,0.72);">+1 555 234 8901</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.75rem;">
+            <ion-icon name="mail-outline" style="color:var(--caramel);font-size:1.1rem;flex-shrink:0;"></ion-icon>
+            <span style="font-size:0.875rem;color:rgba(74,47,34,0.72);">hello@laskrundo.com</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Form -->
+      <div class="reveal reveal-d2">
+        <div style="background:var(--cream);border-radius:1.75rem;padding:2.25rem;box-shadow:0 16px 48px rgba(74,47,34,0.1);">
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--espresso);margin-bottom:1.4rem;">Book a Table</h3>
+          <form id="res-form" onsubmit="submitRes(event)" style="display:flex;flex-direction:column;gap:1.1rem;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.9rem;">
+              <div>
+                <label class="f-label" for="r-name">Name</label>
+                <input class="f-input" type="text" id="r-name" placeholder="Your name" required>
+              </div>
+              <div>
+                <label class="f-label" for="r-phone">Phone</label>
+                <input class="f-input" type="tel" id="r-phone" placeholder="+1 234 567 89">
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.9rem;">
+              <div>
+                <label class="f-label" for="r-date">Date</label>
+                <input class="f-input" type="date" id="r-date" required>
+              </div>
+              <div>
+                <label class="f-label" for="r-time">Time</label>
+                <input class="f-input" type="time" id="r-time" required>
+              </div>
+            </div>
+            <div>
+              <label class="f-label" for="r-guests">Guests</label>
+              <select class="f-input" id="r-guests">
+                <option value="">Select number of guests</option>
+                <option>1 person</option>
+                <option>2 people</option>
+                <option>3 people</option>
+                <option>4 people</option>
+                <option>5 people</option>
+                <option>6+ people</option>
+              </select>
+            </div>
+            <div>
+              <label class="f-label" for="r-msg">Message</label>
+              <textarea class="f-input" id="r-msg" rows="3" placeholder="Special requests or occasions..." style="resize:none;"></textarea>
+            </div>
+            <button type="submit" class="btn-primary" style="width:100%;justify-content:center;padding:0.95rem;">
+              <ion-icon name="checkmark-circle-outline"></ion-icon> Confirm Reservation
+            </button>
+          </form>
+          <div id="res-success" style="display:none;text-align:center;padding:1.5rem;background:rgba(111,122,77,0.1);border-radius:0.9rem;margin-top:0.5rem;">
+            <ion-icon name="checkmark-circle" style="color:var(--olive);font-size:2.5rem;display:block;margin:0 auto 0.6rem;"></ion-icon>
+            <p style="font-weight:600;color:var(--olive);margin-bottom:0.25rem;">Reservation received!</p>
+            <p style="font-size:0.85rem;color:rgba(74,47,34,0.65);">We'll confirm your booking shortly.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background:var(--coffee);padding:6rem 0;">
+  <div style="max-width:1280px;margin:0 auto;padding:0 1.5rem;">
+
+    <div class="reveal" style="text-align:center;margin-bottom:3.5rem;">
+      <span class="section-label" style="color:rgba(185,128,74,0.9);">Find Us</span>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2.5rem,6vw,4rem);font-weight:700;color:var(--cream);letter-spacing:-0.02em;">Visit Us</h2>
+      <div class="ornament"><div class="ornament-dot"></div></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-bottom:3rem;">
+
+      <div class="reveal" style="text-align:center;padding:1.75rem 1rem;">
+        <div style="width:3.2rem;height:3.2rem;border-radius:50%;background:rgba(185,128,74,0.14);display:flex;align-items:center;justify-content:center;margin:0 auto 1.1rem;">
+          <ion-icon name="location-outline" style="color:var(--caramel);font-size:1.35rem;"></ion-icon>
+        </div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--cream);margin-bottom:0.6rem;">Address</h3>
+        <p style="font-size:0.875rem;color:rgba(255,247,234,0.6);line-height:1.75;">24 Roma Street<br>New York, NY</p>
+      </div>
+
+      <div class="reveal reveal-d1" style="text-align:center;padding:1.75rem 1rem;">
+        <div style="width:3.2rem;height:3.2rem;border-radius:50%;background:rgba(185,128,74,0.14);display:flex;align-items:center;justify-content:center;margin:0 auto 1.1rem;">
+          <ion-icon name="call-outline" style="color:var(--caramel);font-size:1.35rem;"></ion-icon>
+        </div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--cream);margin-bottom:0.6rem;">Contact</h3>
+        <p style="font-size:0.875rem;color:rgba(255,247,234,0.6);line-height:1.75;">
+          <a href="tel:+15552348901" style="color:rgba(255,247,234,0.6);text-decoration:none;display:block;transition:color 0.2s;" onmouseover="this.style.color='#B9804A'" onmouseout="this.style.color='rgba(255,247,234,0.6)'">+1 555 234 8901</a>
+          <a href="mailto:hello@laskrundo.com" style="color:rgba(255,247,234,0.6);text-decoration:none;display:block;transition:color 0.2s;" onmouseover="this.style.color='#B9804A'" onmouseout="this.style.color='rgba(255,247,234,0.6)'">hello@laskrundo.com</a>
+        </p>
+      </div>
+
+      <div class="reveal reveal-d2" style="text-align:center;padding:1.75rem 1rem;">
+        <div style="width:3.2rem;height:3.2rem;border-radius:50%;background:rgba(185,128,74,0.14);display:flex;align-items:center;justify-content:center;margin:0 auto 1.1rem;">
+          <ion-icon name="time-outline" style="color:var(--caramel);font-size:1.35rem;"></ion-icon>
+        </div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--cream);margin-bottom:0.6rem;">Opening Hours</h3>
+        <p style="font-size:0.875rem;color:rgba(255,247,234,0.6);line-height:1.9;">
+          Mon – Fri: 8:00 AM – 9:00 PM<br>
+          Sat – Sun: 9:00 AM – 10:00 PM
+        </p>
+      </div>
+
+    </div>
+
+    <!-- MAP PLACEHOLDER -->
+    <div class="reveal" style="border-radius:1.2rem;overflow:hidden;height:260px;background:rgba(255,247,234,0.05);border:1.5px solid rgba(185,128,74,0.18);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.6rem;">
+      <ion-icon name="map-outline" style="color:rgba(185,128,74,0.45);font-size:3rem;"></ion-icon>
+      <span style="color:rgba(255,247,234,0.35);font-size:0.875rem;font-weight:500;">24 Roma Street, New York, NY</span>
+      <span style="color:rgba(255,247,234,0.2);font-size:0.78rem;">Replace with Google Maps embed</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:var(--espresso);border-top:1px solid rgba(185,128,74,0.1);padding:3.5rem 0 2rem;">
+  <div style="max-width:1280px;margin:0 auto;padding:0 1.5rem;">
+    <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem;margin-bottom:3rem;">
+
+      <div>
+        <div style="margin-bottom:0.9rem;">
+          <span style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--cream);display:block;letter-spacing:-0.01em;">La Skrundo</span>
+          <span style="font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(185,128,74,0.8);">Italian Café &amp; Restaurant</span>
+        </div>
+        <p style="font-size:0.85rem;color:rgba(255,247,234,0.45);line-height:1.72;max-width:220px;">Italian inspired café and food experience.</p>
+      </div>
+
+      <div>
+        <h4 style="font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(185,128,74,0.8);margin-bottom:1.1rem;">Quick Links</h4>
+        <nav style="display:flex;flex-direction:column;gap:0.55rem;">
+          <a href="#menu"    style="font-size:0.85rem;color:rgba(255,247,234,0.5);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#FFF7EA'" onmouseout="this.style.color='rgba(255,247,234,0.5)'">Menu</a>
+          <a href="#about"   style="font-size:0.85rem;color:rgba(255,247,234,0.5);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#FFF7EA'" onmouseout="this.style.color='rgba(255,247,234,0.5)'">About</a>
+          <a href="#gallery" style="font-size:0.85rem;color:rgba(255,247,234,0.5);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#FFF7EA'" onmouseout="this.style.color='rgba(255,247,234,0.5)'">Gallery</a>
+          <a href="#contact" style="font-size:0.85rem;color:rgba(255,247,234,0.5);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#FFF7EA'" onmouseout="this.style.color='rgba(255,247,234,0.5)'">Contact</a>
+        </nav>
+      </div>
+
+      <div>
+        <h4 style="font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(185,128,74,0.8);margin-bottom:1.1rem;">Follow Us</h4>
+        <div style="display:flex;gap:0.7rem;">
+          <a href="#" aria-label="Instagram" style="width:2.4rem;height:2.4rem;border-radius:50%;background:rgba(255,247,234,0.07);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:background 0.2s,transform 0.2s;" onmouseover="this.style.background='rgba(185,128,74,0.22)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(255,247,234,0.07)';this.style.transform='translateY(0)'">
+            <ion-icon name="logo-instagram" style="color:rgba(255,247,234,0.7);font-size:1rem;"></ion-icon>
+          </a>
+          <a href="#" aria-label="Facebook" style="width:2.4rem;height:2.4rem;border-radius:50%;background:rgba(255,247,234,0.07);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:background 0.2s,transform 0.2s;" onmouseover="this.style.background='rgba(185,128,74,0.22)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(255,247,234,0.07)';this.style.transform='translateY(0)'">
+            <ion-icon name="logo-facebook" style="color:rgba(255,247,234,0.7);font-size:1rem;"></ion-icon>
+          </a>
+          <a href="#" aria-label="TikTok" style="width:2.4rem;height:2.4rem;border-radius:50%;background:rgba(255,247,234,0.07);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:background 0.2s,transform 0.2s;" onmouseover="this.style.background='rgba(185,128,74,0.22)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(255,247,234,0.07)';this.style.transform='translateY(0)'">
+            <ion-icon name="logo-tiktok" style="color:rgba(255,247,234,0.7);font-size:1rem;"></ion-icon>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="border-top:1px solid rgba(255,247,234,0.07);padding-top:1.75rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+      <span style="font-size:0.775rem;color:rgba(255,247,234,0.3);">© 2026 La Skrundo. All rights reserved.</span>
+      <span style="font-size:0.775rem;color:rgba(255,247,234,0.2);font-family:'Playfair Display',serif;font-style:italic;">Italian Café &amp; Restaurant</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Hero image zoom on load
+  const heroImg = document.getElementById('hero-img');
+  if (heroImg.complete) heroImg.classList.add('loaded');
+  else heroImg.addEventListener('load', () => heroImg.classList.add('loaded'));
+
+  // Sticky header
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 80) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
+  }, { passive: true });
+
+  // Mobile menu
+  document.getElementById('mob-open').addEventListener('click', () => {
+    document.getElementById('mobile-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+  document.getElementById('mob-close').addEventListener('click', closeMob);
+  function closeMob() {
+    document.getElementById('mobile-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Menu tabs
+  function openTab(e, id) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('panel-' + id).classList.add('active');
+    e.currentTarget.classList.add('active');
+  }
+
+  // Scroll reveal
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if (en.isIntersecting) { en.target.classList.add('visible'); obs.unobserve(en.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+      const t = document.querySelector(this.getAttribute('href'));
+      if (!t) return;
+      e.preventDefault();
+      window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - header.offsetHeight - 12, behavior: 'smooth' });
+    });
+  });
+
+  // Reservation form
+  function submitRes(e) {
+    e.preventDefault();
+    document.getElementById('res-form').style.display = 'none';
+    document.getElementById('res-success').style.display = 'block';
+  }
+
+  // About section: stack on mobile
+  const aboutGrid = document.querySelector('#about > div > div');
+  function checkAbout() {
+    if (aboutGrid) aboutGrid.style.gridTemplateColumns = window.innerWidth < 768 ? '1fr' : '1fr 1fr';
+  }
+  window.addEventListener('resize', checkAbout);
+  checkAbout();
+
+  // Featured dishes: stack on mobile
+  const dishGrid = document.querySelector('#gallery').previousElementSibling.querySelector('div[style*="grid-template-columns:repeat(3"]');
+  function checkDish() {
+    if (dishGrid) dishGrid.style.gridTemplateColumns = window.innerWidth < 768 ? '1fr' : 'repeat(3,1fr)';
+  }
+  window.addEventListener('resize', checkDish);
+  checkDish();
+
+  // Contact grid: stack on mobile
+  const contactGrid = document.querySelector('#contact > div > div[style*="grid-template-columns:repeat(3"]');
+  function checkContact() {
+    if (contactGrid) contactGrid.style.gridTemplateColumns = window.innerWidth < 640 ? '1fr' : window.innerWidth < 900 ? 'repeat(2,1fr)' : 'repeat(3,1fr)';
+  }
+  window.addEventListener('resize', checkContact);
+  checkContact();
+
+  // Reservation grid: stack on mobile
+  const resGrid = document.querySelector('#reservation > div > div');
+  function checkRes() {
+    if (resGrid) resGrid.style.gridTemplateColumns = window.innerWidth < 768 ? '1fr' : '1fr 1fr';
+  }
+  window.addEventListener('resize', checkRes);
+  checkRes();
+
+  // Footer grid: stack on mobile
+  const footGrid = document.querySelector('footer > div > div[style*="grid-template-columns:1.5fr"]');
+  function checkFoot() {
+    if (footGrid) footGrid.style.gridTemplateColumns = window.innerWidth < 640 ? '1fr' : window.innerWidth < 900 ? '1fr 1fr' : '1.5fr 1fr 1fr';
+  }
+  window.addEventListener('resize', checkFoot);
+  checkFoot();
+</script>
+</body>
+</html>
