@@ -1,6 +1,7 @@
 "use client";
 import { useEffect } from "react";
 import { Link } from "@/i18n/navigation";
+import { getUserFacingErrorMessageLv } from "@/lib/public-error";
 
 export default function DashboardError({
   error,
@@ -23,7 +24,7 @@ export default function DashboardError({
           style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.2)" }}
         >
           <p className="text-xs font-mono break-all" style={{ color: "rgba(239,68,68,0.8)" }}>
-            {error.message || "Nezināma kļūda"}
+            {getUserFacingErrorMessageLv()}
           </p>
           {error.digest && (
             <p className="text-xs mt-2" style={{ color: "rgba(255,255,255,0.3)" }}>

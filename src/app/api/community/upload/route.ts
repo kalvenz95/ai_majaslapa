@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { handleUpload, type HandleUploadBody } from "@vercel/blob/client";
-import { requireCommunityWriter, CommunityError } from "@/lib/community";
+import { requireCommunityWriter, CommunityError, communityApiError } from "@/lib/community";
 
 /**
  * Kopienas failu augšupielāde (Vercel Blob, klienta puses augšupielāde).
@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(result);
   } catch (err) {
     if (err instanceof CommunityError) {
-      return NextResponse.json({ error: err.message }, { status: err.status });
+      return communityApiError(err);
     }
     // Iekšējie kļūdu teksti (piem. trūkstošs Blob marķieris) paliek žurnālā,
     // nevis atbildē — tie atklāj konfigurāciju.

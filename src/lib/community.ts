@@ -141,6 +141,14 @@ export class CommunityError extends Error {
   }
 }
 
+function communityPublicMessageByStatus(status: number): string {
+  if (status === 400) return "Nederīgs pieprasījums";
+  if (status === 401) return "Nepieciešama pieteikšanās";
+  if (status === 403) return "Nav piekļuves šai darbībai";
+  if (status === 404) return "Nav atrasts";
+  return "Servera kļūda";
+}
+
 /**
  * API maršrutiem: atgriež skatītāju vai izmet `CommunityError`.
  * Lieto KATRĀ kopienas maršrutā, arī lasīšanas (GET) maršrutos —
@@ -163,11 +171,7 @@ export async function requireCommunityAccess(): Promise<CommunityViewer> {
 export async function requireCommunityWriter(): Promise<CommunityViewer> {
   const viewer = await requireCommunityAccess();
   if (!viewer.canPost) {
-    throw new CommunityError(
-      viewer.restrictedReason ||
-        "Tava iespēja publicēt kopienā ir īslaicīgi ierobežota.",
-      403
-    );
+    throw new CommunityError("Tava iespēja publicēt kopienā ir īslaicīgi ierobežota.", 403);
   }
   return viewer;
 }
@@ -182,7 +186,10 @@ export async function requireCommunityStaff(): Promise<CommunityViewer> {
 /** Vienota kļūdu atbilde kopienas API maršrutiem. */
 export function communityApiError(err: unknown) {
   if (err instanceof CommunityError) {
-    return Response.json({ error: err.message }, { status: err.status });
+    return Response.json(
+      { error: communityPublicMessageByStatus(err.status) },
+      { status: err.status }
+    );
   }
   console.error("[COMMUNITY_API]", err);
   return Response.json({ error: "Servera kļūda" }, { status: 500 });

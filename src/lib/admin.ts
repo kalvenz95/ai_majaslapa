@@ -139,6 +139,14 @@ export class AdminError extends Error {
   }
 }
 
+function adminPublicMessageByStatus(status: number): string {
+  if (status === 400) return "Nederīgs pieprasījums";
+  if (status === 401) return "Nepieciešama pieteikšanās";
+  if (status === 403) return "Nav piekļuves šai darbībai";
+  if (status === 404) return "Nav atrasts";
+  return "Servera kļūda";
+}
+
 export async function requireApiPermission(
   permission: Permission
 ): Promise<AdminUser> {
@@ -152,7 +160,10 @@ export async function requireApiPermission(
 /** Vienota kļūdu atbilde API maršrutiem. */
 export function adminApiError(err: unknown) {
   if (err instanceof AdminError) {
-    return Response.json({ message: err.message }, { status: err.status });
+    return Response.json(
+      { message: adminPublicMessageByStatus(err.status) },
+      { status: err.status }
+    );
   }
   console.error("[ADMIN_API]", err);
   return Response.json({ message: "Servera kļūda" }, { status: 500 });

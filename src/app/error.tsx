@@ -1,5 +1,6 @@
 "use client";
 import { useEffect } from "react";
+import { getUserFacingErrorMessageLv } from "@/lib/public-error";
 
 export default function Error({
   error,
@@ -22,7 +23,7 @@ export default function Error({
           style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.25)" }}
         >
           <p className="text-sm font-mono break-all" style={{ color: "rgba(239,68,68,0.9)" }}>
-            {error.message || "(nav ziņojuma)"}
+            {getUserFacingErrorMessageLv()}
           </p>
           {error.digest && (
             <p className="text-xs mt-2" style={{ color: "rgba(255,255,255,0.3)" }}>
