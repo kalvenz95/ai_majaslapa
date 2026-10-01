@@ -49,15 +49,11 @@ async function main() {
 
   __setUser("clerk_blocked");
   const blockedGet = await json(await eventsRoute.GET());
-  check("Blocked user GET /api/events -> 200", blockedGet.status === 200, `received ${blockedGet.status}`);
-  check("Blocked user GET omits meetUrl", blockedGet.body?.[0]?.meetUrl === undefined, JSON.stringify(blockedGet.body?.[0]));
-  check("Blocked user GET omits description", blockedGet.body?.[0]?.description === undefined, JSON.stringify(blockedGet.body?.[0]));
+  check("Blocked user GET /api/events -> 403", blockedGet.status === 403, `received ${blockedGet.status}`);
 
   __setUser("clerk_lookup_fail");
   const lookupFailGet = await json(await eventsRoute.GET());
-  check("Lookup failure GET /api/events -> 200", lookupFailGet.status === 200, `received ${lookupFailGet.status}`);
-  check("Lookup failure GET omits meetUrl", lookupFailGet.body?.[0]?.meetUrl === undefined, JSON.stringify(lookupFailGet.body?.[0]));
-  check("Lookup failure GET omits description", lookupFailGet.body?.[0]?.description === undefined, JSON.stringify(lookupFailGet.body?.[0]));
+  check("Lookup failure GET /api/events -> 403", lookupFailGet.status === 403, `received ${lookupFailGet.status}`);
 
   __setUser(null);
   const anonPost = await json(
@@ -111,7 +107,7 @@ async function main() {
       })
     )
   );
-  check("Lookup failure POST /api/events -> 503", lookupFailPost.status === 503, `received ${lookupFailPost.status}`);
+  check("Lookup failure POST /api/events -> 403", lookupFailPost.status === 403, `received ${lookupFailPost.status}`);
 
   __setUser("clerk_member");
   const activePost = await json(

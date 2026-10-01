@@ -3,20 +3,23 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { assertNotBlocked, BlockedUserError } from "@/lib/user-access";
 
-async function canViewPrivateEventFields(clerkId: string | null) {
-  if (!clerkId) return false;
-
-  try {
-    await assertNotBlocked(clerkId);
-    return true;
-  } catch {
-    return false;
-  }
-}
-
 export async function GET() {
   const { userId } = await auth();
-  const canViewPrivate = await canViewPrivateEventFields(userId);
+
+  let canViewPrivate = false;
+  if (userId) {
+    try {
+      await assertNotBlocked(userId);
+      canViewPrivate = true;
+    } catch (error) {
+      if (error instanceof BlockedUserError) {
+        return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+      }
+
+      console.error("[EVENTS_GET_BLOCK_CHECK]", error);
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
+  }
 
   const events = await prisma.liveEvent.findMany({
     where: { startAt: { gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) } },
@@ -53,7 +56,8 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
 
-    return NextResponse.json({ error: "User access check failed" }, { status: 503 });
+    console.error("[EVENTS_POST_BLOCK_CHECK]", error);
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
   const { title, description, startAt, endAt, meetUrl, type } = await req.json();
