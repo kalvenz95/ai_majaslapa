@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"],
+      "server-only": ["./__ctest__/server-only-stub.ts"],
+      "@clerk/nextjs/server": ["./__ctest__/clerk-stub.ts"],
+      "@/lib/prisma": ["./__ctest__/events-access-prisma-stub.ts"]
+    }
+  },
+  "include": ["./**/*.ts", "../src/**/*.ts"]
+}
