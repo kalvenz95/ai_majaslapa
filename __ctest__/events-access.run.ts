@@ -37,9 +37,8 @@ async function main() {
 
   __setUser(null);
   const anonGet = await json(await eventsRoute.GET());
-  check("Anonymous GET /api/events -> 200", anonGet.status === 200, `received ${anonGet.status}`);
-  check("Anonymous GET omits meetUrl", anonGet.body?.[0]?.meetUrl === undefined, JSON.stringify(anonGet.body?.[0]));
-  check("Anonymous GET omits description", anonGet.body?.[0]?.description === undefined, JSON.stringify(anonGet.body?.[0]));
+  check("Anonymous GET /api/events -> 401", anonGet.status === 401, `received ${anonGet.status}`);
+  check("Anonymous GET has no event payload", !Array.isArray(anonGet.body), JSON.stringify(anonGet.body));
 
   __setUser("clerk_member");
   const activeGet = await json(await eventsRoute.GET());
@@ -49,9 +48,8 @@ async function main() {
 
   __setUser("clerk_blocked");
   const blockedGet = await json(await eventsRoute.GET());
-  check("Blocked user GET /api/events -> 200", blockedGet.status === 200, `received ${blockedGet.status}`);
-  check("Blocked user GET omits meetUrl", blockedGet.body?.[0]?.meetUrl === undefined, JSON.stringify(blockedGet.body?.[0]));
-  check("Blocked user GET omits description", blockedGet.body?.[0]?.description === undefined, JSON.stringify(blockedGet.body?.[0]));
+  check("Blocked user GET /api/events -> 403", blockedGet.status === 403, `received ${blockedGet.status}`);
+  check("Blocked GET has no event payload", !Array.isArray(blockedGet.body), JSON.stringify(blockedGet.body));
 
   __setUser(null);
   const anonPost = await json(
@@ -70,6 +68,7 @@ async function main() {
     )
   );
   check("Anonymous POST /api/events -> 401", anonPost.status === 401, `received ${anonPost.status}`);
+  check("Anonymous POST does not return created event", anonPost.body?.meetUrl === undefined, JSON.stringify(anonPost.body));
 
   __setUser("clerk_blocked");
   const blockedPost = await json(
@@ -88,6 +87,7 @@ async function main() {
     )
   );
   check("Blocked user POST /api/events -> 403", blockedPost.status === 403, `received ${blockedPost.status}`);
+  check("Blocked POST does not return created event", blockedPost.body?.meetUrl === undefined, JSON.stringify(blockedPost.body));
 
   __setUser("clerk_member");
   const activePost = await json(

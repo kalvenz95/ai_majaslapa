@@ -1,40 +1,37 @@
 import { auth } from "@clerk/nextjs/server";
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-
-async function isBlockedUser(clerkId: string) {
-  const user = await prisma.user.findUnique({
-    where: { clerkId },
-    select: { status: true },
-  });
-
-  return user?.status === "BLOCKED";
-}
+import { assertNotBlocked, BlockedUserError } from "@/lib/user-access";
 
 export async function GET() {
   const { userId } = await auth();
-  const blocked = userId ? await isBlockedUser(userId) : false;
+  if (!userId) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  try {
+    await assertNotBlocked(userId);
+  } catch (error) {
+    if (error instanceof BlockedUserError) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
+
+    console.error("[EVENTS_GET_BLOCK_CHECK]", error);
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
+  }
 
   const events = await prisma.liveEvent.findMany({
     where: { startAt: { gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) } },
     orderBy: { startAt: "asc" },
-    select: userId && !blocked
-      ? {
-          id: true,
-          title: true,
-          description: true,
-          startAt: true,
-          endAt: true,
-          meetUrl: true,
-          type: true,
-        }
-      : {
-          id: true,
-          title: true,
-          startAt: true,
-          endAt: true,
-          type: true,
-        },
+    select: {
+      id: true,
+      title: true,
+      description: true,
+      startAt: true,
+      endAt: true,
+      meetUrl: true,
+      type: true,
+    },
   });
   return NextResponse.json(events);
 }
@@ -42,7 +39,17 @@ export async function GET() {
 export async function POST(req: NextRequest) {
   const { userId } = await auth();
   if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  if (await isBlockedUser(userId)) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+
+  try {
+    await assertNotBlocked(userId);
+  } catch (error) {
+    if (error instanceof BlockedUserError) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
+
+    console.error("[EVENTS_POST_BLOCK_CHECK]", error);
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
+  }
 
   const { title, description, startAt, endAt, meetUrl, type } = await req.json();
   if (!title?.trim() || !startAt) {

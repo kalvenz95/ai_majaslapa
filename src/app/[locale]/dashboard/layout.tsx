@@ -5,6 +5,7 @@ import { StreakTracker } from "@/components/dashboard/StreakTracker";
 import PhonePrompt from "@/components/dashboard/PhonePrompt";
 import { upsertUser } from "@/lib/subscriptions";
 import { assertNotBlocked, BlockedUserError } from "@/lib/user-access";
+import { getUserFacingErrorMessageLv } from "@/lib/public-error";
 import { claimReferral, REF_COOKIE } from "@/lib/affiliate";
 import { setRequestLocale } from "next-intl/server";
 import { cookies } from "next/headers";
@@ -25,7 +26,14 @@ export default async function DashboardLayout({
     const result = await auth();
     userId = result.userId;
   } catch (e) {
-    authError = e instanceof Error ? `${e.name}: ${e.message}` : String(e);
+    const isDynamicServerUsage =
+      typeof e === "object" && e !== null && "digest" in e && (e as { digest?: string }).digest === "DYNAMIC_SERVER_USAGE";
+
+    if (!isDynamicServerUsage) {
+      console.error("[DASHBOARD_AUTH]", e);
+    }
+
+    authError = getUserFacingErrorMessageLv();
   }
 
   if (authError) {
@@ -35,7 +43,7 @@ export default async function DashboardLayout({
           <div style={{ fontSize: 48, marginBottom: 16 }}>🔑</div>
           <h2 style={{ color: "#fff", fontWeight: 900, fontSize: 22, marginBottom: 12 }}>Autentifikācijas kļūda</h2>
           <div style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.3)", borderRadius: 12, padding: 16, textAlign: "left", marginBottom: 20 }}>
-            <code style={{ color: "rgba(239,68,68,0.9)", fontSize: 12, wordBreak: "break-all", whiteSpace: "pre-wrap" }}>{authError}</code>
+            <p style={{ color: "rgba(239,68,68,0.9)", fontSize: 14, margin: 0 }}>{getUserFacingErrorMessageLv()}</p>
           </div>
           <a href={`/${locale}`} style={{ color: "#a855f7", fontSize: 14 }}>← Atpakaļ uz sākumlapu</a>
         </div>
