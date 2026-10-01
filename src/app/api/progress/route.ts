@@ -4,6 +4,7 @@ import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { getUserPlan } from "@/lib/subscriptions";
 import { hasAccessToPlan } from "@/lib/stripe";
+import { assertNotBlocked, BlockedUserError } from "@/lib/user-access";
 
 const schema = z.object({
   lessonId: z.string(),
@@ -17,6 +18,8 @@ export async function POST(req: NextRequest) {
     if (!userId) {
       return NextResponse.json({ message: "Nav autorizēts" }, { status: 401 });
     }
+
+    await assertNotBlocked(userId);
 
     const body = await req.json();
     const { lessonId, completed, watchedSeconds } = schema.parse(body);
@@ -60,6 +63,9 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ progress });
   } catch (err) {
+    if (err instanceof BlockedUserError) {
+      return NextResponse.json({ message: "Konts ir bloķēts" }, { status: 403 });
+    }
     if (err instanceof z.ZodError) {
       return NextResponse.json({ message: "Nepareizi dati" }, { status: 400 });
     }
@@ -74,6 +80,8 @@ export async function GET(req: NextRequest) {
     if (!userId) {
       return NextResponse.json({ message: "Nav autorizēts" }, { status: 401 });
     }
+
+    await assertNotBlocked(userId);
 
     const user = await prisma.user.findUnique({ where: { clerkId: userId } });
     if (!user) return NextResponse.json({ progress: [] });
@@ -92,6 +100,9 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json({ progress });
   } catch (err) {
+    if (err instanceof BlockedUserError) {
+      return NextResponse.json({ message: "Konts ir bloķēts" }, { status: 403 });
+    }
     console.error("[PROGRESS_GET]", err);
     return NextResponse.json({ message: "Servera kļūda" }, { status: 500 });
   }

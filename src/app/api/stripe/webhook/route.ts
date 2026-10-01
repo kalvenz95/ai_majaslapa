@@ -1,12 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import type Stripe from "stripe";
 import { stripe, PLAN_NAMES, getPlanFromPriceId } from "@/lib/stripe";
 import { prisma } from "@/lib/prisma";
 import { sendWelcomeEmail, sendPaymentConfirmationEmail } from "@/lib/resend";
-import { markReferralPurchased } from "@/lib/affiliate";
-import { SubscriptionStatus, Plan } from "@prisma/client";
+import { markReferralPurchasedForPayment } from "@/lib/affiliate-credit";
+import { SubscriptionStatus } from "@prisma/client";
+import { processPaymentSucceeded, recordStripePayment } from "@/lib/stripe-webhook-payment";
 
-// Stripe prasa raw body — NextJS App Router automātiski neparsē
 export const runtime = "nodejs";
 
 export async function POST(req: NextRequest) {
@@ -112,91 +111,69 @@ async function handleSubscriptionChange(sub: any) {
 }
 
 async function handlePaymentSucceeded(invoice: any) {
-  // Ieraksta KATRU veiksmīgu maksājumu (arī atjaunošanas) admin vēsturei
-  await recordPayment(invoice, "PAID");
-
-  const customerId = invoice.customer as string;
-  const user = await prisma.user.findUnique({
-    where: { stripeCustomerId: customerId },
-    include: { subscription: true },
+  await processPaymentSucceeded(invoice, {
+    recordPayment: async (currentInvoice) => recordPayment(currentInvoice, "PAID"),
+    sendWelcomeEmail,
+    sendPaymentConfirmationEmail,
+    markReferralPurchased: markReferralPurchasedForPayment,
+    logError: (label, err) => console.error(label, err),
   });
-  if (!user || !user.email) return;
-
-  const isFirstPayment = invoice.billing_reason === "subscription_create";
-  if (isFirstPayment) {
-    await sendWelcomeEmail(user.email, user.name ?? "");
-  }
-
-  const plan = user.subscription?.plan;
-  if (plan) {
-    await sendPaymentConfirmationEmail(
-      user.email,
-      user.name ?? "",
-      PLAN_NAMES[plan],
-      (invoice.amount_paid ?? 0) / 100,
-      invoice.hosted_invoice_url ?? undefined
-    );
-  }
-
-  // Partneru atribūcija — ja lietotājs nāca caur partnera kodu, atzīmē
-  // pirkumu un pieskaita summu partnera statistikai.
-  await markReferralPurchased(
-    user.id,
-    invoice.amount_paid ?? 0,
-    plan ?? null
-  ).catch((e) => console.error("[AFFILIATE_PURCHASE]", e));
 }
 
-/** Saglabā maksājuma ierakstu Payment tabulā (admin maksājumu vēsturei). */
 async function recordPayment(invoice: any, status: "PAID" | "FAILED") {
-  const customerId = invoice.customer as string | undefined;
-  if (!customerId) return;
+  return recordStripePayment(invoice, status, {
+    deps: {
+      findUserByStripeCustomerId: async (customerId: string) => {
+        const user = await prisma.user.findUnique({
+          where: { stripeCustomerId: customerId },
+          include: { subscription: true },
+        });
+        if (!user) return null;
+        return {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          subscriptionPlan: user.subscription?.plan ?? null,
+        };
+      },
+      createPayment: (data) => prisma.payment.create({ data }),
+      promotePaymentToPaid: ({ providerPaymentId, amount, invoiceUrl }) =>
+        prisma.payment.updateMany({
+          where: { providerPaymentId, status: { not: "PAID" } },
+          data: { status: "PAID", amount, paidAt: new Date(), invoiceUrl },
+        }),
+      updatePaymentByProviderPaymentId: async ({
+        providerPaymentId,
+        status: currentStatus,
+        amount,
+        invoiceUrl,
+      }) => {
+        if (currentStatus === "FAILED") {
+          const failedUpdate = await prisma.payment.updateMany({
+            where: { providerPaymentId, status: { not: "PAID" } },
+            data: { status: "FAILED", amount, invoiceUrl },
+          });
+          const existing = await prisma.payment.findUnique({
+            where: { providerPaymentId },
+            select: { id: true },
+          });
+          if (!existing) throw new Error("Payment nav atrasts pēc FAILED update");
+          return existing;
+        }
 
-  const user = await prisma.user.findUnique({
-    where: { stripeCustomerId: customerId },
-    include: { subscription: true },
-  });
-  if (!user) return;
-
-  const priceId = invoice.lines?.data?.[0]?.price?.id as string | undefined;
-  const plan =
-    (priceId ? getPlanFromPriceId(priceId) : null) ?? user.subscription?.plan ?? null;
-  const amount =
-    status === "PAID"
-      ? invoice.amount_paid ?? invoice.amount_due ?? 0
-      : invoice.amount_due ?? 0;
-  const providerPaymentId = (invoice.id as string) ?? null;
-
-  // Idempotents — atkārtoti webhook'i neveido dublikātus
-  if (providerPaymentId) {
-    const existing = await prisma.payment.findUnique({
-      where: { providerPaymentId },
-    });
-    if (existing) {
-      await prisma.payment.update({
-        where: { providerPaymentId },
-        data: {
-          status,
-          amount,
-          paidAt: status === "PAID" ? new Date() : existing.paidAt,
-          invoiceUrl: invoice.hosted_invoice_url ?? existing.invoiceUrl,
-        },
-      });
-      return;
-    }
-  }
-
-  await prisma.payment.create({
-    data: {
-      userId: user.id,
-      amount,
-      currency: invoice.currency ?? "eur",
-      plan,
-      status,
-      provider: "stripe",
-      providerPaymentId,
-      invoiceUrl: invoice.hosted_invoice_url ?? null,
-      paidAt: status === "PAID" ? new Date() : null,
+        return prisma.payment.update({
+          where: { providerPaymentId },
+          data: { status: currentStatus, amount, invoiceUrl },
+        });
+      },
+      findPaymentByProviderPaymentId: (providerPaymentId) =>
+        prisma.payment.findUnique({
+          where: { providerPaymentId },
+          select: { id: true },
+        }),
+      isUniqueConstraintError: (err: unknown) => (err as any)?.code === "P2002",
     },
+    getPlanFromPriceId,
+    planNames: PLAN_NAMES,
   });
 }

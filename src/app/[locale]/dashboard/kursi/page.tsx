@@ -1,4 +1,5 @@
 import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 import { Link } from "@/i18n/navigation";
 import { CourseLinkCard } from "@/components/dashboard/CourseLinkCard";
 import { prisma } from "@/lib/prisma";
@@ -11,6 +12,7 @@ export default async function KursiPage() {
   const viewer = userId
     ? await getViewerAccess(userId).catch(() => null)
     : null;
+  if (viewer?.isBlocked) redirect("/");
   const isStaff = viewer?.isStaff ?? false;
 
   const courses = await prisma.course

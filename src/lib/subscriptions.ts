@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import { Plan, SubscriptionStatus, Role } from "@prisma/client";
+import { Plan, SubscriptionStatus, Role, UserStatus } from "@prisma/client";
 import { hasAccessToPlan } from "@/lib/stripe";
 
 // Personāls (owner/admin) redz un pārvalda VISU saturu neatkarīgi no abonementa.
@@ -9,6 +9,7 @@ export type ViewerAccess = {
   role: Role | null;
   plan: Plan | null;
   isStaff: boolean;
+  isBlocked: boolean;
 };
 
 /**
@@ -24,14 +25,17 @@ export async function getViewerAccess(clerkId: string): Promise<ViewerAccess> {
       select: {
         email: true,
         role: true,
+        status: true,
         subscription: { select: { plan: true, status: true } },
       },
     })
     .catch(() => null);
 
+  const isBlocked = user?.status === UserStatus.BLOCKED;
+
   const sub = user?.subscription;
   const activePlan =
-    sub && (sub.status === SubscriptionStatus.ACTIVE || sub.status === SubscriptionStatus.TRIALING)
+    !isBlocked && sub && (sub.status === SubscriptionStatus.ACTIVE || sub.status === SubscriptionStatus.TRIALING)
       ? sub.plan
       : null;
 
@@ -43,13 +47,14 @@ export async function getViewerAccess(clerkId: string): Promise<ViewerAccess> {
     ? ownerEmails.includes(user.email.toLowerCase())
     : false;
 
-  const isStaff = (user ? STAFF_ROLES.includes(user.role) : false) || isOwnerByEmail;
+  const isStaff = !isBlocked && ((user ? STAFF_ROLES.includes(user.role) : false) || isOwnerByEmail);
 
-  return { role: user?.role ?? null, plan: activePlan, isStaff };
+  return { role: user?.role ?? null, plan: activePlan, isStaff, isBlocked };
 }
 
 /** Vai skatītājs drīkst piekļūt konkrēta plāna saturam. Personāls — vienmēr. */
 export function canAccessPlan(viewer: ViewerAccess, requiredPlan: Plan): boolean {
+  if (viewer.isBlocked) return false;
   if (viewer.isStaff) return true;
   return viewer.plan ? hasAccessToPlan(viewer.plan, requiredPlan) : false;
 }
@@ -57,7 +62,7 @@ export function canAccessPlan(viewer: ViewerAccess, requiredPlan: Plan): boolean
 export async function getUserSubscription(userId: string) {
   return prisma.subscription.findFirst({
     where: {
-      user: { clerkId: userId },
+      user: { clerkId: userId, status: UserStatus.ACTIVE },
       status: { in: ["ACTIVE", "TRIALING"] },
     },
   });
@@ -93,7 +98,7 @@ export async function upsertUser(data: {
 export async function hasActiveSubscription(clerkId: string): Promise<boolean> {
   const sub = await prisma.subscription.findFirst({
     where: {
-      user: { clerkId },
+      user: { clerkId, status: UserStatus.ACTIVE },
       status: { in: [SubscriptionStatus.ACTIVE, SubscriptionStatus.TRIALING] },
     },
   });
@@ -103,7 +108,7 @@ export async function hasActiveSubscription(clerkId: string): Promise<boolean> {
 export async function getUserPlan(clerkId: string): Promise<Plan | null> {
   const sub = await prisma.subscription.findFirst({
     where: {
-      user: { clerkId },
+      user: { clerkId, status: UserStatus.ACTIVE },
       status: { in: [SubscriptionStatus.ACTIVE, SubscriptionStatus.TRIALING] },
     },
   });

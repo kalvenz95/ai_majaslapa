@@ -11,6 +11,9 @@ export async function GET() {
     }
 
     const viewer = await getViewerAccess(userId);
+    if (viewer.isBlocked) {
+      return NextResponse.json({ message: "Konts ir bloķēts" }, { status: 403 });
+    }
 
     const courses = await prisma.course.findMany({
       // Personāls redz visu (arī nepublicēto); lietotājs — tikai publicēto

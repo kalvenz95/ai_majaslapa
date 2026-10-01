@@ -2,7 +2,7 @@ import "server-only";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
-import { Role } from "@prisma/client";
+import { Role, UserStatus } from "@prisma/client";
 
 /**
  * Piekļuves kontrole (RBAC) admin panelim.
@@ -50,6 +50,7 @@ export type AdminUser = {
   email: string;
   name: string | null;
   role: Role;
+  status: UserStatus;
 };
 
 /**
@@ -63,7 +64,7 @@ export async function getAdminUser(): Promise<AdminUser | null> {
 
   let dbUser = await prisma.user.findUnique({
     where: { clerkId: userId },
-    select: { id: true, clerkId: true, email: true, name: true, role: true },
+    select: { id: true, clerkId: true, email: true, name: true, role: true, status: true },
   });
 
   // Ja lietotājs vēl nav DB (pirmā reize) — izveido no Clerk datiem
@@ -78,7 +79,7 @@ export async function getAdminUser(): Promise<AdminUser | null> {
         name: `${clerkUser?.firstName ?? ""} ${clerkUser?.lastName ?? ""}`.trim() || null,
         avatarUrl: clerkUser?.imageUrl || null,
       },
-      select: { id: true, clerkId: true, email: true, name: true, role: true },
+      select: { id: true, clerkId: true, email: true, name: true, role: true, status: true },
     });
   }
 
@@ -94,7 +95,7 @@ export async function getAdminUser(): Promise<AdminUser | null> {
     dbUser = await prisma.user.update({
       where: { id: dbUser.id },
       data: { role: Role.OWNER },
-      select: { id: true, clerkId: true, email: true, name: true, role: true },
+      select: { id: true, clerkId: true, email: true, name: true, role: true, status: true },
     });
   }
 
@@ -113,6 +114,7 @@ export function can(role: Role, permission: Permission): boolean {
 export async function requireAdmin(): Promise<AdminUser> {
   const user = await getAdminUser();
   if (!user) redirect("/admin/login");
+  if (user.status === UserStatus.BLOCKED) redirect("/admin/no-access");
   if (!ADMIN_ROLES.includes(user.role)) redirect("/admin/no-access");
   return user;
 }
@@ -152,6 +154,7 @@ export async function requireApiPermission(
 ): Promise<AdminUser> {
   const user = await getAdminUser();
   if (!user) throw new AdminError("Nav autorizēts", 401);
+  if (user.status === UserStatus.BLOCKED) throw new AdminError("Konts ir bloķēts", 403);
   if (!ADMIN_ROLES.includes(user.role)) throw new AdminError("Nav piekļuves", 403);
   if (!can(user.role, permission)) throw new AdminError("Nepietiekamas tiesības", 403);
   return user;

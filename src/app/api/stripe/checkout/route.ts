@@ -10,6 +10,7 @@ import {
   getOrCreateDiscountCoupon,
   claimReferral,
 } from "@/lib/affiliate";
+import { assertNotBlocked, BlockedUserError } from "@/lib/user-access";
 
 const schema = z.object({
   plan: z.enum(["PAMATI", "IZAUGSME", "MEISTARS"]),
@@ -21,6 +22,8 @@ export async function POST(req: NextRequest) {
     if (!userId) {
       return NextResponse.json({ message: "Nav autorizēts" }, { status: 401 });
     }
+
+    await assertNotBlocked(userId);
 
     const body = await req.json();
     const { plan } = schema.parse(body);
@@ -112,6 +115,9 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ url: session.url });
   } catch (err) {
+    if (err instanceof BlockedUserError) {
+      return NextResponse.json({ message: "Konts ir bloķēts" }, { status: 403 });
+    }
     if (err instanceof z.ZodError) {
       return NextResponse.json({ message: "Nepareizi dati" }, { status: 400 });
     }

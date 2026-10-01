@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { auth, clerkClient } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/prisma";
+import { assertNotBlocked, BlockedUserError } from "@/lib/user-access";
 
 // Telefona validācija — atļauj +, ciparus, atstarpes, defises, iekavas; min 8 cipari
 const schema = z.object({
@@ -20,6 +21,8 @@ export async function POST(req: NextRequest) {
     if (!userId) {
       return NextResponse.json({ message: "Nav autorizēts" }, { status: 401 });
     }
+
+    await assertNotBlocked(userId);
 
     const { phone } = schema.parse(await req.json());
 
@@ -41,6 +44,9 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ ok: true });
   } catch (err) {
+    if (err instanceof BlockedUserError) {
+      return NextResponse.json({ message: "Konts ir bloķēts" }, { status: 403 });
+    }
     if (err instanceof z.ZodError) {
       return NextResponse.json(
         { message: err.issues[0]?.message ?? "Nederīgs numurs" },
