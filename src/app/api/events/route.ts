@@ -5,33 +5,43 @@ import { assertNotBlocked, BlockedUserError } from "@/lib/user-access";
 
 export async function GET() {
   const { userId } = await auth();
-  if (!userId) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  let canViewPrivate = false;
 
-  try {
-    await assertNotBlocked(userId);
-  } catch (error) {
-    if (error instanceof BlockedUserError) {
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  if (userId) {
+    try {
+      await assertNotBlocked(userId);
+      canViewPrivate = true;
+    } catch (error) {
+      if (error instanceof BlockedUserError) {
+        canViewPrivate = false;
+      } else {
+        console.error("[EVENTS_GET_BLOCK_CHECK]", error);
+        return NextResponse.json({ error: "Server error" }, { status: 500 });
+      }
     }
-
-    console.error("[EVENTS_GET_BLOCK_CHECK]", error);
-    return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
+
 
   const events = await prisma.liveEvent.findMany({
     where: { startAt: { gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) } },
     orderBy: { startAt: "asc" },
-    select: {
-      id: true,
-      title: true,
-      description: true,
-      startAt: true,
-      endAt: true,
-      meetUrl: true,
-      type: true,
-    },
+    select: canViewPrivate
+      ? {
+          id: true,
+          title: true,
+          description: true,
+          startAt: true,
+          endAt: true,
+          meetUrl: true,
+          type: true,
+        }
+      : {
+          id: true,
+          title: true,
+          startAt: true,
+          endAt: true,
+          type: true,
+        },
   });
   return NextResponse.json(events);
 }
