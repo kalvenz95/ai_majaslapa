@@ -22,6 +22,7 @@ export async function GET() {
     }
   }
 
+
   const events = await prisma.liveEvent.findMany({
     where: { startAt: { gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) } },
     orderBy: { startAt: "asc" },
