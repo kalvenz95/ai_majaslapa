@@ -110,6 +110,7 @@ model Payment {
   providerPaymentId String?       @unique // Stripe invoice/payment intent id
   invoiceUrl        String?
   paidAt            DateTime?
+  referralCredit    ReferralPaymentCredit?
 
   createdAt DateTime @default(now())
 
@@ -416,6 +417,8 @@ model Referral {
   joinedAt    DateTime  @default(now())
   purchasedAt DateTime?
 
+  paymentCredits ReferralPaymentCredit[]
+
   @@index([affiliateId])
   @@index([status])
 }
@@ -423,4 +426,16 @@ model Referral {
 enum ReferralStatus {
   JOINED
   PURCHASED
+}
+
+model ReferralPaymentCredit {
+  paymentId   String   @id
+  payment     Payment  @relation(fields: [paymentId], references: [id], onDelete: Cascade)
+  referralId  String
+  referral    Referral @relation(fields: [referralId], references: [id], onDelete: Cascade)
+  amountCents Int
+  plan        Plan?
+  createdAt   DateTime @default(now())
+
+  @@index([referralId])
 }
