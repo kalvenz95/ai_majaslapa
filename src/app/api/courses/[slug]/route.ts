@@ -29,6 +29,9 @@ export async function GET(
     }
 
     const viewer = await getViewerAccess(userId);
+    if (viewer.isBlocked) {
+      return NextResponse.json({ message: "Konts ir bloķēts" }, { status: 403 });
+    }
     const hasAccess = canAccessPlan(viewer, course.planRequired);
 
     // Nepublicētus melnrakstus redz tikai personāls

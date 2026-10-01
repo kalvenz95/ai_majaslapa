@@ -1,6 +1,7 @@
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import { upsertUser } from "@/lib/subscriptions";
+import { assertNotBlocked, BlockedUserError } from "@/lib/user-access";
 
 // Izsauc pēc pirmās pieteikšanās — izveido lietotāju DB
 export async function POST() {
@@ -9,6 +10,8 @@ export async function POST() {
     if (!userId) {
       return NextResponse.json({ message: "Nav autorizēts" }, { status: 401 });
     }
+
+    await assertNotBlocked(userId);
 
     const clerkUser = await currentUser();
     if (!clerkUser) {
@@ -24,6 +27,9 @@ export async function POST() {
 
     return NextResponse.json({ user });
   } catch (err) {
+    if (err instanceof BlockedUserError) {
+      return NextResponse.json({ message: "Konts ir bloķēts" }, { status: 403 });
+    }
     console.error("[USER_SYNC]", err);
     return NextResponse.json({ message: "Servera kļūda" }, { status: 500 });
   }

@@ -4,6 +4,7 @@ import { Sidebar } from "@/components/dashboard/Sidebar";
 import { StreakTracker } from "@/components/dashboard/StreakTracker";
 import PhonePrompt from "@/components/dashboard/PhonePrompt";
 import { upsertUser } from "@/lib/subscriptions";
+import { assertNotBlocked, BlockedUserError } from "@/lib/user-access";
 import { claimReferral, REF_COOKIE } from "@/lib/affiliate";
 import { setRequestLocale } from "next-intl/server";
 import { cookies } from "next/headers";
@@ -43,6 +44,15 @@ export default async function DashboardLayout({
   }
 
   if (!userId) redirect({ href: "/login", locale });
+
+  try {
+    await assertNotBlocked(userId);
+  } catch (err) {
+    if (err instanceof BlockedUserError) {
+      redirect({ href: "/", locale });
+    }
+    throw err;
+  }
 
   let needsPhone = false;
   try {
