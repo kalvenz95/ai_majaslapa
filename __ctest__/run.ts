@@ -18,8 +18,17 @@ import * as saveRoute from "@/app/api/community/posts/[id]/save/route";
 import * as notifRoute from "@/app/api/community/notifications/route";
 import * as pinRoute from "@/app/api/community/admin/pin/route";
 import * as restrictRoute from "@/app/api/community/admin/restrict/route";
+import * as coursesRoute from "@/app/api/courses/route";
+import * as courseDetailRoute from "@/app/api/courses/[slug]/route";
+import * as progressRoute from "@/app/api/progress/route";
+import * as streakRoute from "@/app/api/streak/route";
+import * as userRoute from "@/app/api/user/route";
+import * as userPhoneRoute from "@/app/api/user/phone/route";
+import * as userSyncRoute from "@/app/api/user/sync/route";
+import * as affiliateMeRoute from "@/app/api/affiliate/me/route";
 import { getCommunityAccess } from "@/lib/community";
 import { DEFAULT_CATEGORIES } from "@/lib/community-categories";
+import { prisma as appPrisma } from "@/lib/prisma";
 
 const prisma = new PrismaClient();
 
@@ -62,6 +71,9 @@ async function reset() {
   await prisma.postLike.deleteMany();
   await prisma.postComment.deleteMany();
   await prisma.post.deleteMany();
+  await prisma.lessonProgress.deleteMany();
+  await prisma.lesson.deleteMany();
+  await prisma.course.deleteMany();
   await prisma.payment.deleteMany();
   await prisma.subscription.deleteMany();
   await prisma.user.deleteMany();
@@ -400,7 +412,105 @@ async function main() {
     await prisma.user.update({ where: { id: paid.id }, data: { status: "BLOCKED" } });
     const blocked = await getCommunityAccess();
     check("bloķēts konts: piekļuve liegta arī ar apmaksu", !blocked.ok && blocked.reason === "BLOCKED");
+
+    const blockedCourseSlug = `blocked-access-${Date.now()}`;
+    const blockedCourse = await prisma.course.create({
+      data: {
+        title: "Blocked Access Test",
+        slug: blockedCourseSlug,
+        description: "test",
+        planRequired: "PAMATI",
+        order: 999,
+        color: "#a855f7",
+        icon: "🎯",
+        published: true,
+      },
+    });
+    const blockedLesson = await prisma.lesson.create({
+      data: {
+        courseId: blockedCourse.id,
+        title: "Ievadlekcija",
+        order: 1,
+        isFree: true,
+        videoUrl: "https://example.com/video.mp4",
+      },
+    });
+
+    const coursesList = await json(await coursesRoute.GET());
+    check("bloķēts konts: GET /api/courses → 403", coursesList.status === 403, `saņemts ${coursesList.status}`);
+
+    const courseOne = await json(
+      await courseDetailRoute.GET(
+        req(`/api/courses/${blockedCourseSlug}`),
+        { params: Promise.resolve({ slug: blockedCourseSlug }) }
+      )
+    );
+    check("bloķēts konts: GET /api/courses/[slug] → 403", courseOne.status === 403, `saņemts ${courseOne.status}`);
+
+    const progressPost = await json(
+      await progressRoute.POST(
+        req("/api/progress", {
+          method: "POST",
+          body: { lessonId: blockedLesson.id, completed: true, watchedSeconds: 120 },
+        })
+      )
+    );
+    check("bloķēts konts: POST /api/progress → 403", progressPost.status === 403, `saņemts ${progressPost.status}`);
+
+    const progressGet = await json(await progressRoute.GET(req("/api/progress")));
+    check("bloķēts konts: GET /api/progress → 403", progressGet.status === 403, `saņemts ${progressGet.status}`);
+
+    const streakGet = await json(await streakRoute.GET());
+    check("bloķēts konts: GET /api/streak → 403", streakGet.status === 403, `saņemts ${streakGet.status}`);
+
+    const streakPost = await json(await streakRoute.POST());
+    check("bloķēts konts: POST /api/streak → 403", streakPost.status === 403, `saņemts ${streakPost.status}`);
+
+    const userGet = await json(await userRoute.GET());
+    check("bloķēts konts: GET /api/user → 403", userGet.status === 403, `saņemts ${userGet.status}`);
+
+    const phonePost = await json(
+      await userPhoneRoute.POST(
+        req("/api/user/phone", { method: "POST", body: { phone: "+37120000000" } })
+      )
+    );
+    check("bloķēts konts: POST /api/user/phone → 403", phonePost.status === 403, `saņemts ${phonePost.status}`);
+
+    const syncPost = await json(await userSyncRoute.POST());
+    check("bloķēts konts: POST /api/user/sync → 403", syncPost.status === 403, `saņemts ${syncPost.status}`);
+
+    const affiliateGet = await json(await affiliateMeRoute.GET());
+    check("bloķēts konts: GET /api/affiliate/me → 403", affiliateGet.status === 403, `saņemts ${affiliateGet.status}`);
+
     await prisma.user.update({ where: { id: paid.id }, data: { status: "ACTIVE" } });
+
+    const unblockedUser = await json(await userRoute.GET());
+    check("atbloķēts konts: GET /api/user atkal strādā", unblockedUser.status === 200, `saņemts ${unblockedUser.status}`);
+
+    const unblockedProgress = await json(
+      await progressRoute.POST(
+        req("/api/progress", {
+          method: "POST",
+          body: { lessonId: blockedLesson.id, completed: true, watchedSeconds: 180 },
+        })
+      )
+    );
+    check("atbloķēts konts: POST /api/progress atkal strādā", unblockedProgress.status === 200, `saņemts ${unblockedProgress.status}`);
+
+    const originalFindUnique = appPrisma.user.findUnique;
+    (appPrisma.user.findUnique as any) = async () => {
+      throw new Error("Simulated DB lookup failure");
+    };
+    try {
+      const failClosedUser = await json(await userRoute.GET());
+      check(
+        "DB lookup kļūda: blocked-check nevar apiet (fail-closed)",
+        failClosedUser.status !== 200,
+        `saņemts ${failClosedUser.status}`
+      );
+    } finally {
+      (appPrisma.user.findUnique as any) = originalFindUnique;
+    }
   }
 
   // ── Lēmums: abonements NEDOD piekļuvi ─────────────────────

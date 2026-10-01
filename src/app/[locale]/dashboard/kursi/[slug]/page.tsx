@@ -20,6 +20,7 @@ export default async function CoursePage({
   if (!course) notFound();
 
   const viewer = await getViewerAccess(userId);
+  if (viewer.isBlocked) redirect("/");
   const hasAccess = canAccessPlan(viewer, course.planRequired);
 
   // Paka ir redzama (arī bez piekļuves) — saturs aizslēgts, bet ievadvideo
