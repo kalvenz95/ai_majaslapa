@@ -5,6 +5,7 @@ import { sendWelcomeEmail, sendPaymentConfirmationEmail } from "@/lib/resend";
 import { markReferralPurchasedForPayment } from "@/lib/affiliate-credit";
 import { SubscriptionStatus } from "@prisma/client";
 import { processPaymentSucceeded, recordStripePayment } from "@/lib/stripe-webhook-payment";
+import { applySubscriptionWebhookEvent } from "@/lib/stripe-subscription-webhook";
 
 export const runtime = "nodejs";
 
@@ -29,16 +30,13 @@ export async function POST(req: NextRequest) {
       case "customer.subscription.created":
       case "customer.subscription.updated": {
         const sub = event.data.object as any;
-        await handleSubscriptionChange(sub);
+        await handleSubscriptionChange(event, sub);
         break;
       }
 
       case "customer.subscription.deleted": {
         const sub = event.data.object as any;
-        await prisma.subscription.updateMany({
-          where: { stripeSubscriptionId: sub.id },
-          data: { status: SubscriptionStatus.CANCELED },
-        });
+        await handleSubscriptionDeletion(event, sub);
         break;
       }
 
@@ -68,46 +66,34 @@ export async function POST(req: NextRequest) {
   }
 }
 
-async function handleSubscriptionChange(sub: any) {
-  const clerkId = sub.metadata?.clerkId;
-  if (!clerkId) return;
-
-  const priceId = sub.items.data[0]?.price.id;
-  const plan = getPlanFromPriceId(priceId);
-  if (!plan) return;
-
-  const user = await prisma.user.findUnique({ where: { clerkId } });
-  if (!user) return;
-
-  const statusMap: Record<string, SubscriptionStatus> = {
-    active: SubscriptionStatus.ACTIVE,
-    trialing: SubscriptionStatus.TRIALING,
-    canceled: SubscriptionStatus.CANCELED,
-    past_due: SubscriptionStatus.PAST_DUE,
-    incomplete: SubscriptionStatus.INCOMPLETE,
-  };
-
-  await prisma.subscription.upsert({
-    where: { userId: user.id },
-    create: {
-      userId: user.id,
-      plan,
-      status: statusMap[sub.status] ?? SubscriptionStatus.INCOMPLETE,
-      stripeSubscriptionId: sub.id,
-      stripePriceId: priceId,
-      currentPeriodStart: new Date(sub.current_period_start * 1000),
-      currentPeriodEnd: new Date(sub.current_period_end * 1000),
-      cancelAtPeriodEnd: sub.cancel_at_period_end,
+async function handleSubscriptionChange(event: any, sub: any) {
+  await applySubscriptionWebhookEvent(
+    {
+      eventId: event.id,
+      eventCreated: event.created,
+      eventType: event.type,
+      subscription: sub,
     },
-    update: {
-      plan,
-      status: statusMap[sub.status] ?? SubscriptionStatus.INCOMPLETE,
-      stripePriceId: priceId,
-      currentPeriodStart: new Date(sub.current_period_start * 1000),
-      currentPeriodEnd: new Date(sub.current_period_end * 1000),
-      cancelAtPeriodEnd: sub.cancel_at_period_end,
+    {
+      prisma,
+      getPlanFromPriceId,
+    }
+  );
+}
+
+async function handleSubscriptionDeletion(event: any, sub: any) {
+  await applySubscriptionWebhookEvent(
+    {
+      eventId: event.id,
+      eventCreated: event.created,
+      eventType: event.type,
+      subscription: sub,
     },
-  });
+    {
+      prisma,
+      getPlanFromPriceId,
+    }
+  );
 }
 
 async function handlePaymentSucceeded(invoice: any) {
