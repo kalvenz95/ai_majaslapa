@@ -10,7 +10,7 @@
     "test:ctest:run": "tsx --tsconfig ./__ctest__/tsconfig.json ./__ctest__/run.ts",
     "test:ctest:events": "tsx --tsconfig ./__ctest__/tsconfig.events.json ./__ctest__/events-access.run.ts",
     "test:ctest:stripe": "tsx --test ./__ctest__/stripe-webhook-idempotency.test.ts ./__ctest__/stripe-webhook-db.integration.test.ts",
-    "test:ctest:stripe-ordering": "tsx --test ./__ctest__/stripe-subscription-webhook-ordering.test.ts ./__ctest__/stripe-subscription-webhook-ordering.integration.test.ts ./__ctest__/stripe-subscription-webhook-route-fallback.test.ts",
+    "test:ctest:stripe-ordering": "tsx --test ./__ctest__/stripe-subscription-webhook-ordering.test.ts ./__ctest__/stripe-subscription-webhook-ordering.integration.test.ts ./__ctest__/stripe-webhook-canonical-retrieval.integration.test.ts",
     "test:ctest:admin-notes": "tsx --tsconfig ./__ctest__/tsconfig.admin-notes.json ./__ctest__/admin-user-note-delete.test.ts",
     "test:ctest:error-info": "tsx --tsconfig ./__ctest__/tsconfig.json ./__ctest__/error-information-exposure.behavior.test.ts",
     "db:generate": "prisma generate",

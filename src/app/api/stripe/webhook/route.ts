@@ -9,6 +9,14 @@ import { applySubscriptionWebhookEvent } from "@/lib/stripe-subscription-webhook
 
 export const runtime = "nodejs";
 
+class CanonicalSubscriptionUnavailableError extends Error {
+  constructor(subscriptionId: string, cause: unknown) {
+    super(`Canonical Stripe subscription nav pieejams: ${subscriptionId}`);
+    this.name = "CanonicalSubscriptionUnavailableError";
+    (this as any).cause = cause;
+  }
+}
+
 export async function POST(req: NextRequest) {
   const body = await req.text();
   const sig = req.headers.get("stripe-signature");
@@ -73,12 +81,26 @@ export async function fetchCanonicalSubscriptionSnapshot(subscriptionId: string,
     });
   } catch (error) {
     console.warn("[STRIPE_SUBSCRIPTION_RETRIEVE_FAILED]", { subscriptionId, error });
-    return fallback;
+    throw new CanonicalSubscriptionUnavailableError(subscriptionId, error);
   }
 }
 
+function toWebhookSubscriptionShape(subscription: any) {
+  const customer =
+    typeof subscription?.customer === "string"
+      ? subscription.customer
+      : (subscription?.customer?.id ?? null);
+
+  return {
+    ...subscription,
+    customer,
+  };
+}
+
 async function handleSubscriptionChange(event: any, sub: any) {
-  const canonicalSubscription = await fetchCanonicalSubscriptionSnapshot(sub.id, sub);
+  const canonicalSubscription = toWebhookSubscriptionShape(
+    await fetchCanonicalSubscriptionSnapshot(sub.id, sub)
+  );
 
   await applySubscriptionWebhookEvent(
     {
@@ -95,7 +117,9 @@ async function handleSubscriptionChange(event: any, sub: any) {
 }
 
 async function handleSubscriptionDeletion(event: any, sub: any) {
-  const canonicalSubscription = await fetchCanonicalSubscriptionSnapshot(sub.id, sub);
+  const canonicalSubscription = toWebhookSubscriptionShape(
+    await fetchCanonicalSubscriptionSnapshot(sub.id, sub)
+  );
 
   await applySubscriptionWebhookEvent(
     {
