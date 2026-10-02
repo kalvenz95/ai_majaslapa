@@ -46,11 +46,11 @@ jobs:
           set -euo pipefail
 
           SUPER_URL='postgresql://postgres:postgres@127.0.0.1:5432/postgres?schema=public'
-          FRESH_URL='postgresql://postgres:postgres@127.0.0.1:5432/chademy_fresh?schema=public'
+          FRESH_URL='postgresql://postgres:postgres@127.0.0.1:5432/postgres?schema=chademy_fresh'
 
           npx prisma db execute --url "$SUPER_URL" --stdin <<'SQL'
-          DROP DATABASE IF EXISTS chademy_fresh;
-          CREATE DATABASE chademy_fresh;
+          DROP SCHEMA IF EXISTS "chademy_fresh" CASCADE;
+          CREATE SCHEMA "chademy_fresh";
           SQL
 
           DATABASE_URL="$FRESH_URL" DIRECT_URL="$FRESH_URL" npx prisma migrate deploy
@@ -68,11 +68,11 @@ jobs:
           set -euo pipefail
 
           SUPER_URL='postgresql://postgres:postgres@127.0.0.1:5432/postgres?schema=public'
-          EXISTING_URL='postgresql://postgres:postgres@127.0.0.1:5432/chademy_existing?schema=public'
+          EXISTING_URL='postgresql://postgres:postgres@127.0.0.1:5432/postgres?schema=chademy_existing'
 
           npx prisma db execute --url "$SUPER_URL" --stdin <<'SQL'
-          DROP DATABASE IF EXISTS chademy_existing;
-          CREATE DATABASE chademy_existing;
+          DROP SCHEMA IF EXISTS "chademy_existing" CASCADE;
+          CREATE SCHEMA "chademy_existing";
           SQL
 
           npx prisma db execute --url "$EXISTING_URL" --file prisma/migrations/20260929115900_baseline/migration.sql
