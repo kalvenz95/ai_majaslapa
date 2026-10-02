@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from "next/server";
+﻿import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
-import { requireApiPermission, adminApiError } from "@/lib/admin";
+import { AdminError, requireApiPermission, adminApiError } from "@/lib/admin";
 
 const schema = z.object({ note: z.string().trim().min(1).max(2000) });
 
@@ -33,12 +33,21 @@ export async function DELETE(
 ) {
   try {
     await requireApiPermission("users.notes");
-    await params; // [id] = lietotāja id (piezīmes id padots query)
-    const noteId = new URL(req.url).searchParams.get("noteId");
+    const { id } = await params;
+    const noteId = new URL(req.url).searchParams.get("noteId")?.trim();
+
     if (!noteId) {
       return NextResponse.json({ message: "Trūkst noteId" }, { status: 400 });
     }
-    await prisma.adminNote.delete({ where: { id: noteId } });
+
+    const deleted = await prisma.adminNote.deleteMany({
+      where: { id: noteId, userId: id },
+    });
+
+    if (deleted.count === 0) {
+      throw new AdminError("Piezīme nav atrasta", 404);
+    }
+
     return NextResponse.json({ ok: true });
   } catch (err) {
     return adminApiError(err);
