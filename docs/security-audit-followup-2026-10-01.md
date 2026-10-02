@@ -124,3 +124,51 @@
 - Re-run after fixes: all targeted suites passed.
 - Skipped: none.
 - Blocked: none.
+
+## Integration + CI update (2026-10-02)
+
+### Branch merge/supersede audit
+- Confirmed already merged into `origin/master`:
+  - blocked-user access enforcement
+  - public error sanitization helpers
+  - stripe webhook idempotency and referral credit safeguards
+  - event API blocked-user controls from `fix/event-api-access-control`
+- Still required from `audit/followup-security-20261001` and integrated:
+  - restore public-redacted `GET /api/events` compatibility for anonymous + blocked users
+  - return generic `500` for lookup/infrastructure failures in event blocked-check paths
+  - sanitize dashboard auth error rendering
+  - align event access regression expectations
+
+### Automated CI coverage added
+- Workflow: `.github/workflows/audit-regression.yml`
+- Jobs:
+  - `Regression DB and security (Node 20)`
+  - `Typecheck and build (Node 20)`
+  - `Typecheck (Node 22)`
+- Coverage:
+  - fresh-db migration deploy + regression suites
+  - existing-db upgrade simulation (baseline schema + historical seed + referral migration backfill verification)
+  - ctest suites for community access, events access, stripe/payment+affiliate idempotency, and public error exposure
+  - TypeScript no-emit typecheck and production build
+
+### Consolidated backlog (single source)
+
+#### Verified complete
+1. Event API redacted/public compatibility restored for anonymous and blocked users.
+2. Event blocked-check infrastructure errors no longer masked as `403`; now generic `500`.
+3. Dashboard auth errors no longer expose raw internal exception text.
+4. Fresh-db and existing-db migration/backfill regression validation scripted and automated in CI.
+5. Security + access + payment/affiliate regressions are now executed in CI and fail the job on any command error.
+
+#### Open
+1. Add explicit role gate for `POST /api/events` (currently any authenticated non-blocked user may create events).
+2. Decide final business policy for event creation roles (`OWNER`/`ADMIN`/`SUPPORT`).
+3. Track and resolve Next.js warning about multiple lockfiles root inference.
+
+#### Blocked / unverified (requires external environment or product decision)
+1. Production migration readiness evidence (staging/prod logs, replay audits, rollback rehearsal) remains unverified in-repo.
+2. Browser-driven end-to-end verification with shared test identities (login, course access, calendar access, admin permissions) not validated in this branch-only integration pass.
+3. Stripe checkout flow runtime verification in Stripe test mode not validated in this branch-only integration pass.
+4. Footer/newsletter workstream remains open unless separately resolved.
+5. Localization workstream remains open unless separately resolved.
+6. Accessibility workstream remains open unless separately resolved.

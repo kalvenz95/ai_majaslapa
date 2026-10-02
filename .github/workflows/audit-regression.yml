@@ -1,0 +1,192 @@
+﻿name: audit-regression
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+      - integration/**
+      - audit/**
+
+jobs:
+  regression-db-and-security:
+    name: Regression DB and security (Node 20)
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Fresh database migration and regression suites
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          SUPER_URL='postgresql://postgres:postgres@127.0.0.1:5432/postgres?schema=public'
+          FRESH_URL='postgresql://postgres:postgres@127.0.0.1:5432/chademy_fresh?schema=public'
+
+          npx prisma db execute --url "$SUPER_URL" --stdin <<'SQL'
+          DROP DATABASE IF EXISTS chademy_fresh;
+          CREATE DATABASE chademy_fresh;
+          SQL
+
+          DATABASE_URL="$FRESH_URL" DIRECT_URL="$FRESH_URL" npx prisma migrate deploy
+
+          DATABASE_URL="$FRESH_URL" DIRECT_URL="$FRESH_URL" OWNER_EMAIL='owner@chademy.com' npm run test:ctest:run
+          DATABASE_URL="$FRESH_URL" DIRECT_URL="$FRESH_URL" npm run test:ctest:events
+          DATABASE_URL="$FRESH_URL" DIRECT_URL="$FRESH_URL" npm run test:ctest:stripe
+          DATABASE_URL="$FRESH_URL" DIRECT_URL="$FRESH_URL" npm run test:ctest:error-info
+
+      - name: Existing database upgrade validation and regressions
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          SUPER_URL='postgresql://postgres:postgres@127.0.0.1:5432/postgres?schema=public'
+          EXISTING_URL='postgresql://postgres:postgres@127.0.0.1:5432/chademy_existing?schema=public'
+
+          npx prisma db execute --url "$SUPER_URL" --stdin <<'SQL'
+          DROP DATABASE IF EXISTS chademy_existing;
+          CREATE DATABASE chademy_existing;
+          SQL
+
+          npx prisma db execute --url "$EXISTING_URL" --file prisma/migrations/20260929115900_baseline/migration.sql
+
+          npx prisma db execute --url "$EXISTING_URL" --stdin <<'SQL'
+          INSERT INTO "User" ("id","clerkId","email","name","status","role","createdAt","updatedAt")
+          VALUES
+            ('u_aff','clerk_aff','aff@example.test','Affiliate','ACTIVE','USER',NOW(),NOW()),
+            ('u_ref','clerk_ref','ref@example.test','Referred','ACTIVE','USER',NOW(),NOW());
+
+          INSERT INTO "Affiliate" ("id","userId","code","createdAt","updatedAt")
+          VALUES ('a1','u_aff','AFFCODE',NOW(),NOW());
+
+          INSERT INTO "Referral" ("id","affiliateId","referredUserId","status","joinedAt")
+          VALUES ('r1','a1','u_ref','JOINED',NOW());
+
+          INSERT INTO "Payment" ("id","userId","amount","currency","plan","status","provider","providerPaymentId","paidAt","createdAt")
+          VALUES
+            ('p_paid','u_ref',5900,'eur','IZAUGSME','PAID','stripe','pi_paid',NOW(),NOW()),
+            ('p_failed','u_ref',5900,'eur','IZAUGSME','FAILED','stripe','pi_failed',NOW(),NOW());
+          SQL
+
+          npx prisma db execute --url "$EXISTING_URL" --file prisma/migrations/20260929120000_referral_payment_credit/migration.sql
+
+          DATABASE_URL="$EXISTING_URL" DIRECT_URL="$EXISTING_URL" node <<'NODE'
+          const { PrismaClient } = require('@prisma/client');
+
+          async function main() {
+            const prisma = new PrismaClient({
+              datasources: { db: { url: process.env.DATABASE_URL } },
+            });
+
+            const [creditsTotal, paidBackfilled, failedBackfilled] = await Promise.all([
+              prisma.referralPaymentCredit.count(),
+              prisma.referralPaymentCredit.count({ where: { paymentId: 'p_paid', amountCents: 5900 } }),
+              prisma.referralPaymentCredit.count({ where: { paymentId: 'p_failed' } }),
+            ]);
+
+            if (creditsTotal !== 1 || paidBackfilled !== 1 || failedBackfilled !== 0) {
+              throw new Error(`Backfill verification failed: total=${creditsTotal}, paid=${paidBackfilled}, failed=${failedBackfilled}`);
+            }
+
+            await prisma.$disconnect();
+            console.log('Backfill verification passed');
+          }
+
+          main().catch((error) => {
+            console.error(error);
+            process.exit(1);
+          });
+          NODE
+
+          DATABASE_URL="$EXISTING_URL" DIRECT_URL="$EXISTING_URL" OWNER_EMAIL='owner@chademy.com' npm run test:ctest:run
+          DATABASE_URL="$EXISTING_URL" DIRECT_URL="$EXISTING_URL" npm run test:ctest:stripe
+
+  typecheck-and-build:
+    name: Typecheck and build (Node 20)
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: chademy_ci_build
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Migrate CI build database
+        run: |
+          DATABASE_URL='postgresql://postgres:postgres@127.0.0.1:5432/chademy_ci_build?schema=public' \
+          DIRECT_URL='postgresql://postgres:postgres@127.0.0.1:5432/chademy_ci_build?schema=public' \
+          npx prisma migrate deploy
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Production build
+        run: |
+          DATABASE_URL='postgresql://postgres:postgres@127.0.0.1:5432/chademy_ci_build?schema=public' \
+          DIRECT_URL='postgresql://postgres:postgres@127.0.0.1:5432/chademy_ci_build?schema=public' \
+          npm run build
+
+  typecheck-node-22:
+    name: Typecheck (Node 22)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
