@@ -1,4 +1,6 @@
 type EventType = "WEBINAR" | "QA" | "WORKSHOP" | "OTHER";
+type Role = "OWNER" | "ADMIN" | "SUPPORT" | "USER";
+type UserStatus = "ACTIVE" | "BLOCKED";
 
 type LiveEventRecord = {
   id: string;
@@ -10,10 +12,12 @@ type LiveEventRecord = {
   type: EventType;
 };
 
-type UserStatus = "ACTIVE" | "BLOCKED";
-
 type UserRecord = {
+  id: string;
   clerkId: string;
+  email: string;
+  name: string | null;
+  role: Role;
   status: UserStatus;
 };
 
@@ -30,12 +34,16 @@ const initialEvents: LiveEventRecord[] = [
 ];
 
 const initialUsers: UserRecord[] = [
-  { clerkId: "clerk_member", status: "ACTIVE" },
-  { clerkId: "clerk_blocked", status: "BLOCKED" },
+  { id: "usr_user", clerkId: "clerk_user", email: "user@test.local", name: "User", role: "USER", status: "ACTIVE" },
+  { id: "usr_support", clerkId: "clerk_support", email: "support@test.local", name: "Support", role: "SUPPORT", status: "ACTIVE" },
+  { id: "usr_admin", clerkId: "clerk_admin", email: "admin@test.local", name: "Admin", role: "ADMIN", status: "ACTIVE" },
+  { id: "usr_owner", clerkId: "clerk_owner", email: "owner@test.local", name: "Owner", role: "OWNER", status: "ACTIVE" },
+  { id: "usr_owner_blocked", clerkId: "clerk_owner_blocked", email: "owner-blocked@test.local", name: "Blocked Owner", role: "OWNER", status: "BLOCKED" },
 ];
 
 let events: LiveEventRecord[] = initialEvents.map((event) => ({ ...event }));
 let users: UserRecord[] = initialUsers.map((user) => ({ ...user }));
+let failCreate = false;
 
 function project<T extends Record<string, unknown>>(row: T, select?: Record<string, boolean>) {
   if (!select) return row;
@@ -53,12 +61,36 @@ export const prisma = {
       if (!user || !select) return user;
       return project(user, select);
     },
+    create: async ({ data, select }: { data: Partial<UserRecord> & { clerkId: string; email: string }; select?: Record<string, boolean> }) => {
+      const user: UserRecord = {
+        id: data.id ?? `usr_${users.length + 1}`,
+        clerkId: data.clerkId,
+        email: data.email,
+        name: data.name ?? null,
+        role: (data.role as Role | undefined) ?? "USER",
+        status: (data.status as UserStatus | undefined) ?? "ACTIVE",
+      };
+      users.push(user);
+      if (!select) return user;
+      return project(user, select);
+    },
+    update: async ({ where, data, select }: { where: { id: string }; data: Partial<UserRecord>; select?: Record<string, boolean> }) => {
+      const idx = users.findIndex((item) => item.id === where.id);
+      if (idx < 0) throw new Error("user not found");
+      users[idx] = { ...users[idx], ...data };
+      if (!select) return users[idx];
+      return project(users[idx], select);
+    },
   },
   liveEvent: {
     findMany: async (args?: { select?: Record<string, boolean> }) => {
       return events.map((event) => project(event, args?.select));
     },
     create: async ({ data }: { data: Omit<LiveEventRecord, "id"> & Partial<Pick<LiveEventRecord, "id">> }) => {
+      if (failCreate) {
+        throw new Error("event create failed");
+      }
+
       const event: LiveEventRecord = {
         id: data.id ?? `evt_${events.length + 1}`,
         title: data.title,
@@ -77,4 +109,13 @@ export const prisma = {
 export function __resetEvents() {
   events = initialEvents.map((event) => ({ ...event }));
   users = initialUsers.map((user) => ({ ...user }));
+  failCreate = false;
+}
+
+export function __getEventsCount() {
+  return events.length;
+}
+
+export function __setCreateFailure(enabled: boolean) {
+  failCreate = enabled;
 }
