@@ -297,6 +297,171 @@ test("vienlaicÄ«ga piegÄde patur jaunÄko stÄvokli", async () => {
   assert.equal(sub.lastStripeEventId, "evt_newer_concurrent");
 });
 
+test("vienādas sekundes konflikta update ar garāku periodu uzvar abos piegādes virzienos", async () => {
+  for (const order of ["shorter-first", "longer-first"] as const) {
+    const ctx = createDeps();
+    ctx.insertUser({ id: `u_${order}`, clerkId: `clerk_${order}`, stripeCustomerId: `cus_${order}` });
+
+    await ctx.apply(
+      ctx.mkEvent({
+        eventId: `evt_seed_${order}`,
+        created: 900,
+        type: "customer.subscription.created",
+        subscriptionId: `sub_${order}`,
+        clerkId: `clerk_${order}`,
+        status: "active",
+        priceId: "price_basic",
+        start: 1000,
+        end: 2000,
+      })
+    );
+
+    const shorterPeriodUpdate = ctx.mkEvent({
+      eventId: `evt_shorter_${order}`,
+      created: 1000,
+      type: "customer.subscription.updated",
+      subscriptionId: `sub_${order}`,
+      clerkId: `clerk_${order}`,
+      status: "active",
+      priceId: "price_growth",
+      start: 2000,
+      end: 3000,
+      cancelAtPeriodEnd: false,
+    });
+
+    const longerPeriodUpdate = ctx.mkEvent({
+      eventId: `evt_longer_${order}`,
+      created: 1000,
+      type: "customer.subscription.updated",
+      subscriptionId: `sub_${order}`,
+      clerkId: `clerk_${order}`,
+      status: "past_due",
+      priceId: "price_master",
+      start: 3000,
+      end: 4000,
+      cancelAtPeriodEnd: true,
+    });
+
+    if (order === "shorter-first") {
+      await ctx.apply(shorterPeriodUpdate);
+      await ctx.apply(longerPeriodUpdate);
+    } else {
+      await ctx.apply(longerPeriodUpdate);
+      await ctx.apply(shorterPeriodUpdate);
+    }
+
+    const sub = ctx.getSubscriptionByUserId(`u_${order}`);
+    assert.ok(sub);
+    assert.equal(sub.status, SubscriptionStatus.PAST_DUE);
+    assert.equal(sub.plan, "MEISTARS");
+    assert.equal(sub.cancelAtPeriodEnd, true);
+    assert.equal(sub.currentPeriodEnd.getTime(), new Date(4000 * 1000).getTime());
+    assert.equal(sub.lastStripeEventCreated, 1000);
+    assert.equal(sub.lastStripeEventId, `evt_longer_${order}`);
+  }
+});
+
+test("vienādas sekundes konflikta update konkurentā piegādē saglabā garāko periodu", async () => {
+  const ctx = createDeps();
+  ctx.insertUser({ id: "u_same_ts_concurrent", clerkId: "clerk_same_ts_concurrent", stripeCustomerId: "cus_same_ts_concurrent" });
+
+  await ctx.apply(
+    ctx.mkEvent({
+      eventId: "evt_seed_same_ts_concurrent",
+      created: 1100,
+      type: "customer.subscription.created",
+      subscriptionId: "sub_same_ts_concurrent",
+      clerkId: "clerk_same_ts_concurrent",
+      status: "active",
+      priceId: "price_basic",
+      start: 1000,
+      end: 2000,
+    })
+  );
+
+  const [shorterResult, longerResult] = await Promise.all([
+    ctx.apply(
+      ctx.mkEvent({
+        eventId: "evt_shorter_same_ts_concurrent",
+        created: 1200,
+        type: "customer.subscription.updated",
+        subscriptionId: "sub_same_ts_concurrent",
+        clerkId: "clerk_same_ts_concurrent",
+        status: "active",
+        priceId: "price_growth",
+        start: 2000,
+        end: 3000,
+      })
+    ),
+    ctx.apply(
+      ctx.mkEvent({
+        eventId: "evt_longer_same_ts_concurrent",
+        created: 1200,
+        type: "customer.subscription.updated",
+        subscriptionId: "sub_same_ts_concurrent",
+        clerkId: "clerk_same_ts_concurrent",
+        status: "past_due",
+        priceId: "price_master",
+        start: 3000,
+        end: 4000,
+        cancelAtPeriodEnd: true,
+      })
+    ),
+  ]);
+
+  const sub = ctx.getSubscriptionByUserId("u_same_ts_concurrent");
+  assert.ok(sub);
+  assert.ok(shorterResult.applied || longerResult.applied);
+  assert.equal(sub.status, SubscriptionStatus.PAST_DUE);
+  assert.equal(sub.plan, "MEISTARS");
+  assert.equal(sub.currentPeriodEnd.getTime(), new Date(4000 * 1000).getTime());
+  assert.equal(sub.lastStripeEventCreated, 1200);
+  assert.equal(sub.lastStripeEventId, "evt_longer_same_ts_concurrent");
+});
+
+test("vienādas sekundes konflikta novēlota replay piegāde neatsauc jaunāko stāvokli", async () => {
+  const ctx = createDeps();
+  ctx.insertUser({ id: "u_replay_same_ts", clerkId: "clerk_replay_same_ts", stripeCustomerId: "cus_replay_same_ts" });
+
+  const olderState = ctx.mkEvent({
+    eventId: "evt_older_same_ts",
+    created: 1300,
+    type: "customer.subscription.updated",
+    subscriptionId: "sub_replay_same_ts",
+    clerkId: "clerk_replay_same_ts",
+    status: "active",
+    priceId: "price_basic",
+    start: 2000,
+    end: 3000,
+  });
+
+  const newerState = ctx.mkEvent({
+    eventId: "evt_newer_same_ts",
+    created: 1300,
+    type: "customer.subscription.updated",
+    subscriptionId: "sub_replay_same_ts",
+    clerkId: "clerk_replay_same_ts",
+    status: "past_due",
+    priceId: "price_master",
+    start: 3000,
+    end: 4000,
+    cancelAtPeriodEnd: true,
+  });
+
+  await ctx.apply(olderState);
+  await ctx.apply(newerState);
+  const replayResult = await ctx.apply(olderState);
+
+  const sub = ctx.getSubscriptionByUserId("u_replay_same_ts");
+  assert.ok(sub);
+  assert.equal(replayResult.applied, false);
+  assert.equal(replayResult.reason, "STALE_EVENT");
+  assert.equal(sub.status, SubscriptionStatus.PAST_DUE);
+  assert.equal(sub.plan, "MEISTARS");
+  assert.equal(sub.currentPeriodEnd.getTime(), new Date(4000 * 1000).getTime());
+  assert.equal(sub.lastStripeEventId, "evt_newer_same_ts");
+});
+
 test("dzÄ“Å¡ana pÄ“c tam novÄ“lots update neatjauno atceltu abonementu", async () => {
   const ctx = createDeps();
   ctx.insertUser({ id: "u1", clerkId: "clerk_1", stripeCustomerId: "cus_1" });

@@ -66,7 +66,7 @@ export async function POST(req: NextRequest) {
   }
 }
 
-async function fetchCanonicalSubscriptionSnapshot(subscriptionId: string, fallback: any) {
+export async function fetchCanonicalSubscriptionSnapshot(subscriptionId: string, fallback: any) {
   try {
     return await stripe.subscriptions.retrieve(subscriptionId, {
       expand: ["items.data.price"],
