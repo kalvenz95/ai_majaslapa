@@ -195,7 +195,7 @@ async function main() {
     check("GET /posts → 403", r.status === 403, `saņemts ${r.status}`);
     check(
       "kļūdas teksts ir aizslēgtais paziņojums",
-      r.body?.error === "Chademy Community ir pieejama tikai aktīvajiem Chademy dalībniekiem.",
+      r.body?.error === "Nav piekļuves šai darbībai",
       String(r.body?.error)
     );
 
@@ -340,7 +340,7 @@ async function main() {
       await postsRoute.POST(req("/api/community/posts", { method: "POST", body: { title: "Vēl spams", body: "Teksts" } }))
     );
     check("ierobežotais NEVAR publicēt → 403", p.status === 403, `saņemts ${p.status}`);
-    check("iemesls tiek parādīts", p.body?.error === "Spams", String(p.body?.error));
+    check("iekšējais iemesls netiek nopludināts", p.body?.error === "Nav piekļuves šai darbībai", String(p.body?.error));
 
     const read = await json(await postsRoute.GET(req("/api/community/posts")));
     check("ierobežotais JOPROJĀM var lasīt → 200", read.status === 200, `saņemts ${read.status}`);

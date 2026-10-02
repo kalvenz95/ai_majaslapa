@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+﻿import { NextRequest, NextResponse } from "next/server";
 import { stripe, PLAN_NAMES, getPlanFromPriceId } from "@/lib/stripe";
 import { prisma } from "@/lib/prisma";
 import { sendWelcomeEmail, sendPaymentConfirmationEmail } from "@/lib/resend";
@@ -8,6 +8,14 @@ import { processPaymentSucceeded, recordStripePayment } from "@/lib/stripe-webho
 import { applySubscriptionWebhookEvent } from "@/lib/stripe-subscription-webhook";
 
 export const runtime = "nodejs";
+
+class CanonicalSubscriptionUnavailableError extends Error {
+  constructor(subscriptionId: string, cause: unknown) {
+    super(`Canonical Stripe subscription nav pieejams: ${subscriptionId}`);
+    this.name = "CanonicalSubscriptionUnavailableError";
+    (this as any).cause = cause;
+  }
+}
 
 export async function POST(req: NextRequest) {
   const body = await req.text();
@@ -66,13 +74,40 @@ export async function POST(req: NextRequest) {
   }
 }
 
+export async function fetchCanonicalSubscriptionSnapshot(subscriptionId: string, fallback: any) {
+  try {
+    return await stripe.subscriptions.retrieve(subscriptionId, {
+      expand: ["items.data.price"],
+    });
+  } catch (error) {
+    console.warn("[STRIPE_SUBSCRIPTION_RETRIEVE_FAILED]", { subscriptionId, error });
+    throw new CanonicalSubscriptionUnavailableError(subscriptionId, error);
+  }
+}
+
+function toWebhookSubscriptionShape(subscription: any) {
+  const customer =
+    typeof subscription?.customer === "string"
+      ? subscription.customer
+      : (subscription?.customer?.id ?? null);
+
+  return {
+    ...subscription,
+    customer,
+  };
+}
+
 async function handleSubscriptionChange(event: any, sub: any) {
+  const canonicalSubscription = toWebhookSubscriptionShape(
+    await fetchCanonicalSubscriptionSnapshot(sub.id, sub)
+  );
+
   await applySubscriptionWebhookEvent(
     {
       eventId: event.id,
       eventCreated: event.created,
       eventType: event.type,
-      subscription: sub,
+      subscription: canonicalSubscription,
     },
     {
       prisma,
@@ -82,12 +117,16 @@ async function handleSubscriptionChange(event: any, sub: any) {
 }
 
 async function handleSubscriptionDeletion(event: any, sub: any) {
+  const canonicalSubscription = toWebhookSubscriptionShape(
+    await fetchCanonicalSubscriptionSnapshot(sub.id, sub)
+  );
+
   await applySubscriptionWebhookEvent(
     {
       eventId: event.id,
       eventCreated: event.created,
       eventType: event.type,
-      subscription: sub,
+      subscription: canonicalSubscription,
     },
     {
       prisma,
