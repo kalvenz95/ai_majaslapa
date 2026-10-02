@@ -1,4 +1,4 @@
-import { Prisma, SubscriptionStatus, type Plan } from "@prisma/client";
+﻿import { Prisma, SubscriptionStatus, type Plan } from "@prisma/client";
 
 const MAX_RETRIES = 5;
 
@@ -50,12 +50,67 @@ type StoredCursor = {
   stripeSubscriptionId: string;
 };
 
-function compareEventRecency(stored: StoredCursor, incoming: EventCursor): 1 | 0 | -1 {
-  if (incoming.eventCreated > stored.lastStripeEventCreated) return 1;
-  if (incoming.eventCreated < stored.lastStripeEventCreated) return -1;
+type RecencyComparison = "NEWER" | "DUPLICATE" | "STALE" | "SAME_TIMESTAMP_CONFLICT";
 
-  if (incoming.eventId === stored.lastStripeEventId) return 0;
-  return -1;
+type StoredSubscriptionSnapshot = StoredCursor & {
+  status: SubscriptionStatus;
+  stripePriceId: string;
+  plan: Plan;
+  currentPeriodStart: Date;
+  currentPeriodEnd: Date;
+  cancelAtPeriodEnd: boolean;
+};
+
+type IncomingSubscriptionSnapshot = {
+  status: SubscriptionStatus;
+  stripeSubscriptionId: string;
+  stripePriceId: string;
+  plan: Plan;
+  currentPeriodStart: Date;
+  currentPeriodEnd: Date;
+  cancelAtPeriodEnd: boolean;
+};
+
+function compareEventRecency(stored: StoredCursor, incoming: EventCursor): RecencyComparison {
+  if (incoming.eventCreated > stored.lastStripeEventCreated) return "NEWER";
+  if (incoming.eventCreated < stored.lastStripeEventCreated) return "STALE";
+
+  if (incoming.eventId === stored.lastStripeEventId) return "DUPLICATE";
+  return "SAME_TIMESTAMP_CONFLICT";
+}
+
+function shouldApplySameTimestampConflict(
+  existing: StoredSubscriptionSnapshot,
+  incoming: IncomingSubscriptionSnapshot
+): boolean {
+  if (existing.status === SubscriptionStatus.CANCELED && incoming.status !== SubscriptionStatus.CANCELED) {
+    return false;
+  }
+
+  if (existing.status !== SubscriptionStatus.CANCELED && incoming.status === SubscriptionStatus.CANCELED) {
+    return true;
+  }
+
+  const incomingPeriodEnd = incoming.currentPeriodEnd.getTime();
+  const storedPeriodEnd = existing.currentPeriodEnd.getTime();
+  if (incomingPeriodEnd > storedPeriodEnd) return true;
+  if (incomingPeriodEnd < storedPeriodEnd) return false;
+
+  const incomingPeriodStart = incoming.currentPeriodStart.getTime();
+  const storedPeriodStart = existing.currentPeriodStart.getTime();
+  if (incomingPeriodStart > storedPeriodStart) return true;
+  if (incomingPeriodStart < storedPeriodStart) return false;
+
+  const isIdenticalState =
+    existing.status === incoming.status
+    && existing.stripeSubscriptionId === incoming.stripeSubscriptionId
+    && existing.stripePriceId === incoming.stripePriceId
+    && existing.plan === incoming.plan
+    && existing.cancelAtPeriodEnd === incoming.cancelAtPeriodEnd;
+
+  if (isIdenticalState) return false;
+
+  return true;
 }
 
 function toSubscriptionStatus(status: string): SubscriptionStatus {
@@ -127,6 +182,12 @@ export async function applySubscriptionWebhookEvent(
             where: { stripeSubscriptionId: input.subscription.id },
             select: {
               id: true,
+              status: true,
+              plan: true,
+              stripePriceId: true,
+              currentPeriodStart: true,
+              currentPeriodEnd: true,
+              cancelAtPeriodEnd: true,
               lastStripeEventCreated: true,
               lastStripeEventId: true,
               stripeSubscriptionId: true,
@@ -138,10 +199,24 @@ export async function applySubscriptionWebhookEvent(
           }
 
           const recency = compareEventRecency(existingByStripeId, incoming);
-          if (recency === 0) {
+          if (recency === "DUPLICATE") {
             return { applied: false as const, reason: "DUPLICATE_EVENT" as const };
           }
-          if (recency < 0) {
+          if (recency === "STALE") {
+            return { applied: false as const, reason: "STALE_EVENT" as const };
+          }
+          if (
+            recency === "SAME_TIMESTAMP_CONFLICT"
+            && !shouldApplySameTimestampConflict(existingByStripeId, {
+              status: SubscriptionStatus.CANCELED,
+              stripeSubscriptionId: input.subscription.id,
+              stripePriceId: existingByStripeId.stripePriceId,
+              plan: existingByStripeId.plan,
+              currentPeriodStart: existingByStripeId.currentPeriodStart,
+              currentPeriodEnd: existingByStripeId.currentPeriodEnd,
+              cancelAtPeriodEnd: true,
+            })
+          ) {
             return { applied: false as const, reason: "STALE_EVENT" as const };
           }
 
@@ -175,6 +250,11 @@ export async function applySubscriptionWebhookEvent(
             id: true,
             stripeSubscriptionId: true,
             stripePriceId: true,
+            plan: true,
+            status: true,
+            currentPeriodStart: true,
+            currentPeriodEnd: true,
+            cancelAtPeriodEnd: true,
             lastStripeEventCreated: true,
             lastStripeEventId: true,
           },
@@ -249,10 +329,24 @@ export async function applySubscriptionWebhookEvent(
         }
 
         const recency = compareEventRecency(existing, incoming);
-        if (recency === 0) {
+        if (recency === "DUPLICATE") {
           return { applied: false as const, reason: "DUPLICATE_EVENT" as const };
         }
-        if (recency < 0) {
+        if (recency === "STALE") {
+          return { applied: false as const, reason: "STALE_EVENT" as const };
+        }
+        if (
+          recency === "SAME_TIMESTAMP_CONFLICT"
+          && !shouldApplySameTimestampConflict(existing, {
+            status: targetStatus,
+            stripeSubscriptionId: input.subscription.id,
+            stripePriceId: priceId ?? existing.stripePriceId,
+            plan: plan!,
+            currentPeriodStart,
+            currentPeriodEnd,
+            cancelAtPeriodEnd,
+          })
+        ) {
           return { applied: false as const, reason: "STALE_EVENT" as const };
         }
 

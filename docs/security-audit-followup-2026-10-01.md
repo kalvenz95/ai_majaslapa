@@ -172,3 +172,34 @@
 4. Footer/newsletter workstream remains open unless separately resolved.
 5. Localization workstream remains open unless separately resolved.
 6. Accessibility workstream remains open unless separately resolved.
+
+## Integration update — 2026-10-02 (PR #11 `/fix-ci`)
+
+### Verified complete in this integration pass
+1. Stripe equal-timestamp webhook conflict is no longer first-writer-wins:
+   - same-second conflict resolver compares meaningful subscription state and preserves cancellation precedence;
+   - webhook route now attempts canonical subscription fetch (`stripe.subscriptions.retrieve`) before apply.
+2. Stripe ordering regression coverage extended:
+   - unit suite validates both delivery orders and concurrent delivery for same-second update/delete;
+   - integration suite validates same-second concurrent delete-vs-update behavior on real Postgres.
+3. Admin note deletion scope is validated on real disposable Postgres via route-level regression:
+   - deleting `noteId` under wrong `userId` returns `404` and does not delete foreign-user notes.
+4. CI regression workflow now includes:
+   - Stripe idempotency + DB tests,
+   - Stripe subscription ordering unit + DB integration suites,
+   - admin-note deletion DB integration suite,
+   - fresh-db migrations + existing-db historical upgrade simulation,
+   - TypeScript and production build checks.
+5. Existing-db migration validation now seeds representative historical `Subscription`, `Payment`, `Affiliate`, and `Referral` data before post-baseline migrations and verifies backfill/cursor defaults.
+
+### Open
+1. Explicit product-level role policy for `POST /api/events` remains pending (`OWNER/ADMIN` vs broader).
+2. Next.js multiple lockfile root warning remains (non-blocking but noisy).
+
+### Blocked / unverified
+1. Browser E2E verification (login, course access, calendar, admin permissions) remains unverified in this branch-only pass.
+2. Stripe checkout runtime validation in Stripe test mode remains unverified in this branch-only pass.
+3. Production/staging rollout verification and migration rehearsal remain unverified (no production evidence collected here).
+4. Footer/newsletter workstream remains open unless separately resolved.
+5. Localization workstream remains open unless separately resolved.
+6. Accessibility workstream remains open unless separately resolved.

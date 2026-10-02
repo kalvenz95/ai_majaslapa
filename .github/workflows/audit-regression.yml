@@ -1,4 +1,4 @@
-﻿name: audit-regression
+name: audit-regression
 
 on:
   pull_request:
@@ -10,7 +10,7 @@ on:
 
 jobs:
   regression-db-and-security:
-    name: Regression DB and security (Node 20)
+    name: Regression DB and security (Node 22)
     runs-on: ubuntu-latest
     timeout-minutes: 35
     services:
@@ -34,7 +34,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20.x
+          node-version: 22.x
           cache: npm
 
       - name: Install dependencies
@@ -58,6 +58,8 @@ jobs:
           DATABASE_URL="$FRESH_URL" DIRECT_URL="$FRESH_URL" OWNER_EMAIL='owner@chademy.com' npm run test:ctest:run
           DATABASE_URL="$FRESH_URL" DIRECT_URL="$FRESH_URL" npm run test:ctest:events
           DATABASE_URL="$FRESH_URL" DIRECT_URL="$FRESH_URL" npm run test:ctest:stripe
+          DATABASE_URL="$FRESH_URL" DIRECT_URL="$FRESH_URL" npm run test:ctest:stripe-ordering
+          DATABASE_URL="$FRESH_URL" DIRECT_URL="$FRESH_URL" npm run test:ctest:admin-notes-db
           DATABASE_URL="$FRESH_URL" DIRECT_URL="$FRESH_URL" npm run test:ctest:error-info
 
       - name: Existing database upgrade validation and regressions
@@ -76,10 +78,10 @@ jobs:
           npx prisma db execute --url "$EXISTING_URL" --file prisma/migrations/20260929115900_baseline/migration.sql
 
           npx prisma db execute --url "$EXISTING_URL" --stdin <<'SQL'
-          INSERT INTO "User" ("id","clerkId","email","name","status","role","createdAt","updatedAt")
+          INSERT INTO "User" ("id","clerkId","email","name","status","role","stripeCustomerId","createdAt","updatedAt")
           VALUES
-            ('u_aff','clerk_aff','aff@example.test','Affiliate','ACTIVE','USER',NOW(),NOW()),
-            ('u_ref','clerk_ref','ref@example.test','Referred','ACTIVE','USER',NOW(),NOW());
+            ('u_aff','clerk_aff','aff@example.test','Affiliate','ACTIVE','USER','cus_aff',NOW(),NOW()),
+            ('u_ref','clerk_ref','ref@example.test','Referred','ACTIVE','USER','cus_ref',NOW(),NOW());
 
           INSERT INTO "Affiliate" ("id","userId","code","createdAt","updatedAt")
           VALUES ('a1','u_aff','AFFCODE',NOW(),NOW());
@@ -91,9 +93,16 @@ jobs:
           VALUES
             ('p_paid','u_ref',5900,'eur','IZAUGSME','PAID','stripe','pi_paid',NOW(),NOW()),
             ('p_failed','u_ref',5900,'eur','IZAUGSME','FAILED','stripe','pi_failed',NOW(),NOW());
+
+          INSERT INTO "Subscription" (
+            "id","userId","plan","status","stripeSubscriptionId","stripePriceId","currentPeriodStart","currentPeriodEnd","cancelAtPeriodEnd","createdAt","updatedAt"
+          )
+          VALUES
+            ('sub_old','u_ref','IZAUGSME','ACTIVE','sub_existing_1','price_izaugsme',NOW() - INTERVAL '10 days',NOW() + INTERVAL '20 days',false,NOW(),NOW());
           SQL
 
           npx prisma db execute --url "$EXISTING_URL" --file prisma/migrations/20260929120000_referral_payment_credit/migration.sql
+          npx prisma db execute --url "$EXISTING_URL" --file prisma/migrations/20261002103000_subscription_webhook_event_cursor/migration.sql
 
           DATABASE_URL="$EXISTING_URL" DIRECT_URL="$EXISTING_URL" node <<'NODE'
           const { PrismaClient } = require('@prisma/client');
@@ -103,18 +112,30 @@ jobs:
               datasources: { db: { url: process.env.DATABASE_URL } },
             });
 
-            const [creditsTotal, paidBackfilled, failedBackfilled] = await Promise.all([
+            const [creditsTotal, paidBackfilled, failedBackfilled, seededSubscription] = await Promise.all([
               prisma.referralPaymentCredit.count(),
               prisma.referralPaymentCredit.count({ where: { paymentId: 'p_paid', amountCents: 5900 } }),
               prisma.referralPaymentCredit.count({ where: { paymentId: 'p_failed' } }),
+              prisma.subscription.findUnique({
+                where: { stripeSubscriptionId: 'sub_existing_1' },
+                select: { status: true, plan: true, lastStripeEventCreated: true, lastStripeEventId: true },
+              }),
             ]);
 
             if (creditsTotal !== 1 || paidBackfilled !== 1 || failedBackfilled !== 0) {
               throw new Error(`Backfill verification failed: total=${creditsTotal}, paid=${paidBackfilled}, failed=${failedBackfilled}`);
             }
 
+            if (!seededSubscription) {
+              throw new Error('Subscription migration verification failed: seeded subscription missing');
+            }
+
+            if (seededSubscription.lastStripeEventCreated !== 0 || seededSubscription.lastStripeEventId !== null) {
+              throw new Error(`Subscription cursor migration failed: created=${seededSubscription.lastStripeEventCreated}, id=${seededSubscription.lastStripeEventId}`);
+            }
+
             await prisma.$disconnect();
-            console.log('Backfill verification passed');
+            console.log('Backfill and subscription cursor verification passed');
           }
 
           main().catch((error) => {
@@ -125,9 +146,11 @@ jobs:
 
           DATABASE_URL="$EXISTING_URL" DIRECT_URL="$EXISTING_URL" OWNER_EMAIL='owner@chademy.com' npm run test:ctest:run
           DATABASE_URL="$EXISTING_URL" DIRECT_URL="$EXISTING_URL" npm run test:ctest:stripe
+          DATABASE_URL="$EXISTING_URL" DIRECT_URL="$EXISTING_URL" npm run test:ctest:stripe-ordering
+          DATABASE_URL="$EXISTING_URL" DIRECT_URL="$EXISTING_URL" npm run test:ctest:admin-notes-db
 
   typecheck-and-build:
-    name: Typecheck and build (Node 20)
+    name: Typecheck and build (Node 22)
     runs-on: ubuntu-latest
     timeout-minutes: 25
     services:
@@ -151,7 +174,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20.x
+          node-version: 22.x
           cache: npm
 
       - name: Install dependencies
@@ -172,8 +195,8 @@ jobs:
           DIRECT_URL='postgresql://postgres:postgres@127.0.0.1:5432/chademy_ci_build?schema=public' \
           npm run build
 
-  typecheck-node-22:
-    name: Typecheck (Node 22)
+  typecheck-node-24:
+    name: Typecheck (Node 24)
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -182,7 +205,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22.x
+          node-version: 24.x
           cache: npm
 
       - name: Install dependencies

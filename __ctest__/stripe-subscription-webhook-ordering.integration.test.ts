@@ -1,4 +1,4 @@
-import test from "node:test";
+﻿import test from "node:test";
 import assert from "node:assert/strict";
 import { PrismaClient, type Plan, SubscriptionStatus } from "@prisma/client";
 import { applySubscriptionWebhookEvent } from "../src/lib/stripe-subscription-webhook.ts";
@@ -79,7 +79,7 @@ if (!databaseUrl) {
     });
   }
 
-  test("jaunaks update neļauj vecākam update pārrakstīt stāvokli", async () => {
+  test("jaunaks update neÄ¼auj vecÄkam update pÄrrakstÄ«t stÄvokli", async () => {
     await resetData();
     const user = await seedUser({ clerkId: "clerk_order_1", stripeCustomerId: "cus_order_1" });
 
@@ -134,7 +134,7 @@ if (!databaseUrl) {
     assert.equal(subscription?.lastStripeEventId, "evt_update_220");
   });
 
-  test("duplicate event netiek piemērots atkārtoti", async () => {
+  test("duplicate event netiek piemÄ“rots atkÄrtoti", async () => {
     await resetData();
     const user = await seedUser({ clerkId: "clerk_dup_1", stripeCustomerId: "cus_dup_1" });
 
@@ -163,7 +163,7 @@ if (!databaseUrl) {
     assert.equal(subscription?.lastStripeEventId, "evt_dup_same");
   });
 
-  test("konkurenti vienā sekundē apstrādājas deterministiski", async () => {
+  test("konkurenti vienā sekundē saglabā dzēšanu kā gala stāvokli", async () => {
     await resetData();
     const user = await seedUser({ clerkId: "clerk_conc_1", stripeCustomerId: "cus_conc_1" });
 
@@ -179,21 +179,9 @@ if (!databaseUrl) {
       }),
     });
 
-    const [resultA, resultB] = await Promise.all([
+    const [updated, deleted] = await Promise.all([
       apply({
-        eventId: "evt_same_ts_aaa",
-        eventCreated: 700,
-        eventType: "customer.subscription.updated",
-        subscription: buildSubscriptionFixture({
-          id: "sub_conc_1",
-          status: "active",
-          customer: "cus_conc_1",
-          metadata: { clerkId: "clerk_conc_1" },
-          items: { data: [{ price: { id: "price_pamati" } }] },
-        }),
-      }),
-      apply({
-        eventId: "evt_same_ts_zzz",
+        eventId: "evt_same_ts_update",
         eventCreated: 700,
         eventType: "customer.subscription.updated",
         subscription: buildSubscriptionFixture({
@@ -201,31 +189,33 @@ if (!databaseUrl) {
           status: "past_due",
           customer: "cus_conc_1",
           metadata: { clerkId: "clerk_conc_1" },
+          cancel_at_period_end: false,
           items: { data: [{ price: { id: "price_izaugsme" } }] },
+        }),
+      }),
+      apply({
+        eventId: "evt_same_ts_delete",
+        eventCreated: 700,
+        eventType: "customer.subscription.deleted",
+        subscription: buildSubscriptionFixture({
+          id: "sub_conc_1",
+          status: "canceled",
+          customer: "cus_conc_1",
+          metadata: { clerkId: "clerk_conc_1" },
+          cancel_at_period_end: true,
         }),
       }),
     ]);
 
     const subscription = await prisma.subscription.findUnique({ where: { userId: user.id } });
 
-    assert.equal([resultA.applied, resultB.applied].filter(Boolean).length, 1);
-    assert.equal([resultA.reason, resultB.reason].filter((reason) => reason === "STALE_EVENT").length, 1);
+    assert.ok(updated.applied || deleted.applied);
+    assert.equal(subscription?.status, SubscriptionStatus.CANCELED);
+    assert.equal(subscription?.cancelAtPeriodEnd, true);
     assert.equal(subscription?.lastStripeEventCreated, 700);
-    assert.ok(
-      subscription?.lastStripeEventId === "evt_same_ts_aaa"
-      || subscription?.lastStripeEventId === "evt_same_ts_zzz"
-    );
-
-    if (subscription?.lastStripeEventId === "evt_same_ts_aaa") {
-      assert.equal(subscription.status, SubscriptionStatus.ACTIVE);
-      assert.equal(subscription.plan, "PAMATI");
-    } else {
-      assert.equal(subscription?.status, SubscriptionStatus.PAST_DUE);
-      assert.equal(subscription?.plan, "IZAUGSME");
-    }
   });
 
-  test("dzēšana un pēc tam novēlots vecāks update neatceļ atcelšanu", async () => {
+  test("dzÄ“Å¡ana un pÄ“c tam novÄ“lots vecÄks update neatceÄ¼ atcelÅ¡anu", async () => {
     await resetData();
     const user = await seedUser({ clerkId: "clerk_delete_1", stripeCustomerId: "cus_delete_1" });
 
@@ -273,7 +263,7 @@ if (!databaseUrl) {
     assert.equal(subscription?.lastStripeEventId, "evt_del_300");
   });
 
-  test("renewal, plāna maiņa un replacement tiek apstrādāti korekti", async () => {
+  test("renewal, plÄna maiÅ†a un replacement tiek apstrÄdÄti korekti", async () => {
     await resetData();
     const user = await seedUser({ clerkId: "clerk_replace_1", stripeCustomerId: "cus_replace_1" });
 

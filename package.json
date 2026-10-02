@@ -10,12 +10,15 @@
     "test:ctest:run": "tsx --tsconfig ./__ctest__/tsconfig.json ./__ctest__/run.ts",
     "test:ctest:events": "tsx --tsconfig ./__ctest__/tsconfig.events.json ./__ctest__/events-access.run.ts",
     "test:ctest:stripe": "tsx --test ./__ctest__/stripe-webhook-idempotency.test.ts ./__ctest__/stripe-webhook-db.integration.test.ts",
+    "test:ctest:stripe-ordering": "tsx --test ./__ctest__/stripe-subscription-webhook-ordering.test.ts ./__ctest__/stripe-subscription-webhook-ordering.integration.test.ts",
+    "test:ctest:admin-notes": "tsx --tsconfig ./__ctest__/tsconfig.admin-notes.json ./__ctest__/admin-user-note-delete.test.ts",
     "test:ctest:error-info": "tsx --tsconfig ./__ctest__/tsconfig.json ./__ctest__/error-information-exposure.behavior.test.ts",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
     "db:migrate": "prisma migrate dev",
     "db:seed": "ts-node --project prisma/tsconfig.seed.json prisma/seed.ts",
-    "db:studio": "prisma studio"
+    "db:studio": "prisma studio",
+    "test:ctest:admin-notes-db": "tsx --test --tsconfig ./__ctest__/tsconfig.admin-notes-db.json ./__ctest__/admin-user-note-delete.integration.test.ts"
   },
   "prisma": {
     "seed": "ts-node --project prisma/tsconfig.seed.json prisma/seed.ts"

@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+﻿import { NextRequest, NextResponse } from "next/server";
 import { stripe, PLAN_NAMES, getPlanFromPriceId } from "@/lib/stripe";
 import { prisma } from "@/lib/prisma";
 import { sendWelcomeEmail, sendPaymentConfirmationEmail } from "@/lib/resend";
@@ -66,13 +66,26 @@ export async function POST(req: NextRequest) {
   }
 }
 
+async function fetchCanonicalSubscriptionSnapshot(subscriptionId: string, fallback: any) {
+  try {
+    return await stripe.subscriptions.retrieve(subscriptionId, {
+      expand: ["items.data.price"],
+    });
+  } catch (error) {
+    console.warn("[STRIPE_SUBSCRIPTION_RETRIEVE_FAILED]", { subscriptionId, error });
+    return fallback;
+  }
+}
+
 async function handleSubscriptionChange(event: any, sub: any) {
+  const canonicalSubscription = await fetchCanonicalSubscriptionSnapshot(sub.id, sub);
+
   await applySubscriptionWebhookEvent(
     {
       eventId: event.id,
       eventCreated: event.created,
       eventType: event.type,
-      subscription: sub,
+      subscription: canonicalSubscription,
     },
     {
       prisma,
@@ -82,12 +95,14 @@ async function handleSubscriptionChange(event: any, sub: any) {
 }
 
 async function handleSubscriptionDeletion(event: any, sub: any) {
+  const canonicalSubscription = await fetchCanonicalSubscriptionSnapshot(sub.id, sub);
+
   await applySubscriptionWebhookEvent(
     {
       eventId: event.id,
       eventCreated: event.created,
       eventType: event.type,
-      subscription: sub,
+      subscription: canonicalSubscription,
     },
     {
       prisma,
