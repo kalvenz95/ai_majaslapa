@@ -2,6 +2,7 @@ import { auth } from "@clerk/nextjs/server";
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { assertNotBlocked, BlockedUserError } from "@/lib/user-access";
+import { requireApiPermission, adminApiError } from "@/lib/admin";
 
 export async function GET() {
   const { userId } = await auth();
@@ -46,28 +47,20 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
-  const { userId } = await auth();
-  if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-
   try {
-    await assertNotBlocked(userId);
-  } catch (error) {
-    if (error instanceof BlockedUserError) {
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    await requireApiPermission("events.create");
+
+    const { title, description, startAt, endAt, meetUrl, type } = await req.json();
+    if (!title?.trim() || !startAt) {
+      return NextResponse.json({ error: "Virsraksts un sakuma laiks ir obligati" }, { status: 400 });
     }
 
-    console.error("[EVENTS_POST_BLOCK_CHECK]", error);
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    const event = await prisma.liveEvent.create({
+      data: { title, description, startAt: new Date(startAt), endAt: endAt ? new Date(endAt) : null, meetUrl, type: type ?? "WEBINAR" },
+    });
+
+    return NextResponse.json(event, { status: 201 });
+  } catch (error) {
+    return adminApiError(error);
   }
-
-  const { title, description, startAt, endAt, meetUrl, type } = await req.json();
-  if (!title?.trim() || !startAt) {
-    return NextResponse.json({ error: "Virsraksts un sākuma laiks ir obligāti" }, { status: 400 });
-  }
-
-  const event = await prisma.liveEvent.create({
-    data: { title, description, startAt: new Date(startAt), endAt: endAt ? new Date(endAt) : null, meetUrl, type: type ?? "WEBINAR" },
-  });
-
-  return NextResponse.json(event, { status: 201 });
 }
